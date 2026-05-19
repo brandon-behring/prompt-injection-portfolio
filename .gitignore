@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[oc]
+.venv/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.DS_Store
+
+# Portfolio eval artifacts (large; runtime outputs)
+evals/predictions/
+evals/predictions_val/
+evals/checkpoints/
+evals/lane*/predictions/
+
+# Data — gitignored by default; manifests + processed parquets per plan §3
+data/raw/
+data/processed/
+.hf_cache/
+
+# Secrets — never commit (repo is public from M0 per ADR-024)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.cert
+secrets/
+.secrets/
+
+# Transcripts: private by default per submission convention; README inside stays tracked
+transcripts/*.md
+!transcripts/README.md
+transcripts/auto/
+
+# Book scaffold outputs (Astro build artifacts)
+book/dist/
+book/dist-pdf/
+book/.astro/
+book/node_modules/
+book/.pagefind/
+
+# Dossier inbox (raw landing for compass artifacts before decomposition)
+docs/research/_inbox/
+
+# Cost ledger remains tracked; per-run logs may be gitignored later
+# evals/cost_ledger.csv — tracked
+
+# Smoke-time fixture outputs (per submission's pattern; M0 Day 3+)
+tests/fixtures/predictions/
+tests/fixtures/checkpoints/
+tests/fixtures/metrics/
