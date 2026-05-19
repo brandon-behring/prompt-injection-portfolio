@@ -1,0 +1,106 @@
+[project]
+name = "prompt-injection-portfolio"
+version = "0.1.0-pre"
+description = "Methodology case study extending prompt-injection-detection-prototype: can we climb the OOD wall? Pre-alpha."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.13"
+
+# Load-bearing PyPI libraries — NEVER hand-rolled (per ADR-026 + Round-10
+# library-first invariant). Missing primitive → upstream issue + MR; portfolio
+# pins the new version when shipped. No local workarounds.
+#
+# Pin policy: minimum version pin (>=) for compatibility-range, matching the
+# submission's most-recently-pinned versions (v1.0.9 / v1.1.0 + later).
+# Portfolio bumps these as upstream patches land; per ADR-013 cost discipline,
+# bumps that change behavior require a `decisions/library_imports.md` row.
+dependencies = [
+    # Round 10 floor (per submission v1.0.9 ADR-058 — canonical Platt+Beta+Isotonic API):
+    "eval-toolkit>=0.42",
+    # research_toolkit not yet on PyPI — track v0.8+ upstream issue to publish.
+    # For now, install via git URL pinned to v1.9.1 (matches submission).
+    "research_toolkit @ git+https://github.com/brandon-behring/research_toolkit@v1.9.1",
+    # Standard ML stack (matches submission v1.0.7+):
+    "huggingface_hub>=0.25",
+    "pyyaml>=6",
+    "datasets>=3.0",
+    "pandas>=2.2",
+    "pyarrow>=17",
+    "sentence-transformers>=3.0",
+    "numpy>=2.0",
+    "scikit-learn>=1.5",
+    "transformers>=4.48",
+    "peft>=0.13",
+    "torch>=2.5",
+    "accelerate>=1.0",
+    "sentencepiece>=0.2",
+    "protobuf>=4.0",
+    "pydantic>=2.5",
+    "anthropic>=0.40",
+    "openai>=1.50",
+    "matplotlib>=3.8",
+    # Lane 3 RAG demo deps (per plan §5):
+    "gradio>=4.0",
+    "faiss-cpu>=1.8",
+    # Lane 4 stacker deps:
+    "xgboost>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    # Quality gates per plan §2 Tier-4:
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "pytest>=8",
+    "pytest-cov>=4",
+    "types-PyYAML>=6",
+    "pandas-stubs>=2.2",
+    # Local-only orchestrator — never imported by remote pods. Per Round 10
+    # pin + submission v1.1.0 ADR-059:
+    "runpod-deploy>=0.8.4",
+    # Notebook authoring (jupytext-paired .py + .ipynb per Round 5 Q5'):
+    "jupytext>=1.16",
+    "jupyter>=1.0",
+    "nbval>=0.11",
+]
+
+[tool.uv.sources]
+# Submission is the prototype — editable dep at sibling path (Round 6 Q1''''').
+# Local layout assumed: ../prompt-injection-detection-submission/
+#
+# CI uses two-step `actions/checkout@v4` to clone submission at a pinned tag.
+# Currently `ref: v1.1.1` per plan §3 (will advance to v1.1.2 when DeBERTa
+# execution lands at submission HEAD). Update the workflow + this comment
+# together when the submission `ref:` advances.
+#
+# NOTE: eval-toolkit / runpod-deploy are PyPI artifacts — never use editable
+# local paths for them. They are infrastructure for multiple projects, not
+# portfolio-specific code (per ADR-026).
+prompt-injection-detection-prototype = { path = "../prompt-injection-detection-submission", editable = true }
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N", "W"]
+# E: pycodestyle errors; F: pyflakes; I: isort; B: bugbear; UP: pyupgrade;
+# N: pep8-naming; W: pycodestyle warnings.
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+markers = [
+    "unit: fast unit tests",
+    "smoke: lightweight end-to-end smoke tests",
+    "integration: heavier tests requiring external resources (opt-in via -m integration)",
+    "contract: test-contracts enforcing anti-pattern firewall (per plan §2 Tier-4)",
+]
+addopts = "-q --strict-markers"

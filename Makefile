@@ -13,5 +13,4 @@ verify-docker:
 	@python3 scripts/verify_docker.py
 
 verify-deps:
-	@echo "verify-deps: not yet implemented (M0 Day 2 deliverable — confirms submission editable dep + eval-toolkit/runpod-deploy/research_toolkit PyPI pins)"
-	@exit 0
+	@python3 scripts/verify_editable_dep.py
