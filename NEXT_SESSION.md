@@ -1,7 +1,7 @@
 # NEXT_SESSION
 
-**Last update**: 2026-05-19 (M0 Day 1 close)
-**Repo state**: v0.1.0-pre placeholder; pushed to github.com/brandon-behring/prompt-injection-portfolio
+**Last update**: 2026-05-19 (M0 Day 2 close + upstream-issues batch filed)
+**Repo state**: v0.1.0-pre; 4 commits on main; 9 upstream MRs filed (8 blocking + 1 deferred)
 **Pre-alpha banner**: ACTIVE (visible in README + book frontmatter once book/ bootstraps)
 
 ---
@@ -43,30 +43,52 @@
 - gitleaks scan clean
 - `Co-Authored-By: Claude` commit trailer
 
-### ⏸ Day 2 next steps (per plan §21)
+### ✓ Day 2 done
 
-1. `npx @brandon_m_behring/create-book prompt-injection-portfolio --profile=academic`
-   - Academic profile at first (v3.1)
-   - Later upgrade to `--profile=research-portfolio` when scaffold v3.2 ships (R11 lock; BLOCKS M1 book authoring on this)
-2. `uv init` + `pyproject.toml` with:
-   - `eval-toolkit>=0.42` (per submission v1.0.9 ADR-055/056/058)
-   - `runpod-deploy>=0.8.4` (per submission v1.1.0 ADR-059)
-   - `research_toolkit` (latest)
-   - `[tool.uv.sources] prompt-injection-detection-prototype = { path = "../prompt-injection-detection-submission", editable = true }`
-3. Write `scripts/verify_editable_dep.py` (validates sibling-layout import path)
-4. Draft `.github/workflows/ci.yml` two-step checkout (portfolio + submission `ref: v1.1.1`)
+- `book/` scaffolded via `npx @brandon_m_behring/create-book ... --profile=academic` (11 files; v3.1.0 pinned)
+- `book/LICENSE` added (CC-BY-4.0; bifurcation note pointing at root Apache-2.0 LICENSE)
+- `pyproject.toml` written (eval-toolkit≥0.42 + runpod-deploy≥0.8.4 + research_toolkit @ git+v1.9.1 + editable submission dep + dev deps + ruff/mypy/pytest config)
+- `scripts/verify_editable_dep.py` (sibling-layout check + submission key files validation)
+- `.github/workflows/ci.yml` (two-step checkout portfolio + submission ref:v1.1.1; ruff + mypy + pytest + test-contracts; mypy/pytest/contracts allow-failure at v0.1.0-pre until Day 3)
+- 3 commits Day 2: `f011726` scaffold+pyproject+verify-deps → `11175db` CI draft
+- CI Run #1 triggered on `11175db` at 16:04 UTC (expected partial; will go fully green at Day 3)
 
-### M0 Day 3 next
+### ✓ Day 2.5 done — upstream MR batch filed (per Round 10 ongoing-issue-filing discipline)
 
-- 7 test-contracts implementation (`tests/contracts/test_*.py`)
-- Configure ruff (check + format) + mypy --strict
-- Second push → CI must go green → tag `v0.1.0-pre` checkpoint
+- `decisions/upstream_issues.md` (state machine + 9 rows; M0 batch + ongoing section)
+- `decisions/library_imports.md` (registry; populated as MRs ship)
+- 9 issues filed across 3 repos (issue-filed state):
+  - eval-toolkit [#48 MR-1](https://github.com/brandon-behring/eval-toolkit/issues/48) `ood_dataset_from_manifest`
+  - eval-toolkit [#49 MR-2](https://github.com/brandon-behring/eval-toolkit/issues/49) `character_injection` 12-suite
+  - research_toolkit [#1 MR-3](https://github.com/brandon-behring/research_toolkit/issues/1) `/dataset-synthesize` skill
+  - eval-toolkit [#50 MR-4](https://github.com/brandon-behring/eval-toolkit/issues/50) `RecallAtLowFPR` loss
+  - eval-toolkit [#51 MR-5](https://github.com/brandon-behring/eval-toolkit/issues/51) `spotlighting` (3 variants)
+  - eval-toolkit [#52 MR-6](https://github.com/brandon-behring/eval-toolkit/issues/52) `MetaLearner` + `LogisticStacker`
+  - eval-toolkit [#53 MR-7](https://github.com/brandon-behring/eval-toolkit/issues/53) `ActivationDeltaProbe`
+  - book-scaffold-astro [#6 MR-8](https://github.com/brandon-behring/book-scaffold-astro/issues/6) v3.2 research-portfolio profile
+  - book-scaffold-astro [#7 MR-9](https://github.com/brandon-behring/book-scaffold-astro/issues/7) generic frontmatter primitive (deferred)
+- `.scratch/` gitignored (for ad-hoc issue-body drafts; snap-confined gh needs body files inside repo, not `/tmp` or `~/.cache`)
 
-### M0 Day 4-5
+### ⏸ Day 3 next steps (per plan §21)
 
-- Implement **MR-1** (`eval_toolkit.loaders.ood_dataset_from_manifest`) upstream in eval-toolkit repo
-- Release eval-toolkit v0.42.1
-- Pin in portfolio pyproject.toml
+1. **7 test-contracts implementation** (`tests/contracts/test_*.py`):
+   - `no_handrolled_metrics`
+   - `predictions_persisted`
+   - `leakage_scan_present`
+   - `glossary_complete`
+   - `library_imports_registered` (parses `decisions/library_imports.md`)
+   - `mypy_strict_clean`
+   - `experiment_records_complete` (per §18 + Round 7 ADR)
+2. Configure ruff (check + format) + tighten mypy --strict
+3. First fully-green CI run → tag `v0.1.0-pre` checkpoint
+4. Push commit → CI must pass with all gates green (no allow-failure shells)
+
+### M0 Day 4-5 ahead
+
+- Implement **MR-1** (eval-toolkit #48 — `ood_dataset_from_manifest`) upstream
+- Release eval-toolkit v0.43.0 (semver-minor for new public API)
+- Pin in portfolio `pyproject.toml`; update `decisions/library_imports.md` row
+- Advance MR-1 row in `upstream_issues.md` to `pinned-in-portfolio`
 
 ---
 
@@ -129,13 +151,13 @@ See `portfolio_plan_approved.md` memory or plan §1 decision tables. Highlights:
 
 ## Active tasks (taskList; preserved across compaction)
 
-23 tasks total; 3 complete (#1, #2, #3); 20 pending. Key next:
+23 tasks total; 4 complete (#1, #2, #3, #5); 19 remaining. Key next:
 
-- **#4** wire CI (Day 2-3): ruff + mypy --strict + pytest + nbval + 7 test-contracts + two-step checkout for submission editable dep
-- **#5** file 8 upstream issues (Day 1-3): 7 eval-toolkit/research_toolkit MRs + 1 scaffold v3.1 design issue (deferred; MR-8 now blocking M1 per R11)
-- **#6** implement 3 critical upstream MRs (Day 4-13): MR-1 (Day 4-5), MR-7 (Day 13), MR-2 (Day 6-8)
+- **#4** wire CI green (Day 3): ruff + mypy --strict + pytest + 7 test-contracts; remove allow-failure shells
+- **#5** ✓ filed 9 upstream issues (Day 2.5; eval-toolkit #48/49/50/51/52/53, research_toolkit #1, book-scaffold-astro #6/7)
+- **#6** implement 3 critical upstream MRs (Day 4-13): MR-1 (Day 4-5; eval-toolkit #48), MR-7 (Day 13; #53), MR-2 (Day 6-8; #49)
 - **#7** dossier work (Day 6-12): 60-80 files via research_toolkit
-- **#8** book bootstrap (Day 2 academic; Day 14 chapter skeletons after v3.2)
+- **#8** book bootstrap (Day 2 academic ✓; Day 14 chapter skeletons after MR-8 v3.2 ships)
 - **#15** portfolio-clean T0 (Day 17 per plan; eval_from_hub.py reimpl per ADR-035)
 
 ---

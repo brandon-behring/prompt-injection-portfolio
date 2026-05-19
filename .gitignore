@@ -54,3 +54,6 @@ docs/research/_inbox/
 tests/fixtures/predictions/
 tests/fixtures/checkpoints/
 tests/fixtures/metrics/
+
+# Local scratch space (issue bodies, ad-hoc drafts; not for the repo)
+.scratch/
