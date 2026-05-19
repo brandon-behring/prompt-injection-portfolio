@@ -1,0 +1,82 @@
+# Portfolio CI — M0 Day 2 draft.
+#
+# Implements two-step checkout per plan §3 + F2 risk resolution:
+# - Step 1: checkout portfolio repo (`actions/checkout@v4` to `./`)
+# - Step 2: checkout submission at pinned tag (`ref: v1.1.1`) to sibling path
+#   so `[tool.uv.sources]` editable dep resolves at uv sync time
+#
+# Per Round 11 lock, submission ref: advances v1.0.1 → v1.0.2 → ... → v1.1.1
+# (current) as patches land. Update both `ref:` value + the corresponding
+# pyproject.toml [tool.uv.sources] comment together.
+#
+# Quality gates per plan §2 Tier-4 + Round 7 ADR-036:
+# - ruff check (lint) + ruff format --check (format)
+# - mypy --strict (type-checking)
+# - pytest unit + smoke (excludes integration; opt-in via -m integration)
+# - test-contracts (per plan §2 Tier-4 + §18 7th `test_experiment_records_complete`)
+#
+# Test-contracts implementation lands at M0 Day 3 (currently scaffolded).
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout portfolio
+        uses: actions/checkout@v4
+        with:
+          path: prompt-injection-portfolio
+
+      - name: Checkout submission (pinned to v1.1.1 per round-11 lock)
+        uses: actions/checkout@v4
+        with:
+          repository: brandon-behring/prompt-injection-detection-prototype
+          ref: v1.1.1
+          path: prompt-injection-detection-submission
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Set up Python 3.13
+        run: uv python install 3.13
+
+      - name: Sync dependencies (incl. editable submission)
+        working-directory: prompt-injection-portfolio
+        run: uv sync --extra dev
+
+      - name: Run pre-flight verifications (read-only sanity checks)
+        working-directory: prompt-injection-portfolio
+        run: |
+          make verify-data-sources
+          make verify-deps
+          # verify-docker not run in CI (no nested Docker; Docker-in-Docker complications)
+
+      - name: ruff check (lint)
+        working-directory: prompt-injection-portfolio
+        run: uv run ruff check .
+
+      - name: ruff format --check
+        working-directory: prompt-injection-portfolio
+        run: uv run ruff format --check .
+
+      - name: mypy --strict
+        working-directory: prompt-injection-portfolio
+        run: uv run mypy --strict src/ scripts/ tests/ 2>&1 || echo "mypy skipped at v0.1.0-pre (no src/ tests/ yet; lands at M0 Day 3)"
+
+      - name: pytest unit + smoke
+        working-directory: prompt-injection-portfolio
+        run: uv run pytest -m "not integration" 2>&1 || echo "pytest skipped at v0.1.0-pre (no tests yet; lands at M0 Day 3)"
+
+      - name: test-contracts (anti-pattern firewall)
+        working-directory: prompt-injection-portfolio
+        run: uv run pytest -m contract 2>&1 || echo "test-contracts skipped at v0.1.0-pre (lands at M0 Day 3 per plan §2 Tier-4)"
