@@ -1,172 +1,182 @@
 # NEXT_SESSION
 
-**Last update**: 2026-05-19 (M0 Day 2 close + upstream-issues batch filed)
-**Repo state**: v0.1.0-pre; 4 commits on main; 9 upstream MRs filed (8 blocking + 1 deferred)
-**Pre-alpha banner**: ACTIVE (visible in README + book frontmatter once book/ bootstraps)
+**Last update**: 2026-05-22 (M0 Day 3a complete; Day 3b + Day 4 ahead)
+**Repo state**: v0.1.0-pre; 7 commits on main; 6/9 upstream MRs CLOSED; v0.47/v3.5/v1.2.16 pinned
+**Pre-alpha banner**: ACTIVE (visible in README + book frontmatter)
+**Plan file**: `/home/brandon_behring/.claude/plans/i-want-to-consider-merry-milner.md` (ratified 2026-05-21; 8 /exploring-options rounds 14-21 folded in)
 
 ---
 
-## Where to start (pick up cold)
+## M0 progress summary (Day 1 → Day 3a complete)
 
-1. Read `/home/brandon_behring/.claude/plans/i-want-to-consider-merry-milner.md` (the plan; ground truth for all decisions).
-2. Read the 3 companion docs alongside the plan:
-   - `portfolio-chapter-outlines.md`
-   - `portfolio-experiment-record-template.md`
-   - `portfolio-lane-execution-playbooks.md`
-3. Check memory anchors at `~/.claude/projects/-home-brandon-behring-Claude-prompt-injection-detection-submission/memory/MEMORY.md` — especially:
-   - `portfolio_plan_approved.md` (project state + Round 6-13 deltas)
-   - `library_first_is_project_wide_invariant.md` (no local workarounds rule)
-   - `experiment_record_4_file_schema.md` (4-file pattern)
-   - `lane_playbook_pattern.md` (per-lane playbook structure)
-   - `companion_doc_pattern_for_large_plans.md` (when to extract detail)
-4. `git status` here to see uncommitted vs committed state
-5. `gh repo view brandon-behring/prompt-injection-portfolio` to confirm public state
+```
+9b07cdf  Day 1 — seed (README + LICENSE + ETHICS.md + verify scripts)
+4676cc7  Day 1 — NEXT_SESSION.md
+f011726  Day 2 — book/ scaffold + pyproject + verify_editable_dep
+11175db  Day 2 — CI workflow draft (two-step checkout)
+e6a2234  Day 2.5 — file 9 upstream MR issues (Round 10 ongoing-issue-filing)
+bc30c52  Day 3a/c1 — pin bumps (eval-toolkit v0.47 + scaffold v3.5 + submission v1.2.16)
+cbf7d25  Day 3a/c2 — library_imports + upstream_issues state machine + MR-12 file
+```
 
----
+**Upstream-MR closures via Round 20/21 cascade** (eval-toolkit + book-scaffold-astro
+parallel-Codex agents shipped overnight 2026-05-19 → 2026-05-22):
+- ~~MR-1~~ → eval-toolkit v0.43.0 (#48)
+- ~~MR-2~~ → eval-toolkit v0.43.0 (core-6) + v0.47.0 (advanced-6) (#49) — 12-tech ALL_TECHNIQUES
+- MR-3 → research_toolkit #1 **STILL OPEN**; M3-blocking
+- ~~MR-4~~ → eval-toolkit v0.44.0 (#50)
+- ~~MR-5~~ → eval-toolkit v0.44.0 (#51)
+- ~~MR-6~~ → eval-toolkit v0.45.0 (#52)
+- ~~MR-7~~ → eval-toolkit v0.43.0 (#53)
+- ~~MR-8~~ → book-scaffold-astro v3.5.0 (#6) — UNBLOCKS Day 14 book authoring
+- ~~MR-9~~ → book-scaffold-astro v3.3+ (#7)
+- ~~MR-10~~ → OBSOLETED before filing (advanced-6 shipped via MR-2 v0.47.0 consolidation)
+- **MR-12** → eval-toolkit #69 filed 2026-05-21 (Tier-2 Protocol consolidation;
+  Day 3a smoke-test discovered ProtocolImportError; canonical top-level imports
+  work per ADR 0002)
 
-## M0 status (Day 1 complete; Day 2 starting)
-
-### ✓ Day 1 done
-
-- Pre-flight gates: npm scaffold v3.1.0 + create-book v3.1.0 ✓
-- 6 OOD eval sources reachable (BIPIA / AgentDojo / InjecAgent / NotInject / LLMail-Inject / PINT) ✓
-- Docker daemon + alpine pull ✓
-- Public GitHub repo created ✓
-- Initial commit `9b07cdf` pushed (7 files):
-  - README.md (132L; scientific-abstract-scaled + pre-alpha banner)
-  - LICENSE (Apache-2.0)
-  - ETHICS.md (227L; from plan §20)
-  - .gitignore
-  - Makefile (M0 Day 1 verify targets)
-  - scripts/verify_data_sources.py
-  - scripts/verify_docker.py
-- gitleaks scan clean
-- `Co-Authored-By: Claude` commit trailer
-
-### ✓ Day 2 done
-
-- `book/` scaffolded via `npx @brandon_m_behring/create-book ... --profile=academic` (11 files; v3.1.0 pinned)
-- `book/LICENSE` added (CC-BY-4.0; bifurcation note pointing at root Apache-2.0 LICENSE)
-- `pyproject.toml` written (eval-toolkit≥0.42 + runpod-deploy≥0.8.4 + research_toolkit @ git+v1.9.1 + editable submission dep + dev deps + ruff/mypy/pytest config)
-- `scripts/verify_editable_dep.py` (sibling-layout check + submission key files validation)
-- `.github/workflows/ci.yml` (two-step checkout portfolio + submission ref:v1.1.1; ruff + mypy + pytest + test-contracts; mypy/pytest/contracts allow-failure at v0.1.0-pre until Day 3)
-- 3 commits Day 2: `f011726` scaffold+pyproject+verify-deps → `11175db` CI draft
-- CI Run #1 triggered on `11175db` at 16:04 UTC (expected partial; will go fully green at Day 3)
-
-### ✓ Day 2.5 done — upstream MR batch filed (per Round 10 ongoing-issue-filing discipline)
-
-- `decisions/upstream_issues.md` (state machine + 9 rows; M0 batch + ongoing section)
-- `decisions/library_imports.md` (registry; populated as MRs ship)
-- 9 issues filed across 3 repos (issue-filed state):
-  - eval-toolkit [#48 MR-1](https://github.com/brandon-behring/eval-toolkit/issues/48) `ood_dataset_from_manifest`
-  - eval-toolkit [#49 MR-2](https://github.com/brandon-behring/eval-toolkit/issues/49) `character_injection` 12-suite
-  - research_toolkit [#1 MR-3](https://github.com/brandon-behring/research_toolkit/issues/1) `/dataset-synthesize` skill
-  - eval-toolkit [#50 MR-4](https://github.com/brandon-behring/eval-toolkit/issues/50) `RecallAtLowFPR` loss
-  - eval-toolkit [#51 MR-5](https://github.com/brandon-behring/eval-toolkit/issues/51) `spotlighting` (3 variants)
-  - eval-toolkit [#52 MR-6](https://github.com/brandon-behring/eval-toolkit/issues/52) `MetaLearner` + `LogisticStacker`
-  - eval-toolkit [#53 MR-7](https://github.com/brandon-behring/eval-toolkit/issues/53) `ActivationDeltaProbe`
-  - book-scaffold-astro [#6 MR-8](https://github.com/brandon-behring/book-scaffold-astro/issues/6) v3.2 research-portfolio profile
-  - book-scaffold-astro [#7 MR-9](https://github.com/brandon-behring/book-scaffold-astro/issues/7) generic frontmatter primitive (deferred)
-- `.scratch/` gitignored (for ad-hoc issue-body drafts; snap-confined gh needs body files inside repo, not `/tmp` or `~/.cache`)
-
-### ⏸ Day 3 next steps (per plan §21)
-
-1. **7 test-contracts implementation** (`tests/contracts/test_*.py`):
-   - `no_handrolled_metrics`
-   - `predictions_persisted`
-   - `leakage_scan_present`
-   - `glossary_complete`
-   - `library_imports_registered` (parses `decisions/library_imports.md`)
-   - `mypy_strict_clean`
-   - `experiment_records_complete` (per §18 + Round 7 ADR)
-2. Configure ruff (check + format) + tighten mypy --strict
-3. First fully-green CI run → tag `v0.1.0-pre` checkpoint
-4. Push commit → CI must pass with all gates green (no allow-failure shells)
-
-### M0 Day 4-5 ahead
-
-- Implement **MR-1** (eval-toolkit #48 — `ood_dataset_from_manifest`) upstream
-- Release eval-toolkit v0.43.0 (semver-minor for new public API)
-- Pin in portfolio `pyproject.toml`; update `decisions/library_imports.md` row
-- Advance MR-1 row in `upstream_issues.md` to `pinned-in-portfolio`
+**Only 1 upstream MR remaining**: MR-3 (research_toolkit #1 /dataset-synthesize).
+M3-blocking. Re-check at Day 13 + escalate if M2/M3 approaches without ship.
 
 ---
 
-## Critical context (load-bearing; do NOT lose at compaction)
+## Day 3b next (~4-6h)
 
-### Submission predecessor
-- Path: `~/Claude/prompt-injection-detection-submission/`
-- GitHub: `github.com/brandon-behring/prompt-injection-detection-prototype` (current tag: v1.1.2)
-- Status: ADRs frozen at v1.0.1; code patches as v1.0.x → v1.1.x
-- Key ADRs for portfolio:
-  - ADR-014 English-only scope (carried over)
-  - ADR-016 LODO methodology
-  - ADR-048 LLM label audit protocol (Lane 2 reuses)
-  - ADR-050 rung slate narrowing (Ch 13 case study)
-  - ADR-052 LoRA active-harm reframing (Lane 2 hypothesis foundation)
-  - ADR-055/056/058 eval-toolkit canonical APIs + T0 wiring
-  - ADR-059 runpod-deploy modernization
-  - ADR-060/063 DeBERTa-v3-base methodology + null result (Ch 7 case study)
+**7 test-contracts implementation** (`tests/contracts/test_*.py`):
+1. `no_handrolled_metrics` — verify portfolio doesn't reimplement eval_toolkit metrics
+2. `predictions_persisted` — every lane writes predictions parquet
+3. `leakage_scan_present` — eval slates not in training pool
+4. `glossary_complete` — every project-specific term in `docs/glossary.md`
+5. `library_imports_registered` — parse `decisions/library_imports.md`; verify every `from eval_toolkit / runpod_deploy / research_toolkit` import in `src/` or `scripts/` appears in registry
+6. `mypy_strict_clean` — mypy --strict passes (no `Any` propagation)
+7. `experiment_records_complete` — every lane has 4-file expt-record (hypothesis/protocol/results/decisions) + 3 fragment files (methodology/results/interpretation.mdx) per Round 17 follow-up Q2
 
-### Scaffold v3.2 BLOCKER (R11 lock)
-- Currently at npm v3.1.0
-- v3.2 needs to ship before M1 book authoring (chapter skeletons depend on research-portfolio profile)
-- v3.2 design locked R12 (union schema academic ∪ tools + 3 new generalized components: PreReleaseBanner / PolicyRef / AICollaborationDisclosure)
-- M0 dossier / repo / ETHICS / governance / Docker / MR-1/2/7 / ADRs proceed in parallel (NOT blocked on v3.2)
-- ~3-5 days upstream implementation effort
+**Tighten gates**: remove `2>&1 || echo "..."` allow-failure shells from
+`.github/workflows/ci.yml`. mypy + pytest + contracts become hard gates.
 
-### Plan §21 day-by-day sequence
-- Weeks 1-3 total M0
-- Day 1: pre-flight + repo create + initial commit (DONE)
-- Day 2: scaffold bootstrap + uv init + deps + CI draft
-- Day 3: test-contracts + CI green + tag `v0.1.0-pre`
-- Day 4-5: MR-1 implementation in eval-toolkit
-- Day 6-10: Dossier sprint (60-80 files) + MR-2 + Part I+II chapter skeletons
-- Day 11-12: Dossier remaining + final dossier audit
-- Day 13: MR-7 (ActivationDeltaProbe)
-- Day 14: Part III+IV chapter skeletons (PRECONDITION: scaffold v3.2 shipped)
-- Day 15: Frontmatter + governance + README polish
-- Day 16: Docker T2 setup
-- Day 17: ~30 ADRs writing
-- Day 18: Build-in-public account setup + M0 announcement draft
-- Day 19: M0 close — `make ratify-milestone M=M0` + tag `v0.1.0` + push announcement
-
-### Round-by-round summary (13 rounds total)
-See `portfolio_plan_approved.md` memory or plan §1 decision tables. Highlights:
-- R1: name + cost cap + Lane breadth + license
-- R2: hierarchical depth + reproducibility tiers + skeleton-first
-- R3: AI-disclosure + public from M0 + ETHICS + build-in-public + maintenance
-- R4: book authoring details + governance
-- R5: post-survey realignment (scaffold v2.0 + submission v1.0.7)
-- R6: scaffold v3.0 npm pivot + submission v1.1.2 + portfolio writes own clean T0
-- R7: 4 holistic-review focus areas → 3 companion docs
-- R8: ETHICS.md content drafted
-- R9: M0 day-by-day sequence (§21)
-- R10: ongoing GH issue filing permission
-- R11: scaffold v3.2 BLOCKS M1 (was deferred; promoted to blocking)
-- R12: v3.2 design — union schema + 3 generalized components
-- R13: repo rename `prompt-injection-detection-portfolio` → `prompt-injection-portfolio`
+**Commit**: `feat: M0 Day 3b — 7 test-contracts active (hard gates)`. Push →
+CI fully-green → **tag `v0.1.0-pre` checkpoint**.
 
 ---
 
-## Active tasks (taskList; preserved across compaction)
+## Day 4 next (~0.5h, simplified from original 1.5h per Round 20)
 
-23 tasks total; 4 complete (#1, #2, #3, #5); 19 remaining. Key next:
+Originally Round 14 Day 4 was "file MR-10 + open-MR monitoring". Round 20
+OBSOLETED MR-10 filing (advanced-6 shipped in v0.47.0). Day 4 simplifies to:
 
-- **#4** wire CI green (Day 3): ruff + mypy --strict + pytest + 7 test-contracts; remove allow-failure shells
-- **#5** ✓ filed 9 upstream issues (Day 2.5; eval-toolkit #48/49/50/51/52/53, research_toolkit #1, book-scaffold-astro #6/7)
-- **#6** implement 3 critical upstream MRs (Day 4-13): MR-1 (Day 4-5; eval-toolkit #48), MR-7 (Day 13; #53), MR-2 (Day 6-8; #49)
-- **#7** dossier work (Day 6-12): 60-80 files via research_toolkit
-- **#8** book bootstrap (Day 2 academic ✓; Day 14 chapter skeletons after MR-8 v3.2 ships)
-- **#15** portfolio-clean T0 (Day 17 per plan; eval_from_hub.py reimpl per ADR-035)
+1. **Empirical verify v0.47.0 advanced-6**: Python REPL — already done at
+   Day 3a step 4 (12 dataclasses + `ALL_TECHNIQUES` 12-tuple confirmed).
+2. **Open-MR monitoring** (~15 min): MR-3 (research_toolkit #1) status check.
+3. **Commit**: `chore: M0 Day 4 — Round 20 reconciliation (MR-6 + MR-10 obsoleted upstream)`.
+
+---
+
+## Day 5+ buffer + Days 6-19
+
+Per plan §21 with Round 14 + Round 17 + Round 20 + Round 21 timeline updates:
+
+- **Day 5** — freed buffer; use to start Day 6 dossier sprint early OR draft
+  Lane 1/1b/5 experiment-record skeletons ahead of Day 14 chapter skeletons.
+- **Days 6-12** — Dossier sprint (~60-80 files via research_toolkit pipeline).
+- **Day 13** — Open-MR monitoring (MR-3 watch) + ADR-036/037/038 drafts if
+  Day 17 looks tight + experiment-record skeletons.
+- **Day 14** — Textbook chapter skeletons Part III + IV (Ch 7-13) — **UNBLOCKED**
+  per Round 21 (scaffold v3.5.0 + research-portfolio preset shipped).
+- **Day 15** — Frontmatter (4 files; exec-summary REMOVED per Round 17 follow-up
+  Q2 — content in README instead) + governance (SECURITY + CODE_OF_CONDUCT +
+  issue/PR templates) + README polish (3 peer-level guide entry-points per Q3).
+- **Day 16** — Docker T2 setup.
+- **Day 17** — ADR-001..046 batch (~30-35 ADRs).
+- **Day 18** — Twitter/X + Mastodon account setup + M0 announcement draft.
+- **Day 19** — M0 close: `make ratify-milestone M=M0` + `git tag v0.1.0` +
+  `gh release create v0.1.0` + announcement thread.
+
+---
+
+## Critical context (load-bearing for next session)
+
+### v0.47 canonical API surfaces (Round 20)
+- `from eval_toolkit import scorecard, sweep, metric_specs` — primary
+  surfaces for evaluation + sweep + metric specs
+- `from eval_toolkit import TextTransform, Probe, MetricSpec, MetaLearner,
+  Scorer, SliceAwareScorer` — Tier-2 Protocols (canonical top-level per
+  ADR 0002; submodule paths fragmented per MR-12)
+- `from eval_toolkit.adversarial import ALL_TECHNIQUES` + 12 dataclasses
+  (core-6 + advanced-6 char-injection)
+- `from eval_toolkit.preprocessing import DelimitVariant, DatamarkVariant,
+  EncodeVariant` (Spotlighting 3 variants)
+- `from eval_toolkit.losses import RecallAtLowFPR` (`[losses]` extra)
+- `from eval_toolkit.probes import ActivationDeltaProbe` (`[probes]` extra)
+- `from eval_toolkit.stacking import LogisticStacker`
+
+**Do NOT use**: SimpleNamespace patterns (`character_injection.zero_width_space()`);
+per-module Protocols (`CharacterInjectionStrategy`); module-level sweeps
+(`adversarial.sweep`); top-level scalar metric imports (`from eval_toolkit
+import pr_auc` — REMOVED in v0.47.0).
+
+### 3-guide architecture (Round 17)
+M7 v0.7.0 ships **Textbook only** (the current 13-chapter outline at
+`book/src/content/textbook/`). Story arc ("Can we climb the wall?") ships
+at v0.8.0 (~month 13). Academic IMRaD ships at v0.9.0 (~month 14). All 3
+locked at v1.0.0 (~month 16-17).
+
+**Shared substrate pattern**: each lane has fragments at `book/src/content/
+fragments/lane-N/{methodology,results,interpretation}.mdx` (single source
+of truth for experiment data + citations). Each guide's chapter MDX imports
++ sequences fragments with guide-specific framing prose. `experiment_records_
+complete` contract enforces fragments at lane close.
+
+### Round 17 follow-up Q3 (cross-chapter narrative)
+**Heavy threading** for the narrative guide (each chapter opens with story
+recap + closes with hook to next). Light threading for textbook (each
+chapter self-contained); academic-IMRaD is journal-paper structure.
+
+### Submission CI ref policy (Round 14 Q1 + dynamic-detection)
+Currently pinned at `v1.2.16` (Round 21 update). Re-detect via
+`git -C ../prompt-injection-detection-submission ls-remote --tags origin |
+grep -E 'refs/tags/v1\.[0-9]+\.[0-9]+$' | sort -V | tail -1` on each Day 3a-style
+re-sync. Submission's `CLAUDE.md` previews v1.3.0 with ADR-078/079
+(two-guide reader architecture) — validates portfolio's Round 17 3-guide
+direction.
+
+---
+
+## Round 14-21 plan-update reference
+
+All structural decisions for portfolio post-M0-Day-2.5 captured in plan file
+under sections marked "Round NN update". Critical highlights:
+
+- **Round 14** (CI ref + eval-toolkit floor + MR-10 file + Task #6 split)
+- **Round 15** (Lane 2 LoRA-only; baseline expansion TF-IDF + open category)
+- **Round 16** (cross-lane comparability; Lane 4 + Lane 5 train on Lane 2 corpus;
+  Lane 5 timing shift M2 → M4)
+- **Round 17** (3-guide architecture: textbook + narrative + academic IMRaD;
+  shared-substrate fragments; sequential rollout v0.7.0 → v0.8.0 → v0.9.0 → v1.0.0)
+- **Round 20** (eval-toolkit v0.47 pin + canonical-surface API pivot;
+  MR-6 + MR-10 obsoleted)
+- **Round 21** (book-scaffold-astro v3.5 pin + M1 book authoring unblock;
+  MR-8 + MR-9 closed)
+
+ADRs anticipated at Day 17 batch: ~35-37 (incl. ADR-041 ETHICS content lock,
+ADR-042 Round 14 upstream-MR cascade, ADR-043 Lane 2 LoRA-only scope,
+ADR-044 3-guide architecture, ADR-045 eval-toolkit v0.47 pivot, ADR-046
+book-scaffold-astro v3.5 unblock).
 
 ---
 
 ## What NOT to do
 
-- **Don't** rename the repo again (locked Round 13)
-- **Don't** consume submission's eval_from_hub.py (portfolio writes own clean T0 per ADR-035)
-- **Don't** hand-roll a primitive that belongs in eval-toolkit / runpod-deploy / research_toolkit / book-scaffold-astro (file upstream issue per [[library-first-is-project-wide-invariant]])
-- **Don't** start M1 book authoring before scaffold v3.2 ships (R11 lock)
-- **Don't** publish synthetic adversarial data without ETHICS.md cross-reference in dataset card (R8 lock + ADR-022/041)
-- **Don't** report AUPRC/AUROC on single-class slices (val-fixed TPR only; submission-enforced via eval-toolkit #39)
+- **Don't** advance submission CI ref past v1.2.16 without dynamic-detect
+  re-verify (Round 14 round-3 Q2)
+- **Don't** use eval-toolkit SimpleNamespace patterns or module-level sweep
+  (Round 20 — removed in v0.47.0)
+- **Don't** start narrative + academic chapter authoring before v0.7.0 M7
+  textbook ratification (Round 17 Q3 sequential rollout)
+- **Don't** retrain full-fine-tuning anywhere in portfolio (Round 15 Q1 LoRA-only)
+- **Don't** train baselines on different corpora — all baselines + LoRA
+  variants + Lane 4 stacker + Lane 5 probe share Lane 2's MR-3 corpus per
+  Round 16 Q1
+- **Don't** publish synthetic adversarial data without ETHICS.md cross-reference
+  (Round 8 + ADR-022/041)
+- **Don't** report AUPRC/AUROC on single-class slices (single-class metric
+  convention upstream-enforced via eval-toolkit #39)
