@@ -1,8 +1,15 @@
 # M0 Close Readiness — handoff for user-led v0.1.0 ratify
 
-**Generated**: 2026-05-22 (Round 22 autonomous /loop close)
-**Current tag**: `v0.1.0-pre` (Day 3b checkpoint)
-**Pending tag**: `v0.1.0` (M0 close; user-led)
+**Scope**: `make ratify-milestone` gate state + user-led TODO checklist
+for the formal M0 close (`v0.1.0` tag + announcement). Complements
+[`NEXT_SESSION.md`](NEXT_SESSION.md) (cold-start anchor) +
+[`docs/planning/README.md`](docs/planning/README.md) (planning artifacts
+index).
+
+**Generated**: 2026-05-22 (Round 22 autonomous /loop close; refreshed
+Round 23 cross-machine handoff).
+**Current tag**: `v0.1.0-pre` (Day 3b checkpoint).
+**Pending tag**: `v0.1.0` (M0 close; user-led).
 
 This document captures the state at autonomous-/loop close + the user-led
 items that remain before `git tag v0.1.0` + `gh release create v0.1.0`.
@@ -66,8 +73,11 @@ These need user presence + cannot be automated by /loop:
 - **Scope**: ~60-80 files at `docs/research/` via research_toolkit's
   `/research-plan` + `/research-gather` + `/dossier-build` + `/dossier-audit`
   skills (not in autonomous /loop's skill set).
-- **Input**: 3 compass artifacts at
-  `~/Downloads/compass_artifact_wf-*.md` (~1055 lines total).
+- **Input**: 3 compass artifacts now in-repo at
+  [`docs/research/compass-survey/`](docs/research/compass-survey/)
+  per Round 23 Q1 (~1055 lines total; renamed from `~/Downloads/compass_artifact_wf-*.md`
+  for clarity). See [`docs/research/compass-survey/README.md`](docs/research/compass-survey/README.md)
+  for the dossier-sprint workflow + provenance/license notes.
 - **Output**: dossier with `claim_family` keys cross-referenced by ADRs
   + chapter citations.
 
@@ -98,7 +108,19 @@ upstream per Round 14-21 cascade.
 
 ## Plan + memory pointers
 
-- Plan: `/home/brandon_behring/.claude/plans/i-want-to-consider-merry-milner.md`
-- Memory index: `~/.claude/projects/.../memory/MEMORY.md`
-- Key memories: portfolio_plan_approved, library_first_is_project_wide_invariant,
-  hierarchical_depth_derivation_rule, snap-gh-needs-repo-path-for-body-file
+- **Plan** (in-repo per Round 23 Q1):
+  [`docs/planning/PORTFOLIO_PLAN.md`](docs/planning/PORTFOLIO_PLAN.md)
+- **Planning companion docs**: [`docs/planning/`](docs/planning/) — chapter
+  outlines + experiment-record template + lane playbooks + eval-toolkit
+  roadmap
+- **Compass research surveys**:
+  [`docs/research/compass-survey/`](docs/research/compass-survey/) — 3 files
+  (detector landscape + direct-vs-indirect deep-dive + training+eval
+  methodology)
+- **Memory index** (NOT in repo; on user's `~/.claude/`):
+  `~/.claude/projects/.../memory/MEMORY.md`
+- **Key memories**: `portfolio_plan_approved` (in-place updated through
+  Round 23) + `library_first_is_project_wide_invariant` +
+  `hierarchical_depth_derivation_rule` +
+  `snap-gh-needs-repo-path-for-body-file` +
+  `exploring-options-over-handoff-doc-preferred`

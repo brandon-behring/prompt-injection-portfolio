@@ -1,15 +1,25 @@
 # NEXT_SESSION
 
-**Last update**: 2026-05-22 (Round 22 autonomous /loop close; M0 close-ready)
-**Repo state**: 18 commits on main; `v0.1.0-pre` tagged at Day 3b; `make ratify-milestone` PASSES end-to-end
-**Pre-alpha banner**: ACTIVE (visible in README + book frontmatter)
+**Scope**: cold-start anchor for a fresh session (potentially on a different
+machine). Install instructions + commit summary + critical context.
+
+**Last update**: 2026-05-22 (Round 23 cross-machine handoff; planning artifacts
+committed publicly per Round 23 Q1 lock).
+**Repo state**: 20+ commits on main; `v0.1.0-pre` tagged at Day 3b;
+`make ratify-milestone` PASSES end-to-end.
+**Pre-alpha banner**: ACTIVE.
 
 ---
 
-## Live handoff doc
+## Companion handoff docs
 
-See [`M0_READINESS.md`](M0_READINESS.md) for the complete close-readiness
-checklist + remaining user-led items.
+- [`M0_READINESS.md`](M0_READINESS.md) — `make ratify-milestone` gates +
+  user-led TODO checklist (dossier sprint + accounts + formal v0.1.0 tag)
+- [`docs/planning/README.md`](docs/planning/README.md) — index of design
+  rationale + how to read 5 planning artifacts
+- [`docs/research/compass-survey/README.md`](docs/research/compass-survey/README.md)
+  — index of 3 research-survey artifacts (Anthropic Compass-generated) +
+  Days 6-12 dossier-sprint workflow pointer
 
 ---
 
@@ -35,16 +45,20 @@ checklist + remaining user-led items.
    make ratify-milestone   # 12+ gates; expected: all green
    ```
 
-4. **Read the plan + handoff**:
-   - Plan ground truth: `/home/brandon_behring/.claude/plans/i-want-to-consider-merry-milner.md`
-     (private; not in repo). 22 `/exploring-options` rounds locked.
-   - Companion docs alongside the plan:
+4. **Read the plan + handoff** (all now in-repo per Round 23 Q1 lock):
+   - Plan ground truth: [`docs/planning/PORTFOLIO_PLAN.md`](docs/planning/PORTFOLIO_PLAN.md)
+     (~2124 lines; 22+ `/exploring-options` rounds locked through Round 23).
+   - Companion planning docs at [`docs/planning/`](docs/planning/):
      - `portfolio-chapter-outlines.md` (13-chapter KF-decomposed outline)
      - `portfolio-experiment-record-template.md` (4-file schema)
      - `portfolio-lane-execution-playbooks.md` (6 lane playbooks)
-   - Public surfaces: this file + `M0_READINESS.md` + `README.md` +
+     - `eval-toolkit-v0.43-to-v1.0-roadmap.md` (upstream roadmap context)
+   - Research surveys at [`docs/research/compass-survey/`](docs/research/compass-survey/)
+     (3 Anthropic Compass surveys; ~1055 lines total; dossier-sprint
+     source material).
+   - Other public surfaces: this file + `M0_READINESS.md` + `README.md` +
      `decisions/README.md` (ADR index) + `decisions/upstream_issues.md`
-     (MR state machine)
+     (MR state machine) + `decisions/library_imports.md` (v0.47 registry).
 
 ---
 
@@ -123,15 +137,34 @@ book-scaffold-astro MRs (MR-8 + MR-9) are CLOSED upstream.
 
 ## Plan + memory pointers
 
-- **Plan ground truth**: `~/.claude/plans/i-want-to-consider-merry-milner.md`
-- **Memory index**: `~/.claude/projects/-home-brandon-behring-Claude-prompt-injection-detection-submission/memory/MEMORY.md`
-- **Key project memory**: [portfolio_plan_approved](https://github.com/...) (in-place updated through Round 22)
-- **Related feedback memories**:
+- **Plan ground truth** (in-repo per Round 23 Q1):
+  [`docs/planning/PORTFOLIO_PLAN.md`](docs/planning/PORTFOLIO_PLAN.md)
+- **Memory index** (NOT in repo; lives on user's `~/.claude/`):
+  `~/.claude/projects/-home-brandon-behring-Claude-prompt-injection-detection-submission/memory/MEMORY.md`
+- **Key project memory**: `portfolio_plan_approved` (in-place updated
+  through Round 23).
+- **Related feedback memories** (NOT in repo; sync from origin separately
+  if needed on new machine):
   - `library_first_is_project_wide_invariant` (no local workarounds)
   - `hierarchical_depth_derivation_rule` (L0-L5 layer model)
   - `experiment_record_4_file_schema` (hypothesis/protocol/results/decisions)
   - `snap-gh-needs-repo-path-for-body-file` (gh CLI workaround for snap)
   - `exploring-options-over-handoff-doc-preferred` (multiple-round walkthrough preferred)
+
+## Optional: symlink ~/.claude/plans/ → in-repo (Round 23 Q1 SoT)
+
+On the origin machine (or any machine continuing plan-mode work):
+```bash
+# Move plan-mode file to in-repo location + symlink back for plan-mode discovery
+mv ~/.claude/plans/i-want-to-consider-merry-milner.md /tmp/backup.md  # safety
+ln -sf $(pwd)/docs/planning/PORTFOLIO_PLAN.md \
+    ~/.claude/plans/i-want-to-consider-merry-milner.md
+```
+
+Future plan-mode edits land at `docs/planning/PORTFOLIO_PLAN.md` directly;
+single canonical source. Eval-toolkit roadmap can be symlinked similarly
+from `~/.claude/plans/evaluate-all-the-work-twinkly-kite.md` to
+`docs/planning/eval-toolkit-v0.43-to-v1.0-roadmap.md`.
 
 ---
 
