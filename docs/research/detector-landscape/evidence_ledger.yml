@@ -1390,3 +1390,31 @@ entries:
     link_confidence: 0.7
   excerpt: We read every piece of feedback, and take your input very seriously.
   rights_status: private_use
+# ===== Phase 4b synthesis evidence (cross-cutting claims; appended by /agent-index) =====
+- evidence_id: ev_detector_landscape_0045
+  source_url: https://www.codeintegrity.ai/blog/prompt-injection-limits
+  source_type: other
+  source_quality: secondary
+  retrieved_at: '2026-05-22'
+  verification_method: manual
+  cache_ids:
+  - cache_6788a3f0f61cebd9
+  - cache_96dc7a084a524c4d
+  - cache_bb62839772f16e14
+  - cache_51e92f7784dddb6e
+  - cache_ab9d48079556ef2d
+  supports:
+  - claim_id: claim_detector_landscape_synth_b16_a1_encoder_collapse
+    field_path: agent_index/05_specialized_detectors.md#A5.16
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: |-
+    Cross-cutting synthesis claim: the CodeIntegrity industry postmortem (cache_6788a3f0f61cebd9) corroborates the academic findings on encoder-classifier low-FPR collapse under adaptive evasion — specifically the PromptShield Berkeley paper's TPR@FPR framing (cache_96dc7a084a524c4d), the Hackett et al. 100% character-injection evasion result (cache_bb62839772f16e14), the Nasr et al. 90% ASR bypass of 12 defenses (cache_51e92f7784dddb6e), and the InjecGuard 60% over-defense floor (cache_ab9d48079556ef2d). Aggregation across these five primary sources.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - cross-referenced across 5 primary sources (cache_6788a3f0f61cebd9 + cache_96dc7a084a524c4d + cache_bb62839772f16e14 + cache_51e92f7784dddb6e + cache_ab9d48079556ef2d)
+    - synthesis-level claim aggregating independent verifications

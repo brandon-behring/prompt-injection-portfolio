@@ -3345,3 +3345,113 @@ entries:
       recency: high
       consistency: moderate
       directness: moderate
+- evidence_id: ev_training_and_evaluation_0124
+  source_url: https://arxiv.org/abs/2501.15145
+  source_type: other
+  source_quality: secondary
+  retrieved_at: '2026-05-22'
+  verification_method: manual
+  cache_ids:
+  - cache_96dc7a084a524c4d
+  - cache_f4d5b713b2d15854
+  - cache_081c9fe7b9b1dd0e
+  supports:
+  - claim_id: claim_synthesis_training_and_evaluation_ood_collapse_at_low_fpr
+    field_path: agent_index/03_evaluation_metrics.md#C3.1; agent_index/05_ood_methodology_reproducibility.md#C5.4
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: llm_inferred
+    inference_chain:
+    - ev_training_and_evaluation_0074
+    - ev_training_and_evaluation_0114
+    - ev_training_and_evaluation_0121
+    link_confidence: 0.6
+  excerpt: 'Synthesis claim: encoder-based PI detectors (ProtectAI v1 / v2 type) collapse from near-perfect in-distribution F1 to near-zero TPR at deployment-grade FPRs (≤0.5%) when evaluated on truly held-out data. Aggregated from PromptShield (Jacob 2025 Table 4 — canonical 0.00% TPR @ 0.5% FPR on ProtectAI), Fomin 2026 LODO methodology demonstrating TPR collapse under true distribution shift, and the ProtectAI model card itself disclosing limited mixture detail. Foundational to the OOD-wall thesis.'
+  rights_status: private_use
+  confidence:
+    score: 0.6
+    factors:
+    - cross-reference of 3 primary evidence entries (ev_0074, ev_0114, ev_0121)
+    - llm_inferred extraction; capped at 0.60 per validator
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: high
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0125
+  source_url: https://arxiv.org/abs/2510.05244
+  source_type: other
+  source_quality: secondary
+  retrieved_at: '2026-05-22'
+  verification_method: manual
+  cache_ids:
+  - cache_beea4f2926635943
+  - cache_28b49b68f7f9500e
+  - cache_4493644eb2e357a8
+  - cache_20c2acc833d099fd
+  - cache_bb37ba552eb103f6
+  supports:
+  - claim_id: claim_synthesis_training_and_evaluation_four_benchmarks_saturated
+    field_path: agent_index/04_benchmark_validity.md#C4.2; agent_index/03_evaluation_metrics.md#C3.2,C3.6,C3.7,C3.8
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: llm_inferred
+    inference_chain:
+    - ev_training_and_evaluation_0099
+    - ev_training_and_evaluation_0076
+    - ev_training_and_evaluation_0087
+    - ev_training_and_evaluation_0090
+    - ev_training_and_evaluation_0093
+    link_confidence: 0.6
+  excerpt: 'Synthesis claim: the four canonical agentic PI benchmarks (AgentDojo, InjecAgent, tau-Bench, Agent Security Bench) are saturable by simple two-firewall defenses per Bhagwatkar 2025; the saturation phrasing is verbatim-anchored in Bhagwatkar (ev_0099) and each of the four benchmarks is documented as a primary entry (ev_0076, ev_0087, ev_0090, ev_0093). Synthesis cross-cuts C3 (where the four are catalogued as evaluation methodology) into C4 (where the saturation finding is reported).'
+  rights_status: private_use
+  confidence:
+    score: 0.6
+    factors:
+    - cross-reference of 5 primary evidence entries (Bhagwatkar + 4 benchmark papers)
+    - llm_inferred extraction; capped at 0.60 per validator
+    - one verbatim-anchored support (ev_0099) underwrites the synthesis
+    domains:
+      source_quality: high
+      recency: high
+      consistency: high
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0126
+  source_url: https://huggingface.co/datasets/geekyrakshit/prompt-injection-dataset
+  source_type: other
+  source_quality: secondary
+  retrieved_at: '2026-05-22'
+  verification_method: manual
+  cache_ids:
+  - cache_1e401aac38c4b954
+  - cache_929d95a137e7f2b0
+  - cache_ecd2a344745528a2
+  - cache_550949d71181746c
+  - cache_f4d5b713b2d15854
+  supports:
+  - claim_id: claim_synthesis_training_and_evaluation_license_red_flags
+    field_path: agent_index/README.md#Glossary; agent_index/01_training_data_sources.md#C1.8,C1.15; agent_index/02_training_methodologies.md#C2.5; agent_index/05_ood_methodology_reproducibility.md#C5.2,C5.4
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: llm_inferred
+    inference_chain:
+    - ev_training_and_evaluation_0017
+    - ev_training_and_evaluation_0018
+    - ev_training_and_evaluation_0039
+    - ev_training_and_evaluation_0062
+    - ev_training_and_evaluation_0117
+    - ev_training_and_evaluation_0121
+    link_confidence: 0.6
+  excerpt: 'Synthesis claim: 5 entries surface license + provenance red flags per the Phase 2 final report — geekyrakshit2024promptinjectiondataset (aggregator with mixed underlying licenses), jiang2024wildjailbreak (attack-content ETHICS constraint per ADR-041), meta2025promptguard2 (training-data composition undisclosed), rogue2025promptinjectionsbenchmark / Qualifire (private subset used in companion Sentinel evaluations), protectai2024deberta (exact training-data mixture undisclosed). These are surfaced in glossary + per-entry Status fields throughout the agent_index; reproducibility implication: independent LODO replay limited for the affected detectors.'
+  rights_status: private_use
+  confidence:
+    score: 0.6
+    factors:
+    - cross-reference of 6 primary evidence entries (the 5 flagged entries provenance evidence)
+    - llm_inferred extraction; capped at 0.60 per validator
+    - Phase 2 final report explicitly enumerated these 5
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: high
+      directness: high

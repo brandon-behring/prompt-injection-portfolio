@@ -1,0 +1,926 @@
+schema_version: 3
+topic: training_and_evaluation
+generated_at: '2026-05-22'
+current_as_of: '2026-05-22'
+freshness_policy: strict_live
+selections:
+- selection_id: sel_deepset2024promptinjections_a1
+  bullet_id: deepset2024promptinjections
+  atom_id: claim_training_and_evaluation_deepset2024promptinjections_a1_existence
+  cache_id: cache_e4bb99e86bb2150e
+  span:
+    text_path_offset:
+    - 665
+    - 718
+    sha256_of_span: db3e3d221092e275abe6ac5c52e14737db13cc341ff05db2b25152c0a9796000
+    excerpt: deepset/prompt-injections · Datasets at Hugging Face
+- selection_id: sel_deepset2024promptinjections_a2
+  bullet_id: deepset2024promptinjections
+  atom_id: claim_training_and_evaluation_deepset2024promptinjections_a2_provenance
+  cache_id: cache_e4bb99e86bb2150e
+  span:
+    text_path_offset:
+    - 665
+    - 718
+    sha256_of_span: db3e3d221092e275abe6ac5c52e14737db13cc341ff05db2b25152c0a9796000
+    excerpt: deepset/prompt-injections · Datasets at Hugging Face
+- selection_id: sel_jackhhao2023jailbreakclassification_a1
+  bullet_id: jackhhao2023jailbreakclassification
+  atom_id: claim_training_and_evaluation_jackhhao2023jailbreakclassification_a1_existence
+  cache_id: cache_54ec70daa99e6a82
+  span:
+    text_path_offset:
+    - 673
+    - 734
+    sha256_of_span: 021341afa082de804c38029c439b1eb040e6427b35d668ccddb0c00b72c99940
+    excerpt: jackhhao/jailbreak-classification · Datasets at Hugging Face
+- selection_id: sel_jackhhao2023jailbreakclassification_a2
+  bullet_id: jackhhao2023jailbreakclassification
+  atom_id: claim_training_and_evaluation_jackhhao2023jailbreakclassification_a2_provenance
+  cache_id: cache_54ec70daa99e6a82
+  span:
+    text_path_offset:
+    - 673
+    - 734
+    sha256_of_span: 021341afa082de804c38029c439b1eb040e6427b35d668ccddb0c00b72c99940
+    excerpt: jackhhao/jailbreak-classification · Datasets at Hugging Face
+- selection_id: sel_xtram2024safeguard_a1
+  bullet_id: xtram2024safeguard
+  atom_id: claim_training_and_evaluation_xtram2024safeguard_a1_existence
+  cache_id: cache_8e1b5862504dc67a
+  span:
+    text_path_offset:
+    - 674
+    - 736
+    sha256_of_span: 12e28cf03b7ee409301ee05ca5770a10662fbf0f7ca9555cca7a9b78f229ae6d
+    excerpt: xTRam1/safe-guard-prompt-injection · Datasets at Hugging Face
+- selection_id: sel_xtram2024safeguard_a2
+  bullet_id: xtram2024safeguard
+  atom_id: claim_training_and_evaluation_xtram2024safeguard_a2_provenance
+  cache_id: cache_8e1b5862504dc67a
+  span:
+    text_path_offset:
+    - 674
+    - 736
+    sha256_of_span: 12e28cf03b7ee409301ee05ca5770a10662fbf0f7ca9555cca7a9b78f229ae6d
+    excerpt: xTRam1/safe-guard-prompt-injection · Datasets at Hugging Face
+- selection_id: sel_shen2023doanythingnow_a1
+  bullet_id: shen2023doanythingnow
+  atom_id: claim_training_and_evaluation_shen2023doanythingnow_a1_headline
+  cache_id: cache_f6e684d1261790a5
+  span:
+    text_path_offset:
+    - 2352
+    - 2549
+    sha256_of_span: affb44a4bad504ad4b1efb449039c9ec729e6238218e1d9ed0e34593ef473b70
+    excerpt: The misuse of large language models (LLMs) has drawn significant attention from the general public and LLM vendors. One particular type of adversarial prompt, known as jailbreak prompt, has emerged
+- selection_id: sel_shen2023doanythingnow_a2
+  bullet_id: shen2023doanythingnow
+  atom_id: claim_training_and_evaluation_shen2023doanythingnow_a2_methodology
+  cache_id: cache_f6e684d1261790a5
+  span:
+    text_path_offset:
+    - 2352
+    - 2549
+    sha256_of_span: affb44a4bad504ad4b1efb449039c9ec729e6238218e1d9ed0e34593ef473b70
+    excerpt: The misuse of large language models (LLMs) has drawn significant attention from the general public and LLM vendors. One particular type of adversarial prompt, known as jailbreak prompt, has emerged
+- selection_id: sel_lakera2023gandalfignore_a1
+  bullet_id: lakera2023gandalfignore
+  atom_id: claim_training_and_evaluation_lakera2023gandalfignore_a1_existence
+  cache_id: cache_922c47c9f3641cd6
+  span:
+    text_path_offset:
+    - 674
+    - 736
+    sha256_of_span: a8f19272b0660a844162b0ba3215946fea02230e88c19c3bcf71032a3a8e5862
+    excerpt: Lakera/gandalf_ignore_instructions · Datasets at Hugging Face
+- selection_id: sel_lakera2023gandalfignore_a2
+  bullet_id: lakera2023gandalfignore
+  atom_id: claim_training_and_evaluation_lakera2023gandalfignore_a2_provenance
+  cache_id: cache_922c47c9f3641cd6
+  span:
+    text_path_offset:
+    - 674
+    - 736
+    sha256_of_span: a8f19272b0660a844162b0ba3215946fea02230e88c19c3bcf71032a3a8e5862
+    excerpt: Lakera/gandalf_ignore_instructions · Datasets at Hugging Face
+- selection_id: sel_lin2023toxicchat_a1
+  bullet_id: lin2023toxicchat
+  atom_id: claim_training_and_evaluation_lin2023toxicchat_a1_headline
+  cache_id: cache_24af2a5e83d1a7e4
+  span:
+    text_path_offset:
+    - 2304
+    - 2502
+    sha256_of_span: 4776eb3a4aaa5f47cd4458b1e350cc0a766392290942b224c1d8c16213e02fb5
+    excerpt: Despite remarkable advances that large language models have achieved in chatbots, maintaining a non-toxic user-AI interactive environment has become increasingly critical nowadays. However, previous
+- selection_id: sel_lin2023toxicchat_a2
+  bullet_id: lin2023toxicchat
+  atom_id: claim_training_and_evaluation_lin2023toxicchat_a2_methodology
+  cache_id: cache_24af2a5e83d1a7e4
+  span:
+    text_path_offset:
+    - 2304
+    - 2502
+    sha256_of_span: 4776eb3a4aaa5f47cd4458b1e350cc0a766392290942b224c1d8c16213e02fb5
+    excerpt: Despite remarkable advances that large language models have achieved in chatbots, maintaining a non-toxic user-AI interactive environment has become increasingly critical nowadays. However, previous
+- selection_id: sel_reshabh2024spml_a1
+  bullet_id: reshabh2024spml
+  atom_id: claim_training_and_evaluation_reshabh2024spml_a1_existence
+  cache_id: cache_942be1d5b34e1a81
+  span:
+    text_path_offset:
+    - 678
+    - 744
+    sha256_of_span: b79598452ccf4f4562e5573a098863e4728e89d45f4e290f76d18de2e5bfb55a
+    excerpt: reshabhs/SPML_Chatbot_Prompt_Injection · Datasets at Hugging Face
+- selection_id: sel_reshabh2024spml_a2
+  bullet_id: reshabh2024spml
+  atom_id: claim_training_and_evaluation_reshabh2024spml_a2_provenance
+  cache_id: cache_942be1d5b34e1a81
+  span:
+    text_path_offset:
+    - 678
+    - 744
+    sha256_of_span: b79598452ccf4f4562e5573a098863e4728e89d45f4e290f76d18de2e5bfb55a
+    excerpt: reshabhs/SPML_Chatbot_Prompt_Injection · Datasets at Hugging Face
+- selection_id: sel_geekyrakshit2024promptinjectiondataset_a1
+  bullet_id: geekyrakshit2024promptinjectiondataset
+  atom_id: claim_training_and_evaluation_geekyrakshit2024promptinjectiondataset_a1_existence
+  cache_id: cache_1e401aac38c4b954
+  span:
+    text_path_offset:
+    - 677
+    - 742
+    sha256_of_span: a330ad396dff30c050e73546c7b93cff56c80625541de20c490f0719ee12dd59
+    excerpt: geekyrakshit/prompt-injection-dataset · Datasets at Hugging Face
+- selection_id: sel_geekyrakshit2024promptinjectiondataset_a2
+  bullet_id: geekyrakshit2024promptinjectiondataset
+  atom_id: claim_training_and_evaluation_geekyrakshit2024promptinjectiondataset_a2_provenance
+  cache_id: cache_1e401aac38c4b954
+  span:
+    text_path_offset:
+    - 677
+    - 742
+    sha256_of_span: a330ad396dff30c050e73546c7b93cff56c80625541de20c490f0719ee12dd59
+    excerpt: geekyrakshit/prompt-injection-dataset · Datasets at Hugging Face
+- selection_id: sel_toyer2023tensortrust_a1
+  bullet_id: toyer2023tensortrust
+  atom_id: claim_training_and_evaluation_toyer2023tensortrust_a1_headline
+  cache_id: cache_b6479b8118b518af
+  span:
+    text_path_offset:
+    - 2235
+    - 2434
+    sha256_of_span: 078319de91b7856dfe3f06e24dcb6ddadec3df1b45af3ba4f70afbf4ef3925d5
+    excerpt: 'While Large Language Models (LLMs) are increasingly being used in real-world applications, they remain vulnerable to prompt injection attacks: malicious third party prompts that subvert the intent of'
+- selection_id: sel_toyer2023tensortrust_a2
+  bullet_id: toyer2023tensortrust
+  atom_id: claim_training_and_evaluation_toyer2023tensortrust_a2_methodology
+  cache_id: cache_b6479b8118b518af
+  span:
+    text_path_offset:
+    - 2235
+    - 2434
+    sha256_of_span: 078319de91b7856dfe3f06e24dcb6ddadec3df1b45af3ba4f70afbf4ef3925d5
+    excerpt: 'While Large Language Models (LLMs) are increasingly being used in real-world applications, they remain vulnerable to prompt injection attacks: malicious third party prompts that subvert the intent of'
+- selection_id: sel_schulhoff2023hackaprompt_a1
+  bullet_id: schulhoff2023hackaprompt
+  atom_id: claim_training_and_evaluation_schulhoff2023hackaprompt_a1_headline
+  cache_id: cache_598fd3b9f1751bb9
+  span:
+    text_path_offset:
+    - 2397
+    - 2589
+    sha256_of_span: cb92fbad4eb8dde8fa67147b7812507113f4994ca88fb0d5065e48e44a3260c1
+    excerpt: Large Language Models (LLMs) are deployed in interactive contexts with direct user engagement, such as chatbots and writing assistants. These deployments are vulnerable to prompt injection and
+- selection_id: sel_schulhoff2023hackaprompt_a2
+  bullet_id: schulhoff2023hackaprompt
+  atom_id: claim_training_and_evaluation_schulhoff2023hackaprompt_a2_methodology
+  cache_id: cache_598fd3b9f1751bb9
+  span:
+    text_path_offset:
+    - 2397
+    - 2589
+    sha256_of_span: cb92fbad4eb8dde8fa67147b7812507113f4994ca88fb0d5065e48e44a3260c1
+    excerpt: Large Language Models (LLMs) are deployed in interactive contexts with direct user engagement, such as chatbots and writing assistants. These deployments are vulnerable to prompt injection and
+- selection_id: sel_abdelnabi2025llmailinject_a1
+  bullet_id: abdelnabi2025llmailinject
+  atom_id: claim_training_and_evaluation_abdelnabi2025llmailinject_a1_headline
+  cache_id: cache_8e0c41db3ea23938
+  span:
+    text_path_offset:
+    - 2250
+    - 2449
+    sha256_of_span: b314ee3dcf079d968411bbacecda8ebad1da62481f1d6168c2428291aefa4556
+    excerpt: Indirect Prompt Injection attacks exploit the inherent limitation of Large Language Models (LLMs) to distinguish between instructions and data in their inputs. Despite numerous defense proposals, the
+- selection_id: sel_abdelnabi2025llmailinject_a2
+  bullet_id: abdelnabi2025llmailinject
+  atom_id: claim_training_and_evaluation_abdelnabi2025llmailinject_a2_methodology
+  cache_id: cache_8e0c41db3ea23938
+  span:
+    text_path_offset:
+    - 2250
+    - 2449
+    sha256_of_span: b314ee3dcf079d968411bbacecda8ebad1da62481f1d6168c2428291aefa4556
+    excerpt: Indirect Prompt Injection attacks exploit the inherent limitation of Large Language Models (LLMs) to distinguish between instructions and data in their inputs. Despite numerous defense proposals, the
+- selection_id: sel_zou2023universal_a1
+  bullet_id: zou2023universal
+  atom_id: claim_training_and_evaluation_zou2023universal_a1_headline
+  cache_id: cache_d8fe8c074031c1c5
+  span:
+    text_path_offset:
+    - 2238
+    - 2431
+    sha256_of_span: 5dfd853e830e3b1b05c6fc526effc3fc6c48de3508e4a71f0489b37ee96e4283
+    excerpt: Because &#34;out-of-the-box&#34; large language models are capable of generating a great deal of objectionable content, recent work has focused on aligning these models in an attempt to prevent
+- selection_id: sel_zou2023universal_a2
+  bullet_id: zou2023universal
+  atom_id: claim_training_and_evaluation_zou2023universal_a2_methodology
+  cache_id: cache_d8fe8c074031c1c5
+  span:
+    text_path_offset:
+    - 2238
+    - 2431
+    sha256_of_span: 5dfd853e830e3b1b05c6fc526effc3fc6c48de3508e4a71f0489b37ee96e4283
+    excerpt: Because &#34;out-of-the-box&#34; large language models are capable of generating a great deal of objectionable content, recent work has focused on aligning these models in an attempt to prevent
+- selection_id: sel_mazeika2024harmbench_a1
+  bullet_id: mazeika2024harmbench
+  atom_id: claim_training_and_evaluation_mazeika2024harmbench_a1_headline
+  cache_id: cache_cde8e4a02d22f739
+  span:
+    text_path_offset:
+    - 2292
+    - 2481
+    sha256_of_span: 59fa8f3fa70db14933d46099f3cf76325469e19287ce1152b1e39aae161a9350
+    excerpt: Automated red teaming holds substantial promise for uncovering and mitigating the risks associated with the malicious use of large language models (LLMs), yet the field lacks a standardized
+- selection_id: sel_mazeika2024harmbench_a2
+  bullet_id: mazeika2024harmbench
+  atom_id: claim_training_and_evaluation_mazeika2024harmbench_a2_methodology
+  cache_id: cache_cde8e4a02d22f739
+  span:
+    text_path_offset:
+    - 2292
+    - 2481
+    sha256_of_span: 59fa8f3fa70db14933d46099f3cf76325469e19287ce1152b1e39aae161a9350
+    excerpt: Automated red teaming holds substantial promise for uncovering and mitigating the risks associated with the malicious use of large language models (LLMs), yet the field lacks a standardized
+- selection_id: sel_chao2024jailbreakbench_a1
+  bullet_id: chao2024jailbreakbench
+  atom_id: claim_training_and_evaluation_chao2024jailbreakbench_a1_headline
+  cache_id: cache_f1443d8cfe646a3b
+  span:
+    text_path_offset:
+    - 2268
+    - 2464
+    sha256_of_span: 1224a8ddc0fcbff115124d5d5d32787ddcf3cafd213da6b86f4f9c29822d0a9e
+    excerpt: Jailbreak attacks cause large language models (LLMs) to generate harmful, unethical, or otherwise objectionable content. Evaluating these attacks presents a number of challenges, which the current
+- selection_id: sel_chao2024jailbreakbench_a2
+  bullet_id: chao2024jailbreakbench
+  atom_id: claim_training_and_evaluation_chao2024jailbreakbench_a2_methodology
+  cache_id: cache_f1443d8cfe646a3b
+  span:
+    text_path_offset:
+    - 2268
+    - 2464
+    sha256_of_span: 1224a8ddc0fcbff115124d5d5d32787ddcf3cafd213da6b86f4f9c29822d0a9e
+    excerpt: Jailbreak attacks cause large language models (LLMs) to generate harmful, unethical, or otherwise objectionable content. Evaluating these attacks presents a number of challenges, which the current
+- selection_id: sel_jiang2024wildjailbreak_a1
+  bullet_id: jiang2024wildjailbreak
+  atom_id: claim_training_and_evaluation_jiang2024wildjailbreak_a1_headline
+  cache_id: cache_929d95a137e7f2b0
+  span:
+    text_path_offset:
+    - 2289
+    - 2488
+    sha256_of_span: 17e139215d10c951ba125031d4c8fafc8225e9464a1bae72d1c9e15d8987adaa
+    excerpt: We introduce WildTeaming, an automatic LLM safety red-teaming framework that mines in-the-wild user-chatbot interactions to discover 5.7K unique clusters of novel jailbreak tactics, and then composes
+- selection_id: sel_jiang2024wildjailbreak_a2
+  bullet_id: jiang2024wildjailbreak
+  atom_id: claim_training_and_evaluation_jiang2024wildjailbreak_a2_methodology
+  cache_id: cache_929d95a137e7f2b0
+  span:
+    text_path_offset:
+    - 2289
+    - 2488
+    sha256_of_span: 17e139215d10c951ba125031d4c8fafc8225e9464a1bae72d1c9e15d8987adaa
+    excerpt: We introduce WildTeaming, an automatic LLM safety red-teaming framework that mines in-the-wild user-chatbot interactions to discover 5.7K unique clusters of novel jailbreak tactics, and then composes
+- selection_id: sel_han2024wildguard_a1
+  bullet_id: han2024wildguard
+  atom_id: claim_training_and_evaluation_han2024wildguard_a1_headline
+  cache_id: cache_b9dc5ff6a0eac4a3
+  span:
+    text_path_offset:
+    - 2295
+    - 2486
+    sha256_of_span: 076a18af75a651fda7a0ff0bd1c63c87dfccffaa332af6fc88e600e6ee81db7d
+    excerpt: 'We introduce WildGuard -- an open, light-weight moderation tool for LLM safety that achieves three goals: (1) identifying malicious intent in user prompts, (2) detecting safety risks of model'
+- selection_id: sel_han2024wildguard_a2
+  bullet_id: han2024wildguard
+  atom_id: claim_training_and_evaluation_han2024wildguard_a2_methodology
+  cache_id: cache_b9dc5ff6a0eac4a3
+  span:
+    text_path_offset:
+    - 2295
+    - 2486
+    sha256_of_span: 076a18af75a651fda7a0ff0bd1c63c87dfccffaa332af6fc88e600e6ee81db7d
+    excerpt: 'We introduce WildGuard -- an open, light-weight moderation tool for LLM safety that achieves three goals: (1) identifying malicious intent in user prompts, (2) detecting safety risks of model'
+- selection_id: sel_li2024saladbench_a1
+  bullet_id: li2024saladbench
+  atom_id: claim_training_and_evaluation_li2024saladbench_a1_headline
+  cache_id: cache_4a31fbc65b8cb53e
+  span:
+    text_path_offset:
+    - 2283
+    - 2472
+    sha256_of_span: ca722fd96d725a3f372dccaefc1da760a9fe7bd4d919597aee929f57671b5685
+    excerpt: In the rapidly evolving landscape of Large Language Models (LLMs), ensuring robust safety measures is paramount. To meet this crucial need, we propose \emph{SALAD-Bench}, a safety benchmark
+- selection_id: sel_li2024saladbench_a2
+  bullet_id: li2024saladbench
+  atom_id: claim_training_and_evaluation_li2024saladbench_a2_methodology
+  cache_id: cache_4a31fbc65b8cb53e
+  span:
+    text_path_offset:
+    - 2283
+    - 2472
+    sha256_of_span: ca722fd96d725a3f372dccaefc1da760a9fe7bd4d919597aee929f57671b5685
+    excerpt: In the rapidly evolving landscape of Large Language Models (LLMs), ensuring robust safety measures is paramount. To meet this crucial need, we propose \emph{SALAD-Bench}, a safety benchmark
+- selection_id: sel_luo2024jailbreakv28k_a1
+  bullet_id: luo2024jailbreakv28k
+  atom_id: claim_training_and_evaluation_luo2024jailbreakv28k_a1_headline
+  cache_id: cache_f5282b43e6273276
+  span:
+    text_path_offset:
+    - 2361
+    - 2558
+    sha256_of_span: 271499e7fa224a2df6810af66b6689e9223b71fd5c852dff18d577bbbf8d3428
+    excerpt: With the rapid advancements in Multimodal Large Language Models (MLLMs), securing these models against malicious inputs while aligning them with human values has emerged as a critical challenge. In
+- selection_id: sel_luo2024jailbreakv28k_a2
+  bullet_id: luo2024jailbreakv28k
+  atom_id: claim_training_and_evaluation_luo2024jailbreakv28k_a2_methodology
+  cache_id: cache_f5282b43e6273276
+  span:
+    text_path_offset:
+    - 2361
+    - 2558
+    sha256_of_span: 271499e7fa224a2df6810af66b6689e9223b71fd5c852dff18d577bbbf8d3428
+    excerpt: With the rapid advancements in Multimodal Large Language Models (MLLMs), securing these models against malicious inputs while aligning them with human values has emerged as a critical challenge. In
+- selection_id: sel_liu2020energyood_a1
+  bullet_id: liu2020energyood
+  atom_id: claim_training_and_evaluation_liu2020energyood_a1_headline
+  cache_id: cache_0fc989847d274b4a
+  span:
+    text_path_offset:
+    - 2145
+    - 2337
+    sha256_of_span: dead6b87e24725d0a76238a6d203f20051435b46aa5e37e073452b2d0d3ad614
+    excerpt: Determining whether inputs are out-of-distribution (OOD) is an essential building block for safely deploying machine learning models in the open world. However, previous methods relying on the
+- selection_id: sel_liu2020energyood_a2
+  bullet_id: liu2020energyood
+  atom_id: claim_training_and_evaluation_liu2020energyood_a2_methodology
+  cache_id: cache_0fc989847d274b4a
+  span:
+    text_path_offset:
+    - 2145
+    - 2337
+    sha256_of_span: dead6b87e24725d0a76238a6d203f20051435b46aa5e37e073452b2d0d3ad614
+    excerpt: Determining whether inputs are out-of-distribution (OOD) is an essential building block for safely deploying machine learning models in the open world. However, previous methods relying on the
+- selection_id: sel_hu2021lora_a1
+  bullet_id: hu2021lora
+  atom_id: claim_training_and_evaluation_hu2021lora_a1_headline
+  cache_id: cache_540efb6b951d57fd
+  span:
+    text_path_offset:
+    - 2169
+    - 2364
+    sha256_of_span: 03fcf632d59652fcaa6f73489bfeda62ecf12fb1249da31615f40b22645ddbbe
+    excerpt: An important paradigm of natural language processing consists of large-scale pre-training on general domain data and adaptation to particular tasks or domains. As we pre-train larger models, full
+- selection_id: sel_hu2021lora_a2
+  bullet_id: hu2021lora
+  atom_id: claim_training_and_evaluation_hu2021lora_a2_methodology
+  cache_id: cache_540efb6b951d57fd
+  span:
+    text_path_offset:
+    - 2169
+    - 2364
+    sha256_of_span: 03fcf632d59652fcaa6f73489bfeda62ecf12fb1249da31615f40b22645ddbbe
+    excerpt: An important paradigm of natural language processing consists of large-scale pre-training on general domain data and adaptation to particular tasks or domains. As we pre-train larger models, full
+- selection_id: sel_liu2024dora_a1
+  bullet_id: liu2024dora
+  atom_id: claim_training_and_evaluation_liu2024dora_a1_headline
+  cache_id: cache_50ed01bee3a6fa72
+  span:
+    text_path_offset:
+    - 2148
+    - 2344
+    sha256_of_span: e1b971e19b1067603a11ac4f1698a5f5180ce681aa6489c40c020b084d0b011f
+    excerpt: Among the widely used parameter-efficient fine-tuning (PEFT) methods, LoRA and its variants have gained considerable popularity because of avoiding additional inference costs. However, there still
+- selection_id: sel_liu2024dora_a2
+  bullet_id: liu2024dora
+  atom_id: claim_training_and_evaluation_liu2024dora_a2_methodology
+  cache_id: cache_50ed01bee3a6fa72
+  span:
+    text_path_offset:
+    - 2148
+    - 2344
+    sha256_of_span: e1b971e19b1067603a11ac4f1698a5f5180ce681aa6489c40c020b084d0b011f
+    excerpt: Among the widely used parameter-efficient fine-tuning (PEFT) methods, LoRA and its variants have gained considerable popularity because of avoiding additional inference costs. However, there still
+- selection_id: sel_sensoy2018evidential_a1
+  bullet_id: sensoy2018evidential
+  atom_id: claim_training_and_evaluation_sensoy2018evidential_a1_headline
+  cache_id: cache_90c6a0d7e3927a6f
+  span:
+    text_path_offset:
+    - 2208
+    - 2397
+    sha256_of_span: c27d43f346e5f25d64fcb17b650780f8bb03d131c89a7478f35751f3f910f9b4
+    excerpt: Deterministic neural nets have been shown to learn effective predictors on a wide range of machine learning problems. However, as the standard approach is to train the network to minimize a
+- selection_id: sel_sensoy2018evidential_a2
+  bullet_id: sensoy2018evidential
+  atom_id: claim_training_and_evaluation_sensoy2018evidential_a2_methodology
+  cache_id: cache_90c6a0d7e3927a6f
+  span:
+    text_path_offset:
+    - 2208
+    - 2397
+    sha256_of_span: c27d43f346e5f25d64fcb17b650780f8bb03d131c89a7478f35751f3f910f9b4
+    excerpt: Deterministic neural nets have been shown to learn effective predictors on a wide range of machine learning problems. However, as the standard approach is to train the network to minimize a
+- selection_id: sel_meta2025promptguard2_a1
+  bullet_id: meta2025promptguard2
+  atom_id: claim_training_and_evaluation_meta2025promptguard2_a1_existence
+  cache_id: cache_550949d71181746c
+  span:
+    text_path_offset:
+    - 673
+    - 724
+    sha256_of_span: 5231fd1abf172f2c1cfb17ee143d5e32ba4a1bb1e243e09337349903ef584395
+    excerpt: meta-llama/Llama-Prompt-Guard-2-86M · Hugging Face
+- selection_id: sel_meta2025promptguard2_a2
+  bullet_id: meta2025promptguard2
+  atom_id: claim_training_and_evaluation_meta2025promptguard2_a2_provenance
+  cache_id: cache_550949d71181746c
+  span:
+    text_path_offset:
+    - 673
+    - 724
+    sha256_of_span: 5231fd1abf172f2c1cfb17ee143d5e32ba4a1bb1e243e09337349903ef584395
+    excerpt: meta-llama/Llama-Prompt-Guard-2-86M · Hugging Face
+- selection_id: sel_liu2025datasentinel_a1
+  bullet_id: liu2025datasentinel
+  atom_id: claim_training_and_evaluation_liu2025datasentinel_a1_headline
+  cache_id: cache_1feeff6692fd1104
+  span:
+    text_path_offset:
+    - 2223
+    - 2420
+    sha256_of_span: e7d909b7201ff7c8bcb3a1fe955afece5143b745812d2449a6ab5b285f859028
+    excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where an attacker injects prompts into their inputs to induce attacker-desired outputs. A detection method aims to
+- selection_id: sel_liu2025datasentinel_a2
+  bullet_id: liu2025datasentinel
+  atom_id: claim_training_and_evaluation_liu2025datasentinel_a2_methodology
+  cache_id: cache_1feeff6692fd1104
+  span:
+    text_path_offset:
+    - 2223
+    - 2420
+    sha256_of_span: e7d909b7201ff7c8bcb3a1fe955afece5143b745812d2449a6ab5b285f859028
+    excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where an attacker injects prompts into their inputs to induce attacker-desired outputs. A detection method aims to
+- selection_id: sel_wallace2024instructionhierarchy_a1
+  bullet_id: wallace2024instructionhierarchy
+  atom_id: claim_training_and_evaluation_wallace2024instructionhierarchy_a1_headline
+  cache_id: cache_c8697d3c88066297
+  span:
+    text_path_offset:
+    - 2253
+    - 2451
+    sha256_of_span: 75bfbba6912923603cfc64ec0e15c87c141980277407883288b06efeed160e6a
+    excerpt: Today&#39;s LLMs are susceptible to prompt injections, jailbreaks, and other attacks that allow adversaries to overwrite a model&#39;s original instructions with their own malicious prompts. In this
+- selection_id: sel_wallace2024instructionhierarchy_a2
+  bullet_id: wallace2024instructionhierarchy
+  atom_id: claim_training_and_evaluation_wallace2024instructionhierarchy_a2_methodology
+  cache_id: cache_c8697d3c88066297
+  span:
+    text_path_offset:
+    - 2253
+    - 2451
+    sha256_of_span: 75bfbba6912923603cfc64ec0e15c87c141980277407883288b06efeed160e6a
+    excerpt: Today&#39;s LLMs are susceptible to prompt injections, jailbreaks, and other attacks that allow adversaries to overwrite a model&#39;s original instructions with their own malicious prompts. In this
+- selection_id: sel_ivry2025sentinel_a1
+  bullet_id: ivry2025sentinel
+  atom_id: claim_training_and_evaluation_ivry2025sentinel_a1_headline
+  cache_id: cache_5f129920a9fcbcd5
+  span:
+    text_path_offset:
+    - 2190
+    - 2388
+    sha256_of_span: a01f70daebf7a02238b57740a5fa5dc3bc27f99e212447515449104c72d05db0
+    excerpt: Large Language Models (LLMs) are increasingly powerful but remain vulnerable to prompt injection attacks, where malicious inputs cause the model to deviate from its intended instructions. This paper
+- selection_id: sel_ivry2025sentinel_a2
+  bullet_id: ivry2025sentinel
+  atom_id: claim_training_and_evaluation_ivry2025sentinel_a2_methodology
+  cache_id: cache_5f129920a9fcbcd5
+  span:
+    text_path_offset:
+    - 2190
+    - 2388
+    sha256_of_span: a01f70daebf7a02238b57740a5fa5dc3bc27f99e212447515449104c72d05db0
+    excerpt: Large Language Models (LLMs) are increasingly powerful but remain vulnerable to prompt injection attacks, where malicious inputs cause the model to deviate from its intended instructions. This paper
+- selection_id: sel_jacob2025promptshield_a1
+  bullet_id: jacob2025promptshield
+  atom_id: claim_training_and_evaluation_jacob2025promptshield_a1_headline
+  cache_id: cache_96dc7a084a524c4d
+  span:
+    text_path_offset:
+    - 2208
+    - 2407
+    sha256_of_span: 3b63811aa8a3ec122a6a29acbdc8e9064c0c63097f41a6ae0f9cb66ca58bdb55
+    excerpt: Application designers have moved to integrate large language models (LLMs) into their products. However, many LLM-integrated applications are vulnerable to prompt injections. While attempts have been
+- selection_id: sel_jacob2025promptshield_a2
+  bullet_id: jacob2025promptshield
+  atom_id: claim_training_and_evaluation_jacob2025promptshield_a2_methodology
+  cache_id: cache_96dc7a084a524c4d
+  span:
+    text_path_offset:
+    - 2208
+    - 2407
+    sha256_of_span: 3b63811aa8a3ec122a6a29acbdc8e9064c0c63097f41a6ae0f9cb66ca58bdb55
+    excerpt: Application designers have moved to integrate large language models (LLMs) into their products. However, many LLM-integrated applications are vulnerable to prompt injections. While attempts have been
+- selection_id: sel_debenedetti2024agentdojo_a1
+  bullet_id: debenedetti2024agentdojo
+  atom_id: claim_training_and_evaluation_debenedetti2024agentdojo_a1_headline
+  cache_id: cache_28b49b68f7f9500e
+  span:
+    text_path_offset:
+    - 2310
+    - 2506
+    sha256_of_span: f7e43303c13e4e6a6d0464c22ed67f4fab7d48c9023cb5c9a4911824efcf7196
+    excerpt: AI agents aim to solve complex tasks by combining text-based reasoning with external tool calls. Unfortunately, AI agents are vulnerable to prompt injection attacks where data returned by external
+- selection_id: sel_debenedetti2024agentdojo_a2
+  bullet_id: debenedetti2024agentdojo
+  atom_id: claim_training_and_evaluation_debenedetti2024agentdojo_a2_methodology
+  cache_id: cache_28b49b68f7f9500e
+  span:
+    text_path_offset:
+    - 2310
+    - 2506
+    sha256_of_span: f7e43303c13e4e6a6d0464c22ed67f4fab7d48c9023cb5c9a4911824efcf7196
+    excerpt: AI agents aim to solve complex tasks by combining text-based reasoning with external tool calls. Unfortunately, AI agents are vulnerable to prompt injection attacks where data returned by external
+- selection_id: sel_li2024injecguard_a1
+  bullet_id: li2024injecguard
+  atom_id: claim_training_and_evaluation_li2024injecguard_a1_headline
+  cache_id: cache_ab9d48079556ef2d
+  span:
+    text_path_offset:
+    - 2286
+    - 2483
+    sha256_of_span: a9af43706d477caa48eb1278a434327bbb234c34bd2c1f7b3b304316f9f4225d
+    excerpt: Prompt injection attacks pose a critical threat to large language models (LLMs), enabling goal hijacking and data leakage. Prompt guard models, though effective in defense, suffer from over-defense
+- selection_id: sel_li2024injecguard_a2
+  bullet_id: li2024injecguard
+  atom_id: claim_training_and_evaluation_li2024injecguard_a2_methodology
+  cache_id: cache_ab9d48079556ef2d
+  span:
+    text_path_offset:
+    - 2286
+    - 2483
+    sha256_of_span: a9af43706d477caa48eb1278a434327bbb234c34bd2c1f7b3b304316f9f4225d
+    excerpt: Prompt injection attacks pose a critical threat to large language models (LLMs), enabling goal hijacking and data leakage. Prompt guard models, though effective in defense, suffer from over-defense
+- selection_id: sel_lakera2024pint_a1
+  bullet_id: lakera2024pint
+  atom_id: claim_training_and_evaluation_lakera2024pint_a1_announcement
+  cache_id: cache_0621eb6f5ed9e96c
+  span:
+    text_path_offset:
+    - 965
+    - 1201
+    sha256_of_span: e691118e54758a72f8a776ab0f00a8a054a7eaabddbb1325585d2bbbcb5d2f4f
+    excerpt: We&#x27;ve released the first version of a new Prompt Injection Test (PINT) Benchmark that can be used to evaluate any prompt injection detection system with a comprehensive dataset that no model, including ours, is directly trained on.
+- selection_id: sel_lakera2024pint_a2
+  bullet_id: lakera2024pint
+  atom_id: claim_training_and_evaluation_lakera2024pint_a2_contribution
+  cache_id: cache_0621eb6f5ed9e96c
+  span:
+    text_path_offset:
+    - 965
+    - 1201
+    sha256_of_span: e691118e54758a72f8a776ab0f00a8a054a7eaabddbb1325585d2bbbcb5d2f4f
+    excerpt: We&#x27;ve released the first version of a new Prompt Injection Test (PINT) Benchmark that can be used to evaluate any prompt injection detection system with a comprehensive dataset that no model, including ours, is directly trained on.
+- selection_id: sel_yi2023bipia_a1
+  bullet_id: yi2023bipia
+  atom_id: claim_training_and_evaluation_yi2023bipia_a1_headline
+  cache_id: cache_70d4cfd50519178f
+  span:
+    text_path_offset:
+    - 2298
+    - 2494
+    sha256_of_span: d1556d9317617e37be41061c316b917c902f475a8f0ebb5f9bb2a2d0d51874e3
+    excerpt: The integration of large language models with external content has enabled applications such as Microsoft Copilot but also introduced vulnerabilities to indirect prompt injection attacks. In these
+- selection_id: sel_yi2023bipia_a2
+  bullet_id: yi2023bipia
+  atom_id: claim_training_and_evaluation_yi2023bipia_a2_methodology
+  cache_id: cache_70d4cfd50519178f
+  span:
+    text_path_offset:
+    - 2298
+    - 2494
+    sha256_of_span: d1556d9317617e37be41061c316b917c902f475a8f0ebb5f9bb2a2d0d51874e3
+    excerpt: The integration of large language models with external content has enabled applications such as Microsoft Copilot but also introduced vulnerabilities to indirect prompt injection attacks. In these
+- selection_id: sel_zhan2024injecagent_a1
+  bullet_id: zhan2024injecagent
+  atom_id: claim_training_and_evaluation_zhan2024injecagent_a1_headline
+  cache_id: cache_4493644eb2e357a8
+  span:
+    text_path_offset:
+    - 2313
+    - 2510
+    sha256_of_span: 4b23c232090ce01d382a522bb4caba119d18370986b27f8cf55507d3e06544ce
+    excerpt: Recent work has embodied LLMs as agents, allowing them to access tools, perform actions, and interact with external content (e.g., emails or websites). However, external content introduces the risk
+- selection_id: sel_zhan2024injecagent_a2
+  bullet_id: zhan2024injecagent
+  atom_id: claim_training_and_evaluation_zhan2024injecagent_a2_methodology
+  cache_id: cache_4493644eb2e357a8
+  span:
+    text_path_offset:
+    - 2313
+    - 2510
+    sha256_of_span: 4b23c232090ce01d382a522bb4caba119d18370986b27f8cf55507d3e06544ce
+    excerpt: Recent work has embodied LLMs as agents, allowing them to access tools, perform actions, and interact with external content (e.g., emails or websites). However, external content introduces the risk
+- selection_id: sel_yao2024taubench_a1
+  bullet_id: yao2024taubench
+  atom_id: claim_training_and_evaluation_yao2024taubench_a1_headline
+  cache_id: cache_20c2acc833d099fd
+  span:
+    text_path_offset:
+    - 2250
+    - 2436
+    sha256_of_span: 600fc06cb8fc0a4fdede260deb2e46109275a51f87b90b93a70b78a6e2be18de
+    excerpt: Existing benchmarks do not test language agents on their interaction with human users or ability to follow domain-specific rules, both of which are vital for deploying them in real world
+- selection_id: sel_yao2024taubench_a2
+  bullet_id: yao2024taubench
+  atom_id: claim_training_and_evaluation_yao2024taubench_a2_methodology
+  cache_id: cache_20c2acc833d099fd
+  span:
+    text_path_offset:
+    - 2250
+    - 2436
+    sha256_of_span: 600fc06cb8fc0a4fdede260deb2e46109275a51f87b90b93a70b78a6e2be18de
+    excerpt: Existing benchmarks do not test language agents on their interaction with human users or ability to follow domain-specific rules, both of which are vital for deploying them in real world
+- selection_id: sel_zhang2025asb_a1
+  bullet_id: zhang2025asb
+  atom_id: claim_training_and_evaluation_zhang2025asb_a1_headline
+  cache_id: cache_bb37ba552eb103f6
+  span:
+    text_path_offset:
+    - 2310
+    - 2499
+    sha256_of_span: 4708e77ceb7b6597fd3e13641f6d77109e9a8586e1b3bd90fe482fe72a84a21b
+    excerpt: Although LLM-based agents, powered by Large Language Models (LLMs), can use external tools and memory mechanisms to solve complex real-world tasks, they may also introduce critical security
+- selection_id: sel_zhang2025asb_a2
+  bullet_id: zhang2025asb
+  atom_id: claim_training_and_evaluation_zhang2025asb_a2_methodology
+  cache_id: cache_bb37ba552eb103f6
+  span:
+    text_path_offset:
+    - 2310
+    - 2499
+    sha256_of_span: 4708e77ceb7b6597fd3e13641f6d77109e9a8586e1b3bd90fe482fe72a84a21b
+    excerpt: Although LLM-based agents, powered by Large Language Models (LLMs), can use external tools and memory mechanisms to solve complex real-world tasks, they may also introduce critical security
+- selection_id: sel_jung2026postmortem_a1
+  bullet_id: jung2026postmortem
+  atom_id: claim_training_and_evaluation_jung2026postmortem_a1_summary
+  cache_id: cache_6788a3f0f61cebd9
+  span:
+    text_path_offset:
+    - 2635
+    - 2758
+    sha256_of_span: a440f76426dcc1842805e885900881a2773564103f671d9a445799ca74beae2c
+    excerpt: Why prompt injection detection alone is not enough for AI agent security, even when an LLM classifier appears 98% accurate.
+- selection_id: sel_jung2026postmortem_saxe_fscore
+  bullet_id: jung2026postmortem
+  atom_id: claim_training_and_evaluation_jung2026postmortem_a2_saxe_fscore
+  cache_id: cache_6788a3f0f61cebd9
+  span:
+    text_path_offset:
+    - 24550
+    - 24676
+    sha256_of_span: d95c60b8a18231429d06f5be83c0646033720fe728ab8ee3fc8fae3dc8e56a4c
+    excerpt: 85% F-score on your test data is likely more meaningful than a classical ML model scoring 95% but fit to the test distribution
+- selection_id: sel_jung2026postmortem_speed_bump
+  bullet_id: jung2026postmortem
+  atom_id: claim_training_and_evaluation_jung2026postmortem_a3_speed_bump
+  cache_id: cache_6788a3f0f61cebd9
+  span:
+    text_path_offset:
+    - 30135
+    - 30157
+    sha256_of_span: 595ec9d33f4c602330ebc782140c9678583451486b82cb858f92c0a9d76243f7
+    excerpt: speed bump, not a wall
+- selection_id: sel_bhagwatkar2025firewalls_a1
+  bullet_id: bhagwatkar2025firewalls
+  atom_id: claim_training_and_evaluation_bhagwatkar2025firewalls_a1_abstract
+  cache_id: cache_beea4f2926635943
+  span:
+    text_path_offset:
+    - 2256
+    - 2446
+    sha256_of_span: 61937aac807c9cd155ac1174dfbcc1abedc8fb29f6b74d46aec8ecc940283746
+    excerpt: AI agents are vulnerable to indirect prompt injection attacks, where malicious instructions embedded in external content or tool outputs cause unintended or harmful behavior. Inspired by the
+- selection_id: sel_bhagwatkar2025firewalls_a2_saturation
+  bullet_id: bhagwatkar2025firewalls
+  atom_id: claim_training_and_evaluation_bhagwatkar2025firewalls_a2_saturation
+  cache_id: cache_beea4f2926635943
+  span:
+    text_path_offset:
+    - 2628
+    - 2720
+    sha256_of_span: 430d9cff51f8f8b62d30bd237276ab0d13b93872841a377e8f2b4be93a3b0ee1
+    excerpt: 'across all four public benchmarks: AgentDojo, Agent Security Bench, InjecAgent and tau-Bench'
+- selection_id: sel_bhagwatkar2025firewalls_weak_attacks
+  bullet_id: bhagwatkar2025firewalls
+  atom_id: claim_training_and_evaluation_bhagwatkar2025firewalls_a3_weak_attacks
+  cache_id: cache_beea4f2926635943
+  span:
+    text_path_offset:
+    - 3304
+    - 3336
+    sha256_of_span: 6f750223e60799f5f9a82698635358bfbfc907d70a3b9df5c2c6bd5fccc88852
+    excerpt: weak attacks, hindering progress
+- selection_id: sel_hackett2025bypassing_a1
+  bullet_id: hackett2025bypassing
+  atom_id: claim_training_and_evaluation_hackett2025bypassing_a1_headline
+  cache_id: cache_bb62839772f16e14
+  span:
+    text_path_offset:
+    - 2388
+    - 2580
+    sha256_of_span: d191c85401d8d0aba64a19d103e15480adc4950c33c418b808c172fb471f3eff
+    excerpt: Large Language Models (LLMs) guardrail systems are designed to protect against prompt injection and jailbreak attacks. However, they remain vulnerable to evasion techniques. We demonstrate two
+- selection_id: sel_hackett2025bypassing_a2
+  bullet_id: hackett2025bypassing
+  atom_id: claim_training_and_evaluation_hackett2025bypassing_a2_methodology
+  cache_id: cache_bb62839772f16e14
+  span:
+    text_path_offset:
+    - 2388
+    - 2580
+    sha256_of_span: d191c85401d8d0aba64a19d103e15480adc4950c33c418b808c172fb471f3eff
+    excerpt: Large Language Models (LLMs) guardrail systems are designed to protect against prompt injection and jailbreak attacks. However, they remain vulnerable to evasion techniques. We demonstrate two
+- selection_id: sel_nasr2025attackersecond_a1
+  bullet_id: nasr2025attackersecond
+  atom_id: claim_training_and_evaluation_nasr2025attackersecond_a1_headline
+  cache_id: cache_51e92f7784dddb6e
+  span:
+    text_path_offset:
+    - 2358
+    - 2551
+    sha256_of_span: 49ec835a4450abe713c01c8944158abd1912a6ecd80a0b3cbe62146cf675eb7c
+    excerpt: How should we evaluate the robustness of language model defenses? Current defenses against jailbreaks and prompt injections (which aim to prevent an attacker from eliciting harmful knowledge or
+- selection_id: sel_nasr2025attackersecond_a2
+  bullet_id: nasr2025attackersecond
+  atom_id: claim_training_and_evaluation_nasr2025attackersecond_a2_methodology
+  cache_id: cache_51e92f7784dddb6e
+  span:
+    text_path_offset:
+    - 2358
+    - 2551
+    sha256_of_span: 49ec835a4450abe713c01c8944158abd1912a6ecd80a0b3cbe62146cf675eb7c
+    excerpt: How should we evaluate the robustness of language model defenses? Current defenses against jailbreaks and prompt injections (which aim to prevent an attacker from eliciting harmful knowledge or
+- selection_id: sel_choudhary2025detect_a1
+  bullet_id: choudhary2025detect
+  atom_id: claim_training_and_evaluation_choudhary2025detect_a1_headline
+  cache_id: cache_5223602a690470a0
+  span:
+    text_path_offset:
+    - 2160
+    - 2352
+    sha256_of_span: c98f7f13d587539ec4d7c0b1040fb37a1174ff65851c5e2635a0169d201de6b2
+    excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where adversaries embed malicious instructions within seemingly benign input data to manipulate the LLM&#39;s
+- selection_id: sel_choudhary2025detect_a2
+  bullet_id: choudhary2025detect
+  atom_id: claim_training_and_evaluation_choudhary2025detect_a2_methodology
+  cache_id: cache_5223602a690470a0
+  span:
+    text_path_offset:
+    - 2160
+    - 2352
+    sha256_of_span: c98f7f13d587539ec4d7c0b1040fb37a1174ff65851c5e2635a0169d201de6b2
+    excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where adversaries embed malicious instructions within seemingly benign input data to manipulate the LLM&#39;s
+- selection_id: sel_carlini2023aligned_a1
+  bullet_id: carlini2023aligned
+  atom_id: claim_training_and_evaluation_carlini2023aligned_a1_headline
+  cache_id: cache_3ff2b9889733b59c
+  span:
+    text_path_offset:
+    - 2169
+    - 2363
+    sha256_of_span: cd313470aed0f1432c9b0be48ee43e464208fc4d6da7de2fe3e018e3e88a2025
+    excerpt: Large language models are now tuned to align with the goals of their creators, namely to be &#34;helpful and harmless.&#34; These models should respond helpfully to user questions, but refuse to
+- selection_id: sel_carlini2023aligned_a2
+  bullet_id: carlini2023aligned
+  atom_id: claim_training_and_evaluation_carlini2023aligned_a2_methodology
+  cache_id: cache_3ff2b9889733b59c
+  span:
+    text_path_offset:
+    - 2169
+    - 2363
+    sha256_of_span: cd313470aed0f1432c9b0be48ee43e464208fc4d6da7de2fe3e018e3e88a2025
+    excerpt: Large language models are now tuned to align with the goals of their creators, namely to be &#34;helpful and harmless.&#34; These models should respond helpfully to user questions, but refuse to
+- selection_id: sel_fomin2026benchmarkslie_a1
+  bullet_id: fomin2026benchmarkslie
+  atom_id: claim_training_and_evaluation_fomin2026benchmarkslie_a1_headline
+  cache_id: cache_081c9fe7b9b1dd0e
+  span:
+    text_path_offset:
+    - 2289
+    - 2485
+    sha256_of_span: f4e48cb1e86958b1ea65d03de8e2c9d35ff10235649dfe675adb2ff2df46ae81
+    excerpt: Detecting prompt injection and jailbreak attacks is critical for deploying LLM-based agents safely. As agents increasingly process untrusted data from emails, documents, tool outputs, and external
+- selection_id: sel_fomin2026benchmarkslie_a2
+  bullet_id: fomin2026benchmarkslie
+  atom_id: claim_training_and_evaluation_fomin2026benchmarkslie_a2_methodology
+  cache_id: cache_081c9fe7b9b1dd0e
+  span:
+    text_path_offset:
+    - 2289
+    - 2485
+    sha256_of_span: f4e48cb1e86958b1ea65d03de8e2c9d35ff10235649dfe675adb2ff2df46ae81
+    excerpt: Detecting prompt injection and jailbreak attacks is critical for deploying LLM-based agents safely. As agents increasingly process untrusted data from emails, documents, tool outputs, and external
+- selection_id: sel_rogue2025promptinjectionsbenchmark_a1
+  bullet_id: rogue2025promptinjectionsbenchmark
+  atom_id: claim_training_and_evaluation_rogue2025promptinjectionsbenchmark_a1_existence
+  cache_id: cache_ecd2a344745528a2
+  span:
+    text_path_offset:
+    - 682
+    - 752
+    sha256_of_span: 195b147b693d3ac224dee9f8d78645a6647113a9019765f6bdce85551e457201
+    excerpt: rogue-security/prompt-injections-benchmark · Datasets at Hugging Face
+- selection_id: sel_rogue2025promptinjectionsbenchmark_a2
+  bullet_id: rogue2025promptinjectionsbenchmark
+  atom_id: claim_training_and_evaluation_rogue2025promptinjectionsbenchmark_a2_provenance
+  cache_id: cache_ecd2a344745528a2
+  span:
+    text_path_offset:
+    - 682
+    - 752
+    sha256_of_span: 195b147b693d3ac224dee9f8d78645a6647113a9019765f6bdce85551e457201
+    excerpt: rogue-security/prompt-injections-benchmark · Datasets at Hugging Face
+- selection_id: sel_hendzh2025promptshielddataset_a1
+  bullet_id: hendzh2025promptshielddataset
+  atom_id: claim_training_and_evaluation_hendzh2025promptshielddataset_a1_existence
+  cache_id: cache_6f8a1b62f594c700
+  span:
+    text_path_offset:
+    - 659
+    - 706
+    sha256_of_span: 95a817040e605e680e3a74df062010262ce4e09cfd0830257b67c8681fe989fa
+    excerpt: hendzh/PromptShield · Datasets at Hugging Face
+- selection_id: sel_hendzh2025promptshielddataset_a2
+  bullet_id: hendzh2025promptshielddataset
+  atom_id: claim_training_and_evaluation_hendzh2025promptshielddataset_a2_provenance
+  cache_id: cache_6f8a1b62f594c700
+  span:
+    text_path_offset:
+    - 659
+    - 706
+    sha256_of_span: 95a817040e605e680e3a74df062010262ce4e09cfd0830257b67c8681fe989fa
+    excerpt: hendzh/PromptShield · Datasets at Hugging Face
+- selection_id: sel_protectai2024deberta_a1
+  bullet_id: protectai2024deberta
+  atom_id: claim_training_and_evaluation_protectai2024deberta_a1_existence
+  cache_id: cache_f4d5b713b2d15854
+  span:
+    text_path_offset:
+    - 683
+    - 744
+    sha256_of_span: 5da7bb1fb2950a9b281c7075033f8b258c6ed86bf59d5b76e5c41975d62bef09
+    excerpt: protectai/deberta-v3-base-prompt-injection-v2 · Hugging Face
+- selection_id: sel_protectai2024deberta_a2
+  bullet_id: protectai2024deberta
+  atom_id: claim_training_and_evaluation_protectai2024deberta_a2_provenance
+  cache_id: cache_f4d5b713b2d15854
+  span:
+    text_path_offset:
+    - 683
+    - 744
+    sha256_of_span: 5da7bb1fb2950a9b281c7075033f8b258c6ed86bf59d5b76e5c41975d62bef09
+    excerpt: protectai/deberta-v3-base-prompt-injection-v2 · Hugging Face
+- selection_id: sel_microsoft2024orcaagentinstruct_a1
+  bullet_id: microsoft2024orcaagentinstruct
+  atom_id: claim_training_and_evaluation_microsoft2024orcaagentinstruct_a1_existence
+  cache_id: cache_500821bd01ca986a
+  span:
+    text_path_offset:
+    - 674
+    - 736
+    sha256_of_span: 7654de3005744e285d21f468d3db6e8822aad948d784a36e461f97c18ece08cd
+    excerpt: microsoft/orca-agentinstruct-1M-v1 · Datasets at Hugging Face
+- selection_id: sel_microsoft2024orcaagentinstruct_a2
+  bullet_id: microsoft2024orcaagentinstruct
+  atom_id: claim_training_and_evaluation_microsoft2024orcaagentinstruct_a2_provenance
+  cache_id: cache_500821bd01ca986a
+  span:
+    text_path_offset:
+    - 674
+    - 736
+    sha256_of_span: 7654de3005744e285d21f468d3db6e8822aad948d784a36e461f97c18ece08cd
+    excerpt: microsoft/orca-agentinstruct-1M-v1 · Datasets at Hugging Face

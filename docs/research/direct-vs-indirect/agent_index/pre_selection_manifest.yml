@@ -1,0 +1,512 @@
+# Pre-selection manifest for direct-vs-indirect agent_index.
+# Phase 2b Attribute-First contract: every bullet in the 5-bullet markdown files
+# below cites evidence whose atom_id (claim_id) and span anchor are committed here
+# BEFORE prose generation. Validator rejects any cited claim_id whose anchor isn't
+# in this file.
+#
+# atom_id values reuse existing claim_graph.jsonl claim record IDs (semantic names),
+# preserving the bibledger → evidence_ledger → claim_graph contract from Phase 2.
+# Phase 2 generated 39 evidence records across 33 bib entries; this manifest binds
+# one selection per (bullet, atom) pair = 39 selections.
+
+schema_version: 3
+topic: direct_vs_indirect
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+selections:
+
+# ============================================================================
+# Bullet B1 — Greshake et al. 2023 "Not what you've signed up for" (2 atoms)
+# ============================================================================
+- selection_id: sel_b1_greshake_a1
+  bullet_id: 'B1.1'
+  atom_id: claim_direct_vs_indirect_greshake_taxonomy
+  cache_id: cache_03106dd103864555
+  span:
+    text_path_offset: [2924, 3122]
+    sha256_of_span: ba13e3a0fe001de22afa0f42b791c6d8fd58cbd8d2a9eb09a9a4012f57956a69
+    excerpt: |-
+      We reveal new attack vectors, using Indirect Prompt Injection, that enable adversaries to remotely (without a direct interface) exploit LLM-integrated applications by strategically injecting prompts
+
+- selection_id: sel_b1_greshake_a2
+  bullet_id: 'B1.1'
+  atom_id: claim_direct_vs_indirect_greshake_taxonomy_impacts
+  cache_id: cache_03106dd103864555
+  span:
+    text_path_offset: [3157, 3354]
+    sha256_of_span: 6113645addb3b68b1371692abb02e0ede6ee0611ee8be4fbdf39962d3a28ab9d
+    excerpt: |-
+      We derive a comprehensive taxonomy from a computer security perspective to systematically investigate impacts and vulnerabilities, including data theft, worming, information ecosystem contamination
+
+# ============================================================================
+# Bullet B1.2 — OWASP LLM01:2025 (1 atom)
+# ============================================================================
+- selection_id: sel_b1_owasp_a1
+  bullet_id: 'B1.2'
+  atom_id: claim_owasp_llm01_direct_indirect_split
+  cache_id: cache_13d91c957b4f3993
+  span:
+    text_path_offset: [1282, 1341]
+    sha256_of_span: 6396f0b91a56853b01f9f3b875f200e3b87ad06f6e92ea40ed3c9cfa10e163ad
+    excerpt: |-
+      LLM01:2025 Prompt Injection - OWASP Gen AI Security Project
+
+# ============================================================================
+# Bullet B1.3 — Willison 2023 Dual LLM pattern (1 atom)
+# ============================================================================
+- selection_id: sel_b1_willison_dual_a1
+  bullet_id: 'B1.3'
+  atom_id: claim_willison_dual_llm_pattern
+  cache_id: cache_7d31fd1b044f4cdd
+  span:
+    text_path_offset: [273, 353]
+    sha256_of_span: 3065b9f28c19a49e43bbdc78dd673e3377ae95358289fdd75799e858e6ecf18d
+    excerpt: |-
+      The Dual LLM pattern for building AI assistants that can resist prompt injection
+
+# ============================================================================
+# Bullet B1.4 — Willison 2025 Lethal trifecta (1 atom)
+# ============================================================================
+- selection_id: sel_b1_willison_trifecta_a1
+  bullet_id: 'B1.4'
+  atom_id: claim_willison_lethal_trifecta
+  cache_id: cache_8f8e4bafcb839e1d
+  span:
+    text_path_offset: [276, 370]
+    sha256_of_span: a640a5e06eb72ee76c9942c8c0f9cf17a59698ffa3e89dce74f412d6b451648b
+    excerpt: |-
+      'The lethal trifecta for AI agents: private data, untrusted content, and external communication'
+
+# ============================================================================
+# Bullet B2.1 — Spotlighting (Hines et al. 2024) (1 atom)
+# ============================================================================
+- selection_id: sel_b2_hines_a1
+  bullet_id: 'B2.1'
+  atom_id: claim_hines_spotlighting_method
+  cache_id: cache_2d58408c3b4f8e5d
+  span:
+    text_path_offset: [2860, 2961]
+    sha256_of_span: 8b68fa23230f4cae0eb96baa9efa11c7baffd441fd40d693446f319b3d038256
+    excerpt: |-
+      We introduce spotlighting, a family of prompt engineering techniques that can be used to improve LLMs
+
+# ============================================================================
+# Bullet B2.2 — StruQ (Chen et al. USENIX 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b2_struq_a1
+  bullet_id: 'B2.2'
+  atom_id: claim_struq_structured_queries
+  cache_id: cache_c3439daa681bdac9
+  span:
+    text_path_offset: [2756, 2830]
+    sha256_of_span: cc4e4d02fc5dcfbfbd23f9e070159a78c7177886a7dcb50148861caa592d7f58
+    excerpt: |-
+      We introduce structured queries, a general approach to tackle this problem
+
+# ============================================================================
+# Bullet B2.3 — SecAlign (Chen et al. CCS 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b2_secalign_a1
+  bullet_id: 'B2.3'
+  atom_id: claim_secalign_dpo_defense
+  cache_id: cache_8f562c950ef155e3
+  span:
+    text_path_offset: [62, 135]
+    sha256_of_span: 52f0660ceb9b71efedec462e4d480197b29933595f9a70d25e5cacce77091120
+    excerpt: |-
+      'SecAlign: Defending Against Prompt Injection with Preference Optimization'
+
+# ============================================================================
+# Bullet B2.4 — Meta SecAlign on Llama-3.3-70B (Chen et al. 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b2_metasecalign_a1
+  bullet_id: 'B2.4'
+  atom_id: claim_meta_secalign_open_model
+  cache_id: cache_74a75f6036e89f8d
+  span:
+    text_path_offset: [2742, 2876]
+    sha256_of_span: 69e916476e157e1a7a25fb4ec5b7e79573a651ffdbf952f07b824afe60d407a0
+    excerpt: |-
+      we develop Meta SecAlign, the first fully open-source LLM with built-in model-level defense that achieves commercial-grade performance
+
+# ============================================================================
+# Bullet B2.5 — CaMeL (Debenedetti et al. 2025) (2 atoms)
+# ============================================================================
+- selection_id: sel_b2_camel_a1
+  bullet_id: 'B2.5'
+  atom_id: claim_camel_capability_isolation
+  cache_id: cache_cfffce6b1f23371d
+  span:
+    text_path_offset: [2356, 2513]
+    sha256_of_span: f2324e102faabb5832820b889db8e95c47ba7436bd370c7262527d9ec7f97640
+    excerpt: |-
+      we propose CaMeL, a robust defense that creates a protective system layer around the LLM, securing it even when underlying models are susceptible to attacks.
+
+- selection_id: sel_b2_camel_a2
+  bullet_id: 'B2.5'
+  atom_id: claim_camel_control_data_flow
+  cache_id: cache_cfffce6b1f23371d
+  span:
+    text_path_offset: [2526, 2690]
+    sha256_of_span: 7ec998f8c2b7a30abab2a869b2f3a3b573aba0c3cdcab550314cdd427c405152
+    excerpt: |-
+      CaMeL explicitly extracts the control and data flows from the (trusted) query; therefore, the untrusted data retrieved by the LLM can never impact the program flow.
+
+# ============================================================================
+# Bullet B2.6 — Instruction Hierarchy (Wallace et al. 2024) (1 atom)
+# ============================================================================
+- selection_id: sel_b2_wallace_a1
+  bullet_id: 'B2.6'
+  atom_id: claim_instruction_hierarchy_priority
+  cache_id: cache_c8697d3c88066297
+  span:
+    text_path_offset: [2707, 2843]
+    sha256_of_span: 695159cb45fde45cc34a25935dff6f93d809c83db2276cfe7be2911f67122544
+    excerpt: |-
+      we propose an instruction hierarchy that explicitly defines how models should behave when instructions of different priorities conflict.
+
+# ============================================================================
+# Bullet B2.7 — Jatmo (Piet et al. ESORICS 2024) (1 atom)
+# ============================================================================
+- selection_id: sel_b2_jatmo_a1
+  bullet_id: 'B2.7'
+  atom_id: claim_jatmo_task_specific_distillation
+  cache_id: cache_937568d9c8dbd86d
+  span:
+    text_path_offset: [2609, 2712]
+    sha256_of_span: b4daf052fd8d42403fed43810bdc80ab2480be18eba4baf14f895d1eb7619d7a
+    excerpt: |-
+      we introduce Jatmo, a method for generating task-specific models resilient to prompt-injection attacks.
+
+# ============================================================================
+# Bullet B2.8 — IsolateGPT / SecGPT (Wu et al. NDSS 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b2_isolategpt_a1
+  bullet_id: 'B2.8'
+  atom_id: claim_isolategpt_execution_isolation
+  cache_id: cache_da4a859c554697e4
+  span:
+    text_path_offset: [62, 139]
+    sha256_of_span: b0298eeca954b1924670ac9a60539f26ab3237df6c969766007f48c6a805fac6
+    excerpt: |-
+      'IsolateGPT: An Execution Isolation Architecture for LLM-Based Agentic Systems'
+
+# ============================================================================
+# Bullet B2.9 — LlamaFirewall (Chennabasappa et al. 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b2_llamafirewall_a1
+  bullet_id: 'B2.9'
+  atom_id: claim_llamafirewall_open_guardrail
+  cache_id: cache_5575144bb9ad0eb7
+  span:
+    text_path_offset: [2947, 3026]
+    sha256_of_span: 81b467c035b5e10c0e8853d78bbe0ab85dfc77ca7d692bd1359b0fc5aa3a8ab1
+    excerpt: |-
+      We introduce LlamaFirewall, an open-source security focused guardrail framework
+
+# ============================================================================
+# Bullet B2.10 — Design Patterns (Beurer-Kellner et al. 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b2_beurer_a1
+  bullet_id: 'B2.10'
+  atom_id: claim_designpatterns_provable_resistance
+  cache_id: cache_4397426179bea947
+  span:
+    text_path_offset: [2654, 2769]
+    sha256_of_span: 7600f810c1b280a879578aabeacb45c5700a838a6e6419aa731927c15ae8658b
+    excerpt: |-
+      we propose a set of principled design patterns for building AI agents with provable resistance to prompt injection.
+
+# ============================================================================
+# Bullet B3.1 — EchoLeak / CVE-2025-32711 (Aim Labs, Cato writeup) (2 atoms)
+# ============================================================================
+- selection_id: sel_b3_echoleak_a1
+  bullet_id: 'B3.1'
+  atom_id: claim_echoleak_zero_click_xpia
+  cache_id: cache_21bc6b48049c7078
+  span:
+    text_path_offset: [60335, 60490]
+    sha256_of_span: fc275d0dd0fdf1a41deeaecadfd360ff6fa284a4ee085997270a5726315277ee
+    excerpt: |-
+      EchoLeak is a zero-click AI vulnerability in M365 Copilot that enables attackers to exfiltrate sensitive data with no user interaction or misconfiguration.
+
+- selection_id: sel_b3_echoleak_a2
+  bullet_id: 'B3.1'
+  atom_id: claim_echoleak_aim_labs_disclosure
+  cache_id: cache_21bc6b48049c7078
+  span:
+    text_path_offset: [60335, 60490]
+    sha256_of_span: fc275d0dd0fdf1a41deeaecadfd360ff6fa284a4ee085997270a5726315277ee
+    excerpt: |-
+      EchoLeak is a zero-click AI vulnerability in M365 Copilot that enables attackers to exfiltrate sensitive data with no user interaction or misconfiguration.
+
+# ============================================================================
+# Bullet B3.2 — NVD CVE-2025-32711 (1 atom)
+# ============================================================================
+- selection_id: sel_b3_nvd_a1
+  bullet_id: 'B3.2'
+  atom_id: claim_cve_2025_32711_record
+  cache_id: cache_ae0e116f2132ca5c
+  span:
+    text_path_offset: [58, 78]
+    sha256_of_span: 64cc62b70aad115475b476754eee1a94bcc7af8398a295950f8131873b54ac29
+    excerpt: |-
+      NVD - cve-2025-32711
+
+# ============================================================================
+# Bullet B3.3 — Month of AI Bugs announcement (Rehberger 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_monthof_a1
+  bullet_id: 'B3.3'
+  atom_id: claim_month_of_ai_bugs_announcement
+  cache_id: cache_c82a4a57a8d7a874
+  span:
+    text_path_offset: [550, 770]
+    sha256_of_span: 3b46511133a51358d2aa242be986a8b8e47b2f9f8d85379da5223a40e2ee1c85
+    excerpt: |-
+      Month of AI Bugs 2025 &middot;  Embrace The Red" />
+        <meta property="og:description" content=" This year I spent a lot of time reviewing, exploiting and working with vendors to fix vulnerabilities in agentic AI systems.
+
+# ============================================================================
+# Bullet B3.4 — Month of AI Bugs wrap-up (Rehberger 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_monthwrap_a1
+  bullet_id: 'B3.4'
+  atom_id: claim_month_of_ai_bugs_wrapup
+  cache_id: cache_ab8eccaac24bd61f
+  span:
+    text_path_offset: [251, 276]
+    sha256_of_span: 2bd82d477343e0f20e2d670e5ada7d8bf4df1aadeb42fea57e2731404d33f1e3
+    excerpt: |-
+      Month of AI Bugs is done.
+
+# ============================================================================
+# Bullet B3.5 — ChatGPT Markdown image exfil (Rehberger 2023) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_chatgpt_a1
+  bullet_id: 'B3.5'
+  atom_id: claim_chatgpt_markdown_image_exfil
+  cache_id: cache_d63581ef546db462
+  span:
+    text_path_offset: [229, 359]
+    sha256_of_span: bc22a1570cad63f23466369c23a885651c1266885f99387cbdd948d1804d4992
+    excerpt: |-
+      This post shows how a malicious website can take control of a ChatGPT chat session and exfiltrate the history of the conversation.
+
+# ============================================================================
+# Bullet B3.6 — Slack AI cross-channel exfil (PromptArmor 2024) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_slack_a1
+  bullet_id: 'B3.6'
+  atom_id: claim_slack_ai_cross_channel_exfil
+  cache_id: cache_4d3fcbf4d309ca5b
+  span:
+    text_path_offset: [433, 633]
+    sha256_of_span: d5f73f9bca6499c40e26dea7bc5559ea357f7ceaf1b06587210b0913cd5531f9
+    excerpt: |-
+      Slack AI via indirect prompt injection</title>
+
+                  <meta data-rh="true" name="theme-color" content="#14101b"/><meta data-rh="true" property="og:type" content="article"/><meta data
+
+# ============================================================================
+# Bullet B3.7 — ShadowPrompt Claude Chrome extension (Koi 2026) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_shadowprompt_a1
+  bullet_id: 'B3.7'
+  atom_id: claim_shadowprompt_claude_chrome
+  cache_id: cache_a72899f0e7d75999
+  span:
+    text_path_offset: [501, 557]
+    sha256_of_span: f88e385a606c1b05919e27e56a85764058fd496ba22b905f79bf0501f4f2753f
+    excerpt: |-
+      'ShadowPrompt: How Any Website Could Have Hijacked Claude'
+
+# ============================================================================
+# Bullet B3.8 — Gemini Trifecta (Tenable 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_tenable_a1
+  bullet_id: 'B3.8'
+  atom_id: claim_gemini_trifecta_three_vulns
+  cache_id: cache_55ce86a9fb6b737f
+  span:
+    text_path_offset: [547, 687]
+    sha256_of_span: 470d9e2f6651eca1d00f4989964d62e437501704935d7f2f0c9fc50ddc1d083c
+    excerpt: |-
+      Tenable Research found three vulnerabilities in the Google Gemini AI assistant that could have exposed users to critical data privacy risks.
+
+# ============================================================================
+# Bullet B3.9 — Comet (Brave 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_comet_a1
+  bullet_id: 'B3.9'
+  atom_id: claim_comet_indirect_injection
+  cache_id: cache_be5c19d4fd1c8864
+  span:
+    text_path_offset: [999, 1074]
+    sha256_of_span: 302adc03e8285d7a11a3ba5ebe1692fba4cea50063908d37cc4610f2d15f8dc2
+    excerpt: |-
+      'The attack we developed shows that traditional Web security assumptions don'
+
+# ============================================================================
+# Bullet B3.10 — Hackett et al. "Bypassing LLM Guardrails" (2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_hackett_a1
+  bullet_id: 'B3.10'
+  atom_id: claim_guardrail_evasion_100pct
+  cache_id: cache_bb62839772f16e14
+  span:
+    text_path_offset: [62, 200]
+    sha256_of_span: 5f1ffcba072a66aa42a5b5eb6a1a426d38642da5b5418e2f84edb65d9c2f8b12
+    excerpt: |-
+      'Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection Systems</title>
+        <met'
+
+# ============================================================================
+# Bullet B3.11 — Bhagwatkar "Are Firewalls All You Need" (2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_firewalls_a1
+  bullet_id: 'B3.11'
+  atom_id: claim_firewalls_benchmark_saturation
+  cache_id: cache_beea4f2926635943
+  span:
+    text_path_offset: [62, 200]
+    sha256_of_span: b3e60bc3525d21354fef62cec0cc6c26ed4b9c83787df3ba7b966342b185ad3b
+    excerpt: |-
+      'Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?</title>
+        <meta name="viewport" content="width=device-widt'
+
+# ============================================================================
+# Bullet B3.12 — Nasr "Attacker Moves Second" (2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_nasr_a1
+  bullet_id: 'B3.12'
+  atom_id: claim_attacker_moves_second_adaptive
+  cache_id: cache_51e92f7784dddb6e
+  span:
+    text_path_offset: [2846, 2965]
+    sha256_of_span: 116e28eb6d29f68596f55168ac269144a82436b0f048f96c8f02240d635d4628
+    excerpt: |-
+      we should evaluate defenses against adaptive attackers who explicitly modify their attack strategy to counter a defense
+
+# ============================================================================
+# Bullet B3.13 — Choudhary "How Not to Detect" (2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b3_choudhary_a1
+  bullet_id: 'B3.13'
+  atom_id: claim_kad_structural_vulnerability
+  cache_id: cache_5223602a690470a0
+  span:
+    text_path_offset: [2421, 2553]
+    sha256_of_span: ddddd18563c3991ca0d5c469c5afc706be202252d6b5d2f95d6b160aa13cba66
+    excerpt: |-
+      KAD) scheme have reported near-perfect performance by observing an LLM&#39;s output to classify input data as clean or contaminated.
+
+# ============================================================================
+# Bullet B4.1 — BIPIA (Yi et al. KDD 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b4_bipia_a1
+  bullet_id: 'B4.1'
+  atom_id: claim_bipia_first_indirect_benchmark
+  cache_id: cache_70d4cfd50519178f
+  span:
+    text_path_offset: [2682, 2810]
+    sha256_of_span: 4bd06835257c119e037e998a1728589b12e11a17824f50aa906b623edaa56e12
+    excerpt: |-
+      we introduce the first benchmark for indirect prompt injection attacks, named BIPIA, to assess the risk of such vulnerabilities.
+
+# ============================================================================
+# Bullet B4.2 — InjecAgent (Zhan et al. ACL 2024) (2 atoms)
+# ============================================================================
+- selection_id: sel_b4_injecagent_a1
+  bullet_id: 'B4.2'
+  atom_id: claim_injecagent_tool_integrated_benchmark
+  cache_id: cache_4493644eb2e357a8
+  span:
+    text_path_offset: [2868, 2915]
+    sha256_of_span: ff8df49f30c27890552a69eae102f5d33df680d10789442fc845f2838a9ea9c6
+    excerpt: |-
+      we introduce InjecAgent, a benchmark designed t
+
+- selection_id: sel_b4_injecagent_a2
+  bullet_id: 'B4.2'
+  atom_id: claim_injecagent_ipi_definition
+  cache_id: cache_4493644eb2e357a8
+  span:
+    text_path_offset: [2474, 2633]
+    sha256_of_span: e453a0191d1330114c7779dd8fe0cc3fe069f526d8e69dbd60d0d061b02bf96e
+    excerpt: |-
+      external content introduces the risk of indirect prompt injection (IPI) attacks, where malicious instructions are embedded within the content processed by LLMs
+
+# ============================================================================
+# Bullet B4.3 — AgentDojo (Debenedetti et al. NeurIPS 2024) (2 atoms)
+# ============================================================================
+- selection_id: sel_b4_agentdojo_a1
+  bullet_id: 'B4.3'
+  atom_id: claim_agentdojo_dynamic_environment
+  cache_id: cache_28b49b68f7f9500e
+  span:
+    text_path_offset: [2611, 2709]
+    sha256_of_span: ab575a09de6e0f33ec77c36edcd9315d77d75ff5910a02e16744687786b092be
+    excerpt: |-
+      we introduce AgentDojo, an evaluation framework for agents that execute tools over untrusted data.
+
+- selection_id: sel_b4_agentdojo_a2
+  bullet_id: 'B4.3'
+  atom_id: claim_agentdojo_extensible_environment
+  cache_id: cache_28b49b68f7f9500e
+  span:
+    text_path_offset: [2766, 2909]
+    sha256_of_span: 86626a4a1fa6da53753d92c7eeeac00cc5dd4c6d2b84b63b7c8756a0d9e4dade
+    excerpt: |-
+      AgentDojo is not a static test suite, but rather an extensible environment for designing and evaluating new agent tasks, defenses, and adaptive
+
+# ============================================================================
+# Bullet B4.4 — LLMail-Inject (Abdelnabi et al. IEEE SaTML 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b4_llmail_a1
+  bullet_id: 'B4.4'
+  atom_id: claim_llmail_inject_adaptive_dataset
+  cache_id: cache_8e0c41db3ea23938
+  span:
+    text_path_offset: [2658, 2837]
+    sha256_of_span: 032fc19388c6deded760c7fb7436d0751cb0ee0d39fe5477bbf8cfc07fca3347
+    excerpt: |-
+      We present the results of LLMail-Inject, a public challenge simulating a realistic scenario in which participants adaptively attempted to inject malicious instructions into emails
+
+# ============================================================================
+# Bullet B4.5 — Agent Security Bench / ASB (Zhang et al. ICLR 2025) (2 atoms)
+# ============================================================================
+- selection_id: sel_b4_asb_a1
+  bullet_id: 'B4.5'
+  atom_id: claim_asb_formalize_benchmark
+  cache_id: cache_bb37ba552eb103f6
+  span:
+    text_path_offset: [2648, 2806]
+    sha256_of_span: 5321411874890b20b00a3bcca0a1a3dfc9aaa44b90097e954d5a4989046b7b60
+    excerpt: |-
+      we introduce Agent Security Bench (ASB), a comprehensive framework designed to formalize, benchmark, and evaluate the attacks and defenses of LLM-based agents
+
+- selection_id: sel_b4_asb_a2
+  bullet_id: 'B4.5'
+  atom_id: claim_asb_10_scenarios_400_tools
+  cache_id: cache_bb37ba552eb103f6
+  span:
+    text_path_offset: [2808, 2929]
+    sha256_of_span: 3117e9485330f9e574e7efc618824f312ff3e26ef7c0eb7d0e1ce9c030d4f122
+    excerpt: |-
+      including 10 scenarios (e.g., e-commerce, autonomous driving, finance), 10 agents targeting the scenarios, over 400 tools
+
+# ============================================================================
+# Bullet B4.6 — WASP (Evtimov et al. 2025) (1 atom)
+# ============================================================================
+- selection_id: sel_b4_wasp_a1
+  bullet_id: 'B4.6'
+  atom_id: claim_wasp_web_agent_benchmark
+  cache_id: cache_88cbfa5775742af0
+  span:
+    text_path_offset: [2803, 2940]
+    sha256_of_span: bc7d2b7e784bb552d043831f0a82c02577041873c52885e02e5112b59ca37ccc
+    excerpt: |-
+      we introduce WASP -- a new publicly available benchmark for end-to-end evaluation of Web Agent Security against Prompt injection attacks.

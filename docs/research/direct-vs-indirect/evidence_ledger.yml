@@ -991,3 +991,117 @@ entries:
     factors:
     - cached raw snapshot
     - primary source
+
+# ============================================================================
+# Phase 4b synthesis evidence (appended by /agent-index for cross-cutting claims).
+# These records aggregate findings across multiple primary sources; their
+# extraction_method is llm_inferred and inference_chain lists the primary
+# evidence IDs cross-referenced. source_type=other / source_quality=secondary
+# / verification_method=manual aligns with the validator's allowed-vocabulary
+# (the prose synthesis-spec source_type=synthesis maps to other in the validator).
+# ============================================================================
+- evidence_id: ev_direct_vs_indirect_synth_0001
+  source_url: https://github.com/brandonbehring/prompt-injection-portfolio
+  source_type: other
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: manual
+  cache_ids:
+  - cache_cfffce6b1f23371d
+  - cache_5575144bb9ad0eb7
+  - cache_28b49b68f7f9500e
+  - cache_bb37ba552eb103f6
+  - cache_beea4f2926635943
+  - cache_bb62839772f16e14
+  - cache_5223602a690470a0
+  supports:
+  - claim_id: claim_camel_capability_isolation
+    field_path: 'agent_index/02_architectural_defenses.md#B2'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    inference_chain:
+    - ev_direct_vs_indirect_0010
+    - ev_direct_vs_indirect_0011
+    - ev_direct_vs_indirect_0015
+    - ev_direct_vs_indirect_0028
+    - ev_direct_vs_indirect_0027
+    - ev_direct_vs_indirect_0030
+    link_confidence: 0.55
+  excerpt: 'Architectural defenses (CaMeL, LlamaFirewall, design-pattern surveys) consistently demonstrate stronger agentic-benchmark performance than content-classifier guardrails alone; Bhagwatkar 2025 and Choudhary 2025 separately establish structural bypasses of detector-only stacks, while CaMeL reports provably-secure behavior on AgentDojo. The 2025 evidence converges on architectural isolation as the load-bearing defense layer.'
+  rights_status: private_use
+  confidence:
+    score: 0.55
+    factors:
+    - cross_reference across 6 primary evidence records (CaMeL, LlamaFirewall, AgentDojo, ASB, firewalls-critique, bypassing, KAD-vulnerability)
+    - llm_inferred extraction (synthesis claim, not in any single source)
+
+- evidence_id: ev_direct_vs_indirect_synth_0002
+  source_url: https://github.com/brandonbehring/prompt-injection-portfolio
+  source_type: other
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: manual
+  cache_ids:
+  - cache_51e92f7784dddb6e
+  - cache_beea4f2926635943
+  - cache_8e0c41db3ea23938
+  - cache_5223602a690470a0
+  supports:
+  - claim_id: claim_attacker_moves_second_adaptive
+    field_path: 'agent_index/03_production_incidents.md#B3'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    inference_chain:
+    - ev_direct_vs_indirect_0029
+    - ev_direct_vs_indirect_0028
+    - ev_direct_vs_indirect_0036
+    - ev_direct_vs_indirect_0030
+    link_confidence: 0.55
+  excerpt: 'The 2025 prompt-injection literature converges on adaptive-attacker evaluation as the new methodological standard (Nasr 2025 explicit framing; Bhagwatkar 2025 benchmark-saturation critique; LLMail-Inject adaptive-challenge format; Choudhary 2025 adaptive bypass of KAD detectors). Fixed-attack benchmark scores are no longer treated as sufficient evidence of defense efficacy.'
+  rights_status: private_use
+  confidence:
+    score: 0.55
+    factors:
+    - cross_reference across 4 primary evidence records (adaptive-attacker, firewalls-critique, LLMail-Inject, KAD-vulnerability)
+    - llm_inferred extraction (synthesis claim, not in any single source)
+
+- evidence_id: ev_direct_vs_indirect_synth_0003
+  source_url: https://github.com/brandonbehring/prompt-injection-portfolio
+  source_type: other
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: manual
+  cache_ids:
+  - cache_21bc6b48049c7078
+  - cache_c82a4a57a8d7a874
+  - cache_ab8eccaac24bd61f
+  - cache_4d3fcbf4d309ca5b
+  - cache_a72899f0e7d75999
+  - cache_55ce86a9fb6b737f
+  - cache_be5c19d4fd1c8864
+  supports:
+  - claim_id: claim_echoleak_aim_labs_disclosure
+    field_path: 'agent_index/03_production_incidents.md#B3'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    inference_chain:
+    - ev_direct_vs_indirect_0017
+    - ev_direct_vs_indirect_0018
+    - ev_direct_vs_indirect_0020
+    - ev_direct_vs_indirect_0021
+    - ev_direct_vs_indirect_0023
+    - ev_direct_vs_indirect_0024
+    - ev_direct_vs_indirect_0025
+    - ev_direct_vs_indirect_0026
+    link_confidence: 0.55
+  excerpt: 'The 2024-2026 production-incident corpus (EchoLeak / Month-of-AI-Bugs / Slack AI / ShadowPrompt / Gemini Trifecta / Comet) demonstrates that indirect prompt injection is systemic across the 2025 agentic-AI surface — every major vendor with a shipping copilot or agentic browser has disclosed at least one XPIA-class vulnerability. Willison''s "lethal trifecta" (private data + untrusted content + external communication) predicts each incident pattern.'
+  rights_status: private_use
+  confidence:
+    score: 0.55
+    factors:
+    - cross_reference across 8 primary evidence records (production incidents 2024-2026)
+    - llm_inferred extraction (synthesis claim, not in any single source)
+

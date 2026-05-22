@@ -1,0 +1,583 @@
+# Pre-selection manifest — prompt-injection detector landscape (v2.2 strict-live)
+# Written by /agent-index Phase 2b before any bullet prose is generated.
+# Each selection commits a (bullet, atom) pair to one anchored span in cache_manifest.yml.
+# Atom_ids reuse the existing claim_graph.jsonl claim IDs (one-per-support, NN_NN scheme).
+# Bullets are numbered per entry: B1=Source, B2=Code, B3=Mechanism, B4=Result, B5=Status.
+# Atoms are committed for the substantive content bullets (B3 Mechanism, B4 Result).
+
+schema_version: 3
+topic: detector_landscape
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+selections:
+# ===== A1: ModernBERT-based encoder detectors =====
+- selection_id: sel_ivry2025sentinel_b3
+  bullet_id: 'A1.1.B3'
+  atom_id: claim_detector_landscape_0000_01
+  cache_id: cache_5f129920a9fcbcd5
+  span:
+    text_path_offset: [62, 119]
+    sha256_of_span: 0ff84ed47746402f65bbb86aebf5e6758b6eed64f81694c615a5c5d640ad307c
+    excerpt: |-
+      Sentinel: SOTA model to protect against prompt injections
+- selection_id: sel_jung2025promptguard_b3
+  bullet_id: 'A1.2.B3'
+  atom_id: claim_detector_landscape_0001_01
+  cache_id: cache_36ea5818e08976b2
+  span:
+    text_path_offset: [116155, 116233]
+    sha256_of_span: 17bd609eef4dec5289226af4cb23d8ca79b209da7ccb82b464f179b107656291
+    excerpt: |-
+      High-performance prompt injection and jailbreak detector for LLM applications.
+- selection_id: sel_vijil2025mbert_b3
+  bullet_id: 'A1.3.B3'
+  atom_id: claim_detector_landscape_0002_01
+  cache_id: cache_8c9faa216a4c8c67
+  span:
+    text_path_offset: [82002, 82159]
+    sha256_of_span: 9574b5b5c9fde6cf39f10323ae41e0978e137ae6ea174f87277e929c501ce558
+    excerpt: |-
+      This model is a fine-tuned version of ModernBert to classify prompt-injection prompts which can manipulate language models into producing unintended outputs.
+- selection_id: sel_tihilya2025modernbert_b3
+  bullet_id: 'A1.4.B3'
+  atom_id: claim_detector_landscape_0003_01
+  cache_id: cache_0eed2baeb115d544
+  span:
+    text_path_offset: [688, 754]
+    sha256_of_span: 005344be8b17b0061c973a20b651ef85eac28d7dd4f40e33120fdd29b1e15fcd
+    excerpt: |-
+      tihilya/modernbert-base-prompt-injection-detection · Hugging Face
+- selection_id: sel_carpintero2025pangolinguard_b3
+  bullet_id: 'A1.5.B3'
+  atom_id: claim_detector_landscape_0004_01
+  cache_id: cache_e848e632a6fbe6b5
+  span:
+    text_path_offset: [86999, 87061]
+    sha256_of_span: 1d9fb0a6f8e8fcfc3ea282aa1c38bcf3dbdff96e3ab79e894310df46a5cdad4f
+    excerpt: |-
+      How to use dcarpintero/pangolin-guard-large with Transformers:
+
+# ===== A2: DeBERTa-based encoder detectors =====
+- selection_id: sel_protectai2024deberta_b3
+  bullet_id: 'A2.1.B3'
+  atom_id: claim_detector_landscape_0005_01
+  cache_id: cache_8c2403762307c627
+  span:
+    text_path_offset: [107346, 107418]
+    sha256_of_span: 13667431764c57f61f022d415ec8c7e3acc72ef4b1a7faff07efe9ce44ef5289
+    excerpt: |-
+      How to use protectai/deberta-v3-base-prompt-injection with Transformers:
+- selection_id: sel_protectai2024debertav2_b3
+  bullet_id: 'A2.2.B3'
+  atom_id: claim_detector_landscape_0006_01
+  cache_id: cache_f4d5b713b2d15854
+  span:
+    text_path_offset: [102895, 102970]
+    sha256_of_span: d2ac2f32aed7a160f693e60aea3132a129b58c4467fe812ec3dd60d8f2038f95
+    excerpt: |-
+      How to use protectai/deberta-v3-base-prompt-injection-v2 with Transformers:
+- selection_id: sel_deepset2023deberta_b3
+  bullet_id: 'A2.3.B3'
+  atom_id: claim_detector_landscape_0007_01
+  cache_id: cache_cb8885d33147703d
+  span:
+    text_path_offset: [100586, 100649]
+    sha256_of_span: 4ee83cef1c61ca04783960f1b53fa83c1b0a8173825e7141733f3a42a66808d0
+    excerpt: |-
+      How to use deepset/deberta-v3-base-injection with Transformers:
+- selection_id: sel_hlyn2025judgedeberta_b3
+  bullet_id: 'A2.4.B3'
+  atom_id: claim_detector_landscape_0008_01
+  cache_id: cache_e1e51be73c41d3a4
+  span:
+    text_path_offset: [84311, 84362]
+    sha256_of_span: ca9510dcf11cdc014b899b9c1d3b92af270b027f425a9bffadef63098810f67e
+    excerpt: |-
+      🛡️ Prompt Injection Detector: DeBERTa Frontend
+- selection_id: sel_ji2025dmpi_b3
+  bullet_id: 'A2.5.B3'
+  atom_id: claim_detector_landscape_0009_01
+  cache_id: cache_a95530f5842377a1
+  span:
+    text_path_offset: [62, 166]
+    sha256_of_span: 60aa80531627753b141c4d0ec0b1367e00329d00b4215ed603ed66202639bfba
+    excerpt: |-
+      Detection Method for Prompt Injection by Integrating Pre-trained Model and Heuristic Feature Engineering
+- selection_id: sel_ji2025dmpi_b4
+  bullet_id: 'A2.5.B4'
+  atom_id: claim_detector_landscape_0009_02
+  cache_id: cache_a95530f5842377a1
+  span:
+    text_path_offset: [2736, 2799]
+    sha256_of_span: 338b82f996e11feaf734f25cc975afc3d542db724cd36fbbc04a498755421fb8
+    excerpt: |-
+      DMPI-PMHFE, a dual-channel feature fusion detection framework
+
+# ===== A3: LLM-based detectors (decoder + LLM-as-judge) =====
+- selection_id: sel_jacob2025promptshield_b3
+  bullet_id: 'A3.1.B3'
+  atom_id: claim_detector_landscape_0010_01
+  cache_id: cache_96dc7a084a524c4d
+  span:
+    text_path_offset: [62, 125]
+    sha256_of_span: 306464d4b122bdd029d36b9befc9a2fb5fddb39fda833fab9ec8da7f840ffa92
+    excerpt: |-
+      PromptShield: Deployable Detection for Prompt Injection Attacks
+- selection_id: sel_jacob2025promptshield_b4
+  bullet_id: 'A3.1.B4'
+  atom_id: claim_detector_landscape_0010_02
+  cache_id: cache_96dc7a084a524c4d
+  span:
+    text_path_offset: [2783, 3017]
+    sha256_of_span: 929b46951b567f7315f9d4e3f52b80ff81226a8d05edca9e835c90d7cd53e1a9
+    excerpt: |-
+      we use insights from our curation process to fine-tune a new prompt injection detector that achieves significantly higher performance in the low false positive rate (FPR) evaluation regime compared to prior schemes
+- selection_id: sel_sun2025courtguard_b3
+  bullet_id: 'A3.2.B3'
+  atom_id: claim_detector_landscape_0011_01
+  cache_id: cache_0202713855aa48d0
+  span:
+    text_path_offset: [62, 121]
+    sha256_of_span: 7d4eb422492a49baac2247bd347aa1b4f7893770f5042357f6a818d8e1110854
+    excerpt: |-
+      CourtGuard: A Local, Multiagent Prompt Injection Classifier
+- selection_id: sel_sun2025courtguard_b4
+  bullet_id: 'A3.2.B4'
+  atom_id: claim_detector_landscape_0011_02
+  cache_id: cache_0202713855aa48d0
+  span:
+    text_path_offset: [2904, 2989]
+    sha256_of_span: 1ccae52f9023fde5f9639c5d27ed527898e12d68a9a238889804a72f064e9e6c
+    excerpt: |-
+      CourtGuard has a lower false positive rate than the Direct Detector, an LLM as-a-judge
+- selection_id: sel_meta2025pg2-86m_b3
+  bullet_id: 'A3.3.B3'
+  atom_id: claim_detector_landscape_0012_01
+  cache_id: cache_550949d71181746c
+  span:
+    text_path_offset: [106634, 106699]
+    sha256_of_span: bf0eca155b24c104f51f744b794c5bf214250eb55b15c28a93d03f8baf8f94e2
+    excerpt: |-
+      How to use meta-llama/Llama-Prompt-Guard-2-86M with Transformers:
+- selection_id: sel_meta2025pg2-22m_b3
+  bullet_id: 'A3.4.B3'
+  atom_id: claim_detector_landscape_0013_01
+  cache_id: cache_b2975ff46c4b40ab
+  span:
+    text_path_offset: [106626, 106691]
+    sha256_of_span: e88fc64d379ca201f4031e7babbc5601e77739710be282b7b171d7cf94748dfd
+    excerpt: |-
+      How to use meta-llama/Llama-Prompt-Guard-2-22M with Transformers:
+- selection_id: sel_meta2024promptguard1_b3
+  bullet_id: 'A3.5.B3'
+  atom_id: claim_detector_landscape_0014_01
+  cache_id: cache_0cb97e9f1fc546b6
+  span:
+    text_path_offset: [54114, 54237]
+    sha256_of_span: e5557f201a38b2389bf512be8efee477091ff21870af5f9749dfa68e3d6625e4
+    excerpt: |-
+      We want everyone to use Llama 3.1 safely and responsibly. You agree you will not use, or allow others to use, Llama 3.1 to:
+- selection_id: sel_meta2024llamaguard3_b3
+  bullet_id: 'A3.6.B3'
+  atom_id: claim_detector_landscape_0015_01
+  cache_id: cache_b03713948ad0d127
+  span:
+    text_path_offset: [130345, 130409]
+    sha256_of_span: b467dc1b3c491113670e9f6146e87ce2775f8d05f52883a754542fdb735df892
+    excerpt: |-
+      How to use meta-llama/Llama-Guard-3-8B with Docker Model Runner:
+- selection_id: sel_shi2025promptarmor_b3
+  bullet_id: 'A3.7.B3'
+  atom_id: claim_detector_landscape_0016_01
+  cache_id: cache_9d8e7c7a91582e80
+  span:
+    text_path_offset: [62, 121]
+    sha256_of_span: 2e099b553b0cf3e1b32267f58823acfd80dc2d469c4742e19804c2fcd12bff62
+    excerpt: |-
+      PromptArmor: Simple yet Effective Prompt Injection Defenses
+- selection_id: sel_shi2025promptarmor_b4
+  bullet_id: 'A3.7.B4'
+  atom_id: claim_detector_landscape_0016_02
+  cache_id: cache_9d8e7c7a91582e80
+  span:
+    text_path_offset: [2868, 2977]
+    sha256_of_span: 8edffeabad9942c477d40cf9d78f1d1dd794b1ab06636ac323e184a0c6f0a57d
+    excerpt: |-
+      PromptArmor achieves both a false positive rate and a false negative rate below 1% on the AgentDojo benchmark
+
+# ===== A4: Commercial / proprietary detectors =====
+- selection_id: sel_lakera2024pint_b3
+  bullet_id: 'A4.1.B3'
+  atom_id: claim_detector_landscape_0017_01
+  cache_id: cache_0621eb6f5ed9e96c
+  span:
+    text_path_offset: [81888, 81977]
+    sha256_of_span: f6df1455fd59c0c6f0f6718b3b693999a39b9cec42e3b8f5516086d2ca17388b
+    excerpt: |-
+      Evaluating performance in the Generative AI (GenAI) space has become a complicated topic.
+- selection_id: sel_lakeraai2025pintbenchmark_b3
+  bullet_id: 'A4.2.B3'
+  atom_id: claim_detector_landscape_0018_01
+  cache_id: cache_84c0e7c4f7fbd712
+  span:
+    text_path_offset: [138490, 138558]
+    sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
+    excerpt: |-
+      We read every piece of feedback, and take your input very seriously.
+- selection_id: sel_lakera2025guard_b3
+  bullet_id: 'A4.3.B3'
+  atom_id: claim_detector_landscape_0019_01
+  cache_id: cache_669e2d28a98f3020
+  span:
+    text_path_offset: [438, 542]
+    sha256_of_span: 6d82e1ea149f8c770e825f16440e7158afaac2b81603f130e685059017e5ab30
+    excerpt: |-
+      Lakera protects your AI from coercive inputs that hijack instructions, expose data, or break compliance.
+- selection_id: sel_microsoft2025promptshields_b3
+  bullet_id: 'A4.4.B3'
+  atom_id: claim_detector_landscape_0020_01
+  cache_id: cache_f8a5917cbb6f90f3
+  span:
+    text_path_offset: [30284, 30367]
+    sha256_of_span: f68c60b404a5f54dbf81efa1853506a1b52c40e46fcf10c4905220d10956b2d0
+    excerpt: |-
+      The types of input attacks that Prompt Shields detects are described in this table.
+- selection_id: sel_aws2025bedrockguardrails_b3
+  bullet_id: 'A4.5.B3'
+  atom_id: claim_detector_landscape_0021_01
+  cache_id: cache_1f25f8e689042ec7
+  span:
+    text_path_offset: [32009, 32142]
+    sha256_of_span: 2d6df25ca45c03bc65251dc3ea5c9dd37bd28e780f7df46ccc9bd3e00f5d3047
+    excerpt: |-
+      To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.
+- selection_id: sel_google2025modelarmor_b3
+  bullet_id: 'A4.6.B3'
+  atom_id: claim_detector_landscape_0022_01
+  cache_id: cache_12e1c56bb0b8a8a2
+  span:
+    text_path_offset: [1624498, 1624661]
+    sha256_of_span: 0beddec297f2b1bc10deb048a7de83de9a6b0e56f448dacaa6de54cb6b4a877b
+    excerpt: |-
+      Runtime security for generative and agentic AI, Model Armor provides comprehensive protections against prompt injection, sensitive data leaks, and harmful content.
+- selection_id: sel_nvidia2025nemoinjection_b3
+  bullet_id: 'A4.7.B3'
+  atom_id: claim_detector_landscape_0023_01
+  cache_id: cache_cf6e511e2e1334ca
+  span:
+    text_path_offset: [54008, 54153]
+    sha256_of_span: f3750537b25ec083406cc64e3ff932eae75669616f7c2d6670711dc58f4ac7b0
+    excerpt: |-
+      Detect potential exploitation attempts (such as code injection, cross-site scripting, SQL injection, and template injection) using NeMo Platform.
+- selection_id: sel_cisco2025aidefense_b3
+  bullet_id: 'A4.8.B3'
+  atom_id: claim_detector_landscape_0024_01
+  cache_id: cache_838e27ef58169b58
+  span:
+    text_path_offset: [1312, 1444]
+    sha256_of_span: fdb94650701f8d727fed36dbdb51d815d724ea4774b933700c9251e165c2b93b
+    excerpt: |-
+      A year ago, we introduced the world to Cisco AI Defense, the industry's first truly comprehensive enterprise AI security solution.
+- selection_id: sel_protectai2023rebuff_b3
+  bullet_id: 'A4.9.B3'
+  atom_id: claim_detector_landscape_0025_01
+  cache_id: cache_5f3477a159885625
+  span:
+    text_path_offset: [138673, 138741]
+    sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
+    excerpt: |-
+      We read every piece of feedback, and take your input very seriously.
+- selection_id: sel_meta2025promptguarddoc_b3
+  bullet_id: 'A4.10.B3'
+  atom_id: claim_detector_landscape_0026_01
+  cache_id: cache_ea627ff19ae55d38
+  span:
+    text_path_offset: [537, 712]
+    sha256_of_span: c4f7c1ba9a7c987534466d972a10e2971d0a8e129a3ca10fd49142f2c4769407
+    excerpt: |-
+      LLM-powered applications are susceptible to prompt attacks, which are prompts intentionally designed to subvert the intended behavior of the LLM as specified by the developer.
+
+# ===== A5: Activation-probe + specialized detectors =====
+- selection_id: sel_abdelnabi2025tasktracker_b3
+  bullet_id: 'A5.1.B3'
+  atom_id: claim_detector_landscape_0027_01
+  cache_id: cache_6d742cb6609170a1
+  span:
+    text_path_offset: [62, 122]
+    sha256_of_span: f265e69427bccab2a01e354169c405ab52f75ce900227ea6d6278c4979f60e3f
+    excerpt: |-
+      Get my drift? Catching LLM Task Drift with Activation Deltas
+- selection_id: sel_abdelnabi2025tasktracker_b4
+  bullet_id: 'A5.1.B4'
+  atom_id: claim_detector_landscape_0027_02
+  cache_id: cache_6d742cb6609170a1
+  span:
+    text_path_offset: [3193, 3297]
+    sha256_of_span: 0d1171d1211fff30271ba930a073a3e17688258c9177ed3d20582700bc934d3c
+    excerpt: |-
+      a simple linear classifier can detect drift with near-perfect ROC AUC on an out-of-distribution test set
+- selection_id: sel_wen2025instructdetector_b3
+  bullet_id: 'A5.2.B3'
+  atom_id: claim_detector_landscape_0028_01
+  cache_id: cache_39929ecbe5b3d6a6
+  span:
+    text_path_offset: [62, 130]
+    sha256_of_span: 10433ec7db4bf6211f4f9411ec1224979616a4297717b185e6d7cec0b164af0d
+    excerpt: |-
+      Defending against Indirect Prompt Injection by Instruction Detection
+- selection_id: sel_wen2025instructdetector_b4
+  bullet_id: 'A5.2.B4'
+  atom_id: claim_detector_landscape_0028_02
+  cache_id: cache_39929ecbe5b3d6a6
+  span:
+    text_path_offset: [3208, 3399]
+    sha256_of_span: 75968f161453c2ff69e7be68492cccae70e1b24b4624c215cdeb14c5cb0eb17c
+    excerpt: |-
+      InstructDetector achieves a detection accuracy of 99.60% in the in-domain setting and 96.90% in the out-of-domain setting, and reduces the attack success rate to just 0.03% on the BIPIA benchmark
+- selection_id: sel_li2024injecguard_b3
+  bullet_id: 'A5.3.B3'
+  atom_id: claim_detector_landscape_0029_01
+  cache_id: cache_ab9d48079556ef2d
+  span:
+    text_path_offset: [62, 151]
+    sha256_of_span: a09fa422b0c4118d4564272018721af1f62cab0a3f5ac6213964349abd3004d1
+    excerpt: |-
+      InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models
+- selection_id: sel_li2024injecguard_b4
+  bullet_id: 'A5.3.B4'
+  atom_id: claim_detector_landscape_0029_02
+  cache_id: cache_ab9d48079556ef2d
+  span:
+    text_path_offset: [2593, 2697]
+    sha256_of_span: cee59c330a417c639fe2451b6fa4a652f517bd2ce42a883c4e78726318b68c12
+    excerpt: |-
+      NotInject, an evaluation dataset that systematically measures over-defense across various prompt guard models
+- selection_id: sel_li2025piguard_b3
+  bullet_id: 'A5.4.B3'
+  atom_id: claim_detector_landscape_0030_01
+  cache_id: cache_12b7eb73c0b04453
+  span:
+    text_path_offset: [147, 234]
+    sha256_of_span: 3b7054efb6c41cde66ed2debcbc8ca708da92f49ad1eae5d9f97fa6d9fdca576
+    excerpt: |-
+      PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free - ACL Anthology
+- selection_id: sel_jia2026alignsentinel_b3
+  bullet_id: 'A5.5.B3'
+  atom_id: claim_detector_landscape_0031_01
+  cache_id: cache_9fbf2314505d24a0
+  span:
+    text_path_offset: [62, 130]
+    sha256_of_span: d8ab2fb1f18be36276a5b7ebc515c3d10c97a697a5c1905c8c6de0193d339006
+    excerpt: |-
+      AlignSentinel: Alignment-Aware Detection of Prompt Injection Attacks
+- selection_id: sel_jia2026alignsentinel_b4
+  bullet_id: 'A5.5.B4'
+  atom_id: claim_detector_landscape_0031_02
+  cache_id: cache_9fbf2314505d24a0
+  span:
+    text_path_offset: [2581, 2660]
+    sha256_of_span: b70db0cec991595197cd5be96f708c4c9875edef627da3303d96c1a84591a580
+    excerpt: |-
+      we account for the instruction hierarchy and distinguish among three categories
+- selection_id: sel_ayub2024embedding_b3
+  bullet_id: 'A5.6.B3'
+  atom_id: claim_detector_landscape_0032_01
+  cache_id: cache_5d322a73036744e4
+  span:
+    text_path_offset: [62, 125]
+    sha256_of_span: 197a8b90031f352769ac18ade529992fe244552d2a63b4e2e0ef1689c34a7388
+    excerpt: |-
+      Embedding-based classifiers can detect prompt injection attacks
+- selection_id: sel_ayub2024embedding_b4
+  bullet_id: 'A5.6.B4'
+  atom_id: claim_detector_landscape_0032_02
+  cache_id: cache_5d322a73036744e4
+  span:
+    text_path_offset: [2994, 3081]
+    sha256_of_span: 0e7bd1b8720fa250a5b88d5a785eb068300c878e0fcf0e438d74e38373b10280
+    excerpt: |-
+      we achieve the best performance with classifiers built using Random Forest and XGBoost
+- selection_id: sel_hung2025attentiontracker_b3
+  bullet_id: 'A5.7.B3'
+  atom_id: claim_detector_landscape_0033_01
+  cache_id: cache_52f0885c01ea6bee
+  span:
+    text_path_offset: [62, 123]
+    sha256_of_span: 57e14f83ef703315046bbc1b8c0210b5a38b349fa4a1a6cf54a32e38966bc481
+    excerpt: |-
+      Attention Tracker: Detecting Prompt Injection Attacks in LLMs
+- selection_id: sel_hung2025attentiontracker_b4
+  bullet_id: 'A5.7.B4'
+  atom_id: claim_detector_landscape_0033_02
+  cache_id: cache_52f0885c01ea6bee
+  span:
+    text_path_offset: [3037, 3101]
+    sha256_of_span: ea34a1e6bae1dd902fe07395c027eca1c370d548007a88010fb06d9f8d3813f5
+    excerpt: |-
+      showing an AUROC improvement of up to 10.0% over existing methods
+- selection_id: sel_jia2024taskshield_b3
+  bullet_id: 'A5.8.B3'
+  atom_id: claim_detector_landscape_0034_01
+  cache_id: cache_46c1010fcfae5428
+  span:
+    text_path_offset: [62, 161]
+    sha256_of_span: 5ee29587d5129c13dcd15fc873e47ac371297514c79ab7cf1a7f74063179ddb6
+    excerpt: |-
+      The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents
+- selection_id: sel_jia2024taskshield_b4
+  bullet_id: 'A5.8.B4'
+  atom_id: claim_detector_landscape_0034_02
+  cache_id: cache_46c1010fcfae5428
+  span:
+    text_path_offset: [3468, 3573]
+    sha256_of_span: 18ce378e565364b1a366c4d9d65b785baf2a4ed755fa8d6f9f18c75009da23ce
+    excerpt: |-
+      Task Shield reduces attack success rates (2.07\%) while maintaining high task utility (69.79\%) on GPT-4o
+- selection_id: sel_zhu2025melon_b3
+  bullet_id: 'A5.9.B3'
+  atom_id: claim_detector_landscape_0035_01
+  cache_id: cache_325bb7d4d75b8126
+  span:
+    text_path_offset: [62, 140]
+    sha256_of_span: 9f2bb5235ee8c576c6a3833eeba336d3bb7f69e2c1d6fe13a6cf118b43ba969a
+    excerpt: |-
+      MELON: Provable Defense Against Indirect Prompt Injection Attacks in AI Agents
+- selection_id: sel_zhu2025melon_b4
+  bullet_id: 'A5.9.B4'
+  atom_id: claim_detector_landscape_0035_02
+  cache_id: cache_325bb7d4d75b8126
+  span:
+    text_path_offset: [2673, 2740]
+    sha256_of_span: 1373d70dbe221bf4fb7c2a315b98ea36f7df99d0b6c9c54d7edfa0945d16d3d3
+    excerpt: |-
+      MELON (Masked re-Execution and TooL comparisON), a novel IPI defense
+- selection_id: sel_liu2025datasentinel_b3
+  bullet_id: 'A5.10.B3'
+  atom_id: claim_detector_landscape_0036_01
+  cache_id: cache_1feeff6692fd1104
+  span:
+    text_path_offset: [62, 130]
+    sha256_of_span: 06d98347325959e4307ac5cf994ca3b9bef4f96bc613e7b1374bec57065d39a7
+    excerpt: |-
+      DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks
+- selection_id: sel_liu2025datasentinel_b4
+  bullet_id: 'A5.10.B4'
+  atom_id: claim_detector_landscape_0036_02
+  cache_id: cache_1feeff6692fd1104
+  span:
+    text_path_offset: [2639, 2711]
+    sha256_of_span: 38915cae7974959f2bcdd0c07117557e4f0615a4f8b14925f840a8eb4bd4873f
+    excerpt: |-
+      DataSentinel, a game-theoretic method to detect prompt injection attacks
+- selection_id: sel_liu2025wainjectbench_b3
+  bullet_id: 'A5.11.B3'
+  atom_id: claim_detector_landscape_0037_01
+  cache_id: cache_c75a5781c52711c4
+  span:
+    text_path_offset: [62, 132]
+    sha256_of_span: e5b1065722364f2ed3f56df9fb04b139b8f88377e81a6e363be64c2079635660
+    excerpt: |-
+      WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents
+- selection_id: sel_liu2025wainjectbench_b4
+  bullet_id: 'A5.11.B4'
+  atom_id: claim_detector_landscape_0037_02
+  cache_id: cache_c75a5781c52711c4
+  span:
+    text_path_offset: [2511, 2605]
+    sha256_of_span: ffc007ec34705915deb309825972883c2bc517e0602e17f9af9a84359eb12d0e
+    excerpt: |-
+      first comprehensive benchmark study on detecting prompt injection attacks targeting web agents
+
+# ===== Cross-cutting: evaluation, evasion, postmortems =====
+- selection_id: sel_bhagwatkar2025firewalls_b3
+  bullet_id: 'A5.12.B3'
+  atom_id: claim_detector_landscape_0038_01
+  cache_id: cache_beea4f2926635943
+  span:
+    text_path_offset: [62, 141]
+    sha256_of_span: 8d076f5828df8d85a36e5f77501cd8a52460e04e968641b33874dc7276b4bef0
+    excerpt: |-
+      Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?
+- selection_id: sel_bhagwatkar2025firewalls_b4
+  bullet_id: 'A5.12.B4'
+  atom_id: claim_detector_landscape_0038_02
+  cache_id: cache_beea4f2926635943
+  span:
+    text_path_offset: [2499, 2722]
+    sha256_of_span: bb5e5e30103e95e5941c9e543f05c350e2ebac9ad40016147624ca3d3bdec1bc
+    excerpt: |-
+      a simple, modular, and model-agnostic defense operating at the agent--tool interface achieves perfect security with high utility across all four public benchmarks: AgentDojo, Agent Security Bench, InjecAgent and tau-Bench
+- selection_id: sel_hackett2025bypassing_b3
+  bullet_id: 'A5.13.B3'
+  atom_id: claim_detector_landscape_0039_01
+  cache_id: cache_bb62839772f16e14
+  span:
+    text_path_offset: [62, 185]
+    sha256_of_span: 66fb10e7333bd120c4365c62d0a0ec4eac64f8d3b4161c50a9a4228323b99808
+    excerpt: |-
+      Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection Systems
+- selection_id: sel_hackett2025bypassing_b4
+  bullet_id: 'A5.13.B4'
+  atom_id: claim_detector_landscape_0039_02
+  cache_id: cache_bb62839772f16e14
+  span:
+    text_path_offset: [2920, 3055]
+    sha256_of_span: f1bf699d562e934110dcb6e54d0a4bd1ab526b4ec0b582de4a639a2c21b41a3b
+    excerpt: |-
+      both methods can be used to evade detection while maintaining adversarial utility achieving in some instances up to 100% evasion success
+- selection_id: sel_zizzo2025adversarialprompt_b3
+  bullet_id: 'A5.14.B3'
+  atom_id: claim_detector_landscape_0040_01
+  cache_id: cache_8271bae92af11c05
+  span:
+    text_path_offset: [62, 167]
+    sha256_of_span: ee60a867a23b46e74f0613814f691d8a9e4f3654b716ba880d123bdefd30fdf6
+    excerpt: |-
+      Adversarial Prompt Evaluation: Systematic Benchmarking of Guardrails Against Prompt Input Attacks on LLMs
+- selection_id: sel_zizzo2025adversarialprompt_b4
+  bullet_id: 'A5.14.B4'
+  atom_id: claim_detector_landscape_0040_02
+  cache_id: cache_8271bae92af11c05
+  span:
+    text_path_offset: [2985, 3115]
+    sha256_of_span: 4990cc0fc92e9aa643c2b73d8a07de874fbbdf4d9e9b4e55b74923899038298e
+    excerpt: |-
+      we perform systematic benchmarking across 15 different defences, considering a broad swathe of malicious and benign datasets
+- selection_id: sel_nasr2025attackermovessecond_b3
+  bullet_id: 'A5.15.B3'
+  atom_id: claim_detector_landscape_0041_01
+  cache_id: cache_51e92f7784dddb6e
+  span:
+    text_path_offset: [62, 175]
+    sha256_of_span: 2458bdd329b72e6e978cbf004710835292bf1e9588ac6437e1723c4b8ffa407d
+    excerpt: |-
+      The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against Llm Jailbreaks and Prompt Injections
+- selection_id: sel_nasr2025attackermovessecond_b4
+  bullet_id: 'A5.15.B4'
+  atom_id: claim_detector_landscape_0041_02
+  cache_id: cache_51e92f7784dddb6e
+  span:
+    text_path_offset: [3201, 3309]
+    sha256_of_span: 9d8abda14d1ac4950dc5c5f0699886f80b1b386389a0d59207d897e5d04b4550
+    excerpt: |-
+      we bypass 12 recent defenses (based on a diverse set of techniques) with attack success rate above 90% for most
+- selection_id: sel_jung2026postmortem_b3
+  bullet_id: 'A5.16.B3'
+  atom_id: claim_detector_landscape_0042_01
+  cache_id: cache_6788a3f0f61cebd9
+  span:
+    text_path_offset: [17368, 17449]
+    sha256_of_span: 4b3d9e21f55437b3e38ebcf9ecd5f2825fa02f024e6624d6ed5eb25464f472c7
+    excerpt: |-
+      We started with encoder-only transformers, the workhorses of text classification.
+- selection_id: sel_microsoft2023bipia_b3
+  bullet_id: 'A5.17.B3'
+  atom_id: claim_detector_landscape_0043_01
+  cache_id: cache_0bdbfb50ac3ff273
+  span:
+    text_path_offset: [138914, 138982]
+    sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
+    excerpt: |-
+      We read every piece of feedback, and take your input very seriously.
