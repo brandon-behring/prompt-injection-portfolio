@@ -1,12 +1,24 @@
 # prompt-injection-portfolio
 
 > ⚠️ **Pre-alpha release.** This is a field log of methodology
-> work-in-progress. Each chapter will carry a freshness badge
-> (`exploratory` / `experimental-result` / `locked`) once chapter authoring
-> lands at M0 Day 14 (per plan §21). New here? Start with the [planned
-> reading paths](book/reading-paths.md) once the book is bootstrapped.
-> Watching development unfold: build-in-public posts will land at
-> `docs/build-in-public/`.
+> work-in-progress. Each chapter carries a freshness badge
+> (`exploratory` / `experimental-result` / `locked`). At v0.1.0-pre
+> all chapters are `scaffolded`; prose fills as Lanes close at M1+.
+
+## 3 ways to read this work
+
+Per Round 17 architecture, the portfolio ships **three peer-level guides**
+in `book/src/content/`, each targeting a different reader. All three share
+the same experiment-record substrate (fragments per Round 17 follow-up Q2).
+
+| Guide | Audience | TOC | Status |
+|---|---|---|---|
+| **Textbook** (`/textbook/[slug]`) | Practitioners learning prompt-injection detection methodology | 13 chapters / 4 parts / KF triadic R/O/E | ✓ skeletons shipped; prose fills M1-M7; ratifies at v0.7.0 |
+| **Narrative** (`/narrative/[slug]`) | Curious engineers + recruiters who skim story-form writing | Setup → 6 climb attempts → resolution; heavy cross-chapter threading | ⏳ ships at v0.8.0 (~month 13) |
+| **Academic IMRaD** (`/academic/[slug]`) | Researchers + reviewers who want compressed journal-paper flow | Introduction → Background → Methods → Results (6 lanes) → Discussion → Future Work | ⏳ ships at v0.9.0 (~month 14) |
+
+> All three guides ratify + polish at **v1.0.0 (~month 16-17)**. Build-in-public
+> posts at `docs/build-in-public/`.
 
 ---
 
@@ -115,11 +127,18 @@ blog post per Round 3 Q4''. Archive at `docs/build-in-public/`.
 
 | Milestone | Date | Tag | Status |
 |---|---|---|---|
-| **M0 Day 1** | 2026-05-19 | `v0.1.0-pre` | ✓ pre-flight green; this commit |
-| M0 close | week 3 | `v0.1.0` | pending: dossier 60-80 / 7 test-contracts / 30+ ADRs / scaffold v3.2 / chapter skeletons |
-| M1 Lane 1 + 1b | week 4-5 | `v0.2.0` | pending |
-| M7 close | week 13-14 | `v0.7.0` | pending |
-| v1.0.0 cutover | ~month 16 | `v1.0.0` | pending (~3-month community feedback window post-M7) |
+| **M0 Day 1** | 2026-05-19 | (seed) | ✓ pre-flight green; repo public |
+| **M0 Day 2** | 2026-05-19 | — | ✓ book scaffold + uv pyproject + CI workflow |
+| **M0 Day 2.5** | 2026-05-19 | — | ✓ 9 upstream MR issues filed |
+| **M0 Day 3a** | 2026-05-22 | — | ✓ Round 20/21/22 pin cascade (eval-toolkit v0.47 + scaffold v3.5 + submission v1.3.0); 6 of 9 MRs closed upstream |
+| **M0 Day 3b** | 2026-05-22 | `v0.1.0-pre` | ✓ 7 test-contracts + CI hard-gates green |
+| **M0 Day 5 + 14 + 16** | 2026-05-22 | — | ✓ lane skeletons + chapter skeletons + Docker T2 |
+| **M0 close** | TBD-week-3 | `v0.1.0` | pending: dossier 60-80 (user-led) + Day 15 governance + Day 17 ADRs + Day 18 templates + Day 19 ratify |
+| M1 Lane 1 + 1b | TBD-week-4-5 | `v0.2.0` | pending |
+| M7 close (textbook ratify) | TBD-week-13-14 | `v0.7.0` | pending |
+| v0.8.0 (narrative ship) | TBD-~month-13 | `v0.8.0` | pending |
+| v0.9.0 (academic IMRaD ship) | TBD-~month-14 | `v0.9.0` | pending |
+| v1.0.0 cutover (all 3 polished) | ~month 16-17 | `v1.0.0` | pending |
 
 Plan + companion docs:
 

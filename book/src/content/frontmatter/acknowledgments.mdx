@@ -1,0 +1,48 @@
+---
+slug: acknowledgments
+title: "Acknowledgments"
+status: scaffolded
+order: 4
+---
+
+# Acknowledgments
+
+This portfolio builds on the submission predecessor `prompt-injection-detection-prototype`
+(<https://github.com/brandon-behring/prompt-injection-detection-prototype>) and
+its 79 ADRs at v1.3.0. The submission's hub-and-spoke artifact structure
+(replaced at v1.3.0 with two-guide reader architecture) was the prompt for
+portfolio's Round 17 3-guide direction.
+
+## Methodology heritage
+
+- **OWASP LLM01:2025 (Prompt Injection)** — threat taxonomy framework.
+- **MITRE ATLAS** — AML.T0051.000 + AML.T0051.001 mappings.
+- **Greshake et al. 2023** ("Not What You've Signed Up For", arXiv 2302.12173)
+  — canonical reference for indirect-injection threat.
+- **Submission predecessor** — frozen-probe baseline + LODO methodology +
+  source-disjoint splits + paired-bootstrap CI apparatus + dual-policy
+  thresholds + single-class metric convention.
+
+## Load-bearing libraries
+
+- **eval-toolkit** (<https://github.com/brandon-behring/eval-toolkit>; pinned
+  `[probes,losses]>=0.47`): scorecard + metric_specs + sweep + TextTransform +
+  12-technique character_injection + LogisticStacker + ActivationDeltaProbe +
+  RecallAtLowFPR.
+- **runpod-deploy** (<https://github.com/brandon-behring/runpod-deploy>; pinned
+  `>=0.8.4`): local orchestrator for GPU jobs.
+- **research_toolkit** (<https://github.com/brandon-behring/research_toolkit>; pinned
+  `@v1.9.1`): dossier pipeline.
+- **@brandon_m_behring/book-scaffold-astro** (<https://github.com/brandon-behring/book-scaffold-astro>;
+  pinned `^3.5.0`): research-portfolio Astro preset + 4 generalized components.
+
+## AI collaboration
+
+Claude (Anthropic) contributed to literature review, methodology drafting,
+code authoring, experiment design, and prose drafting throughout M0-M7.
+Per-commit attribution via `Co-Authored-By:` git trailers. Full disclosure
+on the previous frontmatter page.
+
+## Reviewers + community
+
+Acknowledgments expand as M7 community-feedback window proceeds.
