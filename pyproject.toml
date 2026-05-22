@@ -15,8 +15,11 @@ requires-python = ">=3.13"
 # Portfolio bumps these as upstream patches land; per ADR-013 cost discipline,
 # bumps that change behavior require a `decisions/library_imports.md` row.
 dependencies = [
-    # Round 10 floor (per submission v1.0.9 ADR-058 — canonical Platt+Beta+Isotonic API):
-    "eval-toolkit>=0.42",
+    # Round 20 floor: eval-toolkit v0.47.0+ (scorecard + metric_specs + sweep +
+    # TextTransform + 12-technique character_injection + LogisticStacker all in
+    # one canonical v1.0-prep surface). [probes,losses] extras pull torch + transformers
+    # for ActivationDeltaProbe + RecallAtLowFPR (already in main deps for ML stack).
+    "eval-toolkit[probes,losses]>=0.47",
     # research_toolkit not yet on PyPI — track v0.8+ upstream issue to publish.
     # For now, install via git URL pinned to v1.9.1 (matches submission).
     "research_toolkit @ git+https://github.com/brandon-behring/research_toolkit@v1.9.1",
@@ -69,9 +72,9 @@ dev = [
 # Local layout assumed: ../prompt-injection-detection-submission/
 #
 # CI uses two-step `actions/checkout@v4` to clone submission at a pinned tag.
-# Currently `ref: v1.1.1` per plan §3 (will advance to v1.1.2 when DeBERTa
-# execution lands at submission HEAD). Update the workflow + this comment
-# together when the submission `ref:` advances.
+# Currently `ref: v1.2.16` per Round 14 Q1 + dynamic-tag-detection (Round 14
+# round-3 Q2). Advances forward as submission ships polish patches; re-detect
+# via `git ls-remote --tags origin | grep refs/tags/v1.X.X | sort -V | tail -1`.
 #
 # NOTE: eval-toolkit / runpod-deploy are PyPI artifacts — never use editable
 # local paths for them. They are infrastructure for multiple projects, not
