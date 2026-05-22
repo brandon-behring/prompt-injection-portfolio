@@ -22,22 +22,25 @@ upstream discussion before a PR can be opened.
 
 ---
 
-## M0 batch — filed 2026-05-19 (week 1 of M0)
+## M0 batch — filed 2026-05-19 (week 1 of M0) + Round 20/21 closures (2026-05-21)
 
-Per plan §10 (Library-first audit). Effort estimates per plan; sequencing
-checks (which M-milestone blocks on which MR) per the same.
+Per plan §10 (Library-first audit). State machine advanced for 8 of 9
+M0-batch MRs after Round 20 + Round 21 cascade: 5 eval-toolkit MRs
+shipped (v0.43.0-v0.47.0) + 2 book-scaffold-astro MRs shipped (v3.3+ + v3.5.0).
+Only MR-3 remains OPEN.
 
-| # | Repo | Issue | Primitive | Blocks | State | Notes |
-|---|------|-------|-----------|--------|-------|-------|
-| MR-1 | brandon-behring/eval-toolkit | [#48](https://github.com/brandon-behring/eval-toolkit/issues/48) | `loaders.ood_dataset_from_manifest(yaml_path)` | M1 Lane 1 (~Day 4-5 M0) | issue-filed | ~1d impl |
-| MR-2 | brandon-behring/eval-toolkit | [#49](https://github.com/brandon-behring/eval-toolkit/issues/49) | `adversarial.character_injection` (12-technique suite + Scorer-Protocol wrapper) | M1 Lane 1b (~Day 6-8 M0) | issue-filed | ~2-3d impl |
-| MR-3 | brandon-behring/research_toolkit | [#1](https://github.com/brandon-behring/research_toolkit/issues/1) | `/dataset-synthesize` skill (prompt-caching template) | M3 Lane 2 data (~week 7) | issue-filed | ~1d impl |
-| MR-4 | brandon-behring/eval-toolkit | [#50](https://github.com/brandon-behring/eval-toolkit/issues/50) | `losses.RecallAtLowFPR` (Meta PG2 recipe) | M4 Lane 2 train (~week 8) | issue-filed | ~1d impl |
-| MR-5 | brandon-behring/eval-toolkit | [#51](https://github.com/brandon-behring/eval-toolkit/issues/51) | `preprocessing.spotlighting` (delimit + datamark + encode variants) | M5 Lane 3 (~week 10) | issue-filed | ~0.5d impl |
-| MR-6 | brandon-behring/eval-toolkit | [#52](https://github.com/brandon-behring/eval-toolkit/issues/52) | `stacking.MetaLearner` Protocol + `LogisticStacker` reference impl | M6 Lane 4 (~week 11) | issue-filed | ~0.5d impl |
-| MR-7 | brandon-behring/eval-toolkit | [#53](https://github.com/brandon-behring/eval-toolkit/issues/53) | `probes.ActivationDeltaProbe` (TaskTracker-style linear probe) | M2 Lane 5 (~week 4-5) | issue-filed | ~1-2d impl |
-| MR-8 | brandon-behring/book-scaffold-astro | [#6](https://github.com/brandon-behring/book-scaffold-astro/issues/6) | v3.2 `research-portfolio` profile (union academic ∪ tools schema + 3 new components + recipe + template) | **M1 book authoring** (chapter skeletons, Day 14 M0; blocks chapter prose, not M0 dossier/ETHICS/repo/MR-1/2/7/governance/Docker/ADRs which proceed in parallel) | issue-filed | ~3-5d impl |
-| MR-9 | brandon-behring/book-scaffold-astro | [#7](https://github.com/brandon-behring/book-scaffold-astro/issues/7) | Generic frontmatter collection + dynamic route helper (for v3.3+) | NOT blocking M0 (portfolio uses local impl as prototype) | issue-filed | ~2-3d impl, defer to v3.3+ |
+| # | Repo | Issue | Primitive | Blocks | State (Round 20/21 update) | Notes |
+|---|------|-------|-----------|--------|----------------------------|-------|
+| ~~MR-1~~ | brandon-behring/eval-toolkit | [#48](https://github.com/brandon-behring/eval-toolkit/issues/48) | `loaders.ood_dataset_from_manifest(yaml_path)` | M1 Lane 1 | **released-v0.43.0; closed 2026-05-19T19:30:20Z; pinned-in-portfolio via bc30c52 (Round 20)** | shipped by upstream parallel-Codex |
+| ~~MR-2~~ | brandon-behring/eval-toolkit | [#49](https://github.com/brandon-behring/eval-toolkit/issues/49) | `adversarial.character_injection` (12-technique suite + Scorer-Protocol wrapper) | M1 Lane 1b | **released-v0.43.0 (core-6); v0.47.0 (advanced-6 via sweep unification); closed 2026-05-19; pinned-in-portfolio via bc30c52** | 12 dataclasses; `ALL_TECHNIQUES` 12-tuple |
+| MR-3 | brandon-behring/research_toolkit | [#1](https://github.com/brandon-behring/research_toolkit/issues/1) | `/dataset-synthesize` skill (prompt-caching template) | M3 Lane 2 data (~week 7) | **issue-filed (STILL OPEN)** | Only remaining open MR. M3-blocking. |
+| ~~MR-4~~ | brandon-behring/eval-toolkit | [#50](https://github.com/brandon-behring/eval-toolkit/issues/50) | `losses.RecallAtLowFPR` (Meta PG2 recipe) | M4 Lane 2 train | **released-v0.44.0; closed 2026-05-19; pinned-in-portfolio via bc30c52** | `[losses]` extra |
+| ~~MR-5~~ | brandon-behring/eval-toolkit | [#51](https://github.com/brandon-behring/eval-toolkit/issues/51) | `preprocessing.spotlighting` (delimit + datamark + encode variants) | M5 Lane 3 | **released-v0.44.0; closed via upstream housekeeping; pinned-in-portfolio via bc30c52** | 3 dataclasses |
+| ~~MR-6~~ | brandon-behring/eval-toolkit | [#52](https://github.com/brandon-behring/eval-toolkit/issues/52) | `stacking.MetaLearner` Protocol + `LogisticStacker` reference impl | M6 Lane 4 | **released-v0.45.0; closed 2026-05-21T18:22:48Z; pinned-in-portfolio via bc30c52 (Round 20)** | shipped same week |
+| ~~MR-7~~ | brandon-behring/eval-toolkit | [#53](https://github.com/brandon-behring/eval-toolkit/issues/53) | `probes.ActivationDeltaProbe` (TaskTracker-style linear probe) | M2 Lane 5 | **released-v0.43.0; closed 2026-05-19; pinned-in-portfolio via bc30c52** | `[probes]` extra |
+| ~~MR-8~~ | brandon-behring/book-scaffold-astro | [#6](https://github.com/brandon-behring/book-scaffold-astro/issues/6) | v3.2 `research-portfolio` profile (union academic ∪ tools schema + 3 new components + recipe + template) | M1 book authoring | **released-v3.5.0; closed 2026-05-19T19:29:53Z; pinned-in-portfolio via bc30c52 (Round 21 `^3.5.0`)** | UNBLOCKS Day 14 chapter skeletons |
+| ~~MR-9~~ | brandon-behring/book-scaffold-astro | [#7](https://github.com/brandon-behring/book-scaffold-astro/issues/7) | Generic frontmatter collection + dynamic route helper | NOT blocking | **released-v3.3+; closed 2026-05-19T19:04:30Z; pinned-in-portfolio via bc30c52 (Round 21)** | Shipped earlier than expected |
+| ~~MR-10~~ (Round 14 Q3) | brandon-behring/eval-toolkit | (NOT FILED — obsoleted before filing) | Advanced-6 character_injection techniques (bidi RTL + tag stripping + synonym + token splitting + Unicode normalization + invisible chars) | M1 Lane 1b full-12 matrix | **OBSOLETED via Round 20**: shipped in v0.47.0 as part of MR-2 12-technique consolidation BEFORE portfolio could file. `ALL_TECHNIQUES` 12-tuple exports the full set. Day 4 MR-10 filing step CANCELED. | Plan §10 row supersedes filing intent |
 
 ---
 
@@ -61,7 +64,7 @@ Workflow:
 
 | # | Repo | Issue | Friction | Workaround taken | State |
 |---|------|-------|----------|------------------|-------|
-| (none yet) |  |  |  |  |  |
+| MR-12 | brandon-behring/eval-toolkit | [#69](https://github.com/brandon-behring/eval-toolkit/issues/69) | 4 of 9 Tier-2 Protocols (`TextTransform`, `Probe`, `MetricSpec`, `MetaLearner`) live in different submodules; `eval_toolkit.protocols.__all__` only exports 6/9. Day 3a smoke-test `from eval_toolkit.protocols import Probe` failed with ImportError; canonical top-level `from eval_toolkit import Probe` works (per ADR 0002). | Portfolio uses top-level canonical imports (`from eval_toolkit import Probe, MetricSpec, MetaLearner` — ADR 0002 canonical surface). No code workaround needed; doc/discoverability issue. | issue-filed 2026-05-21 via Day 3a; user-directed "Goal set: MR-12". Targets eval-toolkit v0.48+ as part of v0.48 packet-drift-fix theme. |
 
 ---
 
