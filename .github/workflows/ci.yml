@@ -2,13 +2,14 @@
 #
 # Implements two-step checkout per plan §3 + F2 risk resolution:
 # - Step 1: checkout portfolio repo (`actions/checkout@v4` to `./`)
-# - Step 2: checkout submission at pinned tag (`ref: v1.2.16`) to sibling path
+# - Step 2: checkout submission at pinned tag (`ref: v1.3.0`) to sibling path
 #   so `[tool.uv.sources]` editable dep resolves at uv sync time
 #
 # Per Round 14 Q1 + Round 21 dynamic-tag-detection, submission ref: advances
 # automatically with each portfolio Day 3a re-sync. Update both `ref:` value
 # + the corresponding pyproject.toml [tool.uv.sources] comment together.
-# Current pin: v1.2.16 (was v1.1.1 at M0 Day 2; bumped during Round 14 → Round 21 cascade).
+# Current pin: v1.3.0 (was v1.1.1 at M0 Day 2; v1.2.16 at Round 21; v1.3.0 at Round 22 —
+# submission's two-guide reader architecture aligns with portfolio's R17 3-guide direction).
 #
 # Quality gates per plan §2 Tier-4 + Round 7 ADR-036:
 # - ruff check (lint) + ruff format --check (format)
@@ -36,11 +37,11 @@ jobs:
         with:
           path: prompt-injection-portfolio
 
-      - name: Checkout submission (pinned to v1.2.16 per Round 14 Q1 + Round 21 dynamic-detect)
+      - name: Checkout submission (pinned to v1.3.0 per Round 14 Q1 + Round 22 dynamic-detect)
         uses: actions/checkout@v4
         with:
           repository: brandon-behring/prompt-injection-detection-prototype
-          ref: v1.2.16
+          ref: v1.3.0
           path: prompt-injection-detection-submission
 
       - name: Install uv

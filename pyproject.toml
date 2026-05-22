@@ -72,9 +72,10 @@ dev = [
 # Local layout assumed: ../prompt-injection-detection-submission/
 #
 # CI uses two-step `actions/checkout@v4` to clone submission at a pinned tag.
-# Currently `ref: v1.2.16` per Round 14 Q1 + dynamic-tag-detection (Round 14
-# round-3 Q2). Advances forward as submission ships polish patches; re-detect
-# via `git ls-remote --tags origin | grep refs/tags/v1.X.X | sort -V | tail -1`.
+# Currently `ref: v1.3.0` per Round 22 (was v1.2.16 at Round 21; v1.3.0 ships
+# the two-guide reader architecture validating portfolio's R17 3-guide direction).
+# Advances forward as submission ships polish patches; re-detect via
+# `git ls-remote --tags origin | grep refs/tags/v1.X.X | sort -V | tail -1`.
 #
 # NOTE: eval-toolkit / runpod-deploy are PyPI artifacts — never use editable
 # local paths for them. They are infrastructure for multiple projects, not
