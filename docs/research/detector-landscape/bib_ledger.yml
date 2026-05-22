@@ -1,0 +1,933 @@
+# Bibliography ledger — prompt-injection detector landscape
+# Maintained by /research-gather. Validated by validators/bib_ledger.py.
+
+schema_version: 2
+topic: detector_landscape
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+entries:
+# ===== A1: ModernBERT-based encoder detectors =====
+- bibkey: ivry2025sentinel
+  primary_url: https://arxiv.org/abs/2506.05446
+  title: 'Sentinel: SOTA model to protect against prompt injections'
+  status: verified
+  claim_family: detector_architectures
+  authors: Ivry & Nahum (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0001
+  cache_ids:
+  - cache_5f129920a9fcbcd5
+  - cache_f86d60814909c930
+- bibkey: jung2025promptguard
+  primary_url: https://huggingface.co/codeintegrity-ai/promptguard
+  title: 'codeintegrity-ai/promptguard (ModernBERT-base 149M, 955K-example prompt-injection classifier)'
+  status: verified
+  claim_family: detector_architectures
+  authors: Jung (2025)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0002
+  cache_ids:
+  - cache_36ea5818e08976b2
+- bibkey: vijil2025mbert
+  primary_url: https://huggingface.co/vijil/mbert-prompt-injection
+  title: 'vijil/mbert-prompt-injection (ModernBERT-base prompt-injection classifier)'
+  status: verified
+  claim_family: detector_architectures
+  authors: Vijil AI (2025)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0003
+  cache_ids:
+  - cache_8c9faa216a4c8c67
+- bibkey: tihilya2025modernbert
+  primary_url: https://huggingface.co/tihilya/modernbert-base-prompt-injection-detection
+  title: 'tihilya/modernbert-base-prompt-injection-detection'
+  status: unverified
+  verified_at:
+  claim_family: detector_architectures
+  authors: tihilya (2025)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0004
+  cache_ids:
+  - cache_0eed2baeb115d544
+- bibkey: carpintero2025pangolinguard
+  primary_url: https://huggingface.co/dcarpintero/pangolin-guard-large
+  title: 'dcarpintero/pangolin-guard-large (ModernBERT-large 395M, lightweight self-hosted prompt-injection guardrail)'
+  status: verified
+  claim_family: detector_architectures
+  authors: Carpintero (2025)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0005
+  cache_ids:
+  - cache_e848e632a6fbe6b5
+
+# ===== A2: DeBERTa-based encoder detectors =====
+- bibkey: protectai2024deberta
+  primary_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection
+  title: 'protectai/deberta-v3-base-prompt-injection (DeBERTa-v3-base prompt-injection classifier, v1)'
+  status: unverified
+  verified_at:
+  claim_family: detector_architectures
+  authors: Protect AI (2024)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0006
+  cache_ids:
+  - cache_8c2403762307c627
+- bibkey: protectai2024debertav2
+  primary_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
+  title: 'protectai/deberta-v3-base-prompt-injection-v2 (DeBERTa-v3-base 184M English-only prompt-injection classifier)'
+  status: verified
+  claim_family: detector_architectures
+  authors: Protect AI (2024)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0007
+  cache_ids:
+  - cache_f4d5b713b2d15854
+- bibkey: deepset2023deberta
+  primary_url: https://huggingface.co/deepset/deberta-v3-base-injection
+  title: 'deepset/deberta-v3-base-injection (DeBERTa-v3-base prompt-injection classifier)'
+  status: verified
+  claim_family: detector_architectures
+  authors: deepset (2023)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0008
+  cache_ids:
+  - cache_cb8885d33147703d
+- bibkey: hlyn2025judgedeberta
+  primary_url: https://huggingface.co/hlyn-labs/prompt-injection-judge-deberta-70m
+  title: 'hlyn-labs/prompt-injection-judge-deberta-70m (DeBERTa-v3-xsmall 70M, INT8 ONNX, ~101ms M1 CPU)'
+  status: verified
+  claim_family: detector_latency_tradeoff
+  authors: Hlyn Labs (2025)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0009
+  cache_ids:
+  - cache_e1e51be73c41d3a4
+- bibkey: ji2025dmpi
+  primary_url: https://arxiv.org/abs/2506.06384
+  title: 'Detection Method for Prompt Injection by Integrating Pre-trained Model and Heuristic Feature Engineering'
+  status: verified
+  claim_family: detector_architectures
+  authors: Ji, Li & Mao (2025)
+  venue: KSEM 2025 AI & Security Workshop
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0010
+  cache_ids:
+  - cache_a95530f5842377a1
+
+# ===== A3: LLM-based detectors (decoder + LLM-as-judge) =====
+- bibkey: jacob2025promptshield
+  primary_url: https://arxiv.org/abs/2501.15145
+  title: 'PromptShield: Deployable Detection for Prompt Injection Attacks'
+  status: verified
+  claim_family: detector_architectures
+  authors: Jacob et al. (2025)
+  venue: ACM CODASPY 2025
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0011
+  cache_ids:
+  - cache_96dc7a084a524c4d
+- bibkey: sun2025courtguard
+  primary_url: https://arxiv.org/abs/2510.19844
+  title: 'CourtGuard: A Local, Multiagent Prompt Injection Classifier'
+  status: verified
+  claim_family: detector_architectures
+  authors: Wu & Maslowski (2025)
+  venue: arXiv preprint
+  code_url: https://github.com/isaacwu2000/CourtGuard
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  - code_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0012
+  cache_ids:
+  - cache_0202713855aa48d0
+- bibkey: meta2025promptguard2-86m
+  primary_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+  title: 'meta-llama/Llama-Prompt-Guard-2-86M (mDeBERTa-base 86M multilingual prompt-injection + jailbreak classifier)'
+  status: verified
+  claim_family: detector_architectures
+  authors: Meta Llama Team (2025)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0013
+  cache_ids:
+  - cache_550949d71181746c
+- bibkey: meta2025promptguard2-22m
+  primary_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-22M
+  title: 'meta-llama/Llama-Prompt-Guard-2-22M (DeBERTa-xsmall 22M, 75% latency reduction)'
+  status: verified
+  claim_family: detector_latency_tradeoff
+  authors: Meta Llama Team (2025)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0014
+  cache_ids:
+  - cache_b2975ff46c4b40ab
+- bibkey: meta2024promptguard1
+  primary_url: https://huggingface.co/meta-llama/Prompt-Guard-86M
+  title: 'meta-llama/Prompt-Guard-86M (original mDeBERTa-base prompt-injection + jailbreak classifier)'
+  status: unverified
+  verified_at:
+  claim_family: detector_architectures
+  authors: Meta Llama Team (2024)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0015
+  cache_ids:
+  - cache_0cb97e9f1fc546b6
+- bibkey: meta2024llamaguard3
+  primary_url: https://huggingface.co/meta-llama/Llama-Guard-3-8B
+  title: 'meta-llama/Llama-Guard-3-8B (Llama-3.1-8B content-safety classifier; 14 MLCommons hazard categories)'
+  status: verified
+  claim_family: detector_architectures
+  authors: Meta Llama Team (2024)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0016
+  cache_ids:
+  - cache_b03713948ad0d127
+- bibkey: shi2025promptarmor
+  primary_url: https://arxiv.org/abs/2507.15219
+  title: 'PromptArmor: Simple yet Effective Prompt Injection Defenses'
+  status: verified
+  claim_family: detector_architectures
+  authors: Shi et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0017
+  cache_ids:
+  - cache_9d8e7c7a91582e80
+
+# ===== A4: Commercial / proprietary detectors =====
+- bibkey: lakera2024pint
+  primary_url: https://www.lakera.ai/product-updates/lakera-pint-benchmark
+  title: 'Lakera''s Prompt Injection Test (PINT) — A New Benchmark for Evaluating Prompt Injection Solutions'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Lakera (2024)
+  venue: Vendor blog
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0018
+  cache_ids:
+  - cache_0621eb6f5ed9e96c
+- bibkey: lakeraai2025pintbenchmark
+  primary_url: https://github.com/lakeraai/pint-benchmark
+  title: 'lakeraai/pint-benchmark: A benchmark for prompt injection detection systems'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Lakera AI (2025)
+  venue: GitHub repository
+  code_url: https://github.com/lakeraai/pint-benchmark
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  - code_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0019
+  cache_ids:
+  - cache_84c0e7c4f7fbd712
+- bibkey: lakera2025guard
+  primary_url: https://www.lakera.ai/risk/prompt-injection-attacks
+  title: 'Lakera Guard — Prompt Injection Protection (vendor product page; Cisco AI Defense post-acquisition May 2025)'
+  status: verified
+  claim_family: commercial_detector_performance
+  authors: Lakera (2025)
+  venue: Vendor product page
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0020
+  cache_ids:
+  - cache_669e2d28a98f3020
+- bibkey: microsoft2025promptshields
+  primary_url: https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
+  title: 'Prompt Shields in Azure AI Content Safety (User Prompt + Document attacks; Spotlighting capability)'
+  status: verified
+  claim_family: commercial_detector_performance
+  authors: Microsoft (2025)
+  venue: Vendor documentation
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0021
+  cache_ids:
+  - cache_f8a5917cbb6f90f3
+- bibkey: aws2025bedrockguardrails
+  primary_url: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html
+  title: 'Detect prompt attacks with Amazon Bedrock Guardrails (Jailbreaks + Prompt Injection + Prompt Leakage)'
+  status: verified
+  claim_family: commercial_detector_performance
+  authors: AWS (2025)
+  venue: Vendor documentation
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0022
+  cache_ids:
+  - cache_1f25f8e689042ec7
+- bibkey: google2025modelarmor
+  primary_url: https://cloud.google.com/security/products/model-armor
+  title: 'Google Cloud Model Armor — Prompt injection / jailbreak / malicious-URL / PII filter (GA)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: Google Cloud (2025)
+  venue: Vendor product page
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0023
+  cache_ids:
+  - cache_12e1c56bb0b8a8a2
+- bibkey: nvidia2025nemoinjection
+  primary_url: https://docs.nvidia.com/nemo/microservices/latest/guardrails/tutorials/injection-detection.html
+  title: 'NVIDIA NeMo Guardrails — Configuring Injection Detection (YARA-based; SQLi, XSS, template, code injection)'
+  status: verified
+  claim_family: commercial_detector_performance
+  authors: NVIDIA (2025)
+  venue: Vendor documentation
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0024
+  cache_ids:
+  - cache_cf6e511e2e1334ca
+- bibkey: cisco2025aidefense
+  primary_url: https://blogs.cisco.com/ai/security-for-the-agentic-era-cisco-ai-defense-breaks-new-ground
+  title: 'Security for the Agentic Era: Cisco AI Defense (Robust Intelligence post-acquisition AI Firewall + Lakera Guard integration)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: Cisco (2025)
+  venue: Vendor blog
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0025
+  cache_ids:
+  - cache_838e27ef58169b58
+- bibkey: protectai2023rebuff
+  primary_url: https://github.com/protectai/rebuff
+  title: 'protectai/rebuff: LLM Prompt Injection Detector (4-layer: heuristic + LLM-judge + VectorDB + canary tokens; archived 2025-05)'
+  status: verified
+  claim_family: detector_architectures
+  authors: Protect AI (2023)
+  venue: GitHub repository
+  code_url: https://github.com/protectai/rebuff
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  - code_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0026
+  cache_ids:
+  - cache_5f3477a159885625
+- bibkey: meta2025promptguarddoc
+  primary_url: https://www.llama.com/docs/model-cards-and-prompt-formats/prompt-guard/
+  title: 'Llama Prompt Guard 2 — Model Cards and Prompt formats (official Meta product documentation)'
+  status: verified
+  claim_family: commercial_detector_performance
+  authors: Meta (2025)
+  venue: Vendor documentation
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0027
+  cache_ids:
+  - cache_ea627ff19ae55d38
+
+# ===== A5: Activation-probe + specialized detectors =====
+- bibkey: abdelnabi2025tasktracker
+  primary_url: https://arxiv.org/abs/2406.00799
+  title: 'Get my drift? Catching LLM Task Drift with Activation Deltas'
+  status: verified
+  claim_family: detector_architectures
+  authors: Abdelnabi et al. (2024)
+  venue: IEEE SaTML 2025
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0028
+  cache_ids:
+  - cache_6d742cb6609170a1
+- bibkey: wen2025instructdetector
+  primary_url: https://arxiv.org/abs/2505.06311
+  title: 'Defending against Indirect Prompt Injection by Instruction Detection'
+  status: verified
+  claim_family: detector_architectures
+  authors: Wen et al. (2025)
+  venue: EMNLP 2025 Findings
+  code_url: https://github.com/MYVAE/Instruction-detection
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  - code_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0029
+  cache_ids:
+  - cache_39929ecbe5b3d6a6
+- bibkey: li2024injecguard
+  primary_url: https://arxiv.org/abs/2410.22770
+  title: 'InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Li & Liu (2024)
+  venue: arXiv preprint
+  code_url: https://github.com/leolee99/InjecGuard
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  - code_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0030
+  cache_ids:
+  - cache_ab9d48079556ef2d
+- bibkey: li2025piguard
+  primary_url: https://aclanthology.org/2025.acl-long.1468/
+  title: 'PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Li, Liu, Zhang & Xiao (2025)
+  venue: ACL 2025
+  code_url: https://github.com/leolee99/PIGuard
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  - code_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0031
+  cache_ids:
+  - cache_12b7eb73c0b04453
+  - cache_03ee147b8c622dbc
+  - cache_5b62c6aa1b70e689
+- bibkey: jia2026alignsentinel
+  primary_url: https://arxiv.org/abs/2602.13597
+  title: 'AlignSentinel: Alignment-Aware Detection of Prompt Injection Attacks'
+  status: verified
+  claim_family: detector_architectures
+  authors: Jia et al. (2026)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0032
+  cache_ids:
+  - cache_9fbf2314505d24a0
+- bibkey: ayub2024embedding
+  primary_url: https://arxiv.org/abs/2410.22284
+  title: 'Embedding-based classifiers can detect prompt injection attacks'
+  status: verified
+  claim_family: detector_architectures
+  authors: Ayub & Majumdar (2024)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0033
+  cache_ids:
+  - cache_5d322a73036744e4
+- bibkey: hung2025attentiontracker
+  primary_url: https://arxiv.org/abs/2411.00348
+  title: 'Attention Tracker: Detecting Prompt Injection Attacks in LLMs'
+  status: verified
+  claim_family: detector_architectures
+  authors: Hung et al. (2025)
+  venue: NAACL 2025 Findings
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0034
+  cache_ids:
+  - cache_52f0885c01ea6bee
+- bibkey: jia2024taskshield
+  primary_url: https://arxiv.org/abs/2412.16682
+  title: 'The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents'
+  status: verified
+  claim_family: detector_architectures
+  authors: Jia, Wu, Qin & Squicciarini (2024)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0035
+  cache_ids:
+  - cache_46c1010fcfae5428
+- bibkey: zhu2025melon
+  primary_url: https://arxiv.org/abs/2502.05174
+  title: 'MELON: Provable Defense Against Indirect Prompt Injection Attacks in AI Agents'
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Zhu et al. (2025)
+  venue: ICML 2025
+  code_url: https://github.com/kaijiezhu11/MELON
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  - code_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0036
+  cache_ids:
+  - cache_325bb7d4d75b8126
+- bibkey: liu2025datasentinel
+  primary_url: https://arxiv.org/abs/2504.11358
+  title: 'DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks'
+  status: verified
+  claim_family: detector_architectures
+  authors: Liu, Jia, Jia, Song & Gong (2025)
+  venue: IEEE Symposium on Security and Privacy 2025
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0037
+  cache_ids:
+  - cache_1feeff6692fd1104
+- bibkey: liu2025wainjectbench
+  primary_url: https://arxiv.org/abs/2510.01354
+  title: 'WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Liu et al. (2025)
+  venue: arXiv preprint
+  code_url: https://github.com/Norrrrrrr-lyn/WAInjectBench
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  - code_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0038
+  cache_ids:
+  - cache_c75a5781c52711c4
+
+# ===== Cross-cutting: evaluation, evasion, postmortems =====
+- bibkey: bhagwatkar2025firewalls
+  primary_url: https://arxiv.org/abs/2510.05244
+  title: 'Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Bhagwatkar et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0039
+  cache_ids:
+  - cache_beea4f2926635943
+- bibkey: hackett2025bypassing
+  primary_url: https://arxiv.org/abs/2504.11168
+  title: 'Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection Systems'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Hackett et al. (2025)
+  venue: LLMSec 2025
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0040
+  cache_ids:
+  - cache_bb62839772f16e14
+- bibkey: zizzo2025adversarialprompt
+  primary_url: https://arxiv.org/abs/2502.15427
+  title: 'Adversarial Prompt Evaluation: Systematic Benchmarking of Guardrails Against Prompt Input Attacks on LLMs'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Zizzo et al. (2025)
+  venue: NeurIPS 2024 Safe Generative AI Workshop
+  code_url: https://github.com/IBM/Adversarial-Prompt-Evaluation
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  - code_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0041
+  cache_ids:
+  - cache_8271bae92af11c05
+- bibkey: nasr2025attackermovessecond
+  primary_url: https://arxiv.org/abs/2510.09023
+  title: 'The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Nasr et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0042
+  cache_ids:
+  - cache_51e92f7784dddb6e
+- bibkey: jung2026postmortem
+  primary_url: https://www.codeintegrity.ai/blog/prompt-injection-limits
+  title: '98% Accurate and Still Broken (industry post-mortem on held-out vs adversarial detector accuracy)'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Jung (2026)
+  venue: Vendor blog
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0043
+  cache_ids:
+  - cache_6788a3f0f61cebd9
+- bibkey: microsoft2023bipia
+  primary_url: https://github.com/microsoft/BIPIA
+  title: 'microsoft/BIPIA: A benchmark for evaluating the robustness of LLMs and defenses to indirect prompt injection attacks'
+  status: verified
+  claim_family: detector_benchmarks
+  authors: Yi et al. (2023)
+  venue: GitHub repository
+  code_url: https://github.com/microsoft/BIPIA
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - primary_url
+  - code_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0044
+  cache_ids:
+  - cache_0bdbfb50ac3ff273

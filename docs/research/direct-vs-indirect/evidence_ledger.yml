@@ -1,0 +1,993 @@
+schema_version: 3
+topic: direct_vs_indirect
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+entries:
+- evidence_id: ev_direct_vs_indirect_0001
+  source_url: https://arxiv.org/abs/2302.12173
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_03106dd103864555
+  supports:
+  - claim_id: claim_direct_vs_indirect_greshake_taxonomy
+    field_path: 'bib_ledger.entries[greshake2023indirect].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.98
+    excerpt_anchor:
+      cache_id: cache_03106dd103864555
+      text_path_offset: [2924, 3122]
+      sha256_of_span: ba13e3a0fe001de22afa0f42b791c6d8fd58cbd8d2a9eb09a9a4012f57956a69
+  excerpt: 'We reveal new attack vectors, using Indirect Prompt Injection, that enable adversaries to remotely (without a direct interface) exploit LLM-integrated applications by strategically injecting prompts'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0002
+  source_url: https://arxiv.org/abs/2302.12173
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_03106dd103864555
+  supports:
+  - claim_id: claim_direct_vs_indirect_greshake_taxonomy_impacts
+    field_path: 'bib_ledger.entries[greshake2023indirect].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_03106dd103864555
+      text_path_offset: [3157, 3354]
+      sha256_of_span: 6113645addb3b68b1371692abb02e0ede6ee0611ee8be4fbdf39962d3a28ab9d
+  excerpt: 'We derive a comprehensive taxonomy from a computer security perspective to systematically investigate impacts and vulnerabilities, including data theft, worming, information ecosystem contamination'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0003
+  source_url: https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+  source_type: standard
+  source_quality: official
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_13d91c957b4f3993
+  supports:
+  - claim_id: claim_owasp_llm01_direct_indirect_split
+    field_path: 'bib_ledger.entries[owasp2025llm01].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_13d91c957b4f3993
+      text_path_offset: [1282, 1341]
+      sha256_of_span: 6396f0b91a56853b01f9f3b875f200e3b87ad06f6e92ea40ed3c9cfa10e163ad
+  excerpt: 'LLM01:2025 Prompt Injection - OWASP Gen AI Security Project'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - official source
+- evidence_id: ev_direct_vs_indirect_0004
+  source_url: https://simonwillison.net/2023/Apr/25/dual-llm-pattern/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_7d31fd1b044f4cdd
+  supports:
+  - claim_id: claim_willison_dual_llm_pattern
+    field_path: 'bib_ledger.entries[willison2023duallllm].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_7d31fd1b044f4cdd
+      text_path_offset: [273, 353]
+      sha256_of_span: 3065b9f28c19a49e43bbdc78dd673e3377ae95358289fdd75799e858e6ecf18d
+  excerpt: 'The Dual LLM pattern for building AI assistants that can resist prompt injection'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0005
+  source_url: https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_8f8e4bafcb839e1d
+  supports:
+  - claim_id: claim_willison_lethal_trifecta
+    field_path: 'bib_ledger.entries[willison2025trifecta].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8f8e4bafcb839e1d
+      text_path_offset: [276, 370]
+      sha256_of_span: a640a5e06eb72ee76c9942c8c0f9cf17a59698ffa3e89dce74f412d6b451648b
+  excerpt: 'The lethal trifecta for AI agents: private data, untrusted content, and external communication'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0006
+  source_url: https://arxiv.org/abs/2403.14720
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_2d58408c3b4f8e5d
+  supports:
+  - claim_id: claim_hines_spotlighting_method
+    field_path: 'bib_ledger.entries[hines2024spotlighting].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_2d58408c3b4f8e5d
+      text_path_offset: [2860, 2961]
+      sha256_of_span: 8b68fa23230f4cae0eb96baa9efa11c7baffd441fd40d693446f319b3d038256
+  excerpt: 'We introduce spotlighting, a family of prompt engineering techniques that can be used to improve LLMs'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0007
+  source_url: https://arxiv.org/abs/2402.06363
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_c3439daa681bdac9
+  supports:
+  - claim_id: claim_struq_structured_queries
+    field_path: 'bib_ledger.entries[chen2025struq].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_c3439daa681bdac9
+      text_path_offset: [2756, 2830]
+      sha256_of_span: cc4e4d02fc5dcfbfbd23f9e070159a78c7177886a7dcb50148861caa592d7f58
+  excerpt: 'We introduce structured queries, a general approach to tackle this problem'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0008
+  source_url: https://arxiv.org/abs/2410.05451
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_8f562c950ef155e3
+  supports:
+  - claim_id: claim_secalign_dpo_defense
+    field_path: 'bib_ledger.entries[chen2025secalign].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8f562c950ef155e3
+      text_path_offset: [62, 135]
+      sha256_of_span: 52f0660ceb9b71efedec462e4d480197b29933595f9a70d25e5cacce77091120
+  excerpt: 'SecAlign: Defending Against Prompt Injection with Preference Optimization'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0009
+  source_url: https://arxiv.org/abs/2507.02735
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_74a75f6036e89f8d
+  supports:
+  - claim_id: claim_meta_secalign_open_model
+    field_path: 'bib_ledger.entries[chen2025metasecalign].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_74a75f6036e89f8d
+      text_path_offset: [2742, 2876]
+      sha256_of_span: 69e916476e157e1a7a25fb4ec5b7e79573a651ffdbf952f07b824afe60d407a0
+  excerpt: 'we develop Meta SecAlign, the first fully open-source LLM with built-in model-level defense that achieves commercial-grade performance'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0010
+  source_url: https://arxiv.org/abs/2503.18813
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_cfffce6b1f23371d
+  supports:
+  - claim_id: claim_camel_capability_isolation
+    field_path: 'bib_ledger.entries[debenedetti2025camel].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_cfffce6b1f23371d
+      text_path_offset: [2356, 2513]
+      sha256_of_span: f2324e102faabb5832820b889db8e95c47ba7436bd370c7262527d9ec7f97640
+  excerpt: 'we propose CaMeL, a robust defense that creates a protective system layer around the LLM, securing it even when underlying models are susceptible to attacks.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0011
+  source_url: https://arxiv.org/abs/2503.18813
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_cfffce6b1f23371d
+  supports:
+  - claim_id: claim_camel_control_data_flow
+    field_path: 'bib_ledger.entries[debenedetti2025camel].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_cfffce6b1f23371d
+      text_path_offset: [2526, 2690]
+      sha256_of_span: 7ec998f8c2b7a30abab2a869b2f3a3b573aba0c3cdcab550314cdd427c405152
+  excerpt: 'CaMeL explicitly extracts the control and data flows from the (trusted) query; therefore, the untrusted data retrieved by the LLM can never impact the program flow.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0012
+  source_url: https://arxiv.org/abs/2404.13208
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_c8697d3c88066297
+  supports:
+  - claim_id: claim_instruction_hierarchy_priority
+    field_path: 'bib_ledger.entries[wallace2024instructionhierarchy].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_c8697d3c88066297
+      text_path_offset: [2707, 2843]
+      sha256_of_span: 695159cb45fde45cc34a25935dff6f93d809c83db2276cfe7be2911f67122544
+  excerpt: 'we propose an instruction hierarchy that explicitly defines how models should behave when instructions of different priorities conflict.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0013
+  source_url: https://arxiv.org/abs/2312.17673
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_937568d9c8dbd86d
+  supports:
+  - claim_id: claim_jatmo_task_specific_distillation
+    field_path: 'bib_ledger.entries[piet2024jatmo].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_937568d9c8dbd86d
+      text_path_offset: [2609, 2712]
+      sha256_of_span: b4daf052fd8d42403fed43810bdc80ab2480be18eba4baf14f895d1eb7619d7a
+  excerpt: 'we introduce Jatmo, a method for generating task-specific models resilient to prompt-injection attacks.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0014
+  source_url: https://arxiv.org/abs/2403.04960
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_da4a859c554697e4
+  supports:
+  - claim_id: claim_isolategpt_execution_isolation
+    field_path: 'bib_ledger.entries[wu2025isolategpt].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_da4a859c554697e4
+      text_path_offset: [62, 139]
+      sha256_of_span: b0298eeca954b1924670ac9a60539f26ab3237df6c969766007f48c6a805fac6
+  excerpt: 'IsolateGPT: An Execution Isolation Architecture for LLM-Based Agentic Systems'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0015
+  source_url: https://arxiv.org/abs/2505.03574
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_5575144bb9ad0eb7
+  supports:
+  - claim_id: claim_llamafirewall_open_guardrail
+    field_path: 'bib_ledger.entries[chennabasappa2025llamafirewall].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_5575144bb9ad0eb7
+      text_path_offset: [2947, 3026]
+      sha256_of_span: 81b467c035b5e10c0e8853d78bbe0ab85dfc77ca7d692bd1359b0fc5aa3a8ab1
+  excerpt: 'We introduce LlamaFirewall, an open-source security focused guardrail framework'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0016
+  source_url: https://arxiv.org/abs/2506.08837
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_4397426179bea947
+  supports:
+  - claim_id: claim_designpatterns_provable_resistance
+    field_path: 'bib_ledger.entries[beurerkellner2025designpatterns].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_4397426179bea947
+      text_path_offset: [2654, 2769]
+      sha256_of_span: 7600f810c1b280a879578aabeacb45c5700a838a6e6419aa731927c15ae8658b
+  excerpt: 'we propose a set of principled design patterns for building AI agents with provable resistance to prompt injection.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0017
+  source_url: https://www.catonetworks.com/blog/breaking-down-echoleak/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_21bc6b48049c7078
+  supports:
+  - claim_id: claim_echoleak_zero_click_xpia
+    field_path: 'bib_ledger.entries[aimlabs2025echoleak].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_21bc6b48049c7078
+      text_path_offset: [60335, 60490]
+      sha256_of_span: fc275d0dd0fdf1a41deeaecadfd360ff6fa284a4ee085997270a5726315277ee
+  excerpt: 'EchoLeak is a zero-click AI vulnerability in M365 Copilot that enables attackers to exfiltrate sensitive data with no user interaction or misconfiguration.'
+  rights_status: private_use
+  confidence:
+    score: 0.88
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0018
+  source_url: https://www.catonetworks.com/blog/breaking-down-echoleak/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_21bc6b48049c7078
+  supports:
+  - claim_id: claim_echoleak_aim_labs_disclosure
+    field_path: 'bib_ledger.entries[aimlabs2025echoleak].overview'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Aim Labs disclosed EchoLeak (CVE-2025-32711, CVSS 9.3) against Microsoft 365 Copilot as the first zero-click indirect prompt injection; Microsoft patched before in-the-wild exploitation.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0019
+  source_url: https://nvd.nist.gov/vuln/detail/cve-2025-32711
+  source_type: standard
+  source_quality: official
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_ae0e116f2132ca5c
+  supports:
+  - claim_id: claim_cve_2025_32711_record
+    field_path: 'bib_ledger.entries[nvd2025echoleak].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_ae0e116f2132ca5c
+      text_path_offset: [58, 78]
+      sha256_of_span: 64cc62b70aad115475b476754eee1a94bcc7af8398a295950f8131873b54ac29
+  excerpt: 'NVD - cve-2025-32711'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - cached raw snapshot
+    - official source
+- evidence_id: ev_direct_vs_indirect_0020
+  source_url: https://embracethered.com/blog/posts/2025/announcement-the-month-of-ai-bugs/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_c82a4a57a8d7a874
+  supports:
+  - claim_id: claim_month_of_ai_bugs_announcement
+    field_path: 'bib_ledger.entries[rehberger2025monthofaibugs].overview'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Rehberger announces ''Month of AI Bugs 2025'': daily vulnerability disclosures across AI coding assistants and copilots through Aug 2025, each with vendor remediation guidance.'
+  rights_status: private_use
+  confidence:
+    score: 0.82
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0021
+  source_url: https://embracethered.com/blog/posts/2025/wrapping-up-month-of-ai-bugs/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_ab8eccaac24bd61f
+  supports:
+  - claim_id: claim_month_of_ai_bugs_wrapup
+    field_path: 'bib_ledger.entries[rehberger2025monthwrapup].overview'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Wrap-up of ''Month of AI Bugs'': indirect prompt injection dominant across ChatGPT, Copilot, Anthropic MCPs, Cursor, Amp, Devin, OpenHands, Claude Code, Jules.'
+  rights_status: private_use
+  confidence:
+    score: 0.82
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0022
+  source_url: https://embracethered.com/blog/posts/2023/chatgpt-webpilot-data-exfil-via-markdown-injection/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_d63581ef546db462
+  supports:
+  - claim_id: claim_chatgpt_markdown_image_exfil
+    field_path: 'bib_ledger.entries[rehberger2023chatgptmarkdown].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.9
+    excerpt_anchor:
+      cache_id: cache_d63581ef546db462
+      text_path_offset: [229, 359]
+      sha256_of_span: bc22a1570cad63f23466369c23a885651c1266885f99387cbdd948d1804d4992
+  excerpt: 'This post shows how a malicious website can take control of a ChatGPT chat session and exfiltrate the history of the conversation.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0023
+  source_url: https://promptarmor.substack.com/p/data-exfiltration-from-slack-ai-via
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_4d3fcbf4d309ca5b
+  supports:
+  - claim_id: claim_slack_ai_cross_channel_exfil
+    field_path: 'bib_ledger.entries[promptarmor2024slack].overview'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'PromptArmor (Aug 2024) disclosed an indirect prompt injection in Slack AI: a public-channel attacker can cause Slack AI to surface and exfiltrate private-channel secrets to later querents.'
+  rights_status: private_use
+  confidence:
+    score: 0.82
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0024
+  source_url: https://www.koi.ai/blog/shadowprompt-how-any-website-could-have-hijacked-anthropic-claude-chrome-extension
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_a72899f0e7d75999
+  supports:
+  - claim_id: claim_shadowprompt_claude_chrome
+    field_path: 'bib_ledger.entries[koi2026shadowprompt].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.9
+    excerpt_anchor:
+      cache_id: cache_a72899f0e7d75999
+      text_path_offset: [501, 557]
+      sha256_of_span: f88e385a606c1b05919e27e56a85764058fd496ba22b905f79bf0501f4f2753f
+  excerpt: 'ShadowPrompt: How Any Website Could Have Hijacked Claude'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0025
+  source_url: https://www.tenable.com/blog/the-trifecta-how-three-new-gemini-vulnerabilities-in-cloud-assist-search-model-and-browsing
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_55ce86a9fb6b737f
+  supports:
+  - claim_id: claim_gemini_trifecta_three_vulns
+    field_path: 'bib_ledger.entries[tenable2025geminitrifecta].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_55ce86a9fb6b737f
+      text_path_offset: [547, 687]
+      sha256_of_span: 470d9e2f6651eca1d00f4989964d62e437501704935d7f2f0c9fc50ddc1d083c
+  excerpt: 'Tenable Research found three vulnerabilities in the Google Gemini AI assistant that could have exposed users to critical data privacy risks.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0026
+  source_url: https://brave.com/blog/comet-prompt-injection/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_be5c19d4fd1c8864
+  supports:
+  - claim_id: claim_comet_indirect_injection
+    field_path: 'bib_ledger.entries[brave2025comet].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.9
+    excerpt_anchor:
+      cache_id: cache_be5c19d4fd1c8864
+      text_path_offset: [999, 1074]
+      sha256_of_span: 302adc03e8285d7a11a3ba5ebe1692fba4cea50063908d37cc4610f2d15f8dc2
+  excerpt: 'The attack we developed shows that traditional Web security assumptions don'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - cached raw snapshot
+    - secondary source
+- evidence_id: ev_direct_vs_indirect_0027
+  source_url: https://arxiv.org/abs/2504.11168
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb62839772f16e14
+  supports:
+  - claim_id: claim_guardrail_evasion_100pct
+    field_path: 'bib_ledger.entries[hackett2025bypassing].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Hackett et al. report character-injection + adversarial-ML evasion can bypass leading guardrails (Azure Prompt Shield, Meta Prompt Guard) with up to 100% evasion. Attack details omitted per ADR-041.'
+  rights_status: private_use
+  confidence:
+    score: 0.82
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0028
+  source_url: https://arxiv.org/abs/2510.05244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_beea4f2926635943
+  supports:
+  - claim_id: claim_firewalls_benchmark_saturation
+    field_path: 'bib_ledger.entries[bhagwatkar2025firewalls].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Bhagwatkar et al. show a minimal Tool-Input + Tool-Output firewall hits near-perfect security on AgentDojo, ASB, InjecAgent, tau-Bench - critiquing benchmark saturation, not defense adequacy.'
+  rights_status: private_use
+  confidence:
+    score: 0.82
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0029
+  source_url: https://arxiv.org/abs/2510.09023
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_51e92f7784dddb6e
+  supports:
+  - claim_id: claim_attacker_moves_second_adaptive
+    field_path: 'bib_ledger.entries[nasr2025attackersecond].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_51e92f7784dddb6e
+      text_path_offset: [2846, 2965]
+      sha256_of_span: 116e28eb6d29f68596f55168ac269144a82436b0f048f96c8f02240d635d4628
+  excerpt: 'we should evaluate defenses against adaptive attackers who explicitly modify their attack strategy to counter a defense'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0030
+  source_url: https://arxiv.org/abs/2507.05630
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_5223602a690470a0
+  supports:
+  - claim_id: claim_kad_structural_vulnerability
+    field_path: 'bib_ledger.entries[choudhary2025hownotdetect].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Choudhary et al. find a structural flaw in known-answer-detection (KAD) prompt-injection detectors; their adaptive DataFlip drops KAD detection near 0% while preserving attacker utility.'
+  rights_status: private_use
+  confidence:
+    score: 0.82
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0031
+  source_url: https://arxiv.org/abs/2312.14197
+  source_type: benchmark
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_70d4cfd50519178f
+  supports:
+  - claim_id: claim_bipia_first_indirect_benchmark
+    field_path: 'bib_ledger.entries[yi2025bipia].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_70d4cfd50519178f
+      text_path_offset: [2682, 2810]
+      sha256_of_span: 4bd06835257c119e037e998a1728589b12e11a17824f50aa906b623edaa56e12
+  excerpt: 'we introduce the first benchmark for indirect prompt injection attacks, named BIPIA, to assess the risk of such vulnerabilities.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0032
+  source_url: https://arxiv.org/abs/2403.02691
+  source_type: benchmark
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_4493644eb2e357a8
+  supports:
+  - claim_id: claim_injecagent_tool_integrated_benchmark
+    field_path: 'bib_ledger.entries[zhan2024injecagent].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.9
+    excerpt_anchor:
+      cache_id: cache_4493644eb2e357a8
+      text_path_offset: [2868, 2915]
+      sha256_of_span: ff8df49f30c27890552a69eae102f5d33df680d10789442fc845f2838a9ea9c6
+  excerpt: 'we introduce InjecAgent, a benchmark designed t'
+  rights_status: private_use
+  confidence:
+    score: 0.88
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0033
+  source_url: https://arxiv.org/abs/2403.02691
+  source_type: benchmark
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_4493644eb2e357a8
+  supports:
+  - claim_id: claim_injecagent_ipi_definition
+    field_path: 'bib_ledger.entries[zhan2024injecagent].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_4493644eb2e357a8
+      text_path_offset: [2474, 2633]
+      sha256_of_span: e453a0191d1330114c7779dd8fe0cc3fe069f526d8e69dbd60d0d061b02bf96e
+  excerpt: 'external content introduces the risk of indirect prompt injection (IPI) attacks, where malicious instructions are embedded within the content processed by LLMs'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0034
+  source_url: https://arxiv.org/abs/2406.13352
+  source_type: benchmark
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_28b49b68f7f9500e
+  supports:
+  - claim_id: claim_agentdojo_dynamic_environment
+    field_path: 'bib_ledger.entries[debenedetti2024agentdojo].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_28b49b68f7f9500e
+      text_path_offset: [2611, 2709]
+      sha256_of_span: ab575a09de6e0f33ec77c36edcd9315d77d75ff5910a02e16744687786b092be
+  excerpt: 'we introduce AgentDojo, an evaluation framework for agents that execute tools over untrusted data.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0035
+  source_url: https://arxiv.org/abs/2406.13352
+  source_type: benchmark
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_28b49b68f7f9500e
+  supports:
+  - claim_id: claim_agentdojo_extensible_environment
+    field_path: 'bib_ledger.entries[debenedetti2024agentdojo].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_28b49b68f7f9500e
+      text_path_offset: [2766, 2909]
+      sha256_of_span: 86626a4a1fa6da53753d92c7eeeac00cc5dd4c6d2b84b63b7c8756a0d9e4dade
+  excerpt: 'AgentDojo is not a static test suite, but rather an extensible environment for designing and evaluating new agent tasks, defenses, and adaptive'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0036
+  source_url: https://arxiv.org/abs/2506.09956
+  source_type: benchmark
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_8e0c41db3ea23938
+  supports:
+  - claim_id: claim_llmail_inject_adaptive_dataset
+    field_path: 'bib_ledger.entries[abdelnabi2025llmailinject].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8e0c41db3ea23938
+      text_path_offset: [2658, 2837]
+      sha256_of_span: 032fc19388c6deded760c7fb7436d0751cb0ee0d39fe5477bbf8cfc07fca3347
+  excerpt: 'We present the results of LLMail-Inject, a public challenge simulating a realistic scenario in which participants adaptively attempted to inject malicious instructions into emails'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0037
+  source_url: https://arxiv.org/abs/2410.02644
+  source_type: benchmark
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb37ba552eb103f6
+  supports:
+  - claim_id: claim_asb_formalize_benchmark
+    field_path: 'bib_ledger.entries[zhang2025asb].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_bb37ba552eb103f6
+      text_path_offset: [2648, 2806]
+      sha256_of_span: 5321411874890b20b00a3bcca0a1a3dfc9aaa44b90097e954d5a4989046b7b60
+  excerpt: 'we introduce Agent Security Bench (ASB), a comprehensive framework designed to formalize, benchmark, and evaluate the attacks and defenses of LLM-based agents'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0038
+  source_url: https://arxiv.org/abs/2410.02644
+  source_type: benchmark
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb37ba552eb103f6
+  supports:
+  - claim_id: claim_asb_10_scenarios_400_tools
+    field_path: 'bib_ledger.entries[zhang2025asb].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_bb37ba552eb103f6
+      text_path_offset: [2808, 2929]
+      sha256_of_span: 3117e9485330f9e574e7efc618824f312ff3e26ef7c0eb7d0e1ce9c030d4f122
+  excerpt: 'including 10 scenarios (e.g., e-commerce, autonomous driving, finance), 10 agents targeting the scenarios, over 400 tools'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0039
+  source_url: https://arxiv.org/abs/2504.18575
+  source_type: benchmark
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_88cbfa5775742af0
+  supports:
+  - claim_id: claim_wasp_web_agent_benchmark
+    field_path: 'bib_ledger.entries[evtimov2025wasp].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_88cbfa5775742af0
+      text_path_offset: [2803, 2940]
+      sha256_of_span: bc7d2b7e784bb552d043831f0a82c02577041873c52885e02e5112b59ca37ccc
+  excerpt: 'we introduce WASP -- a new publicly available benchmark for end-to-end evaluation of Web Agent Security against Prompt injection attacks.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source

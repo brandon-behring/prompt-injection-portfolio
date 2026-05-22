@@ -1,0 +1,726 @@
+schema_version: 2
+topic: direct_vs_indirect
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+entries:
+- bibkey: greshake2023indirect
+  primary_url: https://arxiv.org/abs/2302.12173
+  title: 'Not what you''ve signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection'
+  status: verified
+  claim_family: injection_threat_model
+  authors: Greshake et al. (2023)
+  venue: AISec 2023 (arXiv preprint)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0001
+  - ev_direct_vs_indirect_0002
+  cache_ids:
+  - cache_03106dd103864555
+- bibkey: owasp2025llm01
+  primary_url: https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+  title: LLM01:2025 Prompt Injection
+  status: verified
+  claim_family: injection_threat_model
+  authors: OWASP Gen AI Security Project (2025)
+  venue: OWASP Top 10 for LLM Applications 2025
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0003
+  cache_ids:
+  - cache_13d91c957b4f3993
+- bibkey: willison2023duallllm
+  primary_url: https://simonwillison.net/2023/Apr/25/dual-llm-pattern/
+  title: The Dual LLM pattern for building AI assistants that can resist prompt injection
+  status: verified
+  claim_family: injection_threat_model
+  authors: Willison (2023)
+  venue: simonwillison.net (blog)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0004
+  cache_ids:
+  - cache_7d31fd1b044f4cdd
+- bibkey: willison2025trifecta
+  primary_url: https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/
+  title: 'The lethal trifecta for AI agents: private data, untrusted content, and external communication'
+  status: verified
+  claim_family: injection_threat_model
+  authors: Willison (2025)
+  venue: simonwillison.net (blog)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0005
+  cache_ids:
+  - cache_8f8e4bafcb839e1d
+- bibkey: hines2024spotlighting
+  primary_url: https://arxiv.org/abs/2403.14720
+  title: Defending Against Indirect Prompt Injection Attacks With Spotlighting
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Hines et al. (2024)
+  venue: CAMLIS 2024 (arXiv preprint)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0006
+  cache_ids:
+  - cache_2d58408c3b4f8e5d
+- bibkey: chen2025struq
+  primary_url: https://arxiv.org/abs/2402.06363
+  title: 'StruQ: Defending Against Prompt Injection with Structured Queries'
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Chen et al. (2024)
+  venue: USENIX Security 2025
+  code_url: https://github.com/Sizhe-Chen/StruQ
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0007
+  cache_ids:
+  - cache_c3439daa681bdac9
+- bibkey: chen2025secalign
+  primary_url: https://arxiv.org/abs/2410.05451
+  title: 'SecAlign: Defending Against Prompt Injection with Preference Optimization'
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Chen et al. (2024)
+  venue: ACM CCS 2025
+  code_url: https://github.com/facebookresearch/SecAlign
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0008
+  cache_ids:
+  - cache_8f562c950ef155e3
+- bibkey: chen2025metasecalign
+  primary_url: https://arxiv.org/abs/2507.02735
+  title: 'Meta SecAlign: A Secure Foundation LLM Against Prompt Injection Attacks'
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Chen et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0009
+  cache_ids:
+  - cache_74a75f6036e89f8d
+- bibkey: debenedetti2025camel
+  primary_url: https://arxiv.org/abs/2503.18813
+  title: Defeating Prompt Injections by Design
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Debenedetti et al. (2025)
+  venue: arXiv preprint
+  code_url: https://github.com/google-research/camel-prompt-injection
+  aliases:
+  - CaMeL
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0010
+  - ev_direct_vs_indirect_0011
+  cache_ids:
+  - cache_cfffce6b1f23371d
+- bibkey: wallace2024instructionhierarchy
+  primary_url: https://arxiv.org/abs/2404.13208
+  title: 'The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions'
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Wallace et al. (2024)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0012
+  cache_ids:
+  - cache_c8697d3c88066297
+- bibkey: piet2024jatmo
+  primary_url: https://arxiv.org/abs/2312.17673
+  title: 'Jatmo: Prompt Injection Defense by Task-Specific Finetuning'
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Piet et al. (2023)
+  venue: ESORICS 2024 (arXiv preprint)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0013
+  cache_ids:
+  - cache_937568d9c8dbd86d
+- bibkey: wu2025isolategpt
+  primary_url: https://arxiv.org/abs/2403.04960
+  title: 'IsolateGPT: An Execution Isolation Architecture for LLM-Based Agentic Systems'
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Wu et al. (2024)
+  venue: NDSS 2025
+  aliases:
+  - SecGPT
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0014
+  cache_ids:
+  - cache_da4a859c554697e4
+- bibkey: chennabasappa2025llamafirewall
+  primary_url: https://arxiv.org/abs/2505.03574
+  title: 'LlamaFirewall: An open source guardrail system for building secure AI agents'
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Chennabasappa et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0015
+  cache_ids:
+  - cache_5575144bb9ad0eb7
+- bibkey: beurerkellner2025designpatterns
+  primary_url: https://arxiv.org/abs/2506.08837
+  title: Design Patterns for Securing LLM Agents against Prompt Injections
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Beurer-Kellner et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0016
+  cache_ids:
+  - cache_4397426179bea947
+- bibkey: aimlabs2025echoleak
+  primary_url: https://www.catonetworks.com/blog/breaking-down-echoleak/
+  title: Breaking down 'EchoLeak', the First Zero-Click AI Vulnerability Enabling Data Exfiltration from Microsoft 365 Copilot
+  status: verified
+  claim_family: production_incidents
+  authors: Ravia, Aim Labs (2025)
+  venue: Cato Networks blog (Aim Labs disclosure)
+  aliases:
+  - EchoLeak
+  - CVE-2025-32711
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0017
+  - ev_direct_vs_indirect_0018
+  cache_ids:
+  - cache_21bc6b48049c7078
+- bibkey: nvd2025echoleak
+  primary_url: https://nvd.nist.gov/vuln/detail/cve-2025-32711
+  title: CVE-2025-32711 Detail (M365 Copilot AI command injection)
+  status: verified
+  claim_family: production_incidents
+  authors: NIST NVD (2025)
+  venue: NIST National Vulnerability Database
+  aliases:
+  - CVE-2025-32711
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0019
+  cache_ids:
+  - cache_ae0e116f2132ca5c
+- bibkey: rehberger2025monthofaibugs
+  primary_url: https://embracethered.com/blog/posts/2025/announcement-the-month-of-ai-bugs/
+  title: The Month of AI Bugs 2025
+  status: verified
+  claim_family: production_incidents
+  authors: Rehberger (2025)
+  venue: embracethered.com (announcement)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0020
+  cache_ids:
+  - cache_c82a4a57a8d7a874
+- bibkey: rehberger2025monthwrapup
+  primary_url: https://embracethered.com/blog/posts/2025/wrapping-up-month-of-ai-bugs/
+  title: 'Wrap Up: The Month of AI Bugs'
+  status: verified
+  claim_family: production_incidents
+  authors: Rehberger (2025)
+  venue: embracethered.com (wrap-up)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0021
+  cache_ids:
+  - cache_ab8eccaac24bd61f
+- bibkey: rehberger2023chatgptmarkdown
+  primary_url: https://embracethered.com/blog/posts/2023/chatgpt-webpilot-data-exfil-via-markdown-injection/
+  title: 'ChatGPT Plugins: Data Exfiltration via Images & Cross Plugin Request Forgery'
+  status: verified
+  claim_family: production_incidents
+  authors: Rehberger (2023)
+  venue: embracethered.com (blog)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0022
+  cache_ids:
+  - cache_d63581ef546db462
+- bibkey: promptarmor2024slack
+  primary_url: https://promptarmor.substack.com/p/data-exfiltration-from-slack-ai-via
+  title: Data Exfiltration from Slack AI via indirect prompt injection
+  status: verified
+  claim_family: production_incidents
+  authors: PromptArmor (2024)
+  venue: promptarmor.substack.com (disclosure)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0023
+  cache_ids:
+  - cache_4d3fcbf4d309ca5b
+- bibkey: koi2026shadowprompt
+  primary_url: https://www.koi.ai/blog/shadowprompt-how-any-website-could-have-hijacked-anthropic-claude-chrome-extension
+  title: 'ShadowPrompt: How Any Website Could Have Hijacked Claude''s Chrome Extension'
+  status: verified
+  claim_family: production_incidents
+  authors: Yomtov, Koi Security (2026)
+  venue: koi.ai blog (disclosure)
+  aliases:
+  - ShadowPrompt
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0024
+  cache_ids:
+  - cache_a72899f0e7d75999
+- bibkey: tenable2025geminitrifecta
+  primary_url: https://www.tenable.com/blog/the-trifecta-how-three-new-gemini-vulnerabilities-in-cloud-assist-search-model-and-browsing
+  title: 'The Trifecta: How Three New Gemini Vulnerabilities in Cloud Assist, Search Model, and Browsing Allowed Private Data Exfiltration'
+  status: verified
+  claim_family: production_incidents
+  authors: Matan, Tenable (2025)
+  venue: tenable.com (disclosure)
+  aliases:
+  - Gemini Trifecta
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0025
+  cache_ids:
+  - cache_55ce86a9fb6b737f
+- bibkey: brave2025comet
+  primary_url: https://brave.com/blog/comet-prompt-injection/
+  title: 'Agentic Browser Security: Indirect Prompt Injection in Perplexity Comet'
+  status: verified
+  claim_family: production_incidents
+  authors: Chaikin & Sahib, Brave (2025)
+  venue: brave.com (disclosure)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0026
+  cache_ids:
+  - cache_be5c19d4fd1c8864
+- bibkey: hackett2025bypassing
+  primary_url: https://arxiv.org/abs/2504.11168
+  title: 'Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection Systems'
+  status: verified
+  claim_family: production_incidents
+  authors: Hackett et al. (2025)
+  venue: LLMSec 2025 (arXiv preprint)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0027
+  cache_ids:
+  - cache_bb62839772f16e14
+- bibkey: bhagwatkar2025firewalls
+  primary_url: https://arxiv.org/abs/2510.05244
+  title: 'Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?'
+  status: verified
+  claim_family: production_incidents
+  authors: Bhagwatkar et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0028
+  cache_ids:
+  - cache_beea4f2926635943
+- bibkey: nasr2025attackersecond
+  primary_url: https://arxiv.org/abs/2510.09023
+  title: 'The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections'
+  status: verified
+  claim_family: production_incidents
+  authors: Nasr et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0029
+  cache_ids:
+  - cache_51e92f7784dddb6e
+- bibkey: choudhary2025hownotdetect
+  primary_url: https://arxiv.org/abs/2507.05630
+  title: How Not to Detect Prompt Injections with an LLM
+  status: verified
+  claim_family: production_incidents
+  authors: Choudhary et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0030
+  cache_ids:
+  - cache_5223602a690470a0
+- bibkey: yi2025bipia
+  primary_url: https://arxiv.org/abs/2312.14197
+  title: Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models
+  status: verified
+  claim_family: agentic_benchmarks
+  authors: Yi et al. (2023)
+  venue: KDD 2025
+  aliases:
+  - BIPIA
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0031
+  cache_ids:
+  - cache_70d4cfd50519178f
+- bibkey: zhan2024injecagent
+  primary_url: https://arxiv.org/abs/2403.02691
+  title: 'InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents'
+  status: verified
+  claim_family: agentic_benchmarks
+  authors: Zhan et al. (2024)
+  venue: ACL 2024 Findings
+  code_url: https://github.com/uiuc-kang-lab/InjecAgent
+  aliases:
+  - InjecAgent
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0032
+  - ev_direct_vs_indirect_0033
+  cache_ids:
+  - cache_4493644eb2e357a8
+- bibkey: debenedetti2024agentdojo
+  primary_url: https://arxiv.org/abs/2406.13352
+  title: 'AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents'
+  status: verified
+  claim_family: agentic_benchmarks
+  authors: Debenedetti et al. (2024)
+  venue: NeurIPS 2024 (arXiv preprint)
+  code_url: https://github.com/ethz-spylab/agentdojo
+  aliases:
+  - AgentDojo
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0034
+  - ev_direct_vs_indirect_0035
+  cache_ids:
+  - cache_28b49b68f7f9500e
+- bibkey: abdelnabi2025llmailinject
+  primary_url: https://arxiv.org/abs/2506.09956
+  title: 'LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge'
+  status: verified
+  claim_family: agentic_benchmarks
+  authors: Abdelnabi et al. (2025)
+  venue: IEEE SaTML 2025 (arXiv preprint)
+  aliases:
+  - LLMail-Inject
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0036
+  cache_ids:
+  - cache_8e0c41db3ea23938
+- bibkey: zhang2025asb
+  primary_url: https://arxiv.org/abs/2410.02644
+  title: 'Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents'
+  status: verified
+  claim_family: agentic_benchmarks
+  authors: Zhang et al. (2024)
+  venue: ICLR 2025
+  code_url: https://github.com/agiresearch/ASB
+  aliases:
+  - ASB
+  - Agent Security Bench
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0037
+  - ev_direct_vs_indirect_0038
+  cache_ids:
+  - cache_bb37ba552eb103f6
+- bibkey: evtimov2025wasp
+  primary_url: https://arxiv.org/abs/2504.18575
+  title: 'WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks'
+  status: verified
+  claim_family: agentic_benchmarks
+  authors: Evtimov et al. (2025)
+  venue: arXiv preprint
+  code_url: https://github.com/facebookresearch/wasp
+  aliases:
+  - WASP
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0039
+  cache_ids:
+  - cache_88cbfa5775742af0

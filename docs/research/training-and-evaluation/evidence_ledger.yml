@@ -1,0 +1,3347 @@
+schema_version: 3
+topic: training_and_evaluation
+generated_at: '2026-05-22'
+current_as_of: '2026-05-22'
+freshness_policy: strict_live
+entries:
+- evidence_id: ev_training_and_evaluation_0001
+  source_url: https://huggingface.co/datasets/deepset/prompt-injections
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_e4bb99e86bb2150e
+  supports:
+  - claim_id: claim_training_and_evaluation_deepset2024promptinjections_a1_existence
+    field_path: bib_ledger.entries[0].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: deepset/prompt-injections is a HuggingFace dataset for prompt-injection classification, hosted by deepset and widely used as a small baseline training set for encoder-based PI detectors.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0002
+  source_url: https://huggingface.co/datasets/deepset/prompt-injections
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_e4bb99e86bb2150e
+  supports:
+  - claim_id: claim_training_and_evaluation_deepset2024promptinjections_a2_provenance
+    field_path: bib_ledger.entries[0].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: Dataset card on HuggingFace; widely-known overlap with public PI detector training corpora (one of the original small benchmarks).
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0003
+  source_url: https://huggingface.co/datasets/jackhhao/jailbreak-classification
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_54ec70daa99e6a82
+  supports:
+  - claim_id: claim_training_and_evaluation_jackhhao2023jailbreakclassification_a1_existence
+    field_path: bib_ledger.entries[1].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: jackhhao/jailbreak-classification is a HuggingFace community dataset of labeled jailbreak vs. benign prompts, used as one of the early small training corpora for jailbreak/PI classifiers.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0004
+  source_url: https://huggingface.co/datasets/jackhhao/jailbreak-classification
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_54ec70daa99e6a82
+  supports:
+  - claim_id: claim_training_and_evaluation_jackhhao2023jailbreakclassification_a2_provenance
+    field_path: bib_ledger.entries[1].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: HuggingFace dataset card; community-maintained, no paper. Used in several downstream detector training mixtures.
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0005
+  source_url: https://huggingface.co/datasets/xTRam1/safe-guard-prompt-injection
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8e1b5862504dc67a
+  supports:
+  - claim_id: claim_training_and_evaluation_xtram2024safeguard_a1_existence
+    field_path: bib_ledger.entries[2].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: xTRam1/safe-guard-prompt-injection is a HuggingFace dataset for prompt-injection classification. Distinct from xTRam1/safe-guard-v2 — easily confused; verify maintainer + name in citations.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0006
+  source_url: https://huggingface.co/datasets/xTRam1/safe-guard-prompt-injection
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8e1b5862504dc67a
+  supports:
+  - claim_id: claim_training_and_evaluation_xtram2024safeguard_a2_provenance
+    field_path: bib_ledger.entries[2].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: Community-uploaded HuggingFace dataset; treated as one of many small mid-2024 PI training corpora in detector landscape.
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0007
+  source_url: https://arxiv.org/abs/2308.03825
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f6e684d1261790a5
+  supports:
+  - claim_id: claim_training_and_evaluation_shen2023doanythingnow_a1_headline
+    field_path: bib_ledger.entries[3].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: The misuse of large language models (LLMs) has drawn significant attention from the general public and LLM vendors. One particular type of adversarial prompt, known as jailbreak prompt, has emerged as
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0008
+  source_url: https://arxiv.org/abs/2308.03825
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f6e684d1261790a5
+  supports:
+  - claim_id: claim_training_and_evaluation_shen2023doanythingnow_a2_methodology
+    field_path: bib_ledger.entries[3].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Characterizes in-the-wild jailbreak prompts collected from Reddit/Discord/websites; releases verazuo/jailbreak_llms dataset of real-world jailbreak prompts.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0009
+  source_url: https://arxiv.org/abs/2308.03825
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f6e684d1261790a5
+  supports:
+  - claim_id: claim_training_and_evaluation_shen2023doanythingnow_a3_contribution
+    field_path: bib_ledger.entries[3].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: First large-scale measurement of in-the-wild jailbreak prompts (~6,387 prompts, ~666 jailbreak prompts) used as evaluation/training corpus by detector teams.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0010
+  source_url: https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_922c47c9f3641cd6
+  supports:
+  - claim_id: claim_training_and_evaluation_lakera2023gandalfignore_a1_existence
+    field_path: bib_ledger.entries[4].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Lakera/gandalf_ignore_instructions is a HuggingFace dataset of prompts that try to make the LLM ignore its system instructions, derived from the Lakera Gandalf game.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0011
+  source_url: https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_922c47c9f3641cd6
+  supports:
+  - claim_id: claim_training_and_evaluation_lakera2023gandalfignore_a2_provenance
+    field_path: bib_ledger.entries[4].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: Released by Lakera AI from their public Gandalf challenge; widely re-used as a training/evaluation subset in encoder PI detectors.
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0012
+  source_url: https://arxiv.org/abs/2310.17389
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_24af2a5e83d1a7e4
+  supports:
+  - claim_id: claim_training_and_evaluation_lin2023toxicchat_a1_headline
+    field_path: bib_ledger.entries[5].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Despite remarkable advances that large language models have achieved in chatbots, maintaining a non-toxic user-AI interactive environment has become increasingly critical nowadays. However, previous e
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0013
+  source_url: https://arxiv.org/abs/2310.17389
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_24af2a5e83d1a7e4
+  supports:
+  - claim_id: claim_training_and_evaluation_lin2023toxicchat_a2_methodology
+    field_path: bib_ledger.entries[5].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Constructs ToxicChat from real user-AI conversations (Vicuna-online dataset) with human-annotated toxicity + jailbreak labels.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0014
+  source_url: https://arxiv.org/abs/2310.17389
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_24af2a5e83d1a7e4
+  supports:
+  - claim_id: claim_training_and_evaluation_lin2023toxicchat_a3_contribution
+    field_path: bib_ledger.entries[5].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Demonstrates real-conversation toxicity detection differs sharply from social-media benchmarks; provides lmsys/toxic-chat dataset reused as PI training subset.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0015
+  source_url: https://huggingface.co/datasets/reshabhs/SPML_Chatbot_Prompt_Injection
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_942be1d5b34e1a81
+  supports:
+  - claim_id: claim_training_and_evaluation_reshabh2024spml_a1_existence
+    field_path: bib_ledger.entries[6].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: reshabhs/SPML_Chatbot_Prompt_Injection (SPML — System Prompt Meta Language) is a HuggingFace dataset of ~16K system-prompt vs user-prompt pairs, designed for chatbot-style PI evaluation.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0016
+  source_url: https://huggingface.co/datasets/reshabhs/SPML_Chatbot_Prompt_Injection
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_942be1d5b34e1a81
+  supports:
+  - claim_id: claim_training_and_evaluation_reshabh2024spml_a2_provenance
+    field_path: bib_ledger.entries[6].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: Released alongside Sharma et al. SPML paper (arXiv 2402.11755); used in several detector training mixtures.
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0017
+  source_url: https://huggingface.co/datasets/geekyrakshit/prompt-injection-dataset
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_1e401aac38c4b954
+  supports:
+  - claim_id: claim_training_and_evaluation_geekyrakshit2024promptinjectiondataset_a1_existence
+    field_path: bib_ledger.entries[7].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: geekyrakshit/prompt-injection-dataset is a ~534K-row aggregated HuggingFace dataset combining multiple smaller PI corpora (one of the largest publicly-available mixtures).
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0018
+  source_url: https://huggingface.co/datasets/geekyrakshit/prompt-injection-dataset
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_1e401aac38c4b954
+  supports:
+  - claim_id: claim_training_and_evaluation_geekyrakshit2024promptinjectiondataset_a2_provenance
+    field_path: bib_ledger.entries[7].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: Aggregator dataset by user 'geekyrakshit'; provenance of individual rows mixed (de-duplicated rollup of public PI sources). License of underlying sources may vary.
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0019
+  source_url: https://arxiv.org/abs/2311.01011
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_b6479b8118b518af
+  supports:
+  - claim_id: claim_training_and_evaluation_toyer2023tensortrust_a1_headline
+    field_path: bib_ledger.entries[8].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'While Large Language Models (LLMs) are increasingly being used in real-world applications, they remain vulnerable to prompt injection attacks: malicious third party prompts that subvert the intent of '
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0020
+  source_url: https://arxiv.org/abs/2311.01011
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_b6479b8118b518af
+  supports:
+  - claim_id: claim_training_and_evaluation_toyer2023tensortrust_a2_methodology
+    field_path: bib_ledger.entries[8].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Crowd-sourced prompt injection attacks via the Tensor Trust online game; collects diverse adversarial prompts in a defender-vs-attacker setting.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0021
+  source_url: https://arxiv.org/abs/2311.01011
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_b6479b8118b518af
+  supports:
+  - claim_id: claim_training_and_evaluation_toyer2023tensortrust_a3_contribution
+    field_path: bib_ledger.entries[8].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Releases TensorTrust dataset; analyzes interpretability of crowd-sourced PI attack patterns. ICLR 2024.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0022
+  source_url: https://arxiv.org/abs/2311.16119
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_598fd3b9f1751bb9
+  supports:
+  - claim_id: claim_training_and_evaluation_schulhoff2023hackaprompt_a1_headline
+    field_path: bib_ledger.entries[9].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Large Language Models (LLMs) are deployed in interactive contexts with direct user engagement, such as chatbots and writing assistants. These deployments are vulnerable to prompt injection and jailbre
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0023
+  source_url: https://arxiv.org/abs/2311.16119
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_598fd3b9f1751bb9
+  supports:
+  - claim_id: claim_training_and_evaluation_schulhoff2023hackaprompt_a2_methodology
+    field_path: bib_ledger.entries[9].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Global-scale prompt-hacking competition with ~600K prompts/responses across 10 levels of system-prompt difficulty; proposes ontology of attack categories.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0024
+  source_url: https://arxiv.org/abs/2311.16119
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_598fd3b9f1751bb9
+  supports:
+  - claim_id: claim_training_and_evaluation_schulhoff2023hackaprompt_a3_contribution
+    field_path: bib_ledger.entries[9].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Releases HackAPrompt dataset; first systematic ontology of prompt-injection techniques used by downstream training-data work.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0025
+  source_url: https://arxiv.org/abs/2506.09956
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8e0c41db3ea23938
+  supports:
+  - claim_id: claim_training_and_evaluation_abdelnabi2025llmailinject_a1_headline
+    field_path: bib_ledger.entries[10].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Indirect Prompt Injection attacks exploit the inherent limitation of Large Language Models (LLMs) to distinguish between instructions and data in their inputs. Despite numerous defense proposals, the '
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0026
+  source_url: https://arxiv.org/abs/2506.09956
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8e0c41db3ea23938
+  supports:
+  - claim_id: claim_training_and_evaluation_abdelnabi2025llmailinject_a2_methodology
+    field_path: bib_ledger.entries[10].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Microsoft LLMail-Inject challenge: ~208K adaptive attacks against email-LLM-agent variants, with both attacker and defender perspectives.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0027
+  source_url: https://arxiv.org/abs/2506.09956
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8e0c41db3ea23938
+  supports:
+  - claim_id: claim_training_and_evaluation_abdelnabi2025llmailinject_a3_contribution
+    field_path: bib_ledger.entries[10].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Releases LLMail-Inject dataset; provides one of the largest adaptive-attack corpora in 2025 for PI detector benchmarking.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0028
+  source_url: https://arxiv.org/abs/2307.15043
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_d8fe8c074031c1c5
+  supports:
+  - claim_id: claim_training_and_evaluation_zou2023universal_a1_headline
+    field_path: bib_ledger.entries[11].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Because &#34;out-of-the-box&#34; large language models are capable of generating a great deal of objectionable content, recent work has focused on aligning these models in an attempt to prevent undesi
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0029
+  source_url: https://arxiv.org/abs/2307.15043
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_d8fe8c074031c1c5
+  supports:
+  - claim_id: claim_training_and_evaluation_zou2023universal_a2_methodology
+    field_path: bib_ledger.entries[11].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'GCG (Greedy Coordinate Gradient) attack: optimizes adversarial suffixes that transfer across aligned LLMs to bypass refusal.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0030
+  source_url: https://arxiv.org/abs/2307.15043
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_d8fe8c074031c1c5
+  supports:
+  - claim_id: claim_training_and_evaluation_zou2023universal_a3_contribution
+    field_path: bib_ledger.entries[11].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Releases AdvBench (520 harmful behaviors); foundational attack benchmark used by HarmBench / JBB-Behaviors / detector evaluation.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0031
+  source_url: https://arxiv.org/abs/2402.04249
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cde8e4a02d22f739
+  supports:
+  - claim_id: claim_training_and_evaluation_mazeika2024harmbench_a1_headline
+    field_path: bib_ledger.entries[12].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Automated red teaming holds substantial promise for uncovering and mitigating the risks associated with the malicious use of large language models (LLMs), yet the field lacks a standardized evaluation
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0032
+  source_url: https://arxiv.org/abs/2402.04249
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cde8e4a02d22f739
+  supports:
+  - claim_id: claim_training_and_evaluation_mazeika2024harmbench_a2_methodology
+    field_path: bib_ledger.entries[12].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Standardized evaluation framework for automated red-teaming + robust refusal, with 400 behaviors x 7 categories and 18 red-team methods.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0033
+  source_url: https://arxiv.org/abs/2402.04249
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cde8e4a02d22f739
+  supports:
+  - claim_id: claim_training_and_evaluation_mazeika2024harmbench_a3_contribution
+    field_path: bib_ledger.entries[12].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Releases HarmBench; ICML 2024; canonical benchmark for adversarial robustness + jailbreak attack benchmarking.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0034
+  source_url: https://arxiv.org/abs/2404.01318
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f1443d8cfe646a3b
+  supports:
+  - claim_id: claim_training_and_evaluation_chao2024jailbreakbench_a1_headline
+    field_path: bib_ledger.entries[13].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Jailbreak attacks cause large language models (LLMs) to generate harmful, unethical, or otherwise objectionable content. Evaluating these attacks presents a number of challenges, which the current col
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0035
+  source_url: https://arxiv.org/abs/2404.01318
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f1443d8cfe646a3b
+  supports:
+  - claim_id: claim_training_and_evaluation_chao2024jailbreakbench_a2_methodology
+    field_path: bib_ledger.entries[13].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'JBB-Behaviors benchmark: 100 misuse behaviors x 100 LLMs x adaptive attacks; open leaderboard.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0036
+  source_url: https://arxiv.org/abs/2404.01318
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f1443d8cfe646a3b
+  supports:
+  - claim_id: claim_training_and_evaluation_chao2024jailbreakbench_a3_contribution
+    field_path: bib_ledger.entries[13].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: NeurIPS 2024 D&B; provides reproducible jailbreak evaluation harness with versioned behavior set.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0037
+  source_url: https://arxiv.org/abs/2406.18510
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_929d95a137e7f2b0
+  supports:
+  - claim_id: claim_training_and_evaluation_jiang2024wildjailbreak_a1_headline
+    field_path: bib_ledger.entries[14].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'We introduce WildTeaming, an automatic LLM safety red-teaming framework that mines in-the-wild user-chatbot interactions to discover 5.7K unique clusters of novel jailbreak tactics, and then composes '
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0038
+  source_url: https://arxiv.org/abs/2406.18510
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_929d95a137e7f2b0
+  supports:
+  - claim_id: claim_training_and_evaluation_jiang2024wildjailbreak_a2_methodology
+    field_path: bib_ledger.entries[14].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'WildTeaming: synthesizes diverse in-the-wild jailbreak training prompts from LMSYS-Chat to produce WildJailbreak / WildGuardMix safety-tuning datasets.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0039
+  source_url: https://arxiv.org/abs/2406.18510
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_929d95a137e7f2b0
+  supports:
+  - claim_id: claim_training_and_evaluation_jiang2024wildjailbreak_a3_contribution
+    field_path: bib_ledger.entries[14].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Releases AllenAI WildJailbreak (large attack-content dataset; document existence + license per ADR-041 ETHICS constraint).
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0040
+  source_url: https://arxiv.org/abs/2406.18495
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_b9dc5ff6a0eac4a3
+  supports:
+  - claim_id: claim_training_and_evaluation_han2024wildguard_a1_headline
+    field_path: bib_ledger.entries[15].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'We introduce WildGuard -- an open, light-weight moderation tool for LLM safety that achieves three goals: (1) identifying malicious intent in user prompts, (2) detecting safety risks of model response'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0041
+  source_url: https://arxiv.org/abs/2406.18495
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_b9dc5ff6a0eac4a3
+  supports:
+  - claim_id: claim_training_and_evaluation_han2024wildguard_a2_methodology
+    field_path: bib_ledger.entries[15].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Trains WildGuard moderation model on WildGuardMix (~92K combined prompts + responses) for safety risk, jailbreak, and refusal classification.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0042
+  source_url: https://arxiv.org/abs/2406.18495
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_b9dc5ff6a0eac4a3
+  supports:
+  - claim_id: claim_training_and_evaluation_han2024wildguard_a3_contribution
+    field_path: bib_ledger.entries[15].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Open one-stop moderation model with NeurIPS 2024; reused as a PI/jailbreak baseline detector.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0043
+  source_url: https://arxiv.org/abs/2402.05044
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4a31fbc65b8cb53e
+  supports:
+  - claim_id: claim_training_and_evaluation_li2024saladbench_a1_headline
+    field_path: bib_ledger.entries[16].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: In the rapidly evolving landscape of Large Language Models (LLMs), ensuring robust safety measures is paramount. To meet this crucial need, we propose \emph{SALAD-Bench}, a safety benchmark specifical
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0044
+  source_url: https://arxiv.org/abs/2402.05044
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4a31fbc65b8cb53e
+  supports:
+  - claim_id: claim_training_and_evaluation_li2024saladbench_a2_methodology
+    field_path: bib_ledger.entries[16].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'SALAD-Bench: hierarchical taxonomy (6 domains x 16 tasks x 65 categories) with 30K test items for LLM safety benchmarking.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0045
+  source_url: https://arxiv.org/abs/2402.05044
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4a31fbc65b8cb53e
+  supports:
+  - claim_id: claim_training_and_evaluation_li2024saladbench_a3_contribution
+    field_path: bib_ledger.entries[16].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Releases OpenSafetyLab/Salad-Data; ACL 2024 Findings; provides hierarchical safety eval.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0046
+  source_url: https://arxiv.org/abs/2404.03027
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f5282b43e6273276
+  supports:
+  - claim_id: claim_training_and_evaluation_luo2024jailbreakv28k_a1_headline
+    field_path: bib_ledger.entries[17].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: With the rapid advancements in Multimodal Large Language Models (MLLMs), securing these models against malicious inputs while aligning them with human values has emerged as a critical challenge. In th
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0047
+  source_url: https://arxiv.org/abs/2404.03027
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f5282b43e6273276
+  supports:
+  - claim_id: claim_training_and_evaluation_luo2024jailbreakv28k_a2_methodology
+    field_path: bib_ledger.entries[17].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'JailBreakV-28K: 28K cross-modal jailbreak attempts targeting MLLMs (text + image attack vectors).'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0048
+  source_url: https://arxiv.org/abs/2404.03027
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f5282b43e6273276
+  supports:
+  - claim_id: claim_training_and_evaluation_luo2024jailbreakv28k_a3_contribution
+    field_path: bib_ledger.entries[17].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Releases JailBreakV-28K dataset; COLM 2024; multimodal jailbreak corpus.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0049
+  source_url: https://arxiv.org/abs/2010.03759
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0fc989847d274b4a
+  supports:
+  - claim_id: claim_training_and_evaluation_liu2020energyood_a1_headline
+    field_path: bib_ledger.entries[18].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Determining whether inputs are out-of-distribution (OOD) is an essential building block for safely deploying machine learning models in the open world. However, previous methods relying on the softmax
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0050
+  source_url: https://arxiv.org/abs/2010.03759
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0fc989847d274b4a
+  supports:
+  - claim_id: claim_training_and_evaluation_liu2020energyood_a2_methodology
+    field_path: bib_ledger.entries[18].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Energy-based loss for OOD detection: derives free energy from softmax logits, fine-tunes to push ID samples to low energy and OOD to high energy.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0051
+  source_url: https://arxiv.org/abs/2010.03759
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0fc989847d274b4a
+  supports:
+  - claim_id: claim_training_and_evaluation_liu2020energyood_a3_contribution
+    field_path: bib_ledger.entries[18].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: NeurIPS 2020 method; later adopted by Meta Prompt Guard 2 and CodeIntegrity PromptGuard recipes.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0052
+  source_url: https://arxiv.org/abs/2106.09685
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_540efb6b951d57fd
+  supports:
+  - claim_id: claim_training_and_evaluation_hu2021lora_a1_headline
+    field_path: bib_ledger.entries[19].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: An important paradigm of natural language processing consists of large-scale pre-training on general domain data and adaptation to particular tasks or domains. As we pre-train larger models, full fine
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0053
+  source_url: https://arxiv.org/abs/2106.09685
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_540efb6b951d57fd
+  supports:
+  - claim_id: claim_training_and_evaluation_hu2021lora_a2_methodology
+    field_path: bib_ledger.entries[19].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'LoRA: low-rank adaptation freezes pre-trained weights and injects trainable rank-decomposition matrices into transformer layers; reduces trainable params by ~10000x.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0054
+  source_url: https://arxiv.org/abs/2106.09685
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_540efb6b951d57fd
+  supports:
+  - claim_id: claim_training_and_evaluation_hu2021lora_a3_contribution
+    field_path: bib_ledger.entries[19].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: ICLR 2022; basis of PEFT in HuggingFace and adopted by PromptShield + Sentinel-v2 PI detector recipes.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0055
+  source_url: https://arxiv.org/abs/2402.09353
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_50ed01bee3a6fa72
+  supports:
+  - claim_id: claim_training_and_evaluation_liu2024dora_a1_headline
+    field_path: bib_ledger.entries[20].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Among the widely used parameter-efficient fine-tuning (PEFT) methods, LoRA and its variants have gained considerable popularity because of avoiding additional inference costs. However, there still oft
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0056
+  source_url: https://arxiv.org/abs/2402.09353
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_50ed01bee3a6fa72
+  supports:
+  - claim_id: claim_training_and_evaluation_liu2024dora_a2_methodology
+    field_path: bib_ledger.entries[20].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'DoRA: weight-decomposed low-rank adaptation decomposes pre-trained weight into magnitude + direction components; LoRA-rate convergence with full-FT-like capacity.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0057
+  source_url: https://arxiv.org/abs/2402.09353
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_50ed01bee3a6fa72
+  supports:
+  - claim_id: claim_training_and_evaluation_liu2024dora_a3_contribution
+    field_path: bib_ledger.entries[20].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: ICML 2024 Oral; one component of hlyn's aggressive PEFT stack for prompt-injection-judge-deberta-70m.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0058
+  source_url: https://arxiv.org/abs/1806.01768
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_90c6a0d7e3927a6f
+  supports:
+  - claim_id: claim_training_and_evaluation_sensoy2018evidential_a1_headline
+    field_path: bib_ledger.entries[21].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Deterministic neural nets have been shown to learn effective predictors on a wide range of machine learning problems. However, as the standard approach is to train the network to minimize a prediction
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0059
+  source_url: https://arxiv.org/abs/1806.01768
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_90c6a0d7e3927a6f
+  supports:
+  - claim_id: claim_training_and_evaluation_sensoy2018evidential_a2_methodology
+    field_path: bib_ledger.entries[21].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Evidential Deep Learning treats softmax outputs as Dirichlet evidence and outputs predictive uncertainty alongside class probabilities.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0060
+  source_url: https://arxiv.org/abs/1806.01768
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_90c6a0d7e3927a6f
+  supports:
+  - claim_id: claim_training_and_evaluation_sensoy2018evidential_a3_contribution
+    field_path: bib_ledger.entries[21].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: NeurIPS 2018; reused by hlyn for prompt-injection judge with uncertainty quantification.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0061
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_550949d71181746c
+  supports:
+  - claim_id: claim_training_and_evaluation_meta2025promptguard2_a1_existence
+    field_path: bib_ledger.entries[22].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: meta-llama/Llama-Prompt-Guard-2-86M is Meta's 2025 prompt-injection detector model card. Successor to Prompt-Guard-86M; multilingual.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0062
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_550949d71181746c
+  supports:
+  - claim_id: claim_training_and_evaluation_meta2025promptguard2_a2_provenance
+    field_path: bib_ledger.entries[22].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: Official Meta model card on HuggingFace; documents energy-based loss + APR (Attack Prevention Rate) evaluation metric on private red-team data. Training-data composition not fully disclosed.
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0063
+  source_url: https://arxiv.org/abs/2504.11358
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_1feeff6692fd1104
+  supports:
+  - claim_id: claim_training_and_evaluation_liu2025datasentinel_a1_headline
+    field_path: bib_ledger.entries[23].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where an attacker injects prompts into their inputs to induce attacker-desired outputs. A detection method aims to de
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0064
+  source_url: https://arxiv.org/abs/2504.11358
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_1feeff6692fd1104
+  supports:
+  - claim_id: claim_training_and_evaluation_liu2025datasentinel_a2_methodology
+    field_path: bib_ledger.entries[23].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'DataSentinel: game-theoretic min-max fine-tuning where detector and attacker are jointly trained; IEEE S&P 2025 Distinguished Paper.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0065
+  source_url: https://arxiv.org/abs/2504.11358
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_1feeff6692fd1104
+  supports:
+  - claim_id: claim_training_and_evaluation_liu2025datasentinel_a3_contribution
+    field_path: bib_ledger.entries[23].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Provides an attack-aware detector training methodology; later shown to be bypassable by DataFlip (Choudhary 2025).
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0066
+  source_url: https://arxiv.org/abs/2404.13208
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_c8697d3c88066297
+  supports:
+  - claim_id: claim_training_and_evaluation_wallace2024instructionhierarchy_a1_headline
+    field_path: bib_ledger.entries[24].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Today&#39;s LLMs are susceptible to prompt injections, jailbreaks, and other attacks that allow adversaries to overwrite a model&#39;s original instructions with their own malicious prompts. In this w
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0067
+  source_url: https://arxiv.org/abs/2404.13208
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_c8697d3c88066297
+  supports:
+  - claim_id: claim_training_and_evaluation_wallace2024instructionhierarchy_a2_methodology
+    field_path: bib_ledger.entries[24].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Instruction Hierarchy training: synthesizes training data where system / developer / user / tool messages have ranked privilege; LLM trained to honor higher-privilege instructions.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0068
+  source_url: https://arxiv.org/abs/2404.13208
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_c8697d3c88066297
+  supports:
+  - claim_id: claim_training_and_evaluation_wallace2024instructionhierarchy_a3_contribution
+    field_path: bib_ledger.entries[24].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: OpenAI training recipe; reduces prompt-injection vulnerability via 'context-synthesis' training rather than post-hoc detection.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0069
+  source_url: https://arxiv.org/abs/2506.05446
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5f129920a9fcbcd5
+  supports:
+  - claim_id: claim_training_and_evaluation_ivry2025sentinel_a1_headline
+    field_path: bib_ledger.entries[25].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Large Language Models (LLMs) are increasingly powerful but remain vulnerable to prompt injection attacks, where malicious inputs cause the model to deviate from its intended instructions. This paper i
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0070
+  source_url: https://arxiv.org/abs/2506.05446
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5f129920a9fcbcd5
+  supports:
+  - claim_id: claim_training_and_evaluation_ivry2025sentinel_a2_methodology
+    field_path: bib_ledger.entries[25].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Sentinel: Qwen3-0.6B-based prompt-injection detector with departure from encoder backbones; LoRA + reflection-style training.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0071
+  source_url: https://arxiv.org/abs/2506.05446
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5f129920a9fcbcd5
+  supports:
+  - claim_id: claim_training_and_evaluation_ivry2025sentinel_a3_contribution
+    field_path: bib_ledger.entries[25].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Qualifire/Rogue Security SOTA claim against ProtectAI-only comparison; raises selection-bias concerns flagged in C4 critiques.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0072
+  source_url: https://arxiv.org/abs/2501.15145
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_96dc7a084a524c4d
+  supports:
+  - claim_id: claim_training_and_evaluation_jacob2025promptshield_a1_headline
+    field_path: bib_ledger.entries[26].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Application designers have moved to integrate large language models (LLMs) into their products. However, many LLM-integrated applications are vulnerable to prompt injections. While attempts have been '
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0073
+  source_url: https://arxiv.org/abs/2501.15145
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_96dc7a084a524c4d
+  supports:
+  - claim_id: claim_training_and_evaluation_jacob2025promptshield_a2_methodology
+    field_path: bib_ledger.entries[26].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'PromptShield (Berkeley): two-track benchmark (conversational + application-structured) with TPR@LowFPR reporting convention (1% / 0.5% / 0.1% / 0.05% FPR).'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0074
+  source_url: https://arxiv.org/abs/2501.15145
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_96dc7a084a524c4d
+  supports:
+  - claim_id: claim_training_and_evaluation_jacob2025promptshield_a3_contribution
+    field_path: bib_ledger.entries[26].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: ACM CODASPY 2025; reveals encoder PI detectors collapse at deployment-grade FPRs (e.g., ProtectAI v1 0.00% TPR @ 0.5% FPR). Canonical OOD-collapse evidence.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0075
+  source_url: https://arxiv.org/abs/2406.13352
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_28b49b68f7f9500e
+  supports:
+  - claim_id: claim_training_and_evaluation_debenedetti2024agentdojo_a1_headline
+    field_path: bib_ledger.entries[27].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: AI agents aim to solve complex tasks by combining text-based reasoning with external tool calls. Unfortunately, AI agents are vulnerable to prompt injection attacks where data returned by external too
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0076
+  source_url: https://arxiv.org/abs/2406.13352
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_28b49b68f7f9500e
+  supports:
+  - claim_id: claim_training_and_evaluation_debenedetti2024agentdojo_a2_methodology
+    field_path: bib_ledger.entries[27].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'AgentDojo: dynamic environment with 97 tasks x 629 attack injections; couples benign-utility + utility-under-attack into a single metric.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0077
+  source_url: https://arxiv.org/abs/2406.13352
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_28b49b68f7f9500e
+  supports:
+  - claim_id: claim_training_and_evaluation_debenedetti2024agentdojo_a3_contribution
+    field_path: bib_ledger.entries[27].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: NeurIPS 2024 D&B; reveals 'inverse scaling law' where more capable models can be more attackable. Canonical agentic PI benchmark.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0078
+  source_url: https://arxiv.org/abs/2410.22770
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_ab9d48079556ef2d
+  supports:
+  - claim_id: claim_training_and_evaluation_li2024injecguard_a1_headline
+    field_path: bib_ledger.entries[28].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Prompt injection attacks pose a critical threat to large language models (LLMs), enabling goal hijacking and data leakage. Prompt guard models, though effective in defense, suffer from over-defense --
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0079
+  source_url: https://arxiv.org/abs/2410.22770
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_ab9d48079556ef2d
+  supports:
+  - claim_id: claim_training_and_evaluation_li2024injecguard_a2_methodology
+    field_path: bib_ledger.entries[28].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'InjecGuard + NotInject benchmark: explicitly measures over-defense on benign-but-trigger-word prompts (NotInject); MOF (Mitigating Over-defense for Free) training.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0080
+  source_url: https://arxiv.org/abs/2410.22770
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_ab9d48079556ef2d
+  supports:
+  - claim_id: claim_training_and_evaluation_li2024injecguard_a3_contribution
+    field_path: bib_ledger.entries[28].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Releases NotInject benchmark of ~339 benign prompts containing trigger words; over-defense methodology now standard in PI evaluation.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0081
+  source_url: https://www.lakera.ai/product-updates/lakera-pint-benchmark
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0621eb6f5ed9e96c
+  supports:
+  - claim_id: claim_training_and_evaluation_lakera2024pint_a1_announcement
+    field_path: bib_ledger.entries[29].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Lakera PINT (Prompt Injection Test): 4,314-input third-party benchmark deliberately not used as training data; designed against Goodhart''s law on public benchmarks.'
+  rights_status: private_use
+  confidence:
+    score: 0.78
+    factors:
+    - vendor blog (secondary)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0082
+  source_url: https://www.lakera.ai/product-updates/lakera-pint-benchmark
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0621eb6f5ed9e96c
+  supports:
+  - claim_id: claim_training_and_evaluation_lakera2024pint_a2_contribution
+    field_path: bib_ledger.entries[29].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.78
+  excerpt: Vendor blog announcing PINT; design rationale explicitly cites avoidance of training-data overlap. Reusable open-source evaluation harness.
+  rights_status: private_use
+  confidence:
+    score: 0.76
+    factors:
+    - vendor design rationale
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0083
+  source_url: https://arxiv.org/abs/2312.14197
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_70d4cfd50519178f
+  supports:
+  - claim_id: claim_training_and_evaluation_yi2023bipia_a1_headline
+    field_path: bib_ledger.entries[30].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: The integration of large language models with external content has enabled applications such as Microsoft Copilot but also introduced vulnerabilities to indirect prompt injection attacks. In these att
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0084
+  source_url: https://arxiv.org/abs/2312.14197
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_70d4cfd50519178f
+  supports:
+  - claim_id: claim_training_and_evaluation_yi2023bipia_a2_methodology
+    field_path: bib_ledger.entries[30].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'BIPIA (Benchmarking Indirect Prompt Injection): 26 attack methods x diverse downstream tasks; both text-and-code attack injections.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0085
+  source_url: https://arxiv.org/abs/2312.14197
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_70d4cfd50519178f
+  supports:
+  - claim_id: claim_training_and_evaluation_yi2023bipia_a3_contribution
+    field_path: bib_ledger.entries[30].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Microsoft KDD 2025; one of the first dedicated indirect-PI benchmarks. Used in firewall benchmarks (Bhagwatkar 2025).
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0086
+  source_url: https://arxiv.org/abs/2403.02691
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4493644eb2e357a8
+  supports:
+  - claim_id: claim_training_and_evaluation_zhan2024injecagent_a1_headline
+    field_path: bib_ledger.entries[31].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Recent work has embodied LLMs as agents, allowing them to access tools, perform actions, and interact with external content (e.g., emails or websites). However, external content introduces the risk of
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0087
+  source_url: https://arxiv.org/abs/2403.02691
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4493644eb2e357a8
+  supports:
+  - claim_id: claim_training_and_evaluation_zhan2024injecagent_a2_methodology
+    field_path: bib_ledger.entries[31].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'InjecAgent: 1,054 test cases of indirect prompt injection into tool-integrated LLM agents (ReAct-style); attack outcomes classified as benign / harmful tool-use.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0088
+  source_url: https://arxiv.org/abs/2403.02691
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4493644eb2e357a8
+  supports:
+  - claim_id: claim_training_and_evaluation_zhan2024injecagent_a3_contribution
+    field_path: bib_ledger.entries[31].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: ACL 2024 Findings; canonical agentic indirect-PI benchmark; included in Bhagwatkar's 'firewalls all you need' saturation evidence.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0089
+  source_url: https://arxiv.org/abs/2406.12045
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_20c2acc833d099fd
+  supports:
+  - claim_id: claim_training_and_evaluation_yao2024taubench_a1_headline
+    field_path: bib_ledger.entries[32].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Existing benchmarks do not test language agents on their interaction with human users or ability to follow domain-specific rules, both of which are vital for deploying them in real world applications.
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0090
+  source_url: https://arxiv.org/abs/2406.12045
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_20c2acc833d099fd
+  supports:
+  - claim_id: claim_training_and_evaluation_yao2024taubench_a2_methodology
+    field_path: bib_ledger.entries[32].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'τ-bench: realistic tool-agent-user-interaction benchmark in retail and airline domains; multi-turn rollouts with rule-based reward.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0091
+  source_url: https://arxiv.org/abs/2406.12045
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_20c2acc833d099fd
+  supports:
+  - claim_id: claim_training_and_evaluation_yao2024taubench_a3_contribution
+    field_path: bib_ledger.entries[32].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Tests agent capability under realistic constraints; included as benchmark in Bhagwatkar 2025 saturation analysis.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0092
+  source_url: https://arxiv.org/abs/2410.02644
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb37ba552eb103f6
+  supports:
+  - claim_id: claim_training_and_evaluation_zhang2025asb_a1_headline
+    field_path: bib_ledger.entries[33].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Although LLM-based agents, powered by Large Language Models (LLMs), can use external tools and memory mechanisms to solve complex real-world tasks, they may also introduce critical security vulnerabil
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0093
+  source_url: https://arxiv.org/abs/2410.02644
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb37ba552eb103f6
+  supports:
+  - claim_id: claim_training_and_evaluation_zhang2025asb_a2_methodology
+    field_path: bib_ledger.entries[33].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Agent Security Bench (ASB): formalizes attack/defense taxonomy for LLM agents; 10 agent scenarios x multiple attack/defense methods.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0094
+  source_url: https://arxiv.org/abs/2410.02644
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb37ba552eb103f6
+  supports:
+  - claim_id: claim_training_and_evaluation_zhang2025asb_a3_contribution
+    field_path: bib_ledger.entries[33].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: ICLR 2025; together with AgentDojo, InjecAgent, and τ-Bench it forms the 4 benchmarks Bhagwatkar 2025 shows can be saturated by simple firewalls.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0095
+  source_url: https://www.codeintegrity.ai/blog/prompt-injection-limits
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_6788a3f0f61cebd9
+  supports:
+  - claim_id: claim_training_and_evaluation_jung2026postmortem_a1_summary
+    field_path: bib_ledger.entries[34].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Steven Jung CodeIntegrity blog ''Prompt Injection Classifier Limits for AI Agents'' (Jan 2026): industry post-mortem on why 98%-accurate detectors fail in production.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - industry post-mortem (secondary)
+    - cached blog snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0096
+  source_url: https://www.codeintegrity.ai/blog/prompt-injection-limits
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_6788a3f0f61cebd9
+  supports:
+  - claim_id: claim_training_and_evaluation_jung2026postmortem_a2_saxe_fscore
+    field_path: bib_ledger.entries[34].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_6788a3f0f61cebd9
+      text_path_offset:
+      - 24550
+      - 24676
+      sha256_of_span: d95c60b8a18231429d06f5be83c0646033720fe728ab8ee3fc8fae3dc8e56a4c
+  excerpt: 85% F-score on your test data is likely more meaningful than a classical ML model scoring 95% but fit to the test distribution
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - verbatim-anchored Saxe quote
+    - industry methodology critique
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0097
+  source_url: https://www.codeintegrity.ai/blog/prompt-injection-limits
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_6788a3f0f61cebd9
+  supports:
+  - claim_id: claim_training_and_evaluation_jung2026postmortem_a3_speed_bump
+    field_path: bib_ledger.entries[34].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.9
+    excerpt_anchor:
+      cache_id: cache_6788a3f0f61cebd9
+      text_path_offset:
+      - 30135
+      - 30157
+      sha256_of_span: 595ec9d33f4c602330ebc782140c9678583451486b82cb858f92c0a9d76243f7
+  excerpt: speed bump, not a wall
+  rights_status: private_use
+  confidence:
+    score: 0.88
+    factors:
+    - verbatim-anchored 'speed bump' framing
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0098
+  source_url: https://arxiv.org/abs/2510.05244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_beea4f2926635943
+  supports:
+  - claim_id: claim_training_and_evaluation_bhagwatkar2025firewalls_a1_abstract
+    field_path: bib_ledger.entries[35].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: AI agents are vulnerable to indirect prompt injection attacks, where malicious instructions embedded in external content or tool outputs cause unintended or harmful behavior. Inspired by the well-esta
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0099
+  source_url: https://arxiv.org/abs/2510.05244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_beea4f2926635943
+  supports:
+  - claim_id: claim_training_and_evaluation_bhagwatkar2025firewalls_a2_saturation
+    field_path: bib_ledger.entries[35].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_beea4f2926635943
+      text_path_offset:
+      - 2628
+      - 2720
+      sha256_of_span: 430d9cff51f8f8b62d30bd237276ab0d13b93872841a377e8f2b4be93a3b0ee1
+  excerpt: 'across all four public benchmarks: AgentDojo, Agent Security Bench, InjecAgent and tau-Bench'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - verbatim-anchored saturation claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0100
+  source_url: https://arxiv.org/abs/2510.05244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_beea4f2926635943
+  supports:
+  - claim_id: claim_training_and_evaluation_bhagwatkar2025firewalls_a3_weak_attacks
+    field_path: bib_ledger.entries[35].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.9
+    excerpt_anchor:
+      cache_id: cache_beea4f2926635943
+      text_path_offset:
+      - 3304
+      - 3336
+      sha256_of_span: 6f750223e60799f5f9a82698635358bfbfc907d70a3b9df5c2c6bd5fccc88852
+  excerpt: weak attacks, hindering progress
+  rights_status: private_use
+  confidence:
+    score: 0.88
+    factors:
+    - verbatim-anchored weak-attacks critique
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0101
+  source_url: https://arxiv.org/abs/2504.11168
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb62839772f16e14
+  supports:
+  - claim_id: claim_training_and_evaluation_hackett2025bypassing_a1_headline
+    field_path: bib_ledger.entries[36].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Large Language Models (LLMs) guardrail systems are designed to protect against prompt injection and jailbreak attacks. However, they remain vulnerable to evasion techniques. We demonstrate two approac
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0102
+  source_url: https://arxiv.org/abs/2504.11168
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb62839772f16e14
+  supports:
+  - claim_id: claim_training_and_evaluation_hackett2025bypassing_a2_methodology
+    field_path: bib_ledger.entries[36].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Empirical evaluation of 12 character-injection techniques + 8 TextAttack methods against PI/jailbreak guardrails; up to 100% bypass on some commercial systems.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0103
+  source_url: https://arxiv.org/abs/2504.11168
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb62839772f16e14
+  supports:
+  - claim_id: claim_training_and_evaluation_hackett2025bypassing_a3_contribution
+    field_path: bib_ledger.entries[36].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: LLMSec 2025; demonstrates near-trivial evasion via Unicode/character-level perturbations on multiple commercial guardrails.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0104
+  source_url: https://arxiv.org/abs/2510.09023
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_51e92f7784dddb6e
+  supports:
+  - claim_id: claim_training_and_evaluation_nasr2025attackersecond_a1_headline
+    field_path: bib_ledger.entries[37].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: How should we evaluate the robustness of language model defenses? Current defenses against jailbreaks and prompt injections (which aim to prevent an attacker from eliciting harmful knowledge or remote
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0105
+  source_url: https://arxiv.org/abs/2510.09023
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_51e92f7784dddb6e
+  supports:
+  - claim_id: claim_training_and_evaluation_nasr2025attackersecond_a2_methodology
+    field_path: bib_ledger.entries[37].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: '''Attacker Moves Second'' argues current PI/jailbreak defenses are static and adaptive attackers with white-box access bypass them after the fact.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0106
+  source_url: https://arxiv.org/abs/2510.09023
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_51e92f7784dddb6e
+  supports:
+  - claim_id: claim_training_and_evaluation_nasr2025attackersecond_a3_contribution
+    field_path: bib_ledger.entries[37].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Critique of evaluation methodology that doesn't model adversarial adaptation; calls for dynamic-attack budgets in evaluation.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0107
+  source_url: https://arxiv.org/abs/2507.05630
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5223602a690470a0
+  supports:
+  - claim_id: claim_training_and_evaluation_choudhary2025detect_a1_headline
+    field_path: bib_ledger.entries[38].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where adversaries embed malicious instructions within seemingly benign input data to manipulate the LLM&#39;s intende
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0108
+  source_url: https://arxiv.org/abs/2507.05630
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5223602a690470a0
+  supports:
+  - claim_id: claim_training_and_evaluation_choudhary2025detect_a2_methodology
+    field_path: bib_ledger.entries[38].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'DataFlip: LLM-based PI detection bypass via instruction inversion; shows DataSentinel-style minimax detectors are bypassable.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0109
+  source_url: https://arxiv.org/abs/2507.05630
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5223602a690470a0
+  supports:
+  - claim_id: claim_training_and_evaluation_choudhary2025detect_a3_contribution
+    field_path: bib_ledger.entries[38].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'ACM AISec 2025; companion critique to DataSentinel; methodology lesson: minimax training does not imply attack invariance.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0110
+  source_url: https://arxiv.org/abs/2306.15447
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_3ff2b9889733b59c
+  supports:
+  - claim_id: claim_training_and_evaluation_carlini2023aligned_a1_headline
+    field_path: bib_ledger.entries[39].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Large language models are now tuned to align with the goals of their creators, namely to be &#34;helpful and harmless.&#34; These models should respond helpfully to user questions, but refuse to answe
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0111
+  source_url: https://arxiv.org/abs/2306.15447
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_3ff2b9889733b59c
+  supports:
+  - claim_id: claim_training_and_evaluation_carlini2023aligned_a2_methodology
+    field_path: bib_ledger.entries[39].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Demonstrates aligned neural networks (LLMs + multimodal models) remain adversarially exploitable via gradient-based attacks.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0112
+  source_url: https://arxiv.org/abs/2306.15447
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_3ff2b9889733b59c
+  supports:
+  - claim_id: claim_training_and_evaluation_carlini2023aligned_a3_contribution
+    field_path: bib_ledger.entries[39].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: NeurIPS 2023; foundational reference that alignment ≠ adversarial robustness; cited in PI/jailbreak threat-model framings.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0113
+  source_url: https://arxiv.org/abs/2602.14161
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_081c9fe7b9b1dd0e
+  supports:
+  - claim_id: claim_training_and_evaluation_fomin2026benchmarkslie_a1_headline
+    field_path: bib_ledger.entries[40].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: Detecting prompt injection and jailbreak attacks is critical for deploying LLM-based agents safely. As agents increasingly process untrusted data from emails, documents, tool outputs, and external API
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached arxiv abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0114
+  source_url: https://arxiv.org/abs/2602.14161
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_081c9fe7b9b1dd0e
+  supports:
+  - claim_id: claim_training_and_evaluation_fomin2026benchmarkslie_a2_methodology
+    field_path: bib_ledger.entries[40].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Introduces LODO (Leave-One-Dataset-Out) for malicious-prompt classifiers; shows TPR collapses under true distribution shift compared to held-out-row evaluation.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - method described in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0115
+  source_url: https://arxiv.org/abs/2602.14161
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_081c9fe7b9b1dd0e
+  supports:
+  - claim_id: claim_training_and_evaluation_fomin2026benchmarkslie_a3_contribution
+    field_path: bib_ledger.entries[40].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Provides empirical evidence for the OOD-wall hypothesis; methodology directly mirrored by portfolio ADR-016 + ADR-075 LODO discipline.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - contribution claim
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0116
+  source_url: https://huggingface.co/datasets/rogue-security/prompt-injections-benchmark
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_ecd2a344745528a2
+  supports:
+  - claim_id: claim_training_and_evaluation_rogue2025promptinjectionsbenchmark_a1_existence
+    field_path: bib_ledger.entries[41].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: rogue-security/prompt-injections-benchmark (aka qualifire/prompt-injections-benchmark) is a HuggingFace benchmark dataset used by Qualifire Sentinel evaluations.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0117
+  source_url: https://huggingface.co/datasets/rogue-security/prompt-injections-benchmark
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_ecd2a344745528a2
+  supports:
+  - claim_id: claim_training_and_evaluation_rogue2025promptinjectionsbenchmark_a2_provenance
+    field_path: bib_ledger.entries[41].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: 'Released by Rogue Security / Qualifire; reproducibility concern flagged: Qualifire Sentinel comparisons rely on this benchmark plus an undisclosed private subset (selection-bias risk for self-reported'
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0118
+  source_url: https://huggingface.co/datasets/hendzh/PromptShield
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_6f8a1b62f594c700
+  supports:
+  - claim_id: claim_training_and_evaluation_hendzh2025promptshielddataset_a1_existence
+    field_path: bib_ledger.entries[42].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: hendzh/PromptShield is the HuggingFace mirror of the Berkeley PromptShield benchmark dataset (conversational + application-structured tracks).
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0119
+  source_url: https://huggingface.co/datasets/hendzh/PromptShield
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_6f8a1b62f594c700
+  supports:
+  - claim_id: claim_training_and_evaluation_hendzh2025promptshielddataset_a2_provenance
+    field_path: bib_ledger.entries[42].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: Maintained by hendzh (Berkeley PromptShield team); released alongside the CODASPY 2025 paper. The standard third-party OOD benchmark used by the field.
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0120
+  source_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f4d5b713b2d15854
+  supports:
+  - claim_id: claim_training_and_evaluation_protectai2024deberta_a1_existence
+    field_path: bib_ledger.entries[43].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: protectai/deberta-v3-base-prompt-injection-v2 is ProtectAI's encoder-based PI detector model card; widely-used baseline.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0121
+  source_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f4d5b713b2d15854
+  supports:
+  - claim_id: claim_training_and_evaluation_protectai2024deberta_a2_provenance
+    field_path: bib_ledger.entries[43].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: ProtectAI HuggingFace model card; documents Apache-2.0 license; training-data mixture details limited (reproducibility gap flagged in C5). The canonical OOD-collapse example on PromptShield (0.00% TPR
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0122
+  source_url: https://huggingface.co/datasets/microsoft/orca-agentinstruct-1M-v1
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_500821bd01ca986a
+  supports:
+  - claim_id: claim_training_and_evaluation_microsoft2024orcaagentinstruct_a1_existence
+    field_path: bib_ledger.entries[44].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: microsoft/orca-agentinstruct-1M-v1 is a 1M-row instruction-following synthetic dataset from Microsoft Orca team; cited in detector training as a benign-instruction source.
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - dataset card (official maintainer)
+    - cached snapshot
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0123
+  source_url: https://huggingface.co/datasets/microsoft/orca-agentinstruct-1M-v1
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_500821bd01ca986a
+  supports:
+  - claim_id: claim_training_and_evaluation_microsoft2024orcaagentinstruct_a2_provenance
+    field_path: bib_ledger.entries[44].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: Released by Microsoft Research; CC license per HuggingFace card. Used as benign-instruction balance in mixed PI training corpora.
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - dataset card metadata
+    - summary from extracted text
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate

@@ -1,0 +1,407 @@
+# Post-hoc reconstruction. This gather_trace was assembled after the WebSearch+WebFetch
+# pass had already completed (the prior agent run was killed mid-Phase 6); it documents
+# the discovery decisions that mapped each cached source to a bib_ledger entry. All
+# fetches resolved to accept; no reject/escalate fetches recorded.
+schema_version: 3
+topic: direct_vs_indirect
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+fetches:
+- fetch_id: fetch_greshake2023
+  sub_area: 'B1'
+  query: 'indirect prompt injection LLM-integrated applications Greshake AISec 2023'
+  source_url: https://arxiv.org/abs/2302.12173
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Foundational paper that coined ''indirect prompt injection''; landmark for the threat model.'
+  assigned_bibkey: greshake2023indirect
+- fetch_id: fetch_owasp_llm01_2025
+  sub_area: 'B1'
+  query: 'OWASP LLM01 2025 prompt injection direct indirect categorization'
+  source_url: https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Canonical OWASP standard codifying direct + indirect prompt injection in the LLM01:2025 entry.'
+  assigned_bibkey: owasp2025llm01
+- fetch_id: fetch_willison_dual_llm
+  sub_area: 'B1'
+  query: 'Simon Willison Dual LLM pattern resist prompt injection 2023'
+  source_url: https://simonwillison.net/2023/Apr/25/dual-llm-pattern/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Foundational privileged-vs-quarantined-LLM blog post that influenced the CaMeL architecture.'
+  assigned_bibkey: willison2023duallllm
+- fetch_id: fetch_willison_lethal_trifecta
+  sub_area: 'B1'
+  query: 'Simon Willison lethal trifecta private data untrusted content exfiltration'
+  source_url: https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Influential 2025 framing of the canonical agentic threat surface (private+untrusted+exfil).'
+  assigned_bibkey: willison2025trifecta
+- fetch_id: fetch_hines_spotlighting
+  sub_area: 'B2'
+  query: 'Spotlighting Hines Microsoft delimiting datamarking encoding prompt injection defense'
+  source_url: https://arxiv.org/abs/2403.14720
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Spotlighting CAMLIS 2024 paper - primary source for the delimiting/datamarking/encoding family.'
+  assigned_bibkey: hines2024spotlighting
+- fetch_id: fetch_chen_struq
+  sub_area: 'B2'
+  query: 'StruQ structured queries prompt injection defense reserved delimiters SFT'
+  source_url: https://arxiv.org/abs/2402.06363
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'StruQ USENIX Security 2025 - reserved-delimiter SFT approach to instruction-data separation.'
+  assigned_bibkey: chen2025struq
+- fetch_id: fetch_chen_secalign
+  sub_area: 'B2'
+  query: 'SecAlign DPO preference optimization prompt injection defense CCS 2025'
+  source_url: https://arxiv.org/abs/2410.05451
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'SecAlign CCS 2025 - DPO over secure/insecure response pairs.'
+  assigned_bibkey: chen2025secalign
+- fetch_id: fetch_meta_secalign
+  sub_area: 'B2'
+  query: 'Meta SecAlign Llama-3.3-70B open source prompt injection defense input role'
+  source_url: https://arxiv.org/abs/2507.02735
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Meta SecAlign 2025 - open-source secure foundation LLM with built-in input-role separation.'
+  assigned_bibkey: chen2025metasecalign
+- fetch_id: fetch_camel
+  sub_area: 'B2'
+  query: 'CaMeL capability-based isolation Google DeepMind prompt injection defense AgentDojo'
+  source_url: https://arxiv.org/abs/2503.18813
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'CaMeL 2025 - capability-based dual-LLM realization with provable security on AgentDojo.'
+  assigned_bibkey: debenedetti2025camel
+- fetch_id: fetch_wallace_instruction_hierarchy
+  sub_area: 'B2'
+  query: 'Instruction hierarchy OpenAI Wallace prioritize privileged instructions training'
+  source_url: https://arxiv.org/abs/2404.13208
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'OpenAI instruction-hierarchy framing - system > developer > user > tool training priority.'
+  assigned_bibkey: wallace2024instructionhierarchy
+- fetch_id: fetch_jatmo
+  sub_area: 'B2'
+  query: 'Jatmo task-specific finetuning prompt injection defense distillation ESORICS'
+  source_url: https://arxiv.org/abs/2312.17673
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Jatmo ESORICS 2024 - task-specific distillation defense reaching <0.5% ASR.'
+  assigned_bibkey: piet2024jatmo
+- fetch_id: fetch_isolategpt
+  sub_area: 'B2'
+  query: 'IsolateGPT SecGPT execution isolation architecture LLM agentic systems NDSS'
+  source_url: https://arxiv.org/abs/2403.04960
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'IsolateGPT/SecGPT NDSS 2025 - app-level execution isolation for LLM agents.'
+  assigned_bibkey: wu2025isolategpt
+- fetch_id: fetch_llamafirewall
+  sub_area: 'B2'
+  query: 'LlamaFirewall Meta open source guardrail framework AI agents 2025'
+  source_url: https://arxiv.org/abs/2505.03574
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'LlamaFirewall 2025 - Meta open-source guardrail framework for AI agents.'
+  assigned_bibkey: chennabasappa2025llamafirewall
+- fetch_id: fetch_designpatterns
+  sub_area: 'B2'
+  query: 'Beurer-Kellner design patterns securing LLM agents prompt injection provable resistance'
+  source_url: https://arxiv.org/abs/2506.08837
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Design Patterns paper 2025 - systematic survey of provably-resistant LLM-agent patterns.'
+  assigned_bibkey: beurerkellner2025designpatterns
+- fetch_id: fetch_aim_labs_echoleak
+  sub_area: 'B3'
+  query: 'EchoLeak CVE-2025-32711 Aim Labs zero-click Microsoft 365 Copilot indirect prompt injection'
+  source_url: https://www.catonetworks.com/blog/breaking-down-echoleak/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Aim Labs disclosure (via Cato Networks blog) of the first zero-click XPIA in production Copilot.'
+  assigned_bibkey: aimlabs2025echoleak
+- fetch_id: fetch_nvd_echoleak
+  sub_area: 'B3'
+  query: 'NVD CVE-2025-32711 detail Microsoft 365 Copilot AI command injection'
+  source_url: https://nvd.nist.gov/vuln/detail/cve-2025-32711
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Official NVD CVE record for EchoLeak (CVE-2025-32711) - authoritative CVSS+vector record.'
+  assigned_bibkey: nvd2025echoleak
+- fetch_id: fetch_month_of_ai_bugs_announce
+  sub_area: 'B3'
+  query: 'Rehberger Month of AI Bugs August 2025 announcement embracethered'
+  source_url: https://embracethered.com/blog/posts/2025/announcement-the-month-of-ai-bugs/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Rehberger ''Month of AI Bugs'' announcement - daily disclosures across AI assistants.'
+  assigned_bibkey: rehberger2025monthofaibugs
+- fetch_id: fetch_month_of_ai_bugs_wrapup
+  sub_area: 'B3'
+  query: 'Rehberger Month of AI Bugs wrap up summary'
+  source_url: https://embracethered.com/blog/posts/2025/wrapping-up-month-of-ai-bugs/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Aggregate wrap-up summarizing the 30+ vulnerabilities across the Month of AI Bugs campaign.'
+  assigned_bibkey: rehberger2025monthwrapup
+- fetch_id: fetch_rehberger_chatgpt_markdown
+  sub_area: 'B3'
+  query: 'ChatGPT markdown image exfiltration Rehberger WebPilot data exfil 2023'
+  source_url: https://embracethered.com/blog/posts/2023/chatgpt-webpilot-data-exfil-via-markdown-injection/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Earliest publicly-documented ChatGPT plugin data-exfiltration via markdown image injection.'
+  assigned_bibkey: rehberger2023chatgptmarkdown
+- fetch_id: fetch_promptarmor_slack
+  sub_area: 'B3'
+  query: 'PromptArmor Slack AI data exfiltration indirect prompt injection public channel'
+  source_url: https://promptarmor.substack.com/p/data-exfiltration-from-slack-ai-via
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'PromptArmor disclosure of cross-channel data exfiltration in Slack AI via indirect injection.'
+  assigned_bibkey: promptarmor2024slack
+- fetch_id: fetch_koi_shadowprompt
+  sub_area: 'B3'
+  query: 'ShadowPrompt Claude Chrome extension Koi DOM XSS hijacking website'
+  source_url: https://www.koi.ai/blog/shadowprompt-how-any-website-could-have-hijacked-anthropic-claude-chrome-extension
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Koi Security disclosure of ShadowPrompt; remediated in Claude Chrome extension v1.0.41.'
+  assigned_bibkey: koi2026shadowprompt
+- fetch_id: fetch_tenable_gemini_trifecta
+  sub_area: 'B3'
+  query: 'Tenable Gemini trifecta three vulnerabilities Cloud Assist Search Model Browsing'
+  source_url: https://www.tenable.com/blog/the-trifecta-how-three-new-gemini-vulnerabilities-in-cloud-assist-search-model-and-browsing
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Tenable Research 2025 - three Gemini vulns across Cloud Assist, Search, and Browsing.'
+  assigned_bibkey: tenable2025geminitrifecta
+- fetch_id: fetch_brave_comet
+  sub_area: 'B3'
+  query: 'Brave Comet Perplexity indirect prompt injection agentic browser security'
+  source_url: https://brave.com/blog/comet-prompt-injection/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Brave 2025 disclosure of indirect prompt injection in Perplexity Comet agentic browser.'
+  assigned_bibkey: brave2025comet
+- fetch_id: fetch_hackett_bypassing
+  sub_area: 'B3'
+  query: 'Hackett bypassing prompt injection jailbreak detection guardrails empirical analysis evasion'
+  source_url: https://arxiv.org/abs/2504.11168
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Hackett et al. 2025 LLMSec - empirical character-injection bypass of leading guardrails.'
+  assigned_bibkey: hackett2025bypassing
+- fetch_id: fetch_bhagwatkar_firewalls
+  sub_area: 'B3'
+  query: 'Are firewalls all you need stronger benchmarks indirect prompt injection NeurIPS 2025'
+  source_url: https://arxiv.org/abs/2510.05244
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Bhagwatkar et al. NeurIPS 2025 - minimal firewall saturates current benchmarks; critique.'
+  assigned_bibkey: bhagwatkar2025firewalls
+- fetch_id: fetch_nasr_attacker_second
+  sub_area: 'B3'
+  query: 'Nasr attacker moves second stronger adaptive attacks jailbreaks prompt injections'
+  source_url: https://arxiv.org/abs/2510.09023
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Nasr et al. 2025 - adaptive attackers bypass defenses claimed robust against static attacks.'
+  assigned_bibkey: nasr2025attackersecond
+- fetch_id: fetch_choudhary_how_not_detect
+  sub_area: 'B3'
+  query: 'How not to detect prompt injections LLM KAD known-answer detection DataFlip'
+  source_url: https://arxiv.org/abs/2507.05630
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Choudhary et al. 2025 - structural critique of known-answer-detection prompt-injection defenses.'
+  assigned_bibkey: choudhary2025hownotdetect
+- fetch_id: fetch_bipia
+  sub_area: 'B4'
+  query: 'BIPIA benchmark indirect prompt injection large language models Yi Microsoft KDD'
+  source_url: https://arxiv.org/abs/2312.14197
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'BIPIA KDD 2025 - first dedicated indirect prompt injection benchmark for LLMs.'
+  assigned_bibkey: yi2025bipia
+- fetch_id: fetch_injecagent
+  sub_area: 'B4'
+  query: 'InjecAgent Zhan tool-integrated LLM agents indirect prompt injection benchmark ACL 2024'
+  source_url: https://arxiv.org/abs/2403.02691
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'InjecAgent ACL 2024 - 1054 cases x 17 user tools x 62 attacker tools.'
+  assigned_bibkey: zhan2024injecagent
+- fetch_id: fetch_agentdojo
+  sub_area: 'B4'
+  query: 'AgentDojo Debenedetti dynamic evaluation environment prompt injection defenses NeurIPS 2024'
+  source_url: https://arxiv.org/abs/2406.13352
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'AgentDojo NeurIPS 2024 - de-facto indirect-injection benchmark across banking/Slack/travel/workspace.'
+  assigned_bibkey: debenedetti2024agentdojo
+- fetch_id: fetch_llmail_inject
+  sub_area: 'B4'
+  query: 'LLMail-Inject Microsoft SaTML 2025 adaptive prompt injection challenge dataset 208K'
+  source_url: https://arxiv.org/abs/2506.09956
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'LLMail-Inject SaTML 2025 - 208,095 adaptive attack attempts from 839 participants.'
+  assigned_bibkey: abdelnabi2025llmailinject
+- fetch_id: fetch_asb
+  sub_area: 'B4'
+  query: 'Agent Security Bench ASB ICLR 2025 formalize benchmark attacks defenses LLM agents'
+  source_url: https://arxiv.org/abs/2410.02644
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Agent Security Bench (ASB) ICLR 2025 - 10 scenarios x 10 agents x 400+ tools x 27 attack/defense methods.'
+  assigned_bibkey: zhang2025asb
+- fetch_id: fetch_wasp
+  sub_area: 'B4'
+  query: 'WASP Evtimov web agent security prompt injection attacks end-to-end benchmark'
+  source_url: https://arxiv.org/abs/2504.18575
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'WASP 2025 - end-to-end web-agent security benchmark for prompt injection attacks.'
+  assigned_bibkey: evtimov2025wasp

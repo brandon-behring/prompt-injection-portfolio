@@ -1,0 +1,1042 @@
+schema_version: 2
+topic: training_and_evaluation
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+entries:
+
+
+# ============================================================================
+# C1: Training data sources (datasets used to train prompt-injection detectors)
+# ============================================================================
+
+- bibkey: deepset2024promptinjections
+  primary_url: 'https://huggingface.co/datasets/deepset/prompt-injections'
+  title: deepset/prompt-injections
+  status: verified
+  claim_family: training_data_sources
+  authors: deepset (2024)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0001
+  - ev_training_and_evaluation_0002
+  cache_ids:
+  - cache_e4bb99e86bb2150e
+
+- bibkey: jackhhao2023jailbreakclassification
+  primary_url: 'https://huggingface.co/datasets/jackhhao/jailbreak-classification'
+  title: jackhhao/jailbreak-classification
+  status: verified
+  claim_family: training_data_sources
+  authors: jackhhao (2023)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0003
+  - ev_training_and_evaluation_0004
+  cache_ids:
+  - cache_54ec70daa99e6a82
+
+- bibkey: xtram2024safeguard
+  primary_url: 'https://huggingface.co/datasets/xTRam1/safe-guard-prompt-injection'
+  title: xTRam1/safe-guard-prompt-injection
+  status: verified
+  claim_family: training_data_sources
+  authors: Erdogan, Shang, Goyal, Ijju (2024)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0005
+  - ev_training_and_evaluation_0006
+  cache_ids:
+  - cache_8e1b5862504dc67a
+
+- bibkey: shen2023doanythingnow
+  primary_url: 'https://arxiv.org/abs/2308.03825'
+  title: '"Do Anything Now": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models'
+  status: verified
+  claim_family: training_data_sources
+  authors: Shen et al. (2023)
+  venue: ACM CCS 2024
+  code_url: 'https://github.com/verazuo/jailbreak_llms'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0007
+  - ev_training_and_evaluation_0008
+  - ev_training_and_evaluation_0009
+  cache_ids:
+  - cache_f6e684d1261790a5
+
+- bibkey: lakera2023gandalfignore
+  primary_url: 'https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions'
+  title: Lakera/gandalf_ignore_instructions
+  status: verified
+  claim_family: training_data_sources
+  authors: Lakera (2023)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0010
+  - ev_training_and_evaluation_0011
+  cache_ids:
+  - cache_922c47c9f3641cd6
+
+- bibkey: lin2023toxicchat
+  primary_url: 'https://arxiv.org/abs/2310.17389'
+  title: 'ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation'
+  status: verified
+  claim_family: training_data_sources
+  authors: Lin et al. (2023)
+  venue: EMNLP 2023 Findings
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0012
+  - ev_training_and_evaluation_0013
+  - ev_training_and_evaluation_0014
+  cache_ids:
+  - cache_24af2a5e83d1a7e4
+
+- bibkey: reshabh2024spml
+  primary_url: 'https://huggingface.co/datasets/reshabhs/SPML_Chatbot_Prompt_Injection'
+  title: SPML Chatbot Prompt Injection Dataset (reshabhs/SPML_Chatbot_Prompt_Injection)
+  status: verified
+  claim_family: training_data_sources
+  authors: Sharma et al. (2024)
+  venue: HuggingFace dataset card / arXiv 2402.11755
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0015
+  - ev_training_and_evaluation_0016
+  cache_ids:
+  - cache_942be1d5b34e1a81
+
+- bibkey: geekyrakshit2024promptinjectiondataset
+  primary_url: 'https://huggingface.co/datasets/geekyrakshit/prompt-injection-dataset'
+  title: geekyrakshit/prompt-injection-dataset
+  status: verified
+  claim_family: training_data_sources
+  authors: Pal (2024)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0017
+  - ev_training_and_evaluation_0018
+  cache_ids:
+  - cache_1e401aac38c4b954
+
+- bibkey: toyer2023tensortrust
+  primary_url: 'https://arxiv.org/abs/2311.01011'
+  title: 'Tensor Trust: Interpretable Prompt Injection Attacks from an Online Game'
+  status: verified
+  claim_family: training_data_sources
+  authors: Toyer et al. (2023)
+  venue: ICLR 2024
+  code_url: 'https://tensortrust.ai/paper'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0019
+  - ev_training_and_evaluation_0020
+  - ev_training_and_evaluation_0021
+  cache_ids:
+  - cache_b6479b8118b518af
+
+- bibkey: schulhoff2023hackaprompt
+  primary_url: 'https://arxiv.org/abs/2311.16119'
+  title: 'Ignore This Title and HackAPrompt: Exposing Systemic Vulnerabilities of LLMs through a Global Scale Prompt Hacking Competition'
+  status: verified
+  claim_family: training_data_sources
+  authors: Schulhoff et al. (2023)
+  venue: EMNLP 2023
+  code_url: 'https://github.com/PromptLabs/hackaprompt'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0022
+  - ev_training_and_evaluation_0023
+  - ev_training_and_evaluation_0024
+  cache_ids:
+  - cache_598fd3b9f1751bb9
+
+- bibkey: abdelnabi2025llmailinject
+  primary_url: 'https://arxiv.org/abs/2506.09956'
+  title: 'LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge'
+  status: verified
+  claim_family: training_data_sources
+  authors: Abdelnabi et al. (2025)
+  venue: IEEE SaTML 2025 (challenge); arXiv preprint
+  code_url: 'https://github.com/microsoft/llmail-inject-challenge'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0025
+  - ev_training_and_evaluation_0026
+  - ev_training_and_evaluation_0027
+  cache_ids:
+  - cache_8e0c41db3ea23938
+
+- bibkey: zou2023universal
+  primary_url: 'https://arxiv.org/abs/2307.15043'
+  title: Universal and Transferable Adversarial Attacks on Aligned Language Models
+  status: verified
+  claim_family: training_data_sources
+  authors: Zou et al. (2023)
+  venue: arXiv preprint
+  code_url: 'https://github.com/llm-attacks/llm-attacks'
+  aliases:
+  - GCG
+  - AdvBench
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0028
+  - ev_training_and_evaluation_0029
+  - ev_training_and_evaluation_0030
+  cache_ids:
+  - cache_d8fe8c074031c1c5
+
+- bibkey: mazeika2024harmbench
+  primary_url: 'https://arxiv.org/abs/2402.04249'
+  title: 'HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal'
+  status: verified
+  claim_family: training_data_sources
+  authors: Mazeika et al. (2024)
+  venue: ICML 2024
+  code_url: 'https://github.com/centerforaisafety/HarmBench'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0031
+  - ev_training_and_evaluation_0032
+  - ev_training_and_evaluation_0033
+  cache_ids:
+  - cache_cde8e4a02d22f739
+
+- bibkey: chao2024jailbreakbench
+  primary_url: 'https://arxiv.org/abs/2404.01318'
+  title: 'JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models'
+  status: verified
+  claim_family: training_data_sources
+  authors: Chao et al. (2024)
+  venue: 'NeurIPS 2024 D&B'
+  code_url: 'https://github.com/JailbreakBench/jailbreakbench'
+  aliases:
+  - JBB-Behaviors
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0034
+  - ev_training_and_evaluation_0035
+  - ev_training_and_evaluation_0036
+  cache_ids:
+  - cache_f1443d8cfe646a3b
+
+- bibkey: jiang2024wildjailbreak
+  primary_url: 'https://arxiv.org/abs/2406.18510'
+  title: 'WildTeaming at Scale: From In-the-Wild Jailbreaks to (Adversarially) Safer Language Models'
+  status: verified
+  claim_family: training_data_sources
+  authors: Jiang et al. (2024)
+  venue: NeurIPS 2024
+  aliases:
+  - WildJailbreak
+  - WildTeaming
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0037
+  - ev_training_and_evaluation_0038
+  - ev_training_and_evaluation_0039
+  cache_ids:
+  - cache_929d95a137e7f2b0
+
+- bibkey: han2024wildguard
+  primary_url: 'https://arxiv.org/abs/2406.18495'
+  title: 'WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs'
+  status: verified
+  claim_family: training_data_sources
+  authors: Han et al. (2024)
+  venue: NeurIPS 2024
+  code_url: 'https://github.com/allenai/wildguard'
+  aliases:
+  - WildGuardMix
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0040
+  - ev_training_and_evaluation_0041
+  - ev_training_and_evaluation_0042
+  cache_ids:
+  - cache_b9dc5ff6a0eac4a3
+
+- bibkey: li2024saladbench
+  primary_url: 'https://arxiv.org/abs/2402.05044'
+  title: 'SALAD-Bench: A Hierarchical and Comprehensive Safety Benchmark for Large Language Models'
+  status: verified
+  claim_family: training_data_sources
+  authors: Li et al. (2024)
+  venue: ACL 2024 Findings
+  code_url: 'https://github.com/OpenSafetyLab/SALAD-BENCH'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0043
+  - ev_training_and_evaluation_0044
+  - ev_training_and_evaluation_0045
+  cache_ids:
+  - cache_4a31fbc65b8cb53e
+
+- bibkey: luo2024jailbreakv28k
+  primary_url: 'https://arxiv.org/abs/2404.03027'
+  title: 'JailBreakV-28K: A Benchmark for Assessing the Robustness of MultiModal Large Language Models against Jailbreak Attacks'
+  status: verified
+  claim_family: training_data_sources
+  authors: Luo et al. (2024)
+  venue: COLM 2024
+  code_url: 'https://github.com/EddyLuo1232/JailBreakV_28K'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0046
+  - ev_training_and_evaluation_0047
+  - ev_training_and_evaluation_0048
+  cache_ids:
+  - cache_f5282b43e6273276
+
+
+# ============================================================================
+# C2: Training methodologies
+# ============================================================================
+
+- bibkey: liu2020energyood
+  primary_url: 'https://arxiv.org/abs/2010.03759'
+  title: Energy-based Out-of-distribution Detection
+  status: verified
+  claim_family: training_methodologies
+  authors: Liu et al. (2020)
+  venue: NeurIPS 2020
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: historical
+  stale_after_days: 1825
+  evidence_ids:
+  - ev_training_and_evaluation_0049
+  - ev_training_and_evaluation_0050
+  - ev_training_and_evaluation_0051
+  cache_ids:
+  - cache_0fc989847d274b4a
+
+- bibkey: hu2021lora
+  primary_url: 'https://arxiv.org/abs/2106.09685'
+  title: 'LoRA: Low-Rank Adaptation of Large Language Models'
+  status: verified
+  claim_family: training_methodologies
+  authors: Hu et al. (2021)
+  venue: ICLR 2022
+  code_url: 'https://github.com/microsoft/LoRA'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: historical
+  stale_after_days: 1825
+  evidence_ids:
+  - ev_training_and_evaluation_0052
+  - ev_training_and_evaluation_0053
+  - ev_training_and_evaluation_0054
+  cache_ids:
+  - cache_540efb6b951d57fd
+
+- bibkey: liu2024dora
+  primary_url: 'https://arxiv.org/abs/2402.09353'
+  title: 'DoRA: Weight-Decomposed Low-Rank Adaptation'
+  status: verified
+  claim_family: training_methodologies
+  authors: Liu et al. (2024)
+  venue: ICML 2024 Oral
+  code_url: 'https://github.com/NVlabs/DoRA'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0055
+  - ev_training_and_evaluation_0056
+  - ev_training_and_evaluation_0057
+  cache_ids:
+  - cache_50ed01bee3a6fa72
+
+- bibkey: sensoy2018evidential
+  primary_url: 'https://arxiv.org/abs/1806.01768'
+  title: Evidential Deep Learning to Quantify Classification Uncertainty
+  status: verified
+  claim_family: training_methodologies
+  authors: Sensoy, Kaplan, Kandemir (2018)
+  venue: NeurIPS 2018
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: historical
+  stale_after_days: 1825
+  evidence_ids:
+  - ev_training_and_evaluation_0058
+  - ev_training_and_evaluation_0059
+  - ev_training_and_evaluation_0060
+  cache_ids:
+  - cache_90c6a0d7e3927a6f
+
+- bibkey: meta2025promptguard2
+  primary_url: 'https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M'
+  title: Llama Prompt Guard 2 86M
+  status: verified
+  claim_family: training_methodologies
+  authors: Meta Llama (2025)
+  venue: HuggingFace model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0061
+  - ev_training_and_evaluation_0062
+  cache_ids:
+  - cache_550949d71181746c
+
+- bibkey: liu2025datasentinel
+  primary_url: 'https://arxiv.org/abs/2504.11358'
+  title: 'DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks'
+  status: verified
+  claim_family: training_methodologies
+  authors: Liu et al. (2025)
+  venue: 'IEEE S&P 2025 (Distinguished Paper Award)'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0063
+  - ev_training_and_evaluation_0064
+  - ev_training_and_evaluation_0065
+  cache_ids:
+  - cache_1feeff6692fd1104
+
+- bibkey: wallace2024instructionhierarchy
+  primary_url: 'https://arxiv.org/abs/2404.13208'
+  title: 'The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions'
+  status: verified
+  claim_family: training_methodologies
+  authors: Wallace et al. (2024)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0066
+  - ev_training_and_evaluation_0067
+  - ev_training_and_evaluation_0068
+  cache_ids:
+  - cache_c8697d3c88066297
+
+- bibkey: ivry2025sentinel
+  primary_url: 'https://arxiv.org/abs/2506.05446'
+  title: 'Sentinel: SOTA model to protect against prompt injections'
+  status: verified
+  claim_family: training_methodologies
+  authors: 'Ivry & Nahum (2025)'
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0069
+  - ev_training_and_evaluation_0070
+  - ev_training_and_evaluation_0071
+  cache_ids:
+  - cache_5f129920a9fcbcd5
+
+
+# ============================================================================
+# C3: Evaluation metrics + methodology
+# ============================================================================
+
+- bibkey: jacob2025promptshield
+  primary_url: 'https://arxiv.org/abs/2501.15145'
+  title: 'PromptShield: Deployable Detection for Prompt Injection Attacks'
+  status: verified
+  claim_family: evaluation_metrics
+  authors: Jacob, Alzahrani, Hu, Alomair, Wagner (2025)
+  venue: ACM CODASPY 2025
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0072
+  - ev_training_and_evaluation_0073
+  - ev_training_and_evaluation_0074
+  cache_ids:
+  - cache_96dc7a084a524c4d
+
+- bibkey: debenedetti2024agentdojo
+  primary_url: 'https://arxiv.org/abs/2406.13352'
+  title: 'AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents'
+  status: verified
+  claim_family: evaluation_metrics
+  authors: Debenedetti et al. (2024)
+  venue: 'NeurIPS 2024 D&B'
+  code_url: 'https://github.com/ethz-spylab/agentdojo'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0075
+  - ev_training_and_evaluation_0076
+  - ev_training_and_evaluation_0077
+  cache_ids:
+  - cache_28b49b68f7f9500e
+
+- bibkey: li2024injecguard
+  primary_url: 'https://arxiv.org/abs/2410.22770'
+  title: 'InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models'
+  status: verified
+  claim_family: evaluation_metrics
+  authors: Li et al. (2024)
+  venue: arXiv preprint
+  code_url: 'https://github.com/SaFoLab-WISC/InjecGuard'
+  aliases:
+  - NotInject
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0078
+  - ev_training_and_evaluation_0079
+  - ev_training_and_evaluation_0080
+  cache_ids:
+  - cache_ab9d48079556ef2d
+
+- bibkey: lakera2024pint
+  primary_url: 'https://www.lakera.ai/product-updates/lakera-pint-benchmark'
+  title: 'Lakera''s Prompt Injection Test (PINT)—A New Benchmark for Evaluating Prompt Injection Solutions'
+  status: unverified
+  claim_family: evaluation_metrics
+  authors: Lakera Team (2024)
+  venue: vendor blog
+  code_url: 'https://github.com/lakeraai/pint-benchmark'
+  aliases:
+  - PINT
+  retrieved_at: 2026-05-22
+  verified_at:
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0081
+  - ev_training_and_evaluation_0082
+  cache_ids:
+  - cache_0621eb6f5ed9e96c
+
+- bibkey: yi2023bipia
+  primary_url: 'https://arxiv.org/abs/2312.14197'
+  title: Benchmarking and Defending against Indirect Prompt Injection Attacks on Large Language Models
+  status: verified
+  claim_family: evaluation_metrics
+  authors: Yi et al. (2023)
+  venue: KDD 2025
+  code_url: 'https://github.com/microsoft/BIPIA'
+  aliases:
+  - BIPIA
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0083
+  - ev_training_and_evaluation_0084
+  - ev_training_and_evaluation_0085
+  cache_ids:
+  - cache_70d4cfd50519178f
+
+- bibkey: zhan2024injecagent
+  primary_url: 'https://arxiv.org/abs/2403.02691'
+  title: 'InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents'
+  status: verified
+  claim_family: evaluation_metrics
+  authors: Zhan et al. (2024)
+  venue: ACL 2024 Findings
+  code_url: 'https://github.com/uiuc-kang-lab/InjecAgent'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0086
+  - ev_training_and_evaluation_0087
+  - ev_training_and_evaluation_0088
+  cache_ids:
+  - cache_4493644eb2e357a8
+
+- bibkey: yao2024taubench
+  primary_url: 'https://arxiv.org/abs/2406.12045'
+  title: 'τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains'
+  status: verified
+  claim_family: evaluation_metrics
+  authors: Yao, Shinn, Razavi, Narasimhan (2024)
+  venue: arXiv preprint
+  code_url: 'https://github.com/sierra-research/tau-bench'
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0089
+  - ev_training_and_evaluation_0090
+  - ev_training_and_evaluation_0091
+  cache_ids:
+  - cache_20c2acc833d099fd
+
+- bibkey: zhang2025asb
+  primary_url: 'https://arxiv.org/abs/2410.02644'
+  title: 'Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents'
+  status: verified
+  claim_family: evaluation_metrics
+  authors: Zhang et al. (2025)
+  venue: ICLR 2025
+  aliases:
+  - ASB
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0092
+  - ev_training_and_evaluation_0093
+  - ev_training_and_evaluation_0094
+  cache_ids:
+  - cache_bb37ba552eb103f6
+
+
+# ============================================================================
+# C4: Benchmark validity + methodology critiques
+# ============================================================================
+
+- bibkey: jung2026postmortem
+  primary_url: 'https://www.codeintegrity.ai/blog/prompt-injection-limits'
+  title: '98% Accurate and Still Broken'
+  status: unverified
+  claim_family: benchmark_validity
+  authors: Jung (2026)
+  venue: CodeIntegrity blog
+  retrieved_at: 2026-05-22
+  verified_at:
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0095
+  - ev_training_and_evaluation_0096
+  - ev_training_and_evaluation_0097
+  cache_ids:
+  - cache_6788a3f0f61cebd9
+
+- bibkey: bhagwatkar2025firewalls
+  primary_url: 'https://arxiv.org/abs/2510.05244'
+  title: 'Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?'
+  status: verified
+  claim_family: benchmark_validity
+  authors: Bhagwatkar et al. (2025)
+  venue: NeurIPS 2025
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0098
+  - ev_training_and_evaluation_0099
+  - ev_training_and_evaluation_0100
+  cache_ids:
+  - cache_beea4f2926635943
+
+- bibkey: hackett2025bypassing
+  primary_url: 'https://arxiv.org/abs/2504.11168'
+  title: 'Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection Systems'
+  status: verified
+  claim_family: benchmark_validity
+  authors: Hackett et al. (2025)
+  venue: LLMSec 2025
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0101
+  - ev_training_and_evaluation_0102
+  - ev_training_and_evaluation_0103
+  cache_ids:
+  - cache_bb62839772f16e14
+
+- bibkey: nasr2025attackersecond
+  primary_url: 'https://arxiv.org/abs/2510.09023'
+  title: 'The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections'
+  status: verified
+  claim_family: benchmark_validity
+  authors: Nasr et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0104
+  - ev_training_and_evaluation_0105
+  - ev_training_and_evaluation_0106
+  cache_ids:
+  - cache_51e92f7784dddb6e
+
+- bibkey: choudhary2025detect
+  primary_url: 'https://arxiv.org/abs/2507.05630'
+  title: How Not to Detect Prompt Injections with an LLM
+  status: verified
+  claim_family: benchmark_validity
+  authors: Choudhary et al. (2025)
+  venue: ACM Workshop on AI and Security (AISec) 2025
+  aliases:
+  - DataFlip
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0107
+  - ev_training_and_evaluation_0108
+  - ev_training_and_evaluation_0109
+  cache_ids:
+  - cache_5223602a690470a0
+
+- bibkey: carlini2023aligned
+  primary_url: 'https://arxiv.org/abs/2306.15447'
+  title: Are aligned neural networks adversarially aligned?
+  status: verified
+  claim_family: benchmark_validity
+  authors: Carlini et al. (2023)
+  venue: NeurIPS 2023
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0110
+  - ev_training_and_evaluation_0111
+  - ev_training_and_evaluation_0112
+  cache_ids:
+  - cache_3ff2b9889733b59c
+
+
+# ============================================================================
+# C5: OOD generalization methodology + reproducibility crisis
+# ============================================================================
+
+- bibkey: fomin2026benchmarkslie
+  primary_url: 'https://arxiv.org/abs/2602.14161'
+  title: 'When Benchmarks Lie: Evaluating Malicious Prompt Classifiers Under True Distribution Shift'
+  status: verified
+  claim_family: ood_evaluation_methodology
+  authors: Fomin et al. (2026)
+  venue: arXiv preprint
+  aliases:
+  - LODO
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0113
+  - ev_training_and_evaluation_0114
+  - ev_training_and_evaluation_0115
+  cache_ids:
+  - cache_081c9fe7b9b1dd0e
+
+- bibkey: rogue2025promptinjectionsbenchmark
+  primary_url: 'https://huggingface.co/datasets/rogue-security/prompt-injections-benchmark'
+  title: rogue-security/prompt-injections-benchmark (Qualifire Benchmark)
+  status: verified
+  claim_family: reproducibility_practice
+  authors: Rogue Security / Qualifire (2025)
+  venue: HuggingFace dataset card
+  aliases:
+  - qualifire/prompt-injections-benchmark
+  - Qualifire Benchmark
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0116
+  - ev_training_and_evaluation_0117
+  cache_ids:
+  - cache_ecd2a344745528a2
+
+- bibkey: hendzh2025promptshielddataset
+  primary_url: 'https://huggingface.co/datasets/hendzh/PromptShield'
+  title: hendzh/PromptShield benchmark dataset
+  status: verified
+  claim_family: ood_evaluation_methodology
+  authors: Alzahrani / Berkeley PromptShield team (2025)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0118
+  - ev_training_and_evaluation_0119
+  cache_ids:
+  - cache_6f8a1b62f594c700
+
+- bibkey: protectai2024deberta
+  primary_url: 'https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2'
+  title: protectai/deberta-v3-base-prompt-injection-v2
+  status: verified
+  claim_family: reproducibility_practice
+  authors: ProtectAI (2024)
+  venue: HuggingFace model card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0120
+  - ev_training_and_evaluation_0121
+  cache_ids:
+  - cache_f4d5b713b2d15854
+
+- bibkey: microsoft2024orcaagentinstruct
+  primary_url: 'https://huggingface.co/datasets/microsoft/orca-agentinstruct-1M-v1'
+  title: microsoft/orca-agentinstruct-1M-v1
+  status: verified
+  claim_family: training_data_sources
+  authors: Microsoft Orca Team (2024)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-22
+  verified_at: 2026-05-22
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0122
+  - ev_training_and_evaluation_0123
+  cache_ids:
+  - cache_500821bd01ca986a

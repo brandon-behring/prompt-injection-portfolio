@@ -1,0 +1,543 @@
+# Gather trace — prompt-injection detector landscape (v2.2 strict-live, schema_version 3).
+# NOTE: Reconstructed POST-HOC after the prior agent was killed mid-work. The original
+# agent did the WebSearch + WebFetch passes (verified by populated bib_ledger + cache_*)
+# but never wrote the trace. Queries below are synthesized plausibly from each entry's
+# (bibkey, sub-area, title) — they reflect the QUERY THAT WOULD HAVE BEEN ISSUED, not
+# the literal query string the prior agent used. Per-fetch reflection is derived from
+# the audit pass against cached text (see decision.reason).
+
+schema_version: 3
+topic: detector_landscape
+generated_at: '2026-05-22'
+current_as_of: '2026-05-22'
+freshness_policy: strict_live
+fetches:
+- fetch_id: fetch_ivry2025sentinel
+  sub_area: A1
+  query: ModernBERT prompt-injection detector arxiv 2025 SOTA Sentinel
+  source_url: https://arxiv.org/abs/2506.05446
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: ivry2025sentinel
+- fetch_id: fetch_jung2025promptguard
+  sub_area: A1
+  query: ModernBERT PromptGuard CodeIntegrity prompt injection classifier
+  source_url: https://huggingface.co/codeintegrity-ai/promptguard
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo codeintegrity-ai/promptguard confirmed via og:title
+  assigned_bibkey: jung2025promptguard
+- fetch_id: fetch_vijil2025mbert
+  sub_area: A1
+  query: vijil mbert prompt-injection detection HuggingFace
+  source_url: https://huggingface.co/vijil/mbert-prompt-injection
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo vijil/mbert-prompt-injection confirmed via og:title
+  assigned_bibkey: vijil2025mbert
+- fetch_id: fetch_tihilya2025modernbert
+  sub_area: A1
+  query: tihilya modernbert-base prompt-injection detection
+  source_url: https://huggingface.co/tihilya/modernbert-base-prompt-injection-detection
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'status: unverified — audit skipped'
+  assigned_bibkey: tihilya2025modernbert
+- fetch_id: fetch_carpintero2025pangolinguard
+  sub_area: A1
+  query: pangolin guard ModernBERT lightweight prompt-injection HuggingFace
+  source_url: https://huggingface.co/dcarpintero/pangolin-guard-large
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo dcarpintero/pangolin-guard-large confirmed via og:title
+  assigned_bibkey: carpintero2025pangolinguard
+- fetch_id: fetch_protectai2024deberta
+  sub_area: A2
+  query: ProtectAI deberta-v3-base prompt-injection HuggingFace
+  source_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'status: unverified — audit skipped'
+  assigned_bibkey: protectai2024deberta
+- fetch_id: fetch_protectai2024debertav2
+  sub_area: A2
+  query: ProtectAI deberta-v3-base prompt-injection v2 HuggingFace 184M
+  source_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo protectai/deberta-v3-base-prompt-injection-v2 confirmed via og:title
+  assigned_bibkey: protectai2024debertav2
+- fetch_id: fetch_deepset2023deberta
+  sub_area: A2
+  query: deepset deberta-v3-base injection HuggingFace prompt-injection
+  source_url: https://huggingface.co/deepset/deberta-v3-base-injection
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo deepset/deberta-v3-base-injection confirmed via og:title
+  assigned_bibkey: deepset2023deberta
+- fetch_id: fetch_hlyn2025judgedeberta
+  sub_area: A2
+  query: hlyn labs deberta-70m INT8 ONNX prompt-injection judge
+  source_url: https://huggingface.co/hlyn-labs/prompt-injection-judge-deberta-70m
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo hlyn-labs/prompt-injection-judge-deberta-70m confirmed via og:title
+  assigned_bibkey: hlyn2025judgedeberta
+- fetch_id: fetch_ji2025dmpi
+  sub_area: A2
+  query: Ji Li Mao DeBERTa heuristic feature engineering prompt injection 2025 arxiv
+  source_url: https://arxiv.org/abs/2506.06384
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: ji2025dmpi
+- fetch_id: fetch_jacob2025promptshield
+  sub_area: A3
+  query: PromptShield Berkeley Llama-3.1-8B prompt injection 2025 arxiv
+  source_url: https://arxiv.org/abs/2501.15145
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: jacob2025promptshield
+- fetch_id: fetch_sun2025courtguard
+  sub_area: A3
+  query: CourtGuard multi-agent local prompt injection classifier 2025 arxiv
+  source_url: https://arxiv.org/abs/2510.19844
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: sun2025courtguard
+- fetch_id: fetch_meta2025promptguard2_86m
+  sub_area: A3
+  query: Meta Llama Prompt Guard 2 86M mDeBERTa multilingual HuggingFace
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo meta-llama/Llama-Prompt-Guard-2-86M confirmed via og:title
+  assigned_bibkey: meta2025promptguard2-86m
+- fetch_id: fetch_meta2025promptguard2_22m
+  sub_area: A3
+  query: Meta Llama Prompt Guard 2 22M DeBERTa-xsmall latency reduction
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-22M
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo meta-llama/Llama-Prompt-Guard-2-22M confirmed via og:title
+  assigned_bibkey: meta2025promptguard2-22m
+- fetch_id: fetch_meta2024promptguard1
+  sub_area: A3
+  query: Meta original Prompt-Guard-86M mDeBERTa prompt-injection jailbreak
+  source_url: https://huggingface.co/meta-llama/Prompt-Guard-86M
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'status: unverified — audit skipped'
+  assigned_bibkey: meta2024promptguard1
+- fetch_id: fetch_meta2024llamaguard3
+  sub_area: A3
+  query: Meta Llama-Guard-3-8B content safety MLCommons hazard classifier
+  source_url: https://huggingface.co/meta-llama/Llama-Guard-3-8B
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo meta-llama/Llama-Guard-3-8B confirmed via og:title
+  assigned_bibkey: meta2024llamaguard3
+- fetch_id: fetch_shi2025promptarmor
+  sub_area: A3
+  query: PromptArmor Shi 2025 simple effective prompt injection defenses arxiv
+  source_url: https://arxiv.org/abs/2507.15219
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: shi2025promptarmor
+- fetch_id: fetch_lakera2024pint
+  sub_area: A4
+  query: Lakera PINT benchmark prompt injection evaluation 2024 vendor blog
+  source_url: https://www.lakera.ai/product-updates/lakera-pint-benchmark
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title contains expected substring
+  assigned_bibkey: lakera2024pint
+- fetch_id: fetch_lakeraai2025pintbenchmark
+  sub_area: A4
+  query: lakeraai pint-benchmark GitHub repo prompt injection
+  source_url: https://github.com/lakeraai/pint-benchmark
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title contains expected substring
+  assigned_bibkey: lakeraai2025pintbenchmark
+- fetch_id: fetch_lakera2025guard
+  sub_area: A4
+  query: Lakera Guard prompt injection protection vendor product page
+  source_url: https://www.lakera.ai/risk/prompt-injection-attacks
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title shares >=30% words with entry
+  assigned_bibkey: lakera2025guard
+- fetch_id: fetch_microsoft2025promptshields
+  sub_area: A4
+  query: Azure AI Content Safety Prompt Shields User Document Spotlighting Microsoft
+  source_url: https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title contains expected substring
+  assigned_bibkey: microsoft2025promptshields
+- fetch_id: fetch_aws2025bedrockguardrails
+  sub_area: A4
+  query: AWS Bedrock Guardrails prompt attack jailbreak prompt leakage
+  source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title contains expected substring
+  assigned_bibkey: aws2025bedrockguardrails
+- fetch_id: fetch_google2025modelarmor
+  sub_area: A4
+  query: Google Cloud Model Armor prompt injection jailbreak PII filter GA
+  source_url: https://cloud.google.com/security/products/model-armor
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'status: unverified — audit skipped'
+  assigned_bibkey: google2025modelarmor
+- fetch_id: fetch_nvidia2025nemoinjection
+  sub_area: A4
+  query: NVIDIA NeMo Guardrails injection detection YARA SQLi XSS
+  source_url: https://docs.nvidia.com/nemo/microservices/latest/guardrails/tutorials/injection-detection.html
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title shares >=30% words with entry
+  assigned_bibkey: nvidia2025nemoinjection
+- fetch_id: fetch_cisco2025aidefense
+  sub_area: A4
+  query: Cisco AI Defense Robust Intelligence agentic security AI firewall
+  source_url: https://blogs.cisco.com/ai/security-for-the-agentic-era-cisco-ai-defense-breaks-new-ground
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'status: unverified — audit skipped'
+  assigned_bibkey: cisco2025aidefense
+- fetch_id: fetch_protectai2023rebuff
+  sub_area: A4
+  query: ProtectAI Rebuff LLM prompt injection detector heuristic LLM-judge VectorDB canary
+  source_url: https://github.com/protectai/rebuff
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title contains expected substring
+  assigned_bibkey: protectai2023rebuff
+- fetch_id: fetch_meta2025promptguarddoc
+  sub_area: A4
+  query: Llama Prompt Guard 2 model cards prompt formats Meta llama.com docs
+  source_url: https://www.llama.com/docs/model-cards-and-prompt-formats/prompt-guard/
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title contains expected substring
+  assigned_bibkey: meta2025promptguarddoc
+- fetch_id: fetch_abdelnabi2025tasktracker
+  sub_area: A5
+  query: TaskTracker activation deltas LLM task drift SaTML 2025 arxiv
+  source_url: https://arxiv.org/abs/2406.00799
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: abdelnabi2025tasktracker
+- fetch_id: fetch_wen2025instructdetector
+  sub_area: A5
+  query: Defending indirect prompt injection by instruction detection Wen 2025 arxiv
+  source_url: https://arxiv.org/abs/2505.06311
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: wen2025instructdetector
+- fetch_id: fetch_li2024injecguard
+  sub_area: A5
+  query: InjecGuard NotInject over-defense prompt injection guardrail Li Liu arxiv
+  source_url: https://arxiv.org/abs/2410.22770
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: li2024injecguard
+- fetch_id: fetch_li2025piguard
+  sub_area: A5
+  query: PIGuard prompt injection guardrail mitigating overdefense ACL 2025
+  source_url: https://aclanthology.org/2025.acl-long.1468/
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title contains expected substring
+  assigned_bibkey: li2025piguard
+- fetch_id: fetch_jia2026alignsentinel
+  sub_area: A5
+  query: AlignSentinel alignment-aware detection prompt injection attention maps arxiv
+  source_url: https://arxiv.org/abs/2602.13597
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: jia2026alignsentinel
+- fetch_id: fetch_ayub2024embedding
+  sub_area: A5
+  query: Embedding-based classifiers detect prompt injection XGBoost Random Forest Ayub Majumdar
+  source_url: https://arxiv.org/abs/2410.22284
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: ayub2024embedding
+- fetch_id: fetch_hung2025attentiontracker
+  sub_area: A5
+  query: Attention Tracker detecting prompt injection NAACL 2025 Hung arxiv
+  source_url: https://arxiv.org/abs/2411.00348
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'arxiv citation_* metadata confirms title + first-author + year | CODE_URL FLAGGED: github.com/khhung-906/Attention-Tracker not present in cached arxiv page — possible guessed link; removed from
+    bib_ledger pending /dossier-audit verification'
+  assigned_bibkey: hung2025attentiontracker
+- fetch_id: fetch_jia2024taskshield
+  sub_area: A5
+  query: Task Shield enforcing task alignment indirect prompt injection LLM agents Jia
+  source_url: https://arxiv.org/abs/2412.16682
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: jia2024taskshield
+- fetch_id: fetch_zhu2025melon
+  sub_area: A5
+  query: MELON provable defense indirect prompt injection ICML 2025 Zhu arxiv
+  source_url: https://arxiv.org/abs/2502.05174
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: zhu2025melon
+- fetch_id: fetch_liu2025datasentinel
+  sub_area: A5
+  query: DataSentinel game-theoretic prompt injection KAD secret-token IEEE S&P 2025
+  source_url: https://arxiv.org/abs/2504.11358
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: liu2025datasentinel
+- fetch_id: fetch_liu2025wainjectbench
+  sub_area: A5
+  query: WAInjectBench benchmarking prompt injection detections web agents arxiv
+  source_url: https://arxiv.org/abs/2510.01354
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: liu2025wainjectbench
+- fetch_id: fetch_bhagwatkar2025firewalls
+  sub_area: A5
+  query: indirect prompt injection firewalls stronger benchmarks NeurIPS 2025 arxiv
+  source_url: https://arxiv.org/abs/2510.05244
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: bhagwatkar2025firewalls
+- fetch_id: fetch_hackett2025bypassing
+  sub_area: A4
+  query: bypassing LLM guardrails evasion attacks prompt injection jailbreak detection Hackett arxiv
+  source_url: https://arxiv.org/abs/2504.11168
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: hackett2025bypassing
+- fetch_id: fetch_zizzo2025adversarialprompt
+  sub_area: A4
+  query: adversarial prompt evaluation systematic benchmarking guardrails IBM arxiv
+  source_url: https://arxiv.org/abs/2502.15427
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: zizzo2025adversarialprompt
+- fetch_id: fetch_nasr2025attackermovessecond
+  sub_area: A4
+  query: attacker moves second stronger adaptive attacks LLM jailbreaks prompt injections Nasr arxiv
+  source_url: https://arxiv.org/abs/2510.09023
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arxiv citation_* metadata confirms title + first-author + year
+  assigned_bibkey: nasr2025attackermovessecond
+- fetch_id: fetch_jung2026postmortem
+  sub_area: A4
+  query: CodeIntegrity 98% accurate still broken industry postmortem detector held-out adversarial
+  source_url: https://www.codeintegrity.ai/blog/prompt-injection-limits
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: og:url matches primary_url
+  assigned_bibkey: jung2026postmortem
+- fetch_id: fetch_microsoft2023bipia
+  sub_area: A5
+  query: Microsoft BIPIA benchmark indirect prompt injection robustness evaluation GitHub
+  source_url: https://github.com/microsoft/BIPIA
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: title contains expected substring
+  assigned_bibkey: microsoft2023bipia

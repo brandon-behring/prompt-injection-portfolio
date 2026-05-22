@@ -1,0 +1,1392 @@
+# Evidence ledger — prompt-injection detector landscape (v2.1 strict-live, schema_version 3).
+# Reconstructed POST-HOC after the prior agent was killed mid-work.
+# Each entry maps to one bib_ledger source; supports[] enumerates 1-3 claims.
+# extraction_method: verbatim_match for the primary span (anchored to cache_id text bytes);
+# paraphrase for derived/secondary claims (link_confidence capped at 0.85 per v3 schema).
+
+schema_version: 3
+topic: detector_landscape
+generated_at: '2026-05-22'
+current_as_of: '2026-05-22'
+freshness_policy: strict_live
+entries:
+- evidence_id: ev_detector_landscape_0001
+  source_url: https://arxiv.org/abs/2506.05446
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5f129920a9fcbcd5
+  supports:
+  - claim_id: claim_detector_landscape_0000_01
+    field_path: bib_ledger.entries[0].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_5f129920a9fcbcd5
+      text_path_offset:
+      - 62
+      - 119
+      sha256_of_span: 0ff84ed47746402f65bbb86aebf5e6758b6eed64f81694c615a5c5d640ad307c
+  - claim_id: claim_detector_landscape_0000_02
+    field_path: bib_ledger.entries[0].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0000_03
+    field_path: bib_ledger.entries[0].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Sentinel: SOTA model to protect against prompt injections'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0002
+  source_url: https://huggingface.co/codeintegrity-ai/promptguard
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_36ea5818e08976b2
+  supports:
+  - claim_id: claim_detector_landscape_0001_01
+    field_path: bib_ledger.entries[1].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_36ea5818e08976b2
+      text_path_offset:
+      - 116155
+      - 116233
+      sha256_of_span: 17bd609eef4dec5289226af4cb23d8ca79b209da7ccb82b464f179b107656291
+  - claim_id: claim_detector_landscape_0001_02
+    field_path: bib_ledger.entries[1].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: High-performance prompt injection and jailbreak detector for LLM applications.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0003
+  source_url: https://huggingface.co/vijil/mbert-prompt-injection
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8c9faa216a4c8c67
+  supports:
+  - claim_id: claim_detector_landscape_0002_01
+    field_path: bib_ledger.entries[2].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8c9faa216a4c8c67
+      text_path_offset:
+      - 82002
+      - 82159
+      sha256_of_span: 9574b5b5c9fde6cf39f10323ae41e0978e137ae6ea174f87277e929c501ce558
+  - claim_id: claim_detector_landscape_0002_02
+    field_path: bib_ledger.entries[2].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: This model is a fine-tuned version of ModernBert to classify prompt-injection prompts which can manipulate language models into producing unintended outputs.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0004
+  source_url: https://huggingface.co/tihilya/modernbert-base-prompt-injection-detection
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0eed2baeb115d544
+  supports:
+  - claim_id: claim_detector_landscape_0003_01
+    field_path: bib_ledger.entries[3].title
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.5
+  - claim_id: claim_detector_landscape_0003_02
+    field_path: bib_ledger.entries[3].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: model card / vendor surface — no extractable verbatim claim
+  rights_status: private_use
+  confidence:
+    score: 0.5
+    factors:
+    - model card / vendor surface — no extractable verbatim claim
+- evidence_id: ev_detector_landscape_0005
+  source_url: https://huggingface.co/dcarpintero/pangolin-guard-large
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_e848e632a6fbe6b5
+  supports:
+  - claim_id: claim_detector_landscape_0004_01
+    field_path: bib_ledger.entries[4].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_e848e632a6fbe6b5
+      text_path_offset:
+      - 86999
+      - 87061
+      sha256_of_span: 1d9fb0a6f8e8fcfc3ea282aa1c38bcf3dbdff96e3ab79e894310df46a5cdad4f
+  - claim_id: claim_detector_landscape_0004_02
+    field_path: bib_ledger.entries[4].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'How to use dcarpintero/pangolin-guard-large with Transformers:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0006
+  source_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8c2403762307c627
+  supports:
+  - claim_id: claim_detector_landscape_0005_01
+    field_path: bib_ledger.entries[5].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8c2403762307c627
+      text_path_offset:
+      - 107346
+      - 107418
+      sha256_of_span: 13667431764c57f61f022d415ec8c7e3acc72ef4b1a7faff07efe9ce44ef5289
+  - claim_id: claim_detector_landscape_0005_02
+    field_path: bib_ledger.entries[5].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'How to use protectai/deberta-v3-base-prompt-injection with Transformers:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0007
+  source_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f4d5b713b2d15854
+  supports:
+  - claim_id: claim_detector_landscape_0006_01
+    field_path: bib_ledger.entries[6].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_f4d5b713b2d15854
+      text_path_offset:
+      - 102895
+      - 102970
+      sha256_of_span: d2ac2f32aed7a160f693e60aea3132a129b58c4467fe812ec3dd60d8f2038f95
+  - claim_id: claim_detector_landscape_0006_02
+    field_path: bib_ledger.entries[6].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'How to use protectai/deberta-v3-base-prompt-injection-v2 with Transformers:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0008
+  source_url: https://huggingface.co/deepset/deberta-v3-base-injection
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cb8885d33147703d
+  supports:
+  - claim_id: claim_detector_landscape_0007_01
+    field_path: bib_ledger.entries[7].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_cb8885d33147703d
+      text_path_offset:
+      - 100586
+      - 100649
+      sha256_of_span: 4ee83cef1c61ca04783960f1b53fa83c1b0a8173825e7141733f3a42a66808d0
+  - claim_id: claim_detector_landscape_0007_02
+    field_path: bib_ledger.entries[7].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'How to use deepset/deberta-v3-base-injection with Transformers:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0009
+  source_url: https://huggingface.co/hlyn-labs/prompt-injection-judge-deberta-70m
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_e1e51be73c41d3a4
+  supports:
+  - claim_id: claim_detector_landscape_0008_01
+    field_path: bib_ledger.entries[8].title
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.5
+  - claim_id: claim_detector_landscape_0008_02
+    field_path: bib_ledger.entries[8].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: model card / vendor surface — no extractable verbatim claim
+  rights_status: private_use
+  confidence:
+    score: 0.5
+    factors:
+    - model card / vendor surface — no extractable verbatim claim
+- evidence_id: ev_detector_landscape_0010
+  source_url: https://arxiv.org/abs/2506.06384
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_a95530f5842377a1
+  supports:
+  - claim_id: claim_detector_landscape_0009_01
+    field_path: bib_ledger.entries[9].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_a95530f5842377a1
+      text_path_offset:
+      - 62
+      - 166
+      sha256_of_span: 60aa80531627753b141c4d0ec0b1367e00329d00b4215ed603ed66202639bfba
+  - claim_id: claim_detector_landscape_0009_02
+    field_path: bib_ledger.entries[9].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0009_03
+    field_path: bib_ledger.entries[9].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Detection Method for Prompt Injection by Integrating Pre-trained Model and Heuristic Feature Engineering
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0011
+  source_url: https://arxiv.org/abs/2501.15145
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_96dc7a084a524c4d
+  supports:
+  - claim_id: claim_detector_landscape_0010_01
+    field_path: bib_ledger.entries[10].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_96dc7a084a524c4d
+      text_path_offset:
+      - 62
+      - 125
+      sha256_of_span: 306464d4b122bdd029d36b9befc9a2fb5fddb39fda833fab9ec8da7f840ffa92
+  - claim_id: claim_detector_landscape_0010_02
+    field_path: bib_ledger.entries[10].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0010_03
+    field_path: bib_ledger.entries[10].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'PromptShield: Deployable Detection for Prompt Injection Attacks'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0012
+  source_url: https://arxiv.org/abs/2510.19844
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0202713855aa48d0
+  supports:
+  - claim_id: claim_detector_landscape_0011_01
+    field_path: bib_ledger.entries[11].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_0202713855aa48d0
+      text_path_offset:
+      - 62
+      - 121
+      sha256_of_span: 7d4eb422492a49baac2247bd347aa1b4f7893770f5042357f6a818d8e1110854
+  - claim_id: claim_detector_landscape_0011_02
+    field_path: bib_ledger.entries[11].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0011_03
+    field_path: bib_ledger.entries[11].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'CourtGuard: A Local, Multiagent Prompt Injection Classifier'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0013
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_550949d71181746c
+  supports:
+  - claim_id: claim_detector_landscape_0012_01
+    field_path: bib_ledger.entries[12].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_550949d71181746c
+      text_path_offset:
+      - 106634
+      - 106699
+      sha256_of_span: bf0eca155b24c104f51f744b794c5bf214250eb55b15c28a93d03f8baf8f94e2
+  - claim_id: claim_detector_landscape_0012_02
+    field_path: bib_ledger.entries[12].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'How to use meta-llama/Llama-Prompt-Guard-2-86M with Transformers:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0014
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-22M
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_b2975ff46c4b40ab
+  supports:
+  - claim_id: claim_detector_landscape_0013_01
+    field_path: bib_ledger.entries[13].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_b2975ff46c4b40ab
+      text_path_offset:
+      - 106626
+      - 106691
+      sha256_of_span: e88fc64d379ca201f4031e7babbc5601e77739710be282b7b171d7cf94748dfd
+  - claim_id: claim_detector_landscape_0013_02
+    field_path: bib_ledger.entries[13].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'How to use meta-llama/Llama-Prompt-Guard-2-22M with Transformers:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0015
+  source_url: https://huggingface.co/meta-llama/Prompt-Guard-86M
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0cb97e9f1fc546b6
+  supports:
+  - claim_id: claim_detector_landscape_0014_01
+    field_path: bib_ledger.entries[14].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_0cb97e9f1fc546b6
+      text_path_offset:
+      - 54114
+      - 54237
+      sha256_of_span: e5557f201a38b2389bf512be8efee477091ff21870af5f9749dfa68e3d6625e4
+  - claim_id: claim_detector_landscape_0014_02
+    field_path: bib_ledger.entries[14].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'We want everyone to use Llama 3.1 safely and responsibly. You agree you will not use, or allow others to use, Llama 3.1 to:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0016
+  source_url: https://huggingface.co/meta-llama/Llama-Guard-3-8B
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_b03713948ad0d127
+  supports:
+  - claim_id: claim_detector_landscape_0015_01
+    field_path: bib_ledger.entries[15].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_b03713948ad0d127
+      text_path_offset:
+      - 130345
+      - 130409
+      sha256_of_span: b467dc1b3c491113670e9f6146e87ce2775f8d05f52883a754542fdb735df892
+  - claim_id: claim_detector_landscape_0015_02
+    field_path: bib_ledger.entries[15].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'How to use meta-llama/Llama-Guard-3-8B with Docker Model Runner:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0017
+  source_url: https://arxiv.org/abs/2507.15219
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_9d8e7c7a91582e80
+  supports:
+  - claim_id: claim_detector_landscape_0016_01
+    field_path: bib_ledger.entries[16].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_9d8e7c7a91582e80
+      text_path_offset:
+      - 62
+      - 121
+      sha256_of_span: 2e099b553b0cf3e1b32267f58823acfd80dc2d469c4742e19804c2fcd12bff62
+  - claim_id: claim_detector_landscape_0016_02
+    field_path: bib_ledger.entries[16].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0016_03
+    field_path: bib_ledger.entries[16].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'PromptArmor: Simple yet Effective Prompt Injection Defenses'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0018
+  source_url: https://www.lakera.ai/product-updates/lakera-pint-benchmark
+  source_type: blog
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0621eb6f5ed9e96c
+  supports:
+  - claim_id: claim_detector_landscape_0017_01
+    field_path: bib_ledger.entries[17].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_0621eb6f5ed9e96c
+      text_path_offset:
+      - 81888
+      - 81977
+      sha256_of_span: f6df1455fd59c0c6f0f6718b3b693999a39b9cec42e3b8f5516086d2ca17388b
+  - claim_id: claim_detector_landscape_0017_02
+    field_path: bib_ledger.entries[17].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: Evaluating performance in the Generative AI (GenAI) space has become a complicated topic.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0019
+  source_url: https://github.com/lakeraai/pint-benchmark
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_84c0e7c4f7fbd712
+  supports:
+  - claim_id: claim_detector_landscape_0018_01
+    field_path: bib_ledger.entries[18].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_84c0e7c4f7fbd712
+      text_path_offset:
+      - 138490
+      - 138558
+      sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
+  - claim_id: claim_detector_landscape_0018_02
+    field_path: bib_ledger.entries[18].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: We read every piece of feedback, and take your input very seriously.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0020
+  source_url: https://www.lakera.ai/risk/prompt-injection-attacks
+  source_type: blog
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_669e2d28a98f3020
+  supports:
+  - claim_id: claim_detector_landscape_0019_01
+    field_path: bib_ledger.entries[19].title
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.5
+  - claim_id: claim_detector_landscape_0019_02
+    field_path: bib_ledger.entries[19].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: model card / vendor surface — no extractable verbatim claim
+  rights_status: private_use
+  confidence:
+    score: 0.5
+    factors:
+    - model card / vendor surface — no extractable verbatim claim
+- evidence_id: ev_detector_landscape_0021
+  source_url: https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f8a5917cbb6f90f3
+  supports:
+  - claim_id: claim_detector_landscape_0020_01
+    field_path: bib_ledger.entries[20].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_f8a5917cbb6f90f3
+      text_path_offset:
+      - 30284
+      - 30367
+      sha256_of_span: f68c60b404a5f54dbf81efa1853506a1b52c40e46fcf10c4905220d10956b2d0
+  - claim_id: claim_detector_landscape_0020_02
+    field_path: bib_ledger.entries[20].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: The types of input attacks that Prompt Shields detects are described in this table.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0022
+  source_url: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_1f25f8e689042ec7
+  supports:
+  - claim_id: claim_detector_landscape_0021_01
+    field_path: bib_ledger.entries[21].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_1f25f8e689042ec7
+      text_path_offset:
+      - 32009
+      - 32142
+      sha256_of_span: 2d6df25ca45c03bc65251dc3ea5c9dd37bd28e780f7df46ccc9bd3e00f5d3047
+  - claim_id: claim_detector_landscape_0021_02
+    field_path: bib_ledger.entries[21].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0023
+  source_url: https://cloud.google.com/security/products/model-armor
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_12e1c56bb0b8a8a2
+  supports:
+  - claim_id: claim_detector_landscape_0022_01
+    field_path: bib_ledger.entries[22].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_12e1c56bb0b8a8a2
+      text_path_offset:
+      - 1624498
+      - 1624661
+      sha256_of_span: 0beddec297f2b1bc10deb048a7de83de9a6b0e56f448dacaa6de54cb6b4a877b
+  - claim_id: claim_detector_landscape_0022_02
+    field_path: bib_ledger.entries[22].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: Runtime security for generative and agentic AI, Model Armor provides comprehensive protections against prompt injection, sensitive data leaks, and harmful content.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0024
+  source_url: https://docs.nvidia.com/nemo/microservices/latest/guardrails/tutorials/injection-detection.html
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cf6e511e2e1334ca
+  supports:
+  - claim_id: claim_detector_landscape_0023_01
+    field_path: bib_ledger.entries[23].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_cf6e511e2e1334ca
+      text_path_offset:
+      - 54008
+      - 54153
+      sha256_of_span: f3750537b25ec083406cc64e3ff932eae75669616f7c2d6670711dc58f4ac7b0
+  - claim_id: claim_detector_landscape_0023_02
+    field_path: bib_ledger.entries[23].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: Detect potential exploitation attempts (such as code injection, cross-site scripting, SQL injection, and template injection) using NeMo Platform.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0025
+  source_url: https://blogs.cisco.com/ai/security-for-the-agentic-era-cisco-ai-defense-breaks-new-ground
+  source_type: blog
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_838e27ef58169b58
+  supports:
+  - claim_id: claim_detector_landscape_0024_01
+    field_path: bib_ledger.entries[24].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_838e27ef58169b58
+      text_path_offset:
+      - 1312
+      - 1444
+      sha256_of_span: fdb94650701f8d727fed36dbdb51d815d724ea4774b933700c9251e165c2b93b
+  - claim_id: claim_detector_landscape_0024_02
+    field_path: bib_ledger.entries[24].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: A year ago, we introduced the world to Cisco AI Defense, the industry’s first truly comprehensive enterprise AI security solution.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0026
+  source_url: https://github.com/protectai/rebuff
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5f3477a159885625
+  supports:
+  - claim_id: claim_detector_landscape_0025_01
+    field_path: bib_ledger.entries[25].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_5f3477a159885625
+      text_path_offset:
+      - 138673
+      - 138741
+      sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
+  - claim_id: claim_detector_landscape_0025_02
+    field_path: bib_ledger.entries[25].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: We read every piece of feedback, and take your input very seriously.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0027
+  source_url: https://www.llama.com/docs/model-cards-and-prompt-formats/prompt-guard/
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_ea627ff19ae55d38
+  supports:
+  - claim_id: claim_detector_landscape_0026_01
+    field_path: bib_ledger.entries[26].title
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.5
+  - claim_id: claim_detector_landscape_0026_02
+    field_path: bib_ledger.entries[26].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: model card / vendor surface — no extractable verbatim claim
+  rights_status: private_use
+  confidence:
+    score: 0.5
+    factors:
+    - model card / vendor surface — no extractable verbatim claim
+- evidence_id: ev_detector_landscape_0028
+  source_url: https://arxiv.org/abs/2406.00799
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_6d742cb6609170a1
+  supports:
+  - claim_id: claim_detector_landscape_0027_01
+    field_path: bib_ledger.entries[27].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_6d742cb6609170a1
+      text_path_offset:
+      - 62
+      - 122
+      sha256_of_span: f265e69427bccab2a01e354169c405ab52f75ce900227ea6d6278c4979f60e3f
+  - claim_id: claim_detector_landscape_0027_02
+    field_path: bib_ledger.entries[27].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0027_03
+    field_path: bib_ledger.entries[27].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Get my drift? Catching LLM Task Drift with Activation Deltas
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0029
+  source_url: https://arxiv.org/abs/2505.06311
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_39929ecbe5b3d6a6
+  supports:
+  - claim_id: claim_detector_landscape_0028_01
+    field_path: bib_ledger.entries[28].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_39929ecbe5b3d6a6
+      text_path_offset:
+      - 62
+      - 130
+      sha256_of_span: 10433ec7db4bf6211f4f9411ec1224979616a4297717b185e6d7cec0b164af0d
+  - claim_id: claim_detector_landscape_0028_02
+    field_path: bib_ledger.entries[28].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0028_03
+    field_path: bib_ledger.entries[28].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Defending against Indirect Prompt Injection by Instruction Detection
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0030
+  source_url: https://arxiv.org/abs/2410.22770
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_ab9d48079556ef2d
+  supports:
+  - claim_id: claim_detector_landscape_0029_01
+    field_path: bib_ledger.entries[29].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_ab9d48079556ef2d
+      text_path_offset:
+      - 62
+      - 151
+      sha256_of_span: a09fa422b0c4118d4564272018721af1f62cab0a3f5ac6213964349abd3004d1
+  - claim_id: claim_detector_landscape_0029_02
+    field_path: bib_ledger.entries[29].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0029_03
+    field_path: bib_ledger.entries[29].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0031
+  source_url: https://aclanthology.org/2025.acl-long.1468/
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_12b7eb73c0b04453
+  supports:
+  - claim_id: claim_detector_landscape_0030_01
+    field_path: bib_ledger.entries[30].title
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.5
+  - claim_id: claim_detector_landscape_0030_02
+    field_path: bib_ledger.entries[30].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: model card / vendor surface — no extractable verbatim claim
+  rights_status: private_use
+  confidence:
+    score: 0.5
+    factors:
+    - model card / vendor surface — no extractable verbatim claim
+- evidence_id: ev_detector_landscape_0032
+  source_url: https://arxiv.org/abs/2602.13597
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_9fbf2314505d24a0
+  supports:
+  - claim_id: claim_detector_landscape_0031_01
+    field_path: bib_ledger.entries[31].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_9fbf2314505d24a0
+      text_path_offset:
+      - 62
+      - 130
+      sha256_of_span: d8ab2fb1f18be36276a5b7ebc515c3d10c97a697a5c1905c8c6de0193d339006
+  - claim_id: claim_detector_landscape_0031_02
+    field_path: bib_ledger.entries[31].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0031_03
+    field_path: bib_ledger.entries[31].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'AlignSentinel: Alignment-Aware Detection of Prompt Injection Attacks'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0033
+  source_url: https://arxiv.org/abs/2410.22284
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5d322a73036744e4
+  supports:
+  - claim_id: claim_detector_landscape_0032_01
+    field_path: bib_ledger.entries[32].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_5d322a73036744e4
+      text_path_offset:
+      - 62
+      - 125
+      sha256_of_span: 197a8b90031f352769ac18ade529992fe244552d2a63b4e2e0ef1689c34a7388
+  - claim_id: claim_detector_landscape_0032_02
+    field_path: bib_ledger.entries[32].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0032_03
+    field_path: bib_ledger.entries[32].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Embedding-based classifiers can detect prompt injection attacks
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0034
+  source_url: https://arxiv.org/abs/2411.00348
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_52f0885c01ea6bee
+  supports:
+  - claim_id: claim_detector_landscape_0033_01
+    field_path: bib_ledger.entries[33].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_52f0885c01ea6bee
+      text_path_offset:
+      - 62
+      - 123
+      sha256_of_span: 57e14f83ef703315046bbc1b8c0210b5a38b349fa4a1a6cf54a32e38966bc481
+  - claim_id: claim_detector_landscape_0033_02
+    field_path: bib_ledger.entries[33].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0033_03
+    field_path: bib_ledger.entries[33].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Attention Tracker: Detecting Prompt Injection Attacks in LLMs'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0035
+  source_url: https://arxiv.org/abs/2412.16682
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_46c1010fcfae5428
+  supports:
+  - claim_id: claim_detector_landscape_0034_01
+    field_path: bib_ledger.entries[34].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_46c1010fcfae5428
+      text_path_offset:
+      - 62
+      - 161
+      sha256_of_span: 5ee29587d5129c13dcd15fc873e47ac371297514c79ab7cf1a7f74063179ddb6
+  - claim_id: claim_detector_landscape_0034_02
+    field_path: bib_ledger.entries[34].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0034_03
+    field_path: bib_ledger.entries[34].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0036
+  source_url: https://arxiv.org/abs/2502.05174
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_325bb7d4d75b8126
+  supports:
+  - claim_id: claim_detector_landscape_0035_01
+    field_path: bib_ledger.entries[35].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_325bb7d4d75b8126
+      text_path_offset:
+      - 62
+      - 140
+      sha256_of_span: 9f2bb5235ee8c576c6a3833eeba336d3bb7f69e2c1d6fe13a6cf118b43ba969a
+  - claim_id: claim_detector_landscape_0035_02
+    field_path: bib_ledger.entries[35].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0035_03
+    field_path: bib_ledger.entries[35].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'MELON: Provable Defense Against Indirect Prompt Injection Attacks in AI Agents'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0037
+  source_url: https://arxiv.org/abs/2504.11358
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_1feeff6692fd1104
+  supports:
+  - claim_id: claim_detector_landscape_0036_01
+    field_path: bib_ledger.entries[36].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_1feeff6692fd1104
+      text_path_offset:
+      - 62
+      - 130
+      sha256_of_span: 06d98347325959e4307ac5cf994ca3b9bef4f96bc613e7b1374bec57065d39a7
+  - claim_id: claim_detector_landscape_0036_02
+    field_path: bib_ledger.entries[36].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0036_03
+    field_path: bib_ledger.entries[36].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0038
+  source_url: https://arxiv.org/abs/2510.01354
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_c75a5781c52711c4
+  supports:
+  - claim_id: claim_detector_landscape_0037_01
+    field_path: bib_ledger.entries[37].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_c75a5781c52711c4
+      text_path_offset:
+      - 62
+      - 132
+      sha256_of_span: e5b1065722364f2ed3f56df9fb04b139b8f88377e81a6e363be64c2079635660
+  - claim_id: claim_detector_landscape_0037_02
+    field_path: bib_ledger.entries[37].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0037_03
+    field_path: bib_ledger.entries[37].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0039
+  source_url: https://arxiv.org/abs/2510.05244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_beea4f2926635943
+  supports:
+  - claim_id: claim_detector_landscape_0038_01
+    field_path: bib_ledger.entries[38].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_beea4f2926635943
+      text_path_offset:
+      - 62
+      - 141
+      sha256_of_span: 8d076f5828df8d85a36e5f77501cd8a52460e04e968641b33874dc7276b4bef0
+  - claim_id: claim_detector_landscape_0038_02
+    field_path: bib_ledger.entries[38].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0038_03
+    field_path: bib_ledger.entries[38].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0040
+  source_url: https://arxiv.org/abs/2504.11168
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_bb62839772f16e14
+  supports:
+  - claim_id: claim_detector_landscape_0039_01
+    field_path: bib_ledger.entries[39].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_bb62839772f16e14
+      text_path_offset:
+      - 62
+      - 185
+      sha256_of_span: 66fb10e7333bd120c4365c62d0a0ec4eac64f8d3b4161c50a9a4228323b99808
+  - claim_id: claim_detector_landscape_0039_02
+    field_path: bib_ledger.entries[39].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0039_03
+    field_path: bib_ledger.entries[39].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection Systems'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0041
+  source_url: https://arxiv.org/abs/2502.15427
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8271bae92af11c05
+  supports:
+  - claim_id: claim_detector_landscape_0040_01
+    field_path: bib_ledger.entries[40].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8271bae92af11c05
+      text_path_offset:
+      - 62
+      - 167
+      sha256_of_span: ee60a867a23b46e74f0613814f691d8a9e4f3654b716ba880d123bdefd30fdf6
+  - claim_id: claim_detector_landscape_0040_02
+    field_path: bib_ledger.entries[40].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0040_03
+    field_path: bib_ledger.entries[40].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Adversarial Prompt Evaluation: Systematic Benchmarking of Guardrails Against Prompt Input Attacks on LLMs'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0042
+  source_url: https://arxiv.org/abs/2510.09023
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_51e92f7784dddb6e
+  supports:
+  - claim_id: claim_detector_landscape_0041_01
+    field_path: bib_ledger.entries[41].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_51e92f7784dddb6e
+      text_path_offset:
+      - 62
+      - 175
+      sha256_of_span: 2458bdd329b72e6e978cbf004710835292bf1e9588ac6437e1723c4b8ffa407d
+  - claim_id: claim_detector_landscape_0041_02
+    field_path: bib_ledger.entries[41].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0041_03
+    field_path: bib_ledger.entries[41].excerpt[2]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against Llm Jailbreaks and Prompt Injections'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0043
+  source_url: https://www.codeintegrity.ai/blog/prompt-injection-limits
+  source_type: blog
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_6788a3f0f61cebd9
+  supports:
+  - claim_id: claim_detector_landscape_0042_01
+    field_path: bib_ledger.entries[42].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_6788a3f0f61cebd9
+      text_path_offset:
+      - 17368
+      - 17449
+      sha256_of_span: 4b3d9e21f55437b3e38ebcf9ecd5f2825fa02f024e6624d6ed5eb25464f472c7
+  - claim_id: claim_detector_landscape_0042_02
+    field_path: bib_ledger.entries[42].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: We started with encoder-only transformers, the workhorses of text classification.
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0044
+  source_url: https://github.com/microsoft/BIPIA
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-22'
+  verification_method: webfetch
+  cache_ids:
+  - cache_0bdbfb50ac3ff273
+  supports:
+  - claim_id: claim_detector_landscape_0043_01
+    field_path: bib_ledger.entries[43].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_0bdbfb50ac3ff273
+      text_path_offset:
+      - 138914
+      - 138982
+      sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
+  - claim_id: claim_detector_landscape_0043_02
+    field_path: bib_ledger.entries[43].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: We read every piece of feedback, and take your input very seriously.
+  rights_status: private_use

@@ -1,0 +1,553 @@
+# POST-HOC RECONSTRUCTION (2026-05-22)
+# A prior /research-gather agent was killed mid-Phase 4 after writing bib_ledger.yml
+# and running cache_source.py for all entries, but before writing this trace. This
+# trace is reconstructed from the bib_ledger + cache_manifest by the v2.2 Phase 4/6
+# completion pass. Each fetch entry corresponds 1:1 to a bib_ledger acceptance.
+# Rejected/escalated fetches from the original gather session are NOT recoverable
+# from cached artifacts and are therefore not represented here.
+schema_version: 3
+topic: training_and_evaluation
+generated_at: '2026-05-22'
+current_as_of: '2026-05-22'
+freshness_policy: strict_live
+fetches:
+- fetch_id: fetch_deepset2024promptinjections
+  sub_area: C1
+  query: huggingface dataset deepset/prompt-injections prompt injection C1
+  source_url: https://huggingface.co/datasets/deepset/prompt-injections
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: deepset2024promptinjections
+- fetch_id: fetch_jackhhao2023jailbreakclassificat
+  sub_area: C1
+  query: huggingface dataset jackhhao/jailbreak-classification prompt injection C1
+  source_url: https://huggingface.co/datasets/jackhhao/jailbreak-classification
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: jackhhao2023jailbreakclassification
+- fetch_id: fetch_xtram2024safeguard
+  sub_area: C1
+  query: huggingface dataset xTRam1/safe-guard-prompt-injection prompt injection C1
+  source_url: https://huggingface.co/datasets/xTRam1/safe-guard-prompt-injection
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: xtram2024safeguard
+- fetch_id: fetch_shen2023doanythingnow
+  sub_area: C1
+  query: '"Do Anything Now": Characterizing and Evaluating In-The-Wild arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2308.03825
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: shen2023doanythingnow
+- fetch_id: fetch_lakera2023gandalfignore
+  sub_area: C1
+  query: huggingface dataset Lakera/gandalf_ignore_instructions prompt injection C1
+  source_url: https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: lakera2023gandalfignore
+- fetch_id: fetch_lin2023toxicchat
+  sub_area: C1
+  query: 'ToxicChat: Unveiling Hidden Challenges of Toxicity Detection arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2310.17389
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: lin2023toxicchat
+- fetch_id: fetch_reshabh2024spml
+  sub_area: C1
+  query: huggingface dataset reshabhs/SPML_Chatbot_Prompt_Injection prompt injection C1
+  source_url: https://huggingface.co/datasets/reshabhs/SPML_Chatbot_Prompt_Injection
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: reshabh2024spml
+- fetch_id: fetch_geekyrakshit2024promptinjectiond
+  sub_area: C1
+  query: huggingface dataset geekyrakshit/prompt-injection-dataset prompt injection C1
+  source_url: https://huggingface.co/datasets/geekyrakshit/prompt-injection-dataset
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: geekyrakshit2024promptinjectiondataset
+- fetch_id: fetch_toyer2023tensortrust
+  sub_area: C1
+  query: 'Tensor Trust: Interpretable Prompt Injection Attacks from an arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2311.01011
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: toyer2023tensortrust
+- fetch_id: fetch_schulhoff2023hackaprompt
+  sub_area: C1
+  query: 'Ignore This Title and HackAPrompt: Exposing Systemic Vulnera arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2311.16119
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: schulhoff2023hackaprompt
+- fetch_id: fetch_abdelnabi2025llmailinject
+  sub_area: C1
+  query: 'LLMail-Inject: A Dataset from a Realistic Adaptive Prompt In arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2506.09956
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: abdelnabi2025llmailinject
+- fetch_id: fetch_zou2023universal
+  sub_area: C1
+  query: Universal and Transferable Adversarial Attacks on Aligned La arxiv C1 prompt injection detector
+  source_url: https://arxiv.org/abs/2307.15043
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: zou2023universal
+- fetch_id: fetch_mazeika2024harmbench
+  sub_area: C1
+  query: 'HarmBench: A Standardized Evaluation Framework for Automated arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2402.04249
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: mazeika2024harmbench
+- fetch_id: fetch_chao2024jailbreakbench
+  sub_area: C1
+  query: 'JailbreakBench: An Open Robustness Benchmark for Jailbreakin arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2404.01318
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: chao2024jailbreakbench
+- fetch_id: fetch_jiang2024wildjailbreak
+  sub_area: C1
+  query: 'WildTeaming at Scale: From In-the-Wild Jailbreaks to (Advers arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2406.18510
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: jiang2024wildjailbreak
+- fetch_id: fetch_han2024wildguard
+  sub_area: C1
+  query: 'WildGuard: Open One-Stop Moderation Tools for Safety Risks,  arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2406.18495
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: han2024wildguard
+- fetch_id: fetch_li2024saladbench
+  sub_area: C1
+  query: 'SALAD-Bench: A Hierarchical and Comprehensive Safety Benchma arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2402.05044
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: li2024saladbench
+- fetch_id: fetch_luo2024jailbreakv28k
+  sub_area: C1
+  query: 'JailBreakV-28K: A Benchmark for Assessing the Robustness of  arxiv C1 prompt injection detector'
+  source_url: https://arxiv.org/abs/2404.03027
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: luo2024jailbreakv28k
+- fetch_id: fetch_liu2020energyood
+  sub_area: C2
+  query: Energy-based Out-of-distribution Detection arxiv C2 prompt injection detector
+  source_url: https://arxiv.org/abs/2010.03759
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C2 sub-area; cached snapshot verified (claim_family=training_methodologies).
+  assigned_bibkey: liu2020energyood
+- fetch_id: fetch_hu2021lora
+  sub_area: C2
+  query: 'LoRA: Low-Rank Adaptation of Large Language Models arxiv C2 prompt injection detector'
+  source_url: https://arxiv.org/abs/2106.09685
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C2 sub-area; cached snapshot verified (claim_family=training_methodologies).
+  assigned_bibkey: hu2021lora
+- fetch_id: fetch_liu2024dora
+  sub_area: C2
+  query: 'DoRA: Weight-Decomposed Low-Rank Adaptation arxiv C2 prompt injection detector'
+  source_url: https://arxiv.org/abs/2402.09353
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C2 sub-area; cached snapshot verified (claim_family=training_methodologies).
+  assigned_bibkey: liu2024dora
+- fetch_id: fetch_sensoy2018evidential
+  sub_area: C2
+  query: Evidential Deep Learning to Quantify Classification Uncertai arxiv C2 prompt injection detector
+  source_url: https://arxiv.org/abs/1806.01768
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C2 sub-area; cached snapshot verified (claim_family=training_methodologies).
+  assigned_bibkey: sensoy2018evidential
+- fetch_id: fetch_meta2025promptguard2
+  sub_area: C2
+  query: huggingface model meta-llama/Llama-Prompt-Guard-2-86M prompt injection C2
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C2 sub-area; cached snapshot verified (claim_family=training_methodologies).
+  assigned_bibkey: meta2025promptguard2
+- fetch_id: fetch_liu2025datasentinel
+  sub_area: C2
+  query: 'DataSentinel: A Game-Theoretic Detection of Prompt Injection arxiv C2 prompt injection detector'
+  source_url: https://arxiv.org/abs/2504.11358
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C2 sub-area; cached snapshot verified (claim_family=training_methodologies).
+  assigned_bibkey: liu2025datasentinel
+- fetch_id: fetch_wallace2024instructionhierarchy
+  sub_area: C2
+  query: 'The Instruction Hierarchy: Training LLMs to Prioritize Privi arxiv C2 prompt injection detector'
+  source_url: https://arxiv.org/abs/2404.13208
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C2 sub-area; cached snapshot verified (claim_family=training_methodologies).
+  assigned_bibkey: wallace2024instructionhierarchy
+- fetch_id: fetch_ivry2025sentinel
+  sub_area: C2
+  query: 'Sentinel: SOTA model to protect against prompt injections arxiv C2 prompt injection detector'
+  source_url: https://arxiv.org/abs/2506.05446
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C2 sub-area; cached snapshot verified (claim_family=training_methodologies).
+  assigned_bibkey: ivry2025sentinel
+- fetch_id: fetch_jacob2025promptshield
+  sub_area: C3
+  query: 'PromptShield: Deployable Detection for Prompt Injection Atta arxiv C3 prompt injection detector'
+  source_url: https://arxiv.org/abs/2501.15145
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C3 sub-area; cached snapshot verified (claim_family=evaluation_metrics).
+  assigned_bibkey: jacob2025promptshield
+- fetch_id: fetch_debenedetti2024agentdojo
+  sub_area: C3
+  query: 'AgentDojo: A Dynamic Environment to Evaluate Prompt Injectio arxiv C3 prompt injection detector'
+  source_url: https://arxiv.org/abs/2406.13352
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C3 sub-area; cached snapshot verified (claim_family=evaluation_metrics).
+  assigned_bibkey: debenedetti2024agentdojo
+- fetch_id: fetch_li2024injecguard
+  sub_area: C3
+  query: 'InjecGuard: Benchmarking and Mitigating Over-defense in Prom arxiv C3 prompt injection detector'
+  source_url: https://arxiv.org/abs/2410.22770
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C3 sub-area; cached snapshot verified (claim_family=evaluation_metrics).
+  assigned_bibkey: li2024injecguard
+- fetch_id: fetch_lakera2024pint
+  sub_area: C3
+  query: Lakera's Prompt Injection Test (PINT)—A New Benchmark for Ev C3
+  source_url: https://www.lakera.ai/product-updates/lakera-pint-benchmark
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C3 sub-area; cached snapshot verified (claim_family=evaluation_metrics).
+  assigned_bibkey: lakera2024pint
+- fetch_id: fetch_yi2023bipia
+  sub_area: C3
+  query: Benchmarking and Defending against Indirect Prompt Injection arxiv C3 prompt injection detector
+  source_url: https://arxiv.org/abs/2312.14197
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C3 sub-area; cached snapshot verified (claim_family=evaluation_metrics).
+  assigned_bibkey: yi2023bipia
+- fetch_id: fetch_zhan2024injecagent
+  sub_area: C3
+  query: 'InjecAgent: Benchmarking Indirect Prompt Injections in Tool- arxiv C3 prompt injection detector'
+  source_url: https://arxiv.org/abs/2403.02691
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C3 sub-area; cached snapshot verified (claim_family=evaluation_metrics).
+  assigned_bibkey: zhan2024injecagent
+- fetch_id: fetch_yao2024taubench
+  sub_area: C3
+  query: 'τ-bench: A Benchmark for Tool-Agent-User Interaction in Real arxiv C3 prompt injection detector'
+  source_url: https://arxiv.org/abs/2406.12045
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C3 sub-area; cached snapshot verified (claim_family=evaluation_metrics).
+  assigned_bibkey: yao2024taubench
+- fetch_id: fetch_zhang2025asb
+  sub_area: C3
+  query: 'Agent Security Bench (ASB): Formalizing and Benchmarking Att arxiv C3 prompt injection detector'
+  source_url: https://arxiv.org/abs/2410.02644
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C3 sub-area; cached snapshot verified (claim_family=evaluation_metrics).
+  assigned_bibkey: zhang2025asb
+- fetch_id: fetch_jung2026postmortem
+  sub_area: C4
+  query: 98% Accurate and Still Broken C4
+  source_url: https://www.codeintegrity.ai/blog/prompt-injection-limits
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C4 sub-area; cached snapshot verified (claim_family=benchmark_validity).
+  assigned_bibkey: jung2026postmortem
+- fetch_id: fetch_bhagwatkar2025firewalls
+  sub_area: C4
+  query: 'Indirect Prompt Injections: Are Firewalls All You Need, or S arxiv C4 prompt injection detector'
+  source_url: https://arxiv.org/abs/2510.05244
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C4 sub-area; cached snapshot verified (claim_family=benchmark_validity).
+  assigned_bibkey: bhagwatkar2025firewalls
+- fetch_id: fetch_hackett2025bypassing
+  sub_area: C4
+  query: 'Bypassing LLM Guardrails: An Empirical Analysis of Evasion A arxiv C4 prompt injection detector'
+  source_url: https://arxiv.org/abs/2504.11168
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C4 sub-area; cached snapshot verified (claim_family=benchmark_validity).
+  assigned_bibkey: hackett2025bypassing
+- fetch_id: fetch_nasr2025attackersecond
+  sub_area: C4
+  query: 'The Attacker Moves Second: Stronger Adaptive Attacks Bypass  arxiv C4 prompt injection detector'
+  source_url: https://arxiv.org/abs/2510.09023
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C4 sub-area; cached snapshot verified (claim_family=benchmark_validity).
+  assigned_bibkey: nasr2025attackersecond
+- fetch_id: fetch_choudhary2025detect
+  sub_area: C4
+  query: How Not to Detect Prompt Injections with an LLM arxiv C4 prompt injection detector
+  source_url: https://arxiv.org/abs/2507.05630
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C4 sub-area; cached snapshot verified (claim_family=benchmark_validity).
+  assigned_bibkey: choudhary2025detect
+- fetch_id: fetch_carlini2023aligned
+  sub_area: C4
+  query: Are aligned neural networks adversarially aligned? arxiv C4 prompt injection detector
+  source_url: https://arxiv.org/abs/2306.15447
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C4 sub-area; cached snapshot verified (claim_family=benchmark_validity).
+  assigned_bibkey: carlini2023aligned
+- fetch_id: fetch_fomin2026benchmarkslie
+  sub_area: C5
+  query: 'When Benchmarks Lie: Evaluating Malicious Prompt Classifiers arxiv C5 prompt injection detector'
+  source_url: https://arxiv.org/abs/2602.14161
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary-source coverage for C5 sub-area; cached snapshot verified (claim_family=ood_evaluation_methodology).
+  assigned_bibkey: fomin2026benchmarkslie
+- fetch_id: fetch_rogue2025promptinjectionsbenchma
+  sub_area: C5
+  query: huggingface dataset rogue-security/prompt-injections-benchmark prompt injection C5
+  source_url: https://huggingface.co/datasets/rogue-security/prompt-injections-benchmark
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C5 sub-area; cached snapshot verified (claim_family=reproducibility_practice).
+  assigned_bibkey: rogue2025promptinjectionsbenchmark
+- fetch_id: fetch_hendzh2025promptshielddataset
+  sub_area: C5
+  query: huggingface dataset hendzh/PromptShield prompt injection C5
+  source_url: https://huggingface.co/datasets/hendzh/PromptShield
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C5 sub-area; cached snapshot verified (claim_family=ood_evaluation_methodology).
+  assigned_bibkey: hendzh2025promptshielddataset
+- fetch_id: fetch_protectai2024deberta
+  sub_area: C5
+  query: huggingface model protectai/deberta-v3-base-prompt-injection-v2 prompt injection C5
+  source_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C5 sub-area; cached snapshot verified (claim_family=reproducibility_practice).
+  assigned_bibkey: protectai2024deberta
+- fetch_id: fetch_microsoft2024orcaagentinstruct
+  sub_area: C1
+  query: huggingface dataset microsoft/orca-agentinstruct-1M-v1 prompt injection C1
+  source_url: https://huggingface.co/datasets/microsoft/orca-agentinstruct-1M-v1
+  fetched_at: '2026-05-22'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
+  assigned_bibkey: microsoft2024orcaagentinstruct
