@@ -44,8 +44,8 @@ _8 primary-source entries covering training recipes used by prompt-injection det
   - **Source:** https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
   - **Code:** —
   - **Mechanism:** Meta's 2025 prompt-injection detector model card; successor to Prompt-Guard-86M; multilingual support [claim_training_and_evaluation_meta2025promptguard2_a1_existence].
-  - **Result:** Official Meta model card on HuggingFace; documents energy-based loss (from § C2.1) + APR (Attack Prevention Rate) evaluation metric on private red-team data; training-data composition not fully disclosed [claim_training_and_evaluation_meta2025promptguard2_a2_provenance].
-  - **Status:** Verified (HF model card, 2026-05-22). `freshness_tier: volatile`. **License red flag (Phase 2 report):** training-data composition undisclosed — limits independent reproducibility + LODO replay. APR metric is Meta's signature; see glossary.
+  - **Result:** Official Meta model card on HuggingFace; documents a modified energy-based loss function inspired by Liu et al. (§ C2.1) with cross-entropy + benign-energy penalty; reports APR (Attack Prevention Rate) at ≤3% utility reduction: 81.2% (86M) / 78.4% (22M); training-data composition disclosed at category level (open-source benign + malicious PI/jailbreak datasets + synthetic injections + red-team data) but without quantitative proportions [claim_training_and_evaluation_meta2025promptguard2_a2_provenance].
+  - **Status:** Verified (HF model card, 2026-05-22). `freshness_tier: volatile`. **License flag (Phase 2 report):** training-data composition disclosed qualitatively only (no proportions/identifiers) — limits independent reproducibility + LODO replay. APR metric is Meta's signature; see glossary.
 
 ## C2.6. Liu et al. DataSentinel
 
@@ -61,8 +61,8 @@ _8 primary-source entries covering training recipes used by prompt-injection det
 - **The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions** — Wallace et al. (arXiv 2024).
   - **Source:** https://arxiv.org/abs/2404.13208
   - **Code:** —
-  - **Mechanism:** LLMs are susceptible to prompt injections, jailbreaks, and attacks that overwrite the model's original instructions with adversary-controlled prompts [claim_training_and_evaluation_wallace2024instructionhierarchy_a1_headline]; synthesizes training data where system / developer / user / tool messages have ranked privilege, then trains the LLM to honor higher-privilege instructions [claim_training_and_evaluation_wallace2024instructionhierarchy_a2_methodology].
-  - **Result:** OpenAI training recipe; reduces prompt-injection vulnerability via 'context-synthesis' training rather than post-hoc detection; cross-references the architectural-training paradigm covered in `../direct-vs-indirect/` [claim_training_and_evaluation_wallace2024instructionhierarchy_a3_contribution].
+  - **Mechanism:** LLMs are susceptible to prompt injections, jailbreaks, and attacks that overwrite the model's original instructions with adversary-controlled prompts; primary vulnerability is that LLMs treat system prompts as same priority as untrusted-user text [claim_training_and_evaluation_wallace2024instructionhierarchy_a1_headline]; proposes an instruction hierarchy + a data-generation method that teaches LLMs to selectively ignore lower-privileged instructions; applied to GPT-3.5 [claim_training_and_evaluation_wallace2024instructionhierarchy_a2_methodology].
+  - **Result:** OpenAI training recipe; reduces prompt-injection vulnerability via the data-generation method ("context-synthesis" is project shorthand, not Wallace et al.'s wording) rather than post-hoc detection; drastically improves robustness even on attack types unseen during training while imposing minimal degradations on standard capabilities; cross-references the architectural-training paradigm covered in `../direct-vs-indirect/` [claim_training_and_evaluation_wallace2024instructionhierarchy_a3_contribution].
   - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: stable`. (no widely-known repo; OpenAI training recipe, internal)
 
 ## C2.8. Ivry & Nahum Sentinel
@@ -70,8 +70,8 @@ _8 primary-source entries covering training recipes used by prompt-injection det
 - **Sentinel: SOTA model to protect against prompt injections** — Ivry & Nahum (2025).
   - **Source:** https://arxiv.org/abs/2506.05446
   - **Code:** —
-  - **Mechanism:** LLMs are increasingly powerful but remain vulnerable to prompt injection attacks where malicious inputs cause deviation from intended instructions [claim_training_and_evaluation_ivry2025sentinel_a1_headline]; Qwen3-0.6B-based PI detector with departure from encoder backbones, using LoRA + reflection-style training [claim_training_and_evaluation_ivry2025sentinel_a2_methodology].
-  - **Result:** Qualifire / Rogue Security SOTA claim against ProtectAI-only comparison; raises selection-bias concerns flagged in C4 critiques and in C5 reproducibility analysis [claim_training_and_evaluation_ivry2025sentinel_a3_contribution].
-  - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: active`. (uncertain venue — arXiv preprint, no peer-reviewed venue at retrieval time). **Selection-bias flag:** self-comparison vs ProtectAI-only.
+  - **Mechanism:** LLMs are increasingly powerful but remain vulnerable to prompt injection attacks where malicious inputs cause deviation from intended instructions [claim_training_and_evaluation_ivry2025sentinel_a1_headline]; ModernBERT-large-based PI detector (encoder backbone, not a departure as previously stated); the abstract does not disclose LoRA or reflection-style training specifics (unverified body claim, 2026-05-22) [claim_training_and_evaluation_ivry2025sentinel_a2_methodology].
+  - **Result:** Qualifire / Rogue Security SOTA claim with explicit baseline `protectai/deberta-v3-base-prompt-injection-v2`; raises selection-bias concerns flagged in C4 critiques and in C5 reproducibility analysis [claim_training_and_evaluation_ivry2025sentinel_a3_contribution].
+  - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: active`. (uncertain venue — arXiv preprint, 6 pages, no peer-reviewed venue at retrieval time). **Selection-bias flag:** explicit single-baseline comparison vs ProtectAI v2.
 
 8 entries.

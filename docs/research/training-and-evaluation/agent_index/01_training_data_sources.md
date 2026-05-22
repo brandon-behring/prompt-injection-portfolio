@@ -88,7 +88,7 @@ _19 primary-source entries cataloging public datasets used to train prompt-injec
 - **Ignore This Title and HackAPrompt: Exposing Systemic Vulnerabilities of LLMs through a Global Scale Prompt Hacking Competition** — Schulhoff et al. (EMNLP 2023).
   - **Source:** https://arxiv.org/abs/2311.16119
   - **Code:** <https://github.com/PromptLabs/hackaprompt>
-  - **Mechanism:** Global-scale prompt-hacking competition collecting ~600K prompts/responses across 10 levels of system-prompt difficulty [claim_training_and_evaluation_schulhoff2023hackaprompt_a1_headline]; proposes a systematic ontology of attack categories [claim_training_and_evaluation_schulhoff2023hackaprompt_a2_methodology].
+  - **Mechanism:** Global-scale prompt-hacking competition eliciting 600K+ adversarial prompts against three state-of-the-art LLMs [claim_training_and_evaluation_schulhoff2023hackaprompt_a1_headline]; proposes a systematic ontology of attack categories [claim_training_and_evaluation_schulhoff2023hackaprompt_a2_methodology].
   - **Result:** Releases the HackAPrompt dataset and the first systematic ontology of prompt-injection techniques used by downstream training-data work [claim_training_and_evaluation_schulhoff2023hackaprompt_a3_contribution].
   - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: stable`. ETHICS: attack-content; existence documented, examples not excerpted.
 
@@ -107,7 +107,7 @@ _19 primary-source entries cataloging public datasets used to train prompt-injec
   - **Source:** https://arxiv.org/abs/2307.15043
   - **Code:** <https://github.com/llm-attacks/llm-attacks>
   - **Mechanism:** Introduces the Greedy Coordinate Gradient (GCG) attack that optimizes adversarial suffixes transferring across aligned LLMs to bypass refusal [claim_training_and_evaluation_zou2023universal_a1_headline]; demonstrates transferable adversarial-suffix attack methodology [claim_training_and_evaluation_zou2023universal_a2_methodology].
-  - **Result:** Releases AdvBench (520 harmful behaviors); foundational attack benchmark used by HarmBench, JBB-Behaviors, and downstream detector evaluations [claim_training_and_evaluation_zou2023universal_a3_contribution].
+  - **Result:** Releases AdvBench (the walledai/AdvBench HF mirror lists 500 harmful behaviors as of 2026-05-22; the original Zou et al. paper body discusses 520 (unverified body claim)); foundational attack benchmark used by HarmBench, JBB-Behaviors, and downstream detector evaluations [claim_training_and_evaluation_zou2023universal_a3_contribution].
   - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: stable`. ETHICS: attack-content + adversarial-suffix; documented as attack benchmark not training-positive corpus.
 
 ## C1.13. Mazeika et al. HarmBench
@@ -115,7 +115,7 @@ _19 primary-source entries cataloging public datasets used to train prompt-injec
 - **HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal** — Mazeika et al. (ICML 2024).
   - **Source:** https://arxiv.org/abs/2402.04249
   - **Code:** <https://github.com/centerforaisafety/HarmBench>
-  - **Mechanism:** Standardized evaluation framework for automated red-teaming + robust refusal [claim_training_and_evaluation_mazeika2024harmbench_a1_headline]; 400 behaviors × 7 categories × 18 red-team methods [claim_training_and_evaluation_mazeika2024harmbench_a2_methodology].
+  - **Mechanism:** Standardized evaluation framework for automated red-teaming + robust refusal [claim_training_and_evaluation_mazeika2024harmbench_a1_headline]; large-scale comparison of 18 red-teaming methods and 33 target LLMs and defenses; 400 behaviors × 7 categories specifics (unverified body claim, not in abstract) [claim_training_and_evaluation_mazeika2024harmbench_a2_methodology].
   - **Result:** ICML 2024; canonical benchmark for adversarial robustness + jailbreak attack benchmarking [claim_training_and_evaluation_mazeika2024harmbench_a3_contribution].
   - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: stable`. ETHICS: attack-content benchmark; existence documented, examples not excerpted.
 
@@ -124,7 +124,7 @@ _19 primary-source entries cataloging public datasets used to train prompt-injec
 - **JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models** — Chao et al. (NeurIPS 2024 D&B).
   - **Source:** https://arxiv.org/abs/2404.01318
   - **Code:** <https://github.com/JailbreakBench/jailbreakbench>
-  - **Mechanism:** Argues current jailbreak evaluation lacks standardized comparison and addresses it with a reproducible benchmark [claim_training_and_evaluation_chao2024jailbreakbench_a1_headline]; JBB-Behaviors benchmark with 100 misuse behaviors × 100 LLMs × adaptive attacks and an open leaderboard [claim_training_and_evaluation_chao2024jailbreakbench_a2_methodology].
+  - **Mechanism:** Argues current jailbreak evaluation lacks standardized comparison and addresses it with a reproducible benchmark [claim_training_and_evaluation_chao2024jailbreakbench_a1_headline]; JBB-Behaviors benchmark with 100 misuse behaviors and an evolving repository plus open leaderboard tracking attacks/defenses across multiple LLMs [claim_training_and_evaluation_chao2024jailbreakbench_a2_methodology].
   - **Result:** NeurIPS 2024 D&B; provides reproducible jailbreak evaluation harness with a versioned behavior set [claim_training_and_evaluation_chao2024jailbreakbench_a3_contribution].
   - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: stable`. ETHICS: attack-content; existence documented.
 
@@ -133,7 +133,7 @@ _19 primary-source entries cataloging public datasets used to train prompt-injec
 - **WildTeaming at Scale: From In-the-Wild Jailbreaks to (Adversarially) Safer Language Models** — Jiang et al. (NeurIPS 2024).
   - **Source:** https://arxiv.org/abs/2406.18510
   - **Code:** —
-  - **Mechanism:** WildTeaming is an automatic LLM safety red-teaming framework that mines in-the-wild user-chatbot interactions to discover ~5.7K unique clusters of novel jailbreak tactics [claim_training_and_evaluation_jiang2024wildjailbreak_a1_headline]; synthesizes diverse in-the-wild jailbreak training prompts from LMSYS-Chat to produce WildJailbreak / WildGuardMix [claim_training_and_evaluation_jiang2024wildjailbreak_a2_methodology].
+  - **Mechanism:** WildTeaming is an automatic LLM safety red-teaming framework that mines in-the-wild user-chatbot interactions to discover ~5.7K unique clusters of novel jailbreak tactics [claim_training_and_evaluation_jiang2024wildjailbreak_a1_headline]; synthesizes diverse in-the-wild jailbreak training prompts from LMSYS-Chat to produce WildJailbreak (262K vanilla + adversarial prompt-response pairs) [claim_training_and_evaluation_jiang2024wildjailbreak_a2_methodology].
   - **Result:** Releases AllenAI WildJailbreak (large attack-content dataset); per ADR-041 ETHICS §1, this dossier documents existence + license but does NOT excerpt attack examples [claim_training_and_evaluation_jiang2024wildjailbreak_a3_contribution].
   - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: stable`. **License red flag (Phase 2 report):** WildJailbreak ETHICS — attack-content dataset requiring careful downstream use; existence documented per ADR-041.
 

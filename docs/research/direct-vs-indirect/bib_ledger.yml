@@ -225,6 +225,7 @@ entries:
   claim_family: architectural_defense_methods
   authors: Piet et al. (2023)
   venue: ESORICS 2024 (arXiv preprint)
+  code_url: https://github.com/wagner-group/prompt-injection-defense
   retrieved_at: 2026-05-22
   verification_method: webfetch
   verified_at: '2026-05-22'
@@ -246,6 +247,7 @@ entries:
   claim_family: architectural_defense_methods
   authors: Wu et al. (2024)
   venue: NDSS 2025
+  code_url: https://github.com/llm-platform-security/SecGPT
   aliases:
   - SecGPT
   retrieved_at: 2026-05-22
@@ -269,6 +271,7 @@ entries:
   claim_family: architectural_defense_methods
   authors: Chennabasappa et al. (2025)
   venue: arXiv preprint
+  code_url: https://github.com/meta-llama/PurpleLlama/tree/main/LlamaFirewall
   retrieved_at: 2026-05-22
   verification_method: webfetch
   verified_at: '2026-05-22'
@@ -435,8 +438,8 @@ entries:
   title: 'ShadowPrompt: How Any Website Could Have Hijacked Claude''s Chrome Extension'
   status: verified
   claim_family: production_incidents
-  authors: Yomtov, Koi Security (2026)
-  venue: koi.ai blog (disclosure)
+  authors: Yomtov, Koi Research (2026)
+  venue: koi.ai blog (disclosure, March 2026)
   aliases:
   - ShadowPrompt
   retrieved_at: 2026-05-22

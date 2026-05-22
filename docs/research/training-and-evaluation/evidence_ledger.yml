@@ -612,8 +612,8 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.8
-  excerpt: Global-scale prompt-hacking competition with ~600K prompts/responses across 10 levels of system-prompt difficulty; proposes ontology of attack categories.
+    link_confidence: 0.75
+  excerpt: 'HackAPrompt abstract: elicits 600K+ adversarial prompts against three state-of-the-art LLMs; proposes systematic ontology of attack categories. The 10-levels and prompts/responses specifics are unverified body claims (not in abstract).'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -801,8 +801,8 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.8
-  excerpt: Releases AdvBench (520 harmful behaviors); foundational attack benchmark used by HarmBench / JBB-Behaviors / detector evaluation.
+    link_confidence: 0.7
+  excerpt: 'Releases AdvBench (walledai/AdvBench HF mirror lists 500 harmful behaviors as of 2026-05-22; the original Zou paper body discusses 520 — unverified body claim); foundational attack benchmark used by HarmBench / JBB-Behaviors / detector evaluation.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -855,8 +855,8 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.8
-  excerpt: Standardized evaluation framework for automated red-teaming + robust refusal, with 400 behaviors x 7 categories and 18 red-team methods.
+    link_confidence: 0.7
+  excerpt: 'HarmBench abstract: large-scale comparison of 18 red-teaming methods and 33 target LLMs and defenses. The "400 behaviors x 7 categories" specifics are unverified body claims (not in abstract).'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -936,8 +936,8 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.8
-  excerpt: 'JBB-Behaviors benchmark: 100 misuse behaviors x 100 LLMs x adaptive attacks; open leaderboard.'
+    link_confidence: 0.7
+  excerpt: 'JBB-Behaviors benchmark: 100 misuse behaviors with evolving repository + open leaderboard tracking attacks/defenses across multiple LLMs. The "x 100 LLMs x adaptive attacks" matrix phrasing is not in the abstract.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1018,7 +1018,7 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'WildTeaming: synthesizes diverse in-the-wild jailbreak training prompts from LMSYS-Chat to produce WildJailbreak / WildGuardMix safety-tuning datasets.'
+  excerpt: 'WildTeaming abstract: synthesizes diverse in-the-wild jailbreak training prompts from LMSYS-Chat to produce WildJailbreak (262K vanilla + adversarial prompt-response pairs). WildGuardMix is the WildGuard (companion paper) output, not the WildTeaming output.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1665,19 +1665,19 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.75
-  excerpt: Official Meta model card on HuggingFace; documents energy-based loss + APR (Attack Prevention Rate) evaluation metric on private red-team data. Training-data composition not fully disclosed.
+    link_confidence: 0.85
+  excerpt: 'Meta Llama Prompt Guard 2 86M model card (Llama 4 Community License, Apr 5 2025): "modified energy-based loss function, inspired by the paper Energy Based Out-of-distribution Detection. In addition to cross-entropy loss, we apply a penalty for large negative energy predictions on benign prompts." APR @ 3% utility reduction reported: 81.2% (86M) / 78.4% (22M). Training data described qualitatively: "mix of open-source datasets reflecting benign data from the web, user prompts and instructions for LLMs, and malicious prompt injection and jailbreaking datasets. We also include our own synthetic injections and data from red-teaming earlier versions of Prompt Guard."'
   rights_status: private_use
   confidence:
-    score: 0.75
+    score: 0.85
     factors:
-    - dataset card metadata
-    - summary from extracted text
+    - model card verbatim disclosure
+    - audit_round_1_corrected_disclosure_was_qualitatively_present
     domains:
       source_quality: moderate
       recency: high
-      consistency: moderate
-      directness: moderate
+      consistency: high
+      directness: high
 - evidence_id: ev_training_and_evaluation_0063
   source_url: https://arxiv.org/abs/2504.11358
   source_type: paper
@@ -1827,19 +1827,20 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.8
-  excerpt: OpenAI training recipe; reduces prompt-injection vulnerability via 'context-synthesis' training rather than post-hoc detection.
+    link_confidence: 0.75
+  excerpt: 'Wallace et al. abstract verbatim: "we propose a data generation method to demonstrate this hierarchical instruction following behavior, which teaches LLMs to selectively ignore lower-privileged instructions. We apply this method to GPT-3.5, showing that it drastically increases robustness -- even for attack types not seen during training -- while imposing minimal degradations on standard capabilities." "Context-synthesis" is project shorthand, not Wallace et al.''s wording.'
   rights_status: private_use
   confidence:
-    score: 0.8
+    score: 0.75
     factors:
     - primary source
     - contribution claim
+    - audit_round_2_corrected_context_synthesis_is_project_shorthand
     domains:
       source_quality: high
       recency: high
       consistency: moderate
-      directness: moderate
+      directness: high
 - evidence_id: ev_training_and_evaluation_0069
   source_url: https://arxiv.org/abs/2506.05446
   source_type: paper
@@ -1881,19 +1882,21 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.8
-  excerpt: 'Sentinel: Qwen3-0.6B-based prompt-injection detector with departure from encoder backbones; LoRA + reflection-style training.'
+    link_confidence: 0.55
+  excerpt: 'Sentinel abstract: ModernBERT-large architecture (encoder backbone). LoRA + reflection-style training NOT in abstract — unverified body claim. 2026-05-22.'
   rights_status: private_use
   confidence:
-    score: 0.8
+    score: 0.55
     factors:
     - primary source
-    - method described in abstract
+    - audit_round_2_corrected_architecture_and_methodology
+    - earlier_synthesis_incorrectly_claimed_qwen3_0_6b_backbone
     domains:
       source_quality: high
       recency: high
-      consistency: moderate
-      directness: moderate
+      consistency: low
+      directness: high
+    status: conflicted
 - evidence_id: ev_training_and_evaluation_0071
   source_url: https://arxiv.org/abs/2506.05446
   source_type: paper
@@ -1989,19 +1992,22 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.8
-  excerpt: ACM CODASPY 2025; reveals encoder PI detectors collapse at deployment-grade FPRs (e.g., ProtectAI v1 0.00% TPR @ 0.5% FPR). Canonical OOD-collapse evidence.
+    link_confidence: 0.85
+  excerpt: ACM CODASPY 2025; reveals encoder PI detectors collapse at deployment-grade FPRs (per Table 4, ProtectAI v2 = 1.34% TPR @ 0.5% FPR; 0.00% TPR @ 0.1% FPR with footnote that no threshold achieves desired FPR aside from 1.0). TPR@LowFPR convention reported at 1%, 0.5%, 0.1%, 0.05% per Section 3.2.2. Canonical OOD-collapse evidence.
   rights_status: private_use
   confidence:
-    score: 0.8
+    score: 0.85
     factors:
     - primary source
     - contribution claim
+    - audit_round_1_corrected_table4_numbers
     domains:
       source_quality: high
       recency: high
-      consistency: moderate
-      directness: moderate
+      consistency: high
+      directness: high
+  verification_method_history:
+    - webfetch_2026_05_22_audit_round_1
 - evidence_id: ev_training_and_evaluation_0075
   source_url: https://arxiv.org/abs/2406.13352
   source_type: paper
@@ -2043,14 +2049,15 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.8
-  excerpt: 'AgentDojo: dynamic environment with 97 tasks x 629 attack injections; couples benign-utility + utility-under-attack into a single metric.'
+    link_confidence: 0.7
+  excerpt: 'AgentDojo abstract: extensible environment populated with 97 realistic tasks and 629 security test cases; not described as "97 x 629 attack injections" in abstract.'
   rights_status: private_use
   confidence:
-    score: 0.8
+    score: 0.7
     factors:
     - primary source
     - method described in abstract
+    - audit_round_1_corrected_phrasing
     domains:
       source_quality: high
       recency: high
@@ -2070,14 +2077,15 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.8
-  excerpt: NeurIPS 2024 D&B; reveals 'inverse scaling law' where more capable models can be more attackable. Canonical agentic PI benchmark.
+    link_confidence: 0.7
+  excerpt: NeurIPS 2024 D&B (per project records; arXiv comments line only notes a Llama bug fix, no venue). The 'inverse scaling law' framing is attributed to AgentDojo by downstream literature but is not in the abstract (unverified body claim). Canonical agentic PI benchmark.
   rights_status: private_use
   confidence:
-    score: 0.8
+    score: 0.7
     factors:
     - primary source
     - contribution claim
+    - audit_round_1_flagged_inverse_scaling_not_in_abstract
     domains:
       source_quality: high
       recency: high
@@ -2205,18 +2213,19 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.78
-  excerpt: Vendor blog announcing PINT; design rationale explicitly cites avoidance of training-data overlap. Reusable open-source evaluation harness.
+    link_confidence: 0.85
+  excerpt: 'Lakera Team vendor blog (Apr 18 2024) verbatim: "Lakera Guard is not - and will never be - directly trained on any of the inputs in the PINT Benchmark dataset" and "The PINT Benchmark dataset is not publicly available in order to prevent the dilution of the PINT Benchmark from overfitting due to training on the inputs." Benchmark contains 3,007 English inputs (verbatim).'
   rights_status: private_use
   confidence:
-    score: 0.76
+    score: 0.85
     factors:
     - vendor design rationale
+    - audit_round_1_corrected_input_count_3007_not_4314
     domains:
       source_quality: moderate
       recency: high
-      consistency: moderate
-      directness: moderate
+      consistency: high
+      directness: high
 - evidence_id: ev_training_and_evaluation_0083
   source_url: https://arxiv.org/abs/2312.14197
   source_type: paper
@@ -3278,19 +3287,19 @@ entries:
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: paraphrase
-    link_confidence: 0.75
-  excerpt: ProtectAI HuggingFace model card; documents Apache-2.0 license; training-data mixture details limited (reproducibility gap flagged in C5). The canonical OOD-collapse example on PromptShield (0.00% TPR
+    link_confidence: 0.8
+  excerpt: 'ProtectAI HF model card discloses Apache-2.0 license and training-data source mixture by license category (1 CC-BY-3.0, 8 MIT, 1 CC0, 6 public-domain, 5 Apache-2.0, 1 CC-BY-4.0) without quantitative proportions. The card reports internal eval at 95.25% accuracy / 91.59% precision / 99.74% recall / 95.49% F1 — but no PromptShield benchmark numbers. The canonical OOD-collapse example is reported in Jacob et al. PromptShield Table 4 (1.34% TPR @ 0.5% FPR; 0.00% TPR @ 0.1% FPR with no-threshold-exists footnote), not on this model card.'
   rights_status: private_use
   confidence:
-    score: 0.75
+    score: 0.8
     factors:
-    - dataset card metadata
-    - summary from extracted text
+    - model card metadata
+    - audit_round_1_corrected_disclosure_status_and_table4_numbers
     domains:
       source_quality: moderate
       recency: high
-      consistency: moderate
-      directness: moderate
+      consistency: high
+      directness: high
 - evidence_id: ev_training_and_evaluation_0122
   source_url: https://huggingface.co/datasets/microsoft/orca-agentinstruct-1M-v1
   source_type: dataset
@@ -3366,7 +3375,7 @@ entries:
     - ev_training_and_evaluation_0114
     - ev_training_and_evaluation_0121
     link_confidence: 0.6
-  excerpt: 'Synthesis claim: encoder-based PI detectors (ProtectAI v1 / v2 type) collapse from near-perfect in-distribution F1 to near-zero TPR at deployment-grade FPRs (≤0.5%) when evaluated on truly held-out data. Aggregated from PromptShield (Jacob 2025 Table 4 — canonical 0.00% TPR @ 0.5% FPR on ProtectAI), Fomin 2026 LODO methodology demonstrating TPR collapse under true distribution shift, and the ProtectAI model card itself disclosing limited mixture detail. Foundational to the OOD-wall thesis.'
+  excerpt: 'Synthesis claim: encoder-based PI detectors (ProtectAI v2 type) collapse from near-perfect in-distribution F1 to near-zero TPR at deployment-grade FPRs when evaluated on truly held-out data. Aggregated from PromptShield (Jacob 2025 Table 4 — canonical numbers per audit round 1: ProtectAI v2 = 1.34% TPR @ 0.5% FPR, 0.00% TPR @ 0.1% FPR with no-threshold-exists footnote), Fomin 2026 LODO methodology demonstrating TPR collapse under true distribution shift, and the ProtectAI model card itself disclosing license-category mixture without quantitative proportions. Foundational to the OOD-wall thesis.'
   rights_status: private_use
   confidence:
     score: 0.6

@@ -1,6 +1,6 @@
 # C5. OOD generalization methodology + reproducibility crisis
 
-_4 primary-source entries covering Leave-One-Dataset-Out (LODO) methodology and disclosure gaps in 'winning' PI detectors. This file is foundational to the portfolio's OOD-wall thesis: it documents the canonical OOD-collapse example (ProtectAI 99.99% F1 → 0.00% TPR @ 0.5% FPR on PromptShield) and the methodology that surfaces such collapses (LODO held-out-dataset evaluation rather than held-out-row from the same mixture). The portfolio inherits LODO discipline from submission ADR-016 + ADR-075 (see Verification & limits in the README)._
+_4 primary-source entries covering Leave-One-Dataset-Out (LODO) methodology and disclosure gaps in 'winning' PI detectors. This file is foundational to the portfolio's OOD-wall thesis: it documents the canonical OOD-collapse example (ProtectAI v2's high in-distribution F1 → 1.34% TPR @ 0.5% FPR / 0.00% TPR @ 0.1% FPR on PromptShield Table 4) and the methodology that surfaces such collapses (LODO held-out-dataset evaluation rather than held-out-row from the same mixture). The portfolio inherits LODO discipline from submission ADR-016 + ADR-075 (see Verification & limits in the README)._
 
 ## C5.1. Fomin et al. When Benchmarks Lie
 
@@ -35,7 +35,7 @@ _4 primary-source entries covering Leave-One-Dataset-Out (LODO) methodology and 
   - **Source:** https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
   - **Code:** —
   - **Mechanism:** ProtectAI's encoder-based PI detector model card; widely-used baseline (DeBERTa-v3-base backbone) [claim_training_and_evaluation_protectai2024deberta_a1_existence].
-  - **Result:** ProtectAI HuggingFace model card; documents Apache-2.0 license; training-data mixture details limited (reproducibility gap flagged in C5). The canonical OOD-collapse example on PromptShield: per Jacob et al. Table 4 (§ C3.1), this detector reports 0.00% TPR @ 0.5% FPR on the held-out PromptShield benchmark despite high in-distribution F1 [claim_training_and_evaluation_protectai2024deberta_a2_provenance].
+  - **Result:** ProtectAI HuggingFace model card; documents Apache-2.0 license; training-data mixture details disclosed by license category (1 CC-BY-3.0, 8 MIT, 1 CC0, 6 public-domain, 5 Apache-2.0, 1 CC-BY-4.0) but no quantitative proportions (reproducibility gap flagged in C5). The canonical OOD-collapse example on PromptShield: per Jacob et al. Table 4 (§ C3.1), this detector reports 1.34% TPR @ 0.5% FPR and 0.00% TPR @ 0.1% FPR (annotated as no threshold achieves the desired FPR aside from 1.0) on the held-out PromptShield benchmark despite high in-distribution F1 [claim_training_and_evaluation_protectai2024deberta_a2_provenance].
   - **Status:** Verified (HF model card, 2026-05-22). `freshness_tier: volatile`. **License red flag (Phase 2 report):** exact training-data mixture undisclosed → independent reproducibility limited; cross-cuts to § C4.4 (Nasr 'attacker moves second' static-defense critique) and § C3.1 (PromptShield OOD-collapse evidence). (recheck after 2026-06-22)
 
 4 entries.

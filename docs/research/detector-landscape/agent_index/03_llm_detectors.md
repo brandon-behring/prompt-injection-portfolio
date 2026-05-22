@@ -16,7 +16,7 @@ Detectors that use a decoder LLM (small-LM judge, multi-agent debate, or full 8B
 - **CourtGuard: A Local, Multiagent Prompt Injection Classifier** — Wu & Maslowski (arXiv 2025).
   - **Source:** https://arxiv.org/abs/2510.19844
   - **Code:** https://github.com/isaacwu2000/CourtGuard
-  - **Mechanism:** Multi-agent debate architecture: a "defense attorney" LLM argues the input is benign, a "prosecution attorney" LLM argues it's an injection, and a "judge" LLM produces the final classification [claim_detector_landscape_0011_01]. Implementations span Gemma-3-12b-it, Llama-3.3-8B, and Phi-4-mini-instruct (per abstract and code repo).
+  - **Mechanism:** Multi-agent debate architecture: a "defense attorney" LLM argues the input is benign, a "prosecution attorney" LLM argues it's an injection, and a "judge" LLM produces the final classification [claim_detector_landscape_0011_01]. Implementations span Gemma-3-12b-it, Llama-3.3-8B, and Phi-4-mini-instruct (per code-repo availability statement, not abstract).
   - **Result:** Abstract reports lower false positive rate than the "Direct Detector" (a single-LLM-as-judge baseline) [claim_detector_landscape_0011_02], but acknowledges CourtGuard is generally a worse prompt-injection detector than the Direct Detector overall — the contribution is the lower FPR rather than higher TPR.
   - **Status:** Verified. arXiv preprint; first systematic evidence that multi-agent debate trades raw detection for adversarial robustness on benign-input scenarios. [ev_detector_landscape_0012]
 

@@ -227,7 +227,7 @@ entries:
     evidence_role: defines
     evidence_role_strength: full
     extraction_method: verbatim_match
-    link_confidence: 0.95
+    link_confidence: 0.8
     excerpt_anchor:
       cache_id: cache_74a75f6036e89f8d
       text_path_offset: [2742, 2876]
@@ -235,10 +235,11 @@ entries:
   excerpt: 'we develop Meta SecAlign, the first fully open-source LLM with built-in model-level defense that achieves commercial-grade performance'
   rights_status: private_use
   confidence:
-    score: 0.9
+    score: 0.8
     factors:
     - cached raw snapshot
     - primary source
+    - audit_round_1_flagged_llama_base_unverified_body
 - evidence_id: ev_direct_vs_indirect_0010
   source_url: https://arxiv.org/abs/2503.18813
   source_type: paper
@@ -305,7 +306,7 @@ entries:
     evidence_role: defines
     evidence_role_strength: full
     extraction_method: verbatim_match
-    link_confidence: 0.95
+    link_confidence: 0.8
     excerpt_anchor:
       cache_id: cache_c8697d3c88066297
       text_path_offset: [2707, 2843]
@@ -313,10 +314,11 @@ entries:
   excerpt: 'we propose an instruction hierarchy that explicitly defines how models should behave when instructions of different priorities conflict.'
   rights_status: private_use
   confidence:
-    score: 0.9
+    score: 0.8
     factors:
     - cached raw snapshot
     - primary source
+    - audit_round_1_flagged_body_claim_ordering
 - evidence_id: ev_direct_vs_indirect_0013
   source_url: https://arxiv.org/abs/2312.17673
   source_type: paper

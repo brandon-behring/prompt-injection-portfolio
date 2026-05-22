@@ -8,7 +8,7 @@ _8 primary-source entries covering the metric hierarchy used to evaluate prompt-
   - **Source:** https://arxiv.org/abs/2501.15145
   - **Code:** —
   - **Mechanism:** Application designers integrate LLMs into products but many LLM-integrated applications are vulnerable to prompt injections; the paper introduces a benchmark for training + evaluating deployable PI detectors [claim_training_and_evaluation_jacob2025promptshield_a1_headline]; two-track benchmark (conversational + application-structured) with TPR@LowFPR reporting convention at 1% / 0.5% / 0.1% / 0.05% FPR [claim_training_and_evaluation_jacob2025promptshield_a2_methodology].
-  - **Result:** ACM CODASPY 2025; reveals encoder PI detectors collapse at deployment-grade FPRs (e.g., ProtectAI v1 reports 0.00% TPR @ 0.5% FPR per the paper's Table 4); canonical OOD-collapse evidence for the portfolio's OOD-wall thesis [claim_training_and_evaluation_jacob2025promptshield_a3_contribution].
+  - **Result:** ACM CODASPY 2025; reveals encoder PI detectors collapse at deployment-grade FPRs (e.g., ProtectAI v2 reports 1.34% TPR @ 0.5% FPR and 0.00% TPR @ 0.1% FPR per the paper's Table 4, where 0.00% is annotated as no threshold achieves the desired FPR aside from 1.0); canonical OOD-collapse evidence for the portfolio's OOD-wall thesis [claim_training_and_evaluation_jacob2025promptshield_a3_contribution].
   - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: stable`. (no widely-known repo; the paper-side artifact is the HF dataset `hendzh/PromptShield`, § C5.3)
 
 ## C3.2. Debenedetti et al. AgentDojo
@@ -16,8 +16,8 @@ _8 primary-source entries covering the metric hierarchy used to evaluate prompt-
 - **AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents** — Debenedetti et al. (NeurIPS 2024 D&B).
   - **Source:** https://arxiv.org/abs/2406.13352
   - **Code:** <https://github.com/ethz-spylab/agentdojo>
-  - **Mechanism:** AI agents combine text-based reasoning with external tool calls; they are vulnerable to PI attacks where data from external tools subverts the agent's intent [claim_training_and_evaluation_debenedetti2024agentdojo_a1_headline]; dynamic environment with 97 tasks × 629 attack injections, coupling benign-utility + utility-under-attack into a single metric [claim_training_and_evaluation_debenedetti2024agentdojo_a2_methodology].
-  - **Result:** NeurIPS 2024 D&B; reveals the 'inverse scaling law' — more capable models can be more attackable; canonical agentic PI benchmark and one of the four benchmarks Bhagwatkar 2025 (§ C4.2) shows can be saturated by simple firewalls [claim_training_and_evaluation_debenedetti2024agentdojo_a3_contribution].
+  - **Mechanism:** AI agents combine text-based reasoning with external tool calls; they are vulnerable to PI attacks where data from external tools subverts the agent's intent [claim_training_and_evaluation_debenedetti2024agentdojo_a1_headline]; extensible dynamic environment populated with 97 realistic tasks and 629 security test cases, with attack and defense paradigms instantiated atop the same task set [claim_training_and_evaluation_debenedetti2024agentdojo_a2_methodology].
+  - **Result:** NeurIPS 2024 D&B (per project records; not stated in arXiv comments); canonical agentic PI benchmark and one of the four benchmarks Bhagwatkar 2025 (§ C4.2) shows can be saturated by simple firewalls; the 'inverse scaling law' framing (more capable models more attackable) is widely attributed to AgentDojo's findings (unverified body claim, not in abstract) [claim_training_and_evaluation_debenedetti2024agentdojo_a3_contribution].
   - **Status:** Verified (webfetch, 2026-05-22). `freshness_tier: stable`.
 
 ## C3.3. Li et al. InjecGuard / NotInject

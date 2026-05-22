@@ -58,12 +58,12 @@ Detectors that depart from the encoder-classifier and LLM-judge defaults: activa
 
 ## A5.7. Attention Tracker (Hung et al.)
 
-- **Attention Tracker: Detecting Prompt Injection Attacks in LLMs** — Hung et al. (NAACL 2025 Findings).
+- **Attention Tracker: Detecting Prompt Injection Attacks in LLMs** — Hung et al. (arXiv 2024; NAACL 2025 Findings venue unverified, 2026-05-22).
   - **Source:** https://arxiv.org/abs/2411.00348
   - **Code:** —
   - **Mechanism:** Introduces the "distraction effect" concept: specific attention heads (termed "important heads") shift focus from the original instruction to the injected instruction during a prompt-injection attack. Attention Tracker is a training-free detection method that tracks attention patterns on instruction tokens to detect this distraction-effect signature, without requiring additional LLM inference passes [claim_detector_landscape_0033_01].
   - **Result:** Abstract reports AUROC improvement of up to 10.0% over existing methods [claim_detector_landscape_0033_02]; generalizes effectively across diverse models, datasets, and attack types; works even on small LLMs.
-  - **Status:** Verified. (no widely-known repo) NAACL-published; training-free attention-based detection is a distinctive architecture choice. [ev_detector_landscape_0034]
+  - **Status:** Verified. (no widely-known repo) Training-free attention-based detection is a distinctive architecture choice; NAACL Findings venue claim unverified (arXiv Comments field lists only the project page). [ev_detector_landscape_0034]
 
 ## A5.8. Task Shield (Jia, Wu, Qin & Squicciarini)
 
@@ -103,12 +103,12 @@ Detectors that depart from the encoder-classifier and LLM-judge defaults: activa
 
 ## A5.12. "Are Firewalls All You Need?" (Bhagwatkar et al.)
 
-- **Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?** — Bhagwatkar et al. (arXiv 2025, NeurIPS 2025).
+- **Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?** — Bhagwatkar et al. (arXiv 2025; NeurIPS 2025 venue unverified, 2026-05-22).
   - **Source:** https://arxiv.org/abs/2510.05244
   - **Code:** —
   - **Mechanism:** Two-firewall defense at the agent-tool interface: a Tool-Input Firewall (Minimizer) and a Tool-Output Firewall (Sanitizer). Simple, modular, model-agnostic; makes minimal assumptions about the agent and can be deployed out of the box [claim_detector_landscape_0038_01].
   - **Result:** Abstract reports the two-firewall defense achieves perfect security with high utility across all four public benchmarks (AgentDojo, Agent Security Bench, InjecAgent, τ-Bench) and state-of-the-art security-utility tradeoff compared to prior results [claim_detector_landscape_0038_02]. Companion contribution: targeted fixes to AgentDojo and Agent Security Bench (flawed success metrics, implementation bugs, weak attacks) and a three-stage attack strategy cascading standard injection, second-order, and adaptive attacks.
-  - **Status:** Verified. (no widely-known repo; also covered as architectural defense) NeurIPS 2025 — the canonical "is the agentic benchmark suite too weak?" reference; the methodology critique is at least as load-bearing as the perfect-security result. [ev_detector_landscape_0039]
+  - **Status:** Verified. (no widely-known repo; also covered as architectural defense) Canonical "is the agentic benchmark suite too weak?" reference; the methodology critique is at least as load-bearing as the perfect-security result. NeurIPS 2025 venue (unverified, 2026-05-22) — not confirmed on arXiv abstract page. [ev_detector_landscape_0039]
 
 ## A5.13. Bypassing Guardrails (Hackett et al.)
 

@@ -25,7 +25,7 @@ Vendor-hosted prompt-injection detection products and their canonical benchmarks
 - **Lakera Guard — Prompt Injection Protection (vendor product page; Cisco AI Defense post-acquisition May 2025)** — Lakera (Vendor product page, 2025).
   - **Source:** https://www.lakera.ai/risk/prompt-injection-attacks
   - **Code:** —
-  - **Mechanism:** Vendor product page for Lakera Guard, the prompt-injection protection product (post-May 2025 acquired into the Cisco AI Defense portfolio per § A4.8). Page surfaces the product positioning: "Lakera protects your AI from coercive inputs that hijack instructions, expose data, or break compliance" [claim_detector_landscape_0019_01]. Specific architecture / mechanism details (parameter count, base model, training-data composition) are not disclosed on the public page.
+  - **Mechanism:** Vendor product page for Lakera Guard, the prompt-injection protection product. Page surfaces the product positioning: "Lakera protects your AI from coercive inputs that hijack instructions, expose data, or break compliance" [claim_detector_landscape_0019_01]. Specific architecture / mechanism details (parameter count, base model, training-data composition) are not disclosed on the public page. Cisco AI Defense acquisition context (unverified, 2026-05-22) — not anchored on the Lakera product page itself; cross-reference at § A4.8 is paraphrase-only.
   - **Result:** Vendor product page — no quantitative claim is anchored in the abstract-equivalent area. PINT leaderboard (§ A4.2) is the headline metric Lakera uses to position the product.
   - **Status:** Verified. (vendor product page; post-acquisition into Cisco AI Defense) [ev_detector_landscape_0020]
 
@@ -34,7 +34,7 @@ Vendor-hosted prompt-injection detection products and their canonical benchmarks
 - **Prompt Shields in Azure AI Content Safety (User Prompt + Document attacks; Spotlighting capability)** — Microsoft (Vendor documentation, 2025).
   - **Source:** https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
   - **Code:** —
-  - **Mechanism:** Azure AI Content Safety's prompt-injection detection feature — distinguishes "User Prompt" attacks (direct injection) from "Document" attacks (indirect injection via tool outputs / retrieved content), with a Spotlighting capability for delimiting trusted vs. untrusted text [claim_detector_landscape_0020_01]. Spotlighting itself is an architectural-defense rather than classifier-shaped technique; see `../direct-vs-indirect/` for that perspective.
+  - **Mechanism:** Azure AI Content Safety's prompt-injection detection feature — distinguishes "User Prompt" attacks (direct injection) from "Document" attacks (indirect injection via tool outputs / retrieved content) [claim_detector_landscape_0020_01]. The Microsoft "Spotlighting" technique is referenced in the broader Microsoft AI-safety story (see `../direct-vs-indirect/`) but is not anchored as a Prompt Shields capability on this product docs page (unverified, 2026-05-22).
   - **Result:** Vendor documentation — no quantitative claim is anchored in the abstract-equivalent area. PINT leaderboard entries for Azure Prompt Shields rotate quarterly (§ A4.2); the Bypassing Guardrails paper (§ A5.13) reports up to 100% evasion success against Azure Prompt Shield via character-injection methods.
   - **Status:** Verified. (vendor documentation) [ev_detector_landscape_0021]
 
@@ -70,9 +70,9 @@ Vendor-hosted prompt-injection detection products and their canonical benchmarks
 - **Security for the Agentic Era: Cisco AI Defense (Robust Intelligence post-acquisition AI Firewall + Lakera Guard integration)** — Cisco (Vendor blog, 2025).
   - **Source:** https://blogs.cisco.com/ai/security-for-the-agentic-era-cisco-ai-defense-breaks-new-ground
   - **Code:** —
-  - **Mechanism:** Cisco AI Defense — the consolidated enterprise AI security product line that includes the Robust Intelligence AI Firewall (post-acquisition) and Lakera Guard integration (post-Lakera-acquisition May 2025). Blog positions Cisco AI Defense as "the industry's first truly comprehensive enterprise AI security solution" [claim_detector_landscape_0024_01].
-  - **Result:** Vendor blog — no quantitative claim is anchored in the abstract-equivalent area. Acquisition history is the substantive context: Robust Intelligence (acquired ~2024) + Lakera (acquired May 2025) consolidated into Cisco AI Defense as the umbrella product.
-  - **Status:** Unverified. (vendor blog; relies on Cisco-side announcement) [ev_detector_landscape_0025]
+  - **Mechanism:** Cisco AI Defense — the consolidated enterprise AI security product line (Feb 2026 blog post). Blog positions Cisco AI Defense as "the industry's first truly comprehensive enterprise AI security solution" [claim_detector_landscape_0024_01] (verbatim anchored at cache offset 1312-1444). Robust Intelligence and Lakera Guard acquisition context (unverified, 2026-05-22) — discussed in broader Cisco product narrative but not anchored verbatim on this blog page.
+  - **Result:** Vendor blog — no quantitative claim is anchored in the abstract-equivalent area. Acquisition history (Robust Intelligence ~2024, Lakera ~May 2025) is widely reported elsewhere but the specific integration details are not anchored on this blog page.
+  - **Status:** Unverified. (vendor blog; specific integration claims unverified, 2026-05-22) [ev_detector_landscape_0025]
 
 ## A4.9. protectai/rebuff (Protect AI)
 

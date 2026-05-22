@@ -55,7 +55,7 @@ Section anchors below use the `## B3.` prefix from `../research_plan.md`. Each e
   - **Status:** Verified (no widely-known repo) (security disclosure).
   - **Evidence:** ev_direct_vs_indirect_0023
 
-- **ShadowPrompt: How Any Website Could Have Hijacked Claude's Chrome Extension** — Yomtov, Koi Security (koi.ai blog, December 2025–January 2026).
+- **ShadowPrompt: How Any Website Could Have Hijacked Claude's Chrome Extension** — Yomtov, Koi Research (koi.ai blog, March 2026).
   - **Source:** https://www.koi.ai/blog/shadowprompt-how-any-website-could-have-hijacked-anthropic-claude-chrome-extension
   - **Code:** —
   - **Mechanism:** DOM-XSS-class indirect prompt injection disclosure against the Anthropic Claude Chrome extension allowing any visited website to inject instructions into the extension's LLM session [claim_shadowprompt_claude_chrome]. Impact-and-class only; full technical detail in Koi's disclosure post.

@@ -349,6 +349,9 @@ entries:
   source_quality: primary
   retrieved_at: '2026-05-22'
   verification_method: webfetch
+  re_verified_at: '2026-05-22'
+  audit_flags:
+  - audit_round_1_corrected: 'Implementation-model list (Gemma-3-12b-it, Llama-3.3-8B, Phi-4-mini-instruct) is in code-repo availability statement, not the arXiv abstract; mechanism bullet rewritten to reflect.'
   cache_ids:
   - cache_0202713855aa48d0
   supports:
@@ -593,6 +596,7 @@ entries:
   source_quality: official
   retrieved_at: '2026-05-22'
   verification_method: webfetch
+  re_verified_at: '2026-05-22'
   cache_ids:
   - cache_669e2d28a98f3020
   supports:
@@ -611,15 +615,19 @@ entries:
   excerpt: model card / vendor surface — no extractable verbatim claim
   rights_status: private_use
   confidence:
-    score: 0.5
+    score: 0.4
     factors:
     - model card / vendor surface — no extractable verbatim claim
+    - audit_round_1_flagged: Cisco AI Defense acquisition cross-reference paraphrase-only, not anchored on the Lakera product page itself.
 - evidence_id: ev_detector_landscape_0021
   source_url: https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
   source_type: vendor
   source_quality: official
   retrieved_at: '2026-05-22'
   verification_method: webfetch
+  re_verified_at: '2026-05-22'
+  audit_flags:
+  - audit_round_1_flagged: 'Spotlighting capability claim not anchored on the docs page (Spotlighting is referenced in Microsoft broader safety story, not the Prompt Shields product docs).'
   cache_ids:
   - cache_f8a5917cbb6f90f3
   supports:
@@ -736,6 +744,9 @@ entries:
   source_quality: official
   retrieved_at: '2026-05-22'
   verification_method: webfetch
+  re_verified_at: '2026-05-22'
+  audit_flags:
+  - audit_round_1_flagged: 'Positioning quote verified verbatim in cache anchor; Robust Intelligence + Lakera integration cross-reference (in dossier mechanism prose) is paraphrase / broader-context only, not anchored on this blog page.'
   cache_ids:
   - cache_838e27ef58169b58
   supports:
@@ -1023,6 +1034,9 @@ entries:
   source_quality: primary
   retrieved_at: '2026-05-22'
   verification_method: webfetch
+  re_verified_at: '2026-05-22'
+  audit_flags:
+  - audit_round_1_flagged: NAACL 2025 Findings venue claim not anchored on arXiv page (Comments field lists only project page); kept entry, FLAG only.
   cache_ids:
   - cache_52f0885c01ea6bee
   supports:
@@ -1198,6 +1212,9 @@ entries:
   source_quality: primary
   retrieved_at: '2026-05-22'
   verification_method: webfetch
+  re_verified_at: '2026-05-22'
+  audit_flags:
+  - audit_round_1_flagged: NeurIPS 2025 venue claim not anchored on arXiv abstract page; kept entry, FLAG only.
   cache_ids:
   - cache_beea4f2926635943
   supports:
