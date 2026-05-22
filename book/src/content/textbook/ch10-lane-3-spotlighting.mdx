@@ -1,0 +1,51 @@
+---
+slug: ch10-lane-3-spotlighting
+title: "Lane 3 — Spotlighting Structural Defense (3 Variants)"
+part: 3
+week: 10
+status: scaffolded
+freshness: exploratory
+volatility: feature-surface
+---
+
+# Chapter 10: Lane 3
+
+> **Status**: scaffolded (M0 Day 14 deliverable). Prose fills at M5 close.
+
+## Thesis
+
+Spotlighting (Hines et al. 2024 arXiv 2403.14720) is a structural
+preprocessing defense designed for decoder-LLM rejection. The encoder-
+classifier port test asks: do the 3 variants (`DelimitVariant` +
+`DatamarkVariant` + `EncodeVariant` via eval-toolkit v0.47) help, hurt,
+or no-op when applied as preprocessing to encoder-only detectors?
+
+## R — Representation
+
+3 Spotlighting variants as dataclass strategies satisfying the
+`TextTransform` Protocol per eval-toolkit v0.47 canonical surface.
+
+## O — Operation
+
+Top-level `sweep(strategies, texts, scorer=detector)` over 3 variants ×
+N detectors. RAG demo (HF Space) makes the structural-defense concept
+tangible for the L0 reader.
+
+## E — Evolution
+
+Hines et al. designed Spotlighting for LLM-judge usage; encoder port is
+the open question. Per Round 7 Q1'''''' Lane 3 hypothesis: structural
+defense → encoder transfer likely null-or-negative; Spotlighting's
+benefit lives where the LLM does, not where the encoder does.
+
+<!-- Round 17 Q2 fragment imports (populate at Lane 3 close M5):
+import Lane3Methodology from "../fragments/lane-3/methodology.mdx";
+import Lane3Results from "../fragments/lane-3/results.mdx";
+import Lane3Interpretation from "../fragments/lane-3/interpretation.mdx";
+-->
+
+## Cross-references
+
+- Hines et al. 2024 arXiv 2403.14720 (Microsoft Research)
+- Lane 3 experiment record
+- HF Space RAG demo

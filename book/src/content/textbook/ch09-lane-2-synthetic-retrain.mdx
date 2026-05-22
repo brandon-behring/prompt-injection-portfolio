@@ -1,0 +1,59 @@
+---
+slug: ch09-lane-2-synthetic-retrain
+title: "Lane 2 — Indirect-Injection LoRA Retrain (2-Variant Loss Ablation)"
+part: 3
+week: 9
+status: scaffolded
+freshness: exploratory
+volatility: feature-surface
+---
+
+# Chapter 9: Lane 2
+
+> **Status**: scaffolded (M0 Day 14 deliverable). Prose fills at M4 close
+> after both LoRA variants train + paired-bootstrap delta lands.
+
+## Thesis
+
+Does adding indirect-injection training data (via research_toolkit
+`/dataset-synthesize` MR-3) overcome (a) the active-harm LoRA pattern
+from submission's direct-injection training AND (b) backbone-invariant
+OOD limit per v1.1.2 DeBERTa null? Per Round 15 Q1, parameter budget
+is LoRA-only (no full-FT — bottleneck is data, not parameter budget);
+two loss variants tested in parallel (CrossEntropy + RecallAtLowFPR via
+eval-toolkit v0.44+ `eval_toolkit.losses.RecallAtLowFPR`).
+
+## R — Representation
+
+Lane 2 corpus: ~10k indirect-injection positives + ~10k benign carriers
+via Claude Sonnet 4.6 (12-18 templated carrier frameworks); Opus N=50
+inter-annotator audit κ gate per ADR-027 protocol.
+
+## O — Operation
+
+Both LoRA variants train on identical Lane 2 corpus → paired-bootstrap
+delta CE-vs-RecallAtLowFPR isolates loss-function asymmetry. Cross-lane
+comparator: Lane 1 same-corpus baselines + Lane 4 stacker on Lane 2 scores.
+
+## E — Evolution
+
+3-way outcome pre-commitment (per Lane 2 hypothesis.md):
+- H1 (positive): both LoRA variants lift AUPRC delta to non-negative
+  on pooled OOD → wall is data-bound
+- H0 (data-bottleneck-partial): one variant lifts → loss matters
+- H∅ (null): both still negative → wall is structural beyond data choice
+
+<!-- Round 17 Q2 fragment imports (populate at Lane 2 close M4):
+import Lane2Methodology from "../fragments/lane-2/methodology.mdx";
+import Lane2Results from "../fragments/lane-2/results.mdx";
+import Lane2Interpretation from "../fragments/lane-2/interpretation.mdx";
+-->
+
+## Cross-references
+
+- Submission ADR-075 (canonical full-FT OOD drop rationale)
+- v1.1.2 DeBERTa null result
+- Lane 2 experiment record (hypothesis + protocol; results at M4 close)
+- MR-3 dependency (research_toolkit#1) — STILL OPEN
+- Ch 7 case study (EchoLeak + ADR-075 citation)
+- Optional Tier C 3rd variant: energy-loss per Round 7 Q2'''''' (ADR-040)

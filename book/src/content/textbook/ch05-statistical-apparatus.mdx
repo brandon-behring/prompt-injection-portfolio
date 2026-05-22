@@ -1,0 +1,45 @@
+---
+slug: ch05-statistical-apparatus
+title: "The Statistical Apparatus"
+part: 2
+week: 5
+status: scaffolded
+freshness: exploratory
+volatility: stable-principle
+---
+
+# Chapter 5: Statistical Apparatus
+
+> **Status**: scaffolded (M0 Day 14 deliverable). Companion T3 notebook at
+> `book/src/content/notebooks/ch05_bootstrap_walkthrough.{py,ipynb}` lands at
+> M2-M3 (per plan §6.3).
+
+## Thesis
+
+Paired-bootstrap CIs + pre-registered stopping rules (V4 finding) protect
+against regression-hiding. "Are Firewalls All You Need?" critique
+(Bhagwatkar 2025 arXiv 2510.05244) sidenote on benchmark-saturation risk.
+
+## R — Representation
+
+Bootstrap apparatus: 10K resamples per submission ADR-022; BCa 95% CI;
+paired-bootstrap delta; multi-seed stability (n=2 minimum).
+
+## O — Operation
+
+eval-toolkit v0.46+ `scorecard()` canonical surface: `bootstrap=True` by
+default; `n_resamples=1000`; per-cell `MetricResult.ci: BootstrapCI`
+populated. Companion notebook explores CI shape across resample counts.
+
+## E — Evolution
+
+From AUC point-estimates → BCa-corrected paired-bootstrap → V4 pre-registered
+stopping rule (V4.1 rejected Phase B-α because Δ-CI overlapped zero on
+test_id [-0.271, +0.003]).
+
+## Cross-references
+
+- Efron & Tibshirani 1993 bootstrap reference
+- Submission ADR-022 + V4_1_RESULTS.md §7A.7 stopping rule (Round 7 Tier B)
+- Bhagwatkar 2025 "Firewalls" critique sidenote
+- All Lanes (CI apparatus) + companion notebook

@@ -1,0 +1,47 @@
+---
+slug: ch06-threshold-policy
+title: "Dual-Policy Thresholds + val→OOD Transfer"
+part: 2
+week: 6
+status: scaffolded
+freshness: exploratory
+volatility: architectural-pattern
+---
+
+# Chapter 6: Threshold Policy
+
+> **Status**: scaffolded (M0 Day 14 deliverable). Companion T3 notebook at
+> `book/src/content/notebooks/ch06_threshold_policy.{py,ipynb}` lands at M3.
+
+## Thesis
+
+Threshold policy is where submission's calibration broke; val-fixed TPR
+transfer fails when OOD distribution shifts. The companion notebook lets
+reader pick a target FPR + see the corresponding TPR + threshold + val→test
+drift.
+
+## R — Representation
+
+Dual-policy thresholds (per submission ADR-025): detection vs verification
+operating points; single-class slate convention (val-fixed TPR only on
+single-class slices; AUPRC/AUROC `status="skipped"` per ADR-027 upstream-
+enforced via eval-toolkit#39).
+
+## O — Operation
+
+eval-toolkit's `metrics_at_threshold` + `ThresholdSelector` Protocol;
+calibrator family (Platt + Beta + Isotonic + Temperature; per submission
+ADR-055/056/058).
+
+## E — Evolution
+
+From single-threshold reporting → dual-policy → val→OOD transfer failure
+→ APR metric (per ADR-037; utility-aware threshold selection per
+Meta PG2 framing).
+
+## Cross-references
+
+- Submission ADR-025 dual-policy + ADR-027 single-class metric (retired
+  to upstream) + ADR-055/056/058 calibrator family
+- ADR-037 APR metric
+- Companion notebook ch06_threshold_policy

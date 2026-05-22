@@ -1,0 +1,60 @@
+---
+slug: ch07-echoleak-case-study
+title: "EchoLeak — When the Wall Was Already There"
+part: 3
+week: 7
+status: scaffolded
+freshness: exploratory
+volatility: feature-surface
+---
+
+# Chapter 7: EchoLeak Case Study
+
+> **Status**: scaffolded (M0 Day 14 deliverable; Round 22 priority order).
+> Prose fills as Lane 2 LoRA training closes (M4) + ADR-075 citation
+> threading completes.
+
+## Thesis
+
+The OOD wall is real, methodologically load-bearing, and has been the
+governing constraint of the submission predecessor's evidence. Per
+submission ADR-075 (canonical unified rationale; supersedes ADR-050 R2 +
+ADR-052): LoRA full-FT OOD drop showed the wall via -0.071 AUPRC delta
+vs frozen-probe on pooled_ood (paired-bootstrap CI clearing zero).
+Per v1.1.2 DeBERTa null: chunk_and_average ≈ head_truncation on pooled
+OOD; backbone-invariance evidence. EchoLeak (CVE-2025-32711) is the
+real-world anchor.
+
+## R — Representation
+
+The OOD wall as antagonist: the geometric constraint that detector
+training data was the bottleneck (per Round 15 Q1 framing), not parameter
+budget. Submission's evidence + portfolio's question (can we climb?).
+
+## O — Operation
+
+The submission's frozen-probe-beats-LoRA result is methodologically
+load-bearing per ADR-075. Portfolio's response: hold parameter budget
+constant at LoRA-only; vary training data (Lane 2 MR-3 corpus); test
+the wall's data-bound hypothesis.
+
+## E — Evolution
+
+Submission ADR-052 framed as methodology-load-bearing; ADR-050 R2 framed
+as FUSE-crash-forced-drop; ADR-075 unified the two framings into one
+prospective narrative. Portfolio carries ADR-075 forward.
+
+<!-- Round 17 Q2 fragment imports (populate at Lane 2 close M4):
+import Lane2Methodology from "../fragments/lane-2/methodology.mdx";
+import Lane2Results from "../fragments/lane-2/results.mdx";
+import Lane2Interpretation from "../fragments/lane-2/interpretation.mdx";
+<Lane2Methodology /><Lane2Results /><Lane2Interpretation />
+-->
+
+## Cross-references
+
+- Submission ADR-075 (canonical) + ADR-052 (superseded) + ADR-050 R2
+- v1.1.2 DeBERTa null result (Round 6 Q3''''')
+- Lane 2 experiment record (hypothesis + protocol; results at M4 close)
+- EchoLeak CVE-2025-32711 + NVD listing
+- Ch 13 (methodology lessons cite back to this case study)

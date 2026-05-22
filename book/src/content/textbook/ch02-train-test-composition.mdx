@@ -1,0 +1,43 @@
+---
+slug: ch02-train-test-composition
+title: "Six Attack Types + Train/Test Composition is Fate"
+part: 1
+week: 2
+status: scaffolded
+freshness: exploratory
+volatility: architectural-pattern
+---
+
+# Chapter 2: Composition is Fate
+
+> **Status**: scaffolded (M0 Day 14 deliverable). Prose fills as Lane 2 corpus
+> generates + Lane 1b matrix populates.
+
+## Thesis
+
+Train/test data composition determines achievable AUPRC ceilings; the 6-class
+attack taxonomy (5 submission classes + character-injection per Lane 1b)
+anchors the design space.
+
+## R — Representation
+
+Six attack types: direct / indirect / agentic-flow / jailbreak-as-question /
+FP-probe + character-injection (Round 7 Lane 1b addition).
+
+## O — Operation
+
+LODO methodology (submission ADR-016); cross-source disjoint splits;
+contamination signature detection (V4 finding — ~8.4pp aggregate AUC inflation
+random vs source-disjoint LODO per Round 7 Tier B citation).
+
+## E — Evolution
+
+From single-source PoCs → LODO discipline → backbone-invariance (v1.1.2
+DeBERTa null result).
+
+## Cross-references
+
+- Submission ADR-016 LODO + ADR-075 unified full-FT OOD drop rationale
+- Round 7 Tier B: V4 Fomin 2025 contamination signature
+- Dossier `claim_family=lodo_methodology`
+- Lane 1 + Lane 1b + Lane 2 experiment records

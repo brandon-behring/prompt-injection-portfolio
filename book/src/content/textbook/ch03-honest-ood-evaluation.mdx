@@ -1,0 +1,41 @@
+---
+slug: ch03-honest-ood-evaluation
+title: "What Honest OOD Means + NotInject's Over-Defense Lesson"
+part: 1
+week: 3
+status: scaffolded
+freshness: exploratory
+volatility: stable-principle
+---
+
+# Chapter 3: Honest OOD + Over-Defense
+
+> **Status**: scaffolded (M0 Day 14 deliverable).
+
+## Thesis
+
+OOD evaluation requires source-disjoint splits AND held-out benchmark suites
+(NotInject, PINT, PromptShield); over-defense is a first-class failure mode.
+
+## R — Representation
+
+OOD vs IDD; single-class slices (val-fixed TPR per submission ADR-027);
+NotInject as over-defense probe.
+
+## O — Operation
+
+Eval slate: BIPIA-full + AgentDojo + InjecAgent + NotInject + LLMail-Inject
+5K + PINT-EN 3016. TPR@LowFPR reporting per ADR-036 (1%, 0.5%, 0.1%, 0.05%
+FPR). Benchmark integrity audit per ADR-038.
+
+## E — Evolution
+
+From AUC-only reporting → PromptShield's TPR@LowFPR forcing function (2024-25)
+→ APR metric (Meta PG2 utility-aware framing per ADR-037).
+
+## Cross-references
+
+- Jacob et al. arXiv 2501.15145 PromptShield
+- Li et al. arXiv 2410.22770 InjecGuard NotInject
+- Lakera PINT benchmark
+- All Lanes (eval slate); Ch 5 (bootstrap walkthrough notebook companion)

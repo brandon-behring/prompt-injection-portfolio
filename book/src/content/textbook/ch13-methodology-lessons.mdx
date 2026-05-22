@@ -1,0 +1,67 @@
+---
+slug: ch13-methodology-lessons
+title: "Methodology Lessons — What the OOD Wall Is Made Of"
+part: 4
+week: 13
+status: scaffolded
+freshness: exploratory
+volatility: architectural-pattern
+---
+
+# Chapter 13: Methodology Lessons
+
+> **Status**: scaffolded (M0 Day 14 deliverable). Prose fills at M7
+> coherence-edit pass per plan §6.4 (textbook ratification gate).
+
+## Thesis
+
+Five methodology lessons emerge from the portfolio's 6 lanes + the
+submission predecessor's evidence:
+
+1. **Composition is fate** (Ch 2): train/test data composition determines
+   achievable AUPRC ceilings. The OOD wall is data-bound at the LoRA
+   parameter budget (per Round 15 Q1 framing) — Lane 2's outcome confirms
+   or refutes.
+2. **The rung ladder is an instrument** (Ch 4): pretraining does ~68%
+   of the work (V0 finding); fine-tuning is the +/-22% delta. Frozen-
+   probe baseline is the right floor.
+3. **CIs replace p-values** (Ch 5): paired-bootstrap delta CIs + pre-
+   registered stopping rules (V4 finding) protect against regression
+   hiding. Single-class slices need val-fixed TPR (single-class metric
+   convention enforced upstream per ADR-027 retirement).
+4. **Threshold policy is where calibration breaks** (Ch 6): val→OOD
+   transfer fails when distribution shifts. APR (per ADR-037) frames
+   the utility-security tradeoff honestly.
+5. **Encoder-only detection has a structural ceiling** (Chs 7-12 cumulative):
+   neither character_injection bypass robustness (Lane 1b H∅), nor
+   Spotlighting transfer (Lane 3 H∅), nor TaskTracker port (Lane 5 H∅)
+   reliably crosses the wall at LoRA parameter budget. Score fusion
+   (Lane 4) helps at the margin but doesn't change the floor.
+
+CodeIntegrity's 98% post-mortem is the cautionary anchor: published
+detector accuracy ≠ deployed detector robustness.
+
+## R — Representation
+
+The OOD wall as the governing structure of detector evaluation in 2025-26.
+
+## O — Operation
+
+The 5 methodology lessons compose into a discipline: train + eval
+honesty, CI apparatus, threshold policy, single-class slice handling,
+APR/TPR@LowFPR reporting per ADR-036 + ADR-037.
+
+## E — Evolution
+
+From submission's hub-and-spoke artifact accumulation (per Round 17
+critique) → portfolio's 3-guide narrative (textbook + narrative arc +
+academic IMRaD) → v0.7.0 ratified portfolio piece. The discipline
+ratifies into NEXT_SESSION's v0.8+ extensions.
+
+## Cross-references
+
+- All 6 Lane experiment records (Lane 1/1b/2/3/4/5)
+- All 12 prior chapters (Ch 1-12)
+- Round 7 Tier B citations (V0, V4, SDD label-corruption, Bhagwatkar 2025)
+- Submission ADR-075 + v1.1.2 DeBERTa null + ADR-027 retirement
+- NEXT_SESSION.md (v0.8+ deferrals per plan §16 Tier D)

@@ -1,0 +1,54 @@
+---
+slug: ch08-lane-1-direct-baselines
+title: "Lane 1 — Direct-Injection Baselines + Lane 1b Adversarial Matrix"
+part: 3
+week: 8
+status: scaffolded
+freshness: exploratory
+volatility: feature-surface
+---
+
+# Chapter 8: Lane 1 + Lane 1b
+
+> **Status**: scaffolded (M0 Day 14 deliverable). Prose fills at M1 close.
+
+## Thesis
+
+Reference scorers (ProtectAI v1/v2, Meta PG2 86M) + classical TF-IDF floor
++ frozen-probe baseline establish the direct-injection detection landscape.
+Lane 1b's adversarial robustness matrix (12-technique character_injection ×
+N detectors via eval-toolkit v0.47 `ALL_TECHNIQUES`) tests whether any
+detector retains its margin under surface transforms. Encoder-only detectors
+likely degrade uniformly (Round 7 Q1'''''' H∅ branch); CourtGuard
+multi-agent debate baseline tests whether ensemble defense composes.
+
+## R — Representation
+
+Direct-injection detection landscape: TF-IDF + LR classical floor + frozen-
+probe baseline + ProtectAI v1/v2 + Meta PG2 86M. All trainable baselines
+share Lane 2 MR-3 corpus (Round 16 Q1 same-corpus comparability).
+
+## O — Operation
+
+Lane 1: scorecard + TPR@LowFPR across detectors on pooled OOD. Lane 1b:
+top-level `sweep(strategies=ALL_TECHNIQUES, texts, scorer=detector,
+attack_threshold=t)` → ASR per detector × technique matrix.
+
+## E — Evolution
+
+Lane 1 outcome → Ch 8 main prose. Lane 1b 12×N matrix → Ch 8 sidenote
++ companion T3 notebook at `book/src/content/notebooks/
+ch08_char_injection_bypass_matrix.{py,ipynb}`.
+
+<!-- Round 17 Q2 fragment imports (populate at Lane 1 + Lane 1b close M1):
+import Lane1Methodology from "../fragments/lane-1/methodology.mdx";
+import Lane1Results from "../fragments/lane-1/results.mdx";
+import Lane1Interpretation from "../fragments/lane-1/interpretation.mdx";
+import Lane1bMethodology from "../fragments/lane-1b/methodology.mdx";
+-->
+
+## Cross-references
+
+- Lane 1 + Lane 1b experiment records
+- Companion T3 notebook ch08_char_injection_bypass_matrix
+- Round 7 Tier B citations (Meta PG2 86M, CourtGuard, V0 rung decomposition)

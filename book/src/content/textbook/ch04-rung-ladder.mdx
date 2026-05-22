@@ -1,0 +1,45 @@
+---
+slug: ch04-rung-ladder
+title: "The Rung Ladder as Instrument"
+part: 2
+week: 4
+status: scaffolded
+freshness: exploratory
+volatility: architectural-pattern
+---
+
+# Chapter 4: The Rung Ladder
+
+> **Status**: scaffolded (M0 Day 14 deliverable).
+
+## Thesis
+
+The rung ladder (frozen-probe → LoRA → reference scorers) is a methodology
+instrument, not a leaderboard. Pretraining does ~68% of the work (V0 finding
+per Round 7 Tier B Q1''''''). Per Round 15 Q1, portfolio retraining is
+LoRA-only (no full-FT) — the bottleneck is data, not parameter budget.
+
+## R — Representation
+
+Portfolio's rung ladder (per Round 15 Q1 + Round 16 Q1): TF-IDF + LR →
+ModernBERT frozen-probe → ModernBERT LoRA (CE + RecallAtLowFPR variants) →
+ProtectAI v1/v2 + Meta PG2 86M reference scorers. Optional PromptShield
+Llama-3.1-8B SOTA anchor (Tier C, gated).
+
+## O — Operation
+
+All trainable rungs train on Lane 2 MR-3 corpus for cross-lane comparability
+(Round 16 Q1). Frozen-probe vs LoRA paired-bootstrap delta per submission
+ADR-022 + ADR-075 (unified full-FT OOD drop rationale).
+
+## E — Evolution
+
+V0 rung decomposition: pretraining +0.054 / LoRA +0.043 on test_id; locked
+holdout +0.210 / +0.099 → pretraining does ~68% of the work. Backbone-
+invariance per submission v1.1.2 DeBERTa null result.
+
+## Cross-references
+
+- Submission ADR-019 LoRA recipe + ADR-075 unified rationale
+- V0 rung decomposition finding (Round 7 Tier B)
+- Lane 1 (rung ladder eval), Lane 2 (variant retraining), Lane 5 (probe)

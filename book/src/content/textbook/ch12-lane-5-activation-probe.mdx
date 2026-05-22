@@ -1,0 +1,55 @@
+---
+slug: ch12-lane-5-activation-probe
+title: "Lane 5 — TaskTracker Activation Probe Port (Encoder Methodology Test)"
+part: 3
+week: 12
+status: scaffolded
+freshness: exploratory
+volatility: feature-surface
+---
+
+# Chapter 12: Lane 5
+
+> **Status**: scaffolded (M0 Day 14 deliverable). Prose fills at M4 close
+> (Round 16 Q5 timing shift M2 → M4; post-Lane-2-corpus).
+
+## Thesis
+
+TaskTracker (Abdelnabi et al. 2024 arXiv 2406.00799) extracts activation
+deltas at a transformer layer and trains a linear classifier on those
+deltas. The methodology was designed for decoder LMs where the prompt-vs-
+completion boundary creates the activation signal. Lane 5 ports the
+methodology to ModernBERT-base (encoder-only) — F8 risk anticipates the
+port test will fail (encoder vs decoder methodology mismatch).
+
+## R — Representation
+
+`ActivationDeltaProbe` per eval-toolkit v0.43+ canonical surface;
+`backbone="answerdotai/ModernBERT-base"`, `layer_index=-1`,
+`aggregate="mean"`. Trains on Lane 2 MR-3 corpus per Round 16 Q4
+cross-lane comparability.
+
+## O — Operation
+
+probe.fit(clean_texts, injected_texts) → probe.predict_proba(oo_texts).
+Paired-bootstrap delta vs frozen-probe baseline. probe.coef_ inspection
+for Ch 12 interpretability prose.
+
+## E — Evolution
+
+F8 risk resolution: encoder-vs-decoder methodology asymmetry. Lane 5
+H∅ branch (negative) is the anticipated outcome — published prior
+evidence against; portfolio runs it anyway to document.
+
+<!-- Round 17 Q2 fragment imports (populate at Lane 5 close M4):
+import Lane5Methodology from "../fragments/lane-5/methodology.mdx";
+import Lane5Results from "../fragments/lane-5/results.mdx";
+import Lane5Interpretation from "../fragments/lane-5/interpretation.mdx";
+-->
+
+## Cross-references
+
+- Abdelnabi et al. 2024 arXiv 2406.00799 (TaskTracker)
+- F8 risk resolution + F1 timing shift (Round 16 Q5)
+- Lane 5 experiment record
+- Companion T3 notebook ch12_activation_probe

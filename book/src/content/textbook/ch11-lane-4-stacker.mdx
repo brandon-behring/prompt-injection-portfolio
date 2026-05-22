@@ -1,0 +1,52 @@
+---
+slug: ch11-lane-4-stacker
+title: "Lane 4 — Score-Fusion Stacker (LogisticStacker + XGBoost) + APR Metric"
+part: 3
+week: 11
+status: scaffolded
+freshness: exploratory
+volatility: feature-surface
+---
+
+# Chapter 11: Lane 4
+
+> **Status**: scaffolded (M0 Day 14 deliverable). Prose fills at M6 close.
+
+## Thesis
+
+Does stacking N detector scores via eval-toolkit v0.45+ `LogisticStacker`
+(or XGBoost meta-learner for the Round 7 Tier B embedding-based scorer row)
+beat the best individual detector on TPR@LowFPR + APR (per ADR-037 Meta
+PG2 utility-aware framing) on the agentic eval slates (LLMail-Inject 5K
+stratified + PINT-EN 3016)?
+
+## R — Representation
+
+Score matrix `(N_samples, N_detectors)` from Lane 1 + Lane 2 detectors on
+Lane 2 MR-3 corpus (Round 16 Q3 same-corpus rule). Stacker outputs feed
+APR + TPR@LowFPR on held-outs.
+
+## O — Operation
+
+`LogisticStacker.fit(score_matrix, y)` → `.predict_proba(test_scores)`.
+XGBoost meta-learner satisfies the same `MetaLearner` Protocol (canonical
+per eval-toolkit v0.45+).
+
+## E — Evolution
+
+3-way outcome (per Lane 4 hypothesis.md): stacker beats best-individual /
+matches within CI / worsens. Diversity-vs-overfit tradeoff captures the
+score-fusion utility frontier.
+
+<!-- Round 17 Q2 fragment imports (populate at Lane 4 close M6):
+import Lane4Methodology from "../fragments/lane-4/methodology.mdx";
+import Lane4Results from "../fragments/lane-4/results.mdx";
+import Lane4Interpretation from "../fragments/lane-4/interpretation.mdx";
+-->
+
+## Cross-references
+
+- ADR-037 APR metric
+- Lane 1 + Lane 1b (detector inputs) + Lane 2 (training corpus per Round 16 Q3)
+- Companion T3 notebook ch11_stacker_analysis
+- Round 7 Tier B embedding-based scorer row

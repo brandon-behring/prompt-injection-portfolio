@@ -1,0 +1,43 @@
+---
+slug: ch01-detection-as-classification
+title: "Prompt-Injection Detection as a Classification Problem"
+part: 1
+week: 1
+status: scaffolded
+freshness: exploratory
+volatility: stable-principle
+---
+
+# Chapter 1: Detection as a Classification Problem
+
+> **Status**: scaffolded (M0 Day 14 deliverable per Round 22 priority order;
+> prose fills at per-milestone close).
+
+## Thesis
+
+A detector is a binary classifier over the input space; design constraints
+derive from the geometry of attacks. (Per `portfolio-chapter-outlines.md`
+companion doc §Ch1.)
+
+## R — Representation
+
+What is a prompt-injection threat? Direct-vs-indirect framing; input/output
+invariants (token sequences, context windows); prevalence across domains.
+
+## O — Operation
+
+How we formalize detection: threat taxonomy → binary-classification framing →
+single-class metrics (val-fixed TPR per submission ADR-027 upstream-enforced) →
+AUPRC/AUROC on multi-class slices.
+
+## E — Evolution
+
+From "jailbreaks" (2022) → "prompt injection" (OWASP 2023) → "indirect
+attacks" (2024-25). Convergence on multi-vector threat models; divergence
+on detection framing.
+
+## Cross-references
+
+- Submission ADR-018 SDD label-corruption case study (Round 7 Tier B citation)
+- Dossier `claim_family=injection_threat_model` (Days 6-12 dossier dependency)
+- Lane 1 + Lane 1b experiment records
