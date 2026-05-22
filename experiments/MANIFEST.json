@@ -1,0 +1,10 @@
+{
+  "$schema_version": "1",
+  "description": "Experiment records authority graph per plan §18 4-file schema. Each lane row maps lane_id -> 4 experiment-record files + 3 book-fragment files + linked ADRs + dossier claim_family + HF Hub artifacts.",
+  "lanes": {},
+  "_notes": {
+    "v0.1.0-pre_state": "Lanes not yet started; manifest is empty. Populates as M1-M6 lanes open (hypothesis.md + protocol.md at lane START; results.md + decisions.md at lane CLOSE). 6 lanes total per plan §5: 1, 1b, 2, 3, 4, 5.",
+    "test_contract": "tests/contracts/test_experiment_records_complete.py verifies (per Round 17 follow-up Q2): for each lane in this MANIFEST, the 4 experiment-record files exist + populated AND the 3 fragment files exist at book/src/content/fragments/lane-N/{methodology,results,interpretation}.mdx. Vacuous at v0.1.0-pre.",
+    "lane_id_format": "lane-N for primary lanes (1, 2, 3, 4, 5); lane-Nb for sub-lanes (1b)."
+  }
+}

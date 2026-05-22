@@ -72,12 +72,12 @@ jobs:
 
       - name: mypy --strict
         working-directory: prompt-injection-portfolio
-        run: uv run mypy --strict src/ scripts/ tests/ 2>&1 || echo "mypy skipped at v0.1.0-pre (no src/ tests/ yet; lands at M0 Day 3)"
+        run: uv run mypy --strict src/ scripts/ tests/
 
       - name: pytest unit + smoke
         working-directory: prompt-injection-portfolio
-        run: uv run pytest -m "not integration" 2>&1 || echo "pytest skipped at v0.1.0-pre (no tests yet; lands at M0 Day 3)"
+        run: uv run pytest -m "not integration"
 
       - name: test-contracts (anti-pattern firewall)
         working-directory: prompt-injection-portfolio
-        run: uv run pytest -m contract 2>&1 || echo "test-contracts skipped at v0.1.0-pre (lands at M0 Day 3 per plan §2 Tier-4)"
+        run: uv run pytest -m contract
