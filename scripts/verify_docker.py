@@ -6,6 +6,7 @@ just confirms `docker` CLI works and a small base image can be pulled.
 Run via: `make verify-docker` or `python scripts/verify_docker.py`.
 Exits 0 on green; non-zero on Docker unreachable or base image pull failure.
 """
+
 from __future__ import annotations
 
 import shutil
