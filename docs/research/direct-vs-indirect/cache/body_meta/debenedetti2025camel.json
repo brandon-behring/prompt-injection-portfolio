@@ -1,0 +1,13 @@
+{
+  "cache_id": "cache_body_debenedetti2025camel",
+  "source_url": "https://arxiv.org/abs/2503.18813",
+  "fetched_at": "2026-05-23",
+  "content_type": "application/pdf",
+  "extraction_method": "pdftotext",
+  "pdf_path": "papers/debenedetti2025camel_Debenedetti_2025.pdf",
+  "pdf_bytes": 5531468,
+  "pdf_sha256": "c3719f6ce73eecf45e3764debef8a3d8ff8c9233b37d128c558b694ec3790cc7",
+  "text_path": "cache/body_text/debenedetti2025camel.txt",
+  "text_bytes": 363623,
+  "text_sha256": "890272e2db2318f25b0d74bbce99b101110a8683e6d5fb07e437d181a6750903"
+}

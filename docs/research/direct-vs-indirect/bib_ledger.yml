@@ -149,8 +149,10 @@ entries:
   stale_after_days: 365
   evidence_ids:
   - ev_direct_vs_indirect_0008
+  - ev_direct_vs_indirect_0057
   cache_ids:
   - cache_8f562c950ef155e3
+  - cache_body_chen2025secalign
 - bibkey: chen2025metasecalign
   primary_url: https://arxiv.org/abs/2507.02735
   title: 'Meta SecAlign: A Secure Foundation LLM Against Prompt Injection Attacks'
@@ -170,8 +172,10 @@ entries:
   stale_after_days: 90
   evidence_ids:
   - ev_direct_vs_indirect_0009
+  - ev_direct_vs_indirect_0059
   cache_ids:
   - cache_74a75f6036e89f8d
+  - cache_body_chen2025metasecalign
 - bibkey: debenedetti2025camel
   primary_url: https://arxiv.org/abs/2503.18813
   title: Defeating Prompt Injections by Design
@@ -195,8 +199,10 @@ entries:
   evidence_ids:
   - ev_direct_vs_indirect_0010
   - ev_direct_vs_indirect_0011
+  - ev_direct_vs_indirect_0056
   cache_ids:
   - cache_cfffce6b1f23371d
+  - cache_body_debenedetti2025camel
 - bibkey: wallace2024instructionhierarchy
   primary_url: https://arxiv.org/abs/2404.13208
   title: 'The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions'
@@ -216,8 +222,10 @@ entries:
   stale_after_days: 365
   evidence_ids:
   - ev_direct_vs_indirect_0012
+  - ev_direct_vs_indirect_0058
   cache_ids:
   - cache_c8697d3c88066297
+  - cache_body_wallace2024instructionhierarchy
 - bibkey: piet2024jatmo
   primary_url: https://arxiv.org/abs/2312.17673
   title: 'Jatmo: Prompt Injection Defense by Task-Specific Finetuning'
@@ -329,6 +337,7 @@ entries:
   evidence_ids:
   - ev_direct_vs_indirect_0017
   - ev_direct_vs_indirect_0018
+  - ev_direct_vs_indirect_synth_0004
   cache_ids:
   - cache_21bc6b48049c7078
 - bibkey: nvd2025echoleak

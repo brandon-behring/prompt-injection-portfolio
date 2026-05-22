@@ -1407,6 +1407,137 @@ entries:
     - official source
 
 # ============================================================================
+# Sprint 2 E3 body-quote anchors (PDF body extraction via pdftotext).
+# Resolves Sprint-1-audit FLAGs for wallace2024instructionhierarchy and
+# chen2025metasecalign (body-claim) and adds new anchors for the two carrier
+# headline numbers (CaMeL 77%/84%, SecAlign 8% on Llama-3-8B). Synthetic
+# cache_body_<bibkey> cache_ids correspond to local pdftotext output stored at
+# docs/research/direct-vs-indirect/cache/body_text/<bibkey>.txt.
+# ============================================================================
+- evidence_id: ev_direct_vs_indirect_0056
+  source_url: https://arxiv.org/abs/2503.18813
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_debenedetti2025camel
+  supports:
+  - claim_id: claim_camel_agentdojo_provable_security_77pct
+    field_path: 'docs/research/direct-vs-indirect/cache/body_text/debenedetti2025camel.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.98
+    excerpt_anchor:
+      cache_id: cache_body_debenedetti2025camel
+      text_path: cache/body_text/debenedetti2025camel.txt
+      text_path_offset: [1106, 1198]
+      sha256_of_span: 2d10b072a1a6030c5fef2bf25d400b9515a9d05d7f32f735adfc5459429eb9ee
+      synthetic_cache_id: true
+  excerpt: '77% of tasks with provable security (compared to 84% with an undefended system) in AgentDojo'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0057
+  source_url: https://arxiv.org/abs/2410.05451
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_chen2025secalign
+  supports:
+  - claim_id: claim_secalign_llama3_8b_8pct_asr
+    field_path: 'docs/research/direct-vs-indirect/cache/body_text/chen2025secalign.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_chen2025secalign
+      text_path: cache/body_text/chen2025secalign.txt
+      text_path_offset: [6515, 6654]
+      sha256_of_span: d30c436f23576c4a9a75e8167ebe925b418e3e5d982f22193026b64f9dea82ef
+      synthetic_cache_id: true
+  excerpt: 'SecAlign reduces the attack success rate of the strongest tested prompt injection to 8% without hurting the utility from Llama3-8B-Instruct'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0058
+  source_url: https://arxiv.org/abs/2404.13208
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_wallace2024instructionhierarchy
+  supports:
+  - claim_id: claim_instruction_hierarchy_priority
+    field_path: 'docs/research/direct-vs-indirect/cache/body_text/wallace2024instructionhierarchy.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_body_wallace2024instructionhierarchy
+      text_path: cache/body_text/wallace2024instructionhierarchy.txt
+      text_path_offset: [2952, 3057]
+      sha256_of_span: 4c8bbee2349ebba50f98409886fbec4e14f4114294dc1cc9ff70f0f661d74d03
+      synthetic_cache_id: true
+  excerpt: 'System Messages provided by application developers, User Messages provided by end users, and Tool Outputs'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - resolves audit_round_1_flagged_body_claim_ordering on ev_0012
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0059
+  source_url: https://arxiv.org/abs/2507.02735
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_chen2025metasecalign
+  supports:
+  - claim_id: claim_meta_secalign_open_model
+    field_path: 'docs/research/direct-vs-indirect/cache/body_text/chen2025metasecalign.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_body_chen2025metasecalign
+      text_path: cache/body_text/chen2025metasecalign.txt
+      text_path_offset: [2514, 2601]
+      sha256_of_span: 7865445a0fa40815cd014bbffc05644b60636c19b92c2c6dd6880beb0afd1e95
+      synthetic_cache_id: true
+  excerpt: 'SecAlign++, which fine-tunes L LAMA -3.18B-I NSTRUCT [16] and L LAMA -3.3-70B-I NSTRUCT'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - resolves audit_round_1_flagged_llama_base_unverified_body on ev_0009
+    - primary source
+
+# ============================================================================
 # Phase 4b synthesis evidence (appended by /agent-index for cross-cutting claims).
 # These records aggregate findings across multiple primary sources; their
 # extraction_method is llm_inferred and inference_chain lists the primary
@@ -1518,4 +1649,42 @@ entries:
     factors:
     - cross_reference across 8 primary evidence records (production incidents 2024-2026)
     - llm_inferred extraction (synthesis claim, not in any single source)
+
+- evidence_id: ev_direct_vs_indirect_synth_0004
+  source_url: https://github.com/brandonbehring/prompt-injection-portfolio
+  source_type: other
+  source_quality: secondary
+  retrieved_at: 2026-05-23
+  verification_method: manual
+  cache_ids:
+  - cache_21bc6b48049c7078
+  - cache_c82a4a57a8d7a874
+  - cache_ab8eccaac24bd61f
+  - cache_4d3fcbf4d309ca5b
+  - cache_a72899f0e7d75999
+  - cache_55ce86a9fb6b737f
+  - cache_be5c19d4fd1c8864
+  supports:
+  - claim_id: claim_production_incidents_share_data_channel_vector_class
+    field_path: 'agent_index/03_production_incidents.md#B3'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    inference_chain:
+    - ev_direct_vs_indirect_0017
+    - ev_direct_vs_indirect_0020
+    - ev_direct_vs_indirect_0022
+    - ev_direct_vs_indirect_0023
+    - ev_direct_vs_indirect_0024
+    - ev_direct_vs_indirect_0025
+    - ev_direct_vs_indirect_0026
+    link_confidence: 0.58
+  excerpt: 'Every disclosed 2024-2026 production prompt-injection incident (EchoLeak / Slack AI / ShadowPrompt / Comet / Gemini Trifecta / ChatGPT Markdown exfil) shares the same vector class: instructions reach the model through a data channel rendered by trusted application UI (email body, Slack DM, web page, search result, calendar invite) and are executed because the UI surface does not enforce an instruction/data boundary. The disclosures differ in tenant (M365 vs Slack vs Chrome ext vs browser-agent) and exfil sink (Markdown image vs OAuth-token vs DOM-clipboard) but share the architectural failure mode: trusted-UI rendering of untrusted-source instructions.'
+  rights_status: private_use
+  confidence:
+    score: 0.58
+    factors:
+    - cross_reference across 7 primary production-incident disclosures (2024-2026)
+    - llm_inferred extraction (synthesis claim, not in any single source)
+    - paraphrase-only posture per Sprint 2 ETHICS constraint (vulnerability class only; no exploit chain)
 

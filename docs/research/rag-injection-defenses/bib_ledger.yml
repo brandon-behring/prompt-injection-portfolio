@@ -25,8 +25,11 @@ entries:
   evidence_ids:
   - ev_rag_injection_defenses_0001
   - ev_rag_injection_defenses_0002
+  - ev_rag_injection_defenses_0023
+  - ev_rag_injection_defenses_0031
   cache_ids:
   - cache_2d58408c3b4f8e5d
+  - cache_body_rag_hines2024spotlighting
 - bibkey: rag_yi2025bipia
   primary_url: https://arxiv.org/abs/2312.14197
   title: Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models
@@ -49,8 +52,11 @@ entries:
   evidence_ids:
   - ev_rag_injection_defenses_0003
   - ev_rag_injection_defenses_0004
+  - ev_rag_injection_defenses_0024
+  - ev_rag_injection_defenses_0025
   cache_ids:
   - cache_70d4cfd50519178f
+  - cache_body_rag_yi2025bipia
 - bibkey: rag_abdelnabi2025llmailinject
   primary_url: https://arxiv.org/abs/2506.09956
   title: 'LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge'
@@ -72,29 +78,37 @@ entries:
   stale_after_days: 90
   evidence_ids:
   - ev_rag_injection_defenses_0005
+  - ev_rag_injection_defenses_0026
   cache_ids:
   - cache_8e0c41db3ea23938
 - bibkey: rag_aimlabs2025echoleak
   primary_url: https://www.catonetworks.com/blog/breaking-down-echoleak/
   title: Breaking down 'EchoLeak', the First Zero-Click AI Vulnerability Enabling Data Exfiltration from Microsoft 365 Copilot
-  status: unverified
+  status: verified
   claim_family: production_rag_incidents
   authors: Aim Labs / Cato Networks (2025)
   venue: Cato Networks blog (Aim Labs disclosure)
   aliases:
   - EchoLeak
   - CVE-2025-32711
-  retrieved_at: 2026-05-22
-  verified_at:
+  retrieved_at: 2026-05-23
+  verified_at: '2026-05-23'
   verification_method: webfetch
   verified_fields:
+  - title
+  - year
   - primary_url
+  - cve_id
   freshness_tier: active
   stale_after_days: 90
   evidence_ids:
   - ev_rag_injection_defenses_0006
+  - ev_rag_injection_defenses_0021
+  - ev_rag_injection_defenses_0022
   cache_ids:
   - cache_d02032286070b4dd
+  - cache_504ad53d8af02e6d
+  verification_notes: 'Cato blog page returned only 212 bytes (likely bot-block / JS-only). Verification anchored via NVD CVE-2025-32711 entry (cached 2026-05-23) which independently confirms the AI command injection vulnerability in M365 Copilot. Original Aim Labs landing URL redirects to catonetworks.com after acquisition.'
 - bibkey: rag_promptarmor2024slackai
   primary_url: https://promptarmor.substack.com/p/data-exfiltration-from-slack-ai-via
   title: Data Exfiltration from Slack AI via indirect prompt injection
@@ -200,6 +214,8 @@ entries:
   stale_after_days: 365
   evidence_ids:
   - ev_rag_injection_defenses_0011
+  - ev_rag_injection_defenses_0027
+  - ev_rag_injection_defenses_0032
   cache_ids:
   - cache_0791dc731c582738
 - bibkey: sankararaman2024provenance
@@ -245,6 +261,7 @@ entries:
   stale_after_days: 90
   evidence_ids:
   - ev_rag_injection_defenses_0013
+  - ev_rag_injection_defenses_0028
   cache_ids:
   - cache_253cee74d309b716
 - bibkey: zhou2025sag
@@ -268,6 +285,8 @@ entries:
   stale_after_days: 90
   evidence_ids:
   - ev_rag_injection_defenses_0014
+  - ev_rag_injection_defenses_0029
+  - ev_rag_injection_defenses_0030
   cache_ids:
   - cache_08a2701d30db2ed8
 - bibkey: c2pa2025spec22

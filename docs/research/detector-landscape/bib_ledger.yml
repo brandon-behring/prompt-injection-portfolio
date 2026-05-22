@@ -73,14 +73,16 @@ entries:
 - bibkey: tihilya2025modernbert
   primary_url: https://huggingface.co/tihilya/modernbert-base-prompt-injection-detection
   title: 'tihilya/modernbert-base-prompt-injection-detection'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: detector_architectures
   authors: tihilya (2025)
   venue: Hugging Face model card
   retrieved_at: 2026-05-22
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -113,14 +115,16 @@ entries:
 - bibkey: protectai2024deberta
   primary_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection
   title: 'protectai/deberta-v3-base-prompt-injection (DeBERTa-v3-base prompt-injection classifier, v1)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: detector_architectures
   authors: Protect AI (2024)
   venue: Hugging Face model card
   retrieved_at: 2026-05-22
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -298,14 +302,16 @@ entries:
 - bibkey: meta2024promptguard1
   primary_url: https://huggingface.co/meta-llama/Prompt-Guard-86M
   title: 'meta-llama/Prompt-Guard-86M (original mDeBERTa-base prompt-injection + jailbreak classifier)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: detector_architectures
   authors: Meta Llama Team (2024)
   venue: Hugging Face model card
   retrieved_at: 2026-05-22
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -460,14 +466,16 @@ entries:
 - bibkey: google2025modelarmor
   primary_url: https://cloud.google.com/security/products/model-armor
   title: 'Google Cloud Model Armor — Prompt injection / jailbreak / malicious-URL / PII filter (GA)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: commercial_detector_performance
   authors: Google Cloud (2025)
   venue: Vendor product page
   retrieved_at: 2026-05-22
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -498,14 +506,16 @@ entries:
 - bibkey: cisco2025aidefense
   primary_url: https://blogs.cisco.com/ai/security-for-the-agentic-era-cisco-ai-defense-breaks-new-ground
   title: 'Security for the Agentic Era: Cisco AI Defense (Robust Intelligence post-acquisition AI Firewall + Lakera Guard integration)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: commercial_detector_performance
   authors: Cisco (2025)
   venue: Vendor blog
   retrieved_at: 2026-05-22
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -937,14 +947,16 @@ entries:
 - bibkey: qualifire2025sentinel_modelcard
   primary_url: https://huggingface.co/qualifire/prompt-injection-sentinel
   title: 'qualifire/prompt-injection-sentinel (ModernBERT-large 395M Sentinel deployment; F1 93.86 average across four benchmarks)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: detector_architectures
   authors: Qualifire / Rogue Security (2025)
   venue: Hugging Face model card
   retrieved_at: 2026-05-23
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -955,14 +967,16 @@ entries:
 - bibkey: qualifire2025sentinel_v2
   primary_url: https://huggingface.co/qualifire/prompt-injection-jailbreak-sentinel-v2
   title: 'qualifire/prompt-injection-jailbreak-sentinel-v2 (Qwen3-0.6B decoder variant; F1 0.964 self-reported)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: detector_architectures
   authors: Qualifire / Rogue Security (2025)
   venue: Hugging Face model card
   retrieved_at: 2026-05-23
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -973,14 +987,16 @@ entries:
 - bibkey: protectai2024_small
   primary_url: https://huggingface.co/protectai/deberta-v3-small-prompt-injection-v2
   title: 'protectai/deberta-v3-small-prompt-injection-v2 (DeBERTa-v3-small ~70M latency variant; F1 94.62 post-training)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: detector_latency_tradeoff
   authors: Protect AI (2024)
   venue: Hugging Face model card
   retrieved_at: 2026-05-23
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -991,8 +1007,8 @@ entries:
 - bibkey: protectai2024_llmguard
   primary_url: https://github.com/protectai/llm-guard
   title: 'protectai/llm-guard: The Security Toolkit for LLM Interactions (production deployment toolkit wrapping ProtectAI detectors)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: detector_architectures
   authors: Protect AI (2024)
   venue: GitHub repository
@@ -1000,6 +1016,8 @@ entries:
   retrieved_at: 2026-05-23
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   - code_url
   freshness_tier: volatile
@@ -1011,14 +1029,16 @@ entries:
 - bibkey: lakera2024_guard_product
   primary_url: https://www.lakera.ai/lakera-guard
   title: 'Lakera Guard — AI Agent Security: Runtime visibility and protection for AI applications and agents (Check Point post-acquisition)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: commercial_detector_performance
   authors: Lakera / Check Point (2026)
   venue: Vendor product page
   retrieved_at: 2026-05-23
   verification_method: webfetch
   verified_fields:
+  - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -1029,8 +1049,8 @@ entries:
 - bibkey: lakera2025_year_of_agent
   primary_url: https://www.lakera.ai/blog/the-year-of-the-agent-what-recent-attacks-revealed-in-q4-2025-and-what-it-means-for-2026
   title: 'The Year of the Agent: What Recent Attacks Revealed in Q4 2025 (and What It Means for 2026)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: 2026-05-23
   claim_family: commercial_detector_performance
   authors: Lakera Team (2026)
   venue: Vendor blog
@@ -1038,6 +1058,7 @@ entries:
   verification_method: webfetch
   verified_fields:
   - title
+  - authors
   - primary_url
   freshness_tier: volatile
   stale_after_days: 30
@@ -1048,8 +1069,8 @@ entries:
 - bibkey: microsoft2024_promptshields_ga
   primary_url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-announces-prompt-shields-ga/4236033
   title: 'Azure AI announces Prompt Shields GA (Microsoft Tech Community announcement, Sept 2024)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: commercial_detector_performance
   authors: Microsoft (2024)
   venue: Vendor blog
@@ -1067,8 +1088,8 @@ entries:
 - bibkey: anthropic2025_pi_defenses
   primary_url: https://claude.com/blog/claude-for-chrome
   title: 'Piloting Claude in Chrome (Anthropic browser-PI defenses; permissions framework, blocklists, classifiers; ASR 23.6 → 11.2%, 0% on browser-specific attacks)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: architectural_defense_methods
   authors: Anthropic (2025)
   venue: Vendor blog
@@ -1086,8 +1107,8 @@ entries:
 - bibkey: anthropic2024_mitigate_jailbreaks
   primary_url: https://platform.claude.com/docs/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
   title: 'Mitigate jailbreaks and prompt injections (Anthropic Claude API docs — defensive recipes: harmlessness screens, input validation, prompt engineering, monitoring)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: architectural_defense_methods
   authors: Anthropic (2024)
   venue: Vendor documentation
@@ -1105,8 +1126,8 @@ entries:
 - bibkey: fmops2023_distilbert
   primary_url: https://huggingface.co/fmops/distilbert-prompt-injection
   title: 'fmops/distilbert-prompt-injection (DistilBERT 67M legacy baseline trained on deepset/prompt-injections; ProtectAI predecessor on latency axis)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: detector_latency_tradeoff
   authors: fmops (2024)
   venue: Hugging Face model card
@@ -1123,8 +1144,8 @@ entries:
 - bibkey: testsavantai2024
   primary_url: https://huggingface.co/testsavantai/prompt-injection-defender-base-v0
   title: 'testsavantai/prompt-injection-defender-base-v0 (DeBERTa-v3-base 67M community detector; ONNX + standard formats; GES-evaluated)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: detector_architectures
   authors: TestSavant.AI (2024)
   venue: Hugging Face model card
@@ -1141,8 +1162,8 @@ entries:
 - bibkey: lebreton2025neobert
   primary_url: https://arxiv.org/abs/2502.19587
   title: 'NeoBERT: A Next-Generation BERT'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: detector_architectures
   authors: Le Breton et al. (2025)
   venue: arXiv preprint
@@ -1160,8 +1181,8 @@ entries:
 - bibkey: rahman2024xlmroberta
   primary_url: https://arxiv.org/abs/2410.21337
   title: 'Fine-tuned Large Language Models (LLMs): Improved Prompt Injection Attacks Detection (WITHDRAWN by authors — methodology issues; cite as IID-memorization example)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: detector_benchmarks
   authors: Rahman et al. (2024)
   venue: arXiv preprint (withdrawn)
@@ -1179,8 +1200,8 @@ entries:
 - bibkey: hlyn2025_dataset
   primary_url: https://huggingface.co/datasets/hlyn-labs/prompt-injection-judge-deberta-dataset
   title: 'hlyn-labs/prompt-injection-judge-deberta-dataset (~400K samples merged from 12 sources; companion to hlyn2025judgedeberta model)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: detector_benchmarks
   authors: Hlyn Labs (2026)
   venue: Hugging Face dataset card
@@ -1309,8 +1330,8 @@ entries:
 - bibkey: hooker2021hardware
   primary_url: https://arxiv.org/abs/2009.06489
   title: 'The Hardware Lottery'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: detector_latency_tradeoff
   authors: Hooker (2020)
   venue: arXiv preprint

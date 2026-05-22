@@ -1,0 +1,13 @@
+{
+  "cache_id": "cache_body_chen2025secalign",
+  "source_url": "https://arxiv.org/abs/2410.05451",
+  "fetched_at": "2026-05-23",
+  "content_type": "application/pdf",
+  "extraction_method": "pdftotext",
+  "pdf_path": "papers/chen2025secalign_Chen_2024.pdf",
+  "pdf_bytes": 907027,
+  "pdf_sha256": "606289acd58fae8db94fbf60a33478886138da7651dd003e5091bdfd392ef12b",
+  "text_path": "cache/body_text/chen2025secalign.txt",
+  "text_bytes": 93961,
+  "text_sha256": "66c7778cf845cfc3512dd7d5fa82ae3513964c92dd38ed807be8d52b406aea63"
+}

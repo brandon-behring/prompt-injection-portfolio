@@ -1,7 +1,7 @@
 schema_version: 3
 topic: rag_injection_defenses
 generated_at: 2026-05-22
-current_as_of: 2026-05-22
+current_as_of: 2026-05-23
 freshness_policy: strict_live
 
 entries:
@@ -563,3 +563,396 @@ entries:
     - secondary source (companion advisory)
     - cached raw snapshot
     - paraphrase-only per ETHICS
+
+# ============================================================================
+# Sprint 2 E3 supplemental: NVD CVE-2025-32711 confirmation for EchoLeak
+# (original Cato URL returned 212 bytes only; NVD provides independent
+# vulnerability-class confirmation). Stays paraphrase-posture per ETHICS.
+# ============================================================================
+- evidence_id: ev_rag_injection_defenses_0021
+  source_url: https://nvd.nist.gov/vuln/detail/CVE-2025-32711
+  source_type: standard
+  source_quality: official
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_504ad53d8af02e6d
+  supports:
+  - claim_id: claim_rag_echoleak_zeroclick
+    field_path: 'bib_ledger.entries[rag_aimlabs2025echoleak].aliases'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_504ad53d8af02e6d
+      text_path_offset: [64, 78]
+      sha256_of_span: c6f6fec8705edaed58fa6055eb8bf13011f993b3f1a08b0df33d0fa192fdceee
+  excerpt: 'CVE-2025-32711'
+  rights_status: private_use
+  confidence:
+    score: 0.90
+    factors:
+    - official source (NIST National Vulnerability Database)
+    - cached raw snapshot
+    - independent confirmation of vulnerability identifier
+- evidence_id: ev_rag_injection_defenses_0022
+  source_url: https://nvd.nist.gov/vuln/detail/CVE-2025-32711
+  source_type: standard
+  source_quality: official
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_504ad53d8af02e6d
+  supports:
+  - claim_id: claim_rag_echoleak_vulnerability_class
+    field_path: 'bib_ledger.entries[rag_aimlabs2025echoleak].title'
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: verbatim_match
+    link_confidence: 0.90
+    excerpt_anchor:
+      cache_id: cache_504ad53d8af02e6d
+      text_path_offset: [19679, 19787]
+      sha256_of_span: f15e92a7066f83fac81d35e49927146827e013e4fa66c07e4d36404beb188d3d
+  excerpt: 'Ai command injection in M365 Copilot allows an unauthorized attacker to disclose information over a network.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - official source (NIST NVD CVE description)
+    - cached raw snapshot
+    - paraphrase-only at exploit-chain layer per ETHICS
+
+# ============================================================================
+# Sprint 2 E3 body-quote anchors for carrier claims (verbatim_match via
+# local pdftotext extraction; synthetic cache_id pattern matches Sprint 2
+# E3 work in direct-vs-indirect topic).
+# ============================================================================
+# Spotlighting body anchor: ASR reduction number
+- evidence_id: ev_rag_injection_defenses_0023
+  source_url: https://arxiv.org/abs/2403.14720
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_rag_hines2024spotlighting
+  supports:
+  - claim_id: claim_rag_spotlighting_asr_reduction
+    field_path: 'docs/research/rag-injection-defenses/cache/body_text/rag_hines2024spotlighting.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.98
+    excerpt_anchor:
+      cache_id: cache_body_rag_hines2024spotlighting
+      text_path: cache/body_text/rag_hines2024spotlighting.txt
+      text_path_offset: [3924, 3986]
+      sha256_of_span: ff3f1d3ef54b4e3f8b8b720176b50fc2f45672ab7150de034e528307ce0ef686
+      synthetic_cache_id: true
+  excerpt: 'reduces the attack success rate from greater than 50% to below'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+
+# BIPIA body anchor: universal vulnerability claim
+- evidence_id: ev_rag_injection_defenses_0024
+  source_url: https://arxiv.org/abs/2312.14197
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_rag_yi2025bipia
+  supports:
+  - claim_id: claim_rag_bipia_universal_vulnerability
+    field_path: 'docs/research/rag-injection-defenses/cache/body_text/rag_yi2025bipia.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.98
+    excerpt_anchor:
+      cache_id: cache_body_rag_yi2025bipia
+      text_path: cache/body_text/rag_yi2025bipia.txt
+      text_path_offset: [4154, 4217]
+      sha256_of_span: 9353b07f738b6ab563e1968cec8fe1c87a3a42ec7ae4571b2883bcf5e9f828d3
+      synthetic_cache_id: true
+  excerpt: 'we evaluate existing LLMs and find them universally vulnerable.'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+
+# BIPIA body anchor: more-capable-LLMs-more-vulnerable counterintuitive finding
+- evidence_id: ev_rag_injection_defenses_0025
+  source_url: https://arxiv.org/abs/2312.14197
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_rag_yi2025bipia
+  supports:
+  - claim_id: claim_rag_bipia_capability_vulnerability_correlation
+    field_path: 'docs/research/rag-injection-defenses/cache/body_text/rag_yi2025bipia.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_rag_yi2025bipia
+      text_path: cache/body_text/rag_yi2025bipia.txt
+      text_path_offset: [14993, 15042]
+      sha256_of_span: c33a37e3fab157b62ebb4f6b51bcf187d0f0b6802954452e16f68ebf9831c824
+      synthetic_cache_id: true
+  excerpt: 'more capable LLMs are more vulnerable to indirect'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+
+# LLMail-Inject body anchor: dataset scale (208,095 / 839)
+- evidence_id: ev_rag_injection_defenses_0026
+  source_url: https://arxiv.org/abs/2506.09956
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_rag_abdelnabi2025llmailinject
+  supports:
+  - claim_id: claim_rag_llmail_dataset_scale
+    field_path: 'docs/research/rag-injection-defenses/cache/body_text/rag_abdelnabi2025llmailinject.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.98
+    excerpt_anchor:
+      cache_id: cache_body_rag_abdelnabi2025llmailinject
+      text_path: cache/body_text/rag_abdelnabi2025llmailinject.txt
+      text_path_offset: [2980, 3027]
+      sha256_of_span: 1635f08ab345d594af8a911409f51017177632892e6ac0f3a4c040b652822efc
+      synthetic_cache_id: true
+  excerpt: 'resulting in a dataset of 208,095 unique attack'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+
+# LLatrieval body anchor: method proposal
+- evidence_id: ev_rag_injection_defenses_0027
+  source_url: https://arxiv.org/abs/2311.07838
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_li2024llatrieval
+  supports:
+  - claim_id: claim_rag_llatrieval_method
+    field_path: 'docs/research/rag-injection-defenses/cache/body_text/li2024llatrieval.txt'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_li2024llatrieval
+      text_path: cache/body_text/li2024llatrieval.txt
+      text_path_offset: [6138, 6175]
+      sha256_of_span: 21b5597a26981a2110a8024c707cae788acca73d86f38ddd7b1dcb7a6808ef9a
+      synthetic_cache_id: true
+  excerpt: 'we propose LLatrieval (Large Language'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+
+# D-RAG body anchor: blockchain smart-contract provenance
+- evidence_id: ev_rag_injection_defenses_0028
+  source_url: https://arxiv.org/abs/2511.07577
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_lu2025drag
+  supports:
+  - claim_id: claim_rag_drag_blockchain_provenance
+    field_path: 'docs/research/rag-injection-defenses/cache/body_text/lu2025drag.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_lu2025drag
+      text_path: cache/body_text/lu2025drag.txt
+      text_path_offset: [1718, 1782]
+      sha256_of_span: 05aea9256711553d474a053ece5137f1f092eb9d1f8ad0db3971c156a6474ef5
+      synthetic_cache_id: true
+  excerpt: 'the scoring process is securely managed through blockchain-based'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+
+# SAG body anchor: first provably-secure framework claim
+- evidence_id: ev_rag_injection_defenses_0029
+  source_url: https://arxiv.org/abs/2508.01084
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_zhou2025sag
+  supports:
+  - claim_id: claim_rag_sag_first_provably_secure
+    field_path: 'docs/research/rag-injection-defenses/cache/body_text/zhou2025sag.txt'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_zhou2025sag
+      text_path: cache/body_text/zhou2025sag.txt
+      text_path_offset: [1681, 1719]
+      sha256_of_span: 9ef71269087276b8e65233999726a6c74dd53cb291dff7944f542541de40b075
+      synthetic_cache_id: true
+  excerpt: 'this paper proposes the first provably'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+
+# SAG body anchor: pre-storage encryption design
+- evidence_id: ev_rag_injection_defenses_0030
+  source_url: https://arxiv.org/abs/2508.01084
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: pdf
+  cache_ids:
+  - cache_body_zhou2025sag
+  supports:
+  - claim_id: claim_rag_sag_encryption_method
+    field_path: 'docs/research/rag-injection-defenses/cache/body_text/zhou2025sag.txt'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_zhou2025sag
+      text_path: cache/body_text/zhou2025sag.txt
+      text_path_offset: [6443, 6524]
+      sha256_of_span: c29a913e0e372fab39c2e2269b61d19a11247e0fa86053e940cc43e9ccc13e6f
+      synthetic_cache_id: true
+  excerpt: 'pre-storage encryption combined with verification and decryption during retrieval'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - body-quote anchor (Sprint 2 E3)
+    - verbatim_match from local pdftotext extraction
+    - synthetic cache_id for PDF body (raw_path = local PDF)
+    - primary source
+
+# ============================================================================
+# Sprint 2 E3 synthesis aggregation claims (llm_inferred; aggregate ≥3
+# primary evidence_ids; link_confidence 0.50-0.60 per Sprint 2 E3 policy).
+# ============================================================================
+# Synthesis #1: Spotlighting deployment-utility tradeoff
+- evidence_id: ev_rag_injection_defenses_0031
+  source_url: https://arxiv.org/abs/2403.14720
+  source_type: other
+  source_quality: secondary
+  retrieved_at: 2026-05-23
+  verification_method: manual
+  cache_ids:
+  - cache_2d58408c3b4f8e5d
+  - cache_body_rag_hines2024spotlighting
+  - cache_0ff0ef0921c091ce
+  - cache_2cd488ed53126318
+  supports:
+  - claim_id: claim_rag_spotlighting_variant_utility_tradeoff
+    field_path: synthesis.spotlighting_variant_utility_tradeoff
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    link_confidence: 0.55
+    inference_chain:
+    - ev_rag_injection_defenses_0001
+    - ev_rag_injection_defenses_0023
+    - ev_rag_injection_defenses_0010
+    - ev_rag_injection_defenses_0009
+  excerpt: 'Synthesis: Across Hines 2024 (CAMLIS) and Microsoft Azure deployment retrospectives (Foundry + Prompt Shields), spotlighting datamarking has near-zero utility cost (delimiter-token rotation preserves task efficacy) while encoding requires a GPT-4-class model that can decode rare substitution ciphers — datamarking is the deployed default in Azure AI Foundry while encoding remains research-only.'
+  rights_status: private_use
+  confidence:
+    score: 0.55
+    factors:
+    - synthesis across 4 evidence_ids (3 primary + 1 secondary vendor)
+    - aggregates abstract claim + body-anchor + Microsoft deployment retrospectives
+    - llm_inferred per Sprint 2 E3 synthesis-claim policy
+
+# Synthesis #2: Retrieval-side provenance nascent state
+- evidence_id: ev_rag_injection_defenses_0032
+  source_url: https://arxiv.org/abs/2311.07838
+  source_type: other
+  source_quality: secondary
+  retrieved_at: 2026-05-23
+  verification_method: manual
+  cache_ids:
+  - cache_0791dc731c582738
+  - cache_67bd28229d9c5dbb
+  - cache_253cee74d309b716
+  - cache_08a2701d30db2ed8
+  - cache_d6c4a8f317e625aa
+  supports:
+  - claim_id: claim_rag_retrieval_provenance_nascent_2026
+    field_path: synthesis.retrieval_provenance_nascent_2026
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    link_confidence: 0.55
+    inference_chain:
+    - ev_rag_injection_defenses_0011
+    - ev_rag_injection_defenses_0012
+    - ev_rag_injection_defenses_0013
+    - ev_rag_injection_defenses_0014
+    - ev_rag_injection_defenses_0015
+  excerpt: 'Synthesis: As of 2026-05, retrieval-side provenance and content-authentication defenses for RAG are nascent — academic methods (LLatrieval NAACL 2024, Provenance EMNLP-Industry 2024, D-RAG 2025, SAG 2025) and standards-draft work (C2PA 2.2) exist, but no production-deployed RAG system reports end-to-end provenance enforcement integrated with prompt-injection defense.'
+  rights_status: private_use
+  confidence:
+    score: 0.55
+    factors:
+    - synthesis across 5 primary evidence_ids
+    - aggregates 4 academic papers + 1 standards-consortium source
+    - llm_inferred per Sprint 2 E3 synthesis-claim policy

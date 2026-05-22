@@ -1,0 +1,13 @@
+{
+  "cache_id": "cache_body_chen2025metasecalign",
+  "source_url": "https://arxiv.org/abs/2507.02735",
+  "fetched_at": "2026-05-23",
+  "content_type": "application/pdf",
+  "extraction_method": "pdftotext",
+  "pdf_path": "papers/chen2025metasecalign_Chen_2025.pdf",
+  "pdf_bytes": 463846,
+  "pdf_sha256": "e1f270d9a4d88ad9a5619e4ccc1f96414f9b435d370220c01cbdbe5c73a9fbbc",
+  "text_path": "cache/body_text/chen2025metasecalign.txt",
+  "text_bytes": 80151,
+  "text_sha256": "8074052ba216c00948b75d560b3a55564a14b560f95d8fa0e05fa00fbf81fa39"
+}

@@ -109,27 +109,34 @@ entries:
   source_quality: official
   retrieved_at: '2026-05-22'
   verification_method: webfetch
+  re_verified_at: '2026-05-23'
   cache_ids:
   - cache_0eed2baeb115d544
   supports:
   - claim_id: claim_detector_landscape_0003_01
     field_path: bib_ledger.entries[3].title
     evidence_role: supports
-    evidence_role_strength: partial
-    extraction_method: paraphrase
-    link_confidence: 0.5
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_0eed2baeb115d544
+      text_path_offset:
+      - 70612
+      - 70747
+      sha256_of_span: dde72b3abe936fc95edd9f790771a4f7f1fa809c12ad924df5ce6b6b662cc4f5
   - claim_id: claim_detector_landscape_0003_02
     field_path: bib_ledger.entries[3].authors
     evidence_role: identifies
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: model card / vendor surface — no extractable verbatim claim
+  excerpt: Prompt injection attacks are attempts to manipulate large language models (LLMs) by inserting malicious instructions into user prompts.
   rights_status: private_use
   confidence:
-    score: 0.5
+    score: 0.85
     factors:
-    - model card / vendor surface — no extractable verbatim claim
+    - body-quote anchor added (Sprint 2 E3) — was previously model-card surface only
 - evidence_id: ev_detector_landscape_0005
   source_url: https://huggingface.co/dcarpintero/pangolin-guard-large
   source_type: repo
@@ -165,6 +172,7 @@ entries:
   source_quality: official
   retrieved_at: '2026-05-22'
   verification_method: webfetch
+  re_verified_at: '2026-05-23'
   cache_ids:
   - cache_8c2403762307c627
   supports:
@@ -177,17 +185,21 @@ entries:
     excerpt_anchor:
       cache_id: cache_8c2403762307c627
       text_path_offset:
-      - 107346
-      - 107418
-      sha256_of_span: 13667431764c57f61f022d415ec8c7e3acc72ef4b1a7faff07efe9ce44ef5289
+      - 125780
+      - 125937
+      sha256_of_span: a1f7ee6cdcd413ea5469612db559d2875c863481a4eea9a09399ea9c703c7eda
   - claim_id: claim_detector_landscape_0005_02
     field_path: bib_ledger.entries[5].authors
     evidence_role: identifies
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'How to use protectai/deberta-v3-base-prompt-injection with Transformers:'
+  excerpt: 'It aims to identify prompt injections, classifying inputs into two categories: <code>0</code> for no injection and <code>1</code> for injection detected.</p>'
   rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - body-quote anchor upgraded (Sprint 2 E3) — replaced Transformers-snippet header span with substantive classification-task claim
 - evidence_id: ev_detector_landscape_0007
   source_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
   source_type: repo
@@ -445,6 +457,7 @@ entries:
   source_quality: official
   retrieved_at: '2026-05-22'
   verification_method: webfetch
+  re_verified_at: '2026-05-23'
   cache_ids:
   - cache_0cb97e9f1fc546b6
   supports:
@@ -457,17 +470,23 @@ entries:
     excerpt_anchor:
       cache_id: cache_0cb97e9f1fc546b6
       text_path_offset:
-      - 54114
-      - 54237
-      sha256_of_span: e5557f201a38b2389bf512be8efee477091ff21870af5f9749dfa68e3d6625e4
+      - 168424
+      - 168543
+      sha256_of_span: 217a6a41a2949b1d188a549bf85fe09c0910342448ac515d777e6be380f95d6b
   - claim_id: claim_detector_landscape_0014_02
     field_path: bib_ledger.entries[14].authors
     evidence_role: identifies
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'We want everyone to use Llama 3.1 safely and responsibly. You agree you will not use, or allow others to use, Llama 3.1 to:'
+  excerpt: |-
+    PromptGuard is a multi-label model that categorizes input strings into 3
+    categories - benign, injection, and jailbreak.
   rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - body-quote anchor upgraded (Sprint 2 E3) — replaced AUP-text span with substantive model-scope claim
 - evidence_id: ev_detector_landscape_0016
   source_url: https://huggingface.co/meta-llama/Llama-Guard-3-8B
   source_type: repo

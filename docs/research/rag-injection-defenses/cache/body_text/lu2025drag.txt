@@ -1,0 +1,892 @@
+                                          A D ECENTRALIZED R ETRIEVAL AUGMENTED G ENERATION S YSTEM WITH
+                                                   S OURCE R ELIABILITIES S ECURED ON B LOCKCHAIN
+
+
+                                                                   Yining Lu * 1 Wenyi Tang * 1 Max Johnson 1 Taeho Jung 1 Meng Jiang 1
+
+
+                                                                                                     A BSTRACT
+                                                 Existing retrieval-augmented generation (RAG) systems typically use a centralized architecture, causing a high
+                                                 cost of data collection, integration, and management, as well as privacy concerns. There is a great need for a
+
+
+
+
+arXiv:2511.07577v1 [cs.CR] 10 Nov 2025
+                                                 decentralized RAG system that enables foundation models to utilize information directly from data owners who
+                                                 maintain full control over their sources. However, decentralization brings a challenge: the numerous independent
+                                                 data sources vary significantly in reliability, which can diminish retrieval accuracy and response quality. To
+                                                 address this, our decentralized RAG system has a novel reliability scoring mechanism that dynamically evaluates
+                                                 each source based on the quality of responses it contributes to generate and prioritizes high-quality sources during
+                                                 retrieval. To ensure transparency and trust, the scoring process is securely managed through blockchain-based
+                                                 smart contracts, creating verifiable and tamper-proof reliability records without relying on a central authority. We
+                                                 evaluate our decentralized system with two Llama models (3B and 8B) in two simulated environments where six
+                                                 data sources have different levels of reliability. Our system achieves a +10.7% performance improvement over its
+                                                 centralized counterpart in the real world-like unreliable data environments. Notably, it approaches the upper-bound
+                                                 performance of centralized systems under ideally reliable data environments. The decentralized infrastructure
+                                                 enables secure and trustworthy scoring management, achieving approximately 56% marginal cost savings through
+                                                 batched update operations. Our code and system are open-sourced at github.com/yining610/Reliable-dRAG.
+
+                                         1       I NTRODUCTION                                               ing it impractical to treat all sources equally reliable. For
+                                                                                                             example, some data sources may contain outdated, mis-
+                                         Retrieval Augmented Generation (RAG) (Lewis et al., 2020)           information, or incomplete data (as shown in Figure 1).
+                                         has been a popular technique for enhancing large language           The existing decentralized RAG systems (Hecking et al.,
+                                         models (LLMs) by providing them access to external knowl-           2025; Xu et al., 2025; Zhou et al., 2025) typically assume
+                                         edge sources during inference. Most existing RAG systems            all data sources are fully reliable, which is unrealistic in
+                                         adopt a centralized architecture in which a single administra-      practice. To overcome this limitation, dRAG has a novel
+                                         tor manages all data sources, including collection, cleaning,       scoring mechanism that dynamically evaluates the reliabil-
+                                         de-duplication, and indexing. However, as the number of             ity of data sources from the quality of responses they help
+                                         data sources grows, this centralized architecture encounters        generate. These reliability scores enable dRAG to prioritize
+                                         challenges in data management costs (Gao et al., 2024; Bar-         high-quality sources during retrieval, thereby improving
+                                         nett et al., 2024) and privacy concerns (Addison et al., 2024).     both retrieval accuracy and response quality in noisy data
+                                         To address these challenges, we build a decentralized RAG           environments. Yet these reliability scores cannot be trusted
+                                         system (dRAG) that adopts the similar definition of data            if managed by a centralized entity, as a centralized adminis-
+                                         providers introduced by Hecking et al. (2025). Our dRAG             trator could easily manipulate scores to favor certain data
+                                         system enables LLM services to retrieve documents directly          sources, creating a single point of failure and compromising
+                                         from sources maintained and controlled by individual data           system integrity. So, we leverage blockchain in dRAG to
+                                         owners, giving them the flexibility to decide what informa-         secure the reliability scores and relevant logs. The scoring
+                                         tion to share and what retrieval policies to implement.             mechanism is implemented within a smart contract, whose
+                                         However, building dRAG is not trivial because data sources          execution and verification are collectively performed by the
+                                         from different owners often vary notably in quality, mak-           majority of nodes in the blockchain network. This ensures
+                                             *
+                                                                                                             that all updates to the scores are executed properly, creat-
+                                            Equal contribution 1 Department of Computer Science and          ing tamper-proof and transparent scoring records that all
+                                         Engineering, University of Notre Dame, USA. Correspondence to:
+                                         Yining Lu <ylu33@nd.edu>, Wenyi Tang <wtang3@nd.edu>.
+                                                                                                             participants can verify without relying on a central authority.
+                                                                                                             dRAG can benefit many domains and applications where
+                                         Preprint. Under review.
+             A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+                                               Query                          effective dRAG system should demonstrate robustness
+         Query                                               LLM Service
+                        LLM Service                                           in such unreliable environments by outperforming its
+        Response                              Response
+ User                                  User
+                                                                              centralized counterpart (see Centralized (unreliable) and
+                                           Documents    Documents
+                          Documents              Documents                    Decentralized (unreliable) lines in Figure 1) and exhibit
+                                                                              consistent growth as more user queries are processed. Re-
+    Manage
+                                                                              markably, our results also show that dRAG can even ap-
+                                         Manage                    Manage
+                                                         Manage
+Admin        Collect/Update/Clean...                                          proach the performance of a centralized system with
+                                                                              fully reliable data sources (see Centralized (reliable) with
+                                       Data Owner A            Data Owner C   no injected noise), an ideal configuration that is difficult
+                                                   Data Owner B
+  Data Source A        Data Source C     Outdated                Incomplete   and costly to maintain in real-world settings. As previ-
+                                                  Misinformation
+             Data Source B
+                                                                              ously discussed, centralized systems require administrators
+                                                                              to invest substantial effort in data management to ensure
+                                                                              data source reliability, whereas dRAG eliminates this burden
+                                                                              while achieving comparable performance. In summary, our
+                                                                              contributions are threefold:
+
+                                                                              • We introduce a reliability scoring mechanism for decen-
+                                                                                tralized RAG systems that dynamically evaluates source
+                                                                                reliability to improve retrieval and answer quality.
+
+                                                                              • We build our dRAG on blockchain to establish a decentral-
+                                                                                ized, transparent, and trustworthy scoring management
+Figure 1. Overview of a centralized RAG system (left) and our                   for data source reliability, using smart contracts to ensure
+dRAG system (right), with their performance comparison (bottom)                 full traceability of score updates. We open-source our
+on L LAMA -3.2-3B-I NSTRUCT. In the unreliable data environ-                    system to facilitate future research.
+ments, our dRAG significantly outperforms the centralized sys-
+tem with increasing query exposure, approaching the performance
+                                                                              • Through controlled experiments, we demonstrate that
+upper-bound from the centralized system achieved in fully reliable
+                                                                                dRAG can improve retrieval and response quality over
+data environments.
+                                                                                time, outperforming centralized systems under unreliable
+                                                                                data environments and achieving performance comparable
+                                                                                to those with ideal, fully reliable data sources.
+data cannot be centrally managed, such as regulated enter-
+prises (e.g., healthcare and public sector), cross-institutional
+consortia, multi-tenant platforms, and open-source commu-                     2     R ELATED W ORK AND BACKGROUND
+nities. dRAG offers reliable retrieval augmentation across
+                                                                              2.1   Centralized Retrieval Augmented Generation
+independently owned sources through two mechanisms: (1)
+client-side reliability scoring for response quality, and (2)                 Traditional RAG systems rely on centralized architectures in
+a blockchain-based reliability management interface ensur-                    which knowledge bases and retrieval mechanisms are man-
+ing transparency and trustworthiness. dRAG can be easily                      aged under unified control (Karpukhin et al., 2020; Lewis
+deployed: data providers expose a standards-compliant re-                     et al., 2020; Li et al., 2022; Gao et al., 2024). This central-
+trieval endpoint and register with the smart contract registry,               ized design introduces several fundamental limitations that
+while users install our lightweight, open-sourced client li-                  hinder its scalability and practical deployment.
+brary, which connects to the deployed smart contract on-
+                                                                              Centralized RAG architectures face inherent scalability lim-
+chain for retrieval and reranking. Furthermore, the continu-
+                                                                              itations stemming from their single-index design and mono-
+ously updated reliability scores on blockchain provide each
+                                                                              lithic control (Wang et al., 2024; Douze et al., 2025). Even
+data owner with actionable feedback, encouraging proactive
+                                                                              with techniques such as query routing and hierarchical re-
+monitoring and improvement of their data sources.
+                                                                              trieval (Xu et al., 2025; Helmi, 2025), such systems struggle
+To demonstrate the effectiveness of dRAG, we simulate unre-                   to efficiently scale as data volumes and domains increase.
+liable data environments in which multiple data sources pro-                  Beyond scalability, centralization leads to data management
+vide Wikipedia documents of varying reliability to answer                     complexity across diverse data sources (Chong et al., 2025),
+questions from the Natural Questions dataset (Kwiatkowski                     high privacy risks (Zeng et al., 2024; 2025a), and gover-
+et al., 2019). Specifically, we inject noise into documents                   nance challenges related to access control and compliance
+by replacing ground-truth tokens with incorrect answers,                      (Jayasundara et al., 2024; Zeng et al., 2025b). By contrast,
+thereby polluting them to varying levels of reliability. An                   our dRAG inherently mitigates these issues by distributing
+          A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+retrieval across independent data providers for better scala-     proach uses smart contracts in a more lightweight manner.
+bility and data management.                                       It leverages smart contracts to dynamically evaluate and
+                                                                  prioritize data sources based on their reliability, eliminating
+2.2   Decentralized Retrieval Augmented Generation                the need for complex protocols with specialized validator
+                                                                  committees or centralized content reindexing. Essentially,
+Recent studies have explored decentralized solutions to           we provide a transparent, tamper-proof trust layer on top of
+these limitations through different technical strategies          decentralized retrieval, enabling robust performance even
+(Hecking et al., 2025; Yang et al., 2025; Zhou et al., 2025;      when some sources are unreliable.
+Chakraborty et al., 2025). The External Retrieval Interface
+framework aims to decentralize the RAG system from a
+software perspective by decoupling retrieval, augmentation,       3     S YSTEM A RCHITECTURE
+and generation components through standardized protocols,         3.1   System Components
+enabling data providers to maintain full control and keep
+data at its source (Hecking et al., 2025). Another notable                Feedback            Decentralized
+approach is federated learning, which enables collaborative                                Blockchain Network
+training while preserving data locality. For example, Fe-                                                             Score
+                                                                                                 s                    Update
+dRAG demonstrates privacy-preserving training of RAG                                       Sc
+                                                                                              or e
+components without raw data exchange (Mao et al., 2025).                Query
+De-DSI applies federated learning to train differentiable                                            Documents   Decentralized Data
+                                                                                   LLM Service
+search indexes without centralized coordination (Neague                                                              Sources
+                                                                        Answer
+et al., 2024). Unlike these approaches, which require com-
+plex training and coordinated parameter sharing, our dRAG
+                                                                                 Figure 2. System overview of dRAG.
+avoids training overhead by operating entirely at inference
+time and emphasizes traceability through blockchain log-
+                                                                  Our dRAG system can be abstracted into three components:
+ging of source contributions, providing a lightweight yet
+                                                                  Decentralized Data Sources, LLM Service, and Decentral-
+trustworthy solution for quality control.
+                                                                  ized Blockchain Network (as shown in Figure 2).
+Blockchain is considered a natural choice for building de-
+                                                                  Decentralized Data Sources. The decentralized data
+centralized applications, including decentralized RAG sys-
+                                                                  sources in dRAG are maintained individually by each data
+tems. It helps establish a decentralized, immutable ledger
+                                                                  owner, and each may provide a standard-compatible API for
+through cryptographic hashing and peer-to-peer consensus
+                                                                  the LLM service to query for documents.
+mechanisms, ensuring data integrity and transparency with-
+out the need for a central authority. Smart contracts are         Decentralized Blockchain Network. The decentralized
+Turing-complete programs deployed on the ledger. It pro-          blockchain network serves as the infrastructure for dRAG
+vides guaranteed execution integrity, as its code and state are   to evaluate the reliability of each decentralized data source
+verified and validated by the entire decentralized network        (detailed in Section 4). The scoring management is imple-
+via the underlying consensus mechanism, as long as the ma-        mented via a smart contract on the Ethereum blockchain,
+jority of the network is honest. The consensus ensures that       providing trustworthy external evaluation of decentralized
+the contract logic executes exactly as programmed, with           data sources. The smart contract, which maintains the score-
+the resulting state change being recorded on the tamper-          board for all data sources, is executed by a public, peer-to-
+proof blockchain ledger only after achieving network-wide         peer blockchain network. The integrity of its execution is
+agreement. This allows the development of robust, transpar-       guaranteed by the decentralized nature of blockchain.
+ent, and tamper-proof decentralized applications (dApps)
+                                                                  LLM Service. The LLM service responds to user queries,
+that run on a decentralized network with public verifiability,
+                                                                  interacting with other system components, including the
+rather than relying on single/institutional trust. Existing
+                                                                  smart contract on the blockchain, and the decentralized data
+blockchain-based RAG approaches employ consensus pro-
+                                                                  sources to generate the answer. Notably, multiple LLM
+tocols for decentralized knowledge validation. For example,
+                                                                  services can share the same dRAG infrastructure to serve
+some frameworks introduce domain-specific validator net-
+                                                                  different users by connecting and providing feedback to the
+works (e.g., using distributed hash tables) (Yu & Sato, 2024)
+                                                                  same smart contract on-chain.
+or permissioned blockchains where expert nodes must re-
+view and agree on new knowledge before it is integrated
+(Andersen et al., 2025).                                          3.2   System Workflow
+
+Unlike these mechanisms that rely on complex blockchain           Figure 2 presents the system overview of dRAG. Additional
+protocols to coordinate knowledge propagation, our ap-            implementation details are provided in Section 5. We as-
+                                                                  sume the LLM Service has direct access to individual data
+           A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+sources, allowing it to retrieve the most relevant documents         Uddin et al., 2025). For instance, a Wikipedia article docu-
+through standard-compliant interfaces.                               menting the 2020 U.S. presidential election provides limited
+                                                                     value when addressing queries about the 2024 election. We
+Similar to other RAG systems, users submit queries to the
+                                                                     consider a data source reliable if it consistently provides
+LLM service to obtain answers from dRAG. The LLM ser-
+                                                                     informative content that improves LLM generation across
+vice will first sample a subset of data sources based on the
+                                                                     a diverse range of user queries. To quantify this notion of
+reliability evaluation from Section 4.1, and route the query
+                                                                     reliability, we first compute the importance of sentences
+to them. The sampled data sources then use the locally
+                                                                     from the retrieved document to LLM generation, which can
+hosted retriever to find the documents most relevant to the
+                                                                     be evaluated under two scenarios.
+query and return them to the LLM service. The data source
+sampling process can be customized to meet the query and
+user needs. In dRAG, we present an effective sampling pro-           Ground-truth answers are unavailable. We estimate the
+cess based on a parameter that quantifies the usefulness of          importance of each sentence x in the retrieved document d
+each data source in improving the LLM performance, as                using Monte-Carlo Shapley (MC-Shapley) values (Gold-
+described in Section 4.2. After retrieving the documents             shmidt & Horovicz, 2024). Formally, the reliability score
+from data sources, the documents will be reranked and con-           is defined as the expected marginal contribution of x to the
+catenated with the query before being fed to the LLM. The            model output across sampled subsets of sentences:
+reranking process incorporates reliability scores to identify                                                         
+the most reliable documents for answering the query. The                    fshapley (x) = Es⊆d\{x} F (s ∪ {x}) − F (s) ,         (1)
+LLM then generates an answer, and the user provides feed-
+                                                                     where F (·) is the utility function, which in our setting is
+back on it to update the reliability scores on the blockchain.
+                                                                     computed as the cosine similarity between the baseline re-
+While our system accepts direct user feedback, we also sup-
+                                                                     sponse (generated using the full retrieved document) and
+port automatic evaluation via exact matching to ground-truth
+                                                                     the response conditioned on the sampled subset s or s ∪ {x}.
+answers (if available). We provide a detailed discussion of
+                                                                     This formulation quantifies the marginal contribution of
+reliability scoring, data source sampling, and reranking in
+                                                                     each sentence to the model’s output, featuring greater gen-
+the next section.
+                                                                     eralizability but with increased computational overhead.
+
+4     E VALUATING DATA S OURCES                                      Ground-truth answers are available. We adopt an
+      R ELIABILITY                                                   information-theoretic formulation in which each sentence
+                                                                     is treated as a potential rationale. The informativeness of a
+Algorithm 1 Reliability-Guided RAG                                   rationale, denoted as finfo (x), is defined as the conditional V-
+ 1: Inputs: user query q; data sources S = {si }                     information (Hewitt et al., 2021) capturing the reduction in
+ 2: Hyperparameters: number of retrievers N ; per-source fetch       model predictive uncertainty conditioning on the rationale:
+    M ; reranked top-K
+ 3: Initialization: usefulness Ui and reliability Ri for source si            finfo (x) = HV (y ∗ | q) − H(y ∗ | q ∪ x),          (2)
+ 4: for each query q do
+ 5:   Sample N sources {si } proportionally to Ui                    where y ∗ and q are the ground-truth answer and query. We
+ 6: Retrieve M documents from each selected source X with
+      size M × N                                                     train evaluators following RORA (Jiang et al., 2024) to
+ 7:   Rerank X with Equation 4; keep top-K documents X1:K            estimate H(·) as a multivariable predictive V-entropy. This
+ 8:   Generate response y using X1:K                                 approach improves computational efficiency but reduces
+ 9: For each document d ∈ X1:K and sentence x ∈ d, compute           generalizability to out-of-domain sentences.
+      f (x) via either Equation 1 or Equation 2
+10:    Compute document score: f (d) ← Aggx∈d f (x)
+11:    Update Ui , Ri for each source si with documents in X1:K      4.2   Data Source Reliability Update
+      using f (d) following Equation 3
+12: end for                                                          Given sentence-level importance scores {f (x) : x ∈ d}
+                                                                     for a document d retrieved from data source si , we aggre-
+                                                                     gate these scores to obtain a document-level reliability esti-
+We introduce how dRAG evaluates (§4.1) and updates (§4.2)            mate f (d). The aggregation strategy depends on the score
+data source reliability to improve retrieval and response            scale and the corresponding evaluation method: for Shapley-
+quality. We present the whole procedure in Algorithm 1.                  P scores, we compute the arithmetic mean f (d) =
+                                                                     based
+                                                                      1
+                                                                     |d|   x∈d fshapley (x), while for entropy-based scores, we
+4.1   Sentence Importance Evaluation                                 take the maximum f (d) = maxx∈d finfo (x).
+The utility of retrieved documents varies across different           We maintain a cumulative reliability score Ri for each data
+information needs and temporal contexts (Qian et al., 2024;          source i, which is updated based on user feedback regarding
+          A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+                                                                              Feedback Log                                     Decentralized Scoring Management
+the correctness of the generated response y. The update rule     Is Answer
+                                                                             False
+                                                                  Correct?
+is straightforward: for document d belonging to source si ,                DS_1: 0.72
+                                                                Importance
+                                                                           DS_2: 0.15                                                Smart
+                                                                  Score    DS_3: 0.12                                               Contract
+               (                                                                                              Feedback                         Update       Scoreboard
+                                                                            DS_1: 0xf8e92a1bcd45...             Log                                        DS_1 Value_1
+                                                                Data Source
+                Ri + f (d),       if y is correct                           DS_2: 0x37a4c8fe019b...
+                                                                 Signatures DS_3: 0xd5b09c32a1f7...                                Verify signatures       DS_2 Value_2
+          Ri ←                                           (3)                                                                     against data source           ...   ...
+                Ri − f (d),       if y is incorrect                                                       Scores
+
+                                                                                                                          Sampled Results
+                                                                                                                         (Query,   )
+                                                                               Reliability-Guided       Documents                                       DS_1
+                                                                Query
+                                                                               Source Sampling           Retrieval
+                                                                                                                         ([Docs], sig)
+This additive update scheme allows the system to accumu-                                                                 ([Docs], sig)         Retriever Database
+                                                                                                                              ...
+late evidence about source reliability over multiple interac-   Answer               LLM
+                                                                                                    Reliability-Guided
+                                                                                                        Reranking
+tions, rewarding sources that contribute to correct answers
+                                                                                                                                          Decentralized Data Sources
+while penalizing those with errors.                             Ground               Sentence Importance
+                                                                Truth                     Evaluation
+                                                                                           LLM Service
+While reliability measures source accuracy, our experiments
+show that LLMs occasionally generate responses without
+using the retrieved documents. In such cases, a source may      Figure 3. Detailed Workflow of dRAG, with a feedback log to up-
+                                                                date the reliability scores. For brevity, state information linking
+be inherently reliable yet fail to contribute usefully to the
+                                                                the update to a genuine query is omitted in the example. Ground
+generation. To address this gap, we introduce a comple-         truth is optional for sentence importance evaluations; if it is un-
+mentary usefulness score Ui that quantifies the extent to       available, user feedback (True/False) will be used to update
+which documents from source i are actually used by the          the reliability scores.
+LLM to generate responses. We evaluate whether generated
+responses can be grounded in the retrieved documents and
+update Ui accordingly: (1) If the response is not grounded,     5.1          On-Chain Trustworthy Reliability Management
+we penalize the usefulness score as Ui ← Ui − f (d), while                   with Smart Contract
+leaving Ri unchanged. (2) If the response is grounded,
+we reward usefulness Ui ← Ui + f (d) and update reliabil-       By distributing the knowledge base and eliminating the
+ity score Ri following Equation 3. We provide empirical         need for a centralized database manager, dRAG requires
+justification for Ui in Section 6.2.                            decentralized management of source scores. Since the relia-
+                                                                bility scores are used to evaluate the trustworthiness of data
+                                                                sources, they must be managed on a public bulletin board
+Reliability-Aware Retrieval and Reranking. We incor-            where no single party can tamper with them. Additionally,
+porate these scores at different RAG stages to optimize         the updating of these scores should allow public auditing to
+retrieval quality. Following the standard RAG pipeline          ensure transparency. This design makes the scoring mecha-
+(Karpukhin et al., 2020; Li et al., 2025), we employ a dense    nism in dRAG more trustworthy and transparent.
+retrieval system implemented with FAISS (Douze et al.,
+2025) for initial candidate selection, followed by a neural     dRAG utilizes blockchain as an infrastructure for decen-
+reranker for final document ordering. Specifically, at the      tralized score management and auditable logging. A smart
+retrieval stage, we use usefulness scores Ui to sample N        contract is deployed on the blockchain to facilitate the imple-
+dense retrievers and their corresponding data sources. At       mentation of basic scoring functions, including initialization,
+the reranking stage, we leverage source reliability Ri to re-   retrieval, and update. Every update of the scores will leave
+fine the final document ordering. For a candidate document      a log on-chain, with traceable information that showcases
+retrieved from data source si , its final reranking score is:   the reason for the modification. The blockchain serves as
+                                                                a public bulletin board to keep the scores, and the smart
+                                                                contract provides the interface to manage and update the
+       scorefinal = (1 − α) · scorererank + α · σ(Ri )   (4)
+                                                                scores with decentralization-based execution integrity.
+
+where scorererank denotes the original reranking score and      Score Initialization. In dRAG, every data source owner will
+σ(·) is a normalization function (implemented as min–max        be registered as an account with an ECDSA (Elliptic Curve
+normalization in our case). The hyperparameter α ∈ [0, 1]       Digital Signature Algorithm) compatible public/secret key
+controls the influence of reliability on the final ranking.     pair (pk, sk) on the blockchain. Every owner of the data
+                                                                source needs to use the deployed dRAG contract to initialize
+                                                                a scoring record for their data source on the blockchain. The
+5   O N -C HAIN R ELIABILITY M ANAGEMENT                        contract will create corresponding score records for each
+    S YSTEM WITH S MART C ONTRACT                               data source, each with an initial score, which will be stored
+                                                                as a state variable on-chain and be publicly accessible.
+In this section, we describe the detailed system implementa-
+tion of dRAG with the reliability evaluation from Section 4.    Reliability Score Update. After obtaining responses from
+          A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+Algorithm 2 Trustworthy Reliability Update with Signature        LLM service, each sampled data source must create a digital
+ 1: Inputs: State digest state, signatures sig[1..n], source     signature sig using its private key sk, indicating its consent
+    IDs Source[1..n], updated reliability scores R[1..n], up-    to acknowledge and confirm the state. This signature will
+    dated usefulness scores U [1..n], feedback info info         be considered as consent to allow the LLM service to update
+ 2: t ← current timestamp()                                      the reliability score of the data sources. The LLM service
+ 3: if lengths of sig, Source, R, U differ then                  creates the feedback log, and the signatures obtained from
+ 4:    abort with InvalidUpdateCount                             each data source will be included as part of the feedback log
+ 5: end if                                                       transaction updating the scores, as shown in Figure 3.
+ 6: for i = 1 to n do                                            The smart contract will retrieve all relevant reliability
+ 7:    if score record for Source[i] does not exist then         records associated with the owners’ public keys and perform
+ 8:        abort with DataSourceNotExists                        batch verification of all signatures against the information
+ 9:    end if                                                    included in the transaction, including the query prompt, the
+10:     pk i ← scoreRecords[Source[i]].sourceAddress             importance evaluation summary, and the reported scoring
+11:     if ¬ ECDSA.verify(state, sig[i], pk i ) then             state hash from the data sources. The batched verification
+12:        abort with InvalidSignature                           of the above information ensures that the feedback log trans-
+13:     end if                                                   action, which updates the scores, can be traced back to a
+14:    Update scoreRecords[Source[i]]: reliabilityScore ←        specific user query.
+       R[i], usefulnessScore ← U [i], timestamp ← t
+15:    Emit ScoreRecordUpdated event for Source[i]               For further security and tracing purposes, like preventing
+       with new scores, t, and info                              replay attacks by reusing the signature to maliciously update
+16: end for                                                      the data source reliability scores, one may consider leaving a
+                                                                 log recording the query and sampled data source list (marked
+                                                                 as “unused”) on-chain before the LLM service broadcasts
+the LLM in dRAG, users can provide feedback on responses         the query and retrieves the documents from data sources.
+along with ground-truth answers, and update the reliabil-        When the data sources create the signature, the state should
+ity based on their contribution to the reliability records on    also include the query log. The first feedback on the query
+the blockchain via a smart contract. The LLM service will        marks the query log as “used” and invalidates all subsequent
+first perform a sentence-level importance evaluation (de-        updates that attempt to exploit the same query.
+scribed in Section 4) and calculate score changes based on
+the evaluation. Then, the LLM service needs to include the       5.2   Auditing Reliability Updates
+evaluation in a feedback log transaction and submit it to the    Whenever a score update occurs for any data
+blockchain network so the deployed smart contract can up-        source, the deployed smart contract will emit a
+date the scores for each source. To prevent arbitrary updates    ScoreRecordUpdated event, including the nec-
+to reliability records, the smart contract will perform basic    essary information to trace the update back to the original
+verification of the feedback log to ensure that updates can      query included in the feedback log (as shown in line
+be traced back to a legitimate query sent to the data sources.   14 of Algorithm 2). The event data will be part of the
+Trustworthy Reliability Update with Signature. Al-               blockchain but not directly accessible to the smart contract,
+gorithm 2 presents the pseudocode for the signature ver-         helping reduce the network’s computational overhead. The
+ification and reliability score update logic of our smart        event data can be queried and retrieved by any blockchain
+contract. We also provide a deployed smart contract in-          gateway node, linked to the specific transaction in the
+stance of this algorithm at the public testnet Sepolia at        blockchain, allowing anyone to audit the entire history of
+2at6kd.short.gy/4R9Tbm.                                          data source reliability updates and ensure the update can be
+                                                                 traced back to a genuine query. This information can be
+When the user’s query is broadcast to the sampled data           used to reproduce the query for further investigation.
+sources to retrieve potentially relevant documents, the LLM
+service also generates state information and attaches it to      Additionally, our system can also be extended to support
+the query. The state is a digital digest (secure hash) that      asynchronous feedback and score updates from the users.
+includes the query and the reliability scores of all sampled     This could be useful in cases where ground truth for cer-
+data sources, which can be viewed as a summary binding           tain queries is not immediately available, allowing users
+the current query to the current state of all sampled data       to provide evaluations and update scores at a later time.
+source scores. The sampled data sources can obtain the same      Specifically, users still receive signatures from selected
+information (the query and the reliability scores of all data    data sources and obtain responses from the LLM. The
+sources) to generate and verify if the state matches their       sentence-level importance evaluation will be conducted
+current view. When returning the retrieved documents to the      without ground truth using Equation 1. Users can submit
+           A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+                                                                      polluted environments, while ideally approaching the
+                                                                      performance upper bound set by centralized systems in
+                                                                      unpolluted conditions.
+                                                                      We evaluate our dRAG system on L LAMA 3.2-3B-
+                                                                      I NSTRUCT and L LAMA -3.1-8B-I NSTRUCT (Grattafiori
+                                                                      et al., 2024). We train our evaluators using invariant learning
+                                                                      with T5-base (Raffel et al., 2020) to compute Equation 2,
+                                                                      following the RORA approach (Jiang et al., 2024). We
+                                                                      use the following hyperparameters in our main experiments
+                                                                      (for results shown in Table 1): reliability weight α = 0.5
+                                                                      for token-level pollution environments and α = 0.2 for
+                                                                      document-level pollution environments.2 We set the sam-
+                                                                      pling number to N = 5, top-K = 2, and per-source fetch
+Figure 4. Statistics of two simulated unreliable data environments.
+                                                                      M = 3. For LLM inference, we consistently set the tem-
+Left: Token-level pollution shows the percentage of ground-truth
+tokens replaced with random tokens across six data sources (A-F),
+                                                                      perature to 0 for better reproducibility. We initialize both
+where different sources contain overlapping ground-truth docu-        usefulness and reliability scores to 10.
+ments. Right: Document-level pollution shows how 3197 ground-         We deploy the smart contract used in dRAG on the Sepolia
+truth documents are divided into six sources (A-F) and mixed with     network, a public Ethereum testnet, together with an easy-
+polluted documents to create varying reliability levels, with no
+                                                                      to-use package tool to test and evaluate the core functions of
+document overlap between sources.
+                                                                      dRAG. We provide a detailed cost evaluation for maintaining
+                                                                      the dRAG infrastructure in Section 6.3.
+feedback with a non-determined importance report to the
+blockchain. Once ground truth becomes available, users                6.1       Centralized versus Decentralized RAG System
+can invoke the smart contract to report it on-chain and then          dRAG outperforms centralized RAG system in unreliable
+update the reliability scores accordingly.                            data environments. Figure 5a presents a performance
+                                                                      comparison between centralized and decentralized RAG
+6    E XPERIMENTS AND R ESULTS                                        systems using L LAMA -3.1-8B-I NSTRUCT on token-level
+                                                                      polluted data (left in Figure 4). Combined with the results
+To demonstrate the effectiveness of dRAG, we evaluate                 shown in Figure 1 using L LAMA -3.2-3B-I NSTRUCT, these
+it across two environmental configurations, each contain-             findings demonstrate that dRAG exhibits self-improvement
+ing 6 data sources with varying pollution levels p ∈                  capabilities by progressively learning to prioritize the most
+{0%, 20%, · · · , 100%}, where p = 0% indicates no pollu-             reliable data sources across user queries. The underlying
+tion (i.e., the data source provides ground-truth documents           mechanism for this improvement is illustrated in Figure 5b.
+for the original Natural Questions dataset (Kwiatkowski               Initially, all sources start with identical reliability scores.
+et al., 2019)), and higher values of p indicate increasingly          However, data source A consistently receives positive feed-
+unreliable documents within the data source. For building             back as its high-quality documents are retrieved and con-
+these two environments, we (1) inject noise into the doc-             tribute to generating correct answers. As a result, its reli-
+uments by replacing ground-truth tokens with randomly                 ability score increases while other sources remain largely
+sampled tokens based on the given pollution level (token-             unchanged or slightly decline, making A more likely to be
+level pollution); (2) partition the original dataset into 6           retrieved in subsequent queries. This mechanism explains a
+disjoint data sources, where each source is populated with            key behavioral pattern observed in dRAG when deployed in
+randomly sampled polluted documents, such that all sources            unreliable data environments: the system initially performs
+maintain equal length and achieve their specified pollution           at a lower-bound level, equivalent to a centralized RAG
+levels without overlap (document-level pollution).1 Fig-              system using polluted data, but steadily improves over time
+ure 4 shows statistics of these two data environments.                as reliable sources accumulate positive feedback and begin
+For polluted data environments, an effective reliability              to dominate retrieval decisions.
+evaluation should successfully identify and prioritize the            To further validate these improvements, we analyze the us-
+least polluted (i.e., most reliable) data sources throughout          age distribution of each data source across queries. Figure 5c
+the process, and therefore a well-designed dRAG system
+                                                                            2
+should outperform its centralized counterpart under                       The lower α in document-level settings accounts for the non-
+                                                                      overlapping document distribution, where a single high α value
+   1                                                                  would bias retrieval toward completely irrelevant data sources.
+     We use the words “polluted” and “unreliable” interchangeably
+hereafter.                                                            Further analysis is provided in Section 6.1.
+                       A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+                   Decentralized (unreliable)         Centralized (reliable)                               A           B         C           D      E         F                      A      B     C        D   E      F
+                   Centralized (unreliable)                                                                                                                                   100
+           60%
+
+
+
+
+                                                                               Reliability Scores
+                                                                                                    25.0
+           55%                                                                                      22.5                                                                       80
+
+
+Accuracy                                                                                                                                                          Usage (%)
+           50%                                                                                      20.0                                                                       60
+           45%                                                                                      17.5
+           40%                                                                                      15.0                                                                       40
+           35%                                                                                      12.5                                                                       20
+                                                                                                    10.0
+           30%                                                                                                                                                                  0
+                 200      400      600          800     1000      1200                                     0     200       400   600   800   1000 1200 1400                         0 1 2 3 4 5 6 7 8 9 10 11 12 13
+                                Question Index                                                                         Question Index                                                    Query Bins (Size=100)
+           (a) System Performance Comparison                                                                   (b) Data Source Reliability                                           (c) Data Source Usage
+
+ Figure 5. (a) Performance comparison between dRAG and centralized RAG systems on L LAMA -3.1-8B-I NSTRUCT across reliable and
+ unreliable data environments; (b) Evolution of reliability score Ri (Equation 3) throughout the query process; (c) Percentage distribution
+ of data sources (A-F) across sequential query bins of 100 queries each.
+
+                                                                                                                                 Centralized             dRAG (Unreliable)                      Centralized
+                                         Models                                Pollution Strategy                                (Unreliable)                                                    (Reliable)
+                                                                                                                                                        MC-Shapley                  RORA
+                                                                                     Token-level                                       30.56              42.69                     49.90
+                        L LAMA -3.2-3B-I NSTRUCT                                                                                                                                                   44.24
+                                                                                    Document-level                                     28.74              30.60                     29.90
+                                                                                     Token-level                                       37.37              46.58                     43.30
+                        L LAMA -3.1-8B-I NSTRUCT                                                                                                                                                   49.03
+                                                                                    Document-level                                     34.38              37.37                     37.24
+
+ Table 1. Average accuracy of centralized and decentralized (dRAG) systems on reliable and unreliable data environments. For dRAG,
+ performance is reported after 500 warmup queries to ensure reliability score convergence. Reliability scores are updated using sentence-
+ level importance estimation via MC-Shapley (Goldshmidt & Horovicz, 2024) or RORA (Jiang et al., 2024) methods. Unreliable data was
+ polluted using token-level or document-level strategies.
+
+
+ confirms that as dRAG digests more queries (organized into                                                                            However, we observe a notable performance disparity be-
+ bins of 100), it learns to prioritize more reliable sources.                                                                          tween the two pollution strategies. Specifically, unreli-
+ Specifically, the usage percentage of data source A increases                                                                         able environments constructed using document-level pollu-
+ substantially from approximately 40% in the first query bin                                                                           tion yield lower accuracy compared to those using token-
+ to over 80% in later bins (bins 6-13). This increase is ac-                                                                           level pollution. This difference stems from different doc-
+ companied by a corresponding decrease in the utilization                                                                              ument distributions yielded by two strategies (Figure 4).
+ of less reliable data sources B, C, and D, whose combined                                                                             Document-level pollution creates data sources that cover
+ usage drops from roughly 60% to under 20%. These results                                                                              only a subset of the original documents (1066 out of 3197
+ highlight that dRAG effectively learns to distinguish data                                                                            to answer queries). Consequently, when dRAG promotes
+ quality and progressively favors the least polluted sources,                                                                          the most reliable sources (e.g., A) during reranking, it may
+ thereby improving retrieval performance over time.                                                                                    inadvertently favor irrelevant documents from these sources
+                                                                                                                                       simply based on their high reliability scores. In contrast,
+                                                                                                                                       token-level pollution creates a more balanced data environ-
+ dRAG achieves performance comparable to centralized
+                                                                                                                                       ment where all data sources maintain identical document
+ systems running in ideal, reliable data environments.
+                                                                                                                                       coverage to the original corpus, with reliability varying at
+ Table 1 presents the average accuracy of centralized and
+                                                                                                                                       the granular token level rather than through selective doc-
+ decentralized systems across various models, scoring meth-
+                                                                                                                                       ument inclusion. We leave the challenge of handling these
+ ods, and data environments. Our findings demonstrate that
+                                                                                                                                       incomplete and unreliable data sources to future work.
+ dRAG consistently outperforms the centralized system under
+ unreliable data environments across all experimental config-
+ urations. More remarkably, under conditions of token-level                                                                            6.2       Sensitivity Analysis and Score Validation
+ pollution, dRAG achieves performance levels comparable                                                                                Considering that dRAG uses reliability weights α for bal-
+ to those of centralized systems operating on fully reliable                                                                           ancing rerank and reliability scores for each data source,
+ data sources. This aligns with the intuition that prioritizing                                                                        and uses the number of retrievers N for sampling from the
+ high-quality data sources during retrieval fundamentally en-                                                                          usefulness score, we study dRAG’s sensitivity towards the
+ hances performance, with the upper bound constrained by                                                                               choice of these two hyperparameters.
+ the model’s inherent capacity to process fully reliable data.
+                     A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+           44.24                                                     44.24                                                           MC-Shapley            RORA
+                                                                     42.00
+           40.00
+                                                                                                                         10.00
+Accuracy                                                  Accuracy
+                                                                     36.00
+                                                                                                               Entropy
+           36.00
+                                                                                                                          7.50
+                                                                     30.56
+           32.00
+           30.56                                                                                                          5.00
+           28.00                                                     24.00                                                       0   20   40      60    80      100
+                   0.1   0.3    0.5     0.7     0.9 1.0                      1   2     3      4      5     6
+                           Reliability Weight                                    Number of Retrievers                                Pollution Level (%)
+              (a) Reweight Weight Sensitivity                          (b) Retriever Number Sensitivity                  (c) Entropy of Polluted Data Sources
+
+ Figure 6. (a-b): Sensitivity test results of dRAG on reliability weight α and number of retrievers N . Results are obtained from a token-level
+ polluted environment where dRAG uses the MC-Shapley scoring method with L LAMA -3.2-3B-I NSTRUCT. The — indicates the baseline
+ performance of a centralized system on unreliable data (30.56, from Table 1), and the — indicates the upper-bound performance of a
+ centralized system on reliable data (44.24). (c): Entropy in sentence importance estimation across different pollution levels.
+
+           Question: Who got the first Nobel prize in physics?                                                                                         Score
+           MC-S HAPLEY: The first Nobel Prize in Physics was awarded in 1901 to Wilhelm Conrad Röntgen, of Germany, who                               0.3626
+           received 150,782 SEK, which is equal to 7,731,004 SEK in December 2007. John Bardeen is the only laureate to win                               0
+           the prize twice—in 1956 and 1972. Maria Sklodowska-Curie also won two Nobel Prizes, for physics in 1903 and                                    0
+           chemistry in 1911.
+           RORA: The first Nobel Prize in Physics was awarded in 1901 to Wilhelm Conrad Röntgen, of Germany, who                                       1.0806
+           received 150,782 SEK, which is equal to 7,731,004 SEK in December 2007. John Bardeen is the only laureate to win                            -1.2246
+           the prize twice—in 1956 and 1972. Maria Sklodowska-Curie also won two Nobel Prizes, for physics in 1903 and                                 -2.6737
+           chemistry in 1911.
+
+ Table 2. Example sentence-level scores for the first three sentences of the retrieved document, computed by MC-Shapley (using L LAMA -
+ 3.2-3B-I NSTRUCT) and RORA for the given question. The scores in the right column correspond to each sentence. The ground-truth
+ answer is “Wilhelm Conrad Röntgen”. Darker highlighting denotes sentences assigned higher scores by each method.
+
+
+ Reliability weight α. We test dRAG using MC-Shapley                                       Number of retrievers N . The number of retrievers N
+ across six reliability weight values on L LAMA -3.2-3B-                                   determines how many data sources are sampled based on
+ I NSTRUCT under token-level polluted data, where a higher                                 their usefulness scores. A higher value of N forces dRAG to
+ reliability weight results in more aggressive reliability-                                retrieve documents from more data sources that have histor-
+ driven filtering. Results shown in Figure 6a indicate that                                ically contributed meaningfully to LLM generation (see the
+ increasing the weight does induce stronger intervention (e.g.,                            usefulness definition in Section 4.2). We evaluate N ranging
+ from 0.1 to 0.5), making the dRAG retrieves documents from                                from a single data source to all six available sources, and the
+ less polluted data sources and improves its performance to-                               results are shown in Figure 6b. Clearly, increasing the num-
+ wards the upper bound. However, exceedingly large reliabil-                               ber of retrievers consistently improves accuracy, elevating
+ ity weights, such as 1.0, can cause the dRAG to over-rely on                              performance from below the lower bound to nearly reaching
+ reliability scores while overlooking the semantic relevance                               the upper bound. This demonstrates that data sources with
+ captured by neural rerankers, resulting in accuracy decline                               higher reliability scores are not necessarily the most useful
+ to approximately 34%. Notably, across all tested reliability                              ones for LLM generation. By retrieving documents from
+ weights, dRAG consistently outperforms the centralized sys-                               multiple sources, dRAG learns from diverse information
+ tem under identical conditions. This further demonstrates                                 across different reliability levels, enabling more accurate
+ dRAG’s robustness in unreliable and noisy data environ-                                   and nuanced updates to the reliability scores. We also notice
+ ments, because accidental retrievals from highly polluted                                 a performance drop when we set N = 6, where all data
+ sources can be overridden by documents from more reliable                                 sources are included and usefulness-based sampling is prac-
+ sources, which typically receive higher reranking scores                                  tically disabled. Therefore, this drop can be interpreted as
+ according to Equation 4 and are consequently positioned                                   an ablation result, highlighting the practical importance of
+ later in the context window where they can receive more                                   usefulness-based sampling for dRAG.
+ attention from LLMs.
+           A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+Sentence importance score validation. We validate that                lize batched queries and feedback to update the reliability
+importance score estimation methods, MC-Shapley (Gold-                evaluation while maintaining a reasonable cost range.
+shmidt & Horovicz, 2024) in Equation 1 and RORA (Jiang
+et al., 2024) in Equation 2 can effectively capture the contri-       7   C ONCLUSION AND F UTURE W ORK
+bution of each retrieved sentence to LLM generation. While
+these methods have been previously evaluated against hu-              We built dRAG, a decentralized RAG system that addresses
+man annotations in their original works, we test their utility        data reliability challenges in real-world settings. Our dRAG
+in our simulated unreliable data environments by analyz-              dynamically computed and updated reliability scores for
+ing the entropy of the resulting importance scores across             each data source, securing these scores on a blockchain to
+sentences drawn from data sources with varying levels of              ensure both quality control and trust among data source
+pollution. As illustrated in Figure 6c, both MC-Shapley and           owners. Through controlled experiments, we demonstrated
+RORA exhibit a consistent decrease in score entropy as the            that dRAG consistently outperforms centralized systems in
+data pollution level increases. This is because token-level           unreliable data environments across different models, data
+pollution progressively replaces ground-truth tokens with             pollution strategies, and reliability scoring methods. No-
+incorrect ones, leading to uniformly low scores across sen-           tably, our system can even achieve performance comparable
+tences, thereby reducing entropy. Importantly, this pattern           to that obtained in fully reliable environments. To the best
+reflects the methods’ sensitivity to data quality degradation,        of our knowledge, dRAG is the first blockchain-based de-
+confirming their viability as robust indicators for identifying       centralized RAG system that incorporates quality control
+unreliable information for our dRAG system. We further                mechanisms to handle noisy, real world-like data. We hope
+provide a real example in Table 2 showing how the two                 this work opens new research directions at the intersection
+methods capture the relative importance of each sentence.             of decentralized systems, RAG, and trustworthy AI.
+                                                                      While dRAG performs effectively when data sources pro-
+6.3   System Cost Evaluation                                          vide full coverage for user queries (i.e., token-level pollu-
+                                                                      tion), it struggles under more challenging conditions. For
+      n    Total Gas Used (Cost)     Per-Update Gas (Cost)            example, when pollution occurs at the document level, its
+       1      71,277 ($0.0258)          71,277 ($0.0258)              performance falls considerably short of the upper bound
+       2      96,352 ($0.0349)          48,176 ($0.0174)              achieved by centralized systems in fully reliable environ-
+       5     211,492 ($0.0766)          42,298 ($0.0153)              ments, as we briefly discussed in Section 6.1. This gap
+      10     376,899 ($0.1364)          37,690 ($0.0136)              arises from a fundamental challenge in the data distribution:
+      15     502,565 ($0.1820)          33,504 ($0.0121)
+      20     628,048 ($0.2274)          31,402 ($0.0114)              each data source provides only partial documents rather than
+                                                                      complete coverage of the query space, such that the most
+Table 3. Gas usage and USD cost for providing feedback and up-        reliable source may not contain the most relevant documents
+dating the reliability scores at 0.09 gwei/gas and ETH = $4,022.14    for a given query. To address this limitation, a straightfor-
+(on Oct 29, 2025). n represents the number of data sources to         ward solution is to make reliability scores work adaptively
+update in the feedback. This mainly reflects the cost of the signa-   rather than through a single fusion at the reranking stage.
+ture. Actual gas consumption also depends on the query length         For instance, the system could first retrieve documents by
+and other factors.                                                    relevance, then use a learned gate (classifier) to determine
+                                                                      whether to apply reliability-based reranking or preserve the
+Utilizing decentralized infrastructure like a public                  original relevance ordering for each query. Such an adap-
+blockchain is typically not free, as it consumes the com-             tive, query-conditioned pipeline, paired with our iterative
+putational power of the network. In the Ethereum network,             source reliability updates, may close the performance gap
+gas is the unit that measures the computational effort re-            in challenging scenarios with fine-grained, non-overlapping
+quired to execute operations, like running a smart contract.          data sources.
+Each operation incurs a fixed amount of gas, and users pay
+a fee based on this total, which compensates network partic-          Another promising direction for future research is to analyze
+ipants for the resources they use. Table 3 provides the cost          the convergence rate of reliability scores in dRAG. Specifi-
+of the most important part of making dRAG a trustworthy               cally, it remains unclear how many queries are required for
+infrastructure, namely, on-chain verification of feedback             the dRAG system to reach its performance upper bound, and
+and score updates. As the number of score updates n in-               which factors (e.g., query diversity, number of data sources,
+creases (i.e., the number of queries the dRAG has seen), the          data source quality, etc.) most significantly influence the
+per-update cost decreases, reflecting approximately 55.8%             convergence rate of these reliability scores. A systematic
+of gas efficiency gains from our batching operations, drop-           investigation of these convergence dynamics would provide
+ping from 2.6 cents per update (n=1) to 1.1 cents per update          valuable insights into the system’s scalability and practical
+(n=20). This demonstrates the potential for dRAG to uti-              deployment. We leave this exploration to future work.
+          A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+ACKNOWLEDGEMENTS                                                  Vaughan, A., Yang, A., Fan, A., Goyal, A., Hartshorn,
+                                                                  A., Yang, A., Mitra, A., Sravankumar, A., Korenev,
+This work was partially supported by NSF IIS-2119531,             A., Hinsvark, A., Rao, A., Zhang, A., Rodriguez, A.,
+IIS-2137396, IIS-2142827, IIS-2234058, OAC-2312973,               Gregerson, A., Spataru, A., Roziere, B., Biron, B., Tang,
+NASA ULI 80NSSC23M0058 and Open Philanthropy. We                  B., Chern, B., Caucheteux, C., Nayak, C., Bi, C., Marra,
+also appreciate the support from the Foundation Models            C., McConnell, C., Keller, C., Touret, C., Wu, C., Wong,
+and Applications Lab of Lucy Institute and ND-IBM Tech            C., Ferrer, C. C., Nikolaidis, C., Allonsius, D., Song, D.,
+Ethics Lab.                                                       Pintz, D., Livshits, D., Wyatt, D., Esiobu, D., Choudhary,
+                                                                  D., Mahajan, D., Garcia-Olano, D., Perino, D., Hupkes,
+R EFERENCES                                                       D., Lakomkin, E., AlBadawy, E., Lobanova, E., Dinan,
+                                                                  E., Smith, E. M., Radenovic, F., Guzmán, F., Zhang, F.,
+Addison, P., Nguyen, M.-T. H., Medan, T., Shah, J., Man-
+                                                                  Synnaeve, G., Lee, G., Anderson, G. L., Thattai, G., Nail,
+  zari, M. T., McElrone, B., Lalwani, L., More, A., Sharma,
+                                                                  G., Mialon, G., Pang, G., Cucurell, G., Nguyen, H., Ko-
+  S., Roth, H. R., Yang, I., Chen, C., Xu, D., Cheng, Y.,
+                                                                  revaar, H., Xu, H., Touvron, H., Zarov, I., Ibarra, I. A.,
+  Feng, A., and Xu, Z. C-fedrag: A confidential feder-
+                                                                  Kloumann, I., Misra, I., Evtimov, I., Zhang, J., Copet, J.,
+  ated retrieval-augmented generation system, 2024. URL
+                                                                  Lee, J., Geffert, J., Vranes, J., Park, J., Mahadeokar, J.,
+  https://arxiv.org/abs/2412.13163.
+                                                                  Shah, J., van der Linde, J., Billock, J., Hong, J., Lee, J.,
+Andersen, T. E., Avalos, A. M., Dagher, G. G., and                Fu, J., Chi, J., Huang, J., Liu, J., Wang, J., Yu, J., Bitton,
+  Long, M. D-rag: A privacy-preserving framework for              J., Spisak, J., Park, J., Rocca, J., Johnstun, J., Saxe, J., Jia,
+  decentralized rag using blockchain. Artificial Intelli-         J., Alwala, K. V., Prasad, K., Upasani, K., Plawiak, K., Li,
+  gence, Soft Computing And Application Trends 2025,              K., Heafield, K., Stone, K., El-Arini, K., Iyer, K., Malik,
+  2025. URL https://api.semanticscholar.                          K., Chiu, K., Bhalla, K., Lakhotia, K., Rantala-Yeary,
+  org/CorpusID:276622158.                                         L., van der Maaten, L., Chen, L., Tan, L., Jenkins, L.,
+                                                                  Martin, L., Madaan, L., Malo, L., Blecher, L., Landzaat,
+Barnett, S., Kurniawan, S., Thudumu, S., Brannelly, Z., and       L., de Oliveira, L., Muzzi, M., Pasupuleti, M., Singh,
+  Abdelrazek, M. Seven failure points when engineering            M., Paluri, M., Kardas, M., Tsimpoukelli, M., Oldham,
+  a retrieval augmented generation system, 2024. URL              M., Rita, M., Pavlova, M., Kambadur, M., Lewis, M.,
+  https://arxiv.org/abs/2401.05856.                               Si, M., Singh, M. K., Hassan, M., Goyal, N., Torabi, N.,
+                                                                  Bashlykov, N., Bogoychev, N., Chatterji, N., Zhang, N.,
+Chakraborty, A., Dahal, C., and Gupta, V. Federated               Duchenne, O., Çelebi, O., Alrassy, P., Zhang, P., Li, P.,
+  retrieval-augmented generation: A systematic mapping            Vasic, P., Weng, P., Bhargava, P., Dubal, P., Krishnan,
+  study, 2025. URL https://arxiv.org/abs/                         P., Koura, P. S., Xu, P., He, Q., Dong, Q., Srinivasan,
+  2505.18906.                                                     R., Ganapathy, R., Calderer, R., Cabral, R. S., Stojnic,
+                                                                  R., Raileanu, R., Maheswari, R., Girdhar, R., Patel, R.,
+Chong, Z.-K., Ohsaki, H., and Ng, B. Llm-net: Democra-
+                                                                  Sauvestre, R., Polidoro, R., Sumbaly, R., Taylor, R., Silva,
+  tizing llms-as-a-service through blockchain-based expert
+                                                                  R., Hou, R., Wang, R., Hosseini, S., Chennabasappa, S.,
+  networks, 2025. URL https://arxiv.org/abs/
+                                                                  Singh, S., Bell, S., Kim, S. S., Edunov, S., Nie, S., Narang,
+  2501.07288.
+                                                                  S., Raparthy, S., Shen, S., Wan, S., Bhosale, S., Zhang,
+Douze, M., Guzhva, A., Deng, C., Johnson, J., Szilvasy, G.,       S., Vandenhende, S., Batra, S., Whitman, S., Sootla, S.,
+  Mazaré, P.-E., Lomeli, M., Hosseini, L., and Jégou, H.        Collot, S., Gururangan, S., Borodinsky, S., Herman, T.,
+  The faiss library, 2025. URL https://arxiv.org/                 Fowler, T., Sheasha, T., Georgiou, T., Scialom, T., Speck-
+  abs/2401.08281.                                                 bacher, T., Mihaylov, T., Xiao, T., Karn, U., Goswami, V.,
+                                                                  Gupta, V., Ramanathan, V., Kerkez, V., Gonguet, V., Do,
+Gao, Y., Xiong, Y., Gao, X., Jia, K., Pan, J., Bi, Y., Dai, Y.,   V., Vogeti, V., Albiero, V., Petrovic, V., Chu, W., Xiong,
+  Sun, J., Wang, M., and Wang, H. Retrieval-augmented             W., Fu, W., Meers, W., Martinet, X., Wang, X., Wang,
+  generation for large language models: A survey, 2024.           X., Tan, X. E., Xia, X., Xie, X., Jia, X., Wang, X., Gold-
+  URL https://arxiv.org/abs/2312.10997.                           schlag, Y., Gaur, Y., Babaei, Y., Wen, Y., Song, Y., Zhang,
+                                                                  Y., Li, Y., Mao, Y., Coudert, Z. D., Yan, Z., Chen, Z.,
+Goldshmidt, R. and Horovicz, M. Tokenshap: Interpreting           Papakipos, Z., Singh, A., Srivastava, A., Jain, A., Kelsey,
+  large language models with monte carlo shapley value            A., Shajnfeld, A., Gangidi, A., Victoria, A., Goldstand,
+  estimation, 2024. URL https://arxiv.org/abs/                    A., Menon, A., Sharma, A., Boesenberg, A., Baevski, A.,
+  2407.10114.                                                     Feinstein, A., Kallet, A., Sangani, A., Teo, A., Yunus, A.,
+Grattafiori, A., Dubey, A., Jauhri, A., Pandey, A., Kadian,       Lupu, A., Alvarado, A., Caples, A., Gu, A., Ho, A., Poul-
+  A., Al-Dahle, A., Letman, A., Mathur, A., Schelten, A.,         ton, A., Ryan, A., Ramchandani, A., Dong, A., Franco,
+        A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+A., Goyal, A., Saraf, A., Chowdhury, A., Gabriel, A.,           T., Vontimitta, V., Ajayi, V., Montanez, V., Mohan, V.,
+Bharambe, A., Eisenman, A., Yazdan, A., James, B.,              Kumar, V. S., Mangla, V., Ionescu, V., Poenaru, V., Mi-
+Maurer, B., Leonhardi, B., Huang, B., Loyd, B., Paola,          hailescu, V. T., Ivanov, V., Li, W., Wang, W., Jiang, W.,
+B. D., Paranjape, B., Liu, B., Wu, B., Ni, B., Hancock,         Bouaziz, W., Constable, W., Tang, X., Wu, X., Wang, X.,
+B., Wasti, B., Spence, B., Stojkovic, B., Gamido, B.,           Wu, X., Gao, X., Kleinman, Y., Chen, Y., Hu, Y., Jia, Y.,
+Montalvo, B., Parker, C., Burton, C., Mejia, C., Liu, C.,       Qi, Y., Li, Y., Zhang, Y., Zhang, Y., Adi, Y., Nam, Y., Yu,
+Wang, C., Kim, C., Zhou, C., Hu, C., Chu, C.-H., Cai, C.,       Wang, Zhao, Y., Hao, Y., Qian, Y., Li, Y., He, Y., Rait,
+Tindal, C., Feichtenhofer, C., Gao, C., Civin, D., Beaty,       Z., DeVito, Z., Rosnbrick, Z., Wen, Z., Yang, Z., Zhao,
+D., Kreymer, D., Li, D., Adkins, D., Xu, D., Testuggine,        Z., and Ma, Z. The llama 3 herd of models, 2024. URL
+D., David, D., Parikh, D., Liskovich, D., Foss, D., Wang,       https://arxiv.org/abs/2407.21783.
+D., Le, D., Holland, D., Dowling, E., Jamil, E., Mont-
+gomery, E., Presani, E., Hahn, E., Wood, E., Le, E.-T.,       Hecking, T., Sommer, T., and Felderer, M. An architec-
+Brinkman, E., Arcaute, E., Dunbar, E., Smothers, E., Sun,       ture and protocol for decentralized retrieval augmented
+F., Kreuk, F., Tian, F., Kokkinos, F., Ozgenel, F., Cag-        generation. In 2025 IEEE 22nd International Confer-
+gioni, F., Kanayet, F., Seide, F., Florez, G. M., Schwarz,      ence on Software Architecture Companion (ICSA-C),
+G., Badeer, G., Swee, G., Halpern, G., Herman, G., Sizov,       pp. 31–35, 2025. doi: 10.1109/ICSA-C65153.2025.
+G., Guangyi, Zhang, Lakshminarayanan, G., Inan, H.,             00012. URL https://ieeexplore.ieee.org/
+Shojanazeri, H., Zou, H., Wang, H., Zha, H., Habeeb, H.,        document/11014986.
+Rudolph, H., Suk, H., Aspegren, H., Goldman, H., Zhan,
+                                                              Helmi, T. Decentralizing ai memory: Shimi, a semantic hier-
+H., Damlaj, I., Molybog, I., Tufanov, I., Leontiadis, I.,
+                                                                archical memory index for scalable agent reasoning, 2025.
+Veliche, I.-E., Gat, I., Weissman, J., Geboski, J., Kohli,
+                                                                URL https://arxiv.org/abs/2504.06135.
+J., Lam, J., Asher, J., Gaya, J.-B., Marcus, J., Tang, J.,
+Chan, J., Zhen, J., Reizenstein, J., Teboul, J., Zhong, J.,   Hewitt, J., Ethayarajh, K., Liang, P., and Manning, C. Con-
+Jin, J., Yang, J., Cummings, J., Carvill, J., Shepard, J.,      ditional probing: measuring usable information beyond
+McPhie, J., Torres, J., Ginsburg, J., Wang, J., Wu, K., U,      a baseline. In Moens, M.-F., Huang, X., Specia, L., and
+K. H., Saxena, K., Khandelwal, K., Zand, K., Matosich,          Yih, S. W.-t. (eds.), Proceedings of the 2021 Conference
+K., Veeraraghavan, K., Michelena, K., Li, K., Jagadeesh,        on Empirical Methods in Natural Language Process-
+K., Huang, K., Chawla, K., Huang, K., Chen, L., Garg,           ing, pp. 1626–1639, Online and Punta Cana, Domini-
+L., A, L., Silva, L., Bell, L., Zhang, L., Guo, L., Yu, L.,     can Republic, November 2021. Association for Computa-
+Moshkovich, L., Wehrstedt, L., Khabsa, M., Avalani, M.,         tional Linguistics. doi: 10.18653/v1/2021.emnlp-main.
+Bhatt, M., Mankus, M., Hasson, M., Lennie, M., Reso,           122. URL https://aclanthology.org/2021.
+M., Groshev, M., Naumov, M., Lathi, M., Keneally, M.,           emnlp-main.122/.
+Liu, M., Seltzer, M. L., Valko, M., Restrepo, M., Patel,
+M., Vyatskov, M., Samvelyan, M., Clark, M., Macey,            Jayasundara, S. H., Arachchilage, N. A. G., and Russello,
+M., Wang, M., Hermoso, M. J., Metanat, M., Rastegari,           G. Ragent: Retrieval-based access control policy genera-
+M., Bansal, M., Santhanam, N., Parks, N., White, N.,            tion, 2024. URL https://arxiv.org/abs/2409.
+Bawa, N., Singhal, N., Egebo, N., Usunier, N., Mehta,           07489.
+N., Laptev, N. P., Dong, N., Cheng, N., Chernoguz, O.,
+Hart, O., Salpekar, O., Kalinli, O., Kent, P., Parekh, P.,    Jiang, Z., Lu, Y., Chen, H., Khashabi, D., Van Durme,
+Saab, P., Balaji, P., Rittner, P., Bontrager, P., Roux, P.,      B., and Liu, A. RORA: Robust free-text rationale
+Dollar, P., Zvyagina, P., Ratanchandani, P., Yuvraj, P.,         evaluation. In Ku, L.-W., Martins, A., and Srikumar,
+Liang, Q., Alao, R., Rodriguez, R., Ayub, R., Murthy, R.,        V. (eds.), Proceedings of the 62nd Annual Meeting of
+Nayani, R., Mitra, R., Parthasarathy, R., Li, R., Hogan,         the Association for Computational Linguistics (Volume
+R., Battey, R., Wang, R., Howes, R., Rinott, R., Mehta,          1: Long Papers), pp. 1070–1087, Bangkok, Thailand,
+S., Siby, S., Bondu, S. J., Datta, S., Chugh, S., Hunt, S.,      August 2024. Association for Computational Linguis-
+Dhillon, S., Sidorov, S., Pan, S., Mahajan, S., Verma,           tics. doi: 10.18653/v1/2024.acl-long.60. URL https:
+S., Yamamoto, S., Ramaswamy, S., Lindsay, S., Lindsay,           //aclanthology.org/2024.acl-long.60/.
+S., Feng, S., Lin, S., Zha, S. C., Patil, S., Shankar, S.,    Karpukhin, V., Oguz, B., Min, S., Lewis, P., Wu, L.,
+Zhang, S., Zhang, S., Wang, S., Agarwal, S., Sajuyigbe,         Edunov, S., Chen, D., and Yih, W.-t. Dense pas-
+S., Chintala, S., Max, S., Chen, S., Kehoe, S., Satter-         sage retrieval for open-domain question answering. In
+field, S., Govindaprasad, S., Gupta, S., Deng, S., Cho,         Proceedings of the 2020 Conference on Empirical
+S., Virk, S., Subramanian, S., Choudhury, S., Goldman,         Methods in Natural Language Processing (EMNLP),
+S., Remez, T., Glaser, T., Best, T., Koehler, T., Robinson,     pp. 6769–6781, Online, November 2020. Association
+T., Li, T., Zhang, T., Matthews, T., Chou, T., Shaked,          for Computational Linguistics. doi: 10.18653/v1/
+          A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+  2020.emnlp-main.550. URL https://www.aclweb.                   augmented large language models for temporal knowl-
+  org/anthology/2020.emnlp-main.550.                             edge graph question answering. In Al-Onaizan, Y.,
+                                                                 Bansal, M., and Chen, Y.-N. (eds.), Proceedings of
+Kwiatkowski, T., Palomaki, J., Redfield, O., Collins, M.,        the 2024 Conference on Empirical Methods in Nat-
+ Parikh, A., Alberti, C., Epstein, D., Polosukhin, I., De-       ural Language Processing, pp. 6942–6952, Miami,
+ vlin, J., Lee, K., Toutanova, K., Jones, L., Kelcey, M.,        Florida, USA, November 2024. Association for Compu-
+ Chang, M.-W., Dai, A. M., Uszkoreit, J., Le, Q., and            tational Linguistics. doi: 10.18653/v1/2024.emnlp-main.
+ Petrov, S. Natural questions: A benchmark for question          394. URL https://aclanthology.org/2024.
+ answering research. Transactions of the Association for         emnlp-main.394/.
+ Computational Linguistics, 7:452–466, 2019. doi: 10.
+ 1162/tacl a 00276. URL https://aclanthology.                 Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang,
+ org/Q19-1026/.                                                 S., Matena, M., Zhou, Y., Li, W., and Liu, P. J. Ex-
+                                                                ploring the limits of transfer learning with a unified
+Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V.,
+                                                                text-to-text transformer. Journal of Machine Learning
+  Goyal, N., Küttler, H., Lewis, M., Yih, W.-t., Rocktäschel,
+                                                                Research, 21(140):1–67, 2020. URL http://jmlr.
+  T., Riedel, S., and Kiela, D. Retrieval-augmented genera-
+                                                                org/papers/v21/20-074.html.
+  tion for knowledge-intensive nlp tasks. In Larochelle, H.,
+  Ranzato, M., Hadsell, R., Balcan, M., and Lin, H. (eds.),     Uddin, M. N., Saeidi, A., Handa, D., Seth, A., Son, T. C.,
+  Advances in Neural Information Processing Systems,              Blanco, E., Corman, S., and Baral, C. UnSeenTimeQA:
+  volume 33, pp. 9459–9474. Curran Associates, Inc.,              Time-sensitive question-answering beyond LLMs’ mem-
+  2020. URL https://proceedings.neurips.                          orization. In Che, W., Nabende, J., Shutova, E., and
+  cc/paper_files/paper/2020/file/                                 Pilehvar, M. T. (eds.), Proceedings of the 63rd Annual
+  6b493230205f780e1bc26945df7481e5-Paper.                         Meeting of the Association for Computational Linguis-
+  pdf.                                                            tics (Volume 1: Long Papers), pp. 1873–1913, Vienna,
+Li, H., Su, Y., Cai, D., Wang, Y., and Liu, L. A survey on        Austria,  July 2025. Association for Computational Lin-
+  retrieval-augmented text generation, 2022. URL https:           guistics.  ISBN 979-8-89176-251-0. doi: 10.18653/v1/
+  //arxiv.org/abs/2202.01110.                                     2025.acl-long.94.    URL https://aclanthology.
+                                                                  org/2025.acl-long.94/.
+Li, S., Stenzel, L., Eickhoff, C., and Bahrainian, S. A. En-
+  hancing retrieval-augmented generation: A study of best       Wang, Z., Teo, S. X., Ouyang, J., Xu, Y., and Shi, W.
+  practices. In Rambow, O., Wanner, L., Apidianaki, M.,           M-rag: Reinforcing large language model performance
+  Al-Khalifa, H., Eugenio, B. D., and Schockaert, S. (eds.),      through retrieval-augmented generation with multiple
+  Proceedings of the 31st International Conference on Com-        partitions, 2024. URL https://arxiv.org/abs/
+  putational Linguistics, pp. 6705–6717, Abu Dhabi, UAE,          2405.16420.
+  January 2025. Association for Computational Linguis-
+                                                                Xu, C., Gao, L., Miao, Y., and Zheng, X. Distributed
+  tics. URL https://aclanthology.org/2025.
+                                                                  retrieval-augmented generation, 2025. URL https://
+  coling-main.449/.
+                                                                  arxiv.org/abs/2505.00443.
+Mao, Q., Zhang, Q., Hao, H., Han, Z., Xu, R., Jiang, W.,
+  Hu, Q., Chen, Z., Zhou, T., Li, B., Song, Y., Dong, J.,       Yang, Y., Chai, H., Shao, S., Song, Y., Qi, S., Rui, R.,
+  Li, J., and Yu, P. S. Privacy-preserving federated embed-       and Zhang, W. Agentnet: Decentralized evolutionary
+  ding learning for localized retrieval-augmented genera-         coordination for llm-based multi-agent systems, 2025.
+  tion, 2025. URL https://arxiv.org/abs/2504.                     URL https://arxiv.org/abs/2504.00587.
+  19101.
+                                                                Yu, J. and Sato, H. Derag: Decentralized multi-source rag
+Neague, P., Gregoriadis, M., and Pouwelse, J. De-                 system with optimized pyth network. In 2024 IEEE In-
+  dsi: Decentralised differentiable search index. In              ternational Symposium on Parallel and Distributed Pro-
+  Proceedings of the 4th Workshop on Machine Learn-               cessing with Applications (ISPA), pp. 106–115, 2024.
+  ing and Systems, EuroMLSys ’24, pp. 134–143, New                doi: 10.1109/ISPA63168.2024.00022. URL https://
+  York, NY, USA, 2024. Association for Computing                  ieeexplore.ieee.org/document/10885343.
+  Machinery. ISBN 9798400705410. doi: 10.1145/
+  3642970.3655837. URL https://doi.org/10. Zeng, S., Zhang, J., He, P., Liu, Y., Xing, Y., Xu, H., Ren,
+  1145/3642970.3655837.                                           J., Chang, Y., Wang, S., Yin, D., and Tang, J. The
+                                                                  good and the bad: Exploring privacy issues in retrieval-
+Qian, X., Zhang, Y., Zhao, Y., Zhou, B., Sui, X., Zhang,          augmented generation (RAG). In Ku, L.-W., Martins,
+  L., and Song, K. TimeR4 : Time-aware retrieval-                 A., and Srikumar, V. (eds.), Findings of the Association
+          A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+
+  for Computational Linguistics: ACL 2024, pp. 4505–
+  4524, Bangkok, Thailand, August 2024. Association
+  for Computational Linguistics. doi: 10.18653/v1/2024.
+  findings-acl.267. URL https://aclanthology.
+  org/2024.findings-acl.267/.
+Zeng, S., Zhang, J., He, P., Ren, J., Zheng, T., Lu, H., Xu,
+  H., Liu, H., Xing, Y., and Tang, J. Mitigating the privacy
+  issues in retrieval-augmented generation (rag) via pure
+  synthetic data, 2025a. URL https://arxiv.org/
+  abs/2406.14773.
+Zeng, Z., Liu, J., Chiang, M.-F., He, J., and Zhang, Z.
+  S-RAG: A novel audit framework for detecting unau-
+  thorized use of personal data in RAG systems. In
+  Che, W., Nabende, J., Shutova, E., and Pilehvar, M. T.
+  (eds.), Proceedings of the 63rd Annual Meeting of the
+  Association for Computational Linguistics (Volume 1:
+  Long Papers), pp. 10375–10385, Vienna, Austria, July
+  2025b. Association for Computational Linguistics. ISBN
+  979-8-89176-251-0. doi: 10.18653/v1/2025.acl-long.
+  512. URL https://aclanthology.org/2025.
+  acl-long.512/.
+Zhou, W., Yan, Y., and Yang, Q. Dgrag: Distributed
+  graph-based retrieval-augmented generation in edge-
+  cloud systems, 2025. URL https://arxiv.org/
+  abs/2505.19847.
+

@@ -1,0 +1,1250 @@
+                                                     LLatrieval: LLM-Verified Retrieval for Verifiable Generation
+
+                                             Xiaonan Li∗, Changtai Zhu∗ , Linyang Li, Zhangyue Yin, Tianxiang Sun, Xipeng Qiu
+                                                                School of Computer Science, Fudan University
+                                                Shanghai Key Laboratory of Intelligent Information Processing, Fudan University
+                                                           {lixn20, xpqiu}@fudan.edu.cn, ctzhu23@m.fudan.edu.cn
+
+
+
+                                                                                                                       Question
+                                                                  Abstract                                           When did the US split from Britain?
+
+                                                                                                                       Output
+                                                                                                                     The United States initiated its journey to autonomy from Great
+                                             Verifiable generation aims to let the large lan-                        Britain with the pronouncement of independence on July 2, 1776,
+                                                                                                                     despite the current celebrations occurring on July 4, 1776,
+                                             guage model (LLM) generate text with support-
+                                                                                                          Retrieve
+                                                                                                                     which is when the Declaration of Independence was formally
+
+
+
+
+arXiv:2311.07838v3 [cs.CL] 27 Mar 2024
+                                                                                                                     ratified by Congress.[1][2] Subsequently, the Treaty of Paris
+                                             ing documents, which enables the user to flex-                          was concluded on September 3, 1783, officially marking the
+                                                                                                                     distinction of the United States from British rule.[3]
+                                             ibly verify the answer and makes the LLM’s                              [1] Decolonization of        [2] Decolonization:...    [3] American Revolu-
+                                                                                                                     the Americas: ... in-        It was officially         tion:... The Treaty
+                                             output more reliable. Retrieval plays a cru-                            dependence from GB on        adop- ted by Congress     of Paris was signed
+                                                                                                                     July 2, 1776 ...             on July 4, 1776 ...       September 3, 1783 ..
+                                                                                                         Corpus
+                                             cial role in verifiable generation. Specifically,
+                                             the retrieved documents not only supplement               Figure 1: Verifiable Generation (Gao et al., 2023c)
+                                             knowledge to help the LLM generate correct an-
+                                             swers, but also serve as supporting evidence for
+                                                                                                                                      Retrieval
+                                             the user to verify the LLM’s output. However,                               Query                      Docs                       Answer
+
+                                             the widely used retrievers become the bottle-
+                                             neck of the entire pipeline and limit the over-                                          (a) Vanilla Retrieval
+                                             all performance. Their capabilities are usually
+                                             inferior to LLMs since they often have much                                  Retrieval                                   Yes
+                                                                                                               Query                     Docs            Support?                       Answer
+                                             fewer parameters than the large language model
+                                             and have not been demonstrated to scale well                                                  Update             No
+
+                                             to the size of LLMs. If the retriever does not                                                (b) LLatrieval
+                                             correctly find the supporting documents, the
+                                             LLM can not generate the correct and verifi-
+                                                                                                     Figure 2: When the vanilla retrieval overshadows the
+                                             able answer, which overshadows the LLM’s
+                                                                                                     LLM’s remarkable abilities in the pipeline, LLatrieval
+                                             remarkable abilities. To address these limita-
+                                                                                                     can fully harness the LLM’s abilities to the retrieval by
+                                             tions, we propose LLatrieval (Large Language
+                                                                                                     verify-update iterations.
+                                             Model Verified Retrieval), where the LLM up-
+                                             dates the retrieval result until it verifies that the
+                                             retrieved documents can sufficiently support
+                                             answering the question. Thus, the LLM can
+                                                                                                     Chern et al., 2023), which is usually referred to
+                                             iteratively provide feedback to retrieval and fa-       as “hallucination” and makes the LLM’s response
+                                             cilitate the retrieval result to fully support veri-    not trustworthy. To address these challenges, re-
+                                             fiable generation. Experiments on ALCE show             searchers propose a new generation paradigm, Ver-
+                                             that LLatrieval significantly outperforms ex-           ifiable Generation (Gao et al., 2023a; Bohnet et al.,
+                                             tensive baselines and achieves state-of-the-art         2022; Gao et al., 2023c; Li et al., 2023a), shown in
+                                             results.                                                Figure 1. For a given question, it requires the LLM
+                                         1   Introduction                                            to generate the answer with corresponding support-
+                                                                                                     ing documents. In this way, these documents can
+                                         Large language models (LLMs) have shown                     serve as evidence and enable users to flexibly verify
+                                         remarkable abilities over various downstream                the answer, which makes the LLM’s response more
+                                         tasks (OpenAI, 2023; Ouyang et al., 2022; Chowd-            reliable and facilitates its application in various
+                                         hery et al., 2023; Touvron et al., 2023; Zhao et al.,       important scenarios, medical diagnosis (Schuster
+                                         2023). However, LLMs struggle with factual errors,          et al., 2021), scientific writing (Salvagno et al.,
+                                         and often produce non-factual and fabricated con-           2023), situation reports (Reddy et al., 2023), etc.
+                                         tent (Zhang et al., 2023; Rawte et al., 2023; Wang             Retrieval plays a crucial role in verifiable gen-
+                                         et al., 2023a; Huang et al., 2023b; Min et al., 2023;       eration. Take retrieval-read, a typical pipeline for
+                                             ∗
+                                                 Equal Contribution                                  verifiable generation (Gao et al., 2023c; Bohnet
+et al., 2022), as an example, shown in Figure 2(a).           We summarize our contributions as follows:
+It is divided into two stages: 1) retrieve the rele-
+                                                              • To the best of our knowledge, LLatrieval is
+vant documents for the given question, 2) generate
+                                                                the first framework to let the LLM fully pro-
+the answer according to the retrieved documents.
+                                                                vide feedback to retrieval and thus augments
+On the one hand, the retrieved documents serve as
+                                                                it through verify-update iterations.
+knowledge supplement to help the LLM generate
+the answer. On the other hand, the answer’s verifia-          • We conduct comparison with extensive base-
+bility relies on the retrieved documents. Thus, both            lines and results show that LLatrieval signif-
+of the answer’s correctness and verifiability highly            icantly outperforms baselines and achieves
+rely on the quality of retrieval result.                        new state-of-the-art results on verifiable gen-
+    However, the widely used retrievers become the              eration.
+bottleneck of the entire pipeline and limit the over-
+all performance (Wang et al., 2023c; Yoran et al.,            • Further analyses show that each component
+2023). Specifically, although the dense retrievers              contributes critically to improvements and our
+have achieved a series of state-of-the-art results in           method shows the potential to scale retrieval
+various scenarios (Karpukhin et al., 2020; Zhang                by scaling the LLM.
+et al., 2022a; Su et al., 2023), their capabilities are
+                                                              • We make our code publicly available to facili-
+substantially inferior to LLMs (Brown et al., 2020;
+                                                                tate future research. 1
+Chowdhery et al., 2023), since they usually have
+much fewer parameters, and have not been demon-             We hope that LLatrieval can inspire researchers
+strated to scale well to the size of LLMs (Brown          of the important design choices for LLM-
+et al., 2020) and achieve comparable capabilities. If     augmented Retrieval and pave the way for further
+the retriever does not correctly find the supporting      improvements.
+documents, it is challenging for the LLM to output
+the answer which is both correct and verifiable. In
+                                                          2       Background: Verifiable Generation
+the typical pipeline, the LLM usually receives the        In this paper, we follow the setting proposed by
+retrieval result in a passive manner and can not pro-     Gao et al. (2023c), which requires the LLM to gen-
+vide feedback to the low-quality retrieval even if        erate the answer with citations to the supporting
+it is capable of identifying that the retrieved docu-     documents, as shown in Figure 1. This setting is
+ments are irrelevant to the question. These make          close to the real-world applications of generative
+the retrieval overshadow the LLM’s remarkable             search engines, e.g., New Bing, and the citations
+abilities and limit the overall performance.              allow the user to verify the answer more conve-
+    To address these limitations, we propose the          niently. We introduce its typical pipeline and the
+framework of LLatrieval (Large Language Model             verifiability evaluation as follows.
+Verified Retrieval), shown in Figure 2(b), where
+the LLM fully provides feedback to the retrieval          2.1       Pipeline
+and augments it by the verify-update iteration: 1)        Verifiable generation is usually demonstrated by
+Retrieval Verification: The LLM verifies whether          retrieval-read (Gao et al., 2023c; Bohnet et al.,
+the retrieval result can support answering the give       2022; Malaviya et al., 2023), divided into two
+question. For questions whose documents fail the          stages: retrieval and generation. First, given
+verification, we will update their documents and          the question q, the relevant documents, D =
+thus avoid low-quality retrieval. 2) Retrieval Up-        {d1 , d2 , · · · , dk }, are retrieved as follows:
+date: The LLM updates and improves the retrieval
+result. Specifically, we propose Progressive Se-                      D = R(q, D, k) = Top-kd∈D score(q, d)           (1)
+lection and Missing-Info Query to let the LLM
+progressively scan document candidates and sup-            where R is the retriever and score(·, ·) is the simi-
+plement missing information to facilitate better ver-     larity score of R (Robertson and Zaragoza, 2009;
+ifiable generation. Through the verify-update iter-       Karpukhin et al., 2020). Then the LLM leverages
+ation, the LLM can iteratively refine the retrieval       these documents to generate the answer as:
+result until it verifies that the retrieved documents
+can support answering the given question, and thus                         A = LLM(Ig ; Demos; q; D),                 (2)
+generate both correct and verifiable answers.                 1
+                                                                  https://github.com/BeastyZ/LLM-Verified-Retrieval
+ where we follow Gao et al. (2023c) to use the                      Question and Docs
+
+instruction, Ig , and demonstrations, Demos, to                  Question: Who is the highest, Trump, Biden, or Obama?
+                                                                 Doc1: Joe Biden, the current president, is 6 feet 0
+make the LLM generate answer and citations to D.                 inches (183 centimeters)………
+                                                                 Doc2: Barack Obama, the previous president, is 6
+                                                                 feet 1.5 inches (187 centimeters)
+2.2    Verifiability Evaluation                                  Doc3: Joseph Robinette Biden Jr. (born November 20,
+                                                                 1942) is an American politician who is the 46th and
+Following Gao et al. (2023c); Liu et al. (2023b),                current president of the United States.
+we evaluate the answer’s verifiability by measuring
+                                                                    Retrieval Verification
+citation quality: Citation Recall evaluates whether
+                                                                 Instruction (Classification): Can these documents
+the output is fully supported by cited documents;                support answering the question? (Yes or No)
+                                                                 LLM: No
+Citation Precision identifies those citations which              Instruction(Score and Filter): How well do these
+                                                                 documents support answering the question? Give me a
+can not help support the answer. According to them,              score from 0 to 10.
+we calculate Citation F1 to comprehensively eval-                LLM: 4
+
+uate the answer’s verifiability. Since the retrieved                Missing-Info Query
+documents determine the citation quality and the                 Instruction: To answer the question, what information
+                                                                 is missing in the provided documents? Generate a
+answer’s verifiability, the retrieval is crucial for the         corresponding (question / passage).
+overall pipeline. We adopt the recently proposed                 LLM(question): What is the height of Donald Trump?
+                                                                 LLM(passage): The height of Donald Trump is 6 feet
+ALCE benchmark for automatic citation evalua-                    3 inches. Donald Trump……
+tion (Gao et al., 2023c).
+                                                           Figure 3: Retrieval Verification: We propose two ways
+3     LLatrieval: LLM-Verified Retrieval                   to verify whether the documents can support answer the
+                                                           question. Missing-Info Query: We propose to let the
+In the retrieval-read pipeline, the LLM passively
+                                                           LLM generate missing-info query in two styles.
+receives the retrieval result and can not provide
+feedback to the low-quality retrieval, which makes
+the large language model with remarkable abilities         ability, we can fully identify the low-quality re-
+overshadowed by the retriever with much fewer pa-          trieval and thus avoid it. Meanwhile, LLatrieval
+rameters. To address these limitations, we propose         finishes when the example’s retrieved documents
+LLatrieval, where the LLM iteratively provides             pass the retrieval verification, which enables it to
+feedback to the retrieval through verify-update it-        dynamically adjust the LLM cost under varying
+erations, and thus fully harnesses its abilities for       retrieval demands.
+verifiable generation. In this section, we introduce       Score-and-Filter We further explore a score-and-
+the modules of retrieval verification and update,          filter strategy for retrieval verification. We first
+and the iterative verify-update process as follows.        score the current documents by how well they can
+3.1    Retrieval Verification                              support answering the question and then filter low-
+Since low-quality retrieval overshadows the LLM’s          quality retrieval by the pre-defined threshold τ as:
+remarkable abilities for verifiable generation, we
+propose to use the LLM itself to identify the low-                     ScoreD = LLM(Ivs ; q; D)                          (4)
+quality retrieval and thus avoid it. In this paper, we           Verify-Result = Yes if ScoreD ≥ τ else No               (5)
+instantiate the retrieval verification as two simple
+                                                            where Ics is the corresponding instruction. The
+instruction-based methods, shown in Figure 3, to
+                                                           higher τ leads to stricter retrieval verification crite-
+let the LLM verify whether the retrieved documents
+                                                           rion, better quality of the final retrieval result and
+can support answering the question, and leave more
+                                                           more iterations. By tuning τ , we can dynamically
+elaborate methods as future work.
+                                                           adjust the strictness of verification and the corre-
+Classification Given the question q and retrieved          sponding LLM cost.
+documents D, we verify whether D can sufficiently
+support answering q by prompting LLM to give a             3.2   Retrieval Update
+binary label (yes or no) as:                               When the current documents fail the retrieval veri-
+                                                           fication, we will update and refine the low-quality
+            Verify-Result = LLM(Ivc ; q; D)          (3)   retrieval result. Specifically, we propose the follow-
+                                                           ing two LLM-based modules to update the retrieval
+ where Ivc is the corresponding instruction. Through       result in synergy and thus better harness the LLM’s
+the LLM’s strong natural language understanding            abilities for retrieval.
+    Doc Candidates   D1   D2   D3   D4   D5   D6   D7   D8
+                                                             Missing-Info Query Since the current docu-
+                     D2   D4   D5   D6   D7   D8
+                                                             ments can not sufficiently support answering the
+                                                             question, we propose to update the current docu-
+                     D2   D5   D7   D8                       ments D by querying missing information of D
+                                                             for supplement, shown in Figure 3. Specifically,
+    Selected Docs    D2   D8
+                                                             we first use the LLM to generate the query of the
+   (a) Progressively selecting the documents, where the
+   blue and purple color represent the current documents
+                                                             missing information in D for answering q as:
+   D and new candidates Dc∗ in each selection.
+                                                                             Q = LLM(Iq ; q; D),               (6)
+           Document Selection
+
+      The following are docs related to query {QUERY}
+                                                              where Iq instructs the LLM to identify the miss-
+      Doc 1: {DOC-1}                                         ing information in the current documents D for the
+      Doc 2: {DOC-2}
+      ……                                                     given question q and generate the corresponding
+      Doc 20: {DOC-20}                                       query Q, shown in Figure 3. Then we use Q to re-
+     Instruction: Select up to k documents for answering
+     the given question. Output their identifiers.           trieve the corresponding documents for information
+     LLM: 3 7 8 12 15
+                                                             supplement. For the fusion of the newly retrieved
+    (b) Using the LLM to select docs from candidates.        documents and D, please refer to section 3.3.
+                                                                When the current dense retrievers often use the
+ Figure 4: Retrieval update by progressive selection.        BERT-based architecture (Karpukhin et al., 2020)
+                                                             and produce one vector for calculating similarity, it
+                                                             is challenging for them to comprehensively tackle
+                                                             the user query involving the knowledge from multi-
+Progressive Selection Since the dense retriev-               ple aspects (Chen et al., 2023; Zhang et al., 2022b)
+ers (Karpukhin et al., 2020; Su et al., 2023) measure        and complicated reasoning, which widely exists
+similarity based on the dual-encoder architecture            in the real-world scenarios. During the verify-
+and usually have fewer parameters than the pre-              update iterations, the missing-info query can sup-
+vailing large language models (Brown et al., 2020;           plement multiple-aspect information through iter-
+Chowdhery et al., 2023), it is challenging for them          atively identifying and querying the missing in-
+to fully demonstrate fine-grained token-level inter-         formation by LLM, which can fully harness the
+actions and thus accurately rank the most relevant           LLM’s remarkable language understanding and
+documents at top-K (Zhang et al., 2022a). Inspired           reasoning abilities. In experiments, we explore
+by the retrieval-rerank framework (Nogueira and              two styles of missing-info query: 1) question: the
+Cho, 2019), which reranks the document candi-                corresponding question of missing information; 2)
+dates returned by the retriever to get the final re-         pseudo passage: inspired by the query rewriting
+trieval result, we propose Progressive Selection for         methods (Gao et al., 2023b; Shen et al., 2023), we
+retrieval update: the LLM progressively scans the            generate a pseudo passage of missing information
+document candidates returned by the retriever and            as retrieval query, which neighbors the relevant
+selects the supporting documents, shown in Fig-              documents and thus can help better retrieve them.
+ure 4. For each selection, we obtain a small list of         We regard developing stronger missing-info query
+new document candidates, Dc∗ , by sliding window             modules as future work.
+on the document candidates (Figure 4(a)). Then
+we use the LLM to select k documents which can               3.3   Verify-Update Iteration
+maximally support answering q, from D ∪ Dc∗ , as             We show the overall procedure in Algorithm 1.
+the updated D (Figure 4(b)). Thus, the LLM can               In each iteration, we first update the missing-info
+remove irrelevant documents in D and integrate the           query and retrieve a new list of document candi-
+critical information in Dc∗ to update and improve            dates Dc that may contain missing information of
+D, with D’s size unchanged. Compared to rerank-              D (Line 4 ∼ 7). Then we update the current D
+ing, the selection directly outputs a combination of         by progressively selecting from Dc (Line 8 ∼ 10).
+documents, so the updated D can avoid documents              Through the synergy between progressive selec-
+with redundant information and thus get more com-            tion and missing-info query, we can identify and
+prehensive. With iteratively updating D from new             retrieve D’s missing information and progressively
+Dc∗ , the LLM can progressively improve D to make            incorporate them into D. Since the progressive se-
+it better suppport verifiable generation.                    lection is conducted on D ∪ Dc , we can not only
+Algorithm 1 LLatrieval                                      tor (Su et al., 2023): An instruction-tuned dense
+Input: Question q, document pool D, the large language      retriever on about 330 diverse tasks. 6) BGE-
+    model LLM, the retriever R, the maximum iteration T ,   Embedding (Xiao et al., 2023): A recent large-scale
+    each iteration’s document candidates quantity N
+Output: Supporting Documents D                              trained general-purpose embedder which outper-
+ 1: Q ← q                                                   forms OpenAI’s “text-embedding-ada-002” API.
+ 2: D ← {}                                                  Re-ranker: 1) monoBERT (Nogueira and Cho,
+ 3: for i in 1, 2 · · · T do
+ 4:    if D ̸= {} then                                      2019)&monoT5 (Nogueira et al., 2020): traditional
+ 5:        Q ← Use LLM to generate missing-info’s query     point-wise re-rankers based on BERT and T5. 2)
+ 6:    end if
+ 7:    Dc ← R(Q, D, N )
+                                                            BGE-Reranker (Xiao et al., 2023): A recent large-
+ 8:    for Dc∗ in SlidingWindow(Dc ) do                     scale trained general purpose re-ranker. LLM-
+ 9:        D ← Use LLM to select k docs from D ∪ Dc∗        based Retrieval Augmentation: 1) Query Rewrit-
+10:    end for
+11:    if Verify(q, D) → Y es then                          ing: We follow HYDE (Gao et al., 2023b) and
+12:        # D can support answering q, so return D.        LAMER (Shen et al., 2023) to generate the pseudo
+13:        break                                            passage based on the question and its relevant
+14:    end if
+15: end for                                                 passages, respectively. Then we use the pseudo
+16: return D                                                passage to conduct retrieval. 2) LLM-reranking:
+                                                            RankGPT (Sun et al., 2023), which prompts the
+                                                            LLM to rerank passages by permutation genera-
+supplement D’s missing information for q, but also          tion. Except the retriever baselines, we use the
+fully retain the critical documents in D. In this           same retriever as in LLatrieval. For more details,
+way, we comprehensively integrate the relevant              please refter Appendix A. We show the correlation
+documents with multifaceted information and thus            between retrieval quality and generation quality in
+support better verifiable generation. After each            Appendix B.
+update, we use the LLM to verify whether the cur-
+rent documents D can support answering the given
+question q (Line 11 ∼ 13) and continue updating             Dataset and Evaluation We conduct experi-
+the low-quality retrieval result in the next iteration.     ments on the ALCE benchmark (Gao et al., 2023c),
+Through the verify-update iteration, the retrieval          which consists of three long-form QA datasets, and
+result can be iteratively updated and improved until        follow ALCE to evaluate the correctness and verifi-
+it can sufficiently support high-quality verifiable         ability of generation.
+generation, and thus help the LLM generate both                ASQA (Stelmakh et al., 2022) is a long-form
+correct and verifiable answers. Meanwhile, our              factoid QA dataset where each question requires
+method can dynamically adjust the number of it-             multiple short answers to cover the multiple aspects
+erations under varying retrieval demands and thus           of it. To evaluate the answer’s correctness, we cal-
+help save the LLM cost.                                     culate the recall of correct short answers (from the
+                                                            dataset) by identifying whether the short answers
+4     Experiments                                           match substrings of model output (exact match re-
+                                                            call; EM-R).
+4.1    Experimental Settings                                   QAMPARI (Amouyal et al., 2022): a factoid
+Method Comparison Since we focus on aug-                    QA dataset where the answer is a list of entities
+menting the retrieval for verifiable generation,            from different documents. To evaluate the answer’s
+we compare LLatrieval with various retrieval                correctness, we calculate the F1 of the prediction
+methods by evaluating the LLM output’s correct-             by identifying the exact match to the gold answer
+ness and verifiability under the same retrieval-            list. Following Gao et al. (2023c), we consider the
+read pipeline (Gao et al., 2023c), including: Re-           recall to be 100% when prediction covers at least 5
+triever: 1) BM25 (Robertson and Zaragoza,                   correct answers.
+2009) 2) DPR (Karpukhin et al., 2020) 3) Con-                  ELI5 (Fan et al., 2019): a long-form QA dataset
+triever (Izacard et al., 2022): A large-scale unsu-         where each question requires comprehensive long
+pervised contrastive learned dense encoder (Izac-           answers and multiple documents as evidence. To
+ard et al., 2022). 4) GTR (Ni et al., 2022): A              evaluate the answer’s correctness, we follow Gao
+large dense retriever initialized from T5-XXL, pre-         et al. (2023c) to measure whether the model predic-
+trained on a web-mined corpus and fine-tuned                tion entails the sub-claims of the gold answer.
+on information retrieval datasets. 5) Instruc-                 Following ALCE (Gao et al., 2023c), on ASQA
+ Dataset                       ASQA                             QAMPARI                               ELI5                        Overall
+ Evaluation          Correct          Citation          Correct          Citation          Correct          Citation                    Citation
+                                                                                                                              Correct
+ Metric                                                                                                                                    F1
+                     EM-R Rec Prec               F1       F1      Rec Prec          F1     Claim Rec Prec              F1
+ BM25                 51.7     43.3    48.5      45.7    17.5     21.4    25.7      23.3    11.7     52.9 49.0 50.9            27.0       40.0
+ DPR                  54.4     52.2    54.6      53.3    18.5     20.0    23.2      21.5     -        -    -    -               -          -
+ Contriever-MS        54.9     54.0    57.1      55.5    17.8     20.7    23.7      22.1     -        -    -    -               -          -
+ GTR                  54.4     52.2    54.6      53.3    18.5     20.0    23.2      21.5     -        -    -    -               -          -
+ Instructor-large     55.6     52.1    54.1      53.1    17.2     19.4    21.9      20.6     -        -    -    -               -          -
+ BGE-E-large          55.9     56.4    58.6      57.5    17.3     22.7    25.5      24.0     -        -    -    -               -          -
+ monoBERT (50)        53.8     55.8    57.4      56.6    20.9     26.6    30.3      28.3    13.8     63.5    58.3      60.8    29.5       48.5
+ monoBERT (100)       53.0     54.0    56.5      55.2    20.2     25.5    29.1      27.2    14.1     63.3    58.2      60.6    29.1       47.7
+ monoT5-3B (50)       54.0     55.6    57.7      56.6    20.3     28.1    32.0      30.0    13.9     64.2    59.3      61.7    29.4       49.4
+ monoT5-3B (100)      53.7     53.0    55.2      54.1    19.7     26.0    29.6      27.7    14.1     63.9    58.8      61.2    29.2       47.7
+ BGE-R-large (50)     55.3     57.2    59.0      58.1    20.7     26.6    30.8      28.5    13.9     65.9    61.4      63.6    30.0       50.1
+ BGE-R-large (100)    54.7     57.4    58.7      58.1    19.9     25.9    29.6      27.6    14.4     67.1    62.6      64.8    29.7       50.2
+ HYDE                 56.8     59.1    60.5      59.8    16.2     20.2    27.7      23.4    15.2     70.4    63.4      66.7    29.4       49.9
+ HYDE*                56.7     57.5    57.4      57.5    16.5     20.1    26.2      22.7     -        -       -         -       -          -
+ LAMER                55.3     59.1    60.1      59.6    19.0     23.0    31.0      26.4    14.4     70.8    62.7      66.5    29.0       50.0
+ LAMER*               55.7     58.7    60.2      59.4    16.8     20.6    29.1      24.1     -        -       -         -       -          -
+ RankGPT (50)         56.4     58.5    58.9      58.7    20.7     27.8    31.6      29.6    13.5     64.7    58.8      61.6    30.2       50.0
+ RankGPT (100)        57.0     58.8    59.7      59.2    22.0     28.4    32.9      30.5    13.5     63.5    57.6      60.4    30.8       50.1
+ LLatrieval (passage) 57.7     60.9 61.3 61.1            24.3     32.4 36.6 34.4            16.5     75.8 67.4 71.3            32.9       55.6
+ LLatrieval (question) 57.3    60.5 60.6 60.6            23.6     30.9 34.8 32.7            16.7     75.4 68.0 71.5            32.5       54.9
+
+Table 1: The performance comparison on ALCE (Gao et al., 2023c), where “(passage)” and “(question)” represent
+the styles of missing-info query in LLatrieval. For reranking baselines, the number in parentheses is the number of
+reranked document candidates. For query rewriting baselines, the superscript “*” represnets using their original
+retriever, otherwise using ours.
+
+
+and QAMPARI, we use aliases of short answers                              corpus. Since our method may involve multiple
+provided by the dataset and normalize the model                           queries for one example, the number of its doc-
+output and the short answers when measuring exact                         ument candidates per example is from 50 to 100
+match. For ASQA, we use its sub-questions as                              (See Appendix A). For comprehensive comparison,
+the question to eliminate the original question’s                         we evaluate the re-ranking baselines with both 50
+ambiguity, for simplicity.                                                and 100 document candidates. For the overall im-
+   For detailes of verifiabiliy evaluation, please re-                    plementation details, please refer to Appendix A.
+fer to Section 2.2.
+                                                                          4.2    Main Results
+Implementation Details We use the public Ope-
+nAI API of “gpt-3.5-turbo-0301” for retrieval and                         We show the results in Table 1, where we adopt
+generation, unless otherwise specified. We use                            the classification mode in retrieval verification
+window size=20 and set the number of document                             for stable performance since the performance of
+candidates per query as 50. We set the number of                          score-and-filter mode varies with different thresh-
+supporting documents and the maximum of itera-                            olds. We see that LLatrieval significantly outper-
+tions as 5 and 4. We show LLatrieval’s performance                        forms baselines on all three datasets’ correctness
+under different hyper-parameters and retrievers in                        and verifiability, which shows its best overall re-
+Appendix C. For the document pool, we follow                              trieval performance. Specifically, LLatrieval out-
+Gao et al. (2023c) to use the Wikipedia for ASQA                          performs the used retriever by 3.4 and 5.9 points
+and QAMPARI, and Sphere (Piktus et al., 2021),                            on correctness and citation-F1, respectively, which
+a filtered version of a filtered version of Common                        straightly demonstrates its effectiveness. Notably,
+Crawl for ELI5, respectively. For ASQA and QAM-                           our method shows consistent improvements over
+PARI, we use the recently proposed dense embed-                           other LLM-augmented retrieval methods, which
+der, BGE-large (Xiao et al., 2023), as the retriever.                     only show comparable performance with tradi-
+For ELI5, we follow Gao et al. (2023c) to use                             tional rerankers, and these indicate that our method
+BM25 (Robertson and Zaragoza, 2009) since dense                           can more effectively harness the LLM’s abilities
+retrievers are costly and slow for large-scale web                        for augmenting retrieval. Meanwhile, various re-
+             60                                                                                                                                                              ASQA                               QAMPARI
+                                                            60
+             50
+       Correct                                    Citation-F1
+                                        ASQA
+                                        QAMPARI             50                         ASQA
+                                                                                       QAMPARI                                                         Num EM-R Cite Num F1 Cite
+             40
+             30                                             40
+                                                                                                 BGE-large                                             948                           55.9         57.5 1000 17.3 24.0
+                  0   2       4     6         8                  0   2       4     6         8   + Progressive Selection                               948                           56.8         60.2 1000 23.0 32.3
+                          Threshold                                      Threshold
+                                                                                                   + Verification ✓                                    779                           60.3         64.5 827 25.8 36.6
+                                                                                                   + Verification ✗                                    169                           41.0         40.0 173 10.1 9.1
+Figure 5: The generation quality of filtered examples                                                 + Update                  ➙                      169                           44.3         44.3 173 17.7 21.1
+over different thresholds.
+                                                                                                 Table 2: The effect of each component. “Verification
+trievers consistently show worse performance than                                                ✓ / ✗ ” represent the question whose documents pass /
+                                                                                                 fail the retrieval verification, respectively. “Update ”                                                                                              ➙
+LLM-augmented methods, and this demonstrates
+                                                                                                 represents the questions paired with updated retrieval
+that the traditional retrievers become the bottle-                                               result. “Num” is the corresponding example quantity.
+neck for verifiable generation and overshadow the
+LLM’s strong abilities. Additionally, our method                                                          57.6       Correct
+                                                                                                                                                       158                                        Citation-F1
+                                                                                                                                                                                                                                 158
+demonstrates significant improvements over tradi-                                                                                                      131                             61.5                                      131
+
+
+                                                                                                                                                            Doc Candidates                                                            Doc Candidates
+                                                                                                          57.4
+                                                                                                    Correct                                                                  Citation-F1
+                                                                                                          57.2                                         105                             61.0                                      105
+tional neural rerankers, which indicates that the
+                                                                                                          57.0                                         79                                                                        79
+bottleneck effect of retriever can not be fully miti-                                                                                                                                  60.5
+                                                                                                          56.8
+                                                                                                                                      Doc Candidates   52                                                       Doc Candidates   52
+                                                                                                                 0      2          4     6        8                                           0      2       4     6        8
+gated by traditional rerankers.                                                                                                Threshold                                                                 Threshold
+
+                                                                                                              (a) ASQA-Correct                                                             (b) ASQA-Citation
+4.3   Analyses
+                                                                                                                     Correct
+                                                                                                                                                       150                             33.2       Citation-F1
+                                                                                                                                                                                                                                 150
+In this section, we conduct analyses of LLatrieval,                                                       24.5                                         125                                                                       125
+
+
+                                                                                                                                                            Doc Candidates                                                            Doc Candidates
+                                                                                                                                                                                       33.0
+
+                                                                                                                                                                             Citation-F1
+where we adopt classification-based retrieval verifi-                                               Correct
+                                                                                                          24.0                                         100
+                                                                                                                                                                                       32.8
+                                                                                                                                                                                                                                 100
+cation and “passage” style missing-info query, and                                                        23.5                                         75                                                                        75
+                                                                                                                                                                                       32.5
+                                                                                                          23.0                        Doc Candidates   50                                                       Doc Candidates   50
+report Citation-F1 for verifiability for simplicity.                                                             0      2          4     6        8                                           0      2       4     6        8
+                                                                                                                               Threshold                                                                 Threshold
+
+Ablation Study We evaluate the effectiveness of                                                          (c) QAMPARI-Correct                                                        (d) QAMPARI-Citation
+each component on ASQA and QAMPARI. We
+show the performance changes after adding each                                                    Figure 6: The performance over different thresholds.
+component one-by-one, from the original retriever
+to the second iteration, in Table 2. First we conduct
+                                                                                                 pairs) filtered by different thresholds in the first iter-
+progressive selection on the original question’s doc-
+                                                                                                 ation, shown in Figure 5. We see that the examples
+ument candidates and find it leads to performance
+                                                                                                 filtered by the higher threshold have better genera-
+improvements, which directly indicates that it can
+                                                                                                 tion quality, which shows that our verification score
+help the LLM find better relevant documents from
+                                                                                                 can effectively evaluate the retrieval result. Then
+the candidates. Then we verify whether each ques-
+                                                                                                 we plot the performance and the LLM cost of our
+tion’s current documents can support answering it.
+                                                                                                 method over different thresholds in Figure 6, where
+Based on the verification results, we divide them
+                                                                                                 we use each example’s overall document candidates
+into two groups and separately evaluate their gener-
+                                                                                                 quantity to measure the LLM cost since their to-
+ation quality. We observe that on questions whose
+                                                                                                 kens predominate in the LLM’s input. We see that
+documents fail the verification, the LLM shows sig-
+                                                                                                 increasing the threshold leads to better performance
+nificantly worse generation quality in correctness
+                                                                                                 with higher LLM cost trade-off. This shows that
+and verifiability. And after retrieval update, the
+                                                                                                 our method’s speed, i.e., average iterations, and
+updated retrieval result leads to better generation
+                                                                                                 LLM cost can be flexibly adjusted to adapt to vary-
+quality. These demonstrate that the retrieval veri-
+                                                                                                 ing demands. Meanwhile, compared with rerank-
+fication and update can identify and improve low-
+                                                                                                 ing baselines, which do not show significant im-
+quality retrieval results respectively, and thus lead
+                                                                                                 provements with increasing document candidates
+to better verifiable generation. In general, these
+                                                                                                 (see Table 1), we can effectively scale our method’s
+results show that each component of LLatrieval
+                                                                                                 performance by stricter threshold and more docu-
+contributes critically to the overall performance.
+                                                                                                 ment candidates from missing-info query. Addi-
+Performance over Different Thresholds We                                                         tionally, we observe that a too-strict threshold may
+evaluate the score-and-filter mode of retrieval veri-                                            not necessarily improve performance, e.g., “8” for
+fication on ASQA and QAMPARI. We first plot the                                                  ASQA’s correctness. We observe that its failure
+generation quality on examples (question & docs                                                  is because there is no relevant information in the
+           Dataset                                    QAMPARI                                       ELI5                                                                 ASQA
+           Metric                                         F1                    Cite        Claim Cite                                                    Doc Candidates     Correct   Cite
+           Original Retriever                         17.3                      24.0           15.2        66.7                        Our Method                68.9           57.7   61.4
+                                                                                                                                       Our Method (with gold)   136.9           58.1   60.8
+           GPT-3.5-Turbo-0301                         24.3                      34.4           16.5        71.3
+           GPT-3.5-Turbo-0613                         24.8                      32.9           17.1        71.7                                                         QAMPARI
+           GPT-3.5-Turbo-1106                         23.9                      33.6           17.3        71.7
+                                                                                                                                                          Doc Candidates     Correct   Cite
+           Llama-2-70B-Chat                           21.0                      28.9           15.8        61.0
+           Xwin-LM-70B-V0.1                           22.5                      30.8           16.1        70.8                        Our Method                64.5           24.3   34.4
+           Tulu-2-DPO-70B                             22.7                      32.0           16.9        71.8                        Our Method (with gold)   101.0           25.2   33.6
+
+Table 3: The results of LLatrieval across various LLMs.                                                                               Table 4: The comparison with using gold answers for
+                                                                                                                                      retrieval verification.
+
+document pool or the LLM fails to follow the in-
+struction of missing-info query, and we regard the                                                                                    et al., 2023a; Stechly et al., 2023; Valmeekam et al.,
+research of these two aspects as future work.                                                                                         2023). Since we use the LLM to verify the retrieval
+                                                                                                                                      result updated by itself, and such verification can
+      59.0                                                                 62.0
+                                                                                                                                      be seen as a type of internal feedback, we compare
+                 Correct(Ours)                 120                                    Citation(Ours)                120
+                 Correct(RankGPT)                                          61.0       Citation(RankGPT)                               it with the external feedback from gold answers on
+
+                                                Doc Candidates                                                       Doc Candidates
+      58.0                                     100                                                                  100
+
+                                                                 Citation-F1
+                                                                           60.0                                                       ASQA and QAMPARI. Specifically, for external
+Correct
+      57.0                                     80                                                                   80
+                                               60                          59.0                                     60
+      56.0                                                                 58.0
+                                                                                                                                      feedback, we take whether gold answers fully ap-
+                       Doc Candidates(Ours)
+                       Doc Candidates(RankGPT)
+                                               40                                           Doc Candidates(Ours)
+                                                                                            Doc Candidates(RankGPT)
+                                                                                                                    40
+      55.0 0        1      2        3        4                             57.0 0        1      2        3        4
+                                                                                                                                      pear in the retrieved result as verification criteria.
+                     Max Iteration                                                        Max Iteration                               We show the results in Table 4. We see that both
+             (a) ASQA-Correct                                                   (b) ASQA-Citation                                     internal and external feedbacks achieve compara-
+      26.0       Correct(Ours)                 120                                    Citation(Ours)                120               ble performance with each other, when the internal
+                 Correct(RankGPT)                                          35.0       Citation(RankGPT)
+      24.0
+
+
+                                                Doc Candidates                                                       Doc Candidates
+                                               100                                                                  100               feedback leads to less LLM cost. These show that
+Correct                                                          Citation-F1
+      22.0                                     80                                                                   80
+                                                                           30.0                                                       the LLM is capable of evaluating the retrieval re-
+      20.0                                     60                                                                   60
+      18.0
+                       Doc Candidates(Ours)
+                       Doc Candidates(RankGPT)
+                                               40                          25.0
+                                                                                            Doc Candidates(Ours)
+                                                                                            Doc Candidates(RankGPT)
+                                                                                                                    40                sult and has the potential to provide competitive
+             0      1      2        3        4                                    0      1      2        3        4                   feedback for retrieval as gold answers.
+                     Max Iteration                                                        Max Iteration
+          (c) QAMPARI-Correct                                                  (d) QAMPARI-Citation                                   The Generality across Various LLMs We ana-
+                                                                                                                                      lyze the performance of LLatrieval over various
+Figure 7: The performance over different max iteration.                                                                               closed-source and open-source LLMs (Touvron
+                                                                                                                                      et al., 2023; Team, 2023; Ivison et al., 2023) ,
+Performance during Iteration We observe the                                                                                           shown in Table 3. In general, our method con-
+performance changes during verify-update itera-                                                                                       sistently leads to significant improvements over the
+tions on ASQA and QAMPARI. Specifically, we                                                                                           original retriever, which shows its robustness and
+plot the performance curve and each example’s av-                                                                                     generality. Meanwhile, we find that our method
+erage document candidate quantity over different                                                                                      with stronger LLM (from Llama2-70B to GPT-3.5)
+maximum iterations in Figure 7. We see that the                                                                                       can lead to better performance, which indicates the
+performance of LLatrieval gets improved with in-                                                                                      potential to scale retrieval performance by scaling
+creasing max iterations, which shows that the docu-                                                                                   LLM and our method’s utility in the future where
+ment quality can be gradually improved during the                                                                                     more powerful LLMs are built, while dense retriev-
+multiple verify-update iterations. Meanwhile, we                                                                                      ers have not been proved to scale well to the size
+observe that although the average document candi-                                                                                     of LLMs.
+dates slightly increase with increasing max itera-
+tions, our method can outperform RankGPT with                                                                                         5   Related Work
+fewer average document candidates, which shows
+                                                                                                                                      Verifiable Generation Verifiable generation,
+LLatrieval’s efficiency that it can dynamically fin-
+                                                                                                                                      which aims to generate content with supporting
+ish when the retrieved documents can sufficiently
+                                                                                                                                      documents, has drawn increasing attention in re-
+support answering the question.
+                                                                                                                                      cent years. The previous work mainly focuses on
+The Comparison with Gold Feedback Recent                                                                                              two aspects: 1) Modeling: Nakano et al. (2021),
+work indicates that the feedback from the LLM can                                                                                     Menick et al. (2022), Liu et al. (2023c) and Qin
+not help improve the prediction of itself (Huang                                                                                      et al. (2023a) explore training the specialized LLM
+to browse web pages and answer long-form ques-           ing methods take the pseudo passage as query in
+tions with supporting evidence. Gao et al. (2023a)       a heuristic manner, which relies on the generated
+propose research-and-revision to retrieve support-       passage quality and can not ensure the relevance of
+ing evidence for LLM’s output and fix unsupported        retrieved documents. In LLatrieval, the LLM can
+content. Li et al. (2023b) explore verifiable gener-     iteratively provide feedback to the retriever until
+ation on knowledge graph. 2) Verifiability Eval-         the documents sufficiently support verifiable gener-
+uation: Rashkin et al. (2021) define Attributable        ation, which can fully harness the LLM’s ability to
+to Identified Sources (AIS), a framework of human        facilitate the retrieval stage.
+evaluation that considers whether the answer can
+be supported by the evidence. Gao et al. (2023a)         6    Conclusion
+propose auto-AIS, which utilizes a strong NLI            We propose LLatrieval to retrieve supporting doc-
+model (Honovich et al., 2022) to approximate hu-         uments for verifiable generation, which lets the
+man AIS judgments. Liu et al. (2023b) propose            LLM iteratively refine the retrieval result until the
+citation-recall and citation-precision to evaluate       LLM verifies the retrieved documents can support
+the verifiability of prevailing generative search en-    answering the given question. In this manner, LLa-
+gines, e.g., New Bing. Gao et al. (2023c) propose a      trieval can fully harness the LLM’s ability and fa-
+framework that automates the evaluation of recall        cilitate the retrieval result to help generate both
+and precision for the citation in the LLM’s output.      correct and verifiable answers. Experimental re-
+Since retrieval is important for finding supporting      sults show that our method outperforms extensive
+evidence, we propose LLatrieval to iteratively up-       baselines and achieves new state-of-the-art results.
+date and verify the retrieval result, and thus fully
+harness the LLM for better verifiable generation.        Limitations
+                                                             • Although LLatrieval can dynamically ad-
+LLM-based Retrieval Augmentation The exist-                    just the running time according to the re-
+ing methods of LLM-augmented Retrieval can be                  trieval demand and shows better performance-
+divided into three categories: 1) Query Rewriting:             efficiency trade-off than RankGPT (Sun et al.,
+Gao et al. (2023b); Wang et al. (2023b) propose to             2023), it relies on real-time LLM inference
+use the LLM to generate a pseudo passage of the                and thus may not be suitable for tasks that
+question as retrieval query, which neighbors rele-             require low latency or high throughput. How-
+vant documents and helps retrieve them. Shen et al.            ever, over the years we have seen the model
+(2023) use the retrieved passage to help the LLM               acceleration mechanisms advance and hard-
+generate better pseudo passage as retrieval query.             ware performance increase, which can help
+Shao et al. (2023) propose to iteratively improve the          improve the efficiency of LLM inference.
+retrieval query by synergizing retrieval and genera-
+tion. Ma et al. (2023) train specialized query rewrit-       • Since existing works have shown LLMs ex-
+ers for downstream RAG tasks. 2) Re-ranking:                   hibit various types of biases (Bender et al.,
+Sun et al. (2023) propose RankGPT, which uses                  2021), LLatrieval based on LLMs, may bias
+ChatGPT to generate the permutation of documents               the final retrieval result. We are optimistic that
+for reranking. Tang et al. (2023) and Qin et al.               this problem can be mitigated as LLatrieval
+(2023b) use multiple-sampling and pair-wise rank-              is based on ChatGPT, and OpenAI has made
+ing to mitigate the positional bias of RankGPT, re-            substantial efforts to reduce its toxicity and
+spectively. 3) Data Augmentation: Bonifacio et al.             bias (Ouyang et al., 2022). Additionally, we
+(2022), Dai et al. (2023) and Jeronymo et al. (2023)           can use more elaborate prompts on LLMs to
+use the LLM to generate relevant queries for ex-               further reduce the bias in the process of LLa-
+isting documents for training the retriever. Sachan            trieval.
+et al. (2022) use the LLM to provide soft labels of
+                                                         Acknowledgments
+unpaired question&documents for the retriever’s
+training. Although these methods use the LLM             This work was supported by the National Key
+to enhance the retrieval from various aspects, the       Research and Development Program of China
+LLM can not fully provide feedback to the retrieval      (No.2022CSJGG0801). The computations in this
+result and the overall performance is highly limited     research were performed using the CFFF platform
+by the retriever. For example, the query rewrit-         of Fudan University.
+References                                                   Sasha Tsvyashchenko, Joshua Maynez, Abhishek
+                                                             Rao, Parker Barnes, Yi Tay, Noam Shazeer, Vin-
+Samuel Joseph Amouyal, Ohad Rubin, Ori Yoran,
+                                                             odkumar Prabhakaran, Emily Reif, Nan Du, Ben
+  Tomer Wolfson, Jonathan Herzig, and Jonathan
+                                                             Hutchinson, Reiner Pope, James Bradbury, Jacob
+  Berant. 2022. QAMPARI: : An open-domain
+                                                             Austin, Michael Isard, Guy Gur-Ari, Pengcheng Yin,
+  question answering benchmark for questions with
+                                                             Toju Duke, Anselm Levskaya, Sanjay Ghemawat,
+  many answers from multiple paragraphs. CoRR,
+                                                             Sunipa Dev, Henryk Michalewski, Xavier Garcia,
+  abs/2205.12665.
+                                                             Vedant Misra, Kevin Robinson, Liam Fedus, Denny
+Emily M. Bender, Timnit Gebru, Angelina McMillan-            Zhou, Daphne Ippolito, David Luan, Hyeontaek Lim,
+  Major, and Shmargaret Shmitchell. 2021. On the             Barret Zoph, Alexander Spiridonov, Ryan Sepassi,
+  dangers of stochastic parrots: Can language models         David Dohan, Shivani Agrawal, Mark Omernick, An-
+  be too big? In FAccT ’21: 2021 ACM Conference on           drew M. Dai, Thanumalayan Sankaranarayana Pil-
+  Fairness, Accountability, and Transparency, Virtual        lai, Marie Pellat, Aitor Lewkowycz, Erica Moreira,
+  Event / Toronto, Canada, March 3-10, 2021, pages           Rewon Child, Oleksandr Polozov, Katherine Lee,
+  610–623. ACM.                                              Zongwei Zhou, Xuezhi Wang, Brennan Saeta, Mark
+                                                             Diaz, Orhan Firat, Michele Catasta, Jason Wei, Kathy
+Bernd Bohnet, Vinh Q. Tran, Pat Verga, Roee Aharoni,         Meier-Hellstern, Douglas Eck, Jeff Dean, Slav Petrov,
+  Daniel Andor, Livio Baldini Soares, Jacob Eisen-           and Noah Fiedel. 2023. Palm: Scaling language mod-
+  stein, Kuzman Ganchev, Jonathan Herzig, Kai Hui,           eling with pathways. J. Mach. Learn. Res., 24:240:1–
+  Tom Kwiatkowski, Ji Ma, Jianmo Ni, Tal Schuster,           240:113.
+  William W. Cohen, Michael Collins, Dipanjan Das,
+  Donald Metzler, Slav Petrov, and Kellie Webster.         Zhuyun Dai, Vincent Y. Zhao, Ji Ma, Yi Luan, Jianmo
+  2022. Attributed question answering: Evaluation            Ni, Jing Lu, Anton Bakalov, Kelvin Guu, Keith B.
+  and modeling for attributed large language models.         Hall, and Ming-Wei Chang. 2023. Promptagator:
+  CoRR, abs/2212.08037.                                      Few-shot dense retrieval from 8 examples. In The
+                                                             Eleventh International Conference on Learning Rep-
+Luiz Henrique Bonifacio, Hugo Queiroz Abonizio,              resentations, ICLR 2023, Kigali, Rwanda, May 1-5,
+  Marzieh Fadaee, and Rodrigo Frassetto Nogueira.            2023. OpenReview.net.
+  2022. Inpars: Data augmentation for informa-
+  tion retrieval using large language models. CoRR,        Angela Fan, Yacine Jernite, Ethan Perez, David Grang-
+  abs/2202.05144.                                            ier, Jason Weston, and Michael Auli. 2019. ELI5:
+                                                             long form question answering. In Proceedings of
+Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie             the 57th Conference of the Association for Compu-
+  Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind           tational Linguistics, ACL 2019, Florence, Italy, July
+  Neelakantan, Pranav Shyam, Girish Sastry, Amanda           28- August 2, 2019, Volume 1: Long Papers, pages
+  Askell, Sandhini Agarwal, Ariel Herbert-Voss,              3558–3567. Association for Computational Linguis-
+  Gretchen Krueger, Tom Henighan, Rewon Child,               tics.
+  Aditya Ramesh, Daniel M. Ziegler, Jeffrey Wu,
+  Clemens Winter, Christopher Hesse, Mark Chen, Eric       Luyu Gao, Zhuyun Dai, Panupong Pasupat, Anthony
+  Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess,        Chen, Arun Tejasvi Chaganty, Yicheng Fan, Vin-
+  Jack Clark, Christopher Berner, Sam McCandlish,            cent Y. Zhao, Ni Lao, Hongrae Lee, Da-Cheng Juan,
+  Alec Radford, Ilya Sutskever, and Dario Amodei.            and Kelvin Guu. 2023a. RARR: researching and
+  2020. Language models are few-shot learners. In Ad-        revising what language models say, using language
+  vances in Neural Information Processing Systems 33:        models. In Proceedings of the 61st Annual Meeting
+  Annual Conference on Neural Information Process-           of the Association for Computational Linguistics (Vol-
+  ing Systems 2020, NeurIPS 2020, December 6-12,             ume 1: Long Papers), ACL 2023, Toronto, Canada,
+  2020, virtual.                                             July 9-14, 2023, pages 16477–16508. Association for
+                                                             Computational Linguistics.
+Sihao Chen, Hongming Zhang, Tong Chen, Ben Zhou,
+  Wenhao Yu, Dian Yu, Baolin Peng, Hongwei Wang,           Luyu Gao, Xueguang Ma, Jimmy Lin, and Jamie Callan.
+   Dan Roth, and Dong Yu. 2023. Sub-sentence en-             2023b. Precise zero-shot dense retrieval without rel-
+   coder: Contrastive learning of propositional semantic     evance labels. In Proceedings of the 61st Annual
+   representations. CoRR, abs/2311.04335.                    Meeting of the Association for Computational Lin-
+                                                             guistics (Volume 1: Long Papers), ACL 2023, Toronto,
+I-Chun Chern, Steffi Chern, Shiqi Chen, Weizhe Yuan,         Canada, July 9-14, 2023, pages 1762–1777. Associa-
+   Kehua Feng, Chunting Zhou, Junxian He, Graham             tion for Computational Linguistics.
+   Neubig, and Pengfei Liu. 2023. Factool: Factual-
+   ity detection in generative AI - A tool augmented       Tianyu Gao, Howard Yen, Jiatong Yu, and Danqi Chen.
+   framework for multi-task and multi-domain scenar-          2023c. Enabling large language models to generate
+   ios. CoRR, abs/2307.13528.                                 text with citations. CoRR, abs/2305.14627.
+
+Aakanksha Chowdhery, Sharan Narang, Jacob Devlin,          Or Honovich, Roee Aharoni, Jonathan Herzig, Hagai
+  Maarten Bosma, Gaurav Mishra, Adam Roberts,                Taitelbaum, Doron Kukliansy, Vered Cohen, Thomas
+  Paul Barham, Hyung Won Chung, Charles Sutton,              Scialom, Idan Szpektor, Avinatan Hassidim, and
+  Sebastian Gehrmann, Parker Schuh, Kensen Shi,              Yossi Matias. 2022. TRUE: re-evaluating factual
+  consistency evaluation. In Proceedings of the 2022         A benchmark for knowledge-aware language model
+  Conference of the North American Chapter of the            attribution. CoRR, abs/2310.05634.
+  Association for Computational Linguistics: Human
+  Language Technologies, NAACL 2022, Seattle, WA,          Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paran-
+  United States, July 10-15, 2022, pages 3905–3920.          jape, Michele Bevilacqua, Fabio Petroni, and Percy
+  Association for Computational Linguistics.                 Liang. 2023a. Lost in the middle: How language
+                                                             models use long contexts. CoRR, abs/2307.03172.
+Jie Huang, Xinyun Chen, Swaroop Mishra,
+   Huaixiu Steven Zheng, Adams Wei Yu, Xiny-               Nelson F. Liu, Tianyi Zhang, and Percy Liang. 2023b.
+   ing Song, and Denny Zhou. 2023a. Large language           Evaluating verifiability in generative search engines.
+   models cannot self-correct reasoning yet. CoRR,           CoRR, abs/2304.09848.
+   abs/2310.01798.
+                                                           Xiao Liu, Hanyu Lai, Hao Yu, Yifan Xu, Aohan Zeng,
+Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong,            Zhengxiao Du, Peng Zhang, Yuxiao Dong, and
+  Zhangyin Feng, Haotian Wang, Qianglong Chen,               Jie Tang. 2023c. Webglm: Towards an efficient
+  Weihua Peng, Xiaocheng Feng, Bing Qin, and Ting            web-enhanced question answering system with hu-
+  Liu. 2023b. A survey on hallucination in large lan-        man preferences. In Proceedings of the 29th ACM
+  guage models: Principles, taxonomy, challenges, and        SIGKDD Conference on Knowledge Discovery and
+  open questions. CoRR, abs/2311.05232.                      Data Mining, KDD 2023, Long Beach, CA, USA,
+                                                             August 6-10, 2023, pages 4549–4560. ACM.
+Hamish Ivison, Yizhong Wang, Valentina Pyatkin,
+  Nathan Lambert, Matthew Peters, Pradeep Dasigi,          Xinbei Ma, Yeyun Gong, Pengcheng He, Hai Zhao,
+  Joel Jang, David Wadden, Noah A. Smith, Iz Belt-           and Nan Duan. 2023.          Query rewriting for
+  agy, and Hannaneh Hajishirzi. 2023. Camels in a            retrieval-augmented large language models. CoRR,
+  changing climate: Enhancing lm adaptation with tulu        abs/2305.14283.
+  2.
+                                                           Chaitanya Malaviya, Subin Lee, Sihao Chen, Elizabeth
+Gautier Izacard, Mathilde Caron, Lucas Hosseini, Se-         Sieber, Mark Yatskar, and Dan Roth. 2023. Ex-
+  bastian Riedel, Piotr Bojanowski, Armand Joulin,           pertqa: Expert-curated questions and attributed an-
+  and Edouard Grave. 2022. Unsupervised dense in-            swers. CoRR, abs/2309.07852.
+  formation retrieval with contrastive learning. Trans.
+  Mach. Learn. Res., 2022.                                 Jacob Menick, Maja Trebacz, Vladimir Mikulik, John
+                                                             Aslanides, H. Francis Song, Martin J. Chadwick,
+Vitor Jeronymo,         Luiz Henrique Bonifacio,              Mia Glaese, Susannah Young, Lucy Campbell-
+  Hugo Queiroz Abonizio, Marzieh Fadaee, Roberto              Gillingham, Geoffrey Irving, and Nat McAleese.
+  de Alencar Lotufo, Jakub Zavrel, and Rodrigo Fras-          2022. Teaching language models to support answers
+  setto Nogueira. 2023. Inpars-v2: Large language            with verified quotes. CoRR, abs/2203.11147.
+  models as efficient dataset generators for information
+  retrieval. CoRR, abs/2301.01820.                         Sewon Min, Kalpesh Krishna, Xinxi Lyu, Mike
+                                                             Lewis, Wen-tau Yih, Pang Wei Koh, Mohit Iyyer,
+Vladimir Karpukhin, Barlas Oguz, Sewon Min, Patrick          Luke Zettlemoyer, and Hannaneh Hajishirzi. 2023.
+  S. H. Lewis, Ledell Wu, Sergey Edunov, Danqi Chen,         Factscore: Fine-grained atomic evaluation of fac-
+  and Wen-tau Yih. 2020. Dense passage retrieval for         tual precision in long form text generation. CoRR,
+  open-domain question answering. In Proceedings of          abs/2305.14251.
+  the 2020 Conference on Empirical Methods in Nat-
+  ural Language Processing, EMNLP 2020, Online,            Reiichiro Nakano, Jacob Hilton, Suchir Balaji, Jeff Wu,
+  November 16-20, 2020, pages 6769–6781. Associa-            Long Ouyang, Christina Kim, Christopher Hesse,
+  tion for Computational Linguistics.                        Shantanu Jain, Vineet Kosaraju, William Saunders,
+                                                             Xu Jiang, Karl Cobbe, Tyna Eloundou, Gretchen
+Tom Kwiatkowski, Jennimaria Palomaki, Olivia Red-            Krueger, Kevin Button, Matthew Knight, Benjamin
+  field, Michael Collins, Ankur Parikh, Chris Alberti,       Chess, and John Schulman. 2021. Webgpt: Browser-
+  Danielle Epstein, Illia Polosukhin, Jacob Devlin, Ken-     assisted question-answering with human feedback.
+  ton Lee, Kristina Toutanova, Llion Jones, Matthew          CoRR, abs/2112.09332.
+  Kelcey, Ming-Wei Chang, Andrew M. Dai, Jakob
+  Uszkoreit, Quoc Le, and Slav Petrov. 2019. Natu-         Jianmo Ni, Chen Qu, Jing Lu, Zhuyun Dai, Gustavo
+  ral questions: A benchmark for question answering           Hernandez Abrego, Ji Ma, Vincent Zhao, Yi Luan,
+  research. Transactions of the Association for Compu-        Keith Hall, Ming-Wei Chang, and Yinfei Yang. 2022.
+  tational Linguistics, 7:452–466.                            Large dual encoders are generalizable retrievers. In
+                                                              Proceedings of the 2022 Conference on Empirical
+Dongfang Li, Zetian Sun, Xinshuo Hu, Zhenyu Liu,              Methods in Natural Language Processing, pages
+  Ziyang Chen, Baotian Hu, Aiguo Wu, and Min                  9844–9855, Abu Dhabi, United Arab Emirates. As-
+  Zhang. 2023a. A survey of large language models             sociation for Computational Linguistics.
+  attribution. CoRR, abs/2311.03731.
+                                                           Rodrigo Nogueira, Zhiying Jiang, Ronak Pradeep, and
+Xinze Li, Yixin Cao, Liangming Pan, Yubo Ma, and             Jimmy Lin. 2020. Document ranking with a pre-
+  Aixin Sun. 2023b. Towards verifiable generation:           trained sequence-to-sequence model. In Findings
+  of the Association for Computational Linguistics:       Devendra Singh Sachan, Mike Lewis, Dani Yogatama,
+  EMNLP 2020, pages 708–718, Online. Association            Luke Zettlemoyer, Joelle Pineau, and Manzil Zaheer.
+  for Computational Linguistics.                            2022. Questions are all you need to train a dense
+                                                            passage retriever. CoRR, abs/2206.10658.
+Rodrigo Frassetto Nogueira and Kyunghyun Cho.
+  2019. Passage re-ranking with BERT. CoRR,               M. Salvagno, F.S. Taccone, A.G. Gerli, and ChatGPT.
+  abs/1901.04085.                                           2023. Can artificial intelligence help for scientific
+                                                            writing? Critical Care, 27(1). Publisher: BioMed
+OpenAI. 2023. GPT-4 technical report.           CoRR,       Central Ltd.
+  abs/2303.08774.
+                                                          Tal Schuster, Adam Fisch, and Regina Barzilay. 2021.
+Long Ouyang, Jeffrey Wu, Xu Jiang, Diogo Almeida,           Get your vitamin c! robust fact verification with
+  Carroll L. Wainwright, Pamela Mishkin, Chong              contrastive evidence. In Proceedings of the 2021
+  Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray,        Conference of the North American Chapter of the
+  John Schulman, Jacob Hilton, Fraser Kelton, Luke          Association for Computational Linguistics: Human
+  Miller, Maddie Simens, Amanda Askell, Peter Welin-        Language Technologies, NAACL-HLT 2021, Online,
+  der, Paul F. Christiano, Jan Leike, and Ryan Lowe.        June 6-11, 2021, pages 624–643. Association for
+  2022. Training language models to follow instruc-         Computational Linguistics.
+  tions with human feedback. In NeurIPS.
+                                                          Zhihong Shao, Yeyun Gong, Yelong Shen, Minlie
+Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin,       Huang, Nan Duan, and Weizhu Chen. 2023. En-
+  Dmytro Okhonko, Samuel Broscheit, Gautier Izacard,        hancing retrieval-augmented large language models
+  Patrick S. H. Lewis, Barlas Oguz, Edouard Grave,          with iterative retrieval-generation synergy. CoRR,
+  Wen-tau Yih, and Sebastian Riedel. 2021. The web          abs/2305.15294.
+  is your oyster - knowledge-intensive NLP against a
+  very large web corpus. CoRR, abs/2112.09924.            Tao Shen, Guodong Long, Xiubo Geng, Chongyang
+                                                            Tao, Tianyi Zhou, and Daxin Jiang. 2023. Large lan-
+Yujia Qin, Zihan Cai, Dian Jin, Lan Yan, Shihao             guage models are strong zero-shot retriever. CoRR,
+  Liang, Kunlun Zhu, Yankai Lin, Xu Han, Ning Ding,         abs/2304.14233.
+  Huadong Wang, Ruobing Xie, Fanchao Qi, Zhiyuan
+  Liu, Maosong Sun, and Jie Zhou. 2023a. Webcpm:          Kaya Stechly, Matthew Marquez, and Subbarao Kamb-
+  Interactive web search for chinese long-form ques-        hampati. 2023. GPT-4 doesn’t know it’s wrong: An
+  tion answering. In Proceedings of the 61st Annual         analysis of iterative prompting for reasoning prob-
+  Meeting of the Association for Computational Lin-         lems. CoRR, abs/2310.12397.
+  guistics (Volume 1: Long Papers), ACL 2023, Toronto,
+  Canada, July 9-14, 2023, pages 8968–8988. Associa-      Ivan Stelmakh, Yi Luan, Bhuwan Dhingra, and Ming-
+  tion for Computational Linguistics.                       Wei Chang. 2022. ASQA: factoid questions meet
+                                                             long-form answers. In Proceedings of the 2022 Con-
+Zhen Qin, Rolf Jagerman, Kai Hui, Honglei Zhuang,            ference on Empirical Methods in Natural Language
+  Junru Wu, Jiaming Shen, Tianqi Liu, Jialu Liu, Don-        Processing, EMNLP 2022, Abu Dhabi, United Arab
+  ald Metzler, Xuanhui Wang, and Michael Bendersky.          Emirates, December 7-11, 2022, pages 8273–8288.
+  2023b. Large language models are effective text            Association for Computational Linguistics.
+  rankers with pairwise ranking prompting. CoRR,
+  abs/2306.17563.                                         Hongjin Su, Weijia Shi, Jungo Kasai, Yizhong Wang,
+                                                            Yushi Hu, Mari Ostendorf, Wen-tau Yih, Noah A.
+Hannah Rashkin, Vitaly Nikolaev, Matthew Lamm,              Smith, Luke Zettlemoyer, and Tao Yu. 2023. One
+  Michael Collins, Dipanjan Das, Slav Petrov, Gau-          embedder, any task: Instruction-finetuned text em-
+  rav Singh Tomar, Iulia Turc, and David Reitter. 2021.     beddings. In Findings of the Association for Com-
+  Measuring attribution in natural language generation      putational Linguistics: ACL 2023, Toronto, Canada,
+  models. CoRR, abs/2112.12870.                             July 9-14, 2023, pages 1102–1121. Association for
+                                                            Computational Linguistics.
+Vipula Rawte, Amit P. Sheth, and Amitava Das. 2023.
+  A survey of hallucination in large foundation models.   Weiwei Sun, Lingyong Yan, Xinyu Ma, Pengjie Ren,
+  CoRR, abs/2309.05922.                                    Dawei Yin, and Zhaochun Ren. 2023. Is chatgpt
+                                                           good at search? investigating large language models
+Revanth Gangi Reddy, Yi R. Fung, Qi Zeng, Manling          as re-ranking agent. CoRR, abs/2304.09542.
+  Li, Ziqi Wang, Paul Sullivan, and Heng Ji. 2023.
+  Smartbook: Ai-assisted situation report generation.     Raphael Tang, Xinyu Zhang, Xueguang Ma, Jimmy Lin,
+  CoRR, abs/2303.14337.                                     and Ferhan Ture. 2023. Found in the middle: Permu-
+                                                            tation self-consistency improves listwise ranking in
+Stephen E. Robertson and Hugo Zaragoza. 2009. The           large language models. CoRR, abs/2310.07712.
+   probabilistic relevance framework: BM25 and be-
+  yond. Found. Trends Inf. Retr., 3(4):333–389.           Xwin-LM Team. 2023. Xwin-lm.
+Hugo Touvron, Louis Martin, Kevin Stone, Peter Al-            In Proceedings of the 60th Annual Meeting of the
+  bert, Amjad Almahairi, Yasmine Babaei, Nikolay              Association for Computational Linguistics (Volume
+  Bashlykov, Soumya Batra, Prajjwal Bhargava, Shruti          1: Long Papers), ACL 2022, Dublin, Ireland, May
+  Bhosale, Dan Bikel, Lukas Blecher, Cristian Canton-         22-27, 2022, pages 5990–6000. Association for Com-
+  Ferrer, Moya Chen, Guillem Cucurull, David Esiobu,          putational Linguistics.
+  Jude Fernandes, Jeremy Fu, Wenyin Fu, Brian Fuller,
+  Cynthia Gao, Vedanuj Goswami, Naman Goyal, An-            Yue Zhang, Yafu Li, Leyang Cui, Deng Cai, Lemao Liu,
+  thony Hartshorn, Saghar Hosseini, Rui Hou, Hakan            Tingchen Fu, Xinting Huang, Enbo Zhao, Yu Zhang,
+  Inan, Marcin Kardas, Viktor Kerkez, Madian Khabsa,          Yulong Chen, Longyue Wang, Anh Tuan Luu, Wei
+  Isabel Kloumann, Artem Korenev, Punit Singh Koura,          Bi, Freda Shi, and Shuming Shi. 2023. Siren’s song
+  Marie-Anne Lachaux, Thibaut Lavril, Jenya Lee, Di-          in the AI ocean: A survey on hallucination in large
+  ana Liskovich, Yinghai Lu, Yuning Mao, Xavier Mar-          language models. CoRR, abs/2309.01219.
+  tinet, Todor Mihaylov, Pushkar Mishra, Igor Moly-
+  bog, Yixin Nie, Andrew Poulton, Jeremy Reizen-            Wayne Xin Zhao, Kun Zhou, Junyi Li, Tianyi Tang,
+  stein, Rashi Rungta, Kalyan Saladi, Alan Schelten,         Xiaolei Wang, Yupeng Hou, Yingqian Min, Be-
+  Ruan Silva, Eric Michael Smith, Ranjan Subrama-            ichen Zhang, Junjie Zhang, Zican Dong, Yifan Du,
+  nian, Xiaoqing Ellen Tan, Binh Tang, Ross Tay-             Chen Yang, Yushuo Chen, Zhipeng Chen, Jinhao
+  lor, Adina Williams, Jian Xiang Kuan, Puxin Xu,            Jiang, Ruiyang Ren, Yifan Li, Xinyu Tang, Zikang
+  Zheng Yan, Iliyan Zarov, Yuchen Zhang, Angela Fan,         Liu, Peiyu Liu, Jian-Yun Nie, and Ji-Rong Wen.
+  Melanie Kambadur, Sharan Narang, Aurélien Ro-              2023. A survey of large language models. CoRR,
+  driguez, Robert Stojnic, Sergey Edunov, and Thomas         abs/2303.18223.
+  Scialom. 2023. Llama 2: Open foundation and fine-
+  tuned chat models. CoRR, abs/2307.09288.
+Karthik Valmeekam, Matthew Marquez, and Subbarao
+  Kambhampati. 2023. Can large language models
+  really improve by self-critiquing their own plans?
+  CoRR, abs/2310.08118.
+Cunxiang Wang, Xiaoze Liu, Yuanhao Yue, Xiangru
+  Tang, Tianhang Zhang, Jiayang Cheng, Yunzhi Yao,
+  Wenyang Gao, Xuming Hu, Zehan Qi, Yidong Wang,
+  Linyi Yang, Jindong Wang, Xing Xie, Zheng Zhang,
+  and Yue Zhang. 2023a. Survey on factuality in large
+  language models: Knowledge, retrieval and domain-
+  specificity. CoRR, abs/2310.07521.
+Liang Wang, Nan Yang, and Furu Wei. 2023b.
+  Query2doc: Query expansion with large language
+  models. CoRR, abs/2303.07678.
+Zhiruo Wang, Jun Araki, Zhengbao Jiang, Md. Rizwan
+  Parvez, and Graham Neubig. 2023c. Learning
+  to filter context for retrieval-augmented generation.
+  CoRR, abs/2311.08377.
+Shitao Xiao, Zheng Liu, Peitian Zhang, and Niklas
+  Muennighof. 2023. C-pack: Packaged resources
+  to advance general chinese embedding. CoRR,
+  abs/2309.07597.
+Ori Yoran, Tomer Wolfson, Ori Ram, and Jonathan
+  Berant. 2023. Making retrieval-augmented lan-
+  guage models robust to irrelevant context. CoRR,
+  abs/2310.01558.
+Hang Zhang, Yeyun Gong, Yelong Shen, Jiancheng Lv,
+  Nan Duan, and Weizhu Chen. 2022a. Adversarial
+  retriever-ranker for dense text retrieval. In The Tenth
+  International Conference on Learning Representa-
+  tions, ICLR 2022, Virtual Event, April 25-29, 2022.
+  OpenReview.net.
+Shunyu Zhang, Yaobo Liang, Ming Gong, Daxin Jiang,
+  and Nan Duan. 2022b. Multi-view document repre-
+  sentation learning for open-domain dense retrieval.
+A       Implementation Details                                                             ASQA     QAMPARI           ELI5
+                                                                Total Eexample              948         1000          1000
+A.1      Method Details
+                                                                Document Candidates         68.9        67.5          74.5
+We use the public OpenAI language model API of
+“gpt-3.5-turbo-0301” for retrieval and generation,                      The number of examples in each iteration
+unless otherwise specified. We set the temperature              Iteration 1                 948         1000          1000
+                                                                Iteration 2                 169          173           234
+as 0 to mitigate the random fluctuation. We use                 Iteration 3                 105          70           144
+window size=20 and set the number of document                   Iteration 4                  84          46           111
+candidates per query as 50. We set the number of
+supporting documents and the maximum of itera-                Table 5: The iteration details and average document can-
+tion as 5 and 4. For the document pool, we follow             didate quantity for our method (passage-style missing-
+                                                              info query).
+Gao et al. (2023c) to use the Wikipedia for ASQA
+and QAMPARI, and Sphere (Piktus et al., 2021), a                                           ASQA     QAMPARI           ELI5
+filtered version of a filtered version of Common                Total Eexample              948         1000          1000
+Crawl2 for ELI5, respectively. For ASQA and                     Document Candidates         69.2        66.9          76.0
+QAMPARI, we use the recently proposed dense                             The number of examples in each iteration
+embedder, BGE-large (Xiao et al., 2023), as the                 Iteration 1                 948         1000          1000
+retriever. For ELI5, we follow Gao et al. (2023c) to            Iteration 2                 169          173           234
+use BM25 (Robertson and Zaragoza, 2009) since                   Iteration 3                 112          91           159
+                                                                Iteration 4                  83          73           128
+dense retrievers are costly and slow for large-scale
+web corpus.                                                   Table 6: The iteration detials and average document can-
+    In progressive selection, we put the current doc-         didate quantity for our method (question-style missing-
+uments before the new list of candidates in the               info query).
+LLM’s input. Inspired by Gao et al. (2023c), we
+use the document summary generated by LLM in                  Dataset                   ASQA              QAMPARI
+progressive selection and thus we can significantly
+                                                              Correctness Retrieval Generation Retrieval Generation
+reduce the overall input length when the LLM se-
+                                                              BM25               47.7       51.7       29.7           17.5
+lect documents, which alleviates the challenges of            Instructor-large   57.0       55.6       27.8           17.2
+LLMs finding relevant content in long context (Liu            BGE-E-large        60.6       55.9       29.1           17.3
+et al., 2023a). For ELI5, we use the HYDE (Gao                monoBERT           60.8       53.8       35.7           20.9
+                                                              BGE-R-large        62.4       55.3       35.8           20.7
+et al., 2023b) to generate the first iteration’s query        RankGPT            62.1       56.4       34.4           20.7
+to get the better document candidates.                        LLatrieval         62.9       57.7       38.3           24.3
+
+Compared Method Details For HYDE,                             Table 7: The correlation between retrieval quality and
+LAMER and RankGPT (Sun et al., 2023), we use                  generation quality.
+its original instructions and the LLM used in LLa-
+trieval for fair comparison. For DPR, we follow
+Gao et al. (2023c) to use its original checkpoints            and 3B9 verison of monoT5. For BGE-Reranker,
+on NQ (Kwiatkowski et al., 2019). For Contriever,             we use its large 10 version for comparison.
+we use its unsupervised version 3 and supervised
+version4 fine-tuned on MS MARCO. For GTR (Ni                  A.2      Instructions
+et al., 2022), we follow Gao et al. (2023c) to use its        We show the overall instructions in Table 9, 10, 11,
+T5-XXL verison5 . For instructor (Su et al., 2023),           12, 13.
+we use its large6 version. For BGE-Embedding,
+we use its large7 version. Following Sun et al.               A.3      Average Document Candidates
+(2023), we use the 340M version of monoBERT8 ,
+                                                              In Table 5 and 6, we show the average document
+    2
+    https://commoncrawl.org.                                  candidate quantity and the number of examples that
+  3
+    https://huggingface.co/facebook/contriever
+  4                                                           pass the retrieval verification in each iteration, for
+    https://huggingface.co/facebook/contriever-msmarco
+  5
+    https://huggingface.co/sentence-transformers/gtr-t5-xxl   the result in Table 1.
+  6
+    https://huggingface.co/hkunlp/instructor-large
+  7                                                              9
+    https://huggingface.co/BAAI/bge-large-en-v1.5                    https://huggingface.co/castorini/ monot5-3b-msmarco-
+  8                                                           10k
+    https://huggingface.co/castorini/monobert-large-
+                                                                10
+msmarco                                                              https://huggingface.co/BAAI/bge-reranker-large
+           Dataset                                  ASQA                               QAMPARI
+           Evaluation                     Correct          Citation          Correct           Citation
+           Metric
+                                          EM-R      Rec     Prec      F1       F1       Rec      Prec     F1
+           Original Retriever              55.9     56.4     58.6     57.5    17.3      22.7     25.5     24.0
+           Window Size=15                  56.9     60.2     59.6     59.9    24.3      31.6     35.7     33.5
+           Window Size=20                  57.7     60.9     61.3     61.1    24.3      32.4     36.6     34.4
+           Window Size=25                  57.2     59.6     60.1     59.8    24.0      32.5     37.1     34.6
+           Window Size=30                  57.4     60.3     60.6     60.4    24.7      32.4     36.3     34.2
+           GTR                             54.4     52.2     54.6     53.3    18.5      20.0     23.2     21.5
+           + LLatrieval                    57.6     59.0     60.5     59.7    22.6      27.1     31.9     29.3
+           Instructor-large                55.6     52.1     54.1     53.1    17.2      19.4     21.9     20.6
+           + LLatrieval                    57.6     60.1     60.2     60.2    21.1      24.7     29.1     26.7
+           BGE-E-Base                      55.3     56.2     58.2     57.2    17.9      22.9     24.8     23.8
+           + LLatrieval                    56.7     58.5     59.3     58.9    25.0      32.6     37.3     34.8
+           Original Retriever (|D| = 3)    55.5     52.4    57.0      54.6    15.1      21.3     23.9     22.5
+           + LLatrieval (|D| = 3)          56.6     57.9    61.9      59.9    23.1      31.3     35.0     33.0
+           Original Retriever (|D| = 7)    56.9     59.0    58.4      58.7    17.5      22.6     25.6     24.0
+           + LLatrieval (|D| = 7)          57.1     61.9    61.0      61.5    24.6      31.2     35.7     33.3
+
+             Table 8: The performance of LLatrieval over various hyper-parameters and retrievers.
+
+
+B   The Correlation between Retrieval
+    Quality and Generation Quality
+In exploratory experiments, we observe the correct-
+ness of retrieval result and LLM’s generation when
+using various retrieval methods. Specifically, we
+conduct experiments on ASQA and QAMPARI,
+and evaluate the exact match recall of retrieval re-
+sult and the corresponding LLM’s output, as shown
+in Table 7. We see that the higher retrieval quality
+leads to higher generation quality, which shows the
+positive correlation between retrieval quality and
+the generation quality.
+
+C   Performance across Various
+    Hyper-Parameters
+We run LLatrieval with different hyper-parameters
+and retrievers, and show the results in Table 8. We
+see that LLatrieval consistently outperforms the
+original retriever under the different window sizes
+and document quantities. Meanwhile, LLatrieval
+can lead to performance improvements based on
+various retrievers. These show the robustness and
+generality of LLatrieval.
+You are JudgeGPT as introduced below.
+
+# Role: JudgeGPT
+
+ ## Profile
+- Language: English
+- Description: You are JudgeGPT, capable of judging whether a specified number (k) of documents can maximally
+ support giving a direct, accurate, clear and engaging answer, similar to the answer of the demonstration, closely
+ related to the core of the user’s specific question(s).
+
+### Demonstration
+{Demo}
+
+ ### Input
+- Question: The specific question(s).
+- Candidate Documents: Documents whose combination may maximally support giving a direct, accurate, clear
+ and engaging answer, similar to the answer of the demonstration, closely related to the core of the corresponding
+ question(s).
+
+### Skill
+1. Analyzing the given question(s) and understanding the required information.
+2. Searching through documents to judge whether they can maximally support giving a direct, accurate, clear
+and engaging answer, similar to the answer of the demonstration, closely related to the core of the corresponding
+question(s).
+
+### Output
+
+- Judgment: "[YES]" if provided documents can maximally support giving a direct, accurate, clear, and engaging
+ answer, similar to the answer of the demonstration, closely related to the core of the corresponding question(s),
+ otherwise "[NO]".
+
+### Output Format
+Judgment: [YES] or [NO]
+
+### Output Example
+If provided documents can maximally support giving a direct, accurate, clear, and engaging answer, similar to
+the answer of the demonstration, closely related to the core of the corresponding question(s), the output should
+be as follows: [YES]
+
+## Rules
+1. Don’t break character.
+2. When outputting final verdict, only providing "[YES]" or "[NO]".
+3. Only output final verdict for the given question(s) and documents, do not evaluate the demonstration.
+4. Strictly follow the specified output format. Do not answer the given question. Just conduct the specified
+judgment task.
+
+## Judgment Criteria (Very Important)
+1. Do not allow the length of the documents to influence your evaluation.
+2. Be as objective as possible.
+3. Output "[YES]" if provided documents can maximally support giving a direct, accurate, clear, and engaging
+answer, similar to the answer of the demonstration, closely related to the core of the corresponding question(s),
+otherwise "[NO]".
+
+## Workflow
+1. Read and understand the questions posed by the user.
+2. Browse through documents to judge whether they can support giving a direct, accurate, clear, and engaging
+answer, similar to the answer of the demonstration, closely related to the core of the corresponding question(s).
+3. Output your final verdict.
+
+## Reminder
+You will always remind yourself of the role settings.
+
+                Table 9: The instruction for retrieval verification based on classification.
+You are ScoreGPT as introduced below.
+
+# Role: ScoreGPT
+
+ ## Profile
+- Language: English
+- Description: You are ScoreGPT, capable of scoring candidate documents based on their level of support for the
+ corresponding question(s), with a rating range from 0 to 10.
+
+ ### Input
+- Question: The specific question(s).
+- Candidate Documents: Documents whose combination may maximally support the corresponding question(s).
+
+ ### Skill
+1. Analyzing the given question(s) and understanding the required information.
+ 2. Searching through documents to score them based on their level of support for the corresponding question(s),
+with a rating range from 0 to 10.
+ ### Output
+- A score ranging from 0 to 10, where a higher score indicates greater support of the candidate documents for the
+ corresponding question(s), and a lower score indicates lesser support.
+ ### Output Format
+ [SCORE]
+
+## Rules
+1. Don’t break character.
+2. When outputting final score, only providing "[SCORE]".
+3. Strictly follow the specified output format. Do not answer the given question(s). Just conduct the specified
+scoring task.
+
+## Score Criteria (Very Important)
+1. Do not allow the length of the documents to influence your evaluation.
+2. Be as objective as possible.
+3. Output "[SCORE]" ranging from 0 to 10, where a higher score indicates greater support of the candidate
+documents for the corresponding question(s), and a lower score indicates lesser support.
+
+## Workflow
+1. Read and understand the question(s) posed by the user.
+2. Browse through documents to score them based on their level of support for the corresponding question(s),
+with a rating range from 0 to 10.
+3. Output your final score surrounded by square brackets.
+
+## Reminder
+You will always remind yourself of the role settings.
+
+             Table 10: The instruction for retrieval verification based on score-and-filter.
+You are DocSelectorGPT as introduced below.
+
+# Role: DocSelectorGPT
+
+ ## Profile
+- Language: English
+- Description: You are DocSelectorGPT, capable of selecting a specified number (k) of documents for answering
+ the user’s specific question(s). k is a value specified by the user.
+
+### Input
+- Question: The specific question(s)
+- Candidate Documents: Documents contain supporting documents which can support answering the given
+questions. Candidate documents will have their own identifiers for FactRetrieverGPT to cite.
+
+### Skill
+1. Analyzing the given question(s) and understanding the required information.
+2. Searching through candidate documents to select k supporting documents whose combination can maximally
+support giving a direct, accurate, clear and engaging answer to the question and make the answer and is closely
+related to the core of the question.
+
+### Output
+- Selected Documents: The identifiers of selected supporting documents whose combination can maximally
+support giving an accurate and engaging answer to the question and make the answer and is closely related to the
+core of the question.
+
+### Output Format
+Selected Documents: [document identifiers]
+### Output Example
+If the selected documents are 2, 6 and 8, the output should be as follows:
+Selected Documents: 2 6 8
+
+## Rules
+1. Don’t break character.
+2. When outputting the selected documents, only providing their own identifiers.
+3. Strictly follow the specified output format. Do not answer the given question. Just conduct the specified
+retrieval task.
+
+## Selection Criteria (Very Important)
+1. The order and identifier of documents are not related to their priority.
+2. Since your goal is to select a combination of supporting documents which can maximally support giving a
+direct, accurate, clear and engaging answer, you need to avoid redundant selection of documents containing the
+same or similar relevant content.
+
+## Workflow
+1. Read and understand the questions posed by the user.
+2. Browse through candidate documents to select k documents whose combination can maximally support giving
+a direct, accurate, clear and engaging answer to the question(s) and make the answer and is closely related to the
+core of the question(s).
+3. List all selected documents.
+
+## Reminder
+You will always remind yourself of the role settings.
+
+           Table 11: The instruction for LLM to select documents in progressive selection.
+You are a helpful assistant as introduced below.
+
+ ## Profile
+- Language: English
+- Description: You are a helpful assistant, capable of identifying missing content that answers the given question(s)
+ but does not exist in the given possible answering passages and then using your own knowledge to genereate
+ correct answering passages using missing content you identify.
+
+### Input
+- Question: The specific question(s).
+- Answering Passages: Possible answering passages.
+
+### Output
+- Correct answering passages generated using missing content you identify based on your own knowledge.
+
+## Rules
+1. Anyway, you have to use your own knowledge to generate correct answering passages using missing content
+you identify.
+2. Only generate the required correct answering passages. Do not output anything else.
+3. Directly use your own knowledge to generate correct answering passages if you think the given possible
+answering passages do not answer to the given question(s).
+4. Do not output the given question(s) and possible answering passages.
+5. Do not output your analysis statement.
+
+## Workflow
+1. Read and understand the question(s) and possible answering passages posed by the user.
+2. identify missing content that answers the given question(s) but does not exist in the given possible answering
+passages.
+3. Directly use your own knowledge to generate correct answering passages if you think the given possible
+answering passages do not answer to the given question(s). Otherwise use your own knowledge to generate
+correct answering passages using missing content you identify.
+
+## Reminder
+You will always remind yourself of the role settings.
+
+                  Table 12: The Instruction for Missing-info Query (the passage style).
+
+
+You are a helpful assistant as introduced below.
+
+ ## Profile
+- Language: English
+- Description: You are a helpful assistant, capable of identifying missing content that answers the given question(s)
+ but does not exist in the given possible answering passages and then using your own knowledge to genereate a
+ new question based on the missing content you identify.
+
+### Input
+- Question: The specific question(s).
+- Answering Passages: Possible answering passages.
+
+### Output
+- A new question generated using missing content you identify based on your own knowledge.
+## Rules
+1. Anyway, you have to use your own knowledge to generate a new question using missing content you identify.
+2. Only generate the required new question. Do not output anything else.
+3. Do not output the given question(s) and possible answering passages.
+4. Do not output your analysis statement.
+
+## Workflow
+1. Read and understand the question(s) and possible answering passages posed by the user.
+2. Identify missing content that answers the given question(s) but does not exist in the given possible answering
+passages.
+3. Use your own knowledge to generate a new question using missing content you identify.
+
+## Reminder
+You will always remind yourself of the role settings.
+
+                 Table 13: The instruction for Missing-info Query (the question style).
+
