@@ -1,10 +1,12 @@
-"""Pre-flight: verify Docker daemon is available + base image pullable.
+"""Pre-flight: verify Docker daemon + base image pullable + portfolio compose config.
 
-Per plan §21 M0 Day 1. Doesn't build the portfolio Dockerfile (that's M0 Day 16);
-just confirms `docker` CLI works and a small base image can be pulled.
+Per plan §21 M0 Day 1 (Steps 1-4) + Day 16 extension (Step 5 added Round 22):
+verifies Docker is operational + the portfolio's Dockerfile + compose.yaml
+parse via `docker compose config`. Does NOT build the portfolio image (that
+is opt-in via `docker compose build`; ~4GB image with torch/transformers).
 
 Run via: `make verify-docker` or `python scripts/verify_docker.py`.
-Exits 0 on green; non-zero on Docker unreachable or base image pull failure.
+Exits 0 on green; non-zero on Docker unreachable or compose config invalid.
 """
 
 from __future__ import annotations
@@ -12,6 +14,7 @@ from __future__ import annotations
 import shutil
 import subprocess
 import sys
+from pathlib import Path
 
 
 def run(cmd: list[str], timeout: int = 60) -> tuple[int, str]:
@@ -55,9 +58,30 @@ def main() -> int:
         return 1
     print("✓ docker run succeeded (alpine:3.20 echoed 'ok')")
 
+    # Step 5 (Day 16 extension): portfolio Dockerfile + compose.yaml present + parse
+    repo_root = Path(__file__).resolve().parent.parent
+    dockerfile = repo_root / "Dockerfile"
+    compose_yaml = repo_root / "compose.yaml"
+    if not dockerfile.exists():
+        print(f"⚠ Dockerfile not yet present at {dockerfile} — Day 16 deliverable")
+    else:
+        print("✓ Dockerfile present (T2 reproducibility tier)")
+    if not compose_yaml.exists():
+        print(f"⚠ compose.yaml not yet present at {compose_yaml} — Day 16 deliverable")
+    else:
+        print("✓ compose.yaml present")
+        code, out = run(
+            ["docker", "compose", "-f", str(compose_yaml), "config", "--quiet"],
+            timeout=10,
+        )
+        if code != 0:
+            print(f"✗ docker compose config failed: {out[:200]}")
+            return 1
+        print("✓ docker compose config parses cleanly")
+
     print()
     print("OK: Docker pre-flight green. T2 reproducibility tier feasible.")
-    print("Next M0 Day 16: portfolio Dockerfile + compose.yaml (per plan §21).")
+    print("Next: `docker compose build` (opt-in; ~4GB image with torch).")
     return 0
 
 
