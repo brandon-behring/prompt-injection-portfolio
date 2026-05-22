@@ -55,3 +55,27 @@ These are pre-known canonical references; `/research-gather` populates bibkeys w
 - jung2026postmortem: CodeIntegrity "98% Accurate and Still Broken" (Jan 2026 blog) — the most-cited industry self-critique of held-out-split accuracy
 - bhagwatkar2025firewalls: "Are Firewalls All You Need?" (NeurIPS 2025 arXiv 2510.05244) — two-firewall defense saturating AgentDojo / InjecAgent / ASB / τ-Bench
 - hackett2025bypassing: "Bypassing Prompt Injection and Jailbreak Detection in LLM Guardrails" (arXiv 2504.11168, April 2025) — character-injection 100% ASR results
+
+### Sprint 2 expansion landmarks (added from E0 local-repo scan + compass re-extraction)
+
+- qualifire2025sentinel_modelcard: Qualifire/prompt-injection-sentinel HF model card (ModernBERT-large 395M; first-party Sentinel deployment)
+- qualifire2025sentinel_v2: qualifire/prompt-injection-jailbreak-sentinel-v2 HF model card (Qwen3-0.6B decoder variant; F1 0.964 self-reported) — encoder-vs-decoder latency/F1 trade-off
+- protectai2024_small: ProtectAI deberta-v3-small-prompt-injection-v2 HF model card (70M latency variant; pairs with v2)
+- protectai2024_llmguard: protectai/llm-guard GitHub (production deployment toolkit wrapping ProtectAI detectors)
+- lakera2024_guard_product: Lakera Guard product page (pre-Cisco acquisition URL; pre/post-acquisition comparison)
+- lakera2025_year_of_agent: Lakera "Year of the Agent: Q4 2025 attacks recap" blog post — production incident roll-up
+- microsoft2024_promptshields_ga: Azure AI Content Safety Prompt Shields GA announcement (techcommunity post)
+- anthropic2025_pi_defenses: Anthropic "Mitigating the risk of prompt injections in browser use" (research blog) — first-party browser-PI defense
+- anthropic2024_mitigate_jailbreaks: Claude API docs "Mitigate jailbreaks and prompt injections" — Anthropic developer docs / defensive-recipe documentation
+- fmops2023_distilbert: fmops/distilbert-prompt-injection HF model card — legacy DistilBERT baseline frequently cited as ProtectAI predecessor; latency-axis comparison
+- testsavantai2024: testsavantai/prompt-injection-defender-base-v0 — community open detector (underrepresented HF model class)
+- lebreton2025neobert: Le Breton et al. NeoBERT 250M encoder backbone (arXiv 2502.19587) — alternative to ModernBERT for injection-detector backbone; CodeIntegrity tested it
+- rahman2024xlmroberta: Rahman et al. XLM-RoBERTa as multilingual injection detector (arXiv 2410.21337) — 99.13% accuracy on deepset test split (explicit IID memorization example; thesis-relevant for OOD-wall)
+- hlyn2025_dataset: hlyn-labs/prompt-injection-judge-deberta-dataset HF dataset card — 12-source merged training corpus companion to hlyn2025judgedeberta
+- hiddenlayer2025_cluster: HiddenLayer commercial vendor — agentic-security focus 2025-2026
+- robustintelligence2025_cluster: Robust Intelligence commercial agentic-security (Cisco-acquired)
+- calypsoai2025_cluster: CalypsoAI commercial agentic-security platform
+- vijildome2025_cluster: Vijil Dome open-source agentic-guardrail library
+- guardrailsai2025_cluster: Guardrails AI open-source guardrail framework
+- safeprompt2025_cluster: SafePrompt commercial agentic-security (verify URL at gather)
+- hooker2021hardware: Hooker "Hardware Lottery" (arXiv 2009.06489) — matched-compute critique; cited in submission ADR-018; relevant for cost-axis claims about detector encoders

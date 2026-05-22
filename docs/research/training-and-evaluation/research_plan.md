@@ -61,6 +61,26 @@ How prompt-injection detectors are actually trained and evaluated: training data
 - nasr2025attackersecond: "Attacker moves second" (arXiv 2510.09023) — static-defense critique
 - howNotToDetect2025: "How Not to Detect Prompt Injections with an LLM" (arXiv 2507.05630) — DataSentinel DataFlip bypass
 
+### Sprint 2 expansion landmarks (added from E0 local-repo scan)
+
+Key OOD-methodology + contamination-detection literature surfaced from research_ood_methodology + research_eval_methodology + research_eval_drift siblings:
+
+- gulrajani2021domainbed: Gulrajani & Lopez-Paz "In Search of Lost Domain Generalization (DomainBed)" (arXiv 2007.01434) — LODO methodology foundational paper; **load-bearing for OOD-wall thesis** (ADR-016 + ADR-075 framing implicitly depended on this)
+- cui2025orbench: Cui et al. "OR-Bench: An Over-Refusal Benchmark for Large Language Models" (arXiv 2405.20947 ICML 2025) — pairs with NotInject for over-defense measurement
+- kopf2023oasst1: Köpf et al. "OpenAssistant Conversations (OASST1)" (arXiv 2304.07327 NeurIPS 2023 D&B) — benign-pool reference; ADR-016 named explicitly
+- xu2024contamination: Xu et al. "Benchmark Data Contamination of Large Language Models: A Survey" (arXiv 2406.04244) — load-bearing for OOD-wall narrative
+- deng2024contamination: Deng et al. "Investigating Data Contamination in Modern Benchmarks for Large Language Models" (arXiv 2311.09783 NAACL 2024)
+- yang2024rephrased: Yang et al. "Rethinking Benchmark and Contamination for Language Models with Rephrased Samples" (arXiv 2311.04850) — rephrasing-based contamination
+- white2024livebench: White et al. "LiveBench: A Challenging, Contamination-Limited LLM Benchmark" (arXiv 2406.19314) — contamination-limited benchmark methodology
+- oren2023provetestcontam: Oren et al. "Proving Test Set Contamination in Black Box Language Models" (arXiv 2310.17623 ICLR 2024)
+- shi2023minkprob: Shi et al. "Detecting Pretraining Data from Large Language Models (Min-K% Prob)" (arXiv 2310.16789 ICLR 2024)
+- sainz2023nlpeval: Sainz et al. "NLP Evaluation in trouble: On the Need to Measure LLM Data Contamination" (arXiv 2310.18018 EMNLP Findings 2023) — primary contamination-disclosure argument; cited in submission ADR-018
+- zawalski2025codec: Zawalski et al. "Detecting Data Contamination in LLMs via In-Context Learning (CoDeC)" (arXiv 2510.27055) — recent (2025) contamination-detection technique
+- m2026sixfrontier: M et al. "Are Large Language Models Truly Smarter Than Humans?" (arXiv 2603.16197) — 2026 paper on six-frontier contamination + surface-pattern reliance
+- neuralchemy2026dataset: neuralchemy/Prompt-injection-dataset HF dataset (22K samples; zero-leakage group-aware splits) — newer training corpus
+- protectai2024_validation_dataset: protectai/prompt-injection-validation HF dataset (3,227 rows; 7-split eval suite: InjecGuard valid + spikee + bipia_code + bipia_text + not_inject + wildguard + deepset) — multi-source eval suite
+- harelix2024_mixed: Harelix/Prompt-Injection-Mixed-Techniques-2024 HF dataset (Apache-2.0, in ProtectAI v2 training group) — explicit composition input
+
 ## Cross-references to submission (inherited methodology)
 
 - Submission ADR-016: LODO methodology (cross-source disjoint splits) — portfolio inherits via ADR-016 in this repo

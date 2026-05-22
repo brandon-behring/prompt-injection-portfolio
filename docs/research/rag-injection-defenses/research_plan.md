@@ -1,0 +1,77 @@
+# Research Plan: RAG-injection defenses — Spotlighting variants + retrieval-side provenance + RAG-specific evaluation
+
+Topic-E research plan for the RAG-injection-defenses dossier slot (Sprint 2). Focuses the dossier on the retrieval-boundary layer of indirect injection: Spotlighting's three published variants applied at the RAG document boundary, emerging retrieval-side provenance + signed-document architectures, RAG-specific evaluation harnesses (BIPIA per-subset, Azure Document Shield, LLMail-Inject as RAG-email adapter), and production RAG-injection incidents analyzed at the RAG-pipeline layer (EchoLeak, Slack AI, Comet, Gemini memory). Primary audience: future LLM agents picking up the prompt-injection-portfolio project; secondarily the user authoring the book. Target ~15-20 primary-source entries across 4 sub-areas; mix of cross-classified entries from direct-vs-indirect/B and detector-landscape/A plus net-new retrieval-provenance and incident artifacts. Per ADR-007 the dossier is exhaustive-sized at the portfolio level; this Topic E adds the RAG layer without duplicating direct-vs-indirect/B2's general-purpose architectural-defense entries.
+
+## Sub-areas
+
+- E1. Spotlighting 3-variants deep-dive (RAG retrieval-boundary view)
+  - Source types: arXiv, conference proceedings (CAMLIS), vendor docs (Microsoft Azure / Build keynote materials), Microsoft AI Red Team retrospectives, eval-toolkit dataclasses
+  - Notes: Hines et al. Microsoft arXiv 2403.14720 (CAMLIS 2024); GA at Microsoft Build 2025. Per-variant deep dive: *delimiting* (`[UNTRUSTED_START] ... [UNTRUSTED_END]` tag-wrap; minimal overhead; bypassable by tag-mimicry per AgentDojo `~0.14 vs 0.17 baseline ASR`), *datamarking* (whitespace → marker token `^`; near-zero task-degradation per Hines abstract), *encoding* (base-64 prepend `ENCODED:`; most effective in original paper but requires GPT-4-class decoder; primary GA variant in Azure Document Shield Build 2025). Headline claim per Hines abstract: GPT-3.5/4 ASR > 50% → < 2% — frame as LLM-robustness claim (not detection-AUPRC claim; Lane 3 distinction). Trade-off table dimensions: signal-preservation × truncation-cost × token-overhead × decode-capacity-required × bypass-resistance. Cross-link to direct-vs-indirect/B2 for architectural-defense framing; this dossier focuses specifically on the *retrieval-boundary* application (vs general agentic deployment).
+
+- E2. Retrieval-side provenance + signed-document + content-authentication architectures
+  - Source types: arXiv preprints, vendor whitepapers (cloud + enterprise-search vendors), W3C / IETF standards drafts, security-vendor blog posts
+  - Notes: Newer, less-mature area; expect mix of academic + vendor with limited peer-reviewed work. Search targets: "verifiable retrieval LLM", "signed RAG sources", "document provenance LLM", "mTLS content authentication AI", "content-credentials C2PA AI agents", "trust signals retrieval boundary". Conceptual frame: detectors operate on text alone; retrieval-side provenance gives the detection / structural-defense layer a *trustworthy source signal* (e.g., signed-by-organization metadata, retrieval-time content authentication, document-class trust tier). Compass §10 Caveats explicitly flags this as the kind of advance that "would let detectors operate on a trustworthy source signal rather than text alone, potentially closing the indirect gap." Anchor in dual-LLM / Willison "original sin" framing (concatenation discards source attribution). Coverage of source-attribution-preserving prompt templates (OpenAI `tool`/`input` role; Anthropic `tool_result`) belongs here as the *closest production-deployed* approximation. Expected dossier output: 3-6 entries; some will be vendor architecture posts rather than peer-reviewed papers, flag as such.
+
+- E3. RAG-specific evaluation harnesses (BIPIA per-subset + Azure Document Shield + LLMail-Inject adapter)
+  - Source types: arXiv conference proceedings (KDD, IEEE SaTML), benchmark GitHub repos, vendor benchmark blog posts
+  - Notes: BIPIA (Yi et al. Microsoft/USTC arXiv 2312.14197 KDD 2025) — decompose into its 5 subsets: *Email QA*, *Web QA*, *Table QA*, *Summarization*, *Code QA* (5 application scenarios × 6 attack subtypes × 50 attacker goals = 1500 base attacks; the seminal indirect-injection benchmark; 25 LLMs evaluated, all vulnerable; GPT-4 *more* vulnerable than smaller models per counterintuitive scaling result). Specifically isolate the RAG-injection paths: BIPIA-Email and BIPIA-Web are the closest analogs to RAG-email-assistant and RAG-web-retrieval pipelines. Azure Document Shield benchmark (Microsoft Azure AI Content Safety product docs; `userPromptAnalysis` + `documentsAnalysis` API split per detector-landscape/A4 commercial-detector survey). LLMail-Inject (Abdelnabi et al. Microsoft IEEE SaTML 2025 arXiv 2506.09956) — frame as RAG-email-assistant *adaptive* benchmark (208,095 attack submissions from 839 participants Dec 2024 - Feb 2025; the first end-to-end adaptive RAG-injection challenge in a realistic email pipeline); LLMail's contribution is showing that even SOTA defenses including TaskTracker + Spotlighting are routinely bypassed by adaptive attackers. Cross-link to direct-vs-indirect/B4 for general agentic-benchmark coverage; this dossier captures the RAG-specific eval-harness subset.
+
+- E4. Production RAG-injection incidents (RAG-pipeline-layer analysis)
+  - Source types: CVE databases, vendor security advisories, researcher blogs (embracethered.com / Rehberger, Aim Labs, PromptArmor, Brave, Koi), arXiv papers documenting incident-class
+  - Notes: Per ADR-041 + ETHICS.md §1, document incidents at vulnerability-class + impact + remediation level only; no exploit reproduction. Each entry analyzes the *RAG-specific layer* of the chain (not the broader agent harness, which is direct-vs-indirect/B3 + agentic-security-architecture/D's purview). Anchors: *EchoLeak* (CVE-2025-32711, CVSS 9.3, Aim Labs June 2025) — first publicly documented zero-click XPIA in production Microsoft 365 Copilot; RAG-specific layer = email-corpus RAG retrieval + bypass of Microsoft XPIA classifier + Markdown-image exfil through Teams-domain CSP allowlist. *Slack AI cross-channel exfil* (PromptArmor August 2024) — RAG-specific layer = public-channel message indexed into RAG → retrieved during user query → Markdown link exfil. *Comet browser indirect injection* (Brave August 2025) — RAG-style ingestion via cross-tab webpage content; banking/email credential exfil. *Gemini long-term memory poisoning* (Rehberger Sept 2024) — RAG-specific layer = uploaded document → memory write → cross-session exfil via stored vector. *ChatGPT Markdown image exfil* (April 2023 Rehberger, Samoilenko) — pre-RAG-fix-era; included for historical RAG-relevance of the exfil vector. *Bing Chat / Copilot manipulation via webpages* (2023, Greshake et al.) — original RAG-retrieval-from-web demonstration. Each entry must explicitly call out the *retrieval-boundary mechanism* (where the malicious content entered the RAG pipeline) and the *defense-layer-bypassed* (which Spotlighting/detector/output-filter component the attack defeated).
+
+## Out-of-scope
+
+- Classifier-only direct-injection detectors — covered in `detector-landscape/A` (Spotlighting and Document Shield are referenced here as the RAG-retrieval-boundary applications, not the general detector survey)
+- Generic threat-model taxonomies (Greshake 4-flavor, OWASP LLM01:2025, MITRE ATLAS) — covered in `direct-vs-indirect/B1`
+- Training-data sourcing methodology — covered in `training-and-evaluation/C1` (BIPIA's role as training data is C1's; BIPIA's role as a RAG-injection *evaluation* harness is E3's)
+- Agent-harness architectures (CaMeL, IsolateGPT, dual-LLM splits as general agent defenses, capability-based isolation, tool-call constraints, LlamaFirewall, AgentArmor) — covered in `agentic-security-architecture/D` (Sprint-2 sibling). **Cross-link convention**: Spotlighting *at the agent harness* is OUT here; Spotlighting *at the RAG retrieval boundary* is IN. This split is the paired pipeline ↔ direct-vs-indirect callout per Sprint 2 convention.
+- General-purpose architectural defenses on the LLM side (StruQ, SecAlign, Meta SecAlign, Jatmo, Instruction Hierarchy) — covered in `direct-vs-indirect/B2`; referenced here only when they bear on the *retrieval-boundary* (e.g., Meta SecAlign's `input` role is a retrieval-boundary primitive and gets a cross-link, not a primary entry)
+- Operational red-team payloads or exploit reproduction — per ADR-041 + ETHICS.md §1; incident entries record vector + impact + remediation only
+- Pre-Greshake-2023 retrieval-augmentation literature (IR / classical RAG without injection-threat awareness)
+- Multimodal RAG injection (image-document retrieval; PDF-OCR injection) — open research thread, no canonical defense literature as of mid-2026; flagged in dossier-level open-questions
+
+## Claim family taxonomy
+
+- `spotlighting_variants` — per-variant (delimiting / datamarking / encoding) mechanism, signal-preservation properties, token-overhead, decode-capacity-required, bypass-resistance; the original Hines abstract claim ("ASR > 50% → < 2% on GPT-3.5/4"); the Microsoft Build 2025 GA deployment story; AgentDojo per-suite ASR-delta numbers when Spotlighting is the operative defense
+- `retrieval_provenance` — verifiable retrieval, signed RAG sources, content-credentials at the retrieval boundary, document-class trust tier; the *new* claim space (less-mature than spotlighting); academic + vendor mixture expected
+- `content_authentication_rag` — mTLS-style content authentication for AI retrieval, C2PA / content-credentials applied to retrieved documents, retrieval-time authentication; expected to overlap heavily with `retrieval_provenance` but distinguished by the *cryptographic* (vs metadata-only) trust signal
+- `rag_evaluation_harness` — BIPIA per-subset (Email QA / Web QA / Table QA / Summarization / Code QA), Azure Document Shield benchmark, LLMail-Inject as RAG-email adaptive eval, ASR / utility / APR per harness; the methodology-validity caveats from `training-and-evaluation/C4` apply but are not re-derived here
+- `production_rag_incidents` — EchoLeak + Slack AI + Comet + Gemini-memory + ChatGPT-Markdown-exfil + Bing-Chat-webpage; each entry includes retrieval-boundary mechanism + defense-layer-bypassed + remediation; ETHICS-compliant impact-level documentation
+
+## Known landmark papers
+
+Cross-classified from sibling topics (`/research-gather` should reuse the bibkeys, not re-discover):
+
+- `rag_hines2024spotlighting`: Hines et al. Microsoft Spotlighting paper (arXiv 2403.14720 CAMLIS 2024) — cross-classified from `direct-vs-indirect/B2`; canonical 3-variant deep-dive source; GA Microsoft Build 2025 deployment retrospective
+- `rag_yi2025bipia`: Yi et al. BIPIA Microsoft/USTC (arXiv 2312.14197 KDD 2025) — cross-classified from `direct-vs-indirect/B4`; first indirect-injection benchmark with explicit RAG-relevant subsets (Email QA / Web QA / Table QA / Summarization / Code QA)
+- `rag_abdelnabi2025llmailinject`: LLMail-Inject competition (Microsoft IEEE SaTML 2025 arXiv 2506.09956) — cross-classified; 208K adaptive attacks in a realistic RAG-email-assistant pipeline; defeats TaskTracker + Spotlighting
+- `rag_aimlabs2025echoleak`: EchoLeak (CVE-2025-32711, CVSS 9.3, Aim Labs June 2025) — cross-classified from `direct-vs-indirect/B3`; first publicly documented zero-click XPIA in production RAG (Microsoft 365 Copilot)
+- `rag_promptarmor2024slackai`: PromptArmor Slack AI cross-channel exfiltration (Aug 2024) — cross-classified; canonical "RAG indexed public-channel content → cross-channel exfil" pattern
+- `rag_microsoft_azure_doc_shield`: Microsoft Azure AI Content Safety Document Shield — cross-classified from `detector-landscape/A4`; the most architecturally explicit commercial RAG-injection defense; `userPromptAnalysis` + `documentsAnalysis` API + Spotlighting integration
+
+Net-new candidates to discover via `/research-gather` (no pre-known bibkey; expected ~5-8 net-new entries):
+
+- Retrieval-provenance + verifiable-retrieval papers — TBD via search "verifiable retrieval", "signed RAG", "document provenance LLM" (likely arXiv 2025-26; possible W3C / IETF drafts)
+- mTLS content authentication for AI — TBD via search "mTLS LLM", "content authentication retrieval", "C2PA AI agents" (likely vendor whitepapers + standards drafts)
+- Brave Comet browser indirect injection advisory (August 2025) — TBD via search "Brave Comet indirect injection", "Perplexity browser prompt injection"
+- Rehberger Gemini long-term memory poisoning blog post (September 2024) — TBD via embracethered.com archive search
+- ChatGPT Markdown image exfiltration original disclosure (April 2023, Rehberger / Samoilenko) — TBD via embracethered.com + researcher blog archive
+- Microsoft AI Red Team Spotlighting deployment retrospectives — TBD via Microsoft Security blog + Build 2025 session recordings
+- Bing Chat / Copilot webpage manipulation original disclosure (2023, Greshake et al. companion advisory) — TBD; may already be covered in `greshake2023indirect` from `direct-vs-indirect/B1`, check for cross-classify before net-new
+
+## Cross-link conventions (scope-boundary callouts)
+
+Per Sprint 2 convention, scope-boundary callouts must reference paired pipeline ↔ direct-vs-indirect siblings:
+
+- `rag-injection-defenses/E ↔ direct-vs-indirect/B`: Spotlighting variants live in B2 as general architectural defenses; in E1 as RAG-retrieval-boundary applications. BIPIA + LLMail-Inject live in B4 as indirect-injection benchmarks; in E3 as RAG-specific evaluation harnesses. Production incidents live in B3 as XPIA-class disclosures; in E4 as RAG-pipeline-layer analyses.
+- `rag-injection-defenses/E ↔ agentic-security-architecture/D` (Sprint-2 sibling): D covers Spotlighting *at the agent harness*; E covers Spotlighting *at the RAG retrieval boundary*. D covers capability-based isolation + dual-LLM splits + LlamaFirewall as general agent defenses; E references them only when they bear on retrieval-boundary trust signals (e.g., Meta SecAlign's `input` role).
+- `rag-injection-defenses/E ↔ detector-landscape/A4`: Azure Document Shield is a commercial detector entry in A4; in E1+E3 it is the most architecturally explicit RAG-retrieval-boundary commercial defense + benchmark target.
+- `rag-injection-defenses/E ↔ training-and-evaluation/C4`: methodology-validity caveats on RAG benchmarks (BIPIA's training-data leakage, LLMail-Inject's adaptive-attacker bias) are derived in C4; E3 cites C4 without re-derivation.
+
+## Estimate
+
+- ~15-20 primary-source entries total across E1-E4
+- ~6 cross-classified entries (Spotlighting + BIPIA + LLMail-Inject + EchoLeak + Slack AI + Azure Doc Shield)
+- ~5-8 net-new entries (retrieval-provenance + mTLS-content-auth + Comet advisory + Gemini-memory + ChatGPT-Markdown-exfil + Microsoft Red Team retrospectives)
+- ~3-5 vendor-architecture / standards-draft entries flagged as non-peer-reviewed (expected in `retrieval_provenance` + `content_authentication_rag` families given the area's newness)

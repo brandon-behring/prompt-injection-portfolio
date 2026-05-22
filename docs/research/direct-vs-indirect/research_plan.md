@@ -55,3 +55,17 @@ The conceptual + practical split between direct (user-supplied) and indirect / X
 - hackett2025bypassing: "Bypassing Prompt Injection and Jailbreak Detection" (arXiv 2504.11168) — character-injection 100% ASR
 - aimlabs2025echoleak: EchoLeak CVE-2025-32711 (Aim Labs June 2025) — first zero-click XPIA in production Copilot
 - rehberger2025monthofaibugs: Johann Rehberger "Month of AI Bugs" (Aug 2025; embracethered.com) — daily disclosures
+
+### Sprint 2 expansion landmarks (added from E0 local-repo scan)
+
+These were surprising absences from Sprint 1's direct-vs-indirect coverage — foundational direct-injection papers + standards:
+
+- perez2022ignoreprev: Perez & Ribeiro "Ignore Previous Prompt: Attack Techniques For Language Models" (arXiv 2211.09527) — foundational direct-injection paper
+- liu2024formalizing: Liu et al. "Formalizing and Benchmarking Prompt Injection Attacks and Defenses" (arXiv 2310.12815) — USENIX Security 2024 formalization paper; cited across 3 sibling repos but missing here
+- liu2023llmapps: Liu et al. "Prompt Injection attack against LLM-integrated Applications" (arXiv 2306.05499) — early LLM-application threat-model paper
+- shi2024llmjudge: Shi et al. "Optimization-based Prompt Injection Attack to LLM-as-a-Judge" (arXiv 2403.17710 CCS 2024) — attack on LLM-as-judge; relevant for evaluation-pipeline corruption
+- pasquini2024neuralexec: Pasquini et al. "Neural Exec: Learning (and Learning from) Execution Triggers for Prompt Injection Attacks" (arXiv 2403.03792) — learned execution-trigger attacks
+- evertz2024whispers: Evertz et al. "Whispers in the Machine: Confidentiality in Agentic Systems" (arXiv 2402.06922, DIMVA 2026) — agentic confidentiality leakage; cross-classify candidate for D
+- wei2023jailbroken: Wei et al. "Jailbroken: How Does LLM Safety Training Fail?" (arXiv 2307.02483 NeurIPS 2023) — jailbreak vs prompt-injection scope distinction
+- rossi2024survey: Rossi et al. "An Early Categorization of Prompt Injection Attacks on Large Language Models" (arXiv 2402.00898) — survey paper; useful for taxonomy citation
+- mitreatlas2024: MITRE ATLAS — Adversarial Threat Landscape for AI Systems (atlas.mitre.org) — standard threat-taxonomy reference; complements OWASP LLM01

@@ -12,6 +12,18 @@ terms inherited from the submission predecessor
 
 ---
 
+## activation_probe_methodology
+
+Dossier `claim_family` (per ADR-007). The hidden-state signal class for
+prompt-injection detection: TaskTracker linear-probe recipe on activation
+deltas (pre- vs post-untrusted-data injection), InstructDetector
+activation-based detector, AttentionTracker / hung2025 family
+attention-head-level signals, encoder-vs-decoder transfer questions,
+methodology critiques (benign-text-distribution sharing in TaskTracker
+eval). Distinct from `detector_architectures` which covers activation-probe
+detectors as one architecture among many; this family is the activation-delta
+signal class methodology specifically. Lane 5 dossier substrate.
+
 ## ADR-NNN
 
 **A**rchitecture **D**ecision **R**ecord. Michael Nygard format at
@@ -24,6 +36,42 @@ memory); ~35-37 ADRs anticipated at M7 close.
 Lane 1b's 12-technique × N-detector grid of character-injection bypass
 results. Per Round 20 + Round 21: all 12 character_injection dataclasses
 ship in `eval_toolkit.adversarial.ALL_TECHNIQUES` v0.47.0+.
+
+## agent_capability_isolation
+
+Dossier `claim_family` (per ADR-007). Capability-based + dual-LLM-pattern
+isolation specifically: CaMeL formalism (Debenedetti et al. DeepMind arXiv
+2503.18813) — privileged-LLM/quarantined-LLM split with custom Python
+interpreter + capability tags + provenance metadata; IsolateGPT / SecGPT
+(Wu et al. NDSS 2025) — per-plugin sandboxing; Willison dual-LLM articulation;
+information-flow control descended from SLam/Jif/HiStar lineage. Distinct
+from broader `architectural_defense_methods` (Spotlighting / StruQ / SecAlign
+live there); per validator, a single bib_ledger entry declares exactly one
+`claim_family`, so CaMeL + IsolateGPT are classified here (more specific).
+
+## agent_harness_architecture
+
+Dossier `claim_family` (per ADR-007). The system-shape layer underlying
+agentic deployment: tool-calling agents, multi-turn loops, side-effect
+surfaces, sub-agent delegation, persistent memory. LlamaFirewall (Meta
+arXiv 2505.03574), AgentArmor, ReAct/Function-calling/Toolformer lineage,
+Anthropic Claude Code / Cursor / OpenAI Assistants harness designs. Key
+claim: side effects make agentic injection categorically worse than chat
+injection — same detection accuracy translates to vastly higher blast
+radius. Distinct from `architectural_defense_methods` (what the LLM does
+with text); this family is what the agent harness is shaped like.
+
+## agentic_bench_critique
+
+Dossier `claim_family` (per ADR-007). The critique layer on top of
+`agentic_benchmarks`: Bhagwatkar "Are Firewalls All You Need?" (NeurIPS
+2025 arXiv 2510.05244) saturation findings — AgentDojo / ASB / InjecAgent
+/ τ-Bench saturated by two-firewall defenses; weak-attack pathologies;
+LLMail-Inject as adaptive gold-standard (Abdelnabi et al. SaTML 2025
+arXiv 2506.09956) — 208K attacks defeating SOTA defenses; Nasr "attacker
+moves second" static-defense critique (arXiv 2510.09023); 2026 adaptive-
+attacker benchmarks (AgentDyn / AgentSentry / AgentVigil) as critique
+vehicles. The benchmarks themselves stay catalogued in `agentic_benchmarks`.
 
 ## agentic_benchmarks
 
@@ -93,6 +141,28 @@ Bedrock Guardrails, NVIDIA NeMo Guardrails, Google Model Armor, Aporia
 Guardrails, plus vendors without published numbers (HiddenLayer, Robust
 Intelligence, CalypsoAI, Vijil Dome, Guardrails AI, SafePrompt).
 
+## composition_audit
+
+Dossier `claim_family` (per ADR-007, Sprint 2 expansion). Methodology
+literature on training-data contamination detection + composition disclosure:
+Xu et al. contamination survey (arXiv 2406.04244), Deng et al. NAACL 2024
+(2311.09783), Yang et al. rephrased-samples contamination (2311.04850),
+Oren et al. proving black-box contamination (ICLR 2024 2310.17623), Shi
+et al. Min-K% Prob detection (ICLR 2024 2310.16789), Sainz et al. NLP-eval
+contamination call (EMNLP Findings 2023), Zawalski CoDeC (2510.27055),
+M et al. six-frontier surface-pattern (2603.16197). Distinct from
+`benchmark_validity` (which covers Goodhart + vendor-bias critiques);
+this family is the methodology of contamination *detection* specifically.
+
+## content_authentication_rag
+
+Dossier `claim_family` (per ADR-007, Sprint 2 expansion). mTLS-style
+content authentication for AI retrieval, C2PA / content-credentials applied
+to retrieved documents, retrieval-time cryptographic authentication.
+Distinguished from `retrieval_provenance` (metadata-only trust signal)
+by requiring cryptographic verification. Less-mature literature space;
+mixed academic + vendor + standards-draft expected.
+
 ## detector_architectures
 
 Dossier `claim_family` (per ADR-007). The model-architecture axis of the
@@ -127,6 +197,26 @@ distinction between direct prompt injection (user-supplied) and indirect
 MITRE ATLAS AML.T0051.000-.001 split, the trust-boundary problem,
 Simon Willison's dual-LLM pattern, and information-theoretic arguments
 for why indirect detection is fundamentally harder.
+
+## dual_llm_pattern
+
+Dossier `claim_family` (per ADR-007, Sprint 2 expansion). The Willison
+2023 dual-LLM articulation + its 2025 CaMeL formalization + descendants
+specifically. Separated from `agent_capability_isolation` because the
+dual-LLM pattern is a historical + conceptual claim (privileged-vs-
+quarantined; trust-boundary as the original sin) while capability-isolation
+is the engineering claim (tagging + interpreters). Keeps citation hygiene
+clean: Willison informal blogs vs Debenedetti et al. formal paper.
+
+## encoder_backbone
+
+Dossier `claim_family` (per ADR-007, Sprint 2 expansion). Encoder backbone
+alternatives + comparisons for injection-detection: ModernBERT (answerdotai
+2024), NeoBERT 250M (Le Breton 2025 arXiv 2502.19587 — "evaluated but no
+public injection detector"), DeBERTa-v3 (He 2020), DistilBERT, XLM-RoBERTa
+multilingual variants. The compass §4 "backbone landscape" axis. Distinct
+from `detector_architectures` which covers detectors-as-deployed; this
+family is the backbone-choice methodology layer.
 
 ## evaluation_metrics
 
@@ -217,6 +307,30 @@ long-term-memory poisoning, ShadowPrompt (Claude Chrome extension Dec
 + ETHICS.md §1: records existence + impact + remediation; does NOT
 republish exploit content or step-by-step reproductions.
 
+## production_rag_incidents
+
+Dossier `claim_family` (per ADR-007, Sprint 2 expansion). Production
+RAG-injection incidents analyzed at the RAG-pipeline layer specifically
+(narrower than `production_incidents` which covers all PI incidents).
+Each entry analyzes the retrieval-boundary mechanism (where malicious
+content entered the RAG pipeline) and the defense-layer-bypassed: EchoLeak
+M365 Copilot RAG (CVE-2025-32711), Slack AI cross-channel RAG-exfil,
+Comet browser RAG-style ingestion (Brave 2025), Gemini long-term memory
+poisoning RAG-vector (Rehberger 2024), ChatGPT Markdown image exfil
+(pre-RAG-fix era), Bing Chat webpage manipulation (Greshake 2023). Per
+ADR-041 + ETHICS.md §1: vulnerability-class + impact + remediation only.
+
+## rag_evaluation_harness
+
+Dossier `claim_family` (per ADR-007, Sprint 2 expansion). RAG-specific
+evaluation harnesses: BIPIA per-subset (Email QA / Web QA / Table QA /
+Summarization / Code QA) — Yi et al. Microsoft/USTC KDD 2025 arXiv
+2312.14197; Azure Document Shield benchmark + `documentsAnalysis` API;
+LLMail-Inject as RAG-email adaptive eval (Abdelnabi et al. SaTML 2025).
+Distinct from broader `agentic_benchmarks` (which covers BIPIA's
+agentic-eval framing); this family captures the RAG-specific subset
++ retrieval-boundary evaluation.
+
 ## reproducibility_practice
 
 Dossier `claim_family` (per ADR-007). Disclosure-gap audit of winning
@@ -224,6 +338,29 @@ detectors: Qualifire Sentinel's private dataset slice undisclosed, Meta
 Prompt Guard 2's red-team data undisclosed, ProtectAI's exact mixture
 undisclosed, "winning" detectors mostly not reproducible end-to-end from
 public artifacts. Includes dataset license + provenance hygiene practice.
+
+## retrieval_provenance
+
+Dossier `claim_family` (per ADR-007, Sprint 2 expansion). Verifiable
+retrieval + signed-document architectures + document-class trust tier
++ retrieval-time provenance metadata as trust signal. The newer / less-
+mature complement to text-only detection — concept: give detectors a
+trustworthy source signal rather than text alone. Includes source-
+attribution-preserving prompt templates (OpenAI `tool`/`input` role,
+Anthropic `tool_result`) as closest production-deployed approximation.
+Distinct from `content_authentication_rag` (cryptographic verification)
+by being metadata-only.
+
+## score_fusion_stacker
+
+Dossier `claim_family` (per ADR-007, Sprint 2 expansion). The meta-
+learning layer on top of per-detector scores: Meta Prompt Guard 2's
+custom Recall@1%FPR loss; energy-based loss (Liu NeurIPS 2020 arXiv
+2010.03759) as Meta + CodeIntegrity foundation; embedding-based detectors
+(Ayub & Majumdar arXiv 2410.22284) as stacker-eligible signal; LogisticStacker
+per eval-toolkit v0.47.0+; APR metric (Meta PG2) for score-fusion-relevant
+reporting; ensemble methods for low-FPR operation. Lane 4 dossier
+substrate.
 
 ## scorecard / metric_specs
 
@@ -238,6 +375,19 @@ A LODO/OOD eval slice where `y_true` contains only one class (all 0s
 or all 1s). PR-AUC + ROC-AUC are undefined; eval-toolkit's scorecard
 returns `status="skipped"` cells via existing `MetricState` vocabulary.
 Per ADR-027 → upstream-enforced via eval-toolkit#39 + submission ADR-055.
+
+## spotlighting_variants
+
+Dossier `claim_family` (per ADR-007, Sprint 2 expansion). Per-variant
+deep-dive of Microsoft Spotlighting (Hines et al. CAMLIS 2024 arXiv
+2403.14720; GA Microsoft Build 2025): *delimiting* (tag-wrap; minimal
+overhead; bypassable by tag-mimicry), *datamarking* (whitespace → marker
+token; near-zero task-degradation per Hines abstract), *encoding* (base-64
+prepend; most effective in paper; requires GPT-4-class decoder; primary
+GA variant in Azure Document Shield). Headline claim: GPT-3.5/4 ASR >
+50% → < 2% per Hines abstract. Distinct from broader
+`architectural_defense_methods`; this family is the Spotlighting-
+variant-specific axis.
 
 ## TextTransform Protocol
 
