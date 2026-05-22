@@ -1,10 +1,84 @@
 {
   "$schema_version": "1",
   "description": "Experiment records authority graph per plan §18 4-file schema. Each lane row maps lane_id -> 4 experiment-record files + 3 book-fragment files + linked ADRs + dossier claim_family + HF Hub artifacts.",
-  "lanes": {},
+  "lanes": {
+    "lane-1": {
+      "title": "Direct-injection baselines + reference scorers + classical floor",
+      "milestone": "M1",
+      "budget_usd": 12,
+      "state": "skeleton",
+      "hypothesis_id": "H-LANE-1",
+      "linked_adrs": ["036", "038", "043", "045"],
+      "book_chapter": "ch08-lane-1-direct-baselines",
+      "fragments_dir": "book/src/content/fragments/lane-1",
+      "hf_artifacts_expected": []
+    },
+    "lane-1b": {
+      "title": "Adversarial robustness matrix — 12-technique character_injection × N detectors",
+      "milestone": "M1",
+      "budget_usd": 10,
+      "state": "skeleton",
+      "hypothesis_id": "H-LANE-1B",
+      "linked_adrs": ["036", "045"],
+      "book_chapter": "ch08-lane-1-direct-baselines",
+      "fragments_dir": "book/src/content/fragments/lane-1b",
+      "hf_artifacts_expected": []
+    },
+    "lane-2": {
+      "title": "Indirect-injection LoRA retrain (2-variant loss ablation) + same-corpus baselines",
+      "milestone": "M2-M4",
+      "budget_usd": 196,
+      "state": "skeleton",
+      "hypothesis_id": "H-LANE-2",
+      "linked_adrs": ["022", "043", "045", "075-submission"],
+      "book_chapter": "ch07-echoleak-and-ch09-lane-2",
+      "fragments_dir": "book/src/content/fragments/lane-2",
+      "hf_artifacts_expected": [
+        "BBehring/prompt-injection-lora-indirect-v2-ce",
+        "BBehring/prompt-injection-lora-indirect-v2-rfpr",
+        "BBehring/prompt-injection-synthetic-indirect-v2"
+      ],
+      "depends_on": ["MR-3-research_toolkit-dataset-synthesize"]
+    },
+    "lane-3": {
+      "title": "Spotlighting structural defense (3 variants) on encoder detectors",
+      "milestone": "M5",
+      "budget_usd": 1,
+      "state": "skeleton",
+      "hypothesis_id": "H-LANE-3",
+      "linked_adrs": ["036", "045"],
+      "book_chapter": "ch10-lane-3-spotlighting",
+      "fragments_dir": "book/src/content/fragments/lane-3",
+      "hf_artifacts_expected": []
+    },
+    "lane-4": {
+      "title": "Score-fusion stacker (LogisticStacker + XGBoost) + APR metric",
+      "milestone": "M6",
+      "budget_usd": 30,
+      "state": "skeleton",
+      "hypothesis_id": "H-LANE-4",
+      "linked_adrs": ["037", "045"],
+      "book_chapter": "ch11-lane-4-stacker",
+      "fragments_dir": "book/src/content/fragments/lane-4",
+      "hf_artifacts_expected": []
+    },
+    "lane-5": {
+      "title": "TaskTracker activation probe port on encoder backbone",
+      "milestone": "M4",
+      "budget_usd": 20,
+      "state": "skeleton",
+      "hypothesis_id": "H-LANE-5",
+      "linked_adrs": ["045"],
+      "book_chapter": "ch12-lane-5-activation-probe",
+      "fragments_dir": "book/src/content/fragments/lane-5",
+      "hf_artifacts_expected": [],
+      "depends_on": ["lane-2-corpus"]
+    }
+  },
   "_notes": {
-    "v0.1.0-pre_state": "Lanes not yet started; manifest is empty. Populates as M1-M6 lanes open (hypothesis.md + protocol.md at lane START; results.md + decisions.md at lane CLOSE). 6 lanes total per plan §5: 1, 1b, 2, 3, 4, 5.",
-    "test_contract": "tests/contracts/test_experiment_records_complete.py verifies (per Round 17 follow-up Q2): for each lane in this MANIFEST, the 4 experiment-record files exist + populated AND the 3 fragment files exist at book/src/content/fragments/lane-N/{methodology,results,interpretation}.mdx. Vacuous at v0.1.0-pre.",
-    "lane_id_format": "lane-N for primary lanes (1, 2, 3, 4, 5); lane-Nb for sub-lanes (1b)."
+    "state_semantics": "skeleton (hypothesis.md + protocol.md present, results.md + decisions.md absent); started (lane opened, no results yet); closed (all 4 files + 3 fragments populated). Test contract experiment_records_complete enforces the state machine at lane close.",
+    "round_15_lora_only": "Lane 2 + any retrain variant is LoRA-only on ModernBERT-base; no full-FT per Round 15 Q1.",
+    "round_16_same_corpus": "All trainable baselines + Lane 4 stacker + Lane 5 probe train on the SAME Lane 2 MR-3 corpus per Round 16 Q1/Q3/Q4 cross-lane comparability rule.",
+    "round_17_fragments": "Each lane's 3 book fragments (methodology.mdx + results.mdx + interpretation.mdx) feed all 3 guides (textbook / narrative / academic IMRaD) per Round 17 Q2 shared-substrate authoring pattern."
   }
 }
