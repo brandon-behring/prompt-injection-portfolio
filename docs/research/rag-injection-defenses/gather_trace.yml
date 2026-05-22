@@ -1,0 +1,263 @@
+schema_version: 3
+topic: rag_injection_defenses
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+fetches:
+# E1: Spotlighting variants (cross-classified + vendor retrospectives)
+- fetch_id: fetch_rag_spotlighting
+  sub_area: 'E1'
+  query: 'Hines Microsoft Spotlighting indirect prompt injection delimiting datamarking encoding CAMLIS 2024'
+  source_url: https://arxiv.org/abs/2403.14720
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Canonical 3-variant Spotlighting paper; cross-classified from direct-vs-indirect/B2 for RAG-retrieval-boundary application.'
+  assigned_bibkey: rag_hines2024spotlighting
+- fetch_id: fetch_rag_promptshields_doc
+  sub_area: 'E1'
+  query: 'Azure Document Shield Prompt Shields documentsAnalysis userPromptAnalysis indirect injection RAG'
+  source_url: https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Microsoft Azure Prompt Shields vendor docs — most architecturally explicit commercial RAG-injection defense per detector-landscape/A4.'
+  assigned_bibkey: rag_microsoft_azure_doc_shield
+- fetch_id: fetch_rag_promptshields_blog
+  sub_area: 'E1'
+  query: 'Azure Prompt Shields Microsoft Build 2025 Spotlighting GA announcement'
+  source_url: https://azure.microsoft.com/en-us/blog/enhance-ai-security-with-azure-prompt-shields-and-azure-ai-content-safety/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Microsoft Build 2025 deployment retrospective for Prompt Shields + Spotlighting capability; Shone Jun 5 2025.'
+  assigned_bibkey: shone2025promptshields
+- fetch_id: fetch_rag_spotlighting_foundry
+  sub_area: 'E1'
+  query: 'Spotlighting Azure AI Foundry cross prompt injection Microsoft Tech Community'
+  source_url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/better-detecting-cross-prompt-injection-attacks-introducing-spotlighting-in-azur/4458404
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Foundry deployment retrospective for Spotlighting; Oct 1 2025 publication confirming Build 2025 GA story.'
+  assigned_bibkey: microsoft2025spotlightingfoundry
+
+# E2: Retrieval-side provenance + content authentication (net-new)
+- fetch_id: fetch_rag_llatrieval
+  sub_area: 'E2'
+  query: 'verifiable retrieval LLM-verified retrieval LLatrieval NAACL 2024'
+  source_url: https://arxiv.org/abs/2311.07838
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'NAACL 2024 - canonical verifiable-retrieval paper; LLM iteratively validates retrieved documents support the answer.'
+  assigned_bibkey: li2024llatrieval
+- fetch_id: fetch_rag_provenance_factcheck
+  sub_area: 'E2'
+  query: 'lightweight fact-checker NLI provenance RAG hallucination EMNLP 2024'
+  source_url: https://arxiv.org/abs/2411.01022
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'EMNLP 2024 Industry - NLI-based factuality check for RAG output; provenance traceback to context chunks.'
+  assigned_bibkey: sankararaman2024provenance
+- fetch_id: fetch_rag_drag
+  sub_area: 'E2'
+  query: 'decentralized RAG blockchain source reliability provenance arxiv 2025'
+  source_url: https://arxiv.org/abs/2511.07577
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D-RAG blockchain-backed provenance + tamper-proof source reliability records; directly matches content_authentication_rag claim_family.'
+  assigned_bibkey: lu2025drag
+- fetch_id: fetch_rag_sag
+  sub_area: 'E2'
+  query: 'provably secure retrieval augmented generation full encryption RAG 2025'
+  source_url: https://arxiv.org/abs/2508.01084
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'SAG - first provably-secure RAG framework with formal cryptographic guarantees; content_authentication_rag claim_family.'
+  assigned_bibkey: zhou2025sag
+- fetch_id: fetch_rag_c2pa
+  sub_area: 'E2'
+  query: 'C2PA Coalition Content Provenance Authenticity content credentials AI 2025'
+  source_url: https://c2pa.org/about/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: 'Standards-consortium primary URL for C2PA Content Credentials; less mature for AI-retrieval but canonical for content_authentication_rag.'
+  assigned_bibkey: c2pa2025spec22
+- fetch_id: fetch_rag_c2pa_spec_22_explainer
+  sub_area: 'E2'
+  query: 'C2PA spec 2.2 explainer May 2025 release AI generated content'
+  source_url: https://spec.c2pa.org/specifications/specifications/2.2/explainer/explainer.html
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: none
+    is_useful: 1
+  decision: reject
+  reason: 'Returned HTTP 404; canonical C2PA About page used instead (c2pa.org/about/).'
+- fetch_id: fetch_rag_nsa_content_credentials
+  sub_area: 'E2'
+  query: 'NSA CISA Content Credentials Strengthening Multimedia Integrity GenAI 2025'
+  source_url: https://media.defense.gov/2025/Jan/29/2003634788/-1/-1/0/CSI-CONTENT-CREDENTIALS.PDF
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: none
+    is_useful: 1
+  decision: reject
+  reason: 'HTTP 403 Forbidden on defense.gov; C2PA About page used instead as canonical anchor.'
+
+# E3: RAG-specific evaluation harnesses (cross-classified)
+- fetch_id: fetch_rag_bipia
+  sub_area: 'E3'
+  query: 'BIPIA Yi Microsoft USTC indirect prompt injection benchmark Email Web Table QA KDD 2025'
+  source_url: https://arxiv.org/abs/2312.14197
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'BIPIA KDD 2025 - seminal RAG-specific indirect-injection benchmark with Email QA / Web QA / Table QA / Summarization / Code QA subsets.'
+  assigned_bibkey: rag_yi2025bipia
+- fetch_id: fetch_rag_llmail
+  sub_area: 'E3'
+  query: 'LLMail-Inject Abdelnabi Microsoft IEEE SaTML 2025 adaptive prompt injection 208k attacks'
+  source_url: https://arxiv.org/abs/2506.09956
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'LLMail-Inject IEEE SaTML 2025 - first adaptive RAG-email-assistant challenge with 208K attack submissions.'
+  assigned_bibkey: rag_abdelnabi2025llmailinject
+
+# E4: Production RAG-injection incidents (cross-classified + net-new; ETHICS paraphrase-only)
+- fetch_id: fetch_rag_echoleak
+  sub_area: 'E4'
+  query: 'EchoLeak CVE-2025-32711 Aim Labs Microsoft 365 Copilot zero-click XPIA'
+  source_url: https://www.catonetworks.com/blog/breaking-down-echoleak/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: 'EchoLeak incident (CVE-2025-32711, CVSS 9.3); first zero-click XPIA in production M365 Copilot. Cato Networks blog returned only headline (212 bytes); paraphrase-only documentation per ETHICS.'
+  assigned_bibkey: rag_aimlabs2025echoleak
+- fetch_id: fetch_rag_slackai
+  sub_area: 'E4'
+  query: 'PromptArmor Slack AI data exfiltration cross-channel indirect injection August 2024'
+  source_url: https://promptarmor.substack.com/p/data-exfiltration-from-slack-ai-via
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'PromptArmor disclosure - canonical RAG indexed public-channel content -> cross-channel exfil pattern.'
+  assigned_bibkey: rag_promptarmor2024slackai
+- fetch_id: fetch_rag_comet_indirect
+  sub_area: 'E4'
+  query: 'Brave Comet Perplexity browser indirect prompt injection August 2025 disclosure'
+  source_url: https://brave.com/blog/comet-prompt-injection/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Brave/Chaikin & Sahib Aug 20 2025 - canonical Comet browser indirect injection advisory; RAG-style ingestion via cross-tab webpage content.'
+  assigned_bibkey: chaikin2025cometprompt
+- fetch_id: fetch_rag_comet_unseeable
+  sub_area: 'E4'
+  query: 'Brave Comet screenshot unseeable prompt injection OCR AI browser October 2025'
+  source_url: https://brave.com/blog/unseeable-prompt-injections/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Brave Oct 21 2025 follow-up - OCR-based screenshot prompt injection; RAG-relevant for image-document multimodal retrieval edge case.'
+  assigned_bibkey: sahib2025unseeable
+- fetch_id: fetch_rag_gemini_memory
+  sub_area: 'E4'
+  query: 'Rehberger Gemini memory persistence prompt injection delayed tool invocation embracethered 2025'
+  source_url: https://embracethered.com/blog/posts/2025/gemini-memory-persistence-prompt-injection/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Rehberger Feb 10 2025 - long-term memory poisoning via indirect injection + delayed tool invocation; RAG-layer is uploaded-document -> memory write -> cross-session retrieval.'
+  assigned_bibkey: rehberger2025geminimem
+- fetch_id: fetch_rag_chatgpt_markdown
+  sub_area: 'E4'
+  query: 'ChatGPT markdown image exfiltration Rehberger Samoilenko WebPilot 2023 disclosure'
+  source_url: https://embracethered.com/blog/posts/2023/chatgpt-webpilot-data-exfil-via-markdown-injection/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Rehberger May 16 2023 - canonical pre-RAG-fix-era ChatGPT Markdown image exfil disclosure; historical RAG-relevance for the exfil vector.'
+  assigned_bibkey: rehberger2023chatgptmd
+- fetch_id: fetch_rag_greshake_advisory
+  sub_area: 'E4'
+  query: 'Greshake Bing Chat indirect prompt injection companion advisory greshake.github.io'
+  source_url: https://greshake.github.io/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: 'Greshake et al. 2023 companion advisory to AISec 2023 paper; first public Bing Chat RAG-from-webpage demonstration. Cross-classify from direct-vs-indirect/B1.'
+  assigned_bibkey: greshake2023bingadvisory
+- fetch_id: fetch_rag_aim_security_lp
+  sub_area: 'E4'
+  query: 'Aim Security Labs EchoLeak primary disclosure post'
+  source_url: https://www.aim.security/lp/aim-labs-echoleak-blogpost
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: none
+    is_useful: 1
+  decision: reject
+  reason: 'Original Aim Labs landing page redirects to catonetworks.com root (HTTP 301); Cato Networks coverage used as canonical primary URL instead.'

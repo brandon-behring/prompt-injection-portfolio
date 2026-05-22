@@ -41,6 +41,7 @@ How prompt-injection detectors are actually trained and evaluated: training data
 - benchmark_validity — Goodhart on public benchmarks, training-data leakage, selection bias in self-reported numbers, adaptive-attack resilience, methodology critiques
 - ood_evaluation_methodology — LODO, held-out datasets vs. rows, conversational vs. application-structured tracks; the portfolio's inherited LODO discipline from submission ADR-016
 - reproducibility_practice — disclosure gaps in winning detectors, vendor private-data slices, dataset license + provenance hygiene
+- composition_audit — training-data contamination detection and pretraining-data membership inference (Min-K%, CoDeC, exchangeable-ordering proofs); benchmark contamination surveys; rephrasing/translation-based decontamination bypass; six-frontier MMLU contamination audits — load-bearing for the OOD-wall narrative because contamination is the indistinguishable counterfactual to genuine generalization
 
 ## Known landmark papers
 

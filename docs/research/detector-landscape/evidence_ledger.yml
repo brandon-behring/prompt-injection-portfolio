@@ -1435,3 +1435,613 @@ entries:
     factors:
     - cross-referenced across 5 primary sources (cache_6788a3f0f61cebd9 + cache_96dc7a084a524c4d + cache_bb62839772f16e14 + cache_51e92f7784dddb6e + cache_ab9d48079556ef2d)
     - synthesis-level claim aggregating independent verifications
+# ===== Sprint 2 E2 expansion (appended 2026-05-23) — append-only =====
+- evidence_id: ev_detector_landscape_0046
+  source_url: https://huggingface.co/qualifire/prompt-injection-sentinel
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_2b5da62e8ad9c08f
+  supports:
+  - claim_id: claim_detector_landscape_0045_01
+    field_path: bib_ledger.entries[44].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_2b5da62e8ad9c08f
+      text_path_offset:
+      - 96920
+      - 96985
+      sha256_of_span: d774671872c56760bae3162ffdf40d9217d97ce1221fd01f9feba5af362d3750
+  - claim_id: claim_detector_landscape_0045_02
+    field_path: bib_ledger.entries[44].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'How to use qualifire/prompt-injection-sentinel with Transformers:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0047
+  source_url: https://huggingface.co/qualifire/prompt-injection-jailbreak-sentinel-v2
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4b6e4a0a108fbeb4
+  supports:
+  - claim_id: claim_detector_landscape_0046_01
+    field_path: bib_ledger.entries[45].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_4b6e4a0a108fbeb4
+      text_path_offset:
+      - 120875
+      - 120923
+      sha256_of_span: 3675ab72e995e451adbe0a7985277595bd66f4a7a81b8a68f2668285d8f050b8
+  - claim_id: claim_detector_landscape_0046_02
+    field_path: bib_ledger.entries[45].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'qualifire/prompt-injection-jailbreak-sentinel-v2'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0048
+  source_url: https://huggingface.co/protectai/deberta-v3-small-prompt-injection-v2
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_2b5c95d0b3d55934
+  supports:
+  - claim_id: claim_detector_landscape_0047_01
+    field_path: bib_ledger.entries[46].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_2b5c95d0b3d55934
+      text_path_offset:
+      - 97994
+      - 98070
+      sha256_of_span: 5824c954cfecc488bb337d707d1780dd588a50514ccdf63eb6bb6ad2a4ecc0ad
+  - claim_id: claim_detector_landscape_0047_02
+    field_path: bib_ledger.entries[46].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'How to use protectai/deberta-v3-small-prompt-injection-v2 with Transformers:'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0049
+  source_url: https://github.com/protectai/llm-guard
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_a43dc71238166651
+  supports:
+  - claim_id: claim_detector_landscape_0048_01
+    field_path: bib_ledger.entries[47].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_a43dc71238166651
+      text_path_offset:
+      - 25907
+      - 25969
+      sha256_of_span: e13a6cafabde592bf2c8a482f3ee5d3b81faf26f1ee3241341964df3dd96f106
+  - claim_id: claim_detector_landscape_0048_02
+    field_path: bib_ledger.entries[47].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'protectai/llm-guard: The Security Toolkit for LLM Interactions'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0050
+  source_url: https://www.lakera.ai/lakera-guard
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_bcc349ab4b372b17
+  supports:
+  - claim_id: claim_detector_landscape_0049_01
+    field_path: bib_ledger.entries[48].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_bcc349ab4b372b17
+      text_path_offset:
+      - 345
+      - 512
+      sha256_of_span: 8b51165e7b0c18244571cfda6e78140472c7f585a4f08fffe4c5bc8d8cd576e6
+  - claim_id: claim_detector_landscape_0049_02
+    field_path: bib_ledger.entries[48].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'AI Agent Security: Runtime visibility and protection for AI applications and agents</title><meta content="Secure your GenAI applications in real time with Lakera Guard'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0051
+  source_url: https://www.lakera.ai/blog/the-year-of-the-agent-what-recent-attacks-revealed-in-q4-2025-and-what-it-means-for-2026
+  source_type: blog
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_aed1736070dcbd05
+  supports:
+  - claim_id: claim_detector_landscape_0050_01
+    field_path: bib_ledger.entries[49].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_aed1736070dcbd05
+      text_path_offset:
+      - 500
+      - 562
+      sha256_of_span: 1e1b7c62f8796656ac0d08794442f6bbfad55d3c8137da2b86bb0d1facb02e96
+  - claim_id: claim_detector_landscape_0050_02
+    field_path: bib_ledger.entries[49].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'The Year of the Agent: What Recent Attacks Revealed in Q4 2025'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0052
+  source_url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-announces-prompt-shields-ga/4236033
+  source_type: blog
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_d56e79486bc37f4c
+  supports:
+  - claim_id: claim_detector_landscape_0051_01
+    field_path: bib_ledger.entries[50].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_d56e79486bc37f4c
+      text_path_offset:
+      - 712
+      - 748
+      sha256_of_span: a5e632430ab7b70fefcc64fd521032a88ac096600f8285562e102b4ceee277d6
+  - claim_id: claim_detector_landscape_0051_02
+    field_path: bib_ledger.entries[50].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'Azure AI announces Prompt Shields GA'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0053
+  source_url: https://claude.com/blog/claude-for-chrome
+  source_type: blog
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_ba3f0970db897146
+  supports:
+  - claim_id: claim_detector_landscape_0052_01
+    field_path: bib_ledger.entries[51].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_ba3f0970db897146
+      text_path_offset:
+      - 495
+      - 520
+      sha256_of_span: 3d4515ac01df6176f06e6dbb5f8648945b5085faf055d6be1cebf8bc6d52b286
+  - claim_id: claim_detector_landscape_0052_02
+    field_path: bib_ledger.entries[51].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Piloting Claude in Chrome'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0054
+  source_url: https://platform.claude.com/docs/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_af19c677f21f0f57
+  supports:
+  - claim_id: claim_detector_landscape_0053_01
+    field_path: bib_ledger.entries[52].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_af19c677f21f0f57
+      text_path_offset:
+      - 11512
+      - 11553
+      sha256_of_span: 350c7809548ec1bfaa7b11f96c0b2bde07b38d5dca9e5a71121e738fdd6d1a89
+  - claim_id: claim_detector_landscape_0053_02
+    field_path: bib_ledger.entries[52].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Mitigate jailbreaks and prompt injections'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0055
+  source_url: https://huggingface.co/fmops/distilbert-prompt-injection
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_940fe3ed52b65baa
+  supports:
+  - claim_id: claim_detector_landscape_0054_01
+    field_path: bib_ledger.entries[53].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_940fe3ed52b65baa
+      text_path_offset:
+      - 591
+      - 624
+      sha256_of_span: 43053283b8c71c63eb4d1e596a82b3d87ea1c44ef4bd65a3cc95c97a03162d54
+  - claim_id: claim_detector_landscape_0054_02
+    field_path: bib_ledger.entries[53].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'fmops/distilbert-prompt-injection'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0056
+  source_url: https://huggingface.co/testsavantai/prompt-injection-defender-base-v0
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_fbf82b40f5520ea7
+  supports:
+  - claim_id: claim_detector_landscape_0055_01
+    field_path: bib_ledger.entries[54].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_fbf82b40f5520ea7
+      text_path_offset:
+      - 591
+      - 637
+      sha256_of_span: 167467d65da31ee4c288a70be64614f5f4df2b02264ed090e01b87e5334ee5cf
+  - claim_id: claim_detector_landscape_0055_02
+    field_path: bib_ledger.entries[54].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'testsavantai/prompt-injection-defender-base-v0'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0057
+  source_url: https://arxiv.org/abs/2502.19587
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_e390b89948fafecc
+  supports:
+  - claim_id: claim_detector_landscape_0056_01
+    field_path: bib_ledger.entries[55].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_e390b89948fafecc
+      text_path_offset:
+      - 62
+      - 93
+      sha256_of_span: 1681708369bf14fc4bede3c137b6c36495069e9fbeb3b4a748302528cd1a44f8
+  - claim_id: claim_detector_landscape_0056_02
+    field_path: bib_ledger.entries[55].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'NeoBERT: A Next-Generation BERT'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0058
+  source_url: https://arxiv.org/abs/2410.21337
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8062dc894cce41b0
+  supports:
+  - claim_id: claim_detector_landscape_0057_01
+    field_path: bib_ledger.entries[56].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8062dc894cce41b0
+      text_path_offset:
+      - 62
+      - 128
+      sha256_of_span: 0d5ebca4c387fffe386f7fd992d40963e8f37b9325c64fd58591dc7d03753684
+  - claim_id: claim_detector_landscape_0057_02
+    field_path: bib_ledger.entries[56].excerpt[1]
+    evidence_role: qualifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Fine-tuned Large Language Models (LLMs): Improved Prompt Injection'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0059
+  source_url: https://huggingface.co/datasets/hlyn-labs/prompt-injection-judge-deberta-dataset
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_5ad318a82550fd07
+  supports:
+  - claim_id: claim_detector_landscape_0058_01
+    field_path: bib_ledger.entries[57].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_5ad318a82550fd07
+      text_path_offset:
+      - 593
+      - 641
+      sha256_of_span: 8024df9ebc25443e2f502d41ca496a0df7486d28fb437a3e38c44b6aa3589dc5
+  - claim_id: claim_detector_landscape_0058_02
+    field_path: bib_ledger.entries[57].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'hlyn-labs/prompt-injection-judge-deberta-dataset'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0060
+  source_url: https://hiddenlayer.com/platform/
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cbe7cdb80a2d0d71
+  supports:
+  - claim_id: claim_detector_landscape_0059_01
+    field_path: bib_ledger.entries[58].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_cbe7cdb80a2d0d71
+      text_path_offset:
+      - 140012
+      - 140051
+      sha256_of_span: fc86262789d127a66c62c5f98f0becf5aea0f720050d587f6c127fdde7d4fffa
+  - claim_id: claim_detector_landscape_0059_02
+    field_path: bib_ledger.entries[58].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Most Comprehensive AI Security Platform'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0061
+  source_url: https://blogs.cisco.com/news/fortifying-the-future-of-security-for-ai-cisco-announces-intent-to-acquire-robust-intelligence
+  source_type: blog
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f9cea1f484940242
+  supports:
+  - claim_id: claim_detector_landscape_0060_01
+    field_path: bib_ledger.entries[59].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_f9cea1f484940242
+      text_path_offset:
+      - 1219
+      - 1272
+      sha256_of_span: 1900ba132bb9519076cda017a9b43ee5b95532543b427ccce2eb4a11de86b974
+  - claim_id: claim_detector_landscape_0060_02
+    field_path: bib_ledger.entries[59].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Cisco Announces intent to acquire Robust Intelligence'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0062
+  source_url: https://www.f5.com/products/ai-guardrails
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_c40f0f2e053383cb
+  supports:
+  - claim_id: claim_detector_landscape_0061_01
+    field_path: bib_ledger.entries[60].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_c40f0f2e053383cb
+      text_path_offset:
+      - 4696
+      - 4712
+      sha256_of_span: 0828806860fe3ff8adac27820705cd39bd8e54251a27abf665e8d158e37526b3
+  - claim_id: claim_detector_landscape_0061_02
+    field_path: bib_ledger.entries[60].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'F5 AI Guardrails'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0063
+  source_url: https://github.com/vijilAI/vijil-dome
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_9a2f45a3640522ee
+  supports:
+  - claim_id: claim_detector_landscape_0062_01
+    field_path: bib_ledger.entries[61].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_9a2f45a3640522ee
+      text_path_offset:
+      - 25907
+      - 25943
+      sha256_of_span: 9a90cb9299ef628db49aca3839da87f44cf2b91f80b433cb87a5e6f31226d777
+  - claim_id: claim_detector_landscape_0062_02
+    field_path: bib_ledger.entries[61].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'vijilAI/vijil-dome: Vijil&#39;s Dome'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0064
+  source_url: https://github.com/guardrails-ai/guardrails
+  source_type: repo
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_9b039b36827185e8
+  supports:
+  - claim_id: claim_detector_landscape_0063_01
+    field_path: bib_ledger.entries[62].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_9b039b36827185e8
+      text_path_offset:
+      - 25907
+      - 25950
+      sha256_of_span: 9a5c6da2f814c09e45be938c11cdb0b74100bf1025a59655a0a5345cc6ee879a
+  - claim_id: claim_detector_landscape_0063_02
+    field_path: bib_ledger.entries[62].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'guardrails-ai/guardrails: Adding guardrails'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0065
+  source_url: https://natlawreview.com/press-releases/safeprompt-launches-prompt-injection-protection-api-ai-developers
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_088a524162db59f1
+  supports:
+  - claim_id: claim_detector_landscape_0064_01
+    field_path: bib_ledger.entries[63].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_088a524162db59f1
+      text_path_offset:
+      - 1153
+      - 1204
+      sha256_of_span: 5809982b7f79b86295a8a71c2977f2f33843dbd87f54ff0450a4d0987014ab32
+  - claim_id: claim_detector_landscape_0064_02
+    field_path: bib_ledger.entries[63].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'SafePrompt Launches Prompt Injection Protection API'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0066
+  source_url: https://arxiv.org/abs/2009.06489
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_7b898810604eda60
+  supports:
+  - claim_id: claim_detector_landscape_0065_01
+    field_path: bib_ledger.entries[64].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_7b898810604eda60
+      text_path_offset:
+      - 62
+      - 82
+      sha256_of_span: 861d6cba81b8cb55e5ef1fe300bd77c4c519b638f7004c8c8fdd97ecfd73e3df
+  - claim_id: claim_detector_landscape_0065_02
+    field_path: bib_ledger.entries[64].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'The Hardware Lottery'
+  rights_status: private_use

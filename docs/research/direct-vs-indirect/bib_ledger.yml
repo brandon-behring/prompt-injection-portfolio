@@ -727,3 +727,209 @@ entries:
   - ev_direct_vs_indirect_0039
   cache_ids:
   - cache_88cbfa5775742af0
+- bibkey: perez2022ignoreprev
+  primary_url: https://arxiv.org/abs/2211.09527
+  title: 'Ignore Previous Prompt: Attack Techniques For Language Models'
+  status: verified
+  claim_family: injection_threat_model
+  authors: Perez & Ribeiro (2022)
+  venue: ML Safety Workshop NeurIPS 2022 (arXiv preprint)
+  code_url: https://github.com/agencyenterprise/PromptInject
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_at: '2026-05-23'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0040
+  - ev_direct_vs_indirect_0041
+  cache_ids:
+  - cache_136e3a977e2cf0cd
+- bibkey: liu2024formalizing
+  primary_url: https://arxiv.org/abs/2310.12815
+  title: Formalizing and Benchmarking Prompt Injection Attacks and Defenses
+  status: verified
+  claim_family: injection_threat_model
+  authors: Liu et al. (2023)
+  venue: USENIX Security 2024 (arXiv preprint)
+  code_url: https://github.com/liu00222/Open-Prompt-Injection
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_at: '2026-05-23'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0042
+  - ev_direct_vs_indirect_0043
+  cache_ids:
+  - cache_be3cad02dec84695
+- bibkey: liu2023llmapps
+  primary_url: https://arxiv.org/abs/2306.05499
+  title: Prompt Injection attack against LLM-integrated Applications
+  status: verified
+  claim_family: injection_threat_model
+  authors: Liu et al. (2023)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_at: '2026-05-23'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0044
+  - ev_direct_vs_indirect_0045
+  cache_ids:
+  - cache_4d1feb00a8004deb
+- bibkey: shi2024llmjudge
+  primary_url: https://arxiv.org/abs/2403.17710
+  title: Optimization-based Prompt Injection Attack to LLM-as-a-Judge
+  status: verified
+  claim_family: injection_threat_model
+  authors: Shi et al. (2024)
+  venue: ACM CCS 2024 (arXiv preprint)
+  code_url: https://github.com/ShiJiawenwen/JudgeDeceiver
+  aliases:
+  - JudgeDeceiver
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_at: '2026-05-23'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0046
+  - ev_direct_vs_indirect_0047
+  cache_ids:
+  - cache_890998cb61c4094a
+- bibkey: pasquini2024neuralexec
+  primary_url: https://arxiv.org/abs/2403.03792
+  title: 'Neural Exec: Learning (and Learning from) Execution Triggers for Prompt Injection Attacks'
+  status: verified
+  claim_family: injection_threat_model
+  authors: Pasquini et al. (2024)
+  venue: arXiv preprint
+  aliases:
+  - Neural Exec
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_at: '2026-05-23'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0048
+  - ev_direct_vs_indirect_0049
+  cache_ids:
+  - cache_5e3b0b4ef4b819de
+- bibkey: evertz2024whispers
+  primary_url: https://arxiv.org/abs/2402.06922
+  title: 'Whispers in the Machine: Confidentiality in Agentic Systems'
+  status: verified
+  claim_family: injection_threat_model
+  authors: Evertz et al. (2024)
+  venue: DIMVA 2026 (arXiv preprint)
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_at: '2026-05-23'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0050
+  - ev_direct_vs_indirect_0051
+  cache_ids:
+  - cache_d4a8943b9a8e2391
+- bibkey: wei2023jailbroken
+  primary_url: https://arxiv.org/abs/2307.02483
+  title: 'Jailbroken: How Does LLM Safety Training Fail?'
+  status: verified
+  claim_family: injection_threat_model
+  authors: Wei et al. (2023)
+  venue: NeurIPS 2023 (arXiv preprint)
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_at: '2026-05-23'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0052
+  - ev_direct_vs_indirect_0053
+  cache_ids:
+  - cache_3fda0c48b45e0464
+- bibkey: rossi2024survey
+  primary_url: https://arxiv.org/abs/2402.00898
+  title: An Early Categorization of Prompt Injection Attacks on Large Language Models
+  status: verified
+  claim_family: injection_threat_model
+  authors: Rossi et al. (2024)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_at: '2026-05-23'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0054
+  cache_ids:
+  - cache_d0278e5b95e2b045
+- bibkey: mitreatlas2024
+  primary_url: https://atlas.mitre.org/
+  title: 'MITRE ATLAS: Adversarial Threat Landscape for AI Systems'
+  status: verified
+  claim_family: injection_threat_model
+  authors: MITRE Corporation (2024)
+  venue: atlas.mitre.org (threat-taxonomy reference)
+  aliases:
+  - MITRE ATLAS
+  - AML.T0051
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_at: '2026-05-23'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_direct_vs_indirect_0055
+  cache_ids:
+  - cache_263a74b6a552d75b
+

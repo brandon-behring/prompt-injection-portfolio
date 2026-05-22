@@ -1,0 +1,99 @@
+arxiv:2403.14720:
+  authors:
+  - Keegan Hines
+  - Gary Lopez
+  - Matthew Hall
+  - Federico Zarfati
+  - Yonatan Zunger
+  - Emre Kiciman
+  source: arxiv
+  title: Defending Against Indirect Prompt Injection Attacks With Spotlighting
+  url: https://arxiv.org/abs/2403.14720
+  year: '2024'
+arxiv:2312.14197:
+  authors:
+  - Jingwei Yi
+  - Yueqi Xie
+  - Bin Zhu
+  - Emre Kiciman
+  - Guangzhong Sun
+  - Xing Xie
+  - Fangzhao Wu
+  source: arxiv
+  title: Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models
+  url: https://arxiv.org/abs/2312.14197
+  year: '2023'
+arxiv:2506.09956:
+  authors:
+  - Sahar Abdelnabi
+  - Aideen Fay
+  - Ahmed Salem
+  - Egor Zverev
+  - Kai-Chieh Liao
+  - Chi-Huang Liu
+  - Chun-Chih Kuo
+  - Jannis Weigend
+  - Danyael Manlangit
+  - Alex Apostolov
+  - Haris Umair
+  - João Donato
+  - Masayuki Kawakita
+  - Athar Mahboob
+  - Tran Huu Bach
+  - Tsun-Han Chiang
+  - Myeongjin Cho
+  - Hajin Choi
+  - Byeonghyeon Kim
+  - Hyeonjin Lee
+  - Benjamin Pannell
+  - Conor McCauley
+  - Mark Russinovich
+  - Andrew Paverd
+  - Giovanni Cherubin
+  source: arxiv
+  title: 'LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge'
+  url: https://arxiv.org/abs/2506.09956
+  year: '2025'
+arxiv:2311.07838:
+  authors:
+  - Xiaonan Li
+  - Changtai Zhu
+  - Linyang Li
+  - Zhangyue Yin
+  - Tianxiang Sun
+  - Xipeng Qiu
+  source: arxiv
+  title: 'LLatrieval: LLM-Verified Retrieval for Verifiable Generation'
+  url: https://arxiv.org/abs/2311.07838
+  year: '2023'
+arxiv:2411.01022:
+  authors:
+  - Hithesh Sankararaman
+  - Mohammed Nasheed Yasin
+  - Tanner Sorensen
+  - Alessandro Di Bari
+  - Andreas Stolcke
+  source: arxiv
+  title: 'Provenance: A Light-weight Fact-checker for Retrieval Augmented LLM Generation Output'
+  url: https://arxiv.org/abs/2411.01022
+  year: '2024'
+arxiv:2511.07577:
+  authors:
+  - Yining Lu
+  - Wenyi Tang
+  - Max Johnson
+  - Taeho Jung
+  - Meng Jiang
+  source: arxiv
+  title: A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+  url: https://arxiv.org/abs/2511.07577
+  year: '2025'
+arxiv:2508.01084:
+  authors:
+  - Pengcheng Zhou
+  - Yinglun Feng
+  - Zhongliang Yang
+  source: arxiv
+  title: Provably Secure Retrieval-Augmented Generation
+  url: https://arxiv.org/abs/2508.01084
+  year: '2025'

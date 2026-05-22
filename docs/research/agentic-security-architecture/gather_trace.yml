@@ -1,0 +1,411 @@
+# gather_trace for Topic D: agentic-security-architecture (Sprint 2 E2)
+# Records each discovery decision mapping a cached source -> bib_ledger entry.
+# Per-fetch Self-RAG reflection (IsRel/IsSup/IsUse + decision).
+#
+# Notes:
+# - For 24 of 25 entries, the URL came from the research_plan.md
+#   "Known landmark papers" pre-population (12-13 cross-classified + 10-12
+#   net-new candidates). Each was independently WebFetched (or cached via
+#   cache_source.py with a fresh fetch) to confirm URL/title/year alignment
+#   before assigning the agentic_-prefixed bibkey.
+# - 1 additional discovery via WebSearch confirmed the canonical AgentArmor
+#   arxiv id (2508.01249, Wang et al. 2025) that the plan listed as
+#   "TBD via /research-gather".
+# - Several pre-populated "net-new" candidates turned out to already exist in
+#   other dossier topics (LlamaFirewall, Task Shield, MELON, IsolateGPT,
+#   AttentionTracker, InstructDetector, Nasr attacker-second, Willison
+#   dual-LLM); reclassified as cross-classified (agentic_-prefixed) rather
+#   than net-new.
+# - Sub-area exploratory WebSearches (D1-D5) found no additional high-value
+#   sources beyond the pre-populated set; results are recorded as reject
+#   (already covered) for audit completeness.
+
+schema_version: 3
+topic: agentic_security_architecture
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+fetches:
+
+# ============================================================================
+# D1: Agent harness security architecture
+# ============================================================================
+
+- fetch_id: fetch_llamafirewall
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'LlamaFirewall Meta open source guardrail AI agents arxiv 2505.03574'
+  source_url: https://arxiv.org/abs/2505.03574
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Canonical D1 anchor: layered-firewall agent harness from Meta with PromptGuard v2 + agent-scoped guardrails.'
+  assigned_bibkey: agentic_chennabasappa2025llamafirewall
+
+- fetch_id: fetch_agentarmor
+  sub_area: 'D1. Agent harness security architecture'
+  query: '"AgentArmor" agent firewall prompt injection 2025 arxiv'
+  source_url: https://arxiv.org/abs/2508.01249
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Net-new discovery via WebSearch; plan listed as TBD. Confirmed arxiv 2508.01249, Wang et al. 2025; program-analysis-based agent-firewall pattern.'
+  assigned_bibkey: agentic_wang2025agentarmor
+
+- fetch_id: fetch_designpatterns
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'design patterns securing LLM agents prompt injection 2025 arxiv'
+  source_url: https://arxiv.org/abs/2506.08837
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Beurer-Kellner et al. design-patterns catalogue; cross-classified from direct-vs-indirect. Provides the design-pattern vocabulary used elsewhere in D2.'
+  assigned_bibkey: agentic_beurerkellner2025designpatterns
+
+- fetch_id: fetch_instruction_hierarchy
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'OpenAI Instruction Hierarchy privileged instructions arxiv 2404.13208'
+  source_url: https://arxiv.org/abs/2404.13208
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Cross-classified: foundational harness-contract reference (system > developer > user > tool priority).'
+  assigned_bibkey: agentic_wallace2024instructionhierarchy
+
+- fetch_id: fetch_struq
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'StruQ structured queries reserved delimiters USENIX 2025'
+  source_url: https://arxiv.org/abs/2402.06363
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Cross-classified from direct-vs-indirect; included here as in-harness defense layer.'
+  assigned_bibkey: agentic_chen2025struq
+
+- fetch_id: fetch_secalign
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'SecAlign preference optimization DPO prompt injection CCS 2025'
+  source_url: https://arxiv.org/abs/2410.05451
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Cross-classified from direct-vs-indirect; harness-trained LLM contract.'
+  assigned_bibkey: agentic_chen2025secalign
+
+- fetch_id: fetch_metasecalign
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'Meta SecAlign Llama-3.3 input role separation arxiv 2507.02735'
+  source_url: https://arxiv.org/abs/2507.02735
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Cross-classified; introduces explicit `input` role for untrusted data, formalizing harness contract.'
+  assigned_bibkey: agentic_chen2025metasecalign
+
+- fetch_id: fetch_jatmo
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'Jatmo task-specific finetuning prompt injection ESORICS 2024'
+  source_url: https://arxiv.org/abs/2312.17673
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Cross-classified; narrow-agent extreme of capability isolation (single-task model that cannot follow instructions in its input).'
+  assigned_bibkey: agentic_piet2024jatmo
+
+# Exploratory D1 WebSearches that did NOT yield new entries (already covered)
+- fetch_id: fetch_d1_search_harness_arch
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'tool-calling agent harness security architecture LLM arxiv 2025'
+  source_url: https://arxiv.org/abs/2604.13630
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 2
+  decision: reject
+  reason: 'SafeHarness (April 2026, arxiv 2604.13630) is post-cutoff for current Sprint 2 E2 corpus (2026-05-22 is before April 2026 publication date; preprint not yet a stable target). Defer to E3+ revisits.'
+
+# ============================================================================
+# D2: Capability-based isolation + dual-LLM patterns
+# ============================================================================
+
+- fetch_id: fetch_camel
+  sub_area: 'D2. Capability-based isolation + dual-LLM patterns'
+  query: 'CaMeL capability-based isolation Debenedetti Tramer arxiv 2503.18813'
+  source_url: https://arxiv.org/abs/2503.18813
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D2 canonical anchor: privileged + quarantined LLM split with capability-tagged Python interpreter.'
+  assigned_bibkey: agentic_debenedetti2025camel
+
+- fetch_id: fetch_isolategpt
+  sub_area: 'D2. Capability-based isolation + dual-LLM patterns'
+  query: 'IsolateGPT SecGPT per-plugin sandboxing NDSS 2025'
+  source_url: https://arxiv.org/abs/2403.04960
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D2 anchor: per-plugin execution-isolation architecture; cross-classified from direct-vs-indirect.'
+  assigned_bibkey: agentic_wu2025isolategpt
+
+- fetch_id: fetch_willison_dual_llm
+  sub_area: 'D2. Capability-based isolation + dual-LLM patterns'
+  query: 'Simon Willison dual LLM pattern resist prompt injection blog 2023'
+  source_url: https://simonwillison.net/2023/Apr/25/dual-llm-pattern/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Canonical informal dual_llm_pattern citation; foundational anchor for D2 reasoning.'
+  assigned_bibkey: agentic_willison2023dualllm
+
+- fetch_id: fetch_d2_search_capability_isolation
+  sub_area: 'D2. Capability-based isolation + dual-LLM patterns'
+  query: 'capability-based isolation LLM agent dual-LLM pattern 2025 arxiv'
+  source_url: https://threatmodel.co/blog/dual-llm-pattern
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 2
+  decision: reject
+  reason: 'Secondary explainer blog; cited primary sources (CaMeL, Willison, Beurer-Kellner) already cover the dual-LLM pattern at the primary-source level. No net-new primary discovery.'
+
+# ============================================================================
+# D3: Score fusion + stacker theory
+# ============================================================================
+
+- fetch_id: fetch_promptguard2_86m
+  sub_area: 'D3. Score fusion + stacker theory'
+  query: 'Meta Llama Prompt Guard 2 86M huggingface model card'
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'D3 anchor for Recall@1%FPR loss + APR-metric scorer; vendor HF model card is official reference.'
+  assigned_bibkey: agentic_meta2025promptguard2_86m
+
+- fetch_id: fetch_promptguard2_22m
+  sub_area: 'D3. Score fusion + stacker theory'
+  query: 'Meta Llama Prompt Guard 2 22M huggingface latency'
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-22M
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: 'D3 deployment-cost comparator; smaller PG2 variant.'
+  assigned_bibkey: agentic_meta2025promptguard2_22m
+
+- fetch_id: fetch_energy_loss
+  sub_area: 'D3. Score fusion + stacker theory'
+  query: 'Liu energy-based out-of-distribution detection NeurIPS 2020 arxiv 2010.03759'
+  source_url: https://arxiv.org/abs/2010.03759
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D3 foundational basis for Meta PG2 + CodeIntegrity PromptGuard recall-at-FPR recipes; energy-score over softmax.'
+  assigned_bibkey: agentic_liu2020energyloss
+
+- fetch_id: fetch_ayub_embedding
+  sub_area: 'D3. Score fusion + stacker theory'
+  query: 'embedding-based classifiers prompt injection XGBoost Ayub arxiv 2410.22284'
+  source_url: https://arxiv.org/abs/2410.22284
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'D3 stacker-eligible signal class (embedding classifiers); cross-classified from detector-landscape.'
+  assigned_bibkey: agentic_ayub2024embedding
+
+- fetch_id: fetch_injecguard
+  sub_area: 'D3. Score fusion + stacker theory'
+  query: 'InjecGuard NotInject over-defense MOF arxiv 2410.22770'
+  source_url: https://arxiv.org/abs/2410.22770
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'D3 over-defense context; relevant to score-fusion FPR-optimization tradeoffs.'
+  assigned_bibkey: agentic_li2024injecguard
+
+- fetch_id: fetch_d3_search_stacker
+  sub_area: 'D3. Score fusion + stacker theory'
+  query: 'score fusion stacker prompt injection detector ensemble low-FPR 2025'
+  source_url: https://arxiv.org/pdf/2506.06384
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 2
+  decision: reject
+  reason: 'Dual-channel fusion paper (DeBERTa + heuristic features); peripheral to D3 core theory and the meta-learning-stacker focus. Already covered conceptually by Ayub embedding + Meta PG2 anchors.'
+
+# ============================================================================
+# D4: Activation-probe methodology
+# ============================================================================
+
+- fetch_id: fetch_tasktracker
+  sub_area: 'D4. Activation-probe methodology beyond TaskTracker'
+  query: 'TaskTracker activation deltas task drift Abdelnabi SaTML 2025 arxiv 2406.00799'
+  source_url: https://arxiv.org/abs/2406.00799
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D4 canonical anchor: linear-probe-on-activation-deltas methodology + the >500K-instance toolkit.'
+  assigned_bibkey: agentic_abdelnabi2025tasktracker
+
+- fetch_id: fetch_instructdetector
+  sub_area: 'D4. Activation-probe methodology beyond TaskTracker'
+  query: 'InstructDetector activation-based prompt injection detection 2025 arxiv 2505.06311'
+  source_url: https://arxiv.org/abs/2505.06311
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D4 extension of TaskTracker recipe to indirect prompt injection; cross-classified from detector-landscape.'
+  assigned_bibkey: agentic_wen2025instructdetector
+
+- fetch_id: fetch_attentiontracker
+  sub_area: 'D4. Activation-probe methodology beyond TaskTracker'
+  query: 'Attention Tracker prompt injection attention heads Hung NAACL 2025'
+  source_url: https://arxiv.org/abs/2411.00348
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D4 attention-head-level signal class; cross-classified from detector-landscape.'
+  assigned_bibkey: agentic_hung2025attentiontracker
+
+# ============================================================================
+# D5: Agentic-bench critique + adaptive evaluation
+# ============================================================================
+
+- fetch_id: fetch_agentdojo
+  sub_area: 'D5. Agentic-bench critique + adaptive evaluation'
+  query: 'AgentDojo benchmark Debenedetti NeurIPS 2024 arxiv 2406.13352'
+  source_url: https://arxiv.org/abs/2406.13352
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D5 critique-target benchmark; cross-classified from direct-vs-indirect under agentic_bench_critique (not benchmark catalogue).'
+  assigned_bibkey: agentic_debenedetti2024agentdojo
+
+- fetch_id: fetch_taskshield
+  sub_area: 'D5. Agentic-bench critique + adaptive evaluation'
+  query: 'Task Shield instruction goal verification AgentDojo Jia arxiv 2412.16682'
+  source_url: https://arxiv.org/abs/2412.16682
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D5 defense evaluated on AgentDojo; cross-classified from detector-landscape.'
+  assigned_bibkey: agentic_jia2024taskshield
+
+- fetch_id: fetch_melon
+  sub_area: 'D5. Agentic-bench critique + adaptive evaluation'
+  query: 'MELON masked re-execution AgentDojo ICML 2025 arxiv 2502.05174'
+  source_url: https://arxiv.org/abs/2502.05174
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D5 current ASR-floor defense on AgentDojo; cross-classified from detector-landscape.'
+  assigned_bibkey: agentic_zhu2025melon
+
+- fetch_id: fetch_firewalls
+  sub_area: 'D5. Agentic-bench critique + adaptive evaluation'
+  query: 'Are Firewalls All You Need AgentDojo saturation Bhagwatkar NeurIPS 2025 arxiv 2510.05244'
+  source_url: https://arxiv.org/abs/2510.05244
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D5 saturation critique anchor; cross-classified from detector-landscape.'
+  assigned_bibkey: agentic_bhagwatkar2025firewalls
+
+- fetch_id: fetch_llmail_inject
+  sub_area: 'D5. Agentic-bench critique + adaptive evaluation'
+  query: 'LLMail-Inject Microsoft IEEE SaTML 2025 adaptive challenge 208K arxiv 2506.09956'
+  source_url: https://arxiv.org/abs/2506.09956
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D5 adaptive-evaluation gold standard; cross-classified from direct-vs-indirect/training-and-evaluation.'
+  assigned_bibkey: agentic_abdelnabi2025llmailinject
+
+- fetch_id: fetch_nasr_attackersecond
+  sub_area: 'D5. Agentic-bench critique + adaptive evaluation'
+  query: 'Nasr attacker moves second adaptive attack jailbreak prompt injection arxiv 2510.09023'
+  source_url: https://arxiv.org/abs/2510.09023
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'D5 static-defense critique anchor; cross-classified from direct-vs-indirect/training-and-evaluation.'
+  assigned_bibkey: agentic_nasr2025attackersecond

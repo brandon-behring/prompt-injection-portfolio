@@ -405,3 +405,117 @@ fetches:
   decision: accept
   reason: 'WASP 2025 - end-to-end web-agent security benchmark for prompt injection attacks.'
   assigned_bibkey: evtimov2025wasp
+# ============================================================================
+# Sprint 2 Phase E2 post-hoc reconstruction (2026-05-23). The prior agent crashed
+# after writing 9 new bib_ledger entries but before recording gather_trace rows.
+# All 9 fetches were already cached under ~/Claude/research_cache and resolved
+# to accept; no reject/escalate fetches recorded.
+# ============================================================================
+- fetch_id: fetch_perez2022_ignoreprev
+  sub_area: 'B1'
+  query: 'Perez Ribeiro PromptInject ignore previous prompt attack techniques GPT-3 goal hijacking 2022'
+  source_url: https://arxiv.org/abs/2211.09527
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Perez & Ribeiro 2022 PromptInject - earliest formalized direct-injection threat model (goal hijacking + prompt leaking).'
+  assigned_bibkey: perez2022ignoreprev
+- fetch_id: fetch_liu2024_formalizing
+  sub_area: 'B1'
+  query: 'Liu formalizing benchmarking prompt injection attacks defenses framework USENIX 2024'
+  source_url: https://arxiv.org/abs/2310.12815
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Liu et al. 2024 USENIX Security - first systematic framework for prompt injection attacks & defenses (5 attacks x 10 defenses x 10 LLMs x 7 tasks).'
+  assigned_bibkey: liu2024formalizing
+- fetch_id: fetch_liu2023_llmapps_houyi
+  sub_area: 'B1'
+  query: 'Liu HouYi black-box prompt injection LLM-integrated applications 31 of 36 vulnerable'
+  source_url: https://arxiv.org/abs/2306.05499
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Liu et al. 2023 HouYi - early black-box prompt-injection technique; 31/36 commercial LLM apps vulnerable.'
+  assigned_bibkey: liu2023llmapps
+- fetch_id: fetch_shi2024_judgedeceiver
+  sub_area: 'B1'
+  query: 'Shi JudgeDeceiver optimization-based prompt injection LLM-as-a-Judge CCS 2024'
+  source_url: https://arxiv.org/abs/2403.17710
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Shi et al. 2024 ACM CCS JudgeDeceiver - optimization-based prompt-injection attack against LLM-as-a-Judge (RLAIF, tool selection, search).'
+  assigned_bibkey: shi2024llmjudge
+- fetch_id: fetch_pasquini2024_neuralexec
+  sub_area: 'B1'
+  query: 'Pasquini Neural Exec learning execution triggers prompt injection differentiable search 2024'
+  source_url: https://arxiv.org/abs/2403.03792
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Pasquini et al. 2024 Neural Exec - learned (differentiable) execution triggers replace handcrafted "ignore previous instructions" strings.'
+  assigned_bibkey: pasquini2024neuralexec
+- fetch_id: fetch_evertz2024_whispers
+  sub_area: 'B1'
+  query: 'Evertz whispers in the machine confidentiality LLM agents DIMVA 2026'
+  source_url: https://arxiv.org/abs/2402.06922
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Evertz et al. 2024 Whispers - formalization of confidentiality leakage in agentic LLMs; 10 agents x 20 scenarios x 14 strategies all vulnerable.'
+  assigned_bibkey: evertz2024whispers
+- fetch_id: fetch_wei2023_jailbroken
+  sub_area: 'B1'
+  query: 'Wei jailbroken how does LLM safety training fail competing objectives mismatched generalization NeurIPS 2023'
+  source_url: https://arxiv.org/abs/2307.02483
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Wei et al. 2023 NeurIPS Jailbroken - foundational analysis of LLM safety-training failure modes (competing objectives + mismatched generalization).'
+  assigned_bibkey: wei2023jailbroken
+- fetch_id: fetch_rossi2024_survey
+  sub_area: 'B1'
+  query: 'Rossi early categorization prompt injection attacks survey 2024'
+  source_url: https://arxiv.org/abs/2402.00898
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Rossi et al. 2024 - early categorization survey of prompt-injection attacks; useful taxonomy reference.'
+  assigned_bibkey: rossi2024survey
+- fetch_id: fetch_mitre_atlas_2024
+  sub_area: 'B1'
+  query: 'MITRE ATLAS adversarial threat landscape AI systems prompt injection AML.T0051'
+  source_url: https://atlas.mitre.org/
+  fetched_at: 2026-05-22
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'MITRE ATLAS - canonical adversarial-tactic taxonomy for AI; AML.T0051 LLM Prompt Injection (with .000 direct + .001 indirect sub-techniques). Cache is SPA shell only.'
+  assigned_bibkey: mitreatlas2024

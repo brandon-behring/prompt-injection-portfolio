@@ -3464,3 +3464,815 @@ entries:
       recency: high
       consistency: high
       directness: high
+
+# ============================================================================
+# Sprint 2 Phase E2 evidence (2026-05-23): ev_0127..0155 for new bib_ledger
+# entries gulrajani2021domainbed .. harelix2024_mixed
+# ============================================================================
+- evidence_id: ev_training_and_evaluation_0127
+  source_url: https://arxiv.org/abs/2007.01434
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4e49b1111d751597
+  supports:
+  - claim_id: claim_training_and_evaluation_gulrajani2021domainbed_a1_dg_definition
+    field_path: bib_ledger.entries[45].title
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.98
+    excerpt_anchor:
+      cache_id: cache_4e49b1111d751597
+      text_path_offset:
+      - 2136
+      - 2259
+      sha256_of_span: 722172266662aa5731fb3ed42c747ec95a1e651a1f9d17cc6e581881b0cb3613
+  excerpt: 'The goal of domain generalization algorithms is to predict well on distributions different from those seen during training.'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - load-bearing for OOD-wall thesis (ADR-016 + ADR-075)
+    - verbatim-anchored DomainBed abstract sentence
+    - primary source (cached arxiv abstract)
+    domains:
+      source_quality: high
+      recency: moderate
+      consistency: high
+      directness: high
+- evidence_id: ev_training_and_evaluation_0128
+  source_url: https://arxiv.org/abs/2007.01434
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4e49b1111d751597
+  supports:
+  - claim_id: claim_training_and_evaluation_gulrajani2021domainbed_a2_model_selection
+    field_path: bib_ledger.entries[45].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_4e49b1111d751597
+      text_path_offset:
+      - 2624
+      - 2686
+      sha256_of_span: b61f56cfa1e561d686582226c3975aeb41dbc18eaa5ae238288bbe09c75ef628
+  excerpt: 'model selection is non-trivial for domain generalization tasks'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - load-bearing for OOD-wall thesis
+    - verbatim-anchored DomainBed model-selection claim
+    - primary source
+    domains:
+      source_quality: high
+      recency: moderate
+      consistency: high
+      directness: high
+- evidence_id: ev_training_and_evaluation_0129
+  source_url: https://arxiv.org/abs/2007.01434
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4e49b1111d751597
+  supports:
+  - claim_id: claim_training_and_evaluation_gulrajani2021domainbed_a3_erm_baseline
+    field_path: bib_ledger.entries[45].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_4e49b1111d751597
+      text_path_offset:
+      - 3087
+      - 3169
+      sha256_of_span: 0f4857b19fa894a11af985ce8efe70e7a8d709190d4db1425f791e174299e105
+  excerpt: 'empirical risk minimization shows state-of-the-art performance across all datasets'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - verbatim-anchored DomainBed ERM finding
+    - primary source; the surprise result of DomainBed
+    domains:
+      source_quality: high
+      recency: moderate
+      consistency: high
+      directness: high
+- evidence_id: ev_training_and_evaluation_0130
+  source_url: https://arxiv.org/abs/2405.20947
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_056b43cdcbb6d097
+  supports:
+  - claim_id: claim_training_and_evaluation_cui2025orbench_a1_abstract
+    field_path: bib_ledger.entries[46].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'OR-Bench is an over-refusal benchmark comprising 80,000 prompts spanning 10 rejection categories plus harder evaluation subsets; introduces an automatic generation method and evaluates 32 models across 8 families.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source (ICML 2025 paper, cached arxiv abstract)
+    - quantitative scope reported in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0131
+  source_url: https://arxiv.org/abs/2405.20947
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_056b43cdcbb6d097
+  supports:
+  - claim_id: claim_training_and_evaluation_cui2025orbench_a2_pairs_with_notinject
+    field_path: bib_ledger.entries[46].title
+    evidence_role: qualifies
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    link_confidence: 0.55
+    inference_chain:
+    - ev_training_and_evaluation_0078
+    - ev_training_and_evaluation_0079
+    - ev_training_and_evaluation_0130
+  excerpt: 'Pairing claim: OR-Bench (general over-refusal) + InjecGuard NotInject (over-defense for PI guardrails) jointly cover the two over-refusal regimes the portfolio measures; NotInject (Li et al. 2024) is the prompt-injection-specific counterpart to OR-Bench''s general LLM-safety lens.'
+  rights_status: private_use
+  confidence:
+    score: 0.55
+    factors:
+    - llm_inferred cross-reference (cap 0.60)
+    - one primary source (OR-Bench abstract) + two InjecGuard NotInject evidence rows
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0132
+  source_url: https://arxiv.org/abs/2304.07327
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cb663867a0db8dd3
+  supports:
+  - claim_id: claim_training_and_evaluation_kopf2023oasst1_a1_abstract
+    field_path: bib_ledger.entries[47].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'OpenAssistant Conversations (OASST1) is a multilingual conversational dataset with 161,443 messages across 35 languages and 461,292 quality annotations from 13,500+ volunteers, designed to support SFT and RLHF training.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source (NeurIPS 2023 D&B paper, cached arxiv abstract)
+    - benign-pool reference for ADR-016 sibling project
+    domains:
+      source_quality: high
+      recency: moderate
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0133
+  source_url: https://arxiv.org/abs/2304.07327
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cb663867a0db8dd3
+  supports:
+  - claim_id: claim_training_and_evaluation_kopf2023oasst1_a2_benign_pool_role
+    field_path: bib_ledger.entries[47].title
+    evidence_role: qualifies
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    link_confidence: 0.5
+    inference_chain:
+    - ev_training_and_evaluation_0132
+  excerpt: 'Synthesis claim: OASST1 serves as a benign-conversation pool for prompt-injection detector training in sibling ADR-016 LODO research; its naturalistic distribution makes it useful as a hard-negative ("benign-but-imperative") source distinct from synthetic benign datasets.'
+  rights_status: private_use
+  confidence:
+    score: 0.5
+    factors:
+    - llm_inferred extraction
+    - single supporting evidence
+    domains:
+      source_quality: moderate
+      recency: moderate
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0134
+  source_url: https://arxiv.org/abs/2406.04244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_d28340ad76835bf3
+  supports:
+  - claim_id: claim_training_and_evaluation_xu2024contamination_a1_abstract
+    field_path: bib_ledger.entries[48].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Benchmark Data Contamination of Large Language Models: A Survey. Reviews how LLMs inadvertently incorporate evaluation benchmark information from training data, leading to inaccurate performance measurements; surveys alternative assessment methods and future directions. 31 pages, 7 figures.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary survey paper, cached abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0135
+  source_url: https://arxiv.org/abs/2406.04244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_d28340ad76835bf3
+  supports:
+  - claim_id: claim_training_and_evaluation_xu2024contamination_a2_ood_wall_link
+    field_path: bib_ledger.entries[48].title
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    link_confidence: 0.55
+    inference_chain:
+    - ev_training_and_evaluation_0134
+    - ev_training_and_evaluation_0127
+  excerpt: 'OOD-wall narrative link: a "98% accuracy" on a public benchmark is indistinguishable from contamination-driven memorization absent independent decontamination evidence; Xu 2024 survey enumerates the techniques needed to make that distinction, which the portfolio inherits via ADR-016/ADR-075 LODO discipline.'
+  rights_status: private_use
+  confidence:
+    score: 0.55
+    factors:
+    - llm_inferred synthesis (cap 0.60)
+    - two grounded evidence leaves (Xu survey + DomainBed)
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0136
+  source_url: https://arxiv.org/abs/2311.09783
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_339732e9212e1d57
+  supports:
+  - claim_id: claim_training_and_evaluation_deng2024contamination_a1_abstract
+    field_path: bib_ledger.entries[49].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Deng et al. NAACL 2024 propose retrieval-based overlap detection + a novel "Testset Slot Guessing" method (mask correct answers; ask model to predict missing options); ChatGPT achieves 52% and GPT-4 57% exact-match rate on MMLU options, suggesting contamination.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source NAACL 2024
+    - quantitative contamination evidence
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0137
+  source_url: https://arxiv.org/abs/2311.09783
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_339732e9212e1d57
+  supports:
+  - claim_id: claim_training_and_evaluation_deng2024contamination_a2_slot_guessing
+    field_path: bib_ledger.entries[49].title
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Testset Slot Guessing: black-box contamination detection that works on proprietary models (no weights or training-data access required) by exploiting that contaminated models can complete partially-masked benchmark items.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source methodology
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0138
+  source_url: https://arxiv.org/abs/2311.04850
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cd6fa1a3fb7e2322
+  supports:
+  - claim_id: claim_training_and_evaluation_yang2024rephrased_a1_abstract
+    field_path: bib_ledger.entries[50].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Yang et al. 2023 show simple paraphrasing or translation bypasses string-match decontamination; 8-18% of HumanEval benchmark overlaps with pre-training sets like RedPajama-Data-1T and StarCoder-Data; propose LLM-based decontamination.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - quantitative overlap evidence
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0139
+  source_url: https://arxiv.org/abs/2311.04850
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_cd6fa1a3fb7e2322
+  supports:
+  - claim_id: claim_training_and_evaluation_yang2024rephrased_a2_dossier_implication
+    field_path: bib_ledger.entries[50].title
+    evidence_role: qualifies
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    link_confidence: 0.55
+    inference_chain:
+    - ev_training_and_evaluation_0138
+    - ev_training_and_evaluation_0136
+  excerpt: 'Cross-paper claim: paraphrasing-based contamination bypass (Yang 2023) + slot-guessing detection (Deng 2024) jointly imply that PI-detector training corpora drawn from public benchmarks (deepset, jackhhao, Lakera, etc.) cannot be cleanly decontaminated by string-match alone; this is the methodological basis for the portfolio''s LODO discipline.'
+  rights_status: private_use
+  confidence:
+    score: 0.55
+    factors:
+    - llm_inferred cross-reference (cap 0.60)
+    - two primary supporting evidence
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: moderate
+- evidence_id: ev_training_and_evaluation_0140
+  source_url: https://arxiv.org/abs/2406.19314
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_7f54dfd2ae1095bb
+  supports:
+  - claim_id: claim_training_and_evaluation_white2024livebench_a1_abstract
+    field_path: bib_ledger.entries[51].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'LiveBench (White et al. ICLR 2025 Spotlight): a contamination-limited LLM benchmark with frequently-updated questions sourced from recent competitions/papers/news. Spans math, coding, reasoning, language, instruction following, data analysis. Top models below 70% accuracy.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source ICLR 2025 Spotlight
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0141
+  source_url: https://arxiv.org/abs/2406.19314
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_7f54dfd2ae1095bb
+  supports:
+  - claim_id: claim_training_and_evaluation_white2024livebench_a2_methodology
+    field_path: bib_ledger.entries[51].title
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Methodology: frequent benchmark refresh from recent-only sources mitigates contamination via temporal cutoff rather than detection — a design lesson the portfolio cites as the "contamination-limited" alternative to LODO.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source methodology
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0142
+  source_url: https://arxiv.org/abs/2310.17623
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8a9e2c85b1d57eb4
+  supports:
+  - claim_id: claim_training_and_evaluation_oren2023provetestcontam_a1_abstract
+    field_path: bib_ledger.entries[52].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Oren et al. ICLR 2024 prove black-box contamination by exploiting that all orderings of an exchangeable benchmark should be equally likely under a clean model; tested on five public language models and found "little evidence for pervasive contamination" — a calibration-grade null result.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source ICLR 2024
+    - black-box methodology applicable without weight access
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0143
+  source_url: https://arxiv.org/abs/2310.17623
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8a9e2c85b1d57eb4
+  supports:
+  - claim_id: claim_training_and_evaluation_oren2023provetestcontam_a2_exchangeability
+    field_path: bib_ledger.entries[52].title
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Exchangeability proof technique: the test statistic compares model log-likelihoods of the canonical ordering vs. random permutations; statistically significant preference for the canonical ordering is evidence of contamination.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source methodology
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0144
+  source_url: https://arxiv.org/abs/2310.16789
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f9d4ee55f6d72115
+  supports:
+  - claim_id: claim_training_and_evaluation_shi2023minkprob_a1_abstract
+    field_path: bib_ledger.entries[53].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Shi et al. ICLR 2024 introduce Min-K% Prob, identifying unseen examples by detecting outlier words with low probabilities; WIKIMIA benchmark (pre/post-training data); achieves 7.4% improvement on WIKIMIA over baselines; applicable to copyright detection, contamination assessment, privacy auditing.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source ICLR 2024
+    - quantitative improvement
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0145
+  source_url: https://arxiv.org/abs/2310.16789
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_f9d4ee55f6d72115
+  supports:
+  - claim_id: claim_training_and_evaluation_shi2023minkprob_a2_methodology
+    field_path: bib_ledger.entries[53].title
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Min-K% Prob: average log-probability of the K% lowest-likelihood tokens in a sequence; contaminated sequences have systematically higher Min-K% than unseen ones because the model has learned to assign high probability everywhere along the memorized span.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source methodology
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0146
+  source_url: https://arxiv.org/abs/2310.18018
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_c72ce9a009679f18
+  supports:
+  - claim_id: claim_training_and_evaluation_sainz2023nlpeval_a1_abstract
+    field_path: bib_ledger.entries[54].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Sainz et al. EMNLP 2023 Findings: data contamination causes overestimation of model performance and can lead to flawed scientific conclusions. Propose defining contamination levels, developing detection mechanisms, and flagging compromised research.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source EMNLP 2023 Findings
+    - cited in submission ADR-018
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0147
+  source_url: https://arxiv.org/abs/2310.18018
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_c72ce9a009679f18
+  supports:
+  - claim_id: claim_training_and_evaluation_sainz2023nlpeval_a2_disclosure_norm
+    field_path: bib_ledger.entries[54].title
+    evidence_role: qualifies
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Disclosure norm: every benchmark should publish a contamination assessment for the models evaluated on it; this is the methodological basis for the portfolio''s "training-data mixture undisclosed" red flag in the C5 reproducibility-practice claim_family.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - directly informs portfolio disclosure-discipline framing
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0148
+  source_url: https://arxiv.org/abs/2510.27055
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_66d57637a5dbfa85
+  supports:
+  - claim_id: claim_training_and_evaluation_zawalski2025codec_a1_abstract
+    field_path: bib_ledger.entries[55].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Zawalski et al. 2025 CoDeC: contamination detection via in-context-learning signal — ICL examples enhance confidence on unknown datasets but diminish it for contaminated ones because they disrupt memorized patterns. Reports clear separation between seen and unseen with interpretable contamination scores.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source (recent 2025 method)
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0149
+  source_url: https://arxiv.org/abs/2510.27055
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_66d57637a5dbfa85
+  supports:
+  - claim_id: claim_training_and_evaluation_zawalski2025codec_a2_icl_signal
+    field_path: bib_ledger.entries[55].title
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'CoDeC ICL-signal mechanism: contaminated samples are memorized as joint distributions; ICL examples introduce distributional noise that disrupts the memorized chunk, lowering posterior confidence — the inverse pattern from honest generalization.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source methodology
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0150
+  source_url: https://arxiv.org/abs/2603.16197
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8da533c586b11f25
+  supports:
+  - claim_id: claim_training_and_evaluation_m2026sixfrontier_a1_abstract
+    field_path: bib_ledger.entries[56].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: '"Are Large Language Models Truly Smarter Than Humans?" (Reddy M & Karmakar 2026) audit six frontier models (GPT-4o, GPT-4o-mini, DeepSeek-R1, DeepSeek-V3, Llama-3.3-70B, Qwen3-235B) and find 13.8% overall contamination rate on MMLU (18.1% STEM, up to 66.7% Philosophy); paraphrase-diagnostic shows accuracy decline when questions are indirectly referenced.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source (2026 frontier audit)
+    - quantitative contamination rates
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0151
+  source_url: https://arxiv.org/abs/2603.16197
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8da533c586b11f25
+  supports:
+  - claim_id: claim_training_and_evaluation_m2026sixfrontier_a2_field_skew
+    field_path: bib_ledger.entries[56].title
+    evidence_role: qualifies
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Field-skewed contamination: rates rank from STEM downward through humanities, suggesting that benchmark contamination patterns reflect web-text composition (Wikipedia philosophy article overlap > academic STEM paper overlap with MMLU items).'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - primary source
+    - directly stated in abstract
+    domains:
+      source_quality: high
+      recency: high
+      consistency: moderate
+      directness: high
+- evidence_id: ev_training_and_evaluation_0152
+  source_url: https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_234feaaf7ce8cef3
+  supports:
+  - claim_id: claim_training_and_evaluation_neuralchemy2026dataset_a1_size_license
+    field_path: bib_ledger.entries[57].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'neuralchemy/Prompt-injection-dataset: 22,193 rows, Apache 2.0 license; two configs (core 6,274 rows for classical ML, full 15,919 rows for transformer fine-tuning). 10 attack categories (direct_injection, jailbreak, system_extraction, encoding_obfuscation, persona_replacement, indirect_injection, token_smuggling, many_shot, crescendo, prompt_leaking) + benign with hard negatives; ~60% malicious / ~40% benign.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - official maintainer (HF dataset card)
+    - cached snapshot
+    domains:
+      source_quality: high
+      recency: high
+      consistency: high
+      directness: high
+- evidence_id: ev_training_and_evaluation_0153
+  source_url: https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset
+  source_type: dataset
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_234feaaf7ce8cef3
+  supports:
+  - claim_id: claim_training_and_evaluation_neuralchemy2026dataset_a2_zero_leakage_splits
+    field_path: bib_ledger.entries[57].title
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Group-aware splits: splitting done at group_id level not sample level — all augmented variants share a group_id with their original; entire group assigned to one split only; val/test contain original samples only (no augmented data). Zero leakage verified across 16,918 samples. This is the canonical LODO-style split discipline applied at the row-augmentation level rather than the cross-source level.'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - official maintainer description
+    - directly addresses leakage discipline
+    domains:
+      source_quality: high
+      recency: high
+      consistency: high
+      directness: high
+- evidence_id: ev_training_and_evaluation_0154
+  source_url: https://huggingface.co/datasets/protectai/prompt-injection-validation
+  source_type: dataset
+  source_quality: secondary
+  retrieved_at: '2026-05-23'
+  verification_method: websearch_snippet
+  cache_ids:
+  - cache_adcee16d77aee0eb
+  supports:
+  - claim_id: claim_training_and_evaluation_protectai2024_validation_dataset_a1_existence
+    field_path: bib_ledger.entries[58].title
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.5
+  excerpt: 'protectai/prompt-injection-validation: ProtectAI''s multi-source eval suite for the deberta-v3-base-prompt-injection-v2 model. WebSearch confirms HF page existence and identifies the dataset as part of ProtectAI''s prompt-injection toolkit (used in conjunction with deberta-v3-base/small-prompt-injection-v2). Direct WebFetch returned HTTP 401 from the toolkit UA on 2026-05-23, so per-split details (InjecGuard valid + spikee + bipia_code + bipia_text + not_inject + wildguard + deepset) are sourced from the research_plan landmark annotation and the existing ProtectAI v2 model card (ev_0120/0121) rather than the HF page itself.'
+  rights_status: unknown
+  confidence:
+    score: 0.5
+    factors:
+    - websearch_snippet + cross-reference, not primary fetch
+    - HF 401 not yet resolved; status remains 'unverified'
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: low
+- evidence_id: ev_training_and_evaluation_0155
+  source_url: https://huggingface.co/datasets/Harelix/Prompt-Injection-Mixed-Techniques-2024
+  source_type: dataset
+  source_quality: secondary
+  retrieved_at: '2026-05-23'
+  verification_method: websearch_snippet
+  cache_ids:
+  - cache_62408b4b09b8bd5d
+  supports:
+  - claim_id: claim_training_and_evaluation_harelix2024_mixed_a1_existence
+    field_path: bib_ledger.entries[59].title
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.5
+  excerpt: 'Harelix/Prompt-Injection-Mixed-Techniques-2024: WebSearch confirms HF page existence; 1,174 rows, Apache 2.0 license, one default subset / one train split, used by ProtectAI to train the DeBERTa-based prompt-injection v2 detection model. Direct WebFetch returned HTTP 401 from the toolkit UA on 2026-05-23, so the source remains status=unverified pending a manual fetch or authenticated MCP tool.'
+  rights_status: unknown
+  confidence:
+    score: 0.5
+    factors:
+    - websearch_snippet + cross-reference (ProtectAI v2 training composition)
+    - primary HF page returned 401; status remains 'unverified'
+    domains:
+      source_quality: moderate
+      recency: high
+      consistency: moderate
+      directness: low

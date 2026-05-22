@@ -1,0 +1,327 @@
+arxiv:2211.09527:
+  authors:
+  - Perez & Ribeiro (2022)
+  source: arxiv
+  title: 'Ignore Previous Prompt: Attack Techniques For Language Models'
+  url: https://arxiv.org/abs/2211.09527
+  year: '2022'
+  sha256: e0a69946a77a307b2a153d285a54442d4845e2354a920c7c2a6324481929dc09
+  local_path: docs/research/direct-vs-indirect/papers/perez2022ignoreprev_Perez_2022.pdf
+  bytes: 349406
+  bibkey: perez2022ignoreprev
+arxiv:2302.12173:
+  authors:
+  - Greshake et al. (2023)
+  source: arxiv
+  title: 'Not what you''ve signed up for: Compromising Real-World LLM-Integrated Applications
+    with Indirect Prompt Injection'
+  url: https://arxiv.org/abs/2302.12173
+  year: '2023'
+  sha256: 428e23e8c7e4f89310e113e38d082b3f65548a8b887188ebc536099061800e81
+  local_path: docs/research/direct-vs-indirect/papers/greshake2023indirect_Greshake_2023.pdf
+  bytes: 7306999
+  bibkey: greshake2023indirect
+arxiv:2306.05499:
+  authors:
+  - Liu et al. (2023)
+  source: arxiv
+  title: Prompt Injection attack against LLM-integrated Applications
+  url: https://arxiv.org/abs/2306.05499
+  year: '2023'
+  sha256: 7671887b19dad8ac4d514a45b4701882575860530615edee560c495623064828
+  local_path: docs/research/direct-vs-indirect/papers/liu2023llmapps_Liu_2023.pdf
+  bytes: 693898
+  bibkey: liu2023llmapps
+arxiv:2307.02483:
+  authors:
+  - Wei et al. (2023)
+  source: arxiv
+  title: 'Jailbroken: How Does LLM Safety Training Fail?'
+  url: https://arxiv.org/abs/2307.02483
+  year: '2023'
+  sha256: 53d7ff7f10b7e12fbcef827df4c69fb800c5c6213f855ea29d0929d213c907a9
+  local_path: docs/research/direct-vs-indirect/papers/wei2023jailbroken_Wei_2023.pdf
+  bytes: 453581
+  bibkey: wei2023jailbroken
+arxiv:2310.12815:
+  authors:
+  - Liu et al. (2023)
+  source: arxiv
+  title: Formalizing and Benchmarking Prompt Injection Attacks and Defenses
+  url: https://arxiv.org/abs/2310.12815
+  year: '2023'
+  sha256: 61dc260eaada4836711d856478f2803c37ba00cefdcbbd26a8941731234a0779
+  local_path: docs/research/direct-vs-indirect/papers/liu2024formalizing_Liu_2023.pdf
+  bytes: 887700
+  bibkey: liu2024formalizing
+arxiv:2312.14197:
+  authors:
+  - Yi et al. (2023)
+  source: arxiv
+  title: Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large
+    Language Models
+  url: https://arxiv.org/abs/2312.14197
+  year: '2023'
+  sha256: 3f8f991fc3e3f507acfad759dfa76e6f94f8bcf49e189def3ddb99a4f64efbeb
+  local_path: docs/research/direct-vs-indirect/papers/yi2025bipia_Yi_2023.pdf
+  bytes: 1236869
+  bibkey: yi2025bipia
+arxiv:2312.17673:
+  authors:
+  - Piet et al. (2023)
+  source: arxiv
+  title: 'Jatmo: Prompt Injection Defense by Task-Specific Finetuning'
+  url: https://arxiv.org/abs/2312.17673
+  year: '2023'
+  sha256: 22c2db807f39404d1e9ffb7b7c619da9a06b9f581e0e10029cab112ae19a857f
+  local_path: docs/research/direct-vs-indirect/papers/piet2024jatmo_Piet_2023.pdf
+  bytes: 1350213
+  bibkey: piet2024jatmo
+arxiv:2402.00898:
+  authors:
+  - Rossi et al. (2024)
+  source: arxiv
+  title: An Early Categorization of Prompt Injection Attacks on Large Language Models
+  url: https://arxiv.org/abs/2402.00898
+  year: '2024'
+  sha256: 4c0cf4729a123871384a47ff7eb574b73e8a675410e28c925edd20c8be52e679
+  local_path: docs/research/direct-vs-indirect/papers/rossi2024survey_Rossi_2024.pdf
+  bytes: 423201
+  bibkey: rossi2024survey
+arxiv:2402.06363:
+  authors:
+  - Chen et al. (2024)
+  source: arxiv
+  title: 'StruQ: Defending Against Prompt Injection with Structured Queries'
+  url: https://arxiv.org/abs/2402.06363
+  year: '2024'
+  sha256: 98c56a8aabb43d1e1fd6eae5111bc09c79c069e52fac8139c578239d9ff74ff7
+  local_path: docs/research/direct-vs-indirect/papers/chen2025struq_Chen_2024.pdf
+  bytes: 644650
+  bibkey: chen2025struq
+arxiv:2402.06922:
+  authors:
+  - Evertz et al. (2024)
+  source: arxiv
+  title: 'Whispers in the Machine: Confidentiality in Agentic Systems'
+  url: https://arxiv.org/abs/2402.06922
+  year: '2024'
+  sha256: fa281c1f7fc94c358bb40c4e978b80923fdb6892db62aca29a482e775afc45b4
+  local_path: docs/research/direct-vs-indirect/papers/evertz2024whispers_Evertz_2024.pdf
+  bytes: 865834
+  bibkey: evertz2024whispers
+arxiv:2403.02691:
+  authors:
+  - Zhan et al. (2024)
+  source: arxiv
+  title: 'InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large
+    Language Model Agents'
+  url: https://arxiv.org/abs/2403.02691
+  year: '2024'
+  sha256: 49e6e6a4a00c797a772ef905a154c0839426655027d5fa0ce6b632e6c1db2bfb
+  local_path: docs/research/direct-vs-indirect/papers/zhan2024injecagent_Zhan_2024.pdf
+  bytes: 3183277
+  bibkey: zhan2024injecagent
+arxiv:2403.03792:
+  authors:
+  - Pasquini et al. (2024)
+  source: arxiv
+  title: 'Neural Exec: Learning (and Learning from) Execution Triggers for Prompt
+    Injection Attacks'
+  url: https://arxiv.org/abs/2403.03792
+  year: '2024'
+  sha256: 1ccc3795c28e4646cc0f13af9c3f46994c5f0bec6153595c8d1dc44cb2282f43
+  local_path: docs/research/direct-vs-indirect/papers/pasquini2024neuralexec_Pasquini_2024.pdf
+  bytes: 1996548
+  bibkey: pasquini2024neuralexec
+arxiv:2403.04960:
+  authors:
+  - Wu et al. (2024)
+  source: arxiv
+  title: 'IsolateGPT: An Execution Isolation Architecture for LLM-Based Agentic Systems'
+  url: https://arxiv.org/abs/2403.04960
+  year: '2024'
+  sha256: 1b5c4daa16650b006332780d9b450e5ee46bb5047585c03e50f7e7e24d12fc52
+  local_path: docs/research/direct-vs-indirect/papers/wu2025isolategpt_Wu_2024.pdf
+  bytes: 2614790
+  bibkey: wu2025isolategpt
+arxiv:2403.14720:
+  authors:
+  - Hines et al. (2024)
+  source: arxiv
+  title: Defending Against Indirect Prompt Injection Attacks With Spotlighting
+  url: https://arxiv.org/abs/2403.14720
+  year: '2024'
+  sha256: 8c57c6da480eb46c0deaec1f34dfd98fc75810bd352d4391c6f423430774877d
+  local_path: docs/research/direct-vs-indirect/papers/hines2024spotlighting_Hines_2024.pdf
+  bytes: 383223
+  bibkey: hines2024spotlighting
+arxiv:2403.17710:
+  authors:
+  - Shi et al. (2024)
+  source: arxiv
+  title: Optimization-based Prompt Injection Attack to LLM-as-a-Judge
+  url: https://arxiv.org/abs/2403.17710
+  year: '2024'
+  sha256: 7bea71368aec667cdbae6d096ff39a18ca11f7c39d53cab65f999771d7869cc3
+  local_path: docs/research/direct-vs-indirect/papers/shi2024llmjudge_Shi_2024.pdf
+  bytes: 1067997
+  bibkey: shi2024llmjudge
+arxiv:2404.13208:
+  authors:
+  - Wallace et al. (2024)
+  source: arxiv
+  title: 'The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions'
+  url: https://arxiv.org/abs/2404.13208
+  year: '2024'
+  sha256: fbc2d65e913e75b8f0ae74e83e3443c36a727636d1038a071a2f10d8be63dac4
+  local_path: docs/research/direct-vs-indirect/papers/wallace2024instructionhierarchy_Wallace_2024.pdf
+  bytes: 488381
+  bibkey: wallace2024instructionhierarchy
+arxiv:2406.13352:
+  authors:
+  - Debenedetti et al. (2024)
+  source: arxiv
+  title: 'AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and
+    Defenses for LLM Agents'
+  url: https://arxiv.org/abs/2406.13352
+  year: '2024'
+  sha256: 349884fffbf43282591c5accffd57bb651632f38e412fe303114941bdd111b05
+  local_path: docs/research/direct-vs-indirect/papers/debenedetti2024agentdojo_Debenedetti_2024.pdf
+  bytes: 1042076
+  bibkey: debenedetti2024agentdojo
+arxiv:2410.02644:
+  authors:
+  - Zhang et al. (2024)
+  source: arxiv
+  title: 'Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses
+    in LLM-based Agents'
+  url: https://arxiv.org/abs/2410.02644
+  year: '2024'
+  sha256: e20155df01b3a1f6c0a947c4e9e4871957cff2e507939f7ea21a5fe967d84504
+  local_path: docs/research/direct-vs-indirect/papers/zhang2025asb_Zhang_2024.pdf
+  bytes: 922877
+  bibkey: zhang2025asb
+arxiv:2410.05451:
+  authors:
+  - Chen et al. (2024)
+  source: arxiv
+  title: 'SecAlign: Defending Against Prompt Injection with Preference Optimization'
+  url: https://arxiv.org/abs/2410.05451
+  year: '2024'
+  sha256: 606289acd58fae8db94fbf60a33478886138da7651dd003e5091bdfd392ef12b
+  local_path: docs/research/direct-vs-indirect/papers/chen2025secalign_Chen_2024.pdf
+  bytes: 907027
+  bibkey: chen2025secalign
+arxiv:2503.18813:
+  authors:
+  - Debenedetti et al. (2025)
+  source: arxiv
+  title: Defeating Prompt Injections by Design
+  url: https://arxiv.org/abs/2503.18813
+  year: '2025'
+  sha256: c3719f6ce73eecf45e3764debef8a3d8ff8c9233b37d128c558b694ec3790cc7
+  local_path: docs/research/direct-vs-indirect/papers/debenedetti2025camel_Debenedetti_2025.pdf
+  bytes: 5531468
+  bibkey: debenedetti2025camel
+arxiv:2504.11168:
+  authors:
+  - Hackett et al. (2025)
+  source: arxiv
+  title: 'Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against
+    Prompt Injection and Jailbreak Detection Systems'
+  url: https://arxiv.org/abs/2504.11168
+  year: '2025'
+  sha256: f583476d4b6b5994d8c04b076d0de0302224a117be6e97a46515ed60ae5008b2
+  local_path: docs/research/direct-vs-indirect/papers/hackett2025bypassing_Hackett_2025.pdf
+  bytes: 582450
+  bibkey: hackett2025bypassing
+arxiv:2504.18575:
+  authors:
+  - Evtimov et al. (2025)
+  source: arxiv
+  title: 'WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks'
+  url: https://arxiv.org/abs/2504.18575
+  year: '2025'
+  sha256: 460fd2adff8d31a62f7743fc7f30e63f83ac3ed1c0eca2bd957fd2d5ba0b4290
+  local_path: docs/research/direct-vs-indirect/papers/evtimov2025wasp_Evtimov_2025.pdf
+  bytes: 1194682
+  bibkey: evtimov2025wasp
+arxiv:2505.03574:
+  authors:
+  - Chennabasappa et al. (2025)
+  source: arxiv
+  title: 'LlamaFirewall: An open source guardrail system for building secure AI agents'
+  url: https://arxiv.org/abs/2505.03574
+  year: '2025'
+  sha256: 8e5ce5dcf6fc4d2f18c436f7573d3e6427142f77363e23bf9e7ab3bc8e3fb3cc
+  local_path: docs/research/direct-vs-indirect/papers/chennabasappa2025llamafirewall_Chennabasappa_2025.pdf
+  bytes: 1274954
+  bibkey: chennabasappa2025llamafirewall
+arxiv:2506.08837:
+  authors:
+  - Beurer-Kellner et al. (2025)
+  source: arxiv
+  title: Design Patterns for Securing LLM Agents against Prompt Injections
+  url: https://arxiv.org/abs/2506.08837
+  year: '2025'
+  sha256: c202a240f8f03c93cfafd157f218ec790c9e503beeaf80e229fb5e1645ab7f9c
+  local_path: docs/research/direct-vs-indirect/papers/beurerkellner2025designpatterns_Beurer-Kellner_2025.pdf
+  bytes: 1358691
+  bibkey: beurerkellner2025designpatterns
+arxiv:2506.09956:
+  authors:
+  - Abdelnabi et al. (2025)
+  source: arxiv
+  title: 'LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge'
+  url: https://arxiv.org/abs/2506.09956
+  year: '2025'
+  sha256: 9474a8d30995836ca3ffa5a4654103d4422b0e198b59169cca9249bdf80edf14
+  local_path: docs/research/direct-vs-indirect/papers/abdelnabi2025llmailinject_Abdelnabi_2025.pdf
+  bytes: 5908192
+  bibkey: abdelnabi2025llmailinject
+arxiv:2507.02735:
+  authors:
+  - Chen et al. (2025)
+  source: arxiv
+  title: 'Meta SecAlign: A Secure Foundation LLM Against Prompt Injection Attacks'
+  url: https://arxiv.org/abs/2507.02735
+  year: '2025'
+  sha256: e1f270d9a4d88ad9a5619e4ccc1f96414f9b435d370220c01cbdbe5c73a9fbbc
+  local_path: docs/research/direct-vs-indirect/papers/chen2025metasecalign_Chen_2025.pdf
+  bytes: 463846
+  bibkey: chen2025metasecalign
+arxiv:2507.05630:
+  authors:
+  - Choudhary et al. (2025)
+  source: arxiv
+  title: How Not to Detect Prompt Injections with an LLM
+  url: https://arxiv.org/abs/2507.05630
+  year: '2025'
+  sha256: f9dac5036e0dc35d837e0dae574c6d47d0e1134be0b5a7f4565debf72d709877
+  local_path: docs/research/direct-vs-indirect/papers/choudhary2025hownotdetect_Choudhary_2025.pdf
+  bytes: 951943
+  bibkey: choudhary2025hownotdetect
+arxiv:2510.05244:
+  authors:
+  - Bhagwatkar et al. (2025)
+  source: arxiv
+  title: 'Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?'
+  url: https://arxiv.org/abs/2510.05244
+  year: '2025'
+  sha256: 965b725401363ca504b4665cb4ad45633a2c7edc9ddc2f7cd44dc38492e34182
+  local_path: docs/research/direct-vs-indirect/papers/bhagwatkar2025firewalls_Bhagwatkar_2025.pdf
+  bytes: 1311339
+  bibkey: bhagwatkar2025firewalls
+arxiv:2510.09023:
+  authors:
+  - Nasr et al. (2025)
+  source: arxiv
+  title: 'The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against
+    LLM Jailbreaks and Prompt Injections'
+  url: https://arxiv.org/abs/2510.09023
+  year: '2025'
+  sha256: 5067f88c7c14a007c205a452e8cdc5bcbf2e87f0958efcc620aa23c81465a9c3
+  local_path: docs/research/direct-vs-indirect/papers/nasr2025attackersecond_Nasr_2025.pdf
+  bytes: 2134469
+  bibkey: nasr2025attackersecond

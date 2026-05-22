@@ -993,6 +993,418 @@ entries:
     factors:
     - cached raw snapshot
     - primary source
+- evidence_id: ev_direct_vs_indirect_0040
+  source_url: https://arxiv.org/abs/2211.09527
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_136e3a977e2cf0cd
+  supports:
+  - claim_id: claim_promptinject_framework
+    field_path: 'bib_ledger.entries[perez2022ignoreprev].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_136e3a977e2cf0cd
+      text_path_offset: [2456, 2590]
+      sha256_of_span: 0b30ec1ad46cf82357b912e8af275d6c17df513fbd4e4533512b06a2ad7d3df7
+  excerpt: 'By proposing PromptInject, a prosaic alignment framework for mask-based iterative adversarial prompt composition, we examine how GPT-3'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0041
+  source_url: https://arxiv.org/abs/2211.09527
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_136e3a977e2cf0cd
+  supports:
+  - claim_id: claim_goal_hijacking_prompt_leaking
+    field_path: 'bib_ledger.entries[perez2022ignoreprev].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_136e3a977e2cf0cd
+      text_path_offset: [2717, 2789]
+      sha256_of_span: f396a430e89b6c3d83bfb2acaf02989535af1d0a095ed7810b77f41c3735179b
+  excerpt: 'we investigate two types of attacks -- goal hijacking and prompt leaking'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0042
+  source_url: https://arxiv.org/abs/2310.12815
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_be3cad02dec84695
+  supports:
+  - claim_id: claim_prompt_injection_definition_llm_integrated
+    field_path: 'bib_ledger.entries[liu2024formalizing].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_be3cad02dec84695
+      text_path_offset: [2217, 2332]
+      sha256_of_span: dfa348d05741b17803dffc5733e83f10c99a14aa2ac8a6660114edc04a02060f
+  excerpt: 'A prompt injection attack aims to inject malicious instruction/data into the input of an LLM-Integrated Application'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0043
+  source_url: https://arxiv.org/abs/2310.12815
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_be3cad02dec84695
+  supports:
+  - claim_id: claim_formalize_5_attacks_10_defenses
+    field_path: 'bib_ledger.entries[liu2024formalizing].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_be3cad02dec84695
+      text_path_offset: [2815, 2920]
+      sha256_of_span: c06e897041f1bf40a8f5597c34ba7980bf007f7a9ad93d9f9bbb104b773f1c79
+  excerpt: 'we conduct a systematic evaluation on 5 prompt injection attacks and 10 defenses with 10 LLMs and 7 tasks'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0044
+  source_url: https://arxiv.org/abs/2306.05499
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_4d1feb00a8004deb
+  supports:
+  - claim_id: claim_houyi_blackbox_attack
+    field_path: 'bib_ledger.entries[liu2023llmapps].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_4d1feb00a8004deb
+      text_path_offset: [2771, 2855]
+      sha256_of_span: c8bf4ba1c22ce6bfc22eda9e458025713e0900b595a0b970785836460a9cf77b
+  excerpt: 'we subsequently formulate HouYi, a novel black-box prompt injection attack technique'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0045
+  source_url: https://arxiv.org/abs/2306.05499
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_4d1feb00a8004deb
+  supports:
+  - claim_id: claim_houyi_36_apps_31_vulnerable
+    field_path: 'bib_ledger.entries[liu2023llmapps].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_4d1feb00a8004deb
+      text_path_offset: [3302, 3386]
+      sha256_of_span: 2653c869b7436fc4daa34bf87ae1549c5ade6f16f4b5e5b1e6c9dde293513924
+  excerpt: 'We deploy HouYi on 36 actual LLM-integrated applications and discern 31 applications'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0046
+  source_url: https://arxiv.org/abs/2403.17710
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_890998cb61c4094a
+  supports:
+  - claim_id: claim_judgedeceiver_optimization_attack
+    field_path: 'bib_ledger.entries[shi2024llmjudge].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_890998cb61c4094a
+      text_path_offset: [2471, 2560]
+      sha256_of_span: 9279a9d3ff5100145337d23941c949ac22b84c72f2717765e8775658b008e3c7
+  excerpt: 'we propose JudgeDeceiver, an optimization-based prompt injection attack to LLM-as-a-Judge'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0047
+  source_url: https://arxiv.org/abs/2403.17710
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_890998cb61c4094a
+  supports:
+  - claim_id: claim_judgedeceiver_attack_mechanism
+    field_path: 'bib_ledger.entries[shi2024llmjudge].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_890998cb61c4094a
+      text_path_offset: [2562, 2659]
+      sha256_of_span: 779699d941708b6bef3dcfbaabf149016ce69f6faf4fae09eb6df5f42b038143
+  excerpt: 'JudgeDeceiver injects a carefully crafted sequence into an attacker-controlled candidate response'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0048
+  source_url: https://arxiv.org/abs/2403.03792
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_5e3b0b4ef4b819de
+  supports:
+  - claim_id: claim_neural_exec_family
+    field_path: 'bib_ledger.entries[pasquini2024neuralexec].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_5e3b0b4ef4b819de
+      text_path_offset: [2286, 2359]
+      sha256_of_span: d7462c753a4e3d45668b5d461591fec6e55cd926bedbbf78bceb30db4a90d64e
+  excerpt: 'We introduce a new family of prompt injection attacks, termed Neural Exec'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0049
+  source_url: https://arxiv.org/abs/2403.03792
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_5e3b0b4ef4b819de
+  supports:
+  - claim_id: claim_neural_exec_differentiable_search
+    field_path: 'bib_ledger.entries[pasquini2024neuralexec].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_5e3b0b4ef4b819de
+      text_path_offset: [2501, 2645]
+      sha256_of_span: 32db45ca9c868b50f81c5cf6016395b52ba2049f883c3ef19dadf8426941b589
+  excerpt: 'conceptualize the creation of execution triggers as a differentiable search problem and use learning-based methods to autonomously generate them'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0050
+  source_url: https://arxiv.org/abs/2402.06922
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_d4a8943b9a8e2391
+  supports:
+  - claim_id: claim_whispers_agent_evaluation
+    field_path: 'bib_ledger.entries[evertz2024whispers].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_d4a8943b9a8e2391
+      text_path_offset: [2959, 3094]
+      sha256_of_span: 5470861305973537e9eafbaf460050835a666cb6be9af17451c4e13e344c0b3c
+  excerpt: 'we evaluate ten agents across 20 tool scenarios and 14 attack strategies. We find that all agents are vulnerable to at least one attack'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0051
+  source_url: https://arxiv.org/abs/2402.06922
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_d4a8943b9a8e2391
+  supports:
+  - claim_id: claim_whispers_tooling_amplifies_leakage
+    field_path: 'bib_ledger.entries[evertz2024whispers].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_d4a8943b9a8e2391
+      text_path_offset: [3189, 3246]
+      sha256_of_span: 7d6b8c4336bee6a37c865024a05be60977595849473619a08a44617f5eff7891
+  excerpt: 'we find that the tooling itself can amplify leakage risks'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0052
+  source_url: https://arxiv.org/abs/2307.02483
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_3fda0c48b45e0464
+  supports:
+  - claim_id: claim_jailbreak_failure_modes
+    field_path: 'bib_ledger.entries[wei2023jailbroken].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_3fda0c48b45e0464
+      text_path_offset: [2488, 2591]
+      sha256_of_span: 2728fb6b79e51cb9faaf0723f1e6c08bbc51a50463bbfe1da9e726bcba2c9a82
+  excerpt: 'We hypothesize two failure modes of safety training: competing objectives and mismatched generalization'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0053
+  source_url: https://arxiv.org/abs/2307.02483
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_3fda0c48b45e0464
+  supports:
+  - claim_id: claim_jailbreak_universal_success
+    field_path: 'bib_ledger.entries[wei2023jailbroken].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_3fda0c48b45e0464
+      text_path_offset: [3138, 3236]
+      sha256_of_span: 153deb42f1d379ce4de4017f3270be49784da3b06248f50914312060982b3776
+  excerpt: 'new attacks utilizing our failure modes succeed on every prompt in a collection of unsafe requests'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0054
+  source_url: https://arxiv.org/abs/2402.00898
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_d0278e5b95e2b045
+  supports:
+  - claim_id: claim_rossi_categorization_overview
+    field_path: 'bib_ledger.entries[rossi2024survey].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_d0278e5b95e2b045
+      text_path_offset: [2789, 2887]
+      sha256_of_span: d8eca95e25e47c443368472fc11b231330b6e113df1e61ed2c8a4b9bd74fac34
+  excerpt: 'we provide an overview of these emergent threats and present a categorization of prompt injections'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - cached raw snapshot
+    - primary source
+- evidence_id: ev_direct_vs_indirect_0055
+  source_url: https://atlas.mitre.org/
+  source_type: standard
+  source_quality: official
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  cache_ids:
+  - cache_263a74b6a552d75b
+  supports:
+  - claim_id: claim_mitre_atlas_taxonomy
+    field_path: 'bib_ledger.entries[mitreatlas2024].title'
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'MITRE ATLAS provides the canonical adversarial-tactic taxonomy for AI systems, including AML.T0051 LLM Prompt Injection sub-techniques (direct AML.T0051.000 and indirect AML.T0051.001).'
+  rights_status: private_use
+  confidence:
+    score: 0.8
+    factors:
+    - cached raw snapshot (SPA shell only)
+    - official source
 
 # ============================================================================
 # Phase 4b synthesis evidence (appended by /agent-index for cross-cutting claims).

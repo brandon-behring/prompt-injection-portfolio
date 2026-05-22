@@ -1,0 +1,565 @@
+schema_version: 3
+topic: rag_injection_defenses
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+entries:
+# Cross-classified: Spotlighting (paper)
+- evidence_id: ev_rag_injection_defenses_0001
+  source_url: https://arxiv.org/abs/2403.14720
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_2d58408c3b4f8e5d
+  supports:
+  - claim_id: claim_rag_spotlighting_method
+    field_path: 'bib_ledger.entries[rag_hines2024spotlighting].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_2d58408c3b4f8e5d
+      text_path_offset: [2860, 2961]
+      sha256_of_span: 8b68fa23230f4cae0eb96baa9efa11c7baffd441fd40d693446f319b3d038256
+  excerpt: 'We introduce spotlighting, a family of prompt engineering techniques that can be used to improve LLMs'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - primary source
+    - cached raw snapshot
+- evidence_id: ev_rag_injection_defenses_0002
+  source_url: https://arxiv.org/abs/2403.14720
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_2d58408c3b4f8e5d
+  supports:
+  - claim_id: claim_rag_spotlighting_asr_reduction
+    field_path: 'bib_ledger.entries[rag_hines2024spotlighting].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Spotlighting reduces attack success rate from greater than 50% to below 2% across GPT-family models in the original Microsoft Research evaluation.'
+  rights_status: private_use
+  confidence:
+    score: 0.9
+    factors:
+    - primary source
+    - cached raw snapshot
+
+# Cross-classified: BIPIA (paper)
+- evidence_id: ev_rag_injection_defenses_0003
+  source_url: https://arxiv.org/abs/2312.14197
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_70d4cfd50519178f
+  supports:
+  - claim_id: claim_rag_bipia_introduction
+    field_path: 'bib_ledger.entries[rag_yi2025bipia].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_70d4cfd50519178f
+      text_path_offset: [2682, 2765]
+      sha256_of_span: 1099ef7b7e7acddb7b315ca789ffd5c31339dedf1166940eb0b0d5c593398797
+  excerpt: 'we introduce the first benchmark for indirect prompt injection attacks, named BIPIA'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - primary source
+    - cached raw snapshot
+- evidence_id: ev_rag_injection_defenses_0004
+  source_url: https://arxiv.org/abs/2312.14197
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_70d4cfd50519178f
+  supports:
+  - claim_id: claim_rag_bipia_universal_vulnerability
+    field_path: 'bib_ledger.entries[rag_yi2025bipia].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_70d4cfd50519178f
+      text_path_offset: [2811, 2886]
+      sha256_of_span: 8ee464f6f65327fb37d90fc466c3507a6de0182e906ca203e80c392159b8dc63
+  excerpt: 'Using BIPIA, we evaluate existing LLMs and find them universally vulnerable'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - primary source
+    - cached raw snapshot
+
+# Cross-classified: LLMail-Inject (paper)
+- evidence_id: ev_rag_injection_defenses_0005
+  source_url: https://arxiv.org/abs/2506.09956
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_8e0c41db3ea23938
+  supports:
+  - claim_id: claim_rag_llmail_dataset_scale
+    field_path: 'bib_ledger.entries[rag_abdelnabi2025llmailinject].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8e0c41db3ea23938
+      text_path_offset: [3041, 3096]
+      sha256_of_span: c86b12792c71c92f89736469e4b3932156a5b1da917b65b0fe63354ce9dbd8e8
+  excerpt: '208,095 unique attack submissions from 839 participants'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - primary source
+    - cached raw snapshot
+
+# Cross-classified: EchoLeak (incident — paraphrase-only per ETHICS)
+- evidence_id: ev_rag_injection_defenses_0006
+  source_url: https://www.catonetworks.com/blog/breaking-down-echoleak/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_d02032286070b4dd
+  supports:
+  - claim_id: claim_rag_echoleak_zeroclick
+    field_path: 'bib_ledger.entries[rag_aimlabs2025echoleak].title'
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.55
+  excerpt: 'EchoLeak (CVE-2025-32711, CVSS 9.3, Aim Labs June 2025) — first publicly documented zero-click XPIA in production Microsoft 365 Copilot; RAG-specific layer is email-corpus retrieval + bypass of the Microsoft XPIA classifier + Markdown-image exfil through a Teams-domain CSP allowlist. Documented at vulnerability-class level only per ADR-041 ETHICS.'
+  rights_status: cache_only
+  confidence:
+    score: 0.6
+    factors:
+    - secondary source
+    - paraphrase-only per ETHICS
+    domains:
+      source_quality: low
+      recency: high
+      consistency: moderate
+      directness: low
+
+# Cross-classified: Slack AI exfil (incident — paraphrase-only)
+- evidence_id: ev_rag_injection_defenses_0007
+  source_url: https://promptarmor.substack.com/p/data-exfiltration-from-slack-ai-via
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_511632eb78fd27aa
+  supports:
+  - claim_id: claim_rag_slackai_crosschannel
+    field_path: 'bib_ledger.entries[rag_promptarmor2024slackai].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.80
+    excerpt_anchor:
+      cache_id: cache_511632eb78fd27aa
+      text_path_offset: [410, 441]
+      sha256_of_span: 2ff0182213c08d7d8a7d8146e23ba9fbcfa404676a614e280ece655948678738
+  excerpt: 'Data Exfiltration from Slack AI'
+  rights_status: private_use
+  confidence:
+    score: 0.7
+    factors:
+    - secondary source
+    - cached raw snapshot
+    - paraphrase-only RAG-layer interpretation per ETHICS
+
+# Cross-classified: Azure Document Shield (vendor docs)
+- evidence_id: ev_rag_injection_defenses_0008
+  source_url: https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
+  source_type: vendor
+  source_quality: official
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_f8a5917cbb6f90f3
+  supports:
+  - claim_id: claim_rag_promptshields_user_doc_split
+    field_path: 'bib_ledger.entries[rag_microsoft_azure_doc_shield].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.85
+    excerpt_anchor:
+      cache_id: cache_f8a5917cbb6f90f3
+      text_path_offset: [306, 320]
+      sha256_of_span: fa34c2f81777d3e7602a09e0405044c9e02164b869b7f2a5c808574eb04728d5
+  excerpt: 'Prompt Shields'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - official source
+    - cached raw snapshot
+
+# Net-new: Azure Prompt Shields blog (Shone Jun 2025)
+- evidence_id: ev_rag_injection_defenses_0009
+  source_url: https://azure.microsoft.com/en-us/blog/enhance-ai-security-with-azure-prompt-shields-and-azure-ai-content-safety/
+  source_type: vendor
+  source_quality: official
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_2cd488ed53126318
+  supports:
+  - claim_id: claim_rag_promptshields_announcement
+    field_path: 'bib_ledger.entries[shone2025promptshields].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.90
+    excerpt_anchor:
+      cache_id: cache_2cd488ed53126318
+      text_path_offset: [1607, 1680]
+      sha256_of_span: 22deef48bf2f23a79f644bcc147ce9d8c209c69c54c0a6911272d0b014d563f3
+  excerpt: 'Enhance AI security with Azure Prompt Shields and Azure AI Content Safety'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - official source
+    - cached raw snapshot
+
+# Net-new: Spotlighting in Azure AI Foundry (Microsoft Tech Community Oct 2025)
+- evidence_id: ev_rag_injection_defenses_0010
+  source_url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/better-detecting-cross-prompt-injection-attacks-introducing-spotlighting-in-azur/4458404
+  source_type: vendor
+  source_quality: official
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_0ff0ef0921c091ce
+  supports:
+  - claim_id: claim_rag_spotlighting_foundry_integration
+    field_path: 'bib_ledger.entries[microsoft2025spotlightingfoundry].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.90
+    excerpt_anchor:
+      cache_id: cache_0ff0ef0921c091ce
+      text_path_offset: [724, 736]
+      sha256_of_span: 934ad23ac6a31d198338eeb62ddd7e934e7b3a2db2a2e83731aea1cce36d1933
+  excerpt: 'Spotlighting'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - official source
+    - cached raw snapshot
+
+# Net-new: LLatrieval (paper)
+- evidence_id: ev_rag_injection_defenses_0011
+  source_url: https://arxiv.org/abs/2311.07838
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_0791dc731c582738
+  supports:
+  - claim_id: claim_rag_llatrieval_method
+    field_path: 'bib_ledger.entries[li2024llatrieval].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_0791dc731c582738
+      text_path_offset: [3169, 3233]
+      sha256_of_span: 85597e6eac56244855ece0ada72b4de1fe6e36a7324b21cbda5d05c3cc5e55b9
+  excerpt: 'we propose \LLatrieval (Large Language Model Verified Retrieval)'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - primary source
+    - cached raw snapshot
+
+# Net-new: Provenance fact-checker (paper)
+- evidence_id: ev_rag_injection_defenses_0012
+  source_url: https://arxiv.org/abs/2411.01022
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_67bd28229d9c5dbb
+  supports:
+  - claim_id: claim_rag_provenance_nli_factcheck
+    field_path: 'bib_ledger.entries[sankararaman2024provenance].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_67bd28229d9c5dbb
+      text_path_offset: [2647, 2714]
+      sha256_of_span: 8a94498ec739325b0cbbf6474d2e6d2ff54b80b963d34543ccc7866eb42cf05e
+  excerpt: 'we use compact, open-source natural language inference (NLI) models'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - primary source
+    - cached raw snapshot
+
+# Net-new: D-RAG blockchain (paper)
+- evidence_id: ev_rag_injection_defenses_0013
+  source_url: https://arxiv.org/abs/2511.07577
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_253cee74d309b716
+  supports:
+  - claim_id: claim_rag_drag_blockchain_provenance
+    field_path: 'bib_ledger.entries[lu2025drag].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_253cee74d309b716
+      text_path_offset: [3151, 3231]
+      sha256_of_span: 71d14099eec73858db7fe1f92962d5390501e708a1e46582dc1e153fa37d670c
+  excerpt: 'the scoring process is securely managed through blockchain-based smart contracts'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - primary source
+    - cached raw snapshot
+
+# Net-new: SAG (paper)
+- evidence_id: ev_rag_injection_defenses_0014
+  source_url: https://arxiv.org/abs/2508.01084
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_08a2701d30db2ed8
+  supports:
+  - claim_id: claim_rag_sag_encryption_method
+    field_path: 'bib_ledger.entries[zhou2025sag].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_08a2701d30db2ed8
+      text_path_offset: [2691, 2823]
+      sha256_of_span: 785c1f6e0ccfd8632621b25513e4475e1c820a0cdb09e218a6b11f69bc64ee2d
+  excerpt: 'Our framework employs a pre-storage full-encryption scheme to ensure dual protection of both retrieved content and vector embeddings'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - primary source
+    - cached raw snapshot
+
+# Net-new: C2PA (standards consortium)
+- evidence_id: ev_rag_injection_defenses_0015
+  source_url: https://c2pa.org/about/
+  source_type: standard
+  source_quality: official
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_d6c4a8f317e625aa
+  supports:
+  - claim_id: claim_rag_c2pa_consortium
+    field_path: 'bib_ledger.entries[c2pa2025spec22].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.90
+    excerpt_anchor:
+      cache_id: cache_d6c4a8f317e625aa
+      text_path_offset: [26968, 27017]
+      sha256_of_span: 46fde9370e90aa9098d489ac4bd9c0ab97c4fb1b85b924c13c63a9dac6e55cd3
+  excerpt: 'Coalition for Content Provenance and Authenticity'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - official source (standards consortium)
+    - cached raw snapshot
+
+# Net-new: Comet (incident — primary disclosure, paraphrase-only per ETHICS for exploit-chain protection)
+- evidence_id: ev_rag_injection_defenses_0016
+  source_url: https://brave.com/blog/comet-prompt-injection/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_d6f1a60278136697
+  supports:
+  - claim_id: claim_rag_comet_indirect_injection
+    field_path: 'bib_ledger.entries[chaikin2025cometprompt].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.80
+    excerpt_anchor:
+      cache_id: cache_d6f1a60278136697
+      text_path_offset: [1446, 1491]
+      sha256_of_span: e251d25ad39703de8828bb92ea2c1f4360964ba1e6580f40002b7e7cba7345f8
+  excerpt: 'Indirect Prompt Injection in Perplexity Comet'
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - secondary source (vendor disclosure)
+    - cached raw snapshot
+    - paraphrase-only for exploit-chain layer per ETHICS
+
+# Net-new: Comet unseeable screenshots (incident — paraphrase-only)
+- evidence_id: ev_rag_injection_defenses_0017
+  source_url: https://brave.com/blog/unseeable-prompt-injections/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_b36fa9cd293f76e9
+  supports:
+  - claim_id: claim_rag_comet_ocr_screenshot_inject
+    field_path: 'bib_ledger.entries[sahib2025unseeable].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.80
+    excerpt_anchor:
+      cache_id: cache_b36fa9cd293f76e9
+      text_path_offset: [1408, 1450]
+      sha256_of_span: 6e9826661e8e737e795cef27f675d23ed0c4355279e5163b966fa3e41bf7f50d
+  excerpt: 'Unseeable prompt injections in screenshots'
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - secondary source (vendor disclosure)
+    - cached raw snapshot
+    - paraphrase-only per ETHICS
+
+# Net-new: Gemini memory poisoning (incident — paraphrase-only)
+- evidence_id: ev_rag_injection_defenses_0018
+  source_url: https://embracethered.com/blog/posts/2025/gemini-memory-persistence-prompt-injection/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_176f4d1b387fbc02
+  supports:
+  - claim_id: claim_rag_gemini_memory_poison
+    field_path: 'bib_ledger.entries[rehberger2025geminimem].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.80
+    excerpt_anchor:
+      cache_id: cache_176f4d1b387fbc02
+      text_path_offset: [3027, 3100]
+      sha256_of_span: 0d1ba79e3e2c886455420b4c59f311dad3abc281225f08cb81c2dbdb6b446413
+  excerpt: 'Hacking Gemini''s Memory with Prompt Injection and Delayed Tool Invocation'
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - secondary source (researcher disclosure)
+    - cached raw snapshot
+    - paraphrase-only per ETHICS
+
+# Net-new: ChatGPT Markdown exfil (incident — paraphrase-only)
+- evidence_id: ev_rag_injection_defenses_0019
+  source_url: https://embracethered.com/blog/posts/2023/chatgpt-webpilot-data-exfil-via-markdown-injection/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_d63581ef546db462
+  supports:
+  - claim_id: claim_rag_chatgpt_markdown_exfil
+    field_path: 'bib_ledger.entries[rehberger2023chatgptmd].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.80
+    excerpt_anchor:
+      cache_id: cache_d63581ef546db462
+      text_path_offset: [553, 598]
+      sha256_of_span: 3b26503cc4d77f18ad131431e8bbe8a972a5504585696e0c2a2818fed0644aad
+  excerpt: 'ChatGPT Plugins: Data Exfiltration via Images'
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - secondary source (researcher disclosure)
+    - cached raw snapshot
+    - paraphrase-only per ETHICS
+
+# Net-new: Greshake Bing advisory (companion to greshake2023indirect from B1)
+- evidence_id: ev_rag_injection_defenses_0020
+  source_url: https://greshake.github.io/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_1a53a472fdf92607
+  supports:
+  - claim_id: claim_rag_greshake_bing_advisory
+    field_path: 'bib_ledger.entries[greshake2023bingadvisory].title'
+    evidence_role: identifies
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.80
+    excerpt_anchor:
+      cache_id: cache_1a53a472fdf92607
+      text_path_offset: [765, 790]
+      sha256_of_span: 537f6401bd76de435c7ba565b079557da17d433bf97c2909337e9c76666efc0c
+  excerpt: 'Indirect Prompt Injection'
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - secondary source (companion advisory)
+    - cached raw snapshot
+    - paraphrase-only per ETHICS

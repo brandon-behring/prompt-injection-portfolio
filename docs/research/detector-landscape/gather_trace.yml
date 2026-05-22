@@ -541,3 +541,256 @@ fetches:
   decision: accept
   reason: title contains expected substring
   assigned_bibkey: microsoft2023bipia
+# ===== Sprint 2 E2 expansion (appended 2026-05-23) — append-only =====
+- fetch_id: fetch_qualifire2025sentinel_modelcard
+  sub_area: A1
+  query: qualifire prompt-injection-sentinel ModernBERT-large HuggingFace model card
+  source_url: https://huggingface.co/qualifire/prompt-injection-sentinel
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo qualifire/prompt-injection-sentinel confirmed via og:title; ModernBERT-large 395M Sentinel deployment
+  assigned_bibkey: qualifire2025sentinel_modelcard
+- fetch_id: fetch_qualifire2025sentinel_v2
+  sub_area: A3
+  query: qualifire prompt-injection-jailbreak-sentinel-v2 Qwen3-0.6B decoder variant
+  source_url: https://huggingface.co/qualifire/prompt-injection-jailbreak-sentinel-v2
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo qualifire/prompt-injection-jailbreak-sentinel-v2 confirmed; encoder-vs-decoder F1 trade-off relevant for sub-area A3
+  assigned_bibkey: qualifire2025sentinel_v2
+- fetch_id: fetch_protectai2024_small
+  sub_area: A2
+  query: ProtectAI deberta-v3-small prompt-injection v2 latency variant HuggingFace
+  source_url: https://huggingface.co/protectai/deberta-v3-small-prompt-injection-v2
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: HF repo protectai/deberta-v3-small-prompt-injection-v2 confirmed; small variant pairs with v2 base
+  assigned_bibkey: protectai2024_small
+- fetch_id: fetch_protectai2024_llmguard
+  sub_area: A4
+  query: ProtectAI llm-guard production deployment GitHub repository
+  source_url: https://github.com/protectai/llm-guard
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: GitHub repo protectai/llm-guard confirmed; production toolkit wrapping ProtectAI detectors with PromptInjection scanner
+  assigned_bibkey: protectai2024_llmguard
+- fetch_id: fetch_lakera2024_guard_product
+  sub_area: A4
+  query: Lakera Guard product page prompt injection enterprise commercial
+  source_url: https://www.lakera.ai/lakera-guard
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Lakera Guard product page confirmed (now Check Point post-acquisition; pre-Cisco URL was 404)
+  assigned_bibkey: lakera2024_guard_product
+- fetch_id: fetch_lakera2025_year_of_agent
+  sub_area: A4
+  query: Lakera Year of the Agent Q4 2025 attacks recap blog post
+  source_url: https://www.lakera.ai/blog/the-year-of-the-agent-what-recent-attacks-revealed-in-q4-2025-and-what-it-means-for-2026
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Year of the Agent post located via WebSearch fallback (initial URL guess 404'd); confirms Q4 2025 attack patterns and 30-day window analysis
+  assigned_bibkey: lakera2025_year_of_agent
+- fetch_id: fetch_microsoft2024_promptshields_ga
+  sub_area: A4
+  query: Microsoft Azure AI Content Safety Prompt Shields general availability GA September 2024
+  source_url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-announces-prompt-shields-ga/4236033
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Microsoft Prompt Shields GA announcement confirmed; September 2024 GA
+  assigned_bibkey: microsoft2024_promptshields_ga
+- fetch_id: fetch_anthropic2025_pi_defenses
+  sub_area: A4
+  query: Anthropic prompt injection browser use defenses 2025 research
+  source_url: https://claude.com/blog/claude-for-chrome
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Piloting Claude in Chrome (Aug 25 2025, updated Dec 18 2025) covers permissions framework, blocklists, classifiers, browser-PI defenses; ASR 23.6% to 11.2%, 0% on browser-specific attack types
+  assigned_bibkey: anthropic2025_pi_defenses
+- fetch_id: fetch_anthropic2024_mitigate_jailbreaks
+  sub_area: A4
+  query: Anthropic Claude API docs mitigate jailbreaks prompt injections defensive recipes
+  source_url: https://platform.claude.com/docs/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Anthropic developer docs page on mitigate jailbreaks/PI confirmed (followed 301 from docs.anthropic.com)
+  assigned_bibkey: anthropic2024_mitigate_jailbreaks
+- fetch_id: fetch_fmops2023_distilbert
+  sub_area: A2
+  query: fmops distilbert prompt injection legacy DistilBERT baseline ProtectAI predecessor
+  source_url: https://huggingface.co/fmops/distilbert-prompt-injection
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: fmops/distilbert-prompt-injection HF card confirmed; 67M DistilBERT trained on deepset/prompt-injections
+  assigned_bibkey: fmops2023_distilbert
+- fetch_id: fetch_testsavantai2024
+  sub_area: A2
+  query: testsavantai prompt-injection-defender-base-v0 DeBERTa community open detector HuggingFace
+  source_url: https://huggingface.co/testsavantai/prompt-injection-defender-base-v0
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: testsavantai/prompt-injection-defender-base-v0 HF card confirmed; DeBERTa-v3-base 67M with ONNX + GES evaluation
+  assigned_bibkey: testsavantai2024
+- fetch_id: fetch_lebreton2025neobert
+  sub_area: A1
+  query: NeoBERT Next-Generation BERT 250M encoder backbone alternative ModernBERT arXiv 2025
+  source_url: https://arxiv.org/abs/2502.19587
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: NeoBERT arXiv 2502.19587 confirmed via citation_title and abstract; Le Breton et al. 2025 — alternative encoder backbone for injection detectors
+  assigned_bibkey: lebreton2025neobert
+- fetch_id: fetch_rahman2024xlmroberta
+  sub_area: A2
+  query: Rahman XLM-RoBERTa prompt injection multilingual detector 99.13% deepset arXiv 2024
+  source_url: https://arxiv.org/abs/2410.21337
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: Rahman et al. 2024 arXiv 2410.21337 confirmed (WITHDRAWN by authors due to methodology issues; still useful as cite for IID-memorization warning per thesis OOD-wall)
+  assigned_bibkey: rahman2024xlmroberta
+- fetch_id: fetch_hlyn2025_dataset
+  sub_area: A2
+  query: hlyn-labs prompt-injection-judge-deberta-dataset 12-source merged training corpus HuggingFace
+  source_url: https://huggingface.co/datasets/hlyn-labs/prompt-injection-judge-deberta-dataset
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: hlyn-labs/prompt-injection-judge-deberta-dataset HF card confirmed; ~400K samples 12-source merged corpus; companion to judge-deberta-70m model
+  assigned_bibkey: hlyn2025_dataset
+- fetch_id: fetch_hiddenlayer2025_cluster
+  sub_area: A4
+  query: HiddenLayer commercial AI security platform prompt injection runtime protection 2025-2026
+  source_url: https://hiddenlayer.com/platform/
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: HiddenLayer platform page confirmed; vendor cluster entry (unverified, surfaced from compass §6); deterministic classifiers outside inference path
+  assigned_bibkey: hiddenlayer2025_cluster
+- fetch_id: fetch_robustintelligence2025_cluster
+  sub_area: A4
+  query: Robust Intelligence Cisco acquisition AI Firewall prompt injection 2024
+  source_url: https://blogs.cisco.com/news/fortifying-the-future-of-security-for-ai-cisco-announces-intent-to-acquire-robust-intelligence
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: Cisco-acquired Robust Intelligence confirmed via intent-to-acquire announcement; vendor cluster entry (unverified, surfaced from compass §6); cisco.com/.../robust-intelligence-is-part-of-cisco returned 403, used announcement URL instead
+  assigned_bibkey: robustintelligence2025_cluster
+- fetch_id: fetch_calypsoai2025_cluster
+  sub_area: A4
+  query: CalypsoAI commercial agentic-security platform prompt injection enterprise 2025
+  source_url: https://www.f5.com/products/ai-guardrails
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: calypsoai.com 301 redirects to f5.com/products/ai-guardrails (F5 acquired CalypsoAI); vendor cluster entry (unverified, surfaced from compass §6)
+  assigned_bibkey: calypsoai2025_cluster
+- fetch_id: fetch_vijildome2025_cluster
+  sub_area: A4
+  query: Vijil Dome open-source agentic guardrail library GitHub Python
+  source_url: https://github.com/vijilAI/vijil-dome
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: vijilAI/vijil-dome GitHub repo confirmed via WebSearch (case-correct org slug); open-source Apache 2.0 with 20+ content detectors; vendor cluster entry (unverified, surfaced from compass §6)
+  assigned_bibkey: vijildome2025_cluster
+- fetch_id: fetch_guardrailsai2025_cluster
+  sub_area: A4
+  query: Guardrails AI open-source guardrail framework Python LLM validation GitHub
+  source_url: https://github.com/guardrails-ai/guardrails
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: guardrails-ai/guardrails GitHub repo confirmed; 6.9k stars Apache 2.0 input/output guards framework; vendor cluster entry (unverified, surfaced from compass §6)
+  assigned_bibkey: guardrailsai2025_cluster
+- fetch_id: fetch_safeprompt2025_cluster
+  sub_area: A4
+  query: SafePrompt commercial agentic-security prompt injection protection API launch 2026
+  source_url: https://natlawreview.com/press-releases/safeprompt-launches-prompt-injection-protection-api-ai-developers
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: safeprompt.ai 301 redirected to Sedo parking (registrar sales lander); WebFetch on safeprompt.ai also returned 403; verified launch via Feb 2026 NatLawReview press release; vendor cluster entry (unverified, surfaced from compass §6)
+  assigned_bibkey: safeprompt2025_cluster
+- fetch_id: fetch_hooker2021hardware
+  sub_area: A5
+  query: Hooker Hardware Lottery matched-compute critique encoder cost-axis arXiv 2009.06489
+  source_url: https://arxiv.org/abs/2009.06489
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Hooker 2020 Hardware Lottery arXiv 2009.06489 confirmed; cite for ADR-018 cost-axis claims about detector encoder hardware-shaped progress (note bibkey says 2021 but submission year is 2020)
+  assigned_bibkey: hooker2021hardware

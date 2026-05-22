@@ -47,6 +47,12 @@ book/.pagefind/
 # Dossier inbox (raw landing for compass artifacts before decomposition)
 docs/research/_inbox/
 
+# Dossier PDF cache (Sprint 2 E2 --cache-pdfs output; ~250 MB across 5 topics)
+# Re-fetchable via cache_manifest.yml + cache/bib_primary_source_cache.yml metadata
+# Public-repo licensing posture per Sprint 2 plan: vendor blogs + closed-access papers
+# cannot be re-hosted publicly even if arXiv mirroring is technically permitted
+docs/research/*/papers/
+
 # Cost ledger remains tracked; per-run logs may be gitignored later
 # evals/cost_ledger.csv — tracked
 

@@ -907,6 +907,7 @@ entries:
   stale_after_days: 30
   evidence_ids:
   - ev_detector_landscape_0043
+  - ev_detector_landscape_0045
   cache_ids:
   - cache_6788a3f0f61cebd9
 - bibkey: microsoft2023bipia
@@ -931,3 +932,398 @@ entries:
   - ev_detector_landscape_0044
   cache_ids:
   - cache_0bdbfb50ac3ff273
+
+# ===== Sprint 2 E2 expansion (appended 2026-05-23) — append-only =====
+- bibkey: qualifire2025sentinel_modelcard
+  primary_url: https://huggingface.co/qualifire/prompt-injection-sentinel
+  title: 'qualifire/prompt-injection-sentinel (ModernBERT-large 395M Sentinel deployment; F1 93.86 average across four benchmarks)'
+  status: unverified
+  verified_at:
+  claim_family: detector_architectures
+  authors: Qualifire / Rogue Security (2025)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0046
+  cache_ids:
+  - cache_2b5da62e8ad9c08f
+- bibkey: qualifire2025sentinel_v2
+  primary_url: https://huggingface.co/qualifire/prompt-injection-jailbreak-sentinel-v2
+  title: 'qualifire/prompt-injection-jailbreak-sentinel-v2 (Qwen3-0.6B decoder variant; F1 0.964 self-reported)'
+  status: unverified
+  verified_at:
+  claim_family: detector_architectures
+  authors: Qualifire / Rogue Security (2025)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0047
+  cache_ids:
+  - cache_4b6e4a0a108fbeb4
+- bibkey: protectai2024_small
+  primary_url: https://huggingface.co/protectai/deberta-v3-small-prompt-injection-v2
+  title: 'protectai/deberta-v3-small-prompt-injection-v2 (DeBERTa-v3-small ~70M latency variant; F1 94.62 post-training)'
+  status: unverified
+  verified_at:
+  claim_family: detector_latency_tradeoff
+  authors: Protect AI (2024)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0048
+  cache_ids:
+  - cache_2b5c95d0b3d55934
+- bibkey: protectai2024_llmguard
+  primary_url: https://github.com/protectai/llm-guard
+  title: 'protectai/llm-guard: The Security Toolkit for LLM Interactions (production deployment toolkit wrapping ProtectAI detectors)'
+  status: unverified
+  verified_at:
+  claim_family: detector_architectures
+  authors: Protect AI (2024)
+  venue: GitHub repository
+  code_url: https://github.com/protectai/llm-guard
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - code_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0049
+  cache_ids:
+  - cache_a43dc71238166651
+- bibkey: lakera2024_guard_product
+  primary_url: https://www.lakera.ai/lakera-guard
+  title: 'Lakera Guard — AI Agent Security: Runtime visibility and protection for AI applications and agents (Check Point post-acquisition)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: Lakera / Check Point (2026)
+  venue: Vendor product page
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0050
+  cache_ids:
+  - cache_bcc349ab4b372b17
+- bibkey: lakera2025_year_of_agent
+  primary_url: https://www.lakera.ai/blog/the-year-of-the-agent-what-recent-attacks-revealed-in-q4-2025-and-what-it-means-for-2026
+  title: 'The Year of the Agent: What Recent Attacks Revealed in Q4 2025 (and What It Means for 2026)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: Lakera Team (2026)
+  venue: Vendor blog
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0051
+  cache_ids:
+  - cache_aed1736070dcbd05
+- bibkey: microsoft2024_promptshields_ga
+  primary_url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-announces-prompt-shields-ga/4236033
+  title: 'Azure AI announces Prompt Shields GA (Microsoft Tech Community announcement, Sept 2024)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: Microsoft (2024)
+  venue: Vendor blog
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0052
+  cache_ids:
+  - cache_d56e79486bc37f4c
+- bibkey: anthropic2025_pi_defenses
+  primary_url: https://claude.com/blog/claude-for-chrome
+  title: 'Piloting Claude in Chrome (Anthropic browser-PI defenses; permissions framework, blocklists, classifiers; ASR 23.6 → 11.2%, 0% on browser-specific attacks)'
+  status: unverified
+  verified_at:
+  claim_family: architectural_defense_methods
+  authors: Anthropic (2025)
+  venue: Vendor blog
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0053
+  cache_ids:
+  - cache_ba3f0970db897146
+- bibkey: anthropic2024_mitigate_jailbreaks
+  primary_url: https://platform.claude.com/docs/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
+  title: 'Mitigate jailbreaks and prompt injections (Anthropic Claude API docs — defensive recipes: harmlessness screens, input validation, prompt engineering, monitoring)'
+  status: unverified
+  verified_at:
+  claim_family: architectural_defense_methods
+  authors: Anthropic (2024)
+  venue: Vendor documentation
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0054
+  cache_ids:
+  - cache_af19c677f21f0f57
+- bibkey: fmops2023_distilbert
+  primary_url: https://huggingface.co/fmops/distilbert-prompt-injection
+  title: 'fmops/distilbert-prompt-injection (DistilBERT 67M legacy baseline trained on deepset/prompt-injections; ProtectAI predecessor on latency axis)'
+  status: unverified
+  verified_at:
+  claim_family: detector_latency_tradeoff
+  authors: fmops (2024)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0055
+  cache_ids:
+  - cache_940fe3ed52b65baa
+- bibkey: testsavantai2024
+  primary_url: https://huggingface.co/testsavantai/prompt-injection-defender-base-v0
+  title: 'testsavantai/prompt-injection-defender-base-v0 (DeBERTa-v3-base 67M community detector; ONNX + standard formats; GES-evaluated)'
+  status: unverified
+  verified_at:
+  claim_family: detector_architectures
+  authors: TestSavant.AI (2024)
+  venue: Hugging Face model card
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0056
+  cache_ids:
+  - cache_fbf82b40f5520ea7
+- bibkey: lebreton2025neobert
+  primary_url: https://arxiv.org/abs/2502.19587
+  title: 'NeoBERT: A Next-Generation BERT'
+  status: unverified
+  verified_at:
+  claim_family: detector_architectures
+  authors: Le Breton et al. (2025)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_detector_landscape_0057
+  cache_ids:
+  - cache_e390b89948fafecc
+- bibkey: rahman2024xlmroberta
+  primary_url: https://arxiv.org/abs/2410.21337
+  title: 'Fine-tuned Large Language Models (LLMs): Improved Prompt Injection Attacks Detection (WITHDRAWN by authors — methodology issues; cite as IID-memorization example)'
+  status: unverified
+  verified_at:
+  claim_family: detector_benchmarks
+  authors: Rahman et al. (2024)
+  venue: arXiv preprint (withdrawn)
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0058
+  cache_ids:
+  - cache_8062dc894cce41b0
+- bibkey: hlyn2025_dataset
+  primary_url: https://huggingface.co/datasets/hlyn-labs/prompt-injection-judge-deberta-dataset
+  title: 'hlyn-labs/prompt-injection-judge-deberta-dataset (~400K samples merged from 12 sources; companion to hlyn2025judgedeberta model)'
+  status: unverified
+  verified_at:
+  claim_family: detector_benchmarks
+  authors: Hlyn Labs (2026)
+  venue: Hugging Face dataset card
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0059
+  cache_ids:
+  - cache_5ad318a82550fd07
+- bibkey: hiddenlayer2025_cluster
+  primary_url: https://hiddenlayer.com/platform/
+  title: 'HiddenLayer AI Security Platform (commercial agentic-AI security; deterministic classifiers outside inference path; 2026 Threat Landscape Report; unverified, surfaced from compass §6)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: HiddenLayer (2026)
+  venue: Vendor product page
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0060
+  cache_ids:
+  - cache_cbe7cdb80a2d0d71
+- bibkey: robustintelligence2025_cluster
+  primary_url: https://blogs.cisco.com/news/fortifying-the-future-of-security-for-ai-cisco-announces-intent-to-acquire-robust-intelligence
+  title: 'Fortifying the future of Security for AI: Cisco Announces intent to acquire Robust Intelligence (Aug 2024 announcement; AI Firewall pioneer; unverified, surfaced from compass §6)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: Cisco (2024)
+  venue: Vendor blog
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0061
+  cache_ids:
+  - cache_f9cea1f484940242
+- bibkey: calypsoai2025_cluster
+  primary_url: https://www.f5.com/products/ai-guardrails
+  title: 'F5 AI Guardrails (CalypsoAI post-acquisition; commercial agentic-security platform; unverified, surfaced from compass §6)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: F5 / CalypsoAI (2026)
+  venue: Vendor product page
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0062
+  cache_ids:
+  - cache_c40f0f2e053383cb
+- bibkey: vijildome2025_cluster
+  primary_url: https://github.com/vijilAI/vijil-dome
+  title: 'vijilAI/vijil-dome: Vijil''s Dome Repository (open-source agentic guardrail library; 20+ detectors; Apache 2.0; unverified, surfaced from compass §6)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: Vijil AI (2026)
+  venue: GitHub repository
+  code_url: https://github.com/vijilAI/vijil-dome
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - code_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0063
+  cache_ids:
+  - cache_9a2f45a3640522ee
+- bibkey: guardrailsai2025_cluster
+  primary_url: https://github.com/guardrails-ai/guardrails
+  title: 'guardrails-ai/guardrails: Adding guardrails to large language models (open-source Python framework; Apache 2.0; unverified, surfaced from compass §6)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: Guardrails AI (2026)
+  venue: GitHub repository
+  code_url: https://github.com/guardrails-ai/guardrails
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - code_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0064
+  cache_ids:
+  - cache_9b039b36827185e8
+- bibkey: safeprompt2025_cluster
+  primary_url: https://natlawreview.com/press-releases/safeprompt-launches-prompt-injection-protection-api-ai-developers
+  title: 'SafePrompt Launches Prompt Injection Protection API for AI Developers (Feb 2026 launch; multi-layer pipeline, <100ms latency; unverified, surfaced from compass §6 — primary safeprompt.ai domain returned 403)'
+  status: unverified
+  verified_at:
+  claim_family: commercial_detector_performance
+  authors: SafePrompt (2026)
+  venue: Press release
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_detector_landscape_0065
+  cache_ids:
+  - cache_088a524162db59f1
+- bibkey: hooker2021hardware
+  primary_url: https://arxiv.org/abs/2009.06489
+  title: 'The Hardware Lottery'
+  status: unverified
+  verified_at:
+  claim_family: detector_latency_tradeoff
+  authors: Hooker (2020)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0066
+  cache_ids:
+  - cache_7b898810604eda60

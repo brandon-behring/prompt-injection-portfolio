@@ -551,3 +551,189 @@ fetches:
   decision: accept
   reason: Primary-source coverage for C1 sub-area; cached snapshot verified (claim_family=training_data_sources).
   assigned_bibkey: microsoft2024orcaagentinstruct
+
+# Sprint 2 Phase E2 fetches (2026-05-23) — append-only post-hoc rows for the 15
+# new landmark entries. Decisions are all 'accept': all 15 landmarks were
+# pre-selected from the E0 local-repo scan (research_ood_methodology +
+# research_eval_methodology + research_eval_drift siblings) so this gather pass
+# was confirmation + verbatim-anchor extraction, not discovery search.
+- fetch_id: fetch_gulrajani2021domainbed
+  sub_area: C5
+  query: 'In Search of Lost Domain Generalization arXiv 2007.01434 DomainBed'
+  source_url: https://arxiv.org/abs/2007.01434
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Load-bearing OOD-wall foundation for ADR-016 + ADR-075; verbatim-anchor extracted for the domain-generalization claim (claim_family=ood_evaluation_methodology).
+  assigned_bibkey: gulrajani2021domainbed
+- fetch_id: fetch_cui2025orbench
+  sub_area: C4
+  query: 'OR-Bench Over-Refusal Benchmark Cui ICML 2025 arXiv 2405.20947'
+  source_url: https://arxiv.org/abs/2405.20947
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Primary over-refusal benchmark pairing with NotInject; ICML 2025 published (claim_family=benchmark_validity).
+  assigned_bibkey: cui2025orbench
+- fetch_id: fetch_kopf2023oasst1
+  sub_area: C1
+  query: 'OpenAssistant Conversations OASST1 Köpf NeurIPS 2023 arXiv 2304.07327'
+  source_url: https://arxiv.org/abs/2304.07327
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: Benign-pool reference for ADR-016 sibling research; primary D&B paper (claim_family=training_data_sources).
+  assigned_bibkey: kopf2023oasst1
+- fetch_id: fetch_xu2024contamination
+  sub_area: C4
+  query: 'Benchmark Data Contamination Survey Xu arXiv 2406.04244'
+  source_url: https://arxiv.org/abs/2406.04244
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: Contamination-survey backbone for OOD-wall narrative (claim_family=composition_audit).
+  assigned_bibkey: xu2024contamination
+- fetch_id: fetch_deng2024contamination
+  sub_area: C4
+  query: 'Investigating Data Contamination Modern Benchmarks Deng NAACL 2024 arXiv 2311.09783'
+  source_url: https://arxiv.org/abs/2311.09783
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Testset Slot Guessing technique; quantitative evidence GPT-4 52% on MMLU options (claim_family=composition_audit).'
+  assigned_bibkey: deng2024contamination
+- fetch_id: fetch_yang2024rephrased
+  sub_area: C4
+  query: 'Rethinking Benchmark Contamination Rephrased Samples Yang arXiv 2311.04850'
+  source_url: https://arxiv.org/abs/2311.04850
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Paraphrase/translation bypass of string-match decontamination; 8-18% HumanEval overlap (claim_family=composition_audit).'
+  assigned_bibkey: yang2024rephrased
+- fetch_id: fetch_white2024livebench
+  sub_area: C4
+  query: 'LiveBench Contamination-Limited Benchmark White ICLR 2025 arXiv 2406.19314'
+  source_url: https://arxiv.org/abs/2406.19314
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Frequently-updated benchmark methodology; ICLR 2025 Spotlight (claim_family=composition_audit).'
+  assigned_bibkey: white2024livebench
+- fetch_id: fetch_oren2023provetestcontam
+  sub_area: C4
+  query: 'Proving Test Set Contamination Black Box Oren ICLR 2024 arXiv 2310.17623'
+  source_url: https://arxiv.org/abs/2310.17623
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Exchangeable-orderings proof technique; ICLR 2024 (claim_family=composition_audit).'
+  assigned_bibkey: oren2023provetestcontam
+- fetch_id: fetch_shi2023minkprob
+  sub_area: C4
+  query: 'Min-K% Prob Detecting Pretraining Data Shi ICLR 2024 arXiv 2310.16789'
+  source_url: https://arxiv.org/abs/2310.16789
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Min-K% Prob membership-inference; WIKIMIA benchmark; ICLR 2024 (claim_family=composition_audit).'
+  assigned_bibkey: shi2023minkprob
+- fetch_id: fetch_sainz2023nlpeval
+  sub_area: C4
+  query: 'NLP Evaluation in trouble Sainz EMNLP Findings 2023 arXiv 2310.18018'
+  source_url: https://arxiv.org/abs/2310.18018
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Per-benchmark contamination measurement argument; EMNLP 2023 Findings; ADR-018 reference (claim_family=composition_audit).'
+  assigned_bibkey: sainz2023nlpeval
+- fetch_id: fetch_zawalski2025codec
+  sub_area: C4
+  query: 'CoDeC Data Contamination In-Context Learning Zawalski arXiv 2510.27055'
+  source_url: https://arxiv.org/abs/2510.27055
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'In-context-learning contamination signal; 2025-26 recent technique (claim_family=composition_audit).'
+  assigned_bibkey: zawalski2025codec
+- fetch_id: fetch_m2026sixfrontier
+  sub_area: C4
+  query: 'Six Frontier Contamination MMLU Reddy 2026 arXiv 2603.16197'
+  source_url: https://arxiv.org/abs/2603.16197
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Six-frontier-model MMLU contamination audit; 13.8% overall, 66.7% Philosophy (claim_family=composition_audit).'
+  assigned_bibkey: m2026sixfrontier
+- fetch_id: fetch_neuralchemy2026dataset
+  sub_area: C1
+  query: 'huggingface neuralchemy Prompt-injection-dataset group-aware splits'
+  source_url: https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: '22,193-row Apache-2.0 dataset with group-aware zero-leakage splits; primary HF card verified (claim_family=training_data_sources).'
+  assigned_bibkey: neuralchemy2026dataset
+- fetch_id: fetch_protectai2024_validation_dataset
+  sub_area: C1
+  query: 'huggingface protectai prompt-injection-validation 7-split eval suite'
+  source_url: https://huggingface.co/datasets/protectai/prompt-injection-validation
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: 'Multi-source eval suite (7 splits) referenced by ProtectAI v2; HF page returned HTTP 401 to toolkit UA so primary fetch unverified — WebSearch + ProtectAI v2 model-card cross-reference confirm existence (claim_family=training_data_sources, status=unverified).'
+  assigned_bibkey: protectai2024_validation_dataset
+- fetch_id: fetch_harelix2024_mixed
+  sub_area: C1
+  query: 'huggingface Harelix Prompt-Injection-Mixed-Techniques-2024 Apache-2.0'
+  source_url: https://huggingface.co/datasets/Harelix/Prompt-Injection-Mixed-Techniques-2024
+  fetched_at: '2026-05-23'
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 3
+  decision: accept
+  reason: '1,174-row Apache-2.0 dataset in ProtectAI v2 training group; HF page returned HTTP 401 to toolkit UA so primary fetch unverified — WebSearch confirms existence (claim_family=training_data_sources, status=unverified).'
+  assigned_bibkey: harelix2024_mixed

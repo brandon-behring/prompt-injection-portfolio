@@ -1,0 +1,237 @@
+# PDF cache metadata — prompt-injection detector landscape
+# Written by /research-gather Sprint 2 E2 (--cache-pdfs).
+# Records the resolved metadata of each cached PDF for fast re-lookup.
+# Top-level keys are arxiv IDs. Each entry records authors, title, source, url, year,
+# local PDF path (relative to docs/research/detector-landscape/) and sha256.
+
+arxiv:2506.05446:
+  authors:
+  - Dror Ivry
+  - Oran Nahum
+  source: arxiv
+  title: 'Sentinel: SOTA model to protect against prompt injections'
+  url: https://arxiv.org/abs/2506.05446
+  year: '2025'
+  local_path: papers/sentinel_ivry_2025.pdf
+  sha256: 0c6246f095c71f410e9d390ff0e648a11d6711f03f37d0d4c808e05590e44923
+arxiv:2506.06384:
+  authors:
+  - Zhouqi Ji
+  - Hao Li
+  - Cheng Mao
+  source: arxiv
+  title: 'Detection Method for Prompt Injection by Integrating Pre-trained Model and Heuristic Feature Engineering'
+  url: https://arxiv.org/abs/2506.06384
+  year: '2025'
+  local_path: papers/dmpi_ji_2025.pdf
+  sha256: 3df97c8774435c701e9b0f112a22a93c56c62241df09141e3382b3e2915b2545
+arxiv:2501.15145:
+  authors:
+  - Dennis Jacob
+  - et al.
+  source: arxiv
+  title: 'PromptShield: Deployable Detection for Prompt Injection Attacks'
+  url: https://arxiv.org/abs/2501.15145
+  year: '2025'
+  local_path: papers/promptshield_jacob_2025.pdf
+  sha256: 66fc562291005f7596b8d40015eca6d0c8d300be537707c3732a0172a27bdd11
+arxiv:2510.19844:
+  authors:
+  - Isaac Wu
+  - Theo Maslowski
+  source: arxiv
+  title: 'CourtGuard: A Local, Multiagent Prompt Injection Classifier'
+  url: https://arxiv.org/abs/2510.19844
+  year: '2025'
+  local_path: papers/courtguard_sun_2025.pdf
+  sha256: 985a8222575d58d81851194ea7466058b0f88e7e1470ce34f131d0b802030d00
+arxiv:2507.15219:
+  authors:
+  - Tianneng Shi
+  - et al.
+  source: arxiv
+  title: 'PromptArmor: Simple yet Effective Prompt Injection Defenses'
+  url: https://arxiv.org/abs/2507.15219
+  year: '2025'
+  local_path: papers/promptarmor_shi_2025.pdf
+  sha256: 6575ed46e6ca62a2cffd1d3e4889eb1393b120e2d3b78cfa4fbafd9cec7a271d
+arxiv:2406.00799:
+  authors:
+  - Sahar Abdelnabi
+  - et al.
+  source: arxiv
+  title: 'Get my drift? Catching LLM Task Drift with Activation Deltas'
+  url: https://arxiv.org/abs/2406.00799
+  year: '2024'
+  local_path: papers/tasktracker_abdelnabi_2024.pdf
+  sha256: 6885e4223848cffebd7131e9a71591329d00cabccee07ecfb402a444ad601e8c
+arxiv:2505.06311:
+  authors:
+  - Tongyu Wen
+  - et al.
+  source: arxiv
+  title: 'Defending against Indirect Prompt Injection by Instruction Detection'
+  url: https://arxiv.org/abs/2505.06311
+  year: '2025'
+  local_path: papers/instructdetector_wen_2025.pdf
+  sha256: dc3e7d954f9eb6144b5cb9505aeb9683d37eacc500e6fe4a69a170fd1ba558ba
+arxiv:2410.22770:
+  authors:
+  - Hao Li
+  - Xiaogeng Liu
+  source: arxiv
+  title: 'InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models'
+  url: https://arxiv.org/abs/2410.22770
+  year: '2024'
+  local_path: papers/injecguard_li_2024.pdf
+  sha256: 7413fa3b10c12fa4fac659b177aaf37281230388165e787c4ffce77cacd47503
+arxiv:2602.13597:
+  authors:
+  - Yifei Jia
+  - et al.
+  source: arxiv
+  title: 'AlignSentinel: Alignment-Aware Detection of Prompt Injection Attacks'
+  url: https://arxiv.org/abs/2602.13597
+  year: '2026'
+  local_path: papers/alignsentinel_jia_2026.pdf
+  sha256: 279446653e57429c7cac9b0d9762855d1a5ce3cd3e2b0ccb767609b52746917a
+arxiv:2410.22284:
+  authors:
+  - Md. Ahsan Ayub
+  - Subhabrata Majumdar
+  source: arxiv
+  title: 'Embedding-based classifiers can detect prompt injection attacks'
+  url: https://arxiv.org/abs/2410.22284
+  year: '2024'
+  local_path: papers/embedding_ayub_2024.pdf
+  sha256: 5580abd327ee3537cc194287e2ce641e534d2a1b995e68dde290070a2ff4a0bf
+arxiv:2411.00348:
+  authors:
+  - Kuo-Han Hung
+  - et al.
+  source: arxiv
+  title: 'Attention Tracker: Detecting Prompt Injection Attacks in LLMs'
+  url: https://arxiv.org/abs/2411.00348
+  year: '2025'
+  local_path: papers/attentiontracker_hung_2025.pdf
+  sha256: 8d9d094e4596863f2bff126a862e36558561c403aca02fc4bb1584b8f10f1e3b
+arxiv:2412.16682:
+  authors:
+  - Feiran Jia
+  - Tong Wu
+  - Xin Qin
+  - Anna Squicciarini
+  source: arxiv
+  title: 'The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents'
+  url: https://arxiv.org/abs/2412.16682
+  year: '2024'
+  local_path: papers/taskshield_jia_2024.pdf
+  sha256: 4a7775a5695b32325b1616d62ae8141d4d95f7c3f2e244462616da8d4f6edd69
+arxiv:2502.05174:
+  authors:
+  - Kaijie Zhu
+  - et al.
+  source: arxiv
+  title: 'MELON: Provable Defense Against Indirect Prompt Injection Attacks in AI Agents'
+  url: https://arxiv.org/abs/2502.05174
+  year: '2025'
+  local_path: papers/melon_zhu_2025.pdf
+  sha256: a2c5c63db8019b73f786037d65ce618b8b2ace090fafd192d2eda50861b38baf
+arxiv:2504.11358:
+  authors:
+  - Yupei Liu
+  - Yuqi Jia
+  - Jinyuan Jia
+  - Dawn Song
+  - Neil Zhenqiang Gong
+  source: arxiv
+  title: 'DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks'
+  url: https://arxiv.org/abs/2504.11358
+  year: '2025'
+  local_path: papers/datasentinel_liu_2025.pdf
+  sha256: 37808ff3f1129a9acf8847e9bc1b32233ee3507eff57bde154bb4ebf3dfa2032
+arxiv:2510.01354:
+  authors:
+  - Yupei Liu
+  - et al.
+  source: arxiv
+  title: 'WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents'
+  url: https://arxiv.org/abs/2510.01354
+  year: '2025'
+  local_path: papers/wainjectbench_liu_2025.pdf
+  sha256: 41061e8fc754047a05dd4f1dc4a476ad15091196e0c5abda1d7869abcef540bd
+arxiv:2510.05244:
+  authors:
+  - Vinay Bhagwatkar
+  - et al.
+  source: arxiv
+  title: 'Indirect Prompt Injections: Are Firewalls All You Need, or Stronger Benchmarks?'
+  url: https://arxiv.org/abs/2510.05244
+  year: '2025'
+  local_path: papers/firewalls_bhagwatkar_2025.pdf
+  sha256: 965b725401363ca504b4665cb4ad45633a2c7edc9ddc2f7cd44dc38492e34182
+arxiv:2504.11168:
+  authors:
+  - William Hackett
+  - et al.
+  source: arxiv
+  title: 'Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection Systems'
+  url: https://arxiv.org/abs/2504.11168
+  year: '2025'
+  local_path: papers/bypassing_hackett_2025.pdf
+  sha256: f583476d4b6b5994d8c04b076d0de0302224a117be6e97a46515ed60ae5008b2
+arxiv:2502.15427:
+  authors:
+  - Giulio Zizzo
+  - et al.
+  source: arxiv
+  title: 'Adversarial Prompt Evaluation: Systematic Benchmarking of Guardrails Against Prompt Input Attacks on LLMs'
+  url: https://arxiv.org/abs/2502.15427
+  year: '2025'
+  local_path: papers/adversarialprompt_zizzo_2025.pdf
+  sha256: 26217e75d710a496f64c6adb01dd40572616397f7f7ecd265b3ec3084f735278
+arxiv:2510.09023:
+  authors:
+  - Milad Nasr
+  - et al.
+  source: arxiv
+  title: 'The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections'
+  url: https://arxiv.org/abs/2510.09023
+  year: '2025'
+  local_path: papers/attackermovessecond_nasr_2025.pdf
+  sha256: 5067f88c7c14a007c205a452e8cdc5bcbf2e87f0958efcc620aa23c81465a9c3
+# ===== Sprint 2 E2 new arXiv PDFs =====
+arxiv:2502.19587:
+  authors:
+  - Lola Le Breton
+  - Quentin Fournier
+  - Mariam El Mezouar
+  - John X. Morris
+  - Sarath Chandar
+  source: arxiv
+  title: 'NeoBERT: A Next-Generation BERT'
+  url: https://arxiv.org/abs/2502.19587
+  year: '2025'
+  local_path: papers/neobert_lebreton_2025.pdf
+  sha256: 15a2408557ee0bd96cea3769dae4ade5b7fa7ab677f124d6b7b03808cdb1cbdd
+arxiv:2410.21337:
+  authors:
+  - Md Abdur Rahman
+  - Fan Wu
+  - Alfredo Cuzzocrea
+  - Sheikh Iqbal Ahamed
+  source: arxiv
+  title: 'Fine-tuned Large Language Models (LLMs): Improved Prompt Injection Attacks Detection (WITHDRAWN)'
+  url: https://arxiv.org/abs/2410.21337
+  year: '2024'
+  local_path: papers/xlmroberta_rahman_2024.pdf
+  sha256: 2f81638b091f3cbe6c54245d92f08479c7048dd358e6d6a3be6342717147b5b1
+arxiv:2009.06489:
+  authors:
+  - Sara Hooker
+  source: arxiv
+  title: 'The Hardware Lottery'
+  url: https://arxiv.org/abs/2009.06489
+  year: '2020'
+  local_path: papers/hardwarelottery_hooker_2020.pdf
+  sha256: 870bc5b6626a5feae8e7da41c4417ccef59db8ba02412c22961b45d427218eca

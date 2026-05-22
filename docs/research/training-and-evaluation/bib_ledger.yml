@@ -173,6 +173,7 @@ entries:
   evidence_ids:
   - ev_training_and_evaluation_0017
   - ev_training_and_evaluation_0018
+  - ev_training_and_evaluation_0126
   cache_ids:
   - cache_1e401aac38c4b954
 
@@ -620,6 +621,7 @@ entries:
   - ev_training_and_evaluation_0072
   - ev_training_and_evaluation_0073
   - ev_training_and_evaluation_0074
+  - ev_training_and_evaluation_0124
   cache_ids:
   - cache_96dc7a084a524c4d
 
@@ -836,6 +838,7 @@ entries:
   - ev_training_and_evaluation_0098
   - ev_training_and_evaluation_0099
   - ev_training_and_evaluation_0100
+  - ev_training_and_evaluation_0125
   cache_ids:
   - cache_beea4f2926635943
 
@@ -1040,3 +1043,332 @@ entries:
   - ev_training_and_evaluation_0123
   cache_ids:
   - cache_500821bd01ca986a
+
+
+# ============================================================================
+# Sprint 2 Phase E2 additions (2026-05-23): contamination-detection methodology,
+# OOD methodology foundation, over-refusal benchmarks, training corpora
+# ============================================================================
+
+- bibkey: gulrajani2021domainbed
+  primary_url: 'https://arxiv.org/abs/2007.01434'
+  title: In Search of Lost Domain Generalization
+  status: verified
+  claim_family: ood_evaluation_methodology
+  authors: 'Gulrajani & Lopez-Paz (2020)'
+  venue: ICLR 2021
+  aliases:
+  - DomainBed
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: historical
+  stale_after_days: 1825
+  evidence_ids:
+  - ev_training_and_evaluation_0127
+  - ev_training_and_evaluation_0128
+  - ev_training_and_evaluation_0129
+  cache_ids:
+  - cache_4e49b1111d751597
+
+- bibkey: cui2025orbench
+  primary_url: 'https://arxiv.org/abs/2405.20947'
+  title: 'OR-Bench: An Over-Refusal Benchmark for Large Language Models'
+  status: verified
+  claim_family: benchmark_validity
+  authors: Cui et al. (2024)
+  venue: ICML 2025
+  code_url: 'https://github.com/justincui03/or-bench'
+  aliases:
+  - OR-Bench
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0130
+  - ev_training_and_evaluation_0131
+  cache_ids:
+  - cache_056b43cdcbb6d097
+
+- bibkey: kopf2023oasst1
+  primary_url: 'https://arxiv.org/abs/2304.07327'
+  title: OpenAssistant Conversations -- Democratizing Large Language Model Alignment
+  status: verified
+  claim_family: training_data_sources
+  authors: 'Köpf, Kilcher, von Rütte et al. (2023)'
+  venue: 'NeurIPS 2023 D&B'
+  aliases:
+  - OASST1
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0132
+  - ev_training_and_evaluation_0133
+  cache_ids:
+  - cache_cb663867a0db8dd3
+
+- bibkey: xu2024contamination
+  primary_url: 'https://arxiv.org/abs/2406.04244'
+  title: 'Benchmark Data Contamination of Large Language Models: A Survey'
+  status: verified
+  claim_family: composition_audit
+  authors: Xu, Guan, Greene, Kechadi (2024)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0134
+  - ev_training_and_evaluation_0135
+  cache_ids:
+  - cache_d28340ad76835bf3
+
+- bibkey: deng2024contamination
+  primary_url: 'https://arxiv.org/abs/2311.09783'
+  title: Investigating Data Contamination in Modern Benchmarks for Large Language Models
+  status: verified
+  claim_family: composition_audit
+  authors: Deng, Zhao, Tang, Gerstein, Cohan (2023)
+  venue: NAACL 2024
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0136
+  - ev_training_and_evaluation_0137
+  cache_ids:
+  - cache_339732e9212e1d57
+
+- bibkey: yang2024rephrased
+  primary_url: 'https://arxiv.org/abs/2311.04850'
+  title: Rethinking Benchmark and Contamination for Language Models with Rephrased Samples
+  status: verified
+  claim_family: composition_audit
+  authors: Yang, Chiang, Zheng, Gonzalez, Stoica (2023)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0138
+  - ev_training_and_evaluation_0139
+  cache_ids:
+  - cache_cd6fa1a3fb7e2322
+
+- bibkey: white2024livebench
+  primary_url: 'https://arxiv.org/abs/2406.19314'
+  title: 'LiveBench: A Challenging, Contamination-Limited LLM Benchmark'
+  status: verified
+  claim_family: composition_audit
+  authors: White, Dooley, Roberts et al. (2024)
+  venue: ICLR 2025 Spotlight
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0140
+  - ev_training_and_evaluation_0141
+  cache_ids:
+  - cache_7f54dfd2ae1095bb
+
+- bibkey: oren2023provetestcontam
+  primary_url: 'https://arxiv.org/abs/2310.17623'
+  title: Proving Test Set Contamination in Black Box Language Models
+  status: verified
+  claim_family: composition_audit
+  authors: Oren, Meister, Chatterji, Ladhak, Hashimoto (2023)
+  venue: ICLR 2024
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0142
+  - ev_training_and_evaluation_0143
+  cache_ids:
+  - cache_8a9e2c85b1d57eb4
+
+- bibkey: shi2023minkprob
+  primary_url: 'https://arxiv.org/abs/2310.16789'
+  title: Detecting Pretraining Data from Large Language Models
+  status: verified
+  claim_family: composition_audit
+  authors: Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, Zettlemoyer (2023)
+  venue: ICLR 2024
+  aliases:
+  - Min-K% Prob
+  - WIKIMIA
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0144
+  - ev_training_and_evaluation_0145
+  cache_ids:
+  - cache_f9d4ee55f6d72115
+
+- bibkey: sainz2023nlpeval
+  primary_url: 'https://arxiv.org/abs/2310.18018'
+  title: 'NLP Evaluation in trouble: On the Need to Measure LLM Data Contamination for each Benchmark'
+  status: verified
+  claim_family: composition_audit
+  authors: 'Sainz, Campos, García-Ferrero, Etxaniz, Lopez de Lacalle, Agirre (2023)'
+  venue: EMNLP 2023 Findings
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_training_and_evaluation_0146
+  - ev_training_and_evaluation_0147
+  cache_ids:
+  - cache_c72ce9a009679f18
+
+- bibkey: zawalski2025codec
+  primary_url: 'https://arxiv.org/abs/2510.27055'
+  title: Detecting Data Contamination in LLMs via In-Context Learning
+  status: verified
+  claim_family: composition_audit
+  authors: 'Zawalski, Boubdir, Bałazy, Nushi, Ribalta (2025)'
+  venue: arXiv preprint
+  aliases:
+  - CoDeC
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0148
+  - ev_training_and_evaluation_0149
+  cache_ids:
+  - cache_66d57637a5dbfa85
+
+- bibkey: m2026sixfrontier
+  primary_url: 'https://arxiv.org/abs/2603.16197'
+  title: Are Large Language Models Truly Smarter Than Humans?
+  status: verified
+  claim_family: composition_audit
+  authors: 'Reddy M, Karmakar (2026)'
+  venue: arXiv preprint
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_training_and_evaluation_0150
+  - ev_training_and_evaluation_0151
+  cache_ids:
+  - cache_8da533c586b11f25
+
+- bibkey: neuralchemy2026dataset
+  primary_url: 'https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset'
+  title: neuralchemy/Prompt-injection-dataset
+  status: verified
+  claim_family: training_data_sources
+  authors: neuralchemy (2026)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-23
+  verified_at: 2026-05-23
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0152
+  - ev_training_and_evaluation_0153
+  cache_ids:
+  - cache_234feaaf7ce8cef3
+
+- bibkey: protectai2024_validation_dataset
+  primary_url: 'https://huggingface.co/datasets/protectai/prompt-injection-validation'
+  title: protectai/prompt-injection-validation
+  status: unverified
+  claim_family: training_data_sources
+  authors: ProtectAI (2024)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-23
+  verified_at:
+  verification_method: websearch_snippet
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0154
+  cache_ids:
+  - cache_adcee16d77aee0eb
+
+- bibkey: harelix2024_mixed
+  primary_url: 'https://huggingface.co/datasets/Harelix/Prompt-Injection-Mixed-Techniques-2024'
+  title: Harelix/Prompt-Injection-Mixed-Techniques-2024
+  status: unverified
+  claim_family: training_data_sources
+  authors: Harelix (2024)
+  venue: HuggingFace dataset card
+  retrieved_at: 2026-05-23
+  verified_at:
+  verification_method: websearch_snippet
+  verified_fields:
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_training_and_evaluation_0155
+  cache_ids:
+  - cache_62408b4b09b8bd5d

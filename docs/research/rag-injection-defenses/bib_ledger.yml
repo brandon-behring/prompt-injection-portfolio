@@ -1,0 +1,403 @@
+schema_version: 2
+topic: rag_injection_defenses
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+entries:
+# === Cross-classified from direct-vs-indirect/B (Spotlighting + BIPIA + LLMail-Inject + EchoLeak + Slack AI) ===
+- bibkey: rag_hines2024spotlighting
+  primary_url: https://arxiv.org/abs/2403.14720
+  title: Defending Against Indirect Prompt Injection Attacks With Spotlighting
+  status: verified
+  claim_family: spotlighting_variants
+  authors: Hines et al. (2024)
+  venue: CAMLIS 2024 (arXiv preprint)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0001
+  - ev_rag_injection_defenses_0002
+  cache_ids:
+  - cache_2d58408c3b4f8e5d
+- bibkey: rag_yi2025bipia
+  primary_url: https://arxiv.org/abs/2312.14197
+  title: Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models
+  status: verified
+  claim_family: rag_evaluation_harness
+  authors: Yi et al. (2023)
+  venue: KDD 2025
+  aliases:
+  - BIPIA
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0003
+  - ev_rag_injection_defenses_0004
+  cache_ids:
+  - cache_70d4cfd50519178f
+- bibkey: rag_abdelnabi2025llmailinject
+  primary_url: https://arxiv.org/abs/2506.09956
+  title: 'LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge'
+  status: verified
+  claim_family: rag_evaluation_harness
+  authors: Abdelnabi et al. (2025)
+  venue: IEEE SaTML 2025 (arXiv preprint)
+  aliases:
+  - LLMail-Inject
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_rag_injection_defenses_0005
+  cache_ids:
+  - cache_8e0c41db3ea23938
+- bibkey: rag_aimlabs2025echoleak
+  primary_url: https://www.catonetworks.com/blog/breaking-down-echoleak/
+  title: Breaking down 'EchoLeak', the First Zero-Click AI Vulnerability Enabling Data Exfiltration from Microsoft 365 Copilot
+  status: unverified
+  claim_family: production_rag_incidents
+  authors: Aim Labs / Cato Networks (2025)
+  venue: Cato Networks blog (Aim Labs disclosure)
+  aliases:
+  - EchoLeak
+  - CVE-2025-32711
+  retrieved_at: 2026-05-22
+  verified_at:
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_rag_injection_defenses_0006
+  cache_ids:
+  - cache_d02032286070b4dd
+- bibkey: rag_promptarmor2024slackai
+  primary_url: https://promptarmor.substack.com/p/data-exfiltration-from-slack-ai-via
+  title: Data Exfiltration from Slack AI via indirect prompt injection
+  status: verified
+  claim_family: production_rag_incidents
+  authors: PromptArmor (2024)
+  venue: promptarmor.substack.com (disclosure)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0007
+  cache_ids:
+  - cache_511632eb78fd27aa
+- bibkey: rag_microsoft_azure_doc_shield
+  primary_url: https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
+  title: 'Prompt Shields in Azure AI Content Safety (User Prompt + Document attacks; Spotlighting capability)'
+  status: verified
+  claim_family: spotlighting_variants
+  authors: Microsoft (2025)
+  venue: Microsoft Learn (vendor documentation)
+  aliases:
+  - Azure Document Shield
+  - Prompt Shields
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: volatile
+  stale_after_days: 30
+  evidence_ids:
+  - ev_rag_injection_defenses_0008
+  cache_ids:
+  - cache_f8a5917cbb6f90f3
+# === Net-new: Spotlighting deployment retrospectives (vendor blogs) ===
+- bibkey: shone2025promptshields
+  primary_url: https://azure.microsoft.com/en-us/blog/enhance-ai-security-with-azure-prompt-shields-and-azure-ai-content-safety/
+  title: Enhance AI security with Azure Prompt Shields and Azure AI Content Safety
+  status: verified
+  claim_family: spotlighting_variants
+  authors: Shone (2025)
+  venue: Microsoft Azure blog (vendor)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_rag_injection_defenses_0009
+  cache_ids:
+  - cache_2cd488ed53126318
+- bibkey: microsoft2025spotlightingfoundry
+  primary_url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/better-detecting-cross-prompt-injection-attacks-introducing-spotlighting-in-azur/4458404
+  title: 'Introducing Spotlighting in Azure AI Foundry: Detect and Block Cross Prompt Injection Attacks'
+  status: verified
+  claim_family: spotlighting_variants
+  authors: Microsoft Azure AI Foundry team (2025)
+  venue: Microsoft Tech Community blog (vendor)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_rag_injection_defenses_0010
+  cache_ids:
+  - cache_0ff0ef0921c091ce
+# === Net-new: Retrieval-provenance + content-authentication papers ===
+- bibkey: li2024llatrieval
+  primary_url: https://arxiv.org/abs/2311.07838
+  title: 'LLatrieval: LLM-Verified Retrieval for Verifiable Generation'
+  status: verified
+  claim_family: retrieval_provenance
+  authors: Li et al. (2023)
+  venue: NAACL 2024 (Main Conference)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0011
+  cache_ids:
+  - cache_0791dc731c582738
+- bibkey: sankararaman2024provenance
+  primary_url: https://arxiv.org/abs/2411.01022
+  title: 'Provenance: A Light-weight Fact-checker for Retrieval Augmented LLM Generation Output'
+  status: verified
+  claim_family: retrieval_provenance
+  authors: Sankararaman et al. (2024)
+  venue: EMNLP 2024 Industry Track
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0012
+  cache_ids:
+  - cache_67bd28229d9c5dbb
+- bibkey: lu2025drag
+  primary_url: https://arxiv.org/abs/2511.07577
+  title: A Decentralized Retrieval Augmented Generation System with Source Reliabilities Secured on Blockchain
+  status: verified
+  claim_family: content_authentication_rag
+  authors: Lu et al. (2025)
+  venue: arXiv preprint
+  code_url: https://github.com/yining610/Reliable-dRAG
+  aliases:
+  - D-RAG
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_rag_injection_defenses_0013
+  cache_ids:
+  - cache_253cee74d309b716
+- bibkey: zhou2025sag
+  primary_url: https://arxiv.org/abs/2508.01084
+  title: Provably Secure Retrieval-Augmented Generation
+  status: verified
+  claim_family: content_authentication_rag
+  authors: Zhou et al. (2025)
+  venue: arXiv preprint
+  aliases:
+  - SAG
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_rag_injection_defenses_0014
+  cache_ids:
+  - cache_08a2701d30db2ed8
+- bibkey: c2pa2025spec22
+  primary_url: https://c2pa.org/about/
+  title: 'C2PA: Coalition for Content Provenance and Authenticity'
+  status: verified
+  claim_family: content_authentication_rag
+  authors: C2PA / Joint Development Foundation (2025)
+  venue: c2pa.org (standards consortium)
+  aliases:
+  - Content Credentials
+  - C2PA 2.2
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_rag_injection_defenses_0015
+  cache_ids:
+  - cache_d6c4a8f317e625aa
+# === Net-new: Production RAG incidents (ETHICS-compliant; paraphrase-only) ===
+- bibkey: chaikin2025cometprompt
+  primary_url: https://brave.com/blog/comet-prompt-injection/
+  title: 'Agentic Browser Security: Indirect Prompt Injection in Perplexity Comet'
+  status: verified
+  claim_family: production_rag_incidents
+  authors: Chaikin & Sahib (2025)
+  venue: Brave Security blog (vendor disclosure)
+  aliases:
+  - Comet
+  - Perplexity Comet
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_rag_injection_defenses_0016
+  cache_ids:
+  - cache_d6f1a60278136697
+- bibkey: sahib2025unseeable
+  primary_url: https://brave.com/blog/unseeable-prompt-injections/
+  title: 'Unseeable prompt injections in screenshots: more vulnerabilities in Comet and other AI browsers'
+  status: verified
+  claim_family: production_rag_incidents
+  authors: Sahib & Chaikin (2025)
+  venue: Brave Security blog (vendor disclosure)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: active
+  stale_after_days: 90
+  evidence_ids:
+  - ev_rag_injection_defenses_0017
+  cache_ids:
+  - cache_b36fa9cd293f76e9
+- bibkey: rehberger2025geminimem
+  primary_url: https://embracethered.com/blog/posts/2025/gemini-memory-persistence-prompt-injection/
+  title: Hacking Gemini's Memory with Prompt Injection and Delayed Tool Invocation
+  status: verified
+  claim_family: production_rag_incidents
+  authors: Rehberger (2025)
+  venue: embracethered.com (researcher disclosure)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0018
+  cache_ids:
+  - cache_176f4d1b387fbc02
+- bibkey: rehberger2023chatgptmd
+  primary_url: https://embracethered.com/blog/posts/2023/chatgpt-webpilot-data-exfil-via-markdown-injection/
+  title: 'ChatGPT Plugins: Data Exfiltration via Images & Cross Plugin Request Forgery'
+  status: verified
+  claim_family: production_rag_incidents
+  authors: Rehberger (2023)
+  venue: embracethered.com (researcher disclosure)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0019
+  cache_ids:
+  - cache_d63581ef546db462
+- bibkey: greshake2023bingadvisory
+  primary_url: https://greshake.github.io/
+  title: 'Prompt Injections are bad, mkay? (Bing Chat / Indirect Prompt Injection advisory companion to Greshake et al. AISec 2023)'
+  status: verified
+  claim_family: production_rag_incidents
+  authors: Greshake et al. (2023)
+  venue: greshake.github.io (companion advisory)
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  verified_at: '2026-05-22'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0020
+  cache_ids:
+  - cache_1a53a472fdf92607

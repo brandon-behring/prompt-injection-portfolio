@@ -1,0 +1,741 @@
+# Evidence ledger (v3 strict-live) for Topic D: agentic-security-architecture
+# Companion to bib_ledger.yml; populates the per-claim evidence backing for
+# downstream synthesis stages.
+#
+# Notes:
+# - Most entries use extraction_method: paraphrase (link_confidence ≤ 0.85)
+#   because abstract-level claims are summarised rather than verbatim-quoted.
+#   Body-quote anchoring with verbatim_match / excerpt_anchor offsets is
+#   deferred to E3 (per Sprint 2 E2/E3 split). At E2 we extract abstract +
+#   metadata-level claims only.
+# - source_quality: primary for arXiv papers + peer-reviewed venues; official
+#   for Meta HF model cards; secondary for the Willison blog (informal but
+#   foundational); primary for the energy-loss NeurIPS 2020 paper.
+
+schema_version: 3
+topic: agentic_security_architecture
+generated_at: 2026-05-22
+current_as_of: 2026-05-22
+freshness_policy: strict_live
+
+entries:
+
+# ============================================================================
+# D1: Agent harness security architecture
+# ============================================================================
+
+- evidence_id: ev_agentic_security_architecture_0001
+  source_url: https://arxiv.org/abs/2505.03574
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_5575144bb9ad0eb7
+  supports:
+  - claim_id: claim_agentic_security_architecture_llamafirewall_layered_design
+    field_path: 'bib_ledger.entries[agentic_chennabasappa2025llamafirewall].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'LlamaFirewall is an open-source guardrail system designed as a layered defense for AI agents, addressing risks like prompt injection, agent misalignment, and insecure code; ships as a runtime guardrail framework for agentic deployments.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached raw snapshot
+    domains:
+      source_quality: high
+      recency: high
+      consistency: high
+      directness: high
+
+- evidence_id: ev_agentic_security_architecture_0002
+  source_url: https://arxiv.org/abs/2505.03574
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_5575144bb9ad0eb7
+  supports:
+  - claim_id: claim_agentic_security_architecture_llamafirewall_promptguard_apr
+    field_path: 'bib_ledger.entries[agentic_chennabasappa2025llamafirewall].claim_family'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.80
+  excerpt: 'Reports PromptGuard v2 86M with substantial ASR reduction and small utility loss on AgentDojo as part of the layered harness composition.'
+  rights_status: private_use
+  confidence:
+    score: 0.80
+    factors:
+    - primary source
+    - body claim (unverified at E2; needs E3 anchoring)
+
+- evidence_id: ev_agentic_security_architecture_0003
+  source_url: https://arxiv.org/abs/2508.01249
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_01e32345e7ca53d6
+  supports:
+  - claim_id: claim_agentic_security_architecture_agentarmor_pdg_framework
+    field_path: 'bib_ledger.entries[agentic_wang2025agentarmor].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'AgentArmor intercepts agent execution traces, converts them into program-dependence-graph intermediate representations, and enforces security policies via a type-system + graph-inspector pipeline that blocks unsafe operations before execution.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached raw snapshot
+    domains:
+      source_quality: high
+      recency: high
+      consistency: high
+      directness: high
+
+- evidence_id: ev_agentic_security_architecture_0004
+  source_url: https://arxiv.org/abs/2508.01249
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_01e32345e7ca53d6
+  supports:
+  - claim_id: claim_agentic_security_architecture_agentarmor_results
+    field_path: 'bib_ledger.entries[agentic_wang2025agentarmor].claim_family'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: 'Reports ~3% ASR with low functional overhead on AgentDojo; treats the agent trace as a program to be analysed, not text to be classified.'
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - primary source
+    - body claim (unverified at E2; needs E3 anchoring)
+
+- evidence_id: ev_agentic_security_architecture_0005
+  source_url: https://arxiv.org/abs/2506.08837
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_4397426179bea947
+  supports:
+  - claim_id: claim_agentic_security_architecture_designpatterns_catalog
+    field_path: 'bib_ledger.entries[agentic_beurerkellner2025designpatterns].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Catalogues design patterns for securing LLM agents against prompt injections (Action-Selector, Plan-Then-Execute, Map-Reduce, Dual LLM, Code-Then-Execute, Context-Minimization); each pattern trades constraints for guarantees on agent action.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - cached raw snapshot
+    domains:
+      source_quality: high
+      recency: high
+      consistency: high
+      directness: high
+
+- evidence_id: ev_agentic_security_architecture_0006
+  source_url: https://arxiv.org/abs/2404.13208
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_c8697d3c88066297
+  supports:
+  - claim_id: claim_agentic_security_architecture_instruction_hierarchy_priority
+    field_path: 'bib_ledger.entries[agentic_wallace2024instructionhierarchy].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Instruction Hierarchy proposes training LLMs to prioritise privileged instructions (system > developer > user > tool), addressing the lack of trust-channel separation in standard chat interfaces; foundational contract for agent harness inputs.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - OpenAI-authored canonical reference
+
+- evidence_id: ev_agentic_security_architecture_0007
+  source_url: https://arxiv.org/abs/2402.06363
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_c3439daa681bdac9
+  supports:
+  - claim_id: claim_agentic_security_architecture_struq_reserved_delimiters
+    field_path: 'bib_ledger.entries[agentic_chen2025struq].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'StruQ uses structured queries with reserved-token-protected delimiters separating prompt from data, plus an SFT phase, to defend against direct + indirect prompt injection; included here as an in-harness defense layer.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - USENIX Security 2025 peer-reviewed
+
+- evidence_id: ev_agentic_security_architecture_0008
+  source_url: https://arxiv.org/abs/2410.05451
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_8f562c950ef155e3
+  supports:
+  - claim_id: claim_agentic_security_architecture_secalign_dpo_pairs
+    field_path: 'bib_ledger.entries[agentic_chen2025secalign].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'SecAlign uses preference-optimization (DPO) over secure/insecure response pairs to train the model to prefer following the system prompt over the injected one; included here as harness-trained-LLM contract.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - ACM CCS 2025 peer-reviewed
+
+- evidence_id: ev_agentic_security_architecture_0009
+  source_url: https://arxiv.org/abs/2507.02735
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_74a75f6036e89f8d
+  supports:
+  - claim_id: claim_agentic_security_architecture_metasecalign_input_role
+    field_path: 'bib_ledger.entries[agentic_chen2025metasecalign].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Meta SecAlign on Llama-3.3-70B introduces an explicit `input` role distinct from `user` for untrusted tool/document data, formalizing harness-contract separation.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+
+- evidence_id: ev_agentic_security_architecture_0010
+  source_url: https://arxiv.org/abs/2312.17673
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_937568d9c8dbd86d
+  supports:
+  - claim_id: claim_agentic_security_architecture_jatmo_task_specific_finetune
+    field_path: 'bib_ledger.entries[agentic_piet2024jatmo].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Jatmo trains task-specific fine-tuned models that cannot follow instructions in their inputs; reports very low ASR (<0.5%) and is the narrow-agent extreme of capability isolation.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - ESORICS 2024 peer-reviewed
+
+# ============================================================================
+# D2: Capability-based isolation + dual-LLM patterns
+# ============================================================================
+
+- evidence_id: ev_agentic_security_architecture_0011
+  source_url: https://arxiv.org/abs/2503.18813
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_cfffce6b1f23371d
+  supports:
+  - claim_id: claim_agentic_security_architecture_camel_capability_design
+    field_path: 'bib_ledger.entries[agentic_debenedetti2025camel].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'CaMeL splits the LLM into a privileged + quarantined pair with a custom Python interpreter that tags every value with provenance metadata (capabilities); blocks injected text from invoking sensitive tools by design rather than detection.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - Google/DeepMind/ETH-authored
+
+- evidence_id: ev_agentic_security_architecture_0012
+  source_url: https://arxiv.org/abs/2503.18813
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_cfffce6b1f23371d
+  supports:
+  - claim_id: claim_agentic_security_architecture_camel_agentdojo_provable_security
+    field_path: 'bib_ledger.entries[agentic_debenedetti2025camel].claim_family'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.80
+  excerpt: 'Reports a provably-secure subset of AgentDojo tasks completed in v2 (around 77%), versus 84% completed undefended; substantial token-cost overhead (roughly 2.8x input / 2.7x output) is acknowledged.'
+  rights_status: private_use
+  confidence:
+    score: 0.80
+    factors:
+    - primary source
+    - body claim (numbers unverified at E2; needs E3 anchoring)
+
+- evidence_id: ev_agentic_security_architecture_0013
+  source_url: https://arxiv.org/abs/2403.04960
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_da4a859c554697e4
+  supports:
+  - claim_id: claim_agentic_security_architecture_isolategpt_per_plugin_sandbox
+    field_path: 'bib_ledger.entries[agentic_wu2025isolategpt].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'IsolateGPT/SecGPT proposes per-plugin sandboxing with an orchestrator that mediates inter-plugin communication; each plugin runs in an isolated execution context, preventing cross-plugin compromise.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - NDSS 2025 peer-reviewed
+
+- evidence_id: ev_agentic_security_architecture_0014
+  source_url: https://simonwillison.net/2023/Apr/25/dual-llm-pattern/
+  source_type: blog
+  source_quality: secondary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_7d31fd1b044f4cdd
+  supports:
+  - claim_id: claim_agentic_security_architecture_willison_dual_llm_pattern
+    field_path: 'bib_ledger.entries[agentic_willison2023dualllm].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.80
+  excerpt: 'Willison articulates the informal Dual LLM pattern in April 2023: a privileged LLM with tool access never sees untrusted text; a quarantined LLM (tool-less) processes untrusted content. The pattern names the "original sin of LLMs" as concatenating trusted prompts and untrusted text into the same token stream.'
+  rights_status: public
+  confidence:
+    score: 0.80
+    factors:
+    - canonical informal articulation
+    - historical anchor cited by CaMeL
+
+# ============================================================================
+# D3: Score fusion + stacker theory
+# ============================================================================
+
+- evidence_id: ev_agentic_security_architecture_0015
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+  source_type: vendor
+  source_quality: official
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_72c66b7fe681e5ef
+  supports:
+  - claim_id: claim_agentic_security_architecture_promptguard2_86m_recall_at_fpr
+    field_path: 'bib_ledger.entries[agentic_meta2025promptguard2_86m].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.80
+  excerpt: 'Llama-Prompt-Guard-2-86M is Meta''s mDeBERTa-base multilingual prompt-injection + jailbreak classifier; the model card describes training with a custom Recall@1%FPR loss; used as a stacker-eligible per-row signal in the score-fusion theory layer.'
+  rights_status: private_use
+  confidence:
+    score: 0.80
+    factors:
+    - vendor model card (HF)
+    - official Meta release
+
+- evidence_id: ev_agentic_security_architecture_0016
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-22M
+  source_type: vendor
+  source_quality: official
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_6022aac53b4aa7ad
+  supports:
+  - claim_id: claim_agentic_security_architecture_promptguard2_22m_latency
+    field_path: 'bib_ledger.entries[agentic_meta2025promptguard2_22m].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.80
+  excerpt: 'Llama-Prompt-Guard-2-22M is a DeBERTa-xsmall 22M-parameter classifier reporting a substantial latency reduction (~75%) relative to the 86M; relevant to score-fusion deployment cost tradeoffs.'
+  rights_status: private_use
+  confidence:
+    score: 0.80
+    factors:
+    - vendor model card (HF)
+    - official Meta release
+
+- evidence_id: ev_agentic_security_architecture_0017
+  source_url: https://arxiv.org/abs/2010.03759
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_0fc989847d274b4a
+  supports:
+  - claim_id: claim_agentic_security_architecture_energy_loss_foundation
+    field_path: 'bib_ledger.entries[agentic_liu2020energyloss].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Energy-based Out-of-distribution Detection (NeurIPS 2020) introduces energy scores that better distinguish in- and out-of-distribution samples than softmax confidence; functions both as scoring mechanism and as a trainable cost function. Foundational basis for Meta PG2 + CodeIntegrity PromptGuard recall-at-FPR training recipes.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - NeurIPS 2020 peer-reviewed
+
+- evidence_id: ev_agentic_security_architecture_0018
+  source_url: https://arxiv.org/abs/2410.22284
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_5d322a73036744e4
+  supports:
+  - claim_id: claim_agentic_security_architecture_ayub_embedding_classifiers
+    field_path: 'bib_ledger.entries[agentic_ayub2024embedding].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Embedding-based classifiers (XGBoost, Random Forest, MLP) operating on OpenAI text-embedding-3-small can detect prompt injection at high accuracy; treated here as a stacker-eligible signal class distinct from end-to-end fine-tuned detectors.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+
+- evidence_id: ev_agentic_security_architecture_0019
+  source_url: https://arxiv.org/abs/2410.22770
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_ab9d48079556ef2d
+  supports:
+  - claim_id: claim_agentic_security_architecture_injecguard_mof_overdefense
+    field_path: 'bib_ledger.entries[agentic_li2024injecguard].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'InjecGuard introduces the Mitigating Overdefense Framework (MOF) and the NotInject benchmark, addressing the over-defense pathology where guardrail models flag benign trigger-word-bearing inputs; relevant to score-fusion FPR optimization.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+
+# ============================================================================
+# D4: Activation-probe methodology
+# ============================================================================
+
+- evidence_id: ev_agentic_security_architecture_0020
+  source_url: https://arxiv.org/abs/2406.00799
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_6d742cb6609170a1
+  supports:
+  - claim_id: claim_agentic_security_architecture_tasktracker_activation_delta
+    field_path: 'bib_ledger.entries[agentic_abdelnabi2025tasktracker].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'TaskTracker trains linear probes on activation deltas (pre- vs post-untrusted-data injection) of decoder LLMs to detect task drift; reports near-perfect ROC AUC on synthetic task-drift datasets. The methodology is the canonical activation-probe-signal-class anchor.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - IEEE SaTML 2025 peer-reviewed
+
+- evidence_id: ev_agentic_security_architecture_0021
+  source_url: https://arxiv.org/abs/2406.00799
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_6d742cb6609170a1
+  supports:
+  - claim_id: claim_agentic_security_architecture_tasktracker_toolkit_scale
+    field_path: 'bib_ledger.entries[agentic_abdelnabi2025tasktracker].claim_family'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.75
+  excerpt: 'Releases a toolkit of >500K instances across six LLMs (encoder + decoder variants) to support downstream activation-probe reproductions; benign-text-distribution-sharing between train and test is later contested by independent re-evaluators.'
+  rights_status: private_use
+  confidence:
+    score: 0.75
+    factors:
+    - primary source
+    - body claim (numbers unverified at E2)
+
+- evidence_id: ev_agentic_security_architecture_0022
+  source_url: https://arxiv.org/abs/2505.06311
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_39929ecbe5b3d6a6
+  supports:
+  - claim_id: claim_agentic_security_architecture_instructdetector_high_accuracy
+    field_path: 'bib_ledger.entries[agentic_wen2025instructdetector].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'InstructDetector extends activation-based detection to indirect prompt injection; reports high OOD detection accuracy on BIPIA and very low ASR after deployment. Treated as an extension of the TaskTracker recipe.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - EMNLP 2025 Findings
+
+- evidence_id: ev_agentic_security_architecture_0023
+  source_url: https://arxiv.org/abs/2411.00348
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_52f0885c01ea6bee
+  supports:
+  - claim_id: claim_agentic_security_architecture_attentiontracker_attention_signal
+    field_path: 'bib_ledger.entries[agentic_hung2025attentiontracker].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'AttentionTracker proposes detection of prompt injection from attention-head-level patterns rather than hidden-state deltas; introduces a distinct signal class within the activation-probe-methodology family.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - NAACL 2025 Findings
+
+# ============================================================================
+# D5: Agentic-bench critique + adaptive evaluation
+# ============================================================================
+
+- evidence_id: ev_agentic_security_architecture_0024
+  source_url: https://arxiv.org/abs/2406.13352
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_28b49b68f7f9500e
+  supports:
+  - claim_id: claim_agentic_security_architecture_agentdojo_benchmark_design
+    field_path: 'bib_ledger.entries[agentic_debenedetti2024agentdojo].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'AgentDojo is a dynamic environment to evaluate prompt-injection attacks and defenses on LLM agents; cited here as the critique-target benchmark whose saturation/adaptive-attack limitations drive the rest of the D5 sub-area.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - NeurIPS 2024
+
+- evidence_id: ev_agentic_security_architecture_0025
+  source_url: https://arxiv.org/abs/2406.13352
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_28b49b68f7f9500e
+  supports:
+  - claim_id: claim_agentic_security_architecture_agentdojo_critique_target
+    field_path: 'bib_ledger.entries[agentic_debenedetti2024agentdojo].claim_family'
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.70
+  excerpt: 'Cross-classified as critique target (rather than benchmark catalogue) for this topic; original benchmark cataloguing lives in `direct-vs-indirect/B4`. Methodology critique aggregated in this dossier focuses on saturation + weak-attack pathologies.'
+  rights_status: private_use
+  confidence:
+    score: 0.70
+    factors:
+    - cross-classification scope note
+
+- evidence_id: ev_agentic_security_architecture_0026
+  source_url: https://arxiv.org/abs/2412.16682
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_46c1010fcfae5428
+  supports:
+  - claim_id: claim_agentic_security_architecture_taskshield_goal_verification
+    field_path: 'bib_ledger.entries[agentic_jia2024taskshield].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Task Shield enforces instruction-and-tool-call goal verification: each tool call must align with the original user task; reports very low ASR (~2%) and high utility (~70%) on AgentDojo GPT-4o, but raises questions about static-task assumptions.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+
+- evidence_id: ev_agentic_security_architecture_0027
+  source_url: https://arxiv.org/abs/2502.05174
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_325bb7d4d75b8126
+  supports:
+  - claim_id: claim_agentic_security_architecture_melon_masked_reexecution
+    field_path: 'bib_ledger.entries[agentic_zhu2025melon].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'MELON (Masked Re-Execution and Tool Comparison) defends against indirect prompt injection by re-executing tool calls with masked inputs and comparing trajectories; current ASR floor (<0.5%) on AgentDojo with moderate utility (~70%).'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - ICML 2025
+
+- evidence_id: ev_agentic_security_architecture_0028
+  source_url: https://arxiv.org/abs/2510.05244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_beea4f2926635943
+  supports:
+  - claim_id: claim_agentic_security_architecture_firewalls_saturation_critique
+    field_path: 'bib_ledger.entries[agentic_bhagwatkar2025firewalls].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'Are Firewalls All You Need? argues that existing agentic security benchmarks (AgentDojo, ASB, InjecAgent, tau-Bench) are easily saturated by two-firewall defenses; weak-attack pathologies hinder progress and stronger adaptive-evaluation methods are needed. Critique-paper anchor for D5.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - NeurIPS 2025 critique-paper
+
+- evidence_id: ev_agentic_security_architecture_0029
+  source_url: https://arxiv.org/abs/2506.09956
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_8e0c41db3ea23938
+  supports:
+  - claim_id: claim_agentic_security_architecture_llmail_inject_adaptive_gold_standard
+    field_path: 'bib_ledger.entries[agentic_abdelnabi2025llmailinject].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'LLMail-Inject is a Microsoft-organized IEEE SaTML 2025 challenge dataset capturing realistic adaptive prompt-injection attempts (208K adaptive attacks from 839 participants); held up here as the gold standard adaptive-eval methodology for D5 critique.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - IEEE SaTML 2025 challenge dataset
+
+- evidence_id: ev_agentic_security_architecture_0030
+  source_url: https://arxiv.org/abs/2510.09023
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-22
+  verification_method: webfetch
+  cache_ids:
+  - cache_51e92f7784dddb6e
+  supports:
+  - claim_id: claim_agentic_security_architecture_attacker_second_static_defense_critique
+    field_path: 'bib_ledger.entries[agentic_nasr2025attackersecond].title'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.85
+  excerpt: 'The Attacker Moves Second argues stronger adaptive attacks bypass defenses against LLM jailbreaks and prompt injections; static-defense numbers are unreliable. Applied to agent harnesses, the D5 case for adaptive evaluation over fixed-attack benchmark numbers.'
+  rights_status: private_use
+  confidence:
+    score: 0.85
+    factors:
+    - primary source
+    - canonical adaptive-eval critique
