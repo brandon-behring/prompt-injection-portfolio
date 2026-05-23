@@ -702,6 +702,7 @@ entries:
   - ev_training_and_evaluation_0082
   cache_ids:
   - cache_0621eb6f5ed9e96c
+  verification_notes: 'Secondary source (Lakera vendor blog; Lakera acquired by Check Point per ADR-050 cross-link). Status: unverified per training-and-evaluation convention `secondary + blog -> unverified` (0 counter-examples in 60-entry topic). Webfetch evidence + body excerpts retained (2 claims). Cited in docs/planning/dossier_implications_for_roadmap.md sec 1.4 (saturated benchmark exhaustion) as part of multi-paper convergence, not standalone primary evidence. Convention parallels ADR-050 vendor cluster posture for product pages. Companion entry lakeraai2025pintbenchmark (GitHub repo) carries the verified-by-different-route anchor.'
 
 - bibkey: yi2023bipia
   primary_url: 'https://arxiv.org/abs/2312.14197'
@@ -824,6 +825,7 @@ entries:
   - ev_training_and_evaluation_0097
   cache_ids:
   - cache_6788a3f0f61cebd9
+  verification_notes: 'Secondary source (CodeIntegrity industry post-mortem blog). Status: unverified per training-and-evaluation convention `secondary + blog -> unverified` (0 counter-examples in 60-entry topic). Webfetch evidence + body-quote anchors retained (3 claims: a1_summary + a2_saxe_fscore + a3_speed_bump). Cited in docs/planning/dossier_implications_for_roadmap.md sec 1.1 (4-paper methodology critique convergence) + ADR-038 Sprint 2 dossier evidence (composition_audit + benchmark_validity) as part of multi-paper convergence, not standalone primary evidence. Convention parallels ADR-050 vendor cluster posture.'
 
 - bibkey: bhagwatkar2025firewalls
   primary_url: 'https://arxiv.org/abs/2510.05244'
