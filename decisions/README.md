@@ -117,6 +117,15 @@ Round 24 cross-references added to ADR-036 + ADR-038 + ADR-041 + ADR-045
 (inline "Sprint 2 dossier evidence" subsections citing dossier bibkeys
 + claim families; per Sprint 2 E6 deferral).
 
+**Erratum (2026-05-23, post-publication count refresh — Round 25)**:
+ADR-048's "Sprint 2 inventory" paragraph references "28 cross-classified
+entries (16 `agentic_*` + 12 `rag_*`)." Direct YAML inspection across
+the 5 topic bib_ledgers shows the actual count is **31 entries (25
+`agentic_*` + 6 `rag_*`)**. The 3-entry delta is within ADR-048's own
+deferral language ("see `make dossier-audit` per-topic bib_ledger
+summaries"). ADR text preserved unchanged per ADR-011 immutability
+discipline; this note documents the count refresh.
+
 ## Tally
 
 | Status | Count |
