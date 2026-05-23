@@ -100,3 +100,8 @@ Canonical term + aliases + one-line definition + primary citation.
 ## Attribution
 
 Synthesized from a research dossier maintained by the research_toolkit (`~/Claude/research_toolkit/`). URLs link to primary sources (arXiv, GitHub, HuggingFace, vendor blogs, conference proceedings). No local file paths are referenced. v2.2 strict-live Attribute-First pipeline: every Mechanism / Result bullet's evidence_id has a matching atom in `pre_selection_manifest.yml` (Phase 2b commitment) verified by the cross-stage validator.
+
+
+## Sprint 2 audit-trail (Round 3, 2026-05-23)
+
+**Round 3 — Sprint 2 entries verification + body-quote anchoring.** Complementary-scope review covering the 21 entries added in Sprint 2 E2 (compass-mentioned-but-missing sources + thin-sub-area expansion). Findings: 0 DROP / 0 CORRECT / 6 entries kept `status: unverified` (vendor cluster posture — HiddenLayer/RobustIntel/CalypsoAI/Vijil/Guardrails/SafePrompt) / 15 entries promoted to `status: verified` (arXiv + HF model cards + Anthropic + Microsoft + Lakera vendor pages). 8 URL fallbacks resolved at E2 (Lakera year-of-agent path correction, Anthropic browser-PI → Claude-for-Chrome, Microsoft GA → azure-ai-foundry-blog, Robust Intelligence → Cisco acquisition page, CalypsoAI → F5, vijilAI org slug, safeprompt parked → NatLawReview). 1 GitHub URL guess removed (hung2025attentiontracker) per anti-pattern firewall. Recommendation: Clean — stop here (vendor clusters intentionally remain unverified per posture).

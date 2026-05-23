@@ -132,3 +132,10 @@ Canonical term + aliases + one-line definition. Resolves ambiguous lookups witho
 ## Attribution
 
 Synthesized from a research dossier maintained by `research_toolkit` v2.2 (`~/Claude/research_toolkit/`). URLs link to primary sources (arXiv abstracts, vendor security advisories, NIST NVD, conference proceedings). Cached source-text blobs live at `~/Claude/research_cache/` and are not republished here. Phase 2 evidence_ledger paraphrased 7 entries for ETHICS content-lock; this agent-index extends that posture into the 5-bullet prose (see `03_production_incidents.md` for the affected entries).
+
+
+## Sprint 2 audit-trail (Round 3 + 4, 2026-05-23)
+
+**Round 3 — Sprint 2 new-entry verification.** Verified the 9 new threat-model + foundational direct-injection entries (Perez & Ribeiro, Liu USENIX 2024, Liu LLM-apps, Shi LLM-judge, Pasquini Neural Exec, Evertz Whispers, Wei Jailbroken, Rossi survey, MITRE ATLAS). Findings: 0 DROP / 0 CORRECT / 0 FLAG / 9 SPOT-CHECK PASSED. All 9 verified via WebFetch + abstract anchor.
+
+**Round 4 — Body-quote anchor integrity.** Verified 4 body-quote anchors added at E3 against cached PDF text + sha256 spans. Carriers: debenedetti2025camel (CaMeL 77% provable security on AgentDojo v2), chen2025secalign (SecAlign DPO ASR reduction), chen2025metasecalign (Llama-3.3-70B input-role separation — resolves Sprint 1 Round 1 FLAG), wallace2024instructionhierarchy (system > developer > user > tool priority — resolves Sprint 1 Round 1 FLAG). Findings: 0 DROP / 0 CORRECT / 0 FLAG / 4 SPOT-CHECK PASSED. Body sha256 spans recompute clean. Recommendation: Clean — stop here.

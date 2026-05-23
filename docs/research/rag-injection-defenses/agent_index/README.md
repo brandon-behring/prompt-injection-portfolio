@@ -74,3 +74,10 @@ This folder is the *RAG-retrieval-boundary* layer of indirect-injection defenses
 ## Attribution
 
 Synthesized from a research dossier maintained by `research_toolkit` (Sprint 2 build). Cross-classified from sibling topic dossiers under topic-prefixed bibkeys.
+
+
+## Sprint 2 audit-trail (Round 1 + 2, 2026-05-23)
+
+**Round 1 — New topic E fresh build verification.** Reviewed all 18 entries (6 cross-classified `rag_*` + 7 net-new papers + 5 production_rag_incidents). Findings: 0 DROP / 0 CORRECT / 1 FLAG (rag_aimlabs2025echoleak — Cato Networks blog returned 212 bytes; verified via NVD CVE-2025-32711 cross-reference instead) / 17 SPOT-CHECK PASSED. All entries except EchoLeak promoted to `status: verified`. EchoLeak retained at `verified` via CVE cross-reference per gather_trace note.
+
+**Round 2 — Body-quote anchoring (6 carriers) + ETHICS posture audit.** Body-anchored carriers: rag_hines2024spotlighting (Spotlighting ASR-reduction abstract claim), rag_yi2025bipia (BIPIA universal-vulnerability + capability-correlation), rag_abdelnabi2025llmailinject (208K adaptive attacks), li2024llatrieval, lu2025drag, zhou2025sag. ETHICS posture maintained: 7 production_rag_incident entries use `extraction_method: paraphrase` or title-only verbatim_match with link_confidence ≤0.80; no exploit chains or attacker payloads in any excerpt or evidence span. 7 orphan evidence_ids stitched into correct bib entries at E3 recovery. Recommendation: Clean — stop here.

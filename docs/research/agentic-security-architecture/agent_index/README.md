@@ -76,3 +76,10 @@ This folder is the *agentic-side* of architectural defenses. Companion topics:
 ## Attribution
 
 Synthesized from a research dossier maintained by `research_toolkit` (Sprint 2 build, post-Phase E4). Cross-classified from sibling topic dossiers under topic-prefixed bibkeys per Sprint 2 cross-classification convention.
+
+
+## Sprint 2 audit-trail (Round 1 + 2, 2026-05-23)
+
+**Round 1 — New topic D fresh build verification.** Reviewed all 25 entries (24 cross-classified `agentic_*` prefix from sibling topics + 1 net-new agentic_wang2025agentarmor). Findings: 0 DROP / 0 CORRECT / 0 FLAG / 25 SPOT-CHECK PASSED. All 25 promoted to `status: verified` with verified_at: 2026-05-23. Cross-classified entries re-verified against source topics' bib_ledger entries (excerpts topic-tailored for agentic dimension). AgentArmor (arXiv 2508.01249) discovered via WebSearch from research_plan "TBD" — abstract verified.
+
+**Round 2 — GitHub code links + Lane 4/5 reproducibility.** PDF cache verified for all 22 arXiv entries (~40 MB). Findings: 0 DROP / 0 CORRECT / 0 FLAG / 22 SPOT-CHECK PASSED. Recommendation: Clean — stop here.

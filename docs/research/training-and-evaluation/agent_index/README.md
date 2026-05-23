@@ -110,3 +110,8 @@ Routes by question type. Each recipe points to a file and a section anchor.
 ## Attribution
 
 Synthesized from primary sources cached locally (45 cached pages, 123 evidence supports, 381 claim_graph records). URLs link to canonical primary sources (arXiv abs pages, HuggingFace dataset/model cards, vendor blog posts, conference proceedings). No local file paths are referenced. Maintained by the research_toolkit pipeline (`~/Claude/research_toolkit/`). Topic C of a 3-topic sprint (paired with `../detector-landscape/` and `../direct-vs-indirect/`).
+
+
+## Sprint 2 audit-trail (Round 3, 2026-05-23)
+
+**Round 3 — Sprint 2 entries verification + DomainBed anchoring.** Reviewed the 15 Sprint 2 entries (DomainBed, OR-Bench, OASST1, 9 contamination-detection methodology papers, 3 new dataset cards). Findings: 0 DROP / 0 CORRECT / 0 FLAG / 13 SPOT-CHECK PASSED / 2 left `status: unverified` (HF 401 errors on protectai/prompt-injection-validation + Harelix/Prompt-Injection-Mixed-Techniques-2024 — websearch_snippet evidence captured; re-attempt with authenticated MCP later). DomainBed (gulrajani2021domainbed) anchored as LOAD-BEARING OOD-wall thesis carrier with 3 verbatim_match evidence entries (ev_0127/0128/0129) — formal LODO definition + ERM-baseline finding + model-selection-difficulty + confidence factors include "load-bearing for OOD-wall thesis (ADR-016 + ADR-075)". 3 evidence_ledger fix-ups applied at E3 (ev_0124-0126 had been orphaned from their primary-anchor bib entries; claim_graph required relinking). Recommendation: Clean — stop here (2 unverified are HF auth issues; deferred to /freshness-audit with auth).
