@@ -1218,10 +1218,10 @@ entries:
   cache_ids:
   - cache_5ad318a82550fd07
 - bibkey: hiddenlayer2025_cluster
-  primary_url: https://hiddenlayer.com/platform/
+  primary_url: https://www.hiddenlayer.com/
   title: 'HiddenLayer AI Security Platform (commercial agentic-AI security; deterministic classifiers outside inference path; 2026 Threat Landscape Report; unverified, surfaced from compass §6)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: commercial_detector_performance
   authors: HiddenLayer (2026)
   venue: Vendor product page
@@ -1233,13 +1233,15 @@ entries:
   stale_after_days: 30
   evidence_ids:
   - ev_detector_landscape_0060
+  - ev_detector_landscape_0069
   cache_ids:
   - cache_cbe7cdb80a2d0d71
+  - cache_4a342c2545fee362
 - bibkey: robustintelligence2025_cluster
   primary_url: https://blogs.cisco.com/news/fortifying-the-future-of-security-for-ai-cisco-announces-intent-to-acquire-robust-intelligence
   title: 'Fortifying the future of Security for AI: Cisco Announces intent to acquire Robust Intelligence (Aug 2024 announcement; AI Firewall pioneer; unverified, surfaced from compass §6)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: commercial_detector_performance
   authors: Cisco (2024)
   venue: Vendor blog
@@ -1251,10 +1253,12 @@ entries:
   stale_after_days: 30
   evidence_ids:
   - ev_detector_landscape_0061
+  - ev_detector_landscape_0072
   cache_ids:
   - cache_f9cea1f484940242
+  - cache_d59df7364b50ca8e
 - bibkey: calypsoai2025_cluster
-  primary_url: https://www.f5.com/products/ai-guardrails
+  primary_url: https://calypso.ai/
   title: 'F5 AI Guardrails (CalypsoAI post-acquisition; commercial agentic-security platform; unverified, surfaced from compass §6)'
   status: unverified
   verified_at:
@@ -1274,8 +1278,8 @@ entries:
 - bibkey: vijildome2025_cluster
   primary_url: https://github.com/vijilAI/vijil-dome
   title: 'vijilAI/vijil-dome: Vijil''s Dome Repository (open-source agentic guardrail library; 20+ detectors; Apache 2.0; unverified, surfaced from compass §6)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: commercial_detector_performance
   authors: Vijil AI (2026)
   venue: GitHub repository
@@ -1289,13 +1293,15 @@ entries:
   stale_after_days: 30
   evidence_ids:
   - ev_detector_landscape_0063
+  - ev_detector_landscape_0071
   cache_ids:
   - cache_9a2f45a3640522ee
+  - cache_6361679df85d9de1
 - bibkey: guardrailsai2025_cluster
   primary_url: https://github.com/guardrails-ai/guardrails
   title: 'guardrails-ai/guardrails: Adding guardrails to large language models (open-source Python framework; Apache 2.0; unverified, surfaced from compass §6)'
-  status: unverified
-  verified_at:
+  status: verified
+  verified_at: '2026-05-23'
   claim_family: commercial_detector_performance
   authors: Guardrails AI (2026)
   venue: GitHub repository
@@ -1309,10 +1315,12 @@ entries:
   stale_after_days: 30
   evidence_ids:
   - ev_detector_landscape_0064
+  - ev_detector_landscape_0070
   cache_ids:
   - cache_9b039b36827185e8
+  - cache_8fc10c55abd837e1
 - bibkey: safeprompt2025_cluster
-  primary_url: https://natlawreview.com/press-releases/safeprompt-launches-prompt-injection-protection-api-ai-developers
+  primary_url: https://safeprompt.com/
   title: 'SafePrompt Launches Prompt Injection Protection API for AI Developers (Feb 2026 launch; multi-layer pipeline, <100ms latency; unverified, surfaced from compass §6 — primary safeprompt.ai domain returned 403)'
   status: unverified
   verified_at:

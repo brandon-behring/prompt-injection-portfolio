@@ -1,7 +1,3 @@
-# Cache manifest — prompt-injection detector landscape
-# Reconstructed post-hoc from per-cache metadata.json files.
-# Maintained by /research-gather. Validated by validators/cache_manifest.py.
-
 schema_version: 2
 topic: detector_landscape
 generated_at: '2026-05-22'
@@ -824,4 +820,52 @@ entries:
   metadata_path: ~/Claude/research_cache/metadata/sha256/7b898810604eda60155b3ead84d1673bca8c48a8a3235d6a0f411923d3698a54.json
   restricted: false
   rights_status: private_use
+  extraction_status: ok
+- cache_id: cache_4a342c2545fee362
+  source_url: https://www.hiddenlayer.com/
+  fetched_at: '2026-05-23'
+  content_type: text/html
+  bytes: 278074
+  sha256: 4a342c2545fee362f1f3430dfb07b8319a3536037867a216f4b8b7892c10860a
+  raw_path: ~/Claude/research_cache/blobs/sha256/4a342c2545fee362f1f3430dfb07b8319a3536037867a216f4b8b7892c10860a
+  text_path: ~/Claude/research_cache/text/sha256/4a342c2545fee362f1f3430dfb07b8319a3536037867a216f4b8b7892c10860a.txt
+  metadata_path: ~/Claude/research_cache/metadata/sha256/4a342c2545fee362f1f3430dfb07b8319a3536037867a216f4b8b7892c10860a.json
+  restricted: false
+  rights_status: public
+  extraction_status: ok
+- cache_id: cache_8fc10c55abd837e1
+  source_url: https://github.com/guardrails-ai/guardrails
+  fetched_at: '2026-05-23'
+  content_type: text/html
+  bytes: 371274
+  sha256: 8fc10c55abd837e1c603621e05bccffa3326830fd9f5108d055f029edc3ac61c
+  raw_path: ~/Claude/research_cache/blobs/sha256/8fc10c55abd837e1c603621e05bccffa3326830fd9f5108d055f029edc3ac61c
+  text_path: ~/Claude/research_cache/text/sha256/8fc10c55abd837e1c603621e05bccffa3326830fd9f5108d055f029edc3ac61c.txt
+  metadata_path: ~/Claude/research_cache/metadata/sha256/8fc10c55abd837e1c603621e05bccffa3326830fd9f5108d055f029edc3ac61c.json
+  restricted: false
+  rights_status: public
+  extraction_status: ok
+- cache_id: cache_6361679df85d9de1
+  source_url: https://github.com/vijilAI/vijil-dome
+  fetched_at: '2026-05-23'
+  content_type: text/html
+  bytes: 390735
+  sha256: 6361679df85d9de106abad3dd5ec69550fe36733a92e1ab615593fec46f2da47
+  raw_path: ~/Claude/research_cache/blobs/sha256/6361679df85d9de106abad3dd5ec69550fe36733a92e1ab615593fec46f2da47
+  text_path: ~/Claude/research_cache/text/sha256/6361679df85d9de106abad3dd5ec69550fe36733a92e1ab615593fec46f2da47.txt
+  metadata_path: ~/Claude/research_cache/metadata/sha256/6361679df85d9de106abad3dd5ec69550fe36733a92e1ab615593fec46f2da47.json
+  restricted: false
+  rights_status: public
+  extraction_status: ok
+- cache_id: cache_d59df7364b50ca8e
+  source_url: https://blogs.cisco.com/news/fortifying-the-future-of-security-for-ai-cisco-announces-intent-to-acquire-robust-intelligence
+  fetched_at: '2026-05-23'
+  content_type: text/html
+  bytes: 82290
+  sha256: d59df7364b50ca8e71c0e53bf76b9d859855b10afe24c7204036baab2a8404e4
+  raw_path: ~/Claude/research_cache/blobs/sha256/d59df7364b50ca8e71c0e53bf76b9d859855b10afe24c7204036baab2a8404e4
+  text_path: ~/Claude/research_cache/text/sha256/d59df7364b50ca8e71c0e53bf76b9d859855b10afe24c7204036baab2a8404e4.txt
+  metadata_path: ~/Claude/research_cache/metadata/sha256/d59df7364b50ca8e71c0e53bf76b9d859855b10afe24c7204036baab2a8404e4.json
+  restricted: false
+  rights_status: public
   extraction_status: ok

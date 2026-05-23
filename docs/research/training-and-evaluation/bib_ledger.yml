@@ -1364,6 +1364,7 @@ entries:
   stale_after_days: 30
   evidence_ids:
   - ev_training_and_evaluation_0154
+  verification_notes: 'HF 401 persists with browser User-Agent (2026-05-23). Auth-token required for HF API access; deferred to /freshness-audit with credentials. Existing websearch_snippet evidence retained.'
   cache_ids:
   - cache_adcee16d77aee0eb
 
@@ -1383,5 +1384,6 @@ entries:
   stale_after_days: 30
   evidence_ids:
   - ev_training_and_evaluation_0155
+  verification_notes: 'HF 401 persists with browser User-Agent (2026-05-23). Auth-token required for HF API access; deferred to /freshness-audit with credentials. Existing websearch_snippet evidence retained.'
   cache_ids:
   - cache_62408b4b09b8bd5d

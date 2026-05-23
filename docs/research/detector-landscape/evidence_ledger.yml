@@ -95,8 +95,7 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: This model is a fine-tuned version of ModernBert to classify prompt-injection prompts which can manipulate language
-    models into producing unintended outputs.
+  excerpt: This model is a fine-tuned version of ModernBert to classify prompt-injection prompts which can manipulate language models into producing unintended outputs.
   rights_status: private_use
 - evidence_id: ev_detector_landscape_0004
   source_url: https://huggingface.co/tihilya/modernbert-base-prompt-injection-detection
@@ -126,8 +125,7 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: Prompt injection attacks are attempts to manipulate large language models (LLMs) by inserting malicious instructions
-    into user prompts.
+  excerpt: Prompt injection attacks are attempts to manipulate large language models (LLMs) by inserting malicious instructions into user prompts.
   rights_status: private_use
   confidence:
     score: 0.85
@@ -190,14 +188,12 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'It aims to identify prompt injections, classifying inputs into two categories: <code>0</code> for no injection
-    and <code>1</code> for injection detected.</p>'
+  excerpt: 'It aims to identify prompt injections, classifying inputs into two categories: <code>0</code> for no injection and <code>1</code> for injection detected.</p>'
   rights_status: private_use
   confidence:
     score: 0.9
     factors:
-    - "body-quote anchor upgraded (Sprint 2 E3) \u2014 replaced Transformers-snippet header span with substantive classification-task\
-      \ claim"
+    - "body-quote anchor upgraded (Sprint 2 E3) \u2014 replaced Transformers-snippet header span with substantive classification-task claim"
 - evidence_id: ev_detector_landscape_0007
   source_url: https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
   source_type: repo
@@ -361,8 +357,8 @@ entries:
   verification_method: webfetch
   re_verified_at: '2026-05-22'
   audit_flags:
-  - audit_round_1_corrected: Implementation-model list (Gemma-3-12b-it, Llama-3.3-8B, Phi-4-mini-instruct) is in code-repo
-      availability statement, not the arXiv abstract; mechanism bullet rewritten to reflect.
+  - audit_round_1_corrected: Implementation-model list (Gemma-3-12b-it, Llama-3.3-8B, Phi-4-mini-instruct) is in code-repo availability statement, not the arXiv abstract;
+      mechanism bullet rewritten to reflect.
   cache_ids:
   - cache_0202713855aa48d0
   supports:
@@ -636,8 +632,7 @@ entries:
     score: 0.4
     factors:
     - "model card / vendor surface \u2014 no extractable verbatim claim"
-    - audit_round_1_flagged: Cisco AI Defense acquisition cross-reference paraphrase-only, not anchored on the Lakera product
-        page itself.
+    - audit_round_1_flagged: Cisco AI Defense acquisition cross-reference paraphrase-only, not anchored on the Lakera product page itself.
 - evidence_id: ev_detector_landscape_0021
   source_url: https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection
   source_type: vendor
@@ -646,8 +641,8 @@ entries:
   verification_method: webfetch
   re_verified_at: '2026-05-22'
   audit_flags:
-  - audit_round_1_flagged: Spotlighting capability claim not anchored on the docs page (Spotlighting is referenced in Microsoft
-      broader safety story, not the Prompt Shields product docs).
+  - audit_round_1_flagged: Spotlighting capability claim not anchored on the docs page (Spotlighting is referenced in Microsoft broader safety story, not the Prompt
+      Shields product docs).
   cache_ids:
   - cache_f8a5917cbb6f90f3
   supports:
@@ -698,8 +693,7 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages
-    for instructions.
+  excerpt: To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.
   rights_status: private_use
 - evidence_id: ev_detector_landscape_0023
   source_url: https://cloud.google.com/security/products/model-armor
@@ -728,8 +722,8 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: Runtime security for generative and agentic AI, Model Armor provides comprehensive protections against prompt injection,
-    sensitive data leaks, and harmful content.
+  excerpt: Runtime security for generative and agentic AI, Model Armor provides comprehensive protections against prompt injection, sensitive data leaks, and harmful
+    content.
   rights_status: private_use
 - evidence_id: ev_detector_landscape_0024
   source_url: https://docs.nvidia.com/nemo/microservices/latest/guardrails/tutorials/injection-detection.html
@@ -758,8 +752,7 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: Detect potential exploitation attempts (such as code injection, cross-site scripting, SQL injection, and template
-    injection) using NeMo Platform.
+  excerpt: Detect potential exploitation attempts (such as code injection, cross-site scripting, SQL injection, and template injection) using NeMo Platform.
   rights_status: private_use
 - evidence_id: ev_detector_landscape_0025
   source_url: https://blogs.cisco.com/ai/security-for-the-agentic-era-cisco-ai-defense-breaks-new-ground
@@ -769,8 +762,8 @@ entries:
   verification_method: webfetch
   re_verified_at: '2026-05-22'
   audit_flags:
-  - audit_round_1_flagged: Positioning quote verified verbatim in cache anchor; Robust Intelligence + Lakera integration cross-reference
-      (in dossier mechanism prose) is paraphrase / broader-context only, not anchored on this blog page.
+  - audit_round_1_flagged: Positioning quote verified verbatim in cache anchor; Robust Intelligence + Lakera integration cross-reference (in dossier mechanism prose)
+      is paraphrase / broader-context only, not anchored on this blog page.
   cache_ids:
   - cache_838e27ef58169b58
   supports:
@@ -792,8 +785,7 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: "A year ago, we introduced the world to Cisco AI Defense, the industry\u2019s first truly comprehensive enterprise\
-    \ AI security solution."
+  excerpt: "A year ago, we introduced the world to Cisco AI Defense, the industry\u2019s first truly comprehensive enterprise AI security solution."
   rights_status: private_use
 - evidence_id: ev_detector_landscape_0026
   source_url: https://github.com/protectai/rebuff
@@ -1061,8 +1053,7 @@ entries:
   verification_method: webfetch
   re_verified_at: '2026-05-22'
   audit_flags:
-  - audit_round_1_flagged: NAACL 2025 Findings venue claim not anchored on arXiv page (Comments field lists only project page);
-      kept entry, FLAG only.
+  - audit_round_1_flagged: NAACL 2025 Findings venue claim not anchored on arXiv page (Comments field lists only project page); kept entry, FLAG only.
   cache_ids:
   - cache_52f0885c01ea6bee
   supports:
@@ -1303,8 +1294,7 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection
-    Systems'
+  excerpt: 'Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection Systems'
   rights_status: private_use
 - evidence_id: ev_detector_landscape_0041
   source_url: https://arxiv.org/abs/2502.15427
@@ -1453,17 +1443,15 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: "Cross-cutting synthesis claim: the CodeIntegrity industry postmortem (cache_6788a3f0f61cebd9) corroborates the\
-    \ academic findings on encoder-classifier low-FPR collapse under adaptive evasion \u2014 specifically the PromptShield\
-    \ Berkeley paper's TPR@FPR framing (cache_96dc7a084a524c4d), the Hackett et al. 100% character-injection evasion result\
-    \ (cache_bb62839772f16e14), the Nasr et al. 90% ASR bypass of 12 defenses (cache_51e92f7784dddb6e), and the InjecGuard\
-    \ 60% over-defense floor (cache_ab9d48079556ef2d). Aggregation across these five primary sources."
+  excerpt: "Cross-cutting synthesis claim: the CodeIntegrity industry postmortem (cache_6788a3f0f61cebd9) corroborates the academic findings on encoder-classifier\
+    \ low-FPR collapse under adaptive evasion \u2014 specifically the PromptShield Berkeley paper's TPR@FPR framing (cache_96dc7a084a524c4d), the Hackett et al. 100%\
+    \ character-injection evasion result (cache_bb62839772f16e14), the Nasr et al. 90% ASR bypass of 12 defenses (cache_51e92f7784dddb6e), and the InjecGuard 60%\
+    \ over-defense floor (cache_ab9d48079556ef2d). Aggregation across these five primary sources."
   rights_status: private_use
   confidence:
     score: 0.8
     factors:
-    - cross-referenced across 5 primary sources (cache_6788a3f0f61cebd9 + cache_96dc7a084a524c4d + cache_bb62839772f16e14
-      + cache_51e92f7784dddb6e + cache_ab9d48079556ef2d)
+    - cross-referenced across 5 primary sources (cache_6788a3f0f61cebd9 + cache_96dc7a084a524c4d + cache_bb62839772f16e14 + cache_51e92f7784dddb6e + cache_ab9d48079556ef2d)
     - synthesis-level claim aggregating independent verifications
 - evidence_id: ev_detector_landscape_0046
   source_url: https://huggingface.co/qualifire/prompt-injection-sentinel
@@ -1608,8 +1596,8 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'AI Agent Security: Runtime visibility and protection for AI applications and agents</title><meta content="Secure
-    your GenAI applications in real time with Lakera Guard'
+  excerpt: 'AI Agent Security: Runtime visibility and protection for AI applications and agents</title><meta content="Secure your GenAI applications in real time
+    with Lakera Guard'
   rights_status: private_use
 - evidence_id: ev_detector_landscape_0051
   source_url: https://www.lakera.ai/blog/the-year-of-the-agent-what-recent-attacks-revealed-in-q4-2025-and-what-it-means-for-2026
@@ -2094,9 +2082,8 @@ entries:
     - ev_detector_landscape_0001
     - ev_detector_landscape_0002
     - ev_detector_landscape_0003
-  excerpt: "Encoder detectors below ~200M params universally collapse at TPR@FPR\u22640.5%. PromptShield Table 4 shows ProtectAI\
-    \ v2 at 0.00% TPR @ 0.5% FPR; InjecGuard at 16.26%; Meta PG1 at 11.36%; Fmops at 8.85%. Only LLM-class detectors (PromptShield-Llama-3.1-8B)\
-    \ operate at deployment-grade FPRs."
+  excerpt: "Encoder detectors below ~200M params universally collapse at TPR@FPR\u22640.5%. PromptShield Table 4 shows ProtectAI v2 at 0.00% TPR @ 0.5% FPR; InjecGuard\
+    \ at 16.26%; Meta PG1 at 11.36%; Fmops at 8.85%. Only LLM-class detectors (PromptShield-Llama-3.1-8B) operate at deployment-grade FPRs."
   rights_status: public
   confidence:
     score: 0.6
@@ -2121,12 +2108,99 @@ entries:
     - ev_detector_landscape_0020
     - ev_detector_landscape_0021
     - ev_detector_landscape_0022
-  excerpt: "Commercial guardrails span 66-92% on Lakera PINT with no clear OOD leader. Lakera Guard 95.22% (Lakera-designed\
-    \ benchmark); AWS Bedrock 89.24%; Azure 89.12%; ProtectAI v2 79.14%; Meta PG2 78.76%; Google Model Armor 70.07%; Aporia\
-    \ 66.44%; Meta PG1 61.82%. The compass \xA76 vendor cluster (HiddenLayer/RobustIntel/CalypsoAI/Vijil/Guardrails/SafePrompt)\
+  excerpt: "Commercial guardrails span 66-92% on Lakera PINT with no clear OOD leader. Lakera Guard 95.22% (Lakera-designed benchmark); AWS Bedrock 89.24%; Azure\
+    \ 89.12%; ProtectAI v2 79.14%; Meta PG2 78.76%; Google Model Armor 70.07%; Aporia 66.44%; Meta PG1 61.82%. The compass \xA76 vendor cluster (HiddenLayer/RobustIntel/CalypsoAI/Vijil/Guardrails/SafePrompt)\
     \ lacks public PINT scores."
   rights_status: public
   confidence:
     score: 0.6
     factors:
     - synthesis aggregation claim across 3 primary sources (Sprint 2 F-phase)
+- evidence_id: ev_detector_landscape_0069
+  source_url: https://www.hiddenlayer.com/
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_4a342c2545fee362
+  supports:
+  - claim_id: claim_detector_landscape_hiddenlayer2025_cluster_product_positioning
+    field_path: bib_ledger.hiddenlayer2025_cluster.product_positioning
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: HiddenLayer is a comprehensive AI security platform protecting agentic, generative, and predictive AI across the entire lifecycle through AI Discovery,
+    Supply Chain Security, Attack Simulation, and Ru
+  rights_status: public
+  confidence:
+    score: 0.8
+    factors:
+    - Phase B vendor cluster verification
+- evidence_id: ev_detector_landscape_0070
+  source_url: https://github.com/guardrails-ai/guardrails
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_8fc10c55abd837e1
+  supports:
+  - claim_id: claim_detector_landscape_guardrailsai2025_cluster_product_positioning
+    field_path: bib_ledger.guardrailsai2025_cluster.product_positioning
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Python framework with two key functions: Input/Output Guards to detect/quantify/mitigate risk types in AI applications, plus structured data generation
+    from LLMs.'
+  rights_status: public
+  confidence:
+    score: 0.8
+    factors:
+    - Phase B vendor cluster verification
+- evidence_id: ev_detector_landscape_0071
+  source_url: https://github.com/vijilAI/vijil-dome
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_6361679df85d9de1
+  supports:
+  - claim_id: claim_detector_landscape_vijildome2025_cluster_product_positioning
+    field_path: bib_ledger.vijildome2025_cluster.product_positioning
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: 'Runtime security library for AI agents: guards inputs/outputs with 20+ content detectors, enforces tool-level access control, attests agent and tool identity
+    via SPIFFE, and emits structured audit log'
+  rights_status: public
+  confidence:
+    score: 0.8
+    factors:
+    - Phase B vendor cluster verification
+- evidence_id: ev_detector_landscape_0072
+  source_url: https://blogs.cisco.com/news/fortifying-the-future-of-security-for-ai-cisco-announces-intent-to-acquire-robust-intelligence
+  source_type: vendor
+  source_quality: official
+  retrieved_at: '2026-05-23'
+  verification_method: webfetch
+  cache_ids:
+  - cache_d59df7364b50ca8e
+  supports:
+  - claim_id: claim_detector_landscape_robustintelligence2025_cluster_product_positioning
+    field_path: bib_ledger.robustintelligence2025_cluster.product_positioning
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  excerpt: Purpose-built platform for AI model lifecycle protection against threats like prompt injection and data poisoning; Cisco integrating into Security Cloud
+    post-acquisition.
+  rights_status: public
+  confidence:
+    score: 0.8
+    factors:
+    - Phase B vendor cluster verification
