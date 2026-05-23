@@ -3,10 +3,12 @@
 **Scope**: cold-start anchor for a fresh session (potentially on a different
 machine). Install instructions + commit summary + critical context.
 
-**Last update**: 2026-05-22 (Round 23 cross-machine handoff; planning artifacts
-committed publicly per Round 23 Q1 lock).
-**Repo state**: 20+ commits on main; `v0.1.0-pre` tagged at Day 3b;
-`make ratify-milestone` PASSES end-to-end.
+**Last update**: 2026-05-23 (Round 25 — M0 close follow-up cleanup after Round 24
+Sprint 2 closure + Sprint 3 fold-in).
+**Repo state**: 41 commits on main; `v0.1.0-pre` tagged at Day 3b;
+`make dossier-audit` PASSES (5 topics validated); M0 close artifact-state
+PASSES (Docker/torch/submission-sibling environmental gaps on this machine
+are NOT code-state failures — see Round 24 close).
 **Pre-alpha banner**: ACTIVE.
 
 ---
@@ -64,40 +66,63 @@ committed publicly per Round 23 Q1 lock).
 
 ## M0 status: close-ready (formal `v0.1.0` tag DEFERRED to user-led)
 
-18 commits since repo seed (2026-05-19 → 2026-05-22):
+41 commits since repo seed (2026-05-19 → 2026-05-23). Round 24 M0 close + Round
+25 follow-up landed Sprint 2 dossier closure + Sprint 3 fold-in + 3 new ADRs +
+synthesis doc + BIP post. The originally-deferred dossier sprint is COMPLETE.
 
-```
-9b07cdf  Day 1   — seed (README + LICENSE + ETHICS.md + verify scripts)
-4676cc7  Day 1   — NEXT_SESSION.md (v1)
-f011726  Day 2   — book/ scaffold + pyproject + verify_editable_dep
-11175db  Day 2   — CI workflow draft (two-step checkout)
-e6a2234  Day 2.5 — file 9 upstream MR issues (Round 10 ongoing-filing)
-bc30c52  Day 3a/c1 — pin bumps (eval-toolkit v0.47 + scaffold v3.5 + submission v1.2.16)
-cbf7d25  Day 3a/c2 — library_imports + upstream_issues state machine + MR-12 file
-8d6a60d  Day 3a/c3 — NEXT_SESSION.md rewrite (Round 14-21 absorbed)
-6c75693  Day 4   — Round 20 reconciliation close
-81765f7  Day 3a/c4 — ruff cleanup (CI hard-gate green)
-0a4938a  Day 3b  — 7 test-contracts active + CI hard-gates → tag v0.1.0-pre
-3fb9338  Round 22 mini — CI ref v1.2.16 → v1.3.0
-7429e33  Day 16  — Docker T2 (Dockerfile + compose + verify extension)
-c30a40e  Day 5   — 6 lane experiment-record skeletons + MANIFEST.json
-dcf037a  Day 14  — 13 textbook chapter skeletons + 6 fragment dirs
-04922fe  Day 15  — governance finish (SECURITY + CODE_OF_CONDUCT + templates + frontmatter + README 3-guides)
-add5efc  Day 17  — 11 substantive ADRs + decisions/README.md index
-6a59b40  Day 18  — build-in-public templates (Round 19 loudness policy)
-b1b66f4  Day 19 prep — ratify-milestone Makefile target + M0_READINESS.md handoff
-```
+### Highlights by phase (most recent first)
+- **Round 25** (2026-05-23) — M0 close follow-up cleanup (3 phases):
+  `2549994` Phase 1: verification_notes for 2 secondary-blog unverified entries
+- **Round 24** (2026-05-23) — M0 close incl. Sprint 3 fold-in (6 commits):
+  `8d02272` Phase B: HF 401 attempt + vendor cluster verification
+  `fb2669b` Phase C: ADR-036/-038/-041/-045 Sprint 2 dossier cross-refs
+  `e41e88f` Phase D: ADR-048 (cross-classification) + ADR-049 (body-quote anchoring)
+            + ADR-050 (vendor cluster posture) + Round 24 README
+  `4708692` Phase I: book-scaffold-astro ^3.5.0 → ^3.6.5 + MR-13 filed
+  `116a405` Phase E: 861-line synthesis doc (dossier_implications_for_roadmap.md)
+  `0a29116` Phase F: 175-line Sprint 2 close build-in-public post
+- **Sprint 2** (2026-05-22 to 2026-05-23) — dossier expansion (8 commits):
+  E1 research_plans / E2 ~124 cached PDFs / E3 verifications + body-anchoring
+  / E4 agent_index / E5 audit-trail / E6 MANIFEST + bibliography.bib / F-phase
+  fixups / closure
+- **Sprint 1 + M0 Day 1-19** (2026-05-19 to 2026-05-22, 18 commits):
+  Day 1 seed → Day 19 prep (per prior log; abridged here for brevity)
+
+Full log: `git log --oneline` (41 entries; reverse-chronological).
+
+### Round 24 M0 close deliverables
+- 210-entry dossier across 5 topics (97% verified; 166 body-quote-anchored)
+- 157 unique BibTeX entries in `book/bibliography.bib`
+- 50 ADRs (44 Accepted + 4 Reserved + 2 DROPPED; 48 files)
+- 861-line synthesis doc at `docs/planning/dossier_implications_for_roadmap.md`
+- 175-line BIP post at `docs/build-in-public/sprint2-close.md`
+- `make dossier-audit` PASSES across 5 topics
 
 ---
 
-## What's next (user-led; per Round 22 Q2 + Q4 deferrals)
+## What's next (user-led; per Round 22 Q2 + Q4 + Round 25 follow-up)
 
-### 1. Dossier sprint (M0 Days 6-12; ~60-80 files)
-- **Skills needed**: `research_toolkit`'s `/research-plan` + `/research-gather` +
-  `/dossier-build` + `/dossier-audit` (not in autonomous /loop's skill set)
-- **Input**: 3 compass surveys at `docs/research/compass-survey/` (in-repo per Round 23) + 5 topic dossiers at `docs/research/{detector-landscape,direct-vs-indirect,training-and-evaluation,agentic-security-architecture,rag-injection-defenses}/`
-  (~1055 lines total)
-- **Output**: `docs/research/` with claim_family-keyed dossier files
+### 1. Dossier sprint — ✅ COMPLETE (Round 24, 2026-05-23)
+Sprint 1 (M0 Days 6-12) + Sprint 2 (E0-E6 + closure) + Sprint 3 (M0 close
+fold-in) delivered the 5-topic dossier:
+- 210 bib_ledger entries (65 detector-landscape + 42 direct-vs-indirect +
+  60 training-and-evaluation + 25 agentic-security-architecture + 18
+  rag-injection-defenses); 97% verified
+- 166 body-quote-anchored carriers (pdftotext + byte-offset + sha256_of_span)
+- 124 cached PDFs (~246 MB) under `~/Claude/research_cache/` (gitignored
+  per public-repo licensing posture)
+- 157 unique BibTeX entries auto-generated to `book/bibliography.bib`
+- `make dossier-audit` PASSES (45+ validator checks across 5 topics)
+- 6 unverified entries (all with explicit `verification_notes`):
+  - 2 vendor cluster (CalypsoAI + SafePrompt; per ADR-050)
+  - 2 HF 401 (protectai validation + harelix mixed; per ADR-049 + Phase B)
+  - 2 secondary-blog (lakera2024pint + jung2026postmortem; per Round 25
+    convention notes — see ADR-050 parallel)
+- Synthesis doc: `docs/planning/dossier_implications_for_roadmap.md`
+  (861 lines; 3-zone audience layering; 5 roadmap-change proposals;
+  decision criteria for Lane 1b / Lane 4 / Lane 5)
+- BIP post: `docs/build-in-public/sprint2-close.md` (175 lines; content
+  source for future v0.1.0 announcement thread)
 
 ### 2. Build-in-public account creation (M0 Day 18 final step)
 - **Twitter/X**: create `@brandonmbehring` or similar handle
@@ -126,12 +151,50 @@ gh release create v0.1.0 \
 ## Open upstream MRs (per `decisions/upstream_issues.md`)
 
 - **MR-3** (research_toolkit#1): `/dataset-synthesize` skill — M3-blocking
-  (escalate if M2/M3 approaches without ship)
+  for Lane 2. **STILL OPEN as of 2026-05-23; 4 days, 0 progress.** See
+  fallback ladder below.
 - **MR-12** (eval-toolkit#69): Tier-2 Protocol consolidation —
-  NOT blocking; targets eval-toolkit v0.48+
+  NOT blocking; targets eval-toolkit v0.48+.
+- **MR-13** (book-scaffold-astro#54): citation-js + `%`-comment + `@TYPE`
+  lexer bug. **Filed 2026-05-23** during M0 close Phase I; NOT blocking
+  (portfolio workaround sustainable — `% @article{...}` template block
+  stripped from `book/bibliography.bib` header).
 
 All 7 eval-toolkit MRs (MR-1/2/4/5/6/7 + MR-10 obsoleted) + 2
 book-scaffold-astro MRs (MR-8 + MR-9) are CLOSED upstream.
+
+---
+
+## Lane 2 MR-3 fallback strategy (Round 25 lock, 2026-05-23)
+
+IF MR-3 (research_toolkit#1, `/dataset-synthesize` skill) hasn't shipped
+by M1 close (~3 weeks from 2026-05-23), trigger the Lane 2 fallback
+ladder:
+
+1. **Primary fallback**: `harelix2024_mixed` (HuggingFace) IF
+   `/freshness-audit` has resolved HF 401 with an auth token by M2
+   entry. Unknown size + license; verify before commit.
+2. **Secondary fallback**: `lakeraai2025pintbenchmark` (public GitHub
+   repo; accessible now). Distribution differs from MR-3's synthetic-
+   corpus-from-production-incidents goal; report distributional
+   difference in Lane 2 `protocol.md`.
+3. **Tertiary**: pivot Lane 2 to use the 7 `production_rag_incidents`
+   carriers from rag-injection-defenses (EchoLeak / Slack AI / Comet /
+   Gemini / ChatGPT-plugin image / Unseeable / Greshake Bing) as seed-
+   document patterns + hand-author ~50-100 synthetic positives per
+   pattern. Smaller corpus, but production-realistic.
+
+**Decision criterion**: at M1 close (~3 weeks), if MR-3 still has no
+linked PR, declare fallback ladder activated; choose primary /
+secondary / tertiary per HF auth status + Lane 2 protocol flexibility
+at that point.
+
+Cross-references: ADR-026 (no-local-workarounds — fallback uses existing
+public datasets or dossier-anchored hand-authored expansion, not local
+synth helpers); ADR-041 (ETHICS — hand-authored positives must follow
+full-specificity disclosure norm using only documented attack vectors per
+dossier `production_rag_incidents`); synthesis doc Lane 2 risk discussion
+at `docs/planning/dossier_implications_for_roadmap.md` Zone 2.
 
 ---
 
