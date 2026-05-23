@@ -1,0 +1,8 @@
+{
+  "cache_id": "cache_body_rag_yi2025bipia",
+  "bibkey": "rag_yi2025bipia",
+  "extraction_method": "pdftotext",
+  "extraction_date": "2026-05-23",
+  "source_pdf": "papers/bipia_yi_2023.pdf",
+  "text_path": "cache/body_text/rag_yi2025bipia.txt"
+}

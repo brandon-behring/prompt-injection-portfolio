@@ -1,0 +1,8 @@
+{
+  "cache_id": "cache_body_rag_abdelnabi2025llmailinject",
+  "bibkey": "rag_abdelnabi2025llmailinject",
+  "extraction_method": "pdftotext",
+  "extraction_date": "2026-05-23",
+  "source_pdf": "papers/llmailinject_abdelnabi_2025.pdf",
+  "text_path": "cache/body_text/rag_abdelnabi2025llmailinject.txt"
+}
