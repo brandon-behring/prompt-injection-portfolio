@@ -1,6 +1,6 @@
 {
   "$schema_version": "1",
-  "description": "Experiment records authority graph per plan §18 4-file schema. Each lane row maps lane_id -> 4 experiment-record files + 3 book-fragment files + linked ADRs + dossier claim_family + HF Hub artifacts.",
+  "description": "Experiment records authority graph per plan \u00a718 4-file schema. Each lane row maps lane_id -> 4 experiment-record files + 3 book-fragment files + linked ADRs + dossier claim_family + HF Hub artifacts.",
   "lanes": {
     "lane-1": {
       "title": "Direct-injection baselines + reference scorers + classical floor",
@@ -8,21 +8,49 @@
       "budget_usd": 12,
       "state": "skeleton",
       "hypothesis_id": "H-LANE-1",
-      "linked_adrs": ["036", "038", "043", "045"],
+      "linked_adrs": [
+        "036",
+        "038",
+        "043",
+        "045"
+      ],
       "book_chapter": "ch08-lane-1-direct-baselines",
       "fragments_dir": "book/src/content/fragments/lane-1",
-      "hf_artifacts_expected": []
+      "hf_artifacts_expected": [],
+      "dossier_claim_family": [
+        "detector_architectures",
+        "detector_benchmarks",
+        "commercial_detector_performance",
+        "detector_latency_tradeoff",
+        "encoder_backbone"
+      ],
+      "dossier_topics": [
+        "detector-landscape",
+        "training-and-evaluation"
+      ],
+      "dossier_notes": "Reference scorers + classical floor; baseline survey across encoder + LLM-judge detector classes."
     },
     "lane-1b": {
-      "title": "Adversarial robustness matrix — 12-technique character_injection × N detectors",
+      "title": "Adversarial robustness matrix \u2014 12-technique character_injection \u00d7 N detectors",
       "milestone": "M1",
       "budget_usd": 10,
       "state": "skeleton",
       "hypothesis_id": "H-LANE-1B",
-      "linked_adrs": ["036", "045"],
+      "linked_adrs": [
+        "036",
+        "045"
+      ],
       "book_chapter": "ch08-lane-1-direct-baselines",
       "fragments_dir": "book/src/content/fragments/lane-1b",
-      "hf_artifacts_expected": []
+      "hf_artifacts_expected": [],
+      "dossier_claim_family": [
+        "adversarial_robustness_matrix",
+        "detector_architectures"
+      ],
+      "dossier_topics": [
+        "detector-landscape"
+      ],
+      "dossier_notes": "12-technique character_injection \u00d7 N detector matrix; ALL_TECHNIQUES from eval_toolkit v0.47+."
     },
     "lane-2": {
       "title": "Indirect-injection LoRA retrain (2-variant loss ablation) + same-corpus baselines",
@@ -30,7 +58,12 @@
       "budget_usd": 196,
       "state": "skeleton",
       "hypothesis_id": "H-LANE-2",
-      "linked_adrs": ["022", "043", "045", "075-submission"],
+      "linked_adrs": [
+        "022",
+        "043",
+        "045",
+        "075-submission"
+      ],
       "book_chapter": "ch07-echoleak-and-ch09-lane-2",
       "fragments_dir": "book/src/content/fragments/lane-2",
       "hf_artifacts_expected": [
@@ -38,7 +71,20 @@
         "BBehring/prompt-injection-lora-indirect-v2-rfpr",
         "BBehring/prompt-injection-synthetic-indirect-v2"
       ],
-      "depends_on": ["MR-3-research_toolkit-dataset-synthesize"]
+      "depends_on": [
+        "MR-3-research_toolkit-dataset-synthesize"
+      ],
+      "dossier_claim_family": [
+        "training_data_sources",
+        "training_methodologies",
+        "ood_evaluation_methodology",
+        "composition_audit",
+        "reproducibility_practice"
+      ],
+      "dossier_topics": [
+        "training-and-evaluation"
+      ],
+      "dossier_notes": "LoRA-only on ModernBERT-base; CE + Recall@1%FPR variants; LODO inherited from submission ADR-016/-075; DomainBed (gulrajani2021domainbed) as foundational OOD methodology."
     },
     "lane-3": {
       "title": "Spotlighting structural defense (3 variants) on encoder detectors",
@@ -46,10 +92,23 @@
       "budget_usd": 1,
       "state": "skeleton",
       "hypothesis_id": "H-LANE-3",
-      "linked_adrs": ["036", "045"],
+      "linked_adrs": [
+        "036",
+        "045"
+      ],
       "book_chapter": "ch10-lane-3-spotlighting",
       "fragments_dir": "book/src/content/fragments/lane-3",
-      "hf_artifacts_expected": []
+      "hf_artifacts_expected": [],
+      "dossier_claim_family": [
+        "spotlighting_variants",
+        "rag_evaluation_harness",
+        "architectural_defense_methods"
+      ],
+      "dossier_topics": [
+        "rag-injection-defenses",
+        "direct-vs-indirect"
+      ],
+      "dossier_notes": "Spotlighting 3-variants (delimiting / datamarking / encoding); BIPIA Email QA / Web QA RAG-injection subsets."
     },
     "lane-4": {
       "title": "Score-fusion stacker (LogisticStacker + XGBoost) + APR metric",
@@ -57,10 +116,24 @@
       "budget_usd": 30,
       "state": "skeleton",
       "hypothesis_id": "H-LANE-4",
-      "linked_adrs": ["037", "045"],
+      "linked_adrs": [
+        "037",
+        "045"
+      ],
       "book_chapter": "ch11-lane-4-stacker",
       "fragments_dir": "book/src/content/fragments/lane-4",
-      "hf_artifacts_expected": []
+      "hf_artifacts_expected": [],
+      "dossier_claim_family": [
+        "score_fusion_stacker",
+        "agentic_benchmarks",
+        "agentic_bench_critique",
+        "agent_harness_architecture"
+      ],
+      "dossier_topics": [
+        "agentic-security-architecture",
+        "direct-vs-indirect"
+      ],
+      "dossier_notes": "LogisticStacker + APR + LLMail-Inject 5K + PINT-EN; agent harness security architecture; saturation critique informs adaptive eval design."
     },
     "lane-5": {
       "title": "TaskTracker activation probe port on encoder backbone",
@@ -68,11 +141,25 @@
       "budget_usd": 20,
       "state": "skeleton",
       "hypothesis_id": "H-LANE-5",
-      "linked_adrs": ["045"],
+      "linked_adrs": [
+        "045"
+      ],
       "book_chapter": "ch12-lane-5-activation-probe",
       "fragments_dir": "book/src/content/fragments/lane-5",
       "hf_artifacts_expected": [],
-      "depends_on": ["lane-2-corpus"]
+      "depends_on": [
+        "lane-2-corpus"
+      ],
+      "dossier_claim_family": [
+        "activation_probe_methodology",
+        "dual_llm_pattern",
+        "agent_capability_isolation"
+      ],
+      "dossier_topics": [
+        "agentic-security-architecture",
+        "detector-landscape"
+      ],
+      "dossier_notes": "TaskTracker encoder-only port test; activation-delta signal class methodology beyond decoder LLMs; capability-isolation context (CaMeL, IsolateGPT)."
     }
   },
   "_notes": {

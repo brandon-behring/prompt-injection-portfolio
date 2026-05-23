@@ -95,7 +95,7 @@ b1b66f4  Day 19 prep — ratify-milestone Makefile target + M0_READINESS.md hand
 ### 1. Dossier sprint (M0 Days 6-12; ~60-80 files)
 - **Skills needed**: `research_toolkit`'s `/research-plan` + `/research-gather` +
   `/dossier-build` + `/dossier-audit` (not in autonomous /loop's skill set)
-- **Input**: 3 compass artifacts at `~/Downloads/compass_artifact_*.md`
+- **Input**: 3 compass surveys at `docs/research/compass-survey/` (in-repo per Round 23) + 5 topic dossiers at `docs/research/{detector-landscape,direct-vs-indirect,training-and-evaluation,agentic-security-architecture,rag-injection-defenses}/`
   (~1055 lines total)
 - **Output**: `docs/research/` with claim_family-keyed dossier files
 

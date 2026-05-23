@@ -69,7 +69,11 @@ Expected populations:
 
 | Symbol / skill | Min version | Used in | First commit | MR | Notes |
 |----------------|-------------|---------|--------------|----|-------|
-| (none yet) | | | | | |
+| `/research-plan` | v2.2.1 | M0 + Sprint 2 dossier sprint | `413284a` (Phase 1) + `f709f15` (Sprint 2 E1) | (none) | Used to scope 3 Sprint 1 topics + 2 Sprint 2 new topics |
+| `/research-gather` | v2.2.1 | M0 + Sprint 2 E2 dossier sprint | `51785d9` (Phase 2) + `5bc9cf9` (Sprint 2 E2) | (none) | --cache-pdfs for ~124 arXiv PDFs across 5 topics |
+| `/agent-index` | v2.2.1 | M0 + Sprint 2 E4 dossier sprint | `8b0fdb4` (Phase 3) + `16e9169` (Sprint 2 E4) | (none) | v2.2+ Attribute-First atomic decomposition; pre_selection_manifest |
+| `/dossier-audit` | v2.2.1 | M0 + Sprint 2 E5 dossier sprint | `00d45c5` (Phase 4) + `b68329c` (Sprint 2 E5) | (none) | 6 Sprint 1 rounds + 3 Sprint 2 audit-trail rounds per topic |
+| `/dataset-synthesize` | v0.8+ (upstream) | Lane 2 (~M3) | (pending MR-3) | MR-3 | STILL OPEN per Round 21 — research_toolkit#1 |
 
 Expected populations:
 - `/research-plan` ← M0 dossier sprint (week 1-3)
