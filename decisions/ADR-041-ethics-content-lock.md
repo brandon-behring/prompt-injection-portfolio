@@ -65,6 +65,52 @@ HF Hub dataset card (frontmatter + body) cross-references ETHICS.md §1
 - Future ETHICS.md changes require either a new ADR (substantive) or
   the immutability narrow-relaxation path (typo / link fix).
 
+## Sprint 2 dossier evidence (added M0 close, Round 24)
+
+The Sprint 2 literature dossier reinforces the full-specificity
+disclosure decision (Q1) with three lines of evidence from
+`docs/research/rag-injection-defenses/` + `docs/research/training-and-evaluation/`:
+
+**Field-norm precedents (cited as disclosure baseline):**
+
+- **`greshake2023bingadvisory`** (greshake.de advisory; production_rag_incidents
+  claim family) — Greshake et al.'s 2023 advisory on indirect prompt
+  injection. Live primary source verified Sprint 2 with body-quote
+  anchoring. The full-specificity-disclosure pattern this ADR adopts
+  was already operationalized here.
+- **`han2024wildguard`** (WildGuardMix; detector_benchmarks claim
+  family) — the comparator's disclosure tone is the calibration target
+  for ETHICS.md §1.
+- OWASP LLM01:2025 — already cited above; mapped to ADR-041 via
+  the public LLM Top 10 documentation.
+
+**Concrete application — `production_rag_incidents` (7 carriers):**
+
+The full-specificity rule directly enables the dossier's
+production-incident coverage in `rag-injection-defenses/`:
+
+- **`rag_aimlabs2025echoleak`** (EchoLeak, first zero-click AI
+  vulnerability) — Aim Labs disclosure that ETHICS.md §1 norms permit
+  citing in full detail.
+- **`rag_promptarmor2024slackai`** (Slack AI data exfiltration via
+  indirect injection) — PromptArmor 2024 disclosure.
+- **`chaikin2025cometprompt`** (Perplexity Comet agentic browser
+  indirect injection) — Brave Software 2025 disclosure.
+- **`rehberger2025geminimem`** (Gemini memory injection + delayed tool
+  invocation) — Embrace The Red 2025 disclosure.
+- **`rehberger2023chatgptmd`** (ChatGPT plugin image-based
+  exfiltration) — Embrace The Red 2023 disclosure.
+- **`sahib2025unseeable`** (unseeable injections in screenshots) —
+  Lior Sahib 2025 disclosure.
+- Plus EchoLeak's primary advisory + 1 additional carrier.
+
+Without the ADR-041 §1 lock, the dossier could not cite these
+incidents with their disclosed payload-shape detail. The lock is what
+makes the dossier's production-incident anchoring feasible.
+
+Claim families anchored: `production_rag_incidents` (7 entries) +
+`detector_benchmarks` (han2024wildguard).
+
 ## Cross-references
 
 - Plan §20 (full ETHICS.md draft text)
@@ -73,3 +119,9 @@ HF Hub dataset card (frontmatter + body) cross-references ETHICS.md §1
 - ADR-022 (Round 3 dual-use disclosure decision; superseded by ADR-041
   expansion)
 - ADR-024 (Round 3 public-from-M0 visibility; co-ratified)
+- ADR-050 (Round 24, vendor cluster posture — applies ADR-041's
+  disclosure norm to commercial detector vendors)
+- `docs/research/rag-injection-defenses/bib_ledger.yml`
+  (claim_family: `production_rag_incidents`)
+- Sprint 2 dossier topic README:
+  `docs/research/rag-injection-defenses/README.md`

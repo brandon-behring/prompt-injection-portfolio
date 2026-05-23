@@ -68,6 +68,52 @@ top-level scalar metric imports.
 - Day 3a smoke-test surfaced MR-12 (eval-toolkit#69) — Tier-2 Protocol
   consolidation discoverability improvement; NOT blocking.
 
+## Sprint 2 dossier evidence (added M0 close, Round 24)
+
+The Sprint 2 literature dossier validates that v0.47's canonical
+surfaces directly map to recurring detection-methodology patterns
+across the dossier, supporting the API-pivot decision:
+
+**`ALL_TECHNIQUES` 12-tuple (Lane 1b adversarial sweep):**
+
+The 12-dataclass strategies in `eval_toolkit.adversarial.ALL_TECHNIQUES`
+correspond to character-injection + delimiter-perturbation +
+prompt-rewrite techniques benchmarked in:
+
+- **`bhagwatkar2025firewalls`** (detector_benchmarks claim family) —
+  firewall/guardrail bypass via character-level perturbations.
+  Lane 1b uses ALL_TECHNIQUES to reproduce + extend.
+- **`hackett2025bypassing`** (detector_benchmarks claim family) — 100%
+  character-injection ASR against multiple detector backbones.
+  Operationalized via `eval_toolkit.adversarial.zero_width_space` +
+  `combining_marks` + `mathematical_alphanumerics` dataclasses.
+- **`zizzo2025adversarialprompt`** + **`nasr2025attackermovessecond`**
+  — adaptive-attack systematic benchmarking. The sweep API enables the
+  combinatorial coverage these papers call for.
+
+**LogisticStacker / score_fusion_stacker (Lane 4):**
+
+The dossier's `agentic-security-architecture/` topic surfaces a
+5-entry **`score_fusion_stacker`** claim family that operationalizes
+the Lane 4 stacker approach:
+
+- **`agentic_meta2025promptguard2_86m`** + **`agentic_meta2025promptguard2_22m`**
+  — base detector scores fed into the stacker.
+- **`agentic_liu2020energyloss`** — energy-based OOD scoring; one of
+  the stacker's complementary signals.
+- **`agentic_ayub2024embedding`** — embedding-classifier detection;
+  fusion-compatible per the topic README.
+- **`agentic_li2024injecguard`** — InjecGuard cross-classified into
+  agentic topic; surfaces over-defense as a fusion-design constraint.
+
+These map cleanly onto v0.47's `MetaLearner` Protocol + `Probe`
+Protocol contracts.
+
+Claim families anchored: `detector_benchmarks` (3 referenced) +
+`score_fusion_stacker` (5 entries). See
+`docs/research/agentic-security-architecture/bib_ledger.yml` +
+`docs/research/detector-landscape/bib_ledger.yml`.
+
 ## Cross-references
 
 - eval-toolkit roadmap: `~/.claude/plans/evaluate-all-the-work-twinkly-kite.md`
@@ -76,3 +122,7 @@ top-level scalar metric imports.
 - Round 20 Q1-Q2 lock + Day 3a smoke-test results
 - Plan §3 dependency policy
 - `decisions/library_imports.md` (14 v0.47 primitives registered)
+- ADR-048 (Round 24, cross-classification policy — explains the
+  `agentic_li2024injecguard` topic-prefixed bibkey form)
+- `docs/research/agentic-security-architecture/bib_ledger.yml`
+  (claim_family: `score_fusion_stacker`)

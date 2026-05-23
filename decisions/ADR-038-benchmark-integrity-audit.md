@@ -61,9 +61,45 @@ input + each eval slate for overlap. Specifically:
 - If Tier C PromptShield Llama-3.1-8B unlocks: confirm PromptShield's
   training data publicly + adjust report if overlap exists.
 
+## Sprint 2 dossier evidence (added M0 close, Round 24)
+
+The Sprint 2 literature dossier surfaces a 9-paper **`composition_audit`**
+claim family in `docs/research/training-and-evaluation/` that
+operationalizes contamination detection methodology. These carriers
+inform both the audit step here and the future post-Tier-C re-audit:
+
+- **`xu2024contamination`** + **`deng2024contamination`** —
+  contamination survey + investigation across modern benchmarks
+  (formalize the failure mode this ADR guards against).
+- **`oren2023provetestcontam`** (NeurIPS 2023) — proves test-set
+  contamination in black-box LLMs (methodology: exchangeability
+  hypothesis test). Applicable to ProtectAI v1/v2 + Meta PG2 detector
+  audits when their training data is opaque.
+- **`shi2023minkprob`** (Min-K%-Prob) — token-likelihood-tail detection
+  of pretraining data. Drop-in audit primitive for portfolio's training
+  pool if any suspected leakage surfaces.
+- **`zawalski2025codec`** (CoDeC) — in-context-learning-based
+  contamination detection. Complement to MinK% for opaque detectors.
+- **`yang2024rephrased`** + **`white2024livebench`** — rephrased-content
+  contamination + contamination-limited benchmark design (informs
+  Lane 2's synthetic-corpus + LODO discipline).
+- **`sainz2023nlpeval`** + **`m2026sixfrontier`** — broader NLP
+  contamination critique + 2026 frontier audit applied to LLM
+  benchmarks. Validates the field-wide importance of this ADR.
+
+If Tier C PromptShield Llama-3.1-8B unlocks at M2+, the portfolio MAY
+run `shi2023minkprob` + `zawalski2025codec` as a confirmatory audit step
+before reporting comparative results against PromptShield's evals.
+
+Claim family anchored: `composition_audit` (9 entries). See
+`docs/research/training-and-evaluation/bib_ledger.yml`.
+
 ## Cross-references
 
 - Submission ADR-016 (LODO) + ADR-064 (Goodhart-discipline)
 - V4 contamination signature finding (Round 7 Tier B)
 - ADR-041 (ETHICS content lock; cites the synthetic-corpus provenance)
 - `tests/contracts/test_leakage_scan_present.py` (Day 3b enforcement)
+- ADR-048 (Round 24, cross-classification policy)
+- `docs/research/training-and-evaluation/bib_ledger.yml` (claim_family:
+  `composition_audit`)

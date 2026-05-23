@@ -55,9 +55,42 @@ a canonical TPR@LowFPR metric_spec helper).
 - PR template (Day 15 governance) requires confirmation that
   TPR@LowFPR is reported.
 
+## Sprint 2 dossier evidence (added M0 close, Round 24)
+
+The Sprint 2 literature dossier (5 topics, 210 entries, validated via
+`make dossier-audit`) provides multi-paper convergence on the low-FPR
+forcing function. Three carriers from the
+`detector-landscape/` + `training-and-evaluation/` dossiers reinforce
+this ADR's decision:
+
+- **`jacob2025promptshield`** (PromptShield, arXiv 2501.15145; already
+  cited above) — Table 4 reports TPR@FPR{1%, 0.5%, 0.1%, 0.05%} for
+  every detector in their comparison, treating these as the headline
+  operating-point metrics rather than AUPRC/AUROC alone. This is the
+  paper that operationalized the rule for the field.
+- **`li2024injecguard`** (InjecGuard, evaluation_metrics +
+  detector_benchmarks claim families) — over-defense quantification
+  (NotInject) demonstrates that AUPRC-only reporting masks the
+  benign-rejection cost that low-FPR slices surface.
+- **`meta2025promptguard2-86m`** + **`meta2025promptguard2-22m`**
+  (commercial_detector_performance claim family) — Meta's official
+  Prompt-Guard-2 dataset cards report TPR@LowFPR alongside AUC,
+  ratifying the operating-point reporting convention at the
+  open-weight vendor level.
+
+Claim families anchored: `evaluation_metrics` (8 entries),
+`detector_benchmarks` (13 entries). See
+`docs/research/training-and-evaluation/` + `docs/research/detector-landscape/`
+for full bib_ledger entries + body-quote anchored excerpts.
+
 ## Cross-references
 
-- Jacob et al. arXiv 2501.15145 PromptShield (2025)
+- Jacob et al. arXiv 2501.15145 PromptShield (2025) — dossier bibkey
+  `jacob2025promptshield`
 - ADR-027 (DROPPED; single-class metric upstream-enforced)
 - ADR-037 (APR metric; complementary utility-aware metric)
 - Lane 1/1b/4 protocol.md files
+- ADR-048 (Round 24, cross-classification policy — formalizes how
+  the same primary source appears in multiple topic dossiers)
+- `docs/research/detector-landscape/bib_ledger.yml` +
+  `docs/research/training-and-evaluation/bib_ledger.yml`
