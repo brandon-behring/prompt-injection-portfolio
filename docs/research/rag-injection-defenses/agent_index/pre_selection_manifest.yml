@@ -2,73 +2,328 @@ schema_version: 3
 topic: rag_injection_defenses
 generated_at: '2026-05-23'
 current_as_of: '2026-05-23'
+freshness_policy: strict_live
 selections:
-- bullet_id: rag_hines2024spotlighting
-  atom_id: claim_rag_spotlighting_asr_reduction
-  sub_area: spotlighting_variants
-- bullet_id: rag_hines2024spotlighting
+- selection_id: sel_E_001
+  bullet_id: rag1
   atom_id: claim_rag_spotlighting_method
-  sub_area: spotlighting_variants
-- bullet_id: rag_yi2025bipia
-  atom_id: claim_rag_bipia_capability_vulnerability_correlation
-  sub_area: rag_evaluation_harness
-- bullet_id: rag_yi2025bipia
+  cache_id: cache_2d58408c3b4f8e5d
+  span:
+    text_path_offset:
+    - 2860
+    - 2961
+    sha256_of_span: 8b68fa23230f4cae0eb96baa9efa11c7baffd441fd40d693446f319b3d038256
+    excerpt: We introduce spotlighting, a family of prompt engineering techniques that can be used to improve LLMs
+- selection_id: sel_E_002
+  bullet_id: rag2
+  atom_id: claim_rag_spotlighting_asr_reduction
+  cache_id: cache_2d58408c3b4f8e5d
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Spotlighting reduces attack success rate from greater than 50% to below 2% across GPT-family models in the original Microsoft Research evaluation.
+- selection_id: sel_E_003
+  bullet_id: rag3
   atom_id: claim_rag_bipia_introduction
-  sub_area: rag_evaluation_harness
-- bullet_id: rag_abdelnabi2025llmailinject
+  cache_id: cache_70d4cfd50519178f
+  span:
+    text_path_offset:
+    - 2682
+    - 2765
+    sha256_of_span: 1099ef7b7e7acddb7b315ca789ffd5c31339dedf1166940eb0b0d5c593398797
+    excerpt: we introduce the first benchmark for indirect prompt injection attacks, named BIPIA
+- selection_id: sel_E_004
+  bullet_id: rag4
+  atom_id: claim_rag_bipia_universal_vulnerability
+  cache_id: cache_70d4cfd50519178f
+  span:
+    text_path_offset:
+    - 2811
+    - 2886
+    sha256_of_span: 8ee464f6f65327fb37d90fc466c3507a6de0182e906ca203e80c392159b8dc63
+    excerpt: Using BIPIA, we evaluate existing LLMs and find them universally vulnerable
+- selection_id: sel_E_005
+  bullet_id: rag5
   atom_id: claim_rag_llmail_dataset_scale
-  sub_area: rag_evaluation_harness
-- bullet_id: rag_aimlabs2025echoleak
-  atom_id: claim_rag_echoleak_vulnerability_class
-  sub_area: production_rag_incidents
-- bullet_id: rag_aimlabs2025echoleak
+  cache_id: cache_8e0c41db3ea23938
+  span:
+    text_path_offset:
+    - 3041
+    - 3096
+    sha256_of_span: c86b12792c71c92f89736469e4b3932156a5b1da917b65b0fe63354ce9dbd8e8
+    excerpt: 208,095 unique attack submissions from 839 participants
+- selection_id: sel_E_006
+  bullet_id: rag6
   atom_id: claim_rag_echoleak_zeroclick
-  sub_area: production_rag_incidents
-- bullet_id: rag_promptarmor2024slackai
+  cache_id: cache_d02032286070b4dd
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: "EchoLeak (CVE-2025-32711, CVSS 9.3, Aim Labs June 2025) \u2014 first publicly documented zero-click XPIA in production Microsoft 365 Copilot; RAG-specific\
+      \ layer is email-corpus retrieval + bypass of the Mi"
+- selection_id: sel_E_007
+  bullet_id: rag7
   atom_id: claim_rag_slackai_crosschannel
-  sub_area: production_rag_incidents
-- bullet_id: rag_microsoft_azure_doc_shield
+  cache_id: cache_511632eb78fd27aa
+  span:
+    text_path_offset:
+    - 410
+    - 441
+    sha256_of_span: 2ff0182213c08d7d8a7d8146e23ba9fbcfa404676a614e280ece655948678738
+    excerpt: Data Exfiltration from Slack AI
+- selection_id: sel_E_008
+  bullet_id: rag8
   atom_id: claim_rag_promptshields_user_doc_split
-  sub_area: spotlighting_variants
-- bullet_id: shone2025promptshields
+  cache_id: cache_f8a5917cbb6f90f3
+  span:
+    text_path_offset:
+    - 306
+    - 320
+    sha256_of_span: fa34c2f81777d3e7602a09e0405044c9e02164b869b7f2a5c808574eb04728d5
+    excerpt: Prompt Shields
+- selection_id: sel_E_009
+  bullet_id: rag9
   atom_id: claim_rag_promptshields_announcement
-  sub_area: spotlighting_variants
-- bullet_id: microsoft2025spotlightingfoundry
+  cache_id: cache_2cd488ed53126318
+  span:
+    text_path_offset:
+    - 1607
+    - 1680
+    sha256_of_span: 22deef48bf2f23a79f644bcc147ce9d8c209c69c54c0a6911272d0b014d563f3
+    excerpt: Enhance AI security with Azure Prompt Shields and Azure AI Content Safety
+- selection_id: sel_E_010
+  bullet_id: rag10
   atom_id: claim_rag_spotlighting_foundry_integration
-  sub_area: spotlighting_variants
-- bullet_id: li2024llatrieval
+  cache_id: cache_0ff0ef0921c091ce
+  span:
+    text_path_offset:
+    - 724
+    - 736
+    sha256_of_span: 934ad23ac6a31d198338eeb62ddd7e934e7b3a2db2a2e83731aea1cce36d1933
+    excerpt: Spotlighting
+- selection_id: sel_E_011
+  bullet_id: rag11
   atom_id: claim_rag_llatrieval_method
-  sub_area: retrieval_provenance
-- bullet_id: li2024llatrieval
-  atom_id: claim_rag_retrieval_provenance_nascent_2026
-  sub_area: retrieval_provenance
-- bullet_id: sankararaman2024provenance
+  cache_id: cache_0791dc731c582738
+  span:
+    text_path_offset:
+    - 3169
+    - 3233
+    sha256_of_span: 85597e6eac56244855ece0ada72b4de1fe6e36a7324b21cbda5d05c3cc5e55b9
+    excerpt: we propose \LLatrieval (Large Language Model Verified Retrieval)
+- selection_id: sel_E_012
+  bullet_id: rag12
   atom_id: claim_rag_provenance_nli_factcheck
-  sub_area: retrieval_provenance
-- bullet_id: lu2025drag
+  cache_id: cache_67bd28229d9c5dbb
+  span:
+    text_path_offset:
+    - 2647
+    - 2714
+    sha256_of_span: 8a94498ec739325b0cbbf6474d2e6d2ff54b80b963d34543ccc7866eb42cf05e
+    excerpt: we use compact, open-source natural language inference (NLI) models
+- selection_id: sel_E_013
+  bullet_id: rag13
   atom_id: claim_rag_drag_blockchain_provenance
-  sub_area: content_authentication_rag
-- bullet_id: zhou2025sag
+  cache_id: cache_253cee74d309b716
+  span:
+    text_path_offset:
+    - 3151
+    - 3231
+    sha256_of_span: 71d14099eec73858db7fe1f92962d5390501e708a1e46582dc1e153fa37d670c
+    excerpt: the scoring process is securely managed through blockchain-based smart contracts
+- selection_id: sel_E_014
+  bullet_id: rag14
   atom_id: claim_rag_sag_encryption_method
-  sub_area: content_authentication_rag
-- bullet_id: zhou2025sag
-  atom_id: claim_rag_sag_first_provably_secure
-  sub_area: content_authentication_rag
-- bullet_id: c2pa2025spec22
+  cache_id: cache_08a2701d30db2ed8
+  span:
+    text_path_offset:
+    - 2691
+    - 2823
+    sha256_of_span: 785c1f6e0ccfd8632621b25513e4475e1c820a0cdb09e218a6b11f69bc64ee2d
+    excerpt: Our framework employs a pre-storage full-encryption scheme to ensure dual protection of both retrieved content and vector embeddings
+- selection_id: sel_E_015
+  bullet_id: rag15
   atom_id: claim_rag_c2pa_consortium
-  sub_area: content_authentication_rag
-- bullet_id: chaikin2025cometprompt
+  cache_id: cache_d6c4a8f317e625aa
+  span:
+    text_path_offset:
+    - 26968
+    - 27017
+    sha256_of_span: 46fde9370e90aa9098d489ac4bd9c0ab97c4fb1b85b924c13c63a9dac6e55cd3
+    excerpt: Coalition for Content Provenance and Authenticity
+- selection_id: sel_E_016
+  bullet_id: rag16
   atom_id: claim_rag_comet_indirect_injection
-  sub_area: production_rag_incidents
-- bullet_id: sahib2025unseeable
+  cache_id: cache_d6f1a60278136697
+  span:
+    text_path_offset:
+    - 1446
+    - 1491
+    sha256_of_span: e251d25ad39703de8828bb92ea2c1f4360964ba1e6580f40002b7e7cba7345f8
+    excerpt: Indirect Prompt Injection in Perplexity Comet
+- selection_id: sel_E_017
+  bullet_id: rag17
   atom_id: claim_rag_comet_ocr_screenshot_inject
-  sub_area: production_rag_incidents
-- bullet_id: rehberger2025geminimem
+  cache_id: cache_b36fa9cd293f76e9
+  span:
+    text_path_offset:
+    - 1408
+    - 1450
+    sha256_of_span: 6e9826661e8e737e795cef27f675d23ed0c4355279e5163b966fa3e41bf7f50d
+    excerpt: Unseeable prompt injections in screenshots
+- selection_id: sel_E_018
+  bullet_id: rag18
   atom_id: claim_rag_gemini_memory_poison
-  sub_area: production_rag_incidents
-- bullet_id: rehberger2023chatgptmd
+  cache_id: cache_176f4d1b387fbc02
+  span:
+    text_path_offset:
+    - 3027
+    - 3100
+    sha256_of_span: 0d1ba79e3e2c886455420b4c59f311dad3abc281225f08cb81c2dbdb6b446413
+    excerpt: Hacking Gemini's Memory with Prompt Injection and Delayed Tool Invocation
+- selection_id: sel_E_019
+  bullet_id: rag19
   atom_id: claim_rag_chatgpt_markdown_exfil
-  sub_area: production_rag_incidents
-- bullet_id: greshake2023bingadvisory
+  cache_id: cache_d63581ef546db462
+  span:
+    text_path_offset:
+    - 553
+    - 598
+    sha256_of_span: 3b26503cc4d77f18ad131431e8bbe8a972a5504585696e0c2a2818fed0644aad
+    excerpt: 'ChatGPT Plugins: Data Exfiltration via Images'
+- selection_id: sel_E_020
+  bullet_id: rag20
   atom_id: claim_rag_greshake_bing_advisory
-  sub_area: production_rag_incidents
+  cache_id: cache_1a53a472fdf92607
+  span:
+    text_path_offset:
+    - 765
+    - 790
+    sha256_of_span: 537f6401bd76de435c7ba565b079557da17d433bf97c2909337e9c76666efc0c
+    excerpt: Indirect Prompt Injection
+- selection_id: sel_E_021
+  bullet_id: rag21
+  atom_id: claim_rag_echoleak_zeroclick
+  cache_id: cache_504ad53d8af02e6d
+  span:
+    text_path_offset:
+    - 64
+    - 78
+    sha256_of_span: c6f6fec8705edaed58fa6055eb8bf13011f993b3f1a08b0df33d0fa192fdceee
+    excerpt: CVE-2025-32711
+- selection_id: sel_E_022
+  bullet_id: rag22
+  atom_id: claim_rag_echoleak_vulnerability_class
+  cache_id: cache_504ad53d8af02e6d
+  span:
+    text_path_offset:
+    - 19679
+    - 19787
+    sha256_of_span: f15e92a7066f83fac81d35e49927146827e013e4fa66c07e4d36404beb188d3d
+    excerpt: Ai command injection in M365 Copilot allows an unauthorized attacker to disclose information over a network.
+- selection_id: sel_E_023
+  bullet_id: rag23
+  atom_id: claim_rag_spotlighting_asr_reduction
+  cache_id: cache_body_rag_hines2024spotlighting
+  span:
+    text_path_offset:
+    - 3924
+    - 3986
+    sha256_of_span: ff3f1d3ef54b4e3f8b8b720176b50fc2f45672ab7150de034e528307ce0ef686
+    excerpt: reduces the attack success rate from greater than 50% to below
+- selection_id: sel_E_024
+  bullet_id: rag24
+  atom_id: claim_rag_bipia_universal_vulnerability
+  cache_id: cache_body_rag_yi2025bipia
+  span:
+    text_path_offset:
+    - 4154
+    - 4217
+    sha256_of_span: 9353b07f738b6ab563e1968cec8fe1c87a3a42ec7ae4571b2883bcf5e9f828d3
+    excerpt: we evaluate existing LLMs and find them universally vulnerable.
+- selection_id: sel_E_025
+  bullet_id: rag25
+  atom_id: claim_rag_bipia_capability_vulnerability_correlation
+  cache_id: cache_body_rag_yi2025bipia
+  span:
+    text_path_offset:
+    - 14993
+    - 15042
+    sha256_of_span: c33a37e3fab157b62ebb4f6b51bcf187d0f0b6802954452e16f68ebf9831c824
+    excerpt: more capable LLMs are more vulnerable to indirect
+- selection_id: sel_E_026
+  bullet_id: rag26
+  atom_id: claim_rag_llmail_dataset_scale
+  cache_id: cache_body_rag_abdelnabi2025llmailinject
+  span:
+    text_path_offset:
+    - 2980
+    - 3027
+    sha256_of_span: 1635f08ab345d594af8a911409f51017177632892e6ac0f3a4c040b652822efc
+    excerpt: resulting in a dataset of 208,095 unique attack
+- selection_id: sel_E_027
+  bullet_id: rag27
+  atom_id: claim_rag_llatrieval_method
+  cache_id: cache_body_li2024llatrieval
+  span:
+    text_path_offset:
+    - 6138
+    - 6175
+    sha256_of_span: 21b5597a26981a2110a8024c707cae788acca73d86f38ddd7b1dcb7a6808ef9a
+    excerpt: we propose LLatrieval (Large Language
+- selection_id: sel_E_028
+  bullet_id: rag28
+  atom_id: claim_rag_drag_blockchain_provenance
+  cache_id: cache_body_lu2025drag
+  span:
+    text_path_offset:
+    - 1718
+    - 1782
+    sha256_of_span: 05aea9256711553d474a053ece5137f1f092eb9d1f8ad0db3971c156a6474ef5
+    excerpt: the scoring process is securely managed through blockchain-based
+- selection_id: sel_E_029
+  bullet_id: rag29
+  atom_id: claim_rag_sag_first_provably_secure
+  cache_id: cache_body_zhou2025sag
+  span:
+    text_path_offset:
+    - 1681
+    - 1719
+    sha256_of_span: 9ef71269087276b8e65233999726a6c74dd53cb291dff7944f542541de40b075
+    excerpt: this paper proposes the first provably
+- selection_id: sel_E_030
+  bullet_id: rag30
+  atom_id: claim_rag_sag_encryption_method
+  cache_id: cache_body_zhou2025sag
+  span:
+    text_path_offset:
+    - 6443
+    - 6524
+    sha256_of_span: c29a913e0e372fab39c2e2269b61d19a11247e0fa86053e940cc43e9ccc13e6f
+    excerpt: pre-storage encryption combined with verification and decryption during retrieval
+- selection_id: sel_E_031
+  bullet_id: rag31
+  atom_id: claim_rag_spotlighting_variant_utility_tradeoff
+  cache_id: cache_2d58408c3b4f8e5d
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: 'Synthesis: Across Hines 2024 (CAMLIS) and Microsoft Azure deployment retrospectives (Foundry + Prompt Shields), spotlighting datamarking has near-zero
+      utility cost (delimiter-token rotation preserves '
+- selection_id: sel_E_032
+  bullet_id: rag32
+  atom_id: claim_rag_retrieval_provenance_nascent_2026
+  cache_id: cache_0791dc731c582738
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: "Synthesis: As of 2026-05, retrieval-side provenance and content-authentication defenses for RAG are nascent \u2014 academic methods (LLatrieval NAACL\
+      \ 2024, Provenance EMNLP-Industry 2024, D-RAG 2025, SAG 2"

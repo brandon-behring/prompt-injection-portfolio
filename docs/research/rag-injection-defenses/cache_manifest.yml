@@ -4,7 +4,6 @@ generated_at: 2026-05-22
 current_as_of: 2026-05-23
 freshness_policy: strict_live
 cache_root: ~/Claude/research_cache
-
 entries:
 - cache_id: cache_2d58408c3b4f8e5d
   source_url: https://arxiv.org/abs/2403.14720
@@ -222,11 +221,6 @@ entries:
   restricted: false
   rights_status: private_use
   extraction_status: ok
-# ============================================================================
-# Sprint 2 E3 supplemental verification (EchoLeak; original Cato URL returned
-# 212 bytes only). NVD CVE-2025-32711 page provides independent confirmation
-# of the AI command injection vulnerability in M365 Copilot.
-# ============================================================================
 - cache_id: cache_504ad53d8af02e6d
   source_url: https://nvd.nist.gov/vuln/detail/CVE-2025-32711
   fetched_at: 2026-05-23
@@ -239,81 +233,81 @@ entries:
   restricted: false
   rights_status: private_use
   extraction_status: ok
-# ============================================================================
-# Sprint 2 E3 body-text extraction caches (synthetic; produced by pdftotext on
-# locally-cached PDF papers for body-quote anchoring of carrier claims).
-# Source URLs reuse the original paper arXiv URL since the body-text is derived
-# from the same primary source as the HTML-cached abstract.
-# ============================================================================
 - cache_id: cache_body_rag_hines2024spotlighting
   source_url: https://arxiv.org/abs/2403.14720
   fetched_at: 2026-05-23
-  content_type: text/plain
-  bytes: 54632
-  sha256: 6219567815c52c4db34acdd7bc76f50fa2b4390bb7d6806d87d2940a6ddaa2c1
-  raw_path: docs/research/rag-injection-defenses/papers/spotlighting_hines_2024.pdf
+  content_type: application/pdf
+  bytes: 383223
+  sha256: 8c57c6da480eb46c0deaec1f34dfd98fc75810bd352d4391c6f423430774877d
+  raw_path: papers/spotlighting_hines_2024.pdf
   text_path: cache/body_text/rag_hines2024spotlighting.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
+  metadata_path: cache/body_meta/rag_hines2024spotlighting.json
 - cache_id: cache_body_rag_yi2025bipia
   source_url: https://arxiv.org/abs/2312.14197
   fetched_at: 2026-05-23
-  content_type: text/plain
-  bytes: 110813
-  sha256: 34913209136da1754eb86720f6d8122a4e6e83b940bc0bfe24e6bd21bed6ef50
-  raw_path: docs/research/rag-injection-defenses/papers/bipia_yi_2023.pdf
+  content_type: application/pdf
+  bytes: 1236869
+  sha256: 3f8f991fc3e3f507acfad759dfa76e6f94f8bcf49e189def3ddb99a4f64efbeb
+  raw_path: papers/bipia_yi_2023.pdf
   text_path: cache/body_text/rag_yi2025bipia.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
+  metadata_path: cache/body_meta/rag_yi2025bipia.json
 - cache_id: cache_body_rag_abdelnabi2025llmailinject
   source_url: https://arxiv.org/abs/2506.09956
   fetched_at: 2026-05-23
-  content_type: text/plain
-  bytes: 125765
-  sha256: a2c8cd31df989d141ebe5b96c35fd987c926e9bc217cebf8370a7acbca513abc
-  raw_path: docs/research/rag-injection-defenses/papers/llmailinject_abdelnabi_2025.pdf
+  content_type: application/pdf
+  bytes: 5908192
+  sha256: 9474a8d30995836ca3ffa5a4654103d4422b0e198b59169cca9249bdf80edf14
+  raw_path: papers/llmailinject_abdelnabi_2025.pdf
   text_path: cache/body_text/rag_abdelnabi2025llmailinject.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
+  metadata_path: cache/body_meta/rag_abdelnabi2025llmailinject.json
 - cache_id: cache_body_li2024llatrieval
   source_url: https://arxiv.org/abs/2311.07838
   fetched_at: 2026-05-23
-  content_type: text/plain
-  bytes: 113687
-  sha256: e90e5360538e838b9aa696d04798156efc69fc770f8202fa5722735d38ae6c57
-  raw_path: docs/research/rag-injection-defenses/papers/llatrieval_li_2023.pdf
+  content_type: application/pdf
+  bytes: 834333
+  sha256: 92a0fe36189fda83199f067b9cf5f4168c3b24ef1c9d432efa8840994ae9fb60
+  raw_path: papers/llatrieval_li_2023.pdf
   text_path: cache/body_text/li2024llatrieval.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
+  metadata_path: cache/body_meta/li2024llatrieval.json
 - cache_id: cache_body_lu2025drag
   source_url: https://arxiv.org/abs/2511.07577
   fetched_at: 2026-05-23
-  content_type: text/plain
-  bytes: 97429
-  sha256: a7507ffc9eeecd6a53fc9e225d30bc3311ba1805f610914e76fb405e6f9f78cd
-  raw_path: docs/research/rag-injection-defenses/papers/drag_lu_2025.pdf
+  content_type: application/pdf
+  bytes: 5094058
+  sha256: 3403370115147acb96653c507c769fa31fb6a1c5b6cf1be7b98061e83fa8ce7c
+  raw_path: papers/drag_lu_2025.pdf
   text_path: cache/body_text/lu2025drag.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
+  metadata_path: cache/body_meta/lu2025drag.json
 - cache_id: cache_body_zhou2025sag
   source_url: https://arxiv.org/abs/2508.01084
   fetched_at: 2026-05-23
-  content_type: text/plain
-  bytes: 146140
-  sha256: 5fdfa36ef56cb1fcdb5f4533ae8406e7046c4528720d27890e2ad878ea96dafd
-  raw_path: docs/research/rag-injection-defenses/papers/sag_zhou_2025.pdf
+  content_type: application/pdf
+  bytes: 9771091
+  sha256: c4f4558691e964328f325a8b13c43509b52606870abfdadae1abe130c447d9bb
+  raw_path: papers/sag_zhou_2025.pdf
   text_path: cache/body_text/zhou2025sag.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
+  metadata_path: cache/body_meta/zhou2025sag.json

@@ -208,6 +208,7 @@ entries:
   evidence_ids:
   - ev_agentic_security_architecture_0011
   - ev_agentic_security_architecture_0012
+  - ev_agentic_security_architecture_0031
   cache_ids:
   - cache_cfffce6b1f23371d
 

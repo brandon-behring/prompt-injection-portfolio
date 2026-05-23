@@ -938,6 +938,19 @@ prompt-injection-portfolio/
 
 Target ~60-80 files across 11 sub-areas. Per-paper deep dives, per-benchmark deep dives, commercial-detector survey, production-incident corpus, critique literature. ~25-40h Claude Code session over weeks 1-3 of M0. Workflow: compass → `_inbox/` → decompose → `/research-gather` + `/dossier-build` → `/dossier-audit`.
 
+### Round 24 update — Sprint 2 dossier expansion (post-Sprint 1 close)
+
+Sprint 1 (Phases 0-4, 2026-05-22) delivered the 3-topic dossier (122 entries across detector-landscape / direct-vs-indirect / training-and-evaluation). Sprint 2 (Phases E0-E6, 2026-05-23) expanded to **5 topics** with **210 bib_ledger entries / 347+ evidence entries / 157 unique BibTeX entries / ~124 cached PDFs (~246 MB, gitignored)**. The 2 new topics added per user goal of thesis-readiness:
+
+- **agentic-security-architecture** (Lane 4 + 5 focus): 25 entries (24 cross-classified `agentic_*` prefix from sibling topics + 1 net-new AgentArmor)
+- **rag-injection-defenses** (Lane 3 focus): 18 entries (6 cross-classified `rag_*` + 7 net-new papers + 5 production_rag_incidents per ADR-041 ETHICS posture)
+
+**Pipeline substitution**: §4's original workflow listed `/dossier-build → /dossier-audit`, but Sprint 1 + 2 used the **canonical v2.2+ flow**: `/research-plan → /research-gather → /agent-index → /dossier-audit` (skipping `/dossier-build`; matches the 4 v2.2-dogfood projects). The `/agent-index` step produces the 5-bullet synthesis with claim IDs + Attribute-First `pre_selection_manifest.yml` span contract that future LLM agents read as ground-truth context.
+
+**Cross-classification policy**: full cross-classification with topic-prefixed bibkeys (`agentic_<original>`, `rag_<original>`). Each topic's agent_index is fully self-contained.
+
+**Validation**: `make dossier-audit` (Sprint 2 E6 addition) validates v2.2+ strict-live artifacts across all 5 topics (bib_ledger + evidence_ledger + cache_manifest + claim_graph + gather_trace + agent_index + pre_selection_manifest + audit_trail + cross_stage). M7 ratify gate per ADR-007 is now executable. Final 6-lane → claim_family mapping populated in `experiments/MANIFEST.json`.
+
 ---
 
 ## 5. Five indirect-attack lanes (architecture)

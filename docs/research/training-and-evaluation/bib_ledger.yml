@@ -528,6 +528,7 @@ entries:
   evidence_ids:
   - ev_training_and_evaluation_0061
   - ev_training_and_evaluation_0062
+  - ev_training_and_evaluation_0163
   cache_ids:
   - cache_550949d71181746c
 
@@ -572,8 +573,10 @@ entries:
   - ev_training_and_evaluation_0066
   - ev_training_and_evaluation_0067
   - ev_training_and_evaluation_0068
+  - ev_training_and_evaluation_0161
   cache_ids:
   - cache_c8697d3c88066297
+  - cache_body_wallace2024instructionhierarchy
 
 - bibkey: ivry2025sentinel
   primary_url: 'https://arxiv.org/abs/2506.05446'
@@ -594,6 +597,7 @@ entries:
   - ev_training_and_evaluation_0069
   - ev_training_and_evaluation_0070
   - ev_training_and_evaluation_0071
+  - ev_training_and_evaluation_0162
   cache_ids:
   - cache_5f129920a9fcbcd5
 
@@ -622,8 +626,10 @@ entries:
   - ev_training_and_evaluation_0073
   - ev_training_and_evaluation_0074
   - ev_training_and_evaluation_0124
+  - ev_training_and_evaluation_0160
   cache_ids:
   - cache_96dc7a084a524c4d
+  - cache_body_jacob2025promptshield
 
 - bibkey: debenedetti2024agentdojo
   primary_url: 'https://arxiv.org/abs/2406.13352'
@@ -839,8 +845,11 @@ entries:
   - ev_training_and_evaluation_0099
   - ev_training_and_evaluation_0100
   - ev_training_and_evaluation_0125
+  - ev_training_and_evaluation_0156
+  - ev_training_and_evaluation_0157
   cache_ids:
   - cache_beea4f2926635943
+  - cache_body_bhagwatkar2025firewalls
 
 - bibkey: hackett2025bypassing
   primary_url: 'https://arxiv.org/abs/2504.11168'
@@ -861,8 +870,10 @@ entries:
   - ev_training_and_evaluation_0101
   - ev_training_and_evaluation_0102
   - ev_training_and_evaluation_0103
+  - ev_training_and_evaluation_0159
   cache_ids:
   - cache_bb62839772f16e14
+  - cache_body_hackett2025bypassing
 
 - bibkey: nasr2025attackersecond
   primary_url: 'https://arxiv.org/abs/2510.09023'
@@ -1071,8 +1082,10 @@ entries:
   - ev_training_and_evaluation_0127
   - ev_training_and_evaluation_0128
   - ev_training_and_evaluation_0129
+  - ev_training_and_evaluation_0158
   cache_ids:
   - cache_4e49b1111d751597
+  - cache_body_gulrajani2021domainbed
 
 - bibkey: cui2025orbench
   primary_url: 'https://arxiv.org/abs/2405.20947'

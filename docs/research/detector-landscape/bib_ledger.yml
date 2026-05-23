@@ -130,6 +130,7 @@ entries:
   stale_after_days: 30
   evidence_ids:
   - ev_detector_landscape_0006
+  - ev_detector_landscape_0068
   cache_ids:
   - cache_8c2403762307c627
 - bibkey: protectai2024debertav2
@@ -234,6 +235,7 @@ entries:
   stale_after_days: 365
   evidence_ids:
   - ev_detector_landscape_0011
+  - ev_detector_landscape_0067
   cache_ids:
   - cache_96dc7a084a524c4d
 - bibkey: sun2025courtguard

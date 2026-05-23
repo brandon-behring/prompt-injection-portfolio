@@ -2,7 +2,7 @@
 # Full Makefile per plan §21 expands across M0+ (lane targets, book-dev,
 # book-pdf, cost-report, dossier-audit, etc.) as lane work begins at M1.
 
-.PHONY: verify-data-sources verify-docker verify-deps ratify-milestone lint test contracts
+.PHONY: verify-data-sources verify-docker verify-deps ratify-milestone lint test contracts dossier-audit
 
 verify-data-sources:
 	@python3 scripts/verify_data_sources.py
@@ -12,6 +12,28 @@ verify-docker:
 
 verify-deps:
 	@python3 scripts/verify_editable_dep.py
+
+# Dossier-audit close-gate (per ADR-007 M7-ratify gate).
+# Validates v2.2+ strict-live artifacts across all 5 topic dossiers.
+# Iterates: bib_ledger + evidence_ledger + cache_manifest + claim_graph +
+# gather_trace + agent_index + pre_selection_manifest + cross_stage --strict.
+dossier-audit:
+	@echo "=== M7 dossier-audit close-gate (5 topics) ==="
+	@for topic in detector-landscape direct-vs-indirect training-and-evaluation agentic-security-architecture rag-injection-defenses; do \
+		echo ""; \
+		echo "--- $$topic ---"; \
+		python3 ~/Claude/research_toolkit/validators/bib_ledger.py docs/research/$$topic/bib_ledger.yml || exit 1; \
+		python3 ~/Claude/research_toolkit/validators/evidence_ledger.py docs/research/$$topic/evidence_ledger.yml || exit 1; \
+		python3 ~/Claude/research_toolkit/validators/cache_manifest.py docs/research/$$topic/cache_manifest.yml || exit 1; \
+		python3 ~/Claude/research_toolkit/validators/claim_graph.py docs/research/$$topic/claim_graph.jsonl || exit 1; \
+		python3 ~/Claude/research_toolkit/validators/gather_trace.py docs/research/$$topic/gather_trace.yml || exit 1; \
+		python3 ~/Claude/research_toolkit/validators/agent_index.py docs/research/$$topic/agent_index/ || exit 1; \
+		python3 ~/Claude/research_toolkit/validators/pre_selection_manifest.py docs/research/$$topic/agent_index/pre_selection_manifest.yml || exit 1; \
+		python3 ~/Claude/research_toolkit/validators/audit_trail.py docs/research/$$topic/agent_index/README.md || exit 1; \
+		python3 ~/Claude/research_toolkit/validators/cross_stage.py docs/research/$$topic/ || exit 1; \
+	done
+	@echo ""
+	@echo "✓ M7 dossier-audit PASS (5 topics validated)"
 
 # Aggregated quality gates (mirrors CI workflow).
 lint:
@@ -58,7 +80,8 @@ ratify-milestone:
 	@echo "✓ M0 ratify-milestone PASS"
 	@echo ""
 	@echo "Next (user-led): \`git tag v0.1.0\` + \`gh release create v0.1.0\` + announcement thread"
-	@echo "Outstanding (deferred to user session per Round 22 Q2):"
-	@echo "  - Dossier sprint (~60-80 files via research_toolkit; compass artifacts at ~/Downloads/)"
+	@echo "Outstanding (deferred to user session per Round 22 Q2 + Round 24 Sprint 2):"
 	@echo "  - Twitter/X + Mastodon account creation + M0 announcement post"
 	@echo "  - Open MRs to monitor: MR-3 (research_toolkit#1) + MR-12 (eval-toolkit#69)"
+	@echo "  Dossier sprint COMPLETE per Sprint 1 + Sprint 2 (210 entries / 5 topics):"
+	@echo "    Use 'make dossier-audit' to validate v2.2+ strict-live artifacts."

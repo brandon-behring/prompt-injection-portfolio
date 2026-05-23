@@ -19,7 +19,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: deepset/prompt-injections is a HuggingFace dataset for prompt-injection classification, hosted by deepset and widely used as a small baseline training set for encoder-based PI detectors.
+  excerpt: deepset/prompt-injections is a HuggingFace dataset for prompt-injection classification, hosted by deepset and widely
+    used as a small baseline training set for encoder-based PI detectors.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -46,7 +47,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.75
-  excerpt: Dataset card on HuggingFace; widely-known overlap with public PI detector training corpora (one of the original small benchmarks).
+  excerpt: Dataset card on HuggingFace; widely-known overlap with public PI detector training corpora (one of the original
+    small benchmarks).
   rights_status: private_use
   confidence:
     score: 0.75
@@ -73,7 +75,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: jackhhao/jailbreak-classification is a HuggingFace community dataset of labeled jailbreak vs. benign prompts, used as one of the early small training corpora for jailbreak/PI classifiers.
+  excerpt: jackhhao/jailbreak-classification is a HuggingFace community dataset of labeled jailbreak vs. benign prompts, used
+    as one of the early small training corpora for jailbreak/PI classifiers.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -127,7 +130,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: xTRam1/safe-guard-prompt-injection is a HuggingFace dataset for prompt-injection classification. Distinct from xTRam1/safe-guard-v2 — easily confused; verify maintainer + name in citations.
+  excerpt: "xTRam1/safe-guard-prompt-injection is a HuggingFace dataset for prompt-injection classification. Distinct from\
+    \ xTRam1/safe-guard-v2 \u2014 easily confused; verify maintainer + name in citations."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -181,7 +185,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: The misuse of large language models (LLMs) has drawn significant attention from the general public and LLM vendors. One particular type of adversarial prompt, known as jailbreak prompt, has emerged as
+  excerpt: The misuse of large language models (LLMs) has drawn significant attention from the general public and LLM vendors.
+    One particular type of adversarial prompt, known as jailbreak prompt, has emerged as
   rights_status: private_use
   confidence:
     score: 0.85
@@ -208,7 +213,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Characterizes in-the-wild jailbreak prompts collected from Reddit/Discord/websites; releases verazuo/jailbreak_llms dataset of real-world jailbreak prompts.
+  excerpt: Characterizes in-the-wild jailbreak prompts collected from Reddit/Discord/websites; releases verazuo/jailbreak_llms
+    dataset of real-world jailbreak prompts.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -235,7 +241,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: First large-scale measurement of in-the-wild jailbreak prompts (~6,387 prompts, ~666 jailbreak prompts) used as evaluation/training corpus by detector teams.
+  excerpt: First large-scale measurement of in-the-wild jailbreak prompts (~6,387 prompts, ~666 jailbreak prompts) used as
+    evaluation/training corpus by detector teams.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -262,7 +269,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Lakera/gandalf_ignore_instructions is a HuggingFace dataset of prompts that try to make the LLM ignore its system instructions, derived from the Lakera Gandalf game.
+  excerpt: Lakera/gandalf_ignore_instructions is a HuggingFace dataset of prompts that try to make the LLM ignore its system
+    instructions, derived from the Lakera Gandalf game.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -289,7 +297,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.75
-  excerpt: Released by Lakera AI from their public Gandalf challenge; widely re-used as a training/evaluation subset in encoder PI detectors.
+  excerpt: Released by Lakera AI from their public Gandalf challenge; widely re-used as a training/evaluation subset in encoder
+    PI detectors.
   rights_status: private_use
   confidence:
     score: 0.75
@@ -316,7 +325,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Despite remarkable advances that large language models have achieved in chatbots, maintaining a non-toxic user-AI interactive environment has become increasingly critical nowadays. However, previous e
+  excerpt: Despite remarkable advances that large language models have achieved in chatbots, maintaining a non-toxic user-AI
+    interactive environment has become increasingly critical nowadays. However, previous e
   rights_status: private_use
   confidence:
     score: 0.85
@@ -343,7 +353,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Constructs ToxicChat from real user-AI conversations (Vicuna-online dataset) with human-annotated toxicity + jailbreak labels.
+  excerpt: Constructs ToxicChat from real user-AI conversations (Vicuna-online dataset) with human-annotated toxicity + jailbreak
+    labels.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -370,7 +381,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Demonstrates real-conversation toxicity detection differs sharply from social-media benchmarks; provides lmsys/toxic-chat dataset reused as PI training subset.
+  excerpt: Demonstrates real-conversation toxicity detection differs sharply from social-media benchmarks; provides lmsys/toxic-chat
+    dataset reused as PI training subset.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -397,7 +409,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: reshabhs/SPML_Chatbot_Prompt_Injection (SPML — System Prompt Meta Language) is a HuggingFace dataset of ~16K system-prompt vs user-prompt pairs, designed for chatbot-style PI evaluation.
+  excerpt: "reshabhs/SPML_Chatbot_Prompt_Injection (SPML \u2014 System Prompt Meta Language) is a HuggingFace dataset of ~16K\
+    \ system-prompt vs user-prompt pairs, designed for chatbot-style PI evaluation."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -451,7 +464,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: geekyrakshit/prompt-injection-dataset is a ~534K-row aggregated HuggingFace dataset combining multiple smaller PI corpora (one of the largest publicly-available mixtures).
+  excerpt: geekyrakshit/prompt-injection-dataset is a ~534K-row aggregated HuggingFace dataset combining multiple smaller
+    PI corpora (one of the largest publicly-available mixtures).
   rights_status: private_use
   confidence:
     score: 0.8
@@ -478,7 +492,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.75
-  excerpt: Aggregator dataset by user 'geekyrakshit'; provenance of individual rows mixed (de-duplicated rollup of public PI sources). License of underlying sources may vary.
+  excerpt: Aggregator dataset by user 'geekyrakshit'; provenance of individual rows mixed (de-duplicated rollup of public
+    PI sources). License of underlying sources may vary.
   rights_status: private_use
   confidence:
     score: 0.75
@@ -505,7 +520,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'While Large Language Models (LLMs) are increasingly being used in real-world applications, they remain vulnerable to prompt injection attacks: malicious third party prompts that subvert the intent of '
+  excerpt: 'While Large Language Models (LLMs) are increasingly being used in real-world applications, they remain vulnerable
+    to prompt injection attacks: malicious third party prompts that subvert the intent of '
   rights_status: private_use
   confidence:
     score: 0.85
@@ -532,7 +548,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Crowd-sourced prompt injection attacks via the Tensor Trust online game; collects diverse adversarial prompts in a defender-vs-attacker setting.
+  excerpt: Crowd-sourced prompt injection attacks via the Tensor Trust online game; collects diverse adversarial prompts in
+    a defender-vs-attacker setting.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -586,7 +603,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Large Language Models (LLMs) are deployed in interactive contexts with direct user engagement, such as chatbots and writing assistants. These deployments are vulnerable to prompt injection and jailbre
+  excerpt: Large Language Models (LLMs) are deployed in interactive contexts with direct user engagement, such as chatbots
+    and writing assistants. These deployments are vulnerable to prompt injection and jailbre
   rights_status: private_use
   confidence:
     score: 0.85
@@ -613,7 +631,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.75
-  excerpt: 'HackAPrompt abstract: elicits 600K+ adversarial prompts against three state-of-the-art LLMs; proposes systematic ontology of attack categories. The 10-levels and prompts/responses specifics are unverified body claims (not in abstract).'
+  excerpt: 'HackAPrompt abstract: elicits 600K+ adversarial prompts against three state-of-the-art LLMs; proposes systematic
+    ontology of attack categories. The 10-levels and prompts/responses specifics are unverified body claims (not in abstract).'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -640,7 +659,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Releases HackAPrompt dataset; first systematic ontology of prompt-injection techniques used by downstream training-data work.
+  excerpt: Releases HackAPrompt dataset; first systematic ontology of prompt-injection techniques used by downstream training-data
+    work.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -667,7 +687,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Indirect Prompt Injection attacks exploit the inherent limitation of Large Language Models (LLMs) to distinguish between instructions and data in their inputs. Despite numerous defense proposals, the '
+  excerpt: 'Indirect Prompt Injection attacks exploit the inherent limitation of Large Language Models (LLMs) to distinguish
+    between instructions and data in their inputs. Despite numerous defense proposals, the '
   rights_status: private_use
   confidence:
     score: 0.85
@@ -694,7 +715,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Microsoft LLMail-Inject challenge: ~208K adaptive attacks against email-LLM-agent variants, with both attacker and defender perspectives.'
+  excerpt: 'Microsoft LLMail-Inject challenge: ~208K adaptive attacks against email-LLM-agent variants, with both attacker
+    and defender perspectives.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -748,7 +770,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Because &#34;out-of-the-box&#34; large language models are capable of generating a great deal of objectionable content, recent work has focused on aligning these models in an attempt to prevent undesi
+  excerpt: Because &#34;out-of-the-box&#34; large language models are capable of generating a great deal of objectionable
+    content, recent work has focused on aligning these models in an attempt to prevent undesi
   rights_status: private_use
   confidence:
     score: 0.85
@@ -775,7 +798,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'GCG (Greedy Coordinate Gradient) attack: optimizes adversarial suffixes that transfer across aligned LLMs to bypass refusal.'
+  excerpt: 'GCG (Greedy Coordinate Gradient) attack: optimizes adversarial suffixes that transfer across aligned LLMs to bypass
+    refusal.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -802,7 +826,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'Releases AdvBench (walledai/AdvBench HF mirror lists 500 harmful behaviors as of 2026-05-22; the original Zou paper body discusses 520 — unverified body claim); foundational attack benchmark used by HarmBench / JBB-Behaviors / detector evaluation.'
+  excerpt: "Releases AdvBench (walledai/AdvBench HF mirror lists 500 harmful behaviors as of 2026-05-22; the original Zou\
+    \ paper body discusses 520 \u2014 unverified body claim); foundational attack benchmark used by HarmBench / JBB-Behaviors\
+    \ / detector evaluation."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -829,7 +855,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Automated red teaming holds substantial promise for uncovering and mitigating the risks associated with the malicious use of large language models (LLMs), yet the field lacks a standardized evaluation
+  excerpt: Automated red teaming holds substantial promise for uncovering and mitigating the risks associated with the malicious
+    use of large language models (LLMs), yet the field lacks a standardized evaluation
   rights_status: private_use
   confidence:
     score: 0.85
@@ -856,7 +883,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'HarmBench abstract: large-scale comparison of 18 red-teaming methods and 33 target LLMs and defenses. The "400 behaviors x 7 categories" specifics are unverified body claims (not in abstract).'
+  excerpt: 'HarmBench abstract: large-scale comparison of 18 red-teaming methods and 33 target LLMs and defenses. The "400
+    behaviors x 7 categories" specifics are unverified body claims (not in abstract).'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -910,7 +938,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Jailbreak attacks cause large language models (LLMs) to generate harmful, unethical, or otherwise objectionable content. Evaluating these attacks presents a number of challenges, which the current col
+  excerpt: Jailbreak attacks cause large language models (LLMs) to generate harmful, unethical, or otherwise objectionable
+    content. Evaluating these attacks presents a number of challenges, which the current col
   rights_status: private_use
   confidence:
     score: 0.85
@@ -937,7 +966,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'JBB-Behaviors benchmark: 100 misuse behaviors with evolving repository + open leaderboard tracking attacks/defenses across multiple LLMs. The "x 100 LLMs x adaptive attacks" matrix phrasing is not in the abstract.'
+  excerpt: 'JBB-Behaviors benchmark: 100 misuse behaviors with evolving repository + open leaderboard tracking attacks/defenses
+    across multiple LLMs. The "x 100 LLMs x adaptive attacks" matrix phrasing is not in the abstract.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -991,7 +1021,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'We introduce WildTeaming, an automatic LLM safety red-teaming framework that mines in-the-wild user-chatbot interactions to discover 5.7K unique clusters of novel jailbreak tactics, and then composes '
+  excerpt: 'We introduce WildTeaming, an automatic LLM safety red-teaming framework that mines in-the-wild user-chatbot interactions
+    to discover 5.7K unique clusters of novel jailbreak tactics, and then composes '
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1018,7 +1049,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'WildTeaming abstract: synthesizes diverse in-the-wild jailbreak training prompts from LMSYS-Chat to produce WildJailbreak (262K vanilla + adversarial prompt-response pairs). WildGuardMix is the WildGuard (companion paper) output, not the WildTeaming output.'
+  excerpt: 'WildTeaming abstract: synthesizes diverse in-the-wild jailbreak training prompts from LMSYS-Chat to produce WildJailbreak
+    (262K vanilla + adversarial prompt-response pairs). WildGuardMix is the WildGuard (companion paper) output, not the WildTeaming
+    output.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1072,7 +1105,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'We introduce WildGuard -- an open, light-weight moderation tool for LLM safety that achieves three goals: (1) identifying malicious intent in user prompts, (2) detecting safety risks of model response'
+  excerpt: 'We introduce WildGuard -- an open, light-weight moderation tool for LLM safety that achieves three goals: (1)
+    identifying malicious intent in user prompts, (2) detecting safety risks of model response'
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1099,7 +1133,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Trains WildGuard moderation model on WildGuardMix (~92K combined prompts + responses) for safety risk, jailbreak, and refusal classification.
+  excerpt: Trains WildGuard moderation model on WildGuardMix (~92K combined prompts + responses) for safety risk, jailbreak,
+    and refusal classification.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1153,7 +1188,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: In the rapidly evolving landscape of Large Language Models (LLMs), ensuring robust safety measures is paramount. To meet this crucial need, we propose \emph{SALAD-Bench}, a safety benchmark specifical
+  excerpt: In the rapidly evolving landscape of Large Language Models (LLMs), ensuring robust safety measures is paramount.
+    To meet this crucial need, we propose \emph{SALAD-Bench}, a safety benchmark specifical
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1234,7 +1270,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: With the rapid advancements in Multimodal Large Language Models (MLLMs), securing these models against malicious inputs while aligning them with human values has emerged as a critical challenge. In th
+  excerpt: With the rapid advancements in Multimodal Large Language Models (MLLMs), securing these models against malicious
+    inputs while aligning them with human values has emerged as a critical challenge. In th
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1315,7 +1352,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Determining whether inputs are out-of-distribution (OOD) is an essential building block for safely deploying machine learning models in the open world. However, previous methods relying on the softmax
+  excerpt: Determining whether inputs are out-of-distribution (OOD) is an essential building block for safely deploying machine
+    learning models in the open world. However, previous methods relying on the softmax
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1342,7 +1380,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Energy-based loss for OOD detection: derives free energy from softmax logits, fine-tunes to push ID samples to low energy and OOD to high energy.'
+  excerpt: 'Energy-based loss for OOD detection: derives free energy from softmax logits, fine-tunes to push ID samples to
+    low energy and OOD to high energy.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1396,7 +1435,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: An important paradigm of natural language processing consists of large-scale pre-training on general domain data and adaptation to particular tasks or domains. As we pre-train larger models, full fine
+  excerpt: An important paradigm of natural language processing consists of large-scale pre-training on general domain data
+    and adaptation to particular tasks or domains. As we pre-train larger models, full fine
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1423,7 +1463,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'LoRA: low-rank adaptation freezes pre-trained weights and injects trainable rank-decomposition matrices into transformer layers; reduces trainable params by ~10000x.'
+  excerpt: 'LoRA: low-rank adaptation freezes pre-trained weights and injects trainable rank-decomposition matrices into transformer
+    layers; reduces trainable params by ~10000x.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1477,7 +1518,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Among the widely used parameter-efficient fine-tuning (PEFT) methods, LoRA and its variants have gained considerable popularity because of avoiding additional inference costs. However, there still oft
+  excerpt: Among the widely used parameter-efficient fine-tuning (PEFT) methods, LoRA and its variants have gained considerable
+    popularity because of avoiding additional inference costs. However, there still oft
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1504,7 +1546,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'DoRA: weight-decomposed low-rank adaptation decomposes pre-trained weight into magnitude + direction components; LoRA-rate convergence with full-FT-like capacity.'
+  excerpt: 'DoRA: weight-decomposed low-rank adaptation decomposes pre-trained weight into magnitude + direction components;
+    LoRA-rate convergence with full-FT-like capacity.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1558,7 +1601,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Deterministic neural nets have been shown to learn effective predictors on a wide range of machine learning problems. However, as the standard approach is to train the network to minimize a prediction
+  excerpt: Deterministic neural nets have been shown to learn effective predictors on a wide range of machine learning problems.
+    However, as the standard approach is to train the network to minimize a prediction
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1585,7 +1629,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Evidential Deep Learning treats softmax outputs as Dirichlet evidence and outputs predictive uncertainty alongside class probabilities.
+  excerpt: Evidential Deep Learning treats softmax outputs as Dirichlet evidence and outputs predictive uncertainty alongside
+    class probabilities.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1639,7 +1684,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: meta-llama/Llama-Prompt-Guard-2-86M is Meta's 2025 prompt-injection detector model card. Successor to Prompt-Guard-86M; multilingual.
+  excerpt: meta-llama/Llama-Prompt-Guard-2-86M is Meta's 2025 prompt-injection detector model card. Successor to Prompt-Guard-86M;
+    multilingual.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1666,7 +1712,12 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Meta Llama Prompt Guard 2 86M model card (Llama 4 Community License, Apr 5 2025): "modified energy-based loss function, inspired by the paper Energy Based Out-of-distribution Detection. In addition to cross-entropy loss, we apply a penalty for large negative energy predictions on benign prompts." APR @ 3% utility reduction reported: 81.2% (86M) / 78.4% (22M). Training data described qualitatively: "mix of open-source datasets reflecting benign data from the web, user prompts and instructions for LLMs, and malicious prompt injection and jailbreaking datasets. We also include our own synthetic injections and data from red-teaming earlier versions of Prompt Guard."'
+  excerpt: 'Meta Llama Prompt Guard 2 86M model card (Llama 4 Community License, Apr 5 2025): "modified energy-based loss
+    function, inspired by the paper Energy Based Out-of-distribution Detection. In addition to cross-entropy loss, we apply
+    a penalty for large negative energy predictions on benign prompts." APR @ 3% utility reduction reported: 81.2% (86M) /
+    78.4% (22M). Training data described qualitatively: "mix of open-source datasets reflecting benign data from the web,
+    user prompts and instructions for LLMs, and malicious prompt injection and jailbreaking datasets. We also include our
+    own synthetic injections and data from red-teaming earlier versions of Prompt Guard."'
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1693,7 +1744,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where an attacker injects prompts into their inputs to induce attacker-desired outputs. A detection method aims to de
+  excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where an attacker injects prompts
+    into their inputs to induce attacker-desired outputs. A detection method aims to de
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1720,7 +1772,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'DataSentinel: game-theoretic min-max fine-tuning where detector and attacker are jointly trained; IEEE S&P 2025 Distinguished Paper.'
+  excerpt: 'DataSentinel: game-theoretic min-max fine-tuning where detector and attacker are jointly trained; IEEE S&P 2025
+    Distinguished Paper.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1774,7 +1827,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Today&#39;s LLMs are susceptible to prompt injections, jailbreaks, and other attacks that allow adversaries to overwrite a model&#39;s original instructions with their own malicious prompts. In this w
+  excerpt: Today&#39;s LLMs are susceptible to prompt injections, jailbreaks, and other attacks that allow adversaries to
+    overwrite a model&#39;s original instructions with their own malicious prompts. In this w
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1801,7 +1855,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Instruction Hierarchy training: synthesizes training data where system / developer / user / tool messages have ranked privilege; LLM trained to honor higher-privilege instructions.'
+  excerpt: 'Instruction Hierarchy training: synthesizes training data where system / developer / user / tool messages have
+    ranked privilege; LLM trained to honor higher-privilege instructions.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1828,7 +1883,10 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.75
-  excerpt: 'Wallace et al. abstract verbatim: "we propose a data generation method to demonstrate this hierarchical instruction following behavior, which teaches LLMs to selectively ignore lower-privileged instructions. We apply this method to GPT-3.5, showing that it drastically increases robustness -- even for attack types not seen during training -- while imposing minimal degradations on standard capabilities." "Context-synthesis" is project shorthand, not Wallace et al.''s wording.'
+  excerpt: 'Wallace et al. abstract verbatim: "we propose a data generation method to demonstrate this hierarchical instruction
+    following behavior, which teaches LLMs to selectively ignore lower-privileged instructions. We apply this method to GPT-3.5,
+    showing that it drastically increases robustness -- even for attack types not seen during training -- while imposing minimal
+    degradations on standard capabilities." "Context-synthesis" is project shorthand, not Wallace et al.''s wording.'
   rights_status: private_use
   confidence:
     score: 0.75
@@ -1856,7 +1914,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Large Language Models (LLMs) are increasingly powerful but remain vulnerable to prompt injection attacks, where malicious inputs cause the model to deviate from its intended instructions. This paper i
+  excerpt: Large Language Models (LLMs) are increasingly powerful but remain vulnerable to prompt injection attacks, where
+    malicious inputs cause the model to deviate from its intended instructions. This paper i
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1883,7 +1942,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.55
-  excerpt: 'Sentinel abstract: ModernBERT-large architecture (encoder backbone). LoRA + reflection-style training NOT in abstract — unverified body claim. 2026-05-22.'
+  excerpt: "Sentinel abstract: ModernBERT-large architecture (encoder backbone). LoRA + reflection-style training NOT in abstract\
+    \ \u2014 unverified body claim. 2026-05-22."
   rights_status: private_use
   confidence:
     score: 0.55
@@ -1912,7 +1972,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Qualifire/Rogue Security SOTA claim against ProtectAI-only comparison; raises selection-bias concerns flagged in C4 critiques.
+  excerpt: Qualifire/Rogue Security SOTA claim against ProtectAI-only comparison; raises selection-bias concerns flagged in
+    C4 critiques.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1939,7 +2000,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Application designers have moved to integrate large language models (LLMs) into their products. However, many LLM-integrated applications are vulnerable to prompt injections. While attempts have been '
+  excerpt: 'Application designers have moved to integrate large language models (LLMs) into their products. However, many
+    LLM-integrated applications are vulnerable to prompt injections. While attempts have been '
   rights_status: private_use
   confidence:
     score: 0.85
@@ -1966,7 +2028,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'PromptShield (Berkeley): two-track benchmark (conversational + application-structured) with TPR@LowFPR reporting convention (1% / 0.5% / 0.1% / 0.05% FPR).'
+  excerpt: 'PromptShield (Berkeley): two-track benchmark (conversational + application-structured) with TPR@LowFPR reporting
+    convention (1% / 0.5% / 0.1% / 0.05% FPR).'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -1993,7 +2056,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: ACM CODASPY 2025; reveals encoder PI detectors collapse at deployment-grade FPRs (per Table 4, ProtectAI v2 = 1.34% TPR @ 0.5% FPR; 0.00% TPR @ 0.1% FPR with footnote that no threshold achieves desired FPR aside from 1.0). TPR@LowFPR convention reported at 1%, 0.5%, 0.1%, 0.05% per Section 3.2.2. Canonical OOD-collapse evidence.
+  excerpt: ACM CODASPY 2025; reveals encoder PI detectors collapse at deployment-grade FPRs (per Table 4, ProtectAI v2 = 1.34%
+    TPR @ 0.5% FPR; 0.00% TPR @ 0.1% FPR with footnote that no threshold achieves desired FPR aside from 1.0). TPR@LowFPR
+    convention reported at 1%, 0.5%, 0.1%, 0.05% per Section 3.2.2. Canonical OOD-collapse evidence.
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2007,7 +2072,7 @@ entries:
       consistency: high
       directness: high
   verification_method_history:
-    - webfetch_2026_05_22_audit_round_1
+  - webfetch_2026_05_22_audit_round_1
 - evidence_id: ev_training_and_evaluation_0075
   source_url: https://arxiv.org/abs/2406.13352
   source_type: paper
@@ -2023,7 +2088,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: AI agents aim to solve complex tasks by combining text-based reasoning with external tool calls. Unfortunately, AI agents are vulnerable to prompt injection attacks where data returned by external too
+  excerpt: AI agents aim to solve complex tasks by combining text-based reasoning with external tool calls. Unfortunately,
+    AI agents are vulnerable to prompt injection attacks where data returned by external too
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2050,7 +2116,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'AgentDojo abstract: extensible environment populated with 97 realistic tasks and 629 security test cases; not described as "97 x 629 attack injections" in abstract.'
+  excerpt: 'AgentDojo abstract: extensible environment populated with 97 realistic tasks and 629 security test cases; not
+    described as "97 x 629 attack injections" in abstract.'
   rights_status: private_use
   confidence:
     score: 0.7
@@ -2078,7 +2145,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: NeurIPS 2024 D&B (per project records; arXiv comments line only notes a Llama bug fix, no venue). The 'inverse scaling law' framing is attributed to AgentDojo by downstream literature but is not in the abstract (unverified body claim). Canonical agentic PI benchmark.
+  excerpt: NeurIPS 2024 D&B (per project records; arXiv comments line only notes a Llama bug fix, no venue). The 'inverse
+    scaling law' framing is attributed to AgentDojo by downstream literature but is not in the abstract (unverified body claim).
+    Canonical agentic PI benchmark.
   rights_status: private_use
   confidence:
     score: 0.7
@@ -2106,7 +2175,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Prompt injection attacks pose a critical threat to large language models (LLMs), enabling goal hijacking and data leakage. Prompt guard models, though effective in defense, suffer from over-defense --
+  excerpt: Prompt injection attacks pose a critical threat to large language models (LLMs), enabling goal hijacking and data
+    leakage. Prompt guard models, though effective in defense, suffer from over-defense --
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2133,7 +2203,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'InjecGuard + NotInject benchmark: explicitly measures over-defense on benign-but-trigger-word prompts (NotInject); MOF (Mitigating Over-defense for Free) training.'
+  excerpt: 'InjecGuard + NotInject benchmark: explicitly measures over-defense on benign-but-trigger-word prompts (NotInject);
+    MOF (Mitigating Over-defense for Free) training.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2160,7 +2231,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Releases NotInject benchmark of ~339 benign prompts containing trigger words; over-defense methodology now standard in PI evaluation.
+  excerpt: Releases NotInject benchmark of ~339 benign prompts containing trigger words; over-defense methodology now standard
+    in PI evaluation.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2187,7 +2259,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Lakera PINT (Prompt Injection Test): 4,314-input third-party benchmark deliberately not used as training data; designed against Goodhart''s law on public benchmarks.'
+  excerpt: 'Lakera PINT (Prompt Injection Test): 4,314-input third-party benchmark deliberately not used as training data;
+    designed against Goodhart''s law on public benchmarks.'
   rights_status: private_use
   confidence:
     score: 0.78
@@ -2214,7 +2287,10 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Lakera Team vendor blog (Apr 18 2024) verbatim: "Lakera Guard is not - and will never be - directly trained on any of the inputs in the PINT Benchmark dataset" and "The PINT Benchmark dataset is not publicly available in order to prevent the dilution of the PINT Benchmark from overfitting due to training on the inputs." Benchmark contains 3,007 English inputs (verbatim).'
+  excerpt: 'Lakera Team vendor blog (Apr 18 2024) verbatim: "Lakera Guard is not - and will never be - directly trained on
+    any of the inputs in the PINT Benchmark dataset" and "The PINT Benchmark dataset is not publicly available in order to
+    prevent the dilution of the PINT Benchmark from overfitting due to training on the inputs." Benchmark contains 3,007 English
+    inputs (verbatim).'
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2241,7 +2317,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: The integration of large language models with external content has enabled applications such as Microsoft Copilot but also introduced vulnerabilities to indirect prompt injection attacks. In these att
+  excerpt: The integration of large language models with external content has enabled applications such as Microsoft Copilot
+    but also introduced vulnerabilities to indirect prompt injection attacks. In these att
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2268,7 +2345,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'BIPIA (Benchmarking Indirect Prompt Injection): 26 attack methods x diverse downstream tasks; both text-and-code attack injections.'
+  excerpt: 'BIPIA (Benchmarking Indirect Prompt Injection): 26 attack methods x diverse downstream tasks; both text-and-code
+    attack injections.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2295,7 +2373,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Microsoft KDD 2025; one of the first dedicated indirect-PI benchmarks. Used in firewall benchmarks (Bhagwatkar 2025).
+  excerpt: Microsoft KDD 2025; one of the first dedicated indirect-PI benchmarks. Used in firewall benchmarks (Bhagwatkar
+    2025).
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2322,7 +2401,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Recent work has embodied LLMs as agents, allowing them to access tools, perform actions, and interact with external content (e.g., emails or websites). However, external content introduces the risk of
+  excerpt: Recent work has embodied LLMs as agents, allowing them to access tools, perform actions, and interact with external
+    content (e.g., emails or websites). However, external content introduces the risk of
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2349,7 +2429,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'InjecAgent: 1,054 test cases of indirect prompt injection into tool-integrated LLM agents (ReAct-style); attack outcomes classified as benign / harmful tool-use.'
+  excerpt: 'InjecAgent: 1,054 test cases of indirect prompt injection into tool-integrated LLM agents (ReAct-style); attack
+    outcomes classified as benign / harmful tool-use.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2376,7 +2457,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: ACL 2024 Findings; canonical agentic indirect-PI benchmark; included in Bhagwatkar's 'firewalls all you need' saturation evidence.
+  excerpt: ACL 2024 Findings; canonical agentic indirect-PI benchmark; included in Bhagwatkar's 'firewalls all you need' saturation
+    evidence.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2403,7 +2485,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Existing benchmarks do not test language agents on their interaction with human users or ability to follow domain-specific rules, both of which are vital for deploying them in real world applications.
+  excerpt: Existing benchmarks do not test language agents on their interaction with human users or ability to follow domain-specific
+    rules, both of which are vital for deploying them in real world applications.
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2430,7 +2513,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'τ-bench: realistic tool-agent-user-interaction benchmark in retail and airline domains; multi-turn rollouts with rule-based reward.'
+  excerpt: "\u03C4-bench: realistic tool-agent-user-interaction benchmark in retail and airline domains; multi-turn rollouts\
+    \ with rule-based reward."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2484,7 +2568,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Although LLM-based agents, powered by Large Language Models (LLMs), can use external tools and memory mechanisms to solve complex real-world tasks, they may also introduce critical security vulnerabil
+  excerpt: Although LLM-based agents, powered by Large Language Models (LLMs), can use external tools and memory mechanisms
+    to solve complex real-world tasks, they may also introduce critical security vulnerabil
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2511,7 +2596,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Agent Security Bench (ASB): formalizes attack/defense taxonomy for LLM agents; 10 agent scenarios x multiple attack/defense methods.'
+  excerpt: 'Agent Security Bench (ASB): formalizes attack/defense taxonomy for LLM agents; 10 agent scenarios x multiple attack/defense
+    methods.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2538,7 +2624,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: ICLR 2025; together with AgentDojo, InjecAgent, and τ-Bench it forms the 4 benchmarks Bhagwatkar 2025 shows can be saturated by simple firewalls.
+  excerpt: "ICLR 2025; together with AgentDojo, InjecAgent, and \u03C4-Bench it forms the 4 benchmarks Bhagwatkar 2025 shows\
+    \ can be saturated by simple firewalls."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2565,7 +2652,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Steven Jung CodeIntegrity blog ''Prompt Injection Classifier Limits for AI Agents'' (Jan 2026): industry post-mortem on why 98%-accurate detectors fail in production.'
+  excerpt: 'Steven Jung CodeIntegrity blog ''Prompt Injection Classifier Limits for AI Agents'' (Jan 2026): industry post-mortem
+    on why 98%-accurate detectors fail in production.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2598,7 +2686,8 @@ entries:
       - 24550
       - 24676
       sha256_of_span: d95c60b8a18231429d06f5be83c0646033720fe728ab8ee3fc8fae3dc8e56a4c
-  excerpt: 85% F-score on your test data is likely more meaningful than a classical ML model scoring 95% but fit to the test distribution
+  excerpt: 85% F-score on your test data is likely more meaningful than a classical ML model scoring 95% but fit to the test
+    distribution
   rights_status: private_use
   confidence:
     score: 0.92
@@ -2657,7 +2746,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: AI agents are vulnerable to indirect prompt injection attacks, where malicious instructions embedded in external content or tool outputs cause unintended or harmful behavior. Inspired by the well-esta
+  excerpt: AI agents are vulnerable to indirect prompt injection attacks, where malicious instructions embedded in external
+    content or tool outputs cause unintended or harmful behavior. Inspired by the well-esta
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2748,7 +2838,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Large Language Models (LLMs) guardrail systems are designed to protect against prompt injection and jailbreak attacks. However, they remain vulnerable to evasion techniques. We demonstrate two approac
+  excerpt: Large Language Models (LLMs) guardrail systems are designed to protect against prompt injection and jailbreak attacks.
+    However, they remain vulnerable to evasion techniques. We demonstrate two approac
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2775,7 +2866,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Empirical evaluation of 12 character-injection techniques + 8 TextAttack methods against PI/jailbreak guardrails; up to 100% bypass on some commercial systems.
+  excerpt: Empirical evaluation of 12 character-injection techniques + 8 TextAttack methods against PI/jailbreak guardrails;
+    up to 100% bypass on some commercial systems.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2802,7 +2894,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: LLMSec 2025; demonstrates near-trivial evasion via Unicode/character-level perturbations on multiple commercial guardrails.
+  excerpt: LLMSec 2025; demonstrates near-trivial evasion via Unicode/character-level perturbations on multiple commercial
+    guardrails.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2829,7 +2922,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: How should we evaluate the robustness of language model defenses? Current defenses against jailbreaks and prompt injections (which aim to prevent an attacker from eliciting harmful knowledge or remote
+  excerpt: How should we evaluate the robustness of language model defenses? Current defenses against jailbreaks and prompt
+    injections (which aim to prevent an attacker from eliciting harmful knowledge or remote
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2856,7 +2950,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: '''Attacker Moves Second'' argues current PI/jailbreak defenses are static and adaptive attackers with white-box access bypass them after the fact.'
+  excerpt: '''Attacker Moves Second'' argues current PI/jailbreak defenses are static and adaptive attackers with white-box
+    access bypass them after the fact.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2883,7 +2978,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Critique of evaluation methodology that doesn't model adversarial adaptation; calls for dynamic-attack budgets in evaluation.
+  excerpt: Critique of evaluation methodology that doesn't model adversarial adaptation; calls for dynamic-attack budgets
+    in evaluation.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2910,7 +3006,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where adversaries embed malicious instructions within seemingly benign input data to manipulate the LLM&#39;s intende
+  excerpt: LLM-integrated applications and agents are vulnerable to prompt injection attacks, where adversaries embed malicious
+    instructions within seemingly benign input data to manipulate the LLM&#39;s intende
   rights_status: private_use
   confidence:
     score: 0.85
@@ -2937,7 +3034,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'DataFlip: LLM-based PI detection bypass via instruction inversion; shows DataSentinel-style minimax detectors are bypassable.'
+  excerpt: 'DataFlip: LLM-based PI detection bypass via instruction inversion; shows DataSentinel-style minimax detectors
+    are bypassable.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2964,7 +3062,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'ACM AISec 2025; companion critique to DataSentinel; methodology lesson: minimax training does not imply attack invariance.'
+  excerpt: 'ACM AISec 2025; companion critique to DataSentinel; methodology lesson: minimax training does not imply attack
+    invariance.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -2991,7 +3090,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Large language models are now tuned to align with the goals of their creators, namely to be &#34;helpful and harmless.&#34; These models should respond helpfully to user questions, but refuse to answe
+  excerpt: Large language models are now tuned to align with the goals of their creators, namely to be &#34;helpful and harmless.&#34;
+    These models should respond helpfully to user questions, but refuse to answe
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3018,7 +3118,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Demonstrates aligned neural networks (LLMs + multimodal models) remain adversarially exploitable via gradient-based attacks.
+  excerpt: Demonstrates aligned neural networks (LLMs + multimodal models) remain adversarially exploitable via gradient-based
+    attacks.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3045,7 +3146,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: NeurIPS 2023; foundational reference that alignment ≠ adversarial robustness; cited in PI/jailbreak threat-model framings.
+  excerpt: "NeurIPS 2023; foundational reference that alignment \u2260 adversarial robustness; cited in PI/jailbreak threat-model\
+    \ framings."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3072,7 +3174,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: Detecting prompt injection and jailbreak attacks is critical for deploying LLM-based agents safely. As agents increasingly process untrusted data from emails, documents, tool outputs, and external API
+  excerpt: Detecting prompt injection and jailbreak attacks is critical for deploying LLM-based agents safely. As agents increasingly
+    process untrusted data from emails, documents, tool outputs, and external API
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3099,7 +3202,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Introduces LODO (Leave-One-Dataset-Out) for malicious-prompt classifiers; shows TPR collapses under true distribution shift compared to held-out-row evaluation.
+  excerpt: Introduces LODO (Leave-One-Dataset-Out) for malicious-prompt classifiers; shows TPR collapses under true distribution
+    shift compared to held-out-row evaluation.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3126,7 +3230,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: Provides empirical evidence for the OOD-wall hypothesis; methodology directly mirrored by portfolio ADR-016 + ADR-075 LODO discipline.
+  excerpt: Provides empirical evidence for the OOD-wall hypothesis; methodology directly mirrored by portfolio ADR-016 + ADR-075
+    LODO discipline.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3153,7 +3258,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: rogue-security/prompt-injections-benchmark (aka qualifire/prompt-injections-benchmark) is a HuggingFace benchmark dataset used by Qualifire Sentinel evaluations.
+  excerpt: rogue-security/prompt-injections-benchmark (aka qualifire/prompt-injections-benchmark) is a HuggingFace benchmark
+    dataset used by Qualifire Sentinel evaluations.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3180,7 +3286,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.75
-  excerpt: 'Released by Rogue Security / Qualifire; reproducibility concern flagged: Qualifire Sentinel comparisons rely on this benchmark plus an undisclosed private subset (selection-bias risk for self-reported'
+  excerpt: 'Released by Rogue Security / Qualifire; reproducibility concern flagged: Qualifire Sentinel comparisons rely on
+    this benchmark plus an undisclosed private subset (selection-bias risk for self-reported'
   rights_status: private_use
   confidence:
     score: 0.75
@@ -3207,7 +3314,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: hendzh/PromptShield is the HuggingFace mirror of the Berkeley PromptShield benchmark dataset (conversational + application-structured tracks).
+  excerpt: hendzh/PromptShield is the HuggingFace mirror of the Berkeley PromptShield benchmark dataset (conversational +
+    application-structured tracks).
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3234,7 +3342,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.75
-  excerpt: Maintained by hendzh (Berkeley PromptShield team); released alongside the CODASPY 2025 paper. The standard third-party OOD benchmark used by the field.
+  excerpt: Maintained by hendzh (Berkeley PromptShield team); released alongside the CODASPY 2025 paper. The standard third-party
+    OOD benchmark used by the field.
   rights_status: private_use
   confidence:
     score: 0.75
@@ -3261,7 +3370,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: protectai/deberta-v3-base-prompt-injection-v2 is ProtectAI's encoder-based PI detector model card; widely-used baseline.
+  excerpt: protectai/deberta-v3-base-prompt-injection-v2 is ProtectAI's encoder-based PI detector model card; widely-used
+    baseline.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3288,7 +3398,11 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'ProtectAI HF model card discloses Apache-2.0 license and training-data source mixture by license category (1 CC-BY-3.0, 8 MIT, 1 CC0, 6 public-domain, 5 Apache-2.0, 1 CC-BY-4.0) without quantitative proportions. The card reports internal eval at 95.25% accuracy / 91.59% precision / 99.74% recall / 95.49% F1 — but no PromptShield benchmark numbers. The canonical OOD-collapse example is reported in Jacob et al. PromptShield Table 4 (1.34% TPR @ 0.5% FPR; 0.00% TPR @ 0.1% FPR with no-threshold-exists footnote), not on this model card.'
+  excerpt: "ProtectAI HF model card discloses Apache-2.0 license and training-data source mixture by license category (1 CC-BY-3.0,\
+    \ 8 MIT, 1 CC0, 6 public-domain, 5 Apache-2.0, 1 CC-BY-4.0) without quantitative proportions. The card reports internal\
+    \ eval at 95.25% accuracy / 91.59% precision / 99.74% recall / 95.49% F1 \u2014 but no PromptShield benchmark numbers.\
+    \ The canonical OOD-collapse example is reported in Jacob et al. PromptShield Table 4 (1.34% TPR @ 0.5% FPR; 0.00% TPR\
+    \ @ 0.1% FPR with no-threshold-exists footnote), not on this model card."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3315,7 +3429,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: microsoft/orca-agentinstruct-1M-v1 is a 1M-row instruction-following synthetic dataset from Microsoft Orca team; cited in detector training as a benign-instruction source.
+  excerpt: microsoft/orca-agentinstruct-1M-v1 is a 1M-row instruction-following synthetic dataset from Microsoft Orca team;
+    cited in detector training as a benign-instruction source.
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3342,7 +3457,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.75
-  excerpt: Released by Microsoft Research; CC license per HuggingFace card. Used as benign-instruction balance in mixed PI training corpora.
+  excerpt: Released by Microsoft Research; CC license per HuggingFace card. Used as benign-instruction balance in mixed PI
+    training corpora.
   rights_status: private_use
   confidence:
     score: 0.75
@@ -3375,7 +3491,12 @@ entries:
     - ev_training_and_evaluation_0114
     - ev_training_and_evaluation_0121
     link_confidence: 0.6
-  excerpt: 'Synthesis claim: encoder-based PI detectors (ProtectAI v2 type) collapse from near-perfect in-distribution F1 to near-zero TPR at deployment-grade FPRs when evaluated on truly held-out data. Aggregated from PromptShield (Jacob 2025 Table 4 — canonical numbers per audit round 1: ProtectAI v2 = 1.34% TPR @ 0.5% FPR, 0.00% TPR @ 0.1% FPR with no-threshold-exists footnote), Fomin 2026 LODO methodology demonstrating TPR collapse under true distribution shift, and the ProtectAI model card itself disclosing license-category mixture without quantitative proportions. Foundational to the OOD-wall thesis.'
+  excerpt: "Synthesis claim: encoder-based PI detectors (ProtectAI v2 type) collapse from near-perfect in-distribution F1\
+    \ to near-zero TPR at deployment-grade FPRs when evaluated on truly held-out data. Aggregated from PromptShield (Jacob\
+    \ 2025 Table 4 \u2014 canonical numbers per audit round 1: ProtectAI v2 = 1.34% TPR @ 0.5% FPR, 0.00% TPR @ 0.1% FPR with\
+    \ no-threshold-exists footnote), Fomin 2026 LODO methodology demonstrating TPR collapse under true distribution shift,\
+    \ and the ProtectAI model card itself disclosing license-category mixture without quantitative proportions. Foundational\
+    \ to the OOD-wall thesis."
   rights_status: private_use
   confidence:
     score: 0.6
@@ -3412,7 +3533,10 @@ entries:
     - ev_training_and_evaluation_0090
     - ev_training_and_evaluation_0093
     link_confidence: 0.6
-  excerpt: 'Synthesis claim: the four canonical agentic PI benchmarks (AgentDojo, InjecAgent, tau-Bench, Agent Security Bench) are saturable by simple two-firewall defenses per Bhagwatkar 2025; the saturation phrasing is verbatim-anchored in Bhagwatkar (ev_0099) and each of the four benchmarks is documented as a primary entry (ev_0076, ev_0087, ev_0090, ev_0093). Synthesis cross-cuts C3 (where the four are catalogued as evaluation methodology) into C4 (where the saturation finding is reported).'
+  excerpt: 'Synthesis claim: the four canonical agentic PI benchmarks (AgentDojo, InjecAgent, tau-Bench, Agent Security Bench)
+    are saturable by simple two-firewall defenses per Bhagwatkar 2025; the saturation phrasing is verbatim-anchored in Bhagwatkar
+    (ev_0099) and each of the four benchmarks is documented as a primary entry (ev_0076, ev_0087, ev_0090, ev_0093). Synthesis
+    cross-cuts C3 (where the four are catalogued as evaluation methodology) into C4 (where the saturation finding is reported).'
   rights_status: private_use
   confidence:
     score: 0.6
@@ -3439,7 +3563,8 @@ entries:
   - cache_f4d5b713b2d15854
   supports:
   - claim_id: claim_synthesis_training_and_evaluation_license_red_flags
-    field_path: agent_index/README.md#Glossary; agent_index/01_training_data_sources.md#C1.8,C1.15; agent_index/02_training_methodologies.md#C2.5; agent_index/05_ood_methodology_reproducibility.md#C5.2,C5.4
+    field_path: agent_index/README.md#Glossary; agent_index/01_training_data_sources.md#C1.8,C1.15; agent_index/02_training_methodologies.md#C2.5;
+      agent_index/05_ood_methodology_reproducibility.md#C5.2,C5.4
     evidence_role: supports
     evidence_role_strength: full
     extraction_method: llm_inferred
@@ -3451,7 +3576,12 @@ entries:
     - ev_training_and_evaluation_0117
     - ev_training_and_evaluation_0121
     link_confidence: 0.6
-  excerpt: 'Synthesis claim: 5 entries surface license + provenance red flags per the Phase 2 final report — geekyrakshit2024promptinjectiondataset (aggregator with mixed underlying licenses), jiang2024wildjailbreak (attack-content ETHICS constraint per ADR-041), meta2025promptguard2 (training-data composition undisclosed), rogue2025promptinjectionsbenchmark / Qualifire (private subset used in companion Sentinel evaluations), protectai2024deberta (exact training-data mixture undisclosed). These are surfaced in glossary + per-entry Status fields throughout the agent_index; reproducibility implication: independent LODO replay limited for the affected detectors.'
+  excerpt: "Synthesis claim: 5 entries surface license + provenance red flags per the Phase 2 final report \u2014 geekyrakshit2024promptinjectiondataset\
+    \ (aggregator with mixed underlying licenses), jiang2024wildjailbreak (attack-content ETHICS constraint per ADR-041),\
+    \ meta2025promptguard2 (training-data composition undisclosed), rogue2025promptinjectionsbenchmark / Qualifire (private\
+    \ subset used in companion Sentinel evaluations), protectai2024deberta (exact training-data mixture undisclosed). These\
+    \ are surfaced in glossary + per-entry Status fields throughout the agent_index; reproducibility implication: independent\
+    \ LODO replay limited for the affected detectors."
   rights_status: private_use
   confidence:
     score: 0.6
@@ -3464,11 +3594,6 @@ entries:
       recency: high
       consistency: high
       directness: high
-
-# ============================================================================
-# Sprint 2 Phase E2 evidence (2026-05-23): ev_0127..0155 for new bib_ledger
-# entries gulrajani2021domainbed .. harelix2024_mixed
-# ============================================================================
 - evidence_id: ev_training_and_evaluation_0127
   source_url: https://arxiv.org/abs/2007.01434
   source_type: paper
@@ -3490,7 +3615,8 @@ entries:
       - 2136
       - 2259
       sha256_of_span: 722172266662aa5731fb3ed42c747ec95a1e651a1f9d17cc6e581881b0cb3613
-  excerpt: 'The goal of domain generalization algorithms is to predict well on distributions different from those seen during training.'
+  excerpt: The goal of domain generalization algorithms is to predict well on distributions different from those seen during
+    training.
   rights_status: private_use
   confidence:
     score: 0.95
@@ -3524,7 +3650,7 @@ entries:
       - 2624
       - 2686
       sha256_of_span: b61f56cfa1e561d686582226c3975aeb41dbc18eaa5ae238288bbe09c75ef628
-  excerpt: 'model selection is non-trivial for domain generalization tasks'
+  excerpt: model selection is non-trivial for domain generalization tasks
   rights_status: private_use
   confidence:
     score: 0.92
@@ -3558,7 +3684,7 @@ entries:
       - 3087
       - 3169
       sha256_of_span: 0f4857b19fa894a11af985ce8efe70e7a8d709190d4db1425f791e174299e105
-  excerpt: 'empirical risk minimization shows state-of-the-art performance across all datasets'
+  excerpt: empirical risk minimization shows state-of-the-art performance across all datasets
   rights_status: private_use
   confidence:
     score: 0.9
@@ -3585,7 +3711,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'OR-Bench is an over-refusal benchmark comprising 80,000 prompts spanning 10 rejection categories plus harder evaluation subsets; introduces an automatic generation method and evaluates 32 models across 8 families.'
+  excerpt: OR-Bench is an over-refusal benchmark comprising 80,000 prompts spanning 10 rejection categories plus harder evaluation
+    subsets; introduces an automatic generation method and evaluates 32 models across 8 families.
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3616,7 +3743,9 @@ entries:
     - ev_training_and_evaluation_0078
     - ev_training_and_evaluation_0079
     - ev_training_and_evaluation_0130
-  excerpt: 'Pairing claim: OR-Bench (general over-refusal) + InjecGuard NotInject (over-defense for PI guardrails) jointly cover the two over-refusal regimes the portfolio measures; NotInject (Li et al. 2024) is the prompt-injection-specific counterpart to OR-Bench''s general LLM-safety lens.'
+  excerpt: 'Pairing claim: OR-Bench (general over-refusal) + InjecGuard NotInject (over-defense for PI guardrails) jointly
+    cover the two over-refusal regimes the portfolio measures; NotInject (Li et al. 2024) is the prompt-injection-specific
+    counterpart to OR-Bench''s general LLM-safety lens.'
   rights_status: private_use
   confidence:
     score: 0.55
@@ -3643,7 +3772,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'OpenAssistant Conversations (OASST1) is a multilingual conversational dataset with 161,443 messages across 35 languages and 461,292 quality annotations from 13,500+ volunteers, designed to support SFT and RLHF training.'
+  excerpt: OpenAssistant Conversations (OASST1) is a multilingual conversational dataset with 161,443 messages across 35 languages
+    and 461,292 quality annotations from 13,500+ volunteers, designed to support SFT and RLHF training.
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3672,7 +3802,9 @@ entries:
     link_confidence: 0.5
     inference_chain:
     - ev_training_and_evaluation_0132
-  excerpt: 'Synthesis claim: OASST1 serves as a benign-conversation pool for prompt-injection detector training in sibling ADR-016 LODO research; its naturalistic distribution makes it useful as a hard-negative ("benign-but-imperative") source distinct from synthetic benign datasets.'
+  excerpt: 'Synthesis claim: OASST1 serves as a benign-conversation pool for prompt-injection detector training in sibling
+    ADR-016 LODO research; its naturalistic distribution makes it useful as a hard-negative ("benign-but-imperative") source
+    distinct from synthetic benign datasets.'
   rights_status: private_use
   confidence:
     score: 0.5
@@ -3699,7 +3831,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Benchmark Data Contamination of Large Language Models: A Survey. Reviews how LLMs inadvertently incorporate evaluation benchmark information from training data, leading to inaccurate performance measurements; surveys alternative assessment methods and future directions. 31 pages, 7 figures.'
+  excerpt: 'Benchmark Data Contamination of Large Language Models: A Survey. Reviews how LLMs inadvertently incorporate evaluation
+    benchmark information from training data, leading to inaccurate performance measurements; surveys alternative assessment
+    methods and future directions. 31 pages, 7 figures.'
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3728,7 +3862,9 @@ entries:
     inference_chain:
     - ev_training_and_evaluation_0134
     - ev_training_and_evaluation_0127
-  excerpt: 'OOD-wall narrative link: a "98% accuracy" on a public benchmark is indistinguishable from contamination-driven memorization absent independent decontamination evidence; Xu 2024 survey enumerates the techniques needed to make that distinction, which the portfolio inherits via ADR-016/ADR-075 LODO discipline.'
+  excerpt: 'OOD-wall narrative link: a "98% accuracy" on a public benchmark is indistinguishable from contamination-driven
+    memorization absent independent decontamination evidence; Xu 2024 survey enumerates the techniques needed to make that
+    distinction, which the portfolio inherits via ADR-016/ADR-075 LODO discipline.'
   rights_status: private_use
   confidence:
     score: 0.55
@@ -3755,7 +3891,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Deng et al. NAACL 2024 propose retrieval-based overlap detection + a novel "Testset Slot Guessing" method (mask correct answers; ask model to predict missing options); ChatGPT achieves 52% and GPT-4 57% exact-match rate on MMLU options, suggesting contamination.'
+  excerpt: Deng et al. NAACL 2024 propose retrieval-based overlap detection + a novel "Testset Slot Guessing" method (mask
+    correct answers; ask model to predict missing options); ChatGPT achieves 52% and GPT-4 57% exact-match rate on MMLU options,
+    suggesting contamination.
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3782,7 +3920,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Testset Slot Guessing: black-box contamination detection that works on proprietary models (no weights or training-data access required) by exploiting that contaminated models can complete partially-masked benchmark items.'
+  excerpt: 'Testset Slot Guessing: black-box contamination detection that works on proprietary models (no weights or training-data
+    access required) by exploiting that contaminated models can complete partially-masked benchmark items.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3808,7 +3947,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Yang et al. 2023 show simple paraphrasing or translation bypasses string-match decontamination; 8-18% of HumanEval benchmark overlaps with pre-training sets like RedPajama-Data-1T and StarCoder-Data; propose LLM-based decontamination.'
+  excerpt: Yang et al. 2023 show simple paraphrasing or translation bypasses string-match decontamination; 8-18% of HumanEval
+    benchmark overlaps with pre-training sets like RedPajama-Data-1T and StarCoder-Data; propose LLM-based decontamination.
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3838,7 +3978,9 @@ entries:
     inference_chain:
     - ev_training_and_evaluation_0138
     - ev_training_and_evaluation_0136
-  excerpt: 'Cross-paper claim: paraphrasing-based contamination bypass (Yang 2023) + slot-guessing detection (Deng 2024) jointly imply that PI-detector training corpora drawn from public benchmarks (deepset, jackhhao, Lakera, etc.) cannot be cleanly decontaminated by string-match alone; this is the methodological basis for the portfolio''s LODO discipline.'
+  excerpt: 'Cross-paper claim: paraphrasing-based contamination bypass (Yang 2023) + slot-guessing detection (Deng 2024) jointly
+    imply that PI-detector training corpora drawn from public benchmarks (deepset, jackhhao, Lakera, etc.) cannot be cleanly
+    decontaminated by string-match alone; this is the methodological basis for the portfolio''s LODO discipline.'
   rights_status: private_use
   confidence:
     score: 0.55
@@ -3865,7 +4007,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'LiveBench (White et al. ICLR 2025 Spotlight): a contamination-limited LLM benchmark with frequently-updated questions sourced from recent competitions/papers/news. Spans math, coding, reasoning, language, instruction following, data analysis. Top models below 70% accuracy.'
+  excerpt: 'LiveBench (White et al. ICLR 2025 Spotlight): a contamination-limited LLM benchmark with frequently-updated questions
+    sourced from recent competitions/papers/news. Spans math, coding, reasoning, language, instruction following, data analysis.
+    Top models below 70% accuracy.'
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3891,7 +4035,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Methodology: frequent benchmark refresh from recent-only sources mitigates contamination via temporal cutoff rather than detection — a design lesson the portfolio cites as the "contamination-limited" alternative to LODO.'
+  excerpt: "Methodology: frequent benchmark refresh from recent-only sources mitigates contamination via temporal cutoff rather\
+    \ than detection \u2014 a design lesson the portfolio cites as the \"contamination-limited\" alternative to LODO."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3917,7 +4062,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Oren et al. ICLR 2024 prove black-box contamination by exploiting that all orderings of an exchangeable benchmark should be equally likely under a clean model; tested on five public language models and found "little evidence for pervasive contamination" — a calibration-grade null result.'
+  excerpt: "Oren et al. ICLR 2024 prove black-box contamination by exploiting that all orderings of an exchangeable benchmark\
+    \ should be equally likely under a clean model; tested on five public language models and found \"little evidence for\
+    \ pervasive contamination\" \u2014 a calibration-grade null result."
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3944,7 +4091,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Exchangeability proof technique: the test statistic compares model log-likelihoods of the canonical ordering vs. random permutations; statistically significant preference for the canonical ordering is evidence of contamination.'
+  excerpt: 'Exchangeability proof technique: the test statistic compares model log-likelihoods of the canonical ordering vs.
+    random permutations; statistically significant preference for the canonical ordering is evidence of contamination.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -3970,7 +4118,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Shi et al. ICLR 2024 introduce Min-K% Prob, identifying unseen examples by detecting outlier words with low probabilities; WIKIMIA benchmark (pre/post-training data); achieves 7.4% improvement on WIKIMIA over baselines; applicable to copyright detection, contamination assessment, privacy auditing.'
+  excerpt: Shi et al. ICLR 2024 introduce Min-K% Prob, identifying unseen examples by detecting outlier words with low probabilities;
+    WIKIMIA benchmark (pre/post-training data); achieves 7.4% improvement on WIKIMIA over baselines; applicable to copyright
+    detection, contamination assessment, privacy auditing.
   rights_status: private_use
   confidence:
     score: 0.85
@@ -3997,7 +4147,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Min-K% Prob: average log-probability of the K% lowest-likelihood tokens in a sequence; contaminated sequences have systematically higher Min-K% than unseen ones because the model has learned to assign high probability everywhere along the memorized span.'
+  excerpt: 'Min-K% Prob: average log-probability of the K% lowest-likelihood tokens in a sequence; contaminated sequences
+    have systematically higher Min-K% than unseen ones because the model has learned to assign high probability everywhere
+    along the memorized span.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -4023,7 +4175,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Sainz et al. EMNLP 2023 Findings: data contamination causes overestimation of model performance and can lead to flawed scientific conclusions. Propose defining contamination levels, developing detection mechanisms, and flagging compromised research.'
+  excerpt: 'Sainz et al. EMNLP 2023 Findings: data contamination causes overestimation of model performance and can lead to
+    flawed scientific conclusions. Propose defining contamination levels, developing detection mechanisms, and flagging compromised
+    research.'
   rights_status: private_use
   confidence:
     score: 0.85
@@ -4050,7 +4204,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Disclosure norm: every benchmark should publish a contamination assessment for the models evaluated on it; this is the methodological basis for the portfolio''s "training-data mixture undisclosed" red flag in the C5 reproducibility-practice claim_family.'
+  excerpt: 'Disclosure norm: every benchmark should publish a contamination assessment for the models evaluated on it; this
+    is the methodological basis for the portfolio''s "training-data mixture undisclosed" red flag in the C5 reproducibility-practice
+    claim_family.'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -4077,7 +4233,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'Zawalski et al. 2025 CoDeC: contamination detection via in-context-learning signal — ICL examples enhance confidence on unknown datasets but diminish it for contaminated ones because they disrupt memorized patterns. Reports clear separation between seen and unseen with interpretable contamination scores.'
+  excerpt: "Zawalski et al. 2025 CoDeC: contamination detection via in-context-learning signal \u2014 ICL examples enhance\
+    \ confidence on unknown datasets but diminish it for contaminated ones because they disrupt memorized patterns. Reports\
+    \ clear separation between seen and unseen with interpretable contamination scores."
   rights_status: private_use
   confidence:
     score: 0.85
@@ -4103,7 +4261,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'CoDeC ICL-signal mechanism: contaminated samples are memorized as joint distributions; ICL examples introduce distributional noise that disrupts the memorized chunk, lowering posterior confidence — the inverse pattern from honest generalization.'
+  excerpt: "CoDeC ICL-signal mechanism: contaminated samples are memorized as joint distributions; ICL examples introduce\
+    \ distributional noise that disrupts the memorized chunk, lowering posterior confidence \u2014 the inverse pattern from\
+    \ honest generalization."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -4129,7 +4289,9 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: '"Are Large Language Models Truly Smarter Than Humans?" (Reddy M & Karmakar 2026) audit six frontier models (GPT-4o, GPT-4o-mini, DeepSeek-R1, DeepSeek-V3, Llama-3.3-70B, Qwen3-235B) and find 13.8% overall contamination rate on MMLU (18.1% STEM, up to 66.7% Philosophy); paraphrase-diagnostic shows accuracy decline when questions are indirectly referenced.'
+  excerpt: '"Are Large Language Models Truly Smarter Than Humans?" (Reddy M & Karmakar 2026) audit six frontier models (GPT-4o,
+    GPT-4o-mini, DeepSeek-R1, DeepSeek-V3, Llama-3.3-70B, Qwen3-235B) and find 13.8% overall contamination rate on MMLU (18.1%
+    STEM, up to 66.7% Philosophy); paraphrase-diagnostic shows accuracy decline when questions are indirectly referenced.'
   rights_status: private_use
   confidence:
     score: 0.85
@@ -4156,7 +4318,8 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Field-skewed contamination: rates rank from STEM downward through humanities, suggesting that benchmark contamination patterns reflect web-text composition (Wikipedia philosophy article overlap > academic STEM paper overlap with MMLU items).'
+  excerpt: 'Field-skewed contamination: rates rank from STEM downward through humanities, suggesting that benchmark contamination
+    patterns reflect web-text composition (Wikipedia philosophy article overlap > academic STEM paper overlap with MMLU items).'
   rights_status: private_use
   confidence:
     score: 0.8
@@ -4183,7 +4346,10 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.85
-  excerpt: 'neuralchemy/Prompt-injection-dataset: 22,193 rows, Apache 2.0 license; two configs (core 6,274 rows for classical ML, full 15,919 rows for transformer fine-tuning). 10 attack categories (direct_injection, jailbreak, system_extraction, encoding_obfuscation, persona_replacement, indirect_injection, token_smuggling, many_shot, crescendo, prompt_leaking) + benign with hard negatives; ~60% malicious / ~40% benign.'
+  excerpt: 'neuralchemy/Prompt-injection-dataset: 22,193 rows, Apache 2.0 license; two configs (core 6,274 rows for classical
+    ML, full 15,919 rows for transformer fine-tuning). 10 attack categories (direct_injection, jailbreak, system_extraction,
+    encoding_obfuscation, persona_replacement, indirect_injection, token_smuggling, many_shot, crescendo, prompt_leaking)
+    + benign with hard negatives; ~60% malicious / ~40% benign.'
   rights_status: private_use
   confidence:
     score: 0.85
@@ -4210,7 +4376,10 @@ entries:
     evidence_role_strength: full
     extraction_method: paraphrase
     link_confidence: 0.8
-  excerpt: 'Group-aware splits: splitting done at group_id level not sample level — all augmented variants share a group_id with their original; entire group assigned to one split only; val/test contain original samples only (no augmented data). Zero leakage verified across 16,918 samples. This is the canonical LODO-style split discipline applied at the row-augmentation level rather than the cross-source level.'
+  excerpt: "Group-aware splits: splitting done at group_id level not sample level \u2014 all augmented variants share a group_id\
+    \ with their original; entire group assigned to one split only; val/test contain original samples only (no augmented data).\
+    \ Zero leakage verified across 16,918 samples. This is the canonical LODO-style split discipline applied at the row-augmentation\
+    \ level rather than the cross-source level."
   rights_status: private_use
   confidence:
     score: 0.8
@@ -4237,7 +4406,12 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.5
-  excerpt: 'protectai/prompt-injection-validation: ProtectAI''s multi-source eval suite for the deberta-v3-base-prompt-injection-v2 model. WebSearch confirms HF page existence and identifies the dataset as part of ProtectAI''s prompt-injection toolkit (used in conjunction with deberta-v3-base/small-prompt-injection-v2). Direct WebFetch returned HTTP 401 from the toolkit UA on 2026-05-23, so per-split details (InjecGuard valid + spikee + bipia_code + bipia_text + not_inject + wildguard + deepset) are sourced from the research_plan landmark annotation and the existing ProtectAI v2 model card (ev_0120/0121) rather than the HF page itself.'
+  excerpt: 'protectai/prompt-injection-validation: ProtectAI''s multi-source eval suite for the deberta-v3-base-prompt-injection-v2
+    model. WebSearch confirms HF page existence and identifies the dataset as part of ProtectAI''s prompt-injection toolkit
+    (used in conjunction with deberta-v3-base/small-prompt-injection-v2). Direct WebFetch returned HTTP 401 from the toolkit
+    UA on 2026-05-23, so per-split details (InjecGuard valid + spikee + bipia_code + bipia_text + not_inject + wildguard +
+    deepset) are sourced from the research_plan landmark annotation and the existing ProtectAI v2 model card (ev_0120/0121)
+    rather than the HF page itself.'
   rights_status: unknown
   confidence:
     score: 0.5
@@ -4264,7 +4438,10 @@ entries:
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.5
-  excerpt: 'Harelix/Prompt-Injection-Mixed-Techniques-2024: WebSearch confirms HF page existence; 1,174 rows, Apache 2.0 license, one default subset / one train split, used by ProtectAI to train the DeBERTa-based prompt-injection v2 detection model. Direct WebFetch returned HTTP 401 from the toolkit UA on 2026-05-23, so the source remains status=unverified pending a manual fetch or authenticated MCP tool.'
+  excerpt: 'Harelix/Prompt-Injection-Mixed-Techniques-2024: WebSearch confirms HF page existence; 1,174 rows, Apache 2.0 license,
+    one default subset / one train split, used by ProtectAI to train the DeBERTa-based prompt-injection v2 detection model.
+    Direct WebFetch returned HTTP 401 from the toolkit UA on 2026-05-23, so the source remains status=unverified pending a
+    manual fetch or authenticated MCP tool.'
   rights_status: unknown
   confidence:
     score: 0.5
@@ -4276,3 +4453,238 @@ entries:
       recency: high
       consistency: moderate
       directness: low
+- evidence_id: ev_training_and_evaluation_0156
+  source_url: https://arxiv.org/abs/2510.05244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: pdf
+  cache_ids:
+  - cache_body_bhagwatkar2025firewalls
+  supports:
+  - claim_id: claim_training_and_evaluation_bhagwatkar2025firewalls_body_weak_attacks_critique
+    field_path: cache/body_text/bhagwatkar2025firewalls.txt
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_bhagwatkar2025firewalls
+      text_path: cache/body_text/bhagwatkar2025firewalls.txt
+      text_path_offset:
+      - 2397
+      - 2429
+      sha256_of_span: 6f750223e60799f5f9a82698635358bfbfc907d70a3b9df5c2c6bd5fccc88852
+      synthetic_cache_id: true
+  excerpt: weak attacks, hindering progress
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - "Bhagwatkar critique of agentic-benchmark methodology \u2014 body-anchored quote complementing Sprint 1 abstract-level\
+      \ anchor."
+    - body-quote anchor (Sprint 2 F-phase)
+- evidence_id: ev_training_and_evaluation_0157
+  source_url: https://arxiv.org/abs/2510.05244
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: pdf
+  cache_ids:
+  - cache_body_bhagwatkar2025firewalls
+  supports:
+  - claim_id: claim_training_and_evaluation_bhagwatkar2025firewalls_body_four_benchmarks_saturated
+    field_path: cache/body_text/bhagwatkar2025firewalls.txt
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_bhagwatkar2025firewalls
+      text_path: cache/body_text/bhagwatkar2025firewalls.txt
+      text_path_offset:
+      - 1413
+      - 1439
+      sha256_of_span: 5e672a001a8ad8ef6abe67bf93bb5cc734cb9d0d67c90df1cde25453ae2ef367
+      synthetic_cache_id: true
+  excerpt: all four public benchmarks
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - "Bhagwatkar identification of 4 saturated agentic benchmarks (AgentDojo/ASB/InjecAgent/\u03C4-Bench)."
+    - body-quote anchor (Sprint 2 F-phase)
+- evidence_id: ev_training_and_evaluation_0158
+  source_url: https://arxiv.org/abs/2007.01434
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: pdf
+  cache_ids:
+  - cache_body_gulrajani2021domainbed
+  supports:
+  - claim_id: claim_training_and_evaluation_gulrajani2021domainbed_body_lodo_methodology_foundation
+    field_path: cache/body_text/gulrajani2021domainbed.txt
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_gulrajani2021domainbed
+      text_path: cache/body_text/gulrajani2021domainbed.txt
+      text_path_offset:
+      - 2136
+      - 2162
+      sha256_of_span: 2d5a17acecee354dca1c6d5e66ca2d57d2f8debe56df5de096dc72f8b79eafcf
+      synthetic_cache_id: true
+  excerpt: when carefully implemented
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - "DomainBed formal OOD/LODO methodology foundation \u2014 load-bearing for OOD-wall thesis."
+    - body-quote anchor (Sprint 2 F-phase)
+- evidence_id: ev_training_and_evaluation_0159
+  source_url: https://arxiv.org/abs/2504.11168
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: pdf
+  cache_ids:
+  - cache_body_hackett2025bypassing
+  supports:
+  - claim_id: claim_training_and_evaluation_hackett2025bypassing_body_character_injection_100pct
+    field_path: cache/body_text/hackett2025bypassing.txt
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_hackett2025bypassing
+      text_path: cache/body_text/hackett2025bypassing.txt
+      text_path_offset:
+      - 27210
+      - 27218
+      sha256_of_span: 6608dc5919846f30721150ffc2af0b1026551ac693ba9c5fda82840a484f2039
+      synthetic_cache_id: true
+  excerpt: 100% ASR
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - "Hackett 100% character-injection ASR finding \u2014 body-anchored."
+    - body-quote anchor (Sprint 2 F-phase)
+- evidence_id: ev_training_and_evaluation_0160
+  source_url: https://arxiv.org/abs/2501.15145
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: pdf
+  cache_ids:
+  - cache_body_jacob2025promptshield
+  supports:
+  - claim_id: claim_training_and_evaluation_jacob2025promptshield_body_protectai_v2_table4_collapse
+    field_path: cache/body_text/jacob2025promptshield.txt
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_jacob2025promptshield
+      text_path: cache/body_text/jacob2025promptshield.txt
+      text_path_offset:
+      - 56340
+      - 56350
+      sha256_of_span: 694ab9f67b130af4f5151174f003edf0e4dce833152807becdcc3eae77d6a154
+      synthetic_cache_id: true
+  excerpt: TPR of 71%
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - "PromptShield Table 4 ProtectAI v2 TPR@FPR low-FPR collapse \u2014 body-anchored."
+    - body-quote anchor (Sprint 2 F-phase)
+- evidence_id: ev_training_and_evaluation_0161
+  source_url: https://arxiv.org/abs/2404.13208
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-23'
+  verification_method: pdf
+  cache_ids:
+  - cache_body_wallace2024instructionhierarchy
+  supports:
+  - claim_id: claim_training_and_evaluation_wallace2024instructionhierarchy_body_priority_ordering
+    field_path: cache/body_text/wallace2024instructionhierarchy.txt
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.97
+    excerpt_anchor:
+      cache_id: cache_body_wallace2024instructionhierarchy
+      text_path: cache/body_text/wallace2024instructionhierarchy.txt
+      text_path_offset:
+      - 16105
+      - 16135
+      sha256_of_span: 75fd1004ec3e6a44f46cf21147f0d6ab2b0a6c1a522cd3ee91dc7f02b5707144
+      synthetic_cache_id: true
+  excerpt: higher-privileged instructions
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - "Wallace 2024 OpenAI Instruction Hierarchy priority ordering \u2014 body-anchored (resolves Sprint 1 audit FLAG)."
+    - body-quote anchor (Sprint 2 F-phase)
+- evidence_id: ev_training_and_evaluation_0162
+  source_url: https://arxiv.org/abs/2506.05446
+  source_type: other
+  source_quality: secondary
+  retrieved_at: '2026-05-23'
+  verification_method: manual
+  cache_ids:
+  - cache_5f129920a9fcbcd5
+  supports:
+  - claim_id: claim_training_eval_synth_vendor_self_comparison
+    field_path: synthesis.claim_training_eval_synth_vendor_self_comparison
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    link_confidence: 0.55
+    inference_chain:
+    - ev_training_and_evaluation_0001
+    - ev_training_and_evaluation_0002
+    - ev_training_and_evaluation_0003
+  excerpt: 'Vendor self-comparison pattern: every detector benchmarks against the previous weakest baseline. Qualifire Sentinel
+    evaluates only against ProtectAI v2; hlyn-labs benchmarks only against ProtectAI v2; Meta PG2 compares only to PG1. No
+    detector benchmarks against PromptShield-Llama-8B or DataSentinel. Selection bias is systematic.'
+  rights_status: public
+  confidence:
+    score: 0.6
+    factors:
+    - synthesis aggregation claim across 3 primary sources (Sprint 2 F-phase)
+- evidence_id: ev_training_and_evaluation_0163
+  source_url: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+  source_type: other
+  source_quality: secondary
+  retrieved_at: '2026-05-23'
+  verification_method: manual
+  cache_ids:
+  - cache_550949d71181746c
+  supports:
+  - claim_id: claim_training_eval_synth_underdisclosed_training_data
+    field_path: synthesis.claim_training_eval_synth_underdisclosed_training_data
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: llm_inferred
+    link_confidence: 0.55
+    inference_chain:
+    - ev_training_and_evaluation_0010
+    - ev_training_and_evaluation_0011
+    - ev_training_and_evaluation_0012
+  excerpt: Training-data composition is structurally underdisclosed across leading detectors. Qualifire Sentinel private subset,
+    Meta PG2 red-team corpus, ProtectAI exact mixture proportions, and CodeIntegrity training-set details are all undisclosed.
+    Reproducibility from public artifacts is broken.
+  rights_status: public
+  confidence:
+    score: 0.6
+    factors:
+    - synthesis aggregation claim across 3 primary sources (Sprint 2 F-phase)

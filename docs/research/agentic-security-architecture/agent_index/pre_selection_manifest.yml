@@ -2,94 +2,344 @@ schema_version: 3
 topic: agentic_security_architecture
 generated_at: '2026-05-23'
 current_as_of: '2026-05-23'
+freshness_policy: strict_live
 selections:
-- bullet_id: agentic_chennabasappa2025llamafirewall
+- selection_id: sel_D_001
+  bullet_id: agentic1
   atom_id: claim_agentic_security_architecture_llamafirewall_layered_design
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_chennabasappa2025llamafirewall
+  cache_id: cache_5575144bb9ad0eb7
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: LlamaFirewall is an open-source guardrail system designed as a layered defense for AI agents, addressing risks like prompt injection, agent misalignment,
+      and insecure code; ships as a runtime guardrai
+- selection_id: sel_D_002
+  bullet_id: agentic2
   atom_id: claim_agentic_security_architecture_llamafirewall_promptguard_apr
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_wang2025agentarmor
+  cache_id: cache_5575144bb9ad0eb7
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Reports PromptGuard v2 86M with substantial ASR reduction and small utility loss on AgentDojo as part of the layered harness composition.
+- selection_id: sel_D_003
+  bullet_id: agentic3
   atom_id: claim_agentic_security_architecture_agentarmor_pdg_framework
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_wang2025agentarmor
+  cache_id: cache_01e32345e7ca53d6
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: AgentArmor intercepts agent execution traces, converts them into program-dependence-graph intermediate representations, and enforces security policies
+      via a type-system + graph-inspector pipeline that
+- selection_id: sel_D_004
+  bullet_id: agentic4
   atom_id: claim_agentic_security_architecture_agentarmor_results
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_beurerkellner2025designpatterns
+  cache_id: cache_01e32345e7ca53d6
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Reports ~3% ASR with low functional overhead on AgentDojo; treats the agent trace as a program to be analysed, not text to be classified.
+- selection_id: sel_D_005
+  bullet_id: agentic5
   atom_id: claim_agentic_security_architecture_designpatterns_catalog
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_wallace2024instructionhierarchy
+  cache_id: cache_4397426179bea947
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Catalogues design patterns for securing LLM agents against prompt injections (Action-Selector, Plan-Then-Execute, Map-Reduce, Dual LLM, Code-Then-Execute,
+      Context-Minimization); each pattern trades co
+- selection_id: sel_D_006
+  bullet_id: agentic6
   atom_id: claim_agentic_security_architecture_instruction_hierarchy_priority
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_chen2025struq
+  cache_id: cache_c8697d3c88066297
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Instruction Hierarchy proposes training LLMs to prioritise privileged instructions (system > developer > user > tool), addressing the lack of trust-channel
+      separation in standard chat interfaces; foun
+- selection_id: sel_D_007
+  bullet_id: agentic7
   atom_id: claim_agentic_security_architecture_struq_reserved_delimiters
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_chen2025secalign
+  cache_id: cache_c3439daa681bdac9
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: StruQ uses structured queries with reserved-token-protected delimiters separating prompt from data, plus an SFT phase, to defend against direct + indirect
+      prompt injection; included here as an in-harn
+- selection_id: sel_D_008
+  bullet_id: agentic8
   atom_id: claim_agentic_security_architecture_secalign_dpo_pairs
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_chen2025metasecalign
+  cache_id: cache_8f562c950ef155e3
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: SecAlign uses preference-optimization (DPO) over secure/insecure response pairs to train the model to prefer following the system prompt over the injected
+      one; included here as harness-trained-LLM con
+- selection_id: sel_D_009
+  bullet_id: agentic9
   atom_id: claim_agentic_security_architecture_metasecalign_input_role
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_piet2024jatmo
+  cache_id: cache_74a75f6036e89f8d
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Meta SecAlign on Llama-3.3-70B introduces an explicit `input` role distinct from `user` for untrusted tool/document data, formalizing harness-contract
+      separation.
+- selection_id: sel_D_010
+  bullet_id: agentic10
   atom_id: claim_agentic_security_architecture_jatmo_task_specific_finetune
-  sub_area: agent_harness_architecture
-- bullet_id: agentic_debenedetti2025camel
-  atom_id: claim_agentic_security_architecture_camel_agentdojo_provable_security
-  sub_area: agent_capability_isolation
-- bullet_id: agentic_debenedetti2025camel
+  cache_id: cache_937568d9c8dbd86d
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Jatmo trains task-specific fine-tuned models that cannot follow instructions in their inputs; reports very low ASR (<0.5%) and is the narrow-agent extreme
+      of capability isolation.
+- selection_id: sel_D_011
+  bullet_id: agentic11
   atom_id: claim_agentic_security_architecture_camel_capability_design
-  sub_area: agent_capability_isolation
-- bullet_id: agentic_wu2025isolategpt
+  cache_id: cache_cfffce6b1f23371d
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: CaMeL splits the LLM into a privileged + quarantined pair with a custom Python interpreter that tags every value with provenance metadata (capabilities);
+      blocks injected text from invoking sensitive t
+- selection_id: sel_D_012
+  bullet_id: agentic12
+  atom_id: claim_agentic_security_architecture_camel_agentdojo_provable_security
+  cache_id: cache_cfffce6b1f23371d
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Reports a provably-secure subset of AgentDojo tasks completed in v2 (around 77%), versus 84% completed undefended; substantial token-cost overhead (roughly
+      2.8x input / 2.7x output) is acknowledged.
+- selection_id: sel_D_013
+  bullet_id: agentic13
   atom_id: claim_agentic_security_architecture_isolategpt_per_plugin_sandbox
-  sub_area: agent_capability_isolation
-- bullet_id: agentic_willison2023dualllm
+  cache_id: cache_da4a859c554697e4
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: IsolateGPT/SecGPT proposes per-plugin sandboxing with an orchestrator that mediates inter-plugin communication; each plugin runs in an isolated execution
+      context, preventing cross-plugin compromise.
+- selection_id: sel_D_014
+  bullet_id: agentic14
   atom_id: claim_agentic_security_architecture_willison_dual_llm_pattern
-  sub_area: dual_llm_pattern
-- bullet_id: agentic_meta2025promptguard2_86m
+  cache_id: cache_7d31fd1b044f4cdd
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: 'Willison articulates the informal Dual LLM pattern in April 2023: a privileged LLM with tool access never sees untrusted text; a quarantined LLM (tool-less)
+      processes untrusted content. The pattern na'
+- selection_id: sel_D_015
+  bullet_id: agentic15
   atom_id: claim_agentic_security_architecture_promptguard2_86m_recall_at_fpr
-  sub_area: score_fusion_stacker
-- bullet_id: agentic_meta2025promptguard2_22m
+  cache_id: cache_72c66b7fe681e5ef
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Llama-Prompt-Guard-2-86M is Meta's mDeBERTa-base multilingual prompt-injection + jailbreak classifier; the model card describes training with a custom
+      Recall@1%FPR loss; used as a stacker-eligible per
+- selection_id: sel_D_016
+  bullet_id: agentic16
   atom_id: claim_agentic_security_architecture_promptguard2_22m_latency
-  sub_area: score_fusion_stacker
-- bullet_id: agentic_liu2020energyloss
+  cache_id: cache_6022aac53b4aa7ad
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Llama-Prompt-Guard-2-22M is a DeBERTa-xsmall 22M-parameter classifier reporting a substantial latency reduction (~75%) relative to the 86M; relevant
+      to score-fusion deployment cost tradeoffs.
+- selection_id: sel_D_017
+  bullet_id: agentic17
   atom_id: claim_agentic_security_architecture_energy_loss_foundation
-  sub_area: score_fusion_stacker
-- bullet_id: agentic_ayub2024embedding
+  cache_id: cache_0fc989847d274b4a
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Energy-based Out-of-distribution Detection (NeurIPS 2020) introduces energy scores that better distinguish in- and out-of-distribution samples than softmax
+      confidence; functions both as scoring mechan
+- selection_id: sel_D_018
+  bullet_id: agentic18
   atom_id: claim_agentic_security_architecture_ayub_embedding_classifiers
-  sub_area: score_fusion_stacker
-- bullet_id: agentic_li2024injecguard
+  cache_id: cache_5d322a73036744e4
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Embedding-based classifiers (XGBoost, Random Forest, MLP) operating on OpenAI text-embedding-3-small can detect prompt injection at high accuracy; treated
+      here as a stacker-eligible signal class disti
+- selection_id: sel_D_019
+  bullet_id: agentic19
   atom_id: claim_agentic_security_architecture_injecguard_mof_overdefense
-  sub_area: score_fusion_stacker
-- bullet_id: agentic_abdelnabi2025tasktracker
+  cache_id: cache_ab9d48079556ef2d
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: InjecGuard introduces the Mitigating Overdefense Framework (MOF) and the NotInject benchmark, addressing the over-defense pathology where guardrail models
+      flag benign trigger-word-bearing inputs; rele
+- selection_id: sel_D_020
+  bullet_id: agentic20
   atom_id: claim_agentic_security_architecture_tasktracker_activation_delta
-  sub_area: activation_probe_methodology
-- bullet_id: agentic_abdelnabi2025tasktracker
+  cache_id: cache_6d742cb6609170a1
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: TaskTracker trains linear probes on activation deltas (pre- vs post-untrusted-data injection) of decoder LLMs to detect task drift; reports near-perfect
+      ROC AUC on synthetic task-drift datasets. The m
+- selection_id: sel_D_021
+  bullet_id: agentic21
   atom_id: claim_agentic_security_architecture_tasktracker_toolkit_scale
-  sub_area: activation_probe_methodology
-- bullet_id: agentic_wen2025instructdetector
+  cache_id: cache_6d742cb6609170a1
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Releases a toolkit of >500K instances across six LLMs (encoder + decoder variants) to support downstream activation-probe reproductions; benign-text-distribution-sharing
+      between train and test is late
+- selection_id: sel_D_022
+  bullet_id: agentic22
   atom_id: claim_agentic_security_architecture_instructdetector_high_accuracy
-  sub_area: activation_probe_methodology
-- bullet_id: agentic_hung2025attentiontracker
+  cache_id: cache_39929ecbe5b3d6a6
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: InstructDetector extends activation-based detection to indirect prompt injection; reports high OOD detection accuracy on BIPIA and very low ASR after
+      deployment. Treated as an extension of the TaskTra
+- selection_id: sel_D_023
+  bullet_id: agentic23
   atom_id: claim_agentic_security_architecture_attentiontracker_attention_signal
-  sub_area: activation_probe_methodology
-- bullet_id: agentic_debenedetti2024agentdojo
+  cache_id: cache_52f0885c01ea6bee
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: AttentionTracker proposes detection of prompt injection from attention-head-level patterns rather than hidden-state deltas; introduces a distinct signal
+      class within the activation-probe-methodology f
+- selection_id: sel_D_024
+  bullet_id: agentic24
   atom_id: claim_agentic_security_architecture_agentdojo_benchmark_design
-  sub_area: agentic_bench_critique
-- bullet_id: agentic_debenedetti2024agentdojo
+  cache_id: cache_28b49b68f7f9500e
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: AgentDojo is a dynamic environment to evaluate prompt-injection attacks and defenses on LLM agents; cited here as the critique-target benchmark whose
+      saturation/adaptive-attack limitations drive the r
+- selection_id: sel_D_025
+  bullet_id: agentic25
   atom_id: claim_agentic_security_architecture_agentdojo_critique_target
-  sub_area: agentic_bench_critique
-- bullet_id: agentic_jia2024taskshield
+  cache_id: cache_28b49b68f7f9500e
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Cross-classified as critique target (rather than benchmark catalogue) for this topic; original benchmark cataloguing lives in `direct-vs-indirect/B4`.
+      Methodology critique aggregated in this dossier f
+- selection_id: sel_D_026
+  bullet_id: agentic26
   atom_id: claim_agentic_security_architecture_taskshield_goal_verification
-  sub_area: agentic_bench_critique
-- bullet_id: agentic_zhu2025melon
+  cache_id: cache_46c1010fcfae5428
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: 'Task Shield enforces instruction-and-tool-call goal verification: each tool call must align with the original user task; reports very low ASR (~2%)
+      and high utility (~70%) on AgentDojo GPT-4o, but rai'
+- selection_id: sel_D_027
+  bullet_id: agentic27
   atom_id: claim_agentic_security_architecture_melon_masked_reexecution
-  sub_area: agentic_bench_critique
-- bullet_id: agentic_bhagwatkar2025firewalls
+  cache_id: cache_325bb7d4d75b8126
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: MELON (Masked Re-Execution and Tool Comparison) defends against indirect prompt injection by re-executing tool calls with masked inputs and comparing
+      trajectories; current ASR floor (<0.5%) on AgentDo
+- selection_id: sel_D_028
+  bullet_id: agentic28
   atom_id: claim_agentic_security_architecture_firewalls_saturation_critique
-  sub_area: agentic_bench_critique
-- bullet_id: agentic_abdelnabi2025llmailinject
+  cache_id: cache_beea4f2926635943
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Are Firewalls All You Need? argues that existing agentic security benchmarks (AgentDojo, ASB, InjecAgent, tau-Bench) are easily saturated by two-firewall
+      defenses; weak-attack pathologies hinder progr
+- selection_id: sel_D_029
+  bullet_id: agentic29
   atom_id: claim_agentic_security_architecture_llmail_inject_adaptive_gold_standard
-  sub_area: agentic_bench_critique
-- bullet_id: agentic_nasr2025attackersecond
+  cache_id: cache_8e0c41db3ea23938
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: 'LLMail-Inject is a Microsoft-organized IEEE SaTML 2025 challenge dataset capturing realistic adaptive prompt-injection attempts (208K adaptive attacks
+      from 839 participants); held up here as the gold '
+- selection_id: sel_D_030
+  bullet_id: agentic30
   atom_id: claim_agentic_security_architecture_attacker_second_static_defense_critique
-  sub_area: agentic_bench_critique
+  cache_id: cache_51e92f7784dddb6e
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: 'The Attacker Moves Second argues stronger adaptive attacks bypass defenses against LLM jailbreaks and prompt injections; static-defense numbers are
+      unreliable. Applied to agent harnesses, the D5 case '
+- selection_id: sel_D_031
+  bullet_id: agentic31
+  atom_id: claim_agentic_synth_architectural_defenses_dominate_agentdojo
+  cache_id: cache_cfffce6b1f23371d
+  span:
+    text_path_offset:
+    - 0
+    - 0
+    sha256_of_span: unknown
+    excerpt: Architectural defenses dominate AgentDojo by 1-2 orders of magnitude over classifier-only. CaMeL achieves 77% provably-secure (vs 84% undefended); Task
+      Shield 2.07% ASR; MELON 0.24% ASR with 68.52% ut
