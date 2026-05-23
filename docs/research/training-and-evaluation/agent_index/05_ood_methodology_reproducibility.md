@@ -1,6 +1,6 @@
 # C5. OOD generalization methodology + reproducibility crisis
 
-_4 primary-source entries covering Leave-One-Dataset-Out (LODO) methodology and disclosure gaps in 'winning' PI detectors. This file is foundational to the portfolio's OOD-wall thesis: it documents the canonical OOD-collapse example (ProtectAI v2's high in-distribution F1 → 1.34% TPR @ 0.5% FPR / 0.00% TPR @ 0.1% FPR on PromptShield Table 4) and the methodology that surfaces such collapses (LODO held-out-dataset evaluation rather than held-out-row from the same mixture). The portfolio inherits LODO discipline from submission ADR-016 + ADR-075 (see Verification & limits in the README)._
+_5 primary-source entries covering Leave-One-Dataset-Out (LODO) methodology and disclosure gaps in 'winning' PI detectors. This file is foundational to the portfolio's OOD-wall thesis: it documents the canonical OOD-collapse example (ProtectAI v2's high in-distribution F1 → 1.34% TPR @ 0.5% FPR / 0.00% TPR @ 0.1% FPR on PromptShield Table 4) and the methodology that surfaces such collapses (LODO held-out-dataset evaluation rather than held-out-row from the same mixture). The portfolio inherits LODO discipline from submission ADR-016 + ADR-075 (see Verification & limits in the README). Sprint 2 adds DomainBed (Gulrajani & Lopez-Paz 2020) as the academic foundation that ERM-with-careful-model-selection is a strong baseline across domain-generalization benchmarks — the methodological precedent the portfolio's LODO discipline inherits._
 
 ## C5.1. Fomin et al. When Benchmarks Lie
 
@@ -38,4 +38,13 @@ _4 primary-source entries covering Leave-One-Dataset-Out (LODO) methodology and 
   - **Result:** ProtectAI HuggingFace model card; documents Apache-2.0 license; training-data mixture details disclosed by license category (1 CC-BY-3.0, 8 MIT, 1 CC0, 6 public-domain, 5 Apache-2.0, 1 CC-BY-4.0) but no quantitative proportions (reproducibility gap flagged in C5). The canonical OOD-collapse example on PromptShield: per Jacob et al. Table 4 (§ C3.1), this detector reports 1.34% TPR @ 0.5% FPR and 0.00% TPR @ 0.1% FPR (annotated as no threshold achieves the desired FPR aside from 1.0) on the held-out PromptShield benchmark despite high in-distribution F1 [claim_training_and_evaluation_protectai2024deberta_a2_provenance].
   - **Status:** Verified (HF model card, 2026-05-22). `freshness_tier: volatile`. **License red flag (Phase 2 report):** exact training-data mixture undisclosed → independent reproducibility limited; cross-cuts to § C4.4 (Nasr 'attacker moves second' static-defense critique) and § C3.1 (PromptShield OOD-collapse evidence). (recheck after 2026-06-22)
 
-4 entries.
+## C5.5. Gulrajani & Lopez-Paz DomainBed
+
+- **In Search of Lost Domain Generalization** — Gulrajani & Lopez-Paz (ICLR 2021).
+  - **Source:** https://arxiv.org/abs/2007.01434
+  - **Code:** —
+  - **Mechanism:** Verbatim — "The goal of domain generalization algorithms is to predict well on distributions different from those seen during training" — the canonical formal definition of the OOD-evaluation regime the portfolio's LODO discipline operationalizes for prompt-injection detectors [claim_training_and_evaluation_gulrajani2021domainbed_a1_dg_definition]; verbatim — "model selection is non-trivial for domain generalization tasks" — establishes that train/val protocol choice is itself a load-bearing methodological commitment, not a free hyperparameter [claim_training_and_evaluation_gulrajani2021domainbed_a2_model_selection].
+  - **Result:** Verbatim — "empirical risk minimization shows state-of-the-art performance across all datasets" (the DomainBed surprise result that ERM with careful model selection beats most published domain-generalization algorithms) [claim_training_and_evaluation_gulrajani2021domainbed_a3_erm_baseline]; load-bearing precedent for portfolio ADR-016 + ADR-075 (LODO + unified-OOD-drop narrative) — when the field reports gains over a weak ERM baseline, the gains may not survive a careful protocol; mirrored by submission ADR-016's cross-source-disjoint LODO splits and ADR-075's full-FT OOD-drop verdict (DeBERTa-v3-base null result on PI-detector LODO).
+  - **Status:** Verified (webfetch, 2026-05-23). `freshness_tier: historical`. Three verbatim_match evidence anchors confirmed in `evidence_ledger.yml` (ev_0127 / ev_0128 / ev_0129); foundational ICLR 2021 OOD-evaluation paper.
+
+5 entries.

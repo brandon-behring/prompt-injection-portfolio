@@ -27,33 +27,33 @@ Section anchors below use the `## B2.` prefix from `../research_plan.md`. The 10
   - **Source:** https://arxiv.org/abs/2410.05451
   - **Code:** https://github.com/facebookresearch/SecAlign
   - **Mechanism:** Casts prompt-injection defense as preference optimization: builds (secure, insecure) response pairs and uses DPO to train the model to prefer the secure response under untrusted input [claim_secalign_dpo_defense].
-  - **Result:** Strong reduction in attack-success rate while preserving utility; positioned as the DPO complement to StruQ's SFT formulation.
+  - **Result:** Strong reduction in attack-success rate while preserving utility; positioned as the DPO complement to StruQ's SFT formulation. Body-anchored quote: "SecAlign reduces the attack success rate of the strongest tested prompt injection to 8% without hurting the utility from Llama3-8B-Instruct" [claim_secalign_llama3_8b_8pct_asr].
   - **Status:** Verified.
-  - **Evidence:** ev_direct_vs_indirect_0008
+  - **Evidence:** ev_direct_vs_indirect_0008, ev_direct_vs_indirect_0057
 
 - **Meta SecAlign: A Secure Foundation LLM Against Prompt Injection Attacks** — Chen et al. (2025).
   - **Source:** https://arxiv.org/abs/2507.02735
   - **Code:** —
-  - **Mechanism:** Develops Meta SecAlign as "the first fully open-source LLM with built-in model-level defense that achieves commercial-grade performance" against prompt injection, applying the SecAlign DPO recipe to produce Meta-SecAlign-70B and Meta-SecAlign-8B model variants [claim_meta_secalign_open_model]. (Specific Llama base model and `input` role separation are paper-body details; unverified body claim.)
+  - **Mechanism:** Develops Meta SecAlign as "the first fully open-source LLM with built-in model-level defense that achieves commercial-grade performance" against prompt injection, applying the SecAlign DPO recipe to produce Meta-SecAlign-70B and Meta-SecAlign-8B model variants [claim_meta_secalign_open_model]. Body-anchored detail: the paper specifies "SecAlign++, which fine-tunes Llama-3.1-8B-Instruct and Llama-3.3-70B-Instruct" as the base models — resolving the round-1 audit flag on the Llama-3.3-70B base.
   - **Result:** Open-weight model designed to let the security community red-team injection defenses without depending on proprietary APIs; meaningful for reproducibility.
   - **Status:** Verified (no widely-known repo) (recheck after 2026-08-20 — active freshness tier).
-  - **Evidence:** ev_direct_vs_indirect_0009
+  - **Evidence:** ev_direct_vs_indirect_0009, ev_direct_vs_indirect_0059
 
 - **Defeating Prompt Injections by Design (CaMeL)** — Debenedetti et al. (Google DeepMind, 2025).
   - **Source:** https://arxiv.org/abs/2503.18813
   - **Code:** https://github.com/google-research/camel-prompt-injection
   - **Mechanism:** Proposes CaMeL, "a robust defense that creates a protective system layer around the LLM" so that even when the underlying model is susceptible to attacks the system as a whole remains secure [claim_camel_capability_isolation]. CaMeL "explicitly extracts the control and data flows from the (trusted) query" so that untrusted data retrieved by the LLM "can never impact the program flow" [claim_camel_control_data_flow].
-  - **Result:** Capability-based-isolation paradigm; reports provably-secure behavior on a substantial subset of AgentDojo. Conceptual descendant of Willison's dual-LLM pattern (see `01_threat_models.md` § B1.3).
+  - **Result:** Capability-based-isolation paradigm; reports provably-secure behavior on a substantial subset of AgentDojo. Body-anchored quote: "77% of tasks with provable security (compared to 84% with an undefended system) in AgentDojo" [claim_camel_agentdojo_provable_security_77pct]. Conceptual descendant of Willison's dual-LLM pattern (see `01_threat_models.md` § B1.3).
   - **Status:** Verified (recheck after 2026-08-20 — active freshness tier).
-  - **Evidence:** ev_direct_vs_indirect_0010, ev_direct_vs_indirect_0011
+  - **Evidence:** ev_direct_vs_indirect_0010, ev_direct_vs_indirect_0011, ev_direct_vs_indirect_0056
 
 - **The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions** — Wallace et al. (OpenAI, 2024).
   - **Source:** https://arxiv.org/abs/2404.13208
   - **Code:** —
-  - **Mechanism:** Proposes an instruction hierarchy that "explicitly defines how models should behave when instructions of different priorities conflict" and trains the model to honor that priority order [claim_instruction_hierarchy_priority]. (Concrete privileged-to-untrusted ordering — system > developer > user > tool — is described in the paper body; unverified body claim.)
+  - **Mechanism:** Proposes an instruction hierarchy that "explicitly defines how models should behave when instructions of different priorities conflict" and trains the model to honor that priority order [claim_instruction_hierarchy_priority]. Body-anchored quote: the paper enumerates "System Messages provided by application developers, User Messages provided by end users, and Tool Outputs" — resolving the round-1 audit flag on the privileged-to-untrusted ordering.
   - **Result:** Training-time defense complementary to StruQ/SecAlign; shipped in OpenAI models from GPT-4o onward.
   - **Status:** Verified (no widely-known repo).
-  - **Evidence:** ev_direct_vs_indirect_0012
+  - **Evidence:** ev_direct_vs_indirect_0012, ev_direct_vs_indirect_0058
 
 - **Jatmo: Prompt Injection Defense by Task-Specific Finetuning** — Piet et al. (ESORICS 2024, arXiv preprint).
   - **Source:** https://arxiv.org/abs/2312.17673

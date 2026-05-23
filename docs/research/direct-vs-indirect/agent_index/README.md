@@ -5,9 +5,9 @@
 **Purpose:** indexed primary-source synthesis of the conceptual + practical split between direct (user-supplied) and indirect / XPIA (retrieved-content) prompt injection — threat taxonomies, architectural defenses, production incidents, and indirect-injection benchmarks. Designed for dual consumption: humans skim directly; future LLM agents ground reasoning in the cited primary sources.
 **Primary intended consumer:** future LLM agents working on prompt-injection defenses, agentic-AI security audits, or AI-safety portfolio projects under `/Users/brandonbehring/Claude/prompt-injection-portfolio/`. Secondary consumers: human researchers and security practitioners.
 **Self-containedness guarantee:** this folder has no hard dependence on sibling files outside the parent `direct-vs-indirect/` directory and its YAML ledgers.
-**Scope:** 33 primary entries across 4 sub-areas (B1 threat-models / B2 architectural defenses / B3 production incidents / B4 indirect-injection benchmarks); date range 2023-04 (Willison dual-LLM, ChatGPT image-exfil) through 2026-01 (ShadowPrompt fix). Strict-live freshness as of 2026-05-22.
+**Scope:** 42 primary entries across 4 sub-areas (B1 threat-models / B2 architectural defenses / B3 production incidents / B4 indirect-injection benchmarks); date range 2022-11 (Perez & Ribeiro "Ignore Previous Prompt") through 2026-01 (ShadowPrompt fix). Strict-live freshness as of 2026-05-23.
 **Coverage:** 4 topic files + this README; structured 5-bullet entries (Source / Code / Mechanism / Result / Status / Evidence) with inline atomic-claim IDs.
-**Last updated:** 2026-05-22.
+**Last updated:** 2026-05-23 (Sprint 2: +9 B1 entries — Perez 2022, Liu 2024 formalizing, Liu 2023 LLM-apps, Shi 2024 JudgeDeceiver, Pasquini 2024 Neural Exec, Evertz 2024 Whispers, Wei 2023 Jailbroken, Rossi 2024 survey, MITRE ATLAS 2024; +4 B2 body-anchored evidence refs for CaMeL/SecAlign/Meta SecAlign/Instruction Hierarchy).
 
 ## ⚠️ Scope boundary
 
@@ -48,6 +48,15 @@ Routes by question type. Each points to a specific file and section anchor.
 - **"What's OWASP LLM01:2025?"** → `01_threat_models.md` § B1 (OWASP Gen AI Security Project 2025).
 - **"What's the dual-LLM pattern?"** → `01_threat_models.md` § B1 (Willison 2023).
 - **"What's the 'lethal trifecta'?"** → `01_threat_models.md` § B1 (Willison 2025).
+- **"What's the pre-Greshake canonical reference for direct prompt injection?"** → `01_threat_models.md` § B1 (Perez & Ribeiro 2022, *Ignore Previous Prompt*, NeurIPS ML Safety Workshop).
+- **"What's the standard formalization for prompt-injection attack/defense matrices?"** → `01_threat_models.md` § B1 (Liu et al. USENIX Security 2024, *Formalizing and Benchmarking*).
+- **"What's HouYi?"** → `01_threat_models.md` § B1 (Liu et al. 2023, black-box attack against 36 LLM-integrated apps, 31 vulnerable).
+- **"What's JudgeDeceiver?"** → `01_threat_models.md` § B1 (Shi et al. CCS 2024, optimization-based attack against LLM-as-a-Judge).
+- **"What's Neural Exec?"** → `01_threat_models.md` § B1 (Pasquini et al. 2024, learning-based prompt-injection-trigger family).
+- **"What's the 'Whispers in the Machine' paper?"** → `01_threat_models.md` § B1 (Evertz et al. DIMVA 2026, confidentiality in agentic systems, 10 agents × 20 tool scenarios × 14 attacks).
+- **"What's the Wei et al. jailbreak failure-mode paper?"** → `01_threat_models.md` § B1 (Wei et al. NeurIPS 2023, competing objectives + mismatched generalization).
+- **"What's an early survey of prompt-injection attack categories?"** → `01_threat_models.md` § B1 (Rossi et al. 2024, *Early Categorization*).
+- **"What's MITRE ATLAS / AML.T0051?"** → `01_threat_models.md` § B1 (MITRE Corporation 2024, adversarial-tactic taxonomy for AI systems).
 - **"What's Spotlighting?"** → `02_architectural_defenses.md` § B2 (Hines et al. 2024, Microsoft).
 - **"What's StruQ?"** → `02_architectural_defenses.md` § B2 (Chen et al. USENIX 2025, reserved-delimiter SFT).
 - **"What's SecAlign?"** → `02_architectural_defenses.md` § B2 (Chen et al. CCS 2025, DPO over secure/insecure pairs).

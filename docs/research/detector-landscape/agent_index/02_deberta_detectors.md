@@ -46,3 +46,30 @@ Open-source prompt-injection encoder classifiers built on DeBERTa-v3 (Microsoft,
   - **Mechanism:** DMPI-PMHFE dual-channel architecture: DeBERTa-v3-base extracts semantic features in parallel with heuristic rules based on known attack patterns; the two feature channels are fused and passed through a fully-connected classifier head [claim_detector_landscape_0009_01]. Hybrid encoder + heuristic-feature pattern motivated by limitations of relying only on DeBERTa-extracted features [claim_detector_landscape_0009_02].
   - **Result:** Abstract claims DMPI-PMHFE outperforms existing methods on accuracy, recall, and F1-score across diverse benchmark datasets, and reduces attack success rates across GLM-4, LLaMA 3, Qwen 2.5, and GPT-4o when deployed in-line (specific deltas are `(unverified body claim)`).
   - **Status:** Verified. (no widely-known repo) Workshop venue; treat the magnitude of improvement claims with caution pending independent reproduction. [ev_detector_landscape_0010]
+
+## A2.6. ProtectAI DeBERTa v3 small Prompt Injection v2 (Protect AI)
+
+- **protectai/deberta-v3-small-prompt-injection-v2 (DeBERTa-v3-small ~70M latency variant; F1 94.62 post-training)** — Protect AI (Hugging Face model card, 2024).
+  - **Source:** https://huggingface.co/protectai/deberta-v3-small-prompt-injection-v2
+  - **Code:** https://huggingface.co/protectai/deberta-v3-small-prompt-injection-v2
+  - **Mechanism:** DeBERTa-v3-small (~70M) sequence classifier — Protect AI's latency-focused sibling to v2-base (§ A2.2); card surface anchors transformer-loading instructions [claim_detector_landscape_0047_01]. Positioned at the same latency tier as hlyn-labs 70M (§ A2.4).
+  - **Result:** Model-card surface — F1 94.62 post-training per bib_ledger title field is `(unverified body claim)`; the headline matches the lineage's positioning as a deployment latency variant.
+  - **Status:** Verified. (model card surface; small/latency variant) [ev_detector_landscape_0048]
+
+## A2.7. fmops DistilBERT Prompt Injection (fmops)
+
+- **fmops/distilbert-prompt-injection (DistilBERT 67M legacy baseline trained on deepset/prompt-injections; ProtectAI predecessor on latency axis)** — fmops (Hugging Face model card, 2023).
+  - **Source:** https://huggingface.co/fmops/distilbert-prompt-injection
+  - **Code:** https://huggingface.co/fmops/distilbert-prompt-injection
+  - **Mechanism:** DistilBERT (67M) encoder classifier trained on the deepset/prompt-injections dataset; legacy baseline that predates the DeBERTa-v3 generation. Card surface anchors the model identifier [claim_detector_landscape_0054_01]. Same latency tier as DeBERTa-v3-small (§ A2.6) and hlyn-labs 70M (§ A2.4).
+  - **Result:** Model-card surface — no quantitative claim is anchored in the abstract-equivalent area. Practitioner reference value is as the pre-DeBERTa-v3 baseline.
+  - **Status:** Verified. (model card surface; legacy DistilBERT baseline) [ev_detector_landscape_0055]
+
+## A2.8. hlyn-labs Prompt Injection Judge DeBERTa dataset (Hlyn Labs)
+
+- **hlyn-labs/prompt-injection-judge-deberta-dataset (~400K samples merged from 12 sources; companion to hlyn2025judgedeberta model)** — Hlyn Labs (Hugging Face dataset card, 2026).
+  - **Source:** https://huggingface.co/datasets/hlyn-labs/prompt-injection-judge-deberta-dataset
+  - **Code:** —
+  - **Mechanism:** Companion training dataset for the hlyn-labs DeBERTa-v3-xsmall 70M detector at § A2.4; ~400K samples merged from 12 sources per bib_ledger title. HF dataset card surface anchors the dataset identifier [claim_detector_landscape_0058_01].
+  - **Result:** Dataset-card surface — composition details (12 sources, ~400K samples) live in bib_ledger title and are `(unverified body claim)`; dataset card itself anchors only the identifier.
+  - **Status:** Verified. (dataset card surface) Use alongside § A2.4 for hlyn-labs replication context. [ev_detector_landscape_0059]

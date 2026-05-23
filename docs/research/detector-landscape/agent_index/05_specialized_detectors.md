@@ -154,3 +154,12 @@ Detectors that depart from the encoder-classifier and LLM-judge defaults: activa
   - **Mechanism:** Benchmark for Indirect Prompt Injection Attack — the canonical Microsoft-side benchmark for RAG-flavored indirect prompt injection (instructions embedded in external content fed to the LLM, vs. direct prompt injection). Repo surface anchors the GitHub feedback footer [claim_detector_landscape_0043_01]; mechanism details live in the companion arXiv preprint (out of cache scope here).
   - **Result:** GitHub repo surface — quantitative claims are `(unverified body claim)` since not in abstract-equivalent area. Standard reference for indirect-PI benchmarking; InstructDetector (§ A5.2) reports 0.03% ASR after defense on BIPIA.
   - **Status:** Verified. (vendor repo) Frequently cited; one of the few pre-2024 indirect-PI benchmarks still in active use. [ev_detector_landscape_0044]
+
+## A5.18. The Hardware Lottery — matched-compute critique (Hooker)
+
+- **The Hardware Lottery** — Hooker (arXiv 2020).
+  - **Source:** https://arxiv.org/abs/2009.06489
+  - **Code:** —
+  - **Mechanism:** Foundational essay arguing that the dominance of certain ML architectures reflects co-evolution with available hardware rather than intrinsic superiority — arXiv title anchors the contribution [claim_detector_landscape_0065_01]. Methodological lens for the detector-landscape: encoder-vs-decoder vs activation-probe latency comparisons (§ A2.4, § A3.3, § A5.1) need matched-compute framing to avoid mis-attributing wins to architecture when they're really hardware-fit wins.
+  - **Result:** Position paper — no detector-specific benchmark numbers; cited here as the canonical "matched compute" caveat that should accompany cross-architecture latency / accuracy comparisons across the detector ecosystem.
+  - **Status:** Verified. (arXiv essay; matched-compute framing reference) [ev_detector_landscape_0066]

@@ -1,6 +1,6 @@
 # C1. Training data sources
 
-_19 primary-source entries cataloging public datasets used to train prompt-injection detectors and adjacent guardrails. Each entry documents existence + provenance + size where in-abstract; license + composition + known leakage issues are surfaced in Status fields where the dataset card or paper makes them explicit. Per ADR-041 / ETHICS §1, datasets with attack content document existence + composition + license; attack examples are NOT excerpted into bullet bodies._
+_22 primary-source entries cataloging public datasets used to train prompt-injection detectors and adjacent guardrails. Each entry documents existence + provenance + size where in-abstract; license + composition + known leakage issues are surfaced in Status fields where the dataset card or paper makes them explicit. Per ADR-041 / ETHICS §1, datasets with attack content document existence + composition + license; attack examples are NOT excerpted into bullet bodies. Sprint 2 adds OASST1 (benign conversational pool), neuralchemy/Prompt-injection-dataset (22K rows, group-aware splits), and two ProtectAI-related dataset cards (validation suite + Harelix mixed)._
 
 ## C1.1. deepset/prompt-injections
 
@@ -173,4 +173,34 @@ _19 primary-source entries cataloging public datasets used to train prompt-injec
   - **Result:** Released by Microsoft Research; CC license per HuggingFace card; used as benign-instruction balance in mixed PI training corpora [claim_training_and_evaluation_microsoft2024orcaagentinstruct_a2_provenance].
   - **Status:** Verified (HF dataset card, 2026-05-22). `freshness_tier: volatile`.
 
-19 entries.
+22 entries.
+
+## C1.20. OpenAssistant Conversations -- Democratizing Large Language Model Alignment
+
+- **OpenAssistant Conversations -- Democratizing Large Language Model Alignment** — Köpf, Kilcher, von Rütte et al. (2023).
+  - **Source:** https://arxiv.org/abs/2304.07327
+  - **Code:** —
+  - **Mechanism:** OpenAssistant Conversations (OASST1) is a multilingual conversational dataset with 161,443 messages across 35 languages and 461,292 quality annotations from…
+  - **Result:** Synthesis claim: OASST1 serves as a benign-conversation pool for prompt-injection detector training in sibling ADR-016 LODO research; its naturalistic…
+  - **Status:** Verified
+  - **Evidence:** ev_training_and_evaluation_0132
+
+## C1.21. protectai/prompt-injection-validation
+
+- **protectai/prompt-injection-validation** — ProtectAI (2024).
+  - **Source:** https://huggingface.co/datasets/protectai/prompt-injection-validation
+  - **Code:** —
+  - **Mechanism:** protectai/prompt-injection-validation: ProtectAI's multi-source eval suite for the deberta-v3-base-prompt-injection-v2 model. WebSearch confirms HF page…
+  - **Result:** See primary source for details.
+  - **Status:** Unverified
+  - **Evidence:** ev_training_and_evaluation_0154
+
+## C1.22. Harelix/Prompt-Injection-Mixed-Techniques-2024
+
+- **Harelix/Prompt-Injection-Mixed-Techniques-2024** — Harelix (2024).
+  - **Source:** https://huggingface.co/datasets/Harelix/Prompt-Injection-Mixed-Techniques-2024
+  - **Code:** —
+  - **Mechanism:** Harelix/Prompt-Injection-Mixed-Techniques-2024: WebSearch confirms HF page existence; 1,174 rows, Apache 2.0 license, one default subset / one train split,…
+  - **Result:** See primary source for details.
+  - **Status:** Unverified
+  - **Evidence:** ev_training_and_evaluation_0155
