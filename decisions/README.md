@@ -107,12 +107,22 @@ Status legend:
 - ✓ [ADR-046: book-scaffold-astro v3.5 pin + M1 unblock](ADR-046-book-scaffold-astro-v35-pin-and-m1-unblock.md) (Round 21)
 - ✓ [ADR-047: M0 finish-out strategy](ADR-047-m0-finish-out-strategy.md) (Round 22)
 
+### Round 24 (M0 close — Sprint 2 dossier closure + Sprint 3 fold-in)
+
+- ✓ [ADR-048: cross-classification policy](ADR-048-cross-classification-policy.md) (topic-prefixed bibkeys for multi-topic primary sources)
+- ✓ [ADR-049: body-quote anchoring discipline](ADR-049-body-quote-anchoring-discipline.md) (PDF body vs abstract-level extraction)
+- ✓ [ADR-050: vendor cluster posture](ADR-050-vendor-cluster-posture.md) (unverified-by-design for parked/acquired commercial detector vendors)
+
+Round 24 cross-references added to ADR-036 + ADR-038 + ADR-041 + ADR-045
+(inline "Sprint 2 dossier evidence" subsections citing dossier bibkeys
++ claim families; per Sprint 2 E6 deferral).
+
 ## Tally
 
 | Status | Count |
 |---|---:|
-| ✓ Accepted | 41 |
+| ✓ Accepted | 44 |
 | 🔒 Reserved | 4 |
 | ⊘ DROPPED | 2 |
-| **Total entries** | **47** |
-| Files in `decisions/` | 45 (DROPPED entries are index-only) |
+| **Total entries** | **50** |
+| Files in `decisions/` | 48 (DROPPED entries are index-only) |
