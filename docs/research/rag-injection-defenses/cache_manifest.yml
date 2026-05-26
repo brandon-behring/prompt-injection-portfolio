@@ -11,9 +11,9 @@ entries:
   content_type: text/html
   bytes: 46760
   sha256: 2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878
-  raw_path: ~/Claude/research_cache/blobs/sha256/2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878
-  text_path: ~/Claude/research_cache/text/sha256/2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878.json
+  raw_path: blobs/sha256/2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878
+  text_path: text/sha256/2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878.txt
+  metadata_path: metadata/sha256/2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -23,9 +23,9 @@ entries:
   content_type: text/html
   bytes: 49283
   sha256: 70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713
-  raw_path: ~/Claude/research_cache/blobs/sha256/70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713
-  text_path: ~/Claude/research_cache/text/sha256/70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713.json
+  raw_path: blobs/sha256/70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713
+  text_path: text/sha256/70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713.txt
+  metadata_path: metadata/sha256/70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -35,9 +35,9 @@ entries:
   content_type: text/html
   bytes: 49653
   sha256: 8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6
-  raw_path: ~/Claude/research_cache/blobs/sha256/8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6
-  text_path: ~/Claude/research_cache/text/sha256/8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6.json
+  raw_path: blobs/sha256/8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6
+  text_path: text/sha256/8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6.txt
+  metadata_path: metadata/sha256/8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -47,9 +47,9 @@ entries:
   content_type: text/html
   bytes: 212
   sha256: d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d
-  raw_path: ~/Claude/research_cache/blobs/sha256/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d
-  text_path: ~/Claude/research_cache/text/sha256/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d.json
+  raw_path: blobs/sha256/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d
+  text_path: text/sha256/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d.txt
+  metadata_path: metadata/sha256/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d.json
   restricted: false
   rights_status: cache_only
   extraction_status: partial
@@ -59,9 +59,9 @@ entries:
   content_type: text/html
   bytes: 263918
   sha256: 511632eb78fd27aaf3f54b96d7aefa6d29bc4a8d040380ef7667c9260a8738d3
-  raw_path: ~/Claude/research_cache/blobs/sha256/511632eb78fd27aaf3f54b96d7aefa6d29bc4a8d040380ef7667c9260a8738d3
-  text_path: ~/Claude/research_cache/text/sha256/511632eb78fd27aaf3f54b96d7aefa6d29bc4a8d040380ef7667c9260a8738d3.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/511632eb78fd27aaf3f54b96d7aefa6d29bc4a8d040380ef7667c9260a8738d3.json
+  raw_path: blobs/sha256/511632eb78fd27aaf3f54b96d7aefa6d29bc4a8d040380ef7667c9260a8738d3
+  text_path: text/sha256/511632eb78fd27aaf3f54b96d7aefa6d29bc4a8d040380ef7667c9260a8738d3.txt
+  metadata_path: metadata/sha256/511632eb78fd27aaf3f54b96d7aefa6d29bc4a8d040380ef7667c9260a8738d3.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -71,9 +71,9 @@ entries:
   content_type: text/html
   bytes: 61941
   sha256: f8a5917cbb6f90f31cd050d0b1c6c8773d99450847ef8d7fb95f46c813bacc0a
-  raw_path: ~/Claude/research_cache/blobs/sha256/f8a5917cbb6f90f31cd050d0b1c6c8773d99450847ef8d7fb95f46c813bacc0a
-  text_path: ~/Claude/research_cache/text/sha256/f8a5917cbb6f90f31cd050d0b1c6c8773d99450847ef8d7fb95f46c813bacc0a.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/f8a5917cbb6f90f31cd050d0b1c6c8773d99450847ef8d7fb95f46c813bacc0a.json
+  raw_path: blobs/sha256/f8a5917cbb6f90f31cd050d0b1c6c8773d99450847ef8d7fb95f46c813bacc0a
+  text_path: text/sha256/f8a5917cbb6f90f31cd050d0b1c6c8773d99450847ef8d7fb95f46c813bacc0a.txt
+  metadata_path: metadata/sha256/f8a5917cbb6f90f31cd050d0b1c6c8773d99450847ef8d7fb95f46c813bacc0a.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -83,9 +83,9 @@ entries:
   content_type: text/html
   bytes: 253759
   sha256: 2cd488ed531263180448699d4750808704f4561ab3d392de40765cf93e43ce20
-  raw_path: ~/Claude/research_cache/blobs/sha256/2cd488ed531263180448699d4750808704f4561ab3d392de40765cf93e43ce20
-  text_path: ~/Claude/research_cache/text/sha256/2cd488ed531263180448699d4750808704f4561ab3d392de40765cf93e43ce20.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/2cd488ed531263180448699d4750808704f4561ab3d392de40765cf93e43ce20.json
+  raw_path: blobs/sha256/2cd488ed531263180448699d4750808704f4561ab3d392de40765cf93e43ce20
+  text_path: text/sha256/2cd488ed531263180448699d4750808704f4561ab3d392de40765cf93e43ce20.txt
+  metadata_path: metadata/sha256/2cd488ed531263180448699d4750808704f4561ab3d392de40765cf93e43ce20.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -95,9 +95,9 @@ entries:
   content_type: text/html
   bytes: 384095
   sha256: 0ff0ef0921c091ce46e8ac77f504a1ed408db29a1e1941190790233492af3c9f
-  raw_path: ~/Claude/research_cache/blobs/sha256/0ff0ef0921c091ce46e8ac77f504a1ed408db29a1e1941190790233492af3c9f
-  text_path: ~/Claude/research_cache/text/sha256/0ff0ef0921c091ce46e8ac77f504a1ed408db29a1e1941190790233492af3c9f.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/0ff0ef0921c091ce46e8ac77f504a1ed408db29a1e1941190790233492af3c9f.json
+  raw_path: blobs/sha256/0ff0ef0921c091ce46e8ac77f504a1ed408db29a1e1941190790233492af3c9f
+  text_path: text/sha256/0ff0ef0921c091ce46e8ac77f504a1ed408db29a1e1941190790233492af3c9f.txt
+  metadata_path: metadata/sha256/0ff0ef0921c091ce46e8ac77f504a1ed408db29a1e1941190790233492af3c9f.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -107,9 +107,9 @@ entries:
   content_type: text/html
   bytes: 47464
   sha256: 0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377
-  raw_path: ~/Claude/research_cache/blobs/sha256/0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377
-  text_path: ~/Claude/research_cache/text/sha256/0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377.json
+  raw_path: blobs/sha256/0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377
+  text_path: text/sha256/0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377.txt
+  metadata_path: metadata/sha256/0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -119,9 +119,9 @@ entries:
   content_type: text/html
   bytes: 45586
   sha256: 67bd28229d9c5dbbac2b2d45146344546a1679187b87cb400b23ee969bdae8e0
-  raw_path: ~/Claude/research_cache/blobs/sha256/67bd28229d9c5dbbac2b2d45146344546a1679187b87cb400b23ee969bdae8e0
-  text_path: ~/Claude/research_cache/text/sha256/67bd28229d9c5dbbac2b2d45146344546a1679187b87cb400b23ee969bdae8e0.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/67bd28229d9c5dbbac2b2d45146344546a1679187b87cb400b23ee969bdae8e0.json
+  raw_path: blobs/sha256/67bd28229d9c5dbbac2b2d45146344546a1679187b87cb400b23ee969bdae8e0
+  text_path: text/sha256/67bd28229d9c5dbbac2b2d45146344546a1679187b87cb400b23ee969bdae8e0.txt
+  metadata_path: metadata/sha256/67bd28229d9c5dbbac2b2d45146344546a1679187b87cb400b23ee969bdae8e0.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -131,9 +131,9 @@ entries:
   content_type: text/html
   bytes: 48010
   sha256: 253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526
-  raw_path: ~/Claude/research_cache/blobs/sha256/253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526
-  text_path: ~/Claude/research_cache/text/sha256/253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526.json
+  raw_path: blobs/sha256/253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526
+  text_path: text/sha256/253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526.txt
+  metadata_path: metadata/sha256/253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -143,9 +143,9 @@ entries:
   content_type: text/html
   bytes: 45447
   sha256: 08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c
-  raw_path: ~/Claude/research_cache/blobs/sha256/08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c
-  text_path: ~/Claude/research_cache/text/sha256/08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c.json
+  raw_path: blobs/sha256/08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c
+  text_path: text/sha256/08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c.txt
+  metadata_path: metadata/sha256/08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -155,9 +155,9 @@ entries:
   content_type: text/html
   bytes: 82943
   sha256: d6c4a8f317e625aaee774f12eb80d39e6267613a2e3bd8dd5528b409fda85596
-  raw_path: ~/Claude/research_cache/blobs/sha256/d6c4a8f317e625aaee774f12eb80d39e6267613a2e3bd8dd5528b409fda85596
-  text_path: ~/Claude/research_cache/text/sha256/d6c4a8f317e625aaee774f12eb80d39e6267613a2e3bd8dd5528b409fda85596.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/d6c4a8f317e625aaee774f12eb80d39e6267613a2e3bd8dd5528b409fda85596.json
+  raw_path: blobs/sha256/d6c4a8f317e625aaee774f12eb80d39e6267613a2e3bd8dd5528b409fda85596
+  text_path: text/sha256/d6c4a8f317e625aaee774f12eb80d39e6267613a2e3bd8dd5528b409fda85596.txt
+  metadata_path: metadata/sha256/d6c4a8f317e625aaee774f12eb80d39e6267613a2e3bd8dd5528b409fda85596.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -167,9 +167,9 @@ entries:
   content_type: text/html
   bytes: 92083
   sha256: d6f1a60278136697a2a9f63d778931843376b364df993d46b5637ac40d10146b
-  raw_path: ~/Claude/research_cache/blobs/sha256/d6f1a60278136697a2a9f63d778931843376b364df993d46b5637ac40d10146b
-  text_path: ~/Claude/research_cache/text/sha256/d6f1a60278136697a2a9f63d778931843376b364df993d46b5637ac40d10146b.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/d6f1a60278136697a2a9f63d778931843376b364df993d46b5637ac40d10146b.json
+  raw_path: blobs/sha256/d6f1a60278136697a2a9f63d778931843376b364df993d46b5637ac40d10146b
+  text_path: text/sha256/d6f1a60278136697a2a9f63d778931843376b364df993d46b5637ac40d10146b.txt
+  metadata_path: metadata/sha256/d6f1a60278136697a2a9f63d778931843376b364df993d46b5637ac40d10146b.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -179,9 +179,9 @@ entries:
   content_type: text/html
   bytes: 91527
   sha256: b36fa9cd293f76e9da6dd4810d64fe5dc766a55d27fe58d3737ba5730a8284aa
-  raw_path: ~/Claude/research_cache/blobs/sha256/b36fa9cd293f76e9da6dd4810d64fe5dc766a55d27fe58d3737ba5730a8284aa
-  text_path: ~/Claude/research_cache/text/sha256/b36fa9cd293f76e9da6dd4810d64fe5dc766a55d27fe58d3737ba5730a8284aa.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/b36fa9cd293f76e9da6dd4810d64fe5dc766a55d27fe58d3737ba5730a8284aa.json
+  raw_path: blobs/sha256/b36fa9cd293f76e9da6dd4810d64fe5dc766a55d27fe58d3737ba5730a8284aa
+  text_path: text/sha256/b36fa9cd293f76e9da6dd4810d64fe5dc766a55d27fe58d3737ba5730a8284aa.txt
+  metadata_path: metadata/sha256/b36fa9cd293f76e9da6dd4810d64fe5dc766a55d27fe58d3737ba5730a8284aa.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -191,9 +191,9 @@ entries:
   content_type: text/html
   bytes: 19587
   sha256: 176f4d1b387fbc02d1a42b4cb952441431ffdd1412403ccf3002bb9f2d6468cc
-  raw_path: ~/Claude/research_cache/blobs/sha256/176f4d1b387fbc02d1a42b4cb952441431ffdd1412403ccf3002bb9f2d6468cc
-  text_path: ~/Claude/research_cache/text/sha256/176f4d1b387fbc02d1a42b4cb952441431ffdd1412403ccf3002bb9f2d6468cc.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/176f4d1b387fbc02d1a42b4cb952441431ffdd1412403ccf3002bb9f2d6468cc.json
+  raw_path: blobs/sha256/176f4d1b387fbc02d1a42b4cb952441431ffdd1412403ccf3002bb9f2d6468cc
+  text_path: text/sha256/176f4d1b387fbc02d1a42b4cb952441431ffdd1412403ccf3002bb9f2d6468cc.txt
+  metadata_path: metadata/sha256/176f4d1b387fbc02d1a42b4cb952441431ffdd1412403ccf3002bb9f2d6468cc.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -203,9 +203,9 @@ entries:
   content_type: text/html
   bytes: 17116
   sha256: d63581ef546db4629722f6e9b3ab6e872f8d8f182661f89f0d6ba07c5da4e89e
-  raw_path: ~/Claude/research_cache/blobs/sha256/d63581ef546db4629722f6e9b3ab6e872f8d8f182661f89f0d6ba07c5da4e89e
-  text_path: ~/Claude/research_cache/text/sha256/d63581ef546db4629722f6e9b3ab6e872f8d8f182661f89f0d6ba07c5da4e89e.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/d63581ef546db4629722f6e9b3ab6e872f8d8f182661f89f0d6ba07c5da4e89e.json
+  raw_path: blobs/sha256/d63581ef546db4629722f6e9b3ab6e872f8d8f182661f89f0d6ba07c5da4e89e
+  text_path: text/sha256/d63581ef546db4629722f6e9b3ab6e872f8d8f182661f89f0d6ba07c5da4e89e.txt
+  metadata_path: metadata/sha256/d63581ef546db4629722f6e9b3ab6e872f8d8f182661f89f0d6ba07c5da4e89e.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -215,9 +215,9 @@ entries:
   content_type: text/html
   bytes: 4410
   sha256: 1a53a472fdf9260736f62e03eaa6328279e8f497ed6fc95c27b4e2e5c90c9f3f
-  raw_path: ~/Claude/research_cache/blobs/sha256/1a53a472fdf9260736f62e03eaa6328279e8f497ed6fc95c27b4e2e5c90c9f3f
-  text_path: ~/Claude/research_cache/text/sha256/1a53a472fdf9260736f62e03eaa6328279e8f497ed6fc95c27b4e2e5c90c9f3f.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/1a53a472fdf9260736f62e03eaa6328279e8f497ed6fc95c27b4e2e5c90c9f3f.json
+  raw_path: blobs/sha256/1a53a472fdf9260736f62e03eaa6328279e8f497ed6fc95c27b4e2e5c90c9f3f
+  text_path: text/sha256/1a53a472fdf9260736f62e03eaa6328279e8f497ed6fc95c27b4e2e5c90c9f3f.txt
+  metadata_path: metadata/sha256/1a53a472fdf9260736f62e03eaa6328279e8f497ed6fc95c27b4e2e5c90c9f3f.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
@@ -227,9 +227,9 @@ entries:
   content_type: text/html
   bytes: 67589
   sha256: 504ad53d8af02e6d7a20a88dceea775dad424d433ff03bd03b3643ccc406b1aa
-  raw_path: ~/Claude/research_cache/blobs/sha256/504ad53d8af02e6d7a20a88dceea775dad424d433ff03bd03b3643ccc406b1aa
-  text_path: ~/Claude/research_cache/text/sha256/504ad53d8af02e6d7a20a88dceea775dad424d433ff03bd03b3643ccc406b1aa.txt
-  metadata_path: ~/Claude/research_cache/metadata/sha256/504ad53d8af02e6d7a20a88dceea775dad424d433ff03bd03b3643ccc406b1aa.json
+  raw_path: blobs/sha256/504ad53d8af02e6d7a20a88dceea775dad424d433ff03bd03b3643ccc406b1aa
+  text_path: text/sha256/504ad53d8af02e6d7a20a88dceea775dad424d433ff03bd03b3643ccc406b1aa.txt
+  metadata_path: metadata/sha256/504ad53d8af02e6d7a20a88dceea775dad424d433ff03bd03b3643ccc406b1aa.json
   restricted: false
   rights_status: private_use
   extraction_status: ok
