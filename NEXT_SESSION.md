@@ -148,53 +148,58 @@ gh release create v0.1.0 \
 
 ---
 
-## Open upstream MRs (per `decisions/upstream_issues.md`)
+## Upstream MRs — ALL CLOSED as of 2026-05-24 (per `decisions/upstream_issues.md`)
 
-- **MR-3** (research_toolkit#1): `/dataset-synthesize` skill — M3-blocking
-  for Lane 2. **STILL OPEN as of 2026-05-23; 4 days, 0 progress.** See
-  fallback ladder below.
+Every upstream MR the portfolio filed is now resolved:
+
+- **MR-3** (research_toolkit#1): `/dataset-synthesize` skill —
+  **MERGED 2026-05-24 (research_toolkit PR #16, squash 4d5b420)**.
+  Lane 2's PRIMARY data path is now available (see below).
 - **MR-12** (eval-toolkit#69): Tier-2 Protocol consolidation —
-  NOT blocking; targets eval-toolkit v0.48+.
-- **MR-13** (book-scaffold-astro#54): citation-js + `%`-comment + `@TYPE`
-  lexer bug. **Filed 2026-05-23** during M0 close Phase I; NOT blocking
-  (portfolio workaround sustainable — `% @article{...}` template block
-  stripped from `book/bibliography.bib` header).
+  **CLOSED (wontfix-with-docs)**: upstream kept `protocols.py`
+  lightweight + added ADR 0004 naming-conventions doc. Top-level
+  canonical imports already work; no portfolio change needed.
+- **MR-13** (book-scaffold-astro#54): citation-js `%`-comment lexer —
+  **CLOSED: resolved in book-scaffold-astro v4.0.0**. Portfolio
+  workaround still compatible; v4.0.0 is a BREAKING `defineStyle`
+  change — review before bumping the `^3.6.5` pin past it.
+- **MR-14** (research_toolkit#14): cache_manifest path-resolution
+  inconsistency — **MERGED 2026-05-24 (research_toolkit PR #15,
+  squash 33f07f9)**. `make dossier-audit` PASSES again; cache_manifest
+  migrated to portable relative paths (commit 5da5fd4).
 
 All 7 eval-toolkit MRs (MR-1/2/4/5/6/7 + MR-10 obsoleted) + 2
-book-scaffold-astro MRs (MR-8 + MR-9) are CLOSED upstream.
+book-scaffold-astro MRs (MR-8 + MR-9) + MR-3/-12/-13/-14 are CLOSED.
+**Zero open upstream MRs.**
 
 ---
 
-## Lane 2 MR-3 fallback strategy (Round 25 lock, 2026-05-23)
+## Lane 2 data path (MR-3 shipped 2026-05-24)
 
-IF MR-3 (research_toolkit#1, `/dataset-synthesize` skill) hasn't shipped
-by M1 close (~3 weeks from 2026-05-23), trigger the Lane 2 fallback
-ladder:
+**PRIMARY (now available)**: use `/dataset-synthesize` from
+research_toolkit to generate the ~10k synthetic indirect-injection
+corpus. Recipe at `~/Claude/research_toolkit/templates/dataset_synthesis_recipe.template.yml`;
+cost-bounded via `--bail-at-cost 80.00` (per plan §16 + ADR-013);
+exit code 3 on API failure with resumable partial manifest. Seed
+templates from the 7 `production_rag_incidents` carriers (EchoLeak /
+Slack AI / Comet / Gemini / ChatGPT-plugin image / Unseeable /
+Greshake Bing) for production-realistic patterns.
 
-1. **Primary fallback**: `harelix2024_mixed` (HuggingFace) IF
-   `/freshness-audit` has resolved HF 401 with an auth token by M2
-   entry. Unknown size + license; verify before commit.
-2. **Secondary fallback**: `lakeraai2025pintbenchmark` (public GitHub
-   repo; accessible now). Distribution differs from MR-3's synthetic-
-   corpus-from-production-incidents goal; report distributional
-   difference in Lane 2 `protocol.md`.
-3. **Tertiary**: pivot Lane 2 to use the 7 `production_rag_incidents`
-   carriers from rag-injection-defenses (EchoLeak / Slack AI / Comet /
-   Gemini / ChatGPT-plugin image / Unseeable / Greshake Bing) as seed-
-   document patterns + hand-author ~50-100 synthetic positives per
-   pattern. Smaller corpus, but production-realistic.
+**Fallback ladder (only if `/dataset-synthesize` proves insufficient
+at M2)** — kept for reference, no longer the expected path:
 
-**Decision criterion**: at M1 close (~3 weeks), if MR-3 still has no
-linked PR, declare fallback ladder activated; choose primary /
-secondary / tertiary per HF auth status + Lane 2 protocol flexibility
-at that point.
+1. `harelix2024_mixed` (HuggingFace) IF `/freshness-audit` resolved
+   the HF 401 with an auth token. Unknown size + license.
+2. `lakeraai2025pintbenchmark` (public GitHub; accessible now).
+   Distribution differs from the synthetic-corpus goal.
+3. Hand-author ~50-100 positives per `production_rag_incidents`
+   carrier. Smaller but production-realistic.
 
-Cross-references: ADR-026 (no-local-workarounds — fallback uses existing
-public datasets or dossier-anchored hand-authored expansion, not local
-synth helpers); ADR-041 (ETHICS — hand-authored positives must follow
-full-specificity disclosure norm using only documented attack vectors per
-dossier `production_rag_incidents`); synthesis doc Lane 2 risk discussion
-at `docs/planning/dossier_implications_for_roadmap.md` Zone 2.
+Cross-references: ADR-026 (no-local-workarounds — the upstream skill
+shipping IS the library-first resolution); ADR-041 (ETHICS —
+full-specificity disclosure norm for synthetic attack carriers);
+synthesis doc Lane 2 risk discussion at
+`docs/planning/dossier_implications_for_roadmap.md` Zone 2.
 
 ---
 
