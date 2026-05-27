@@ -4,11 +4,14 @@
 
 **Branch:** this session's work is **merged to `main`** (research_toolkit `v2.5.0` re-pin + Phase C dataset dossier + Phase B E/D + these handoffs). **Branch fresh from `main`.**
 
-**Phase B is essentially COMPLETE across all 5 topics (A–E), all green @ `v2.5.0`.** A read-only triage (2026-05-27) confirmed the `missed_seeds` "73-item backlog" was a raw scan **already fully consumed** by the 2026-05-22 drafters: **A (18) / B (10) / C (14) net-new are all already in** their bib_ledgers; **D + E** had cross-class items already in plus the 5 genuine net-new ingested this session (E5 `rag_retrieval_dynamics` ×3; D1 Anthropic ×2). Gate everywhere: `make dossier-audit` green ×5; citations 100% substring; 0 stale. *(Triage is read-only-confidence — spot-verify a couple if you do ingest.)*
+**Phase B is COMPLETE — no ingestion remains.** All 5 topics (A–E) green @ `v2.5.0`, and the method-source papers are in. A read-only triage (2026-05-27) confirmed the `missed_seeds` "73-item backlog" was a raw scan **already fully consumed** by the 2026-05-22 drafters (A/B/C net-new all already in their bib_ledgers; D+E too, plus 5 genuine net-new added this session: E5 `rag_retrieval_dynamics` ×3, D1 Anthropic ×2). The 3 genuinely-absent method papers were then ingested:
+- **ASIDE `2503.10566`** → B2 `architectural_defense_methods` (`zverev2025aside`)
+- **Mirror `2603.11875`** + **PromptLocate `2510.12252`** → A5 `detector_architectures` (`corll2026mirror`, `jia2025promptlocate`)
+- Attention Tracker `2411.00348` was already in A+D.
 
-**The ONLY remaining Phase B ingestion = 3 "method source" papers** not in any dossier (verify-first, then the standard loop gather→anchor→`/agent-index`→audit; ~1 short pass):
-- **ASIDE `2503.10566`** · **Mirror `2603.11875`** · **PromptLocate `2510.12252`**
-- (Attention Tracker `2411.00348` is already in A + D — done.) WebFetch each, then assign to its topic/claim_family at gather time (likely A `detector_architectures`, B `injection_threat_model`, or D method).
+Gate everywhere: `make dossier-audit` **green ×5**; per-topic citation substring **100%**; 0 stale.
+
+**Next frontier (post-Phase-B):** Effort-2 attack-type-LODO training (ADR-052) — needs the full torch/docling CI env (~$250) + the un-cloned submission sibling at `../prompt-injection-detection-submission`; plus the portfolio↔submission lane/chapter restructure (ADR-052 defers to Phase 3). See history below for the full roadmap.
 
 **Tooling:** pinned `v2.5.0` (`Makefile RT_TAG`). Gate = `make dossier-audit` (green ×5). Producer = `.tooling/research_toolkit/scripts/build_excerpt_anchor.py` (self-verifying; arXiv abstracts need `--occurrence 1` — they triplicate in the HTML).
 
