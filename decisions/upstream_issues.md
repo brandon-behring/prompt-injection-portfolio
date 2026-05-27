@@ -101,7 +101,9 @@ fallback ladder remains the documented contingency.
 - eval-toolkit: `>=0.47` → `>=1.0` (lock 1.2.0); v1.0 stability contract. Cannot be
   dogfooded until M1 (no consumer code yet) — pin + forward-guidance only.
 - research_toolkit: git-pinned `@v1.9.1` dep → **dropped as a dep**; consumed as a
-  repo-local tooling clone pinned `v2.4.0` via `make dossier-audit` (ADR-051).
+  repo-local tooling clone pinned `v2.4.1` via `make dossier-audit` (ADR-051; bumped
+  `v2.4.0` → `v2.4.1` on 2026-05-26 to adopt the merged-but-untagged #15 `cache_root`
+  resolution fix — see the ADR-051 follow-up).
 - book-scaffold-astro: `^3.6.5` → `^4.4.0` (resolves 4.5.1) + research-portfolio profile.
 - runpod-deploy: unchanged (`>=0.8.4` == PyPI latest 0.8.4; the GitHub Releases lag was a false alarm).
 

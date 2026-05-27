@@ -8,7 +8,7 @@ Generated: 2026-05-26
 - Strongly grounded (verbatim_match + user_asserted): 13/163 (8%)
 - Partially grounded (paraphrase + manual_override): 141/163 (87%)
 - Weakly grounded (llm_inferred + propagated_from_child): 9/163 (6%)
-- Substring check pass rate: 6/13 (46%)
+- Substring check pass rate: 13/13 (100%)
 
 ## Per-method breakdown
 
@@ -185,13 +185,3 @@ Generated: 2026-05-26
 | claim_training_and_evaluation_zou2023universal_a3_contribution | partial |
 | claim_training_eval_synth_underdisclosed_training_data | weak |
 | claim_training_eval_synth_vendor_self_comparison | weak |
-
-## Substring check failures
-
-- ev_training_and_evaluation_0096.supports[?].excerpt_anchor: text_path file does not exist: /Users/brandonbehring/Claude/prompt-injection-portfolio/docs/research/training-and-evaluation/text/sha256/6788a3f0f61cebd916ff170fff24163f2b14b16149e7f8ca1c3eb05b7e8ccc6c.txt
-- ev_training_and_evaluation_0097.supports[?].excerpt_anchor: text_path file does not exist: /Users/brandonbehring/Claude/prompt-injection-portfolio/docs/research/training-and-evaluation/text/sha256/6788a3f0f61cebd916ff170fff24163f2b14b16149e7f8ca1c3eb05b7e8ccc6c.txt
-- ev_training_and_evaluation_0099.supports[?].excerpt_anchor: text_path file does not exist: /Users/brandonbehring/Claude/prompt-injection-portfolio/docs/research/training-and-evaluation/text/sha256/beea4f2926635943a4f61a1a73237de29a40b726fbb9af70d625f4f8cf3afdce.txt
-- ev_training_and_evaluation_0100.supports[?].excerpt_anchor: text_path file does not exist: /Users/brandonbehring/Claude/prompt-injection-portfolio/docs/research/training-and-evaluation/text/sha256/beea4f2926635943a4f61a1a73237de29a40b726fbb9af70d625f4f8cf3afdce.txt
-- ev_training_and_evaluation_0127.supports[?].excerpt_anchor: text_path file does not exist: /Users/brandonbehring/Claude/prompt-injection-portfolio/docs/research/training-and-evaluation/text/sha256/4e49b1111d751597369dfa2f4e23c659af1f5d7cf27c20677f31608d56ae8a6d.txt
-- ev_training_and_evaluation_0128.supports[?].excerpt_anchor: text_path file does not exist: /Users/brandonbehring/Claude/prompt-injection-portfolio/docs/research/training-and-evaluation/text/sha256/4e49b1111d751597369dfa2f4e23c659af1f5d7cf27c20677f31608d56ae8a6d.txt
-- ev_training_and_evaluation_0129.supports[?].excerpt_anchor: text_path file does not exist: /Users/brandonbehring/Claude/prompt-injection-portfolio/docs/research/training-and-evaluation/text/sha256/4e49b1111d751597369dfa2f4e23c659af1f5d7cf27c20677f31608d56ae8a6d.txt

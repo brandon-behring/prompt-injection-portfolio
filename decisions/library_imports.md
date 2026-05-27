@@ -73,14 +73,18 @@ Expected populations:
 
 ---
 
-## research_toolkit (TOOLING clone pinned to `v2.4.0` — NOT a pip dep)
+## research_toolkit (TOOLING clone pinned to `v2.4.1` — NOT a pip dep)
 
 **Round 26 (2026-05-26, ADR-051):** dropped as a Python dependency (nothing imports it;
 its `docling`/`pdfplumber` deps are irrelevant to validation). Now consumed as a
-**repo-local clone** bootstrapped by `make dossier-audit` at tag `v2.4.0`
+**repo-local clone** bootstrapped by `make dossier-audit` at tag `v2.4.1`
 (`.tooling/research_toolkit`, gitignored), validators run in an ephemeral `uv` env
 (PyYAML only) — plus the Claude skills below. Hence research_toolkit is no longer scanned
 by the `library_imports_registered` contract (it's tooling, not a Python import).
+
+> **Bumped `v2.4.0` → `v2.4.1` (2026-05-26):** adopts upstream #15 (`cache_root` wired
+> through the v3 excerpt-anchor callers) — the citation/anchor gate was 100% failing under
+> `v2.4.0` due to a path-resolution bug, not missing cache. See the ADR-051 follow-up.
 
 | Symbol / skill | Min version | Used in | First commit | MR | Notes |
 |----------------|-------------|---------|--------------|----|-------|

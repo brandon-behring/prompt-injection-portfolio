@@ -56,3 +56,31 @@ it back upstream as tracked issues (advances ADR-045 / ADR-046).
   cache-present concern, not a clean-checkout gate.
 - Verification was lightweight-local (contracts + book build + validator mechanism)
   per the chosen posture; full `uv sync` (torch) + cache population stay in CI.
+
+## 2026-05-26 follow-up — bump `v2.4.0` → `v2.4.1` (dogfooding: pin-gap correction)
+
+Re-engaging the dossiers surfaced that the citation/anchor gate was **100% failing**
+(detector-landscape substring `0/61`), and the original Consequences above misattributed
+it to *cache population* ("can't distinguish 'cache not populated' from a broken anchor",
+"full pass requires the populated body-text cache"). **That diagnosis was wrong.** The
+cache *is* populated (`~/Claude/research_cache`, 2467 files; blobs **and** extracted
+`text/sha256/*.txt` both present). The real cause was a **path-resolution bug**: the
+manifests declare `cache_root: ~/Claude/research_cache` with *relative* `text_path` (the
+portable form adopted in `5da5fd4`), but in `v2.4.0` the three v3-anchor callers
+(`verify_citations.py`, `evidence_ledger.py`, `pre_selection_manifest.py`) never passed
+`cache_root` into `verify_excerpt_anchor`, so resolution fell back to the empty
+dossier-local `text/` dir → every anchor "file does not exist".
+
+The fix already existed upstream — commit `33f07f9` *"fix(validators): … mixed-cache-location
+(#15)"*, **merged to `main` but never tagged**. The `v2.4.0` tag-pin stranded the portfolio
+one fix-commit behind a correctness fix it needed. Adopted by tagging **`v2.4.1`** at
+`33f07f9` (= `v2.4.0` + #17 docs + #15 fix, validators-only) and bumping `Makefile`
+`RT_TAG`. Result: substring pass `0/61 → 61/61` (detector) and `→ 100%` across all
+dossiers with verbatim claims (direct 51/51, training 13/13, rag 28/28, agentic 0/0); **`make
+dossier-audit` PASS ×5 @ v2.4.1** with no re-fetching.
+
+**Lesson (dogfooding pin policy):** pinning the tooling clone to a *tag* froze it behind a
+merged-but-unreleased validator-correctness fix. The pin should track validator-correctness
+releases, not a frozen point. A second gap surfaced the same way — no mechanical v3
+excerpt-anchor *producer* exists (only a verifier) — addressed separately (producer built +
+`v2.5.0`).
