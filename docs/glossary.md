@@ -331,6 +331,19 @@ Distinct from broader `agentic_benchmarks` (which covers BIPIA's
 agentic-eval framing); this family captures the RAG-specific subset
 + retrieval-boundary evaluation.
 
+## rag_retrieval_dynamics
+
+Dossier `claim_family` (per ADR-007, 2026-05-27 scope expansion). The
+retrieval-mechanics substrate that indirect injection exploits and that
+retrieval-side defenses must account for: context-window position effects
+on whether an injected span is attended (Lost in the Middle, Liu et al.
+arXiv 2307.03172); the dense-retrieval embedding-similarity primitive that
+surfaces a possibly-poisoned chunk (Sentence-BERT, Reimers & Gurevych arXiv
+1908.10084); contextual-embedding geometry/anisotropy bearing on retrieval
+dedup + trust-signal separability (Ethayarajh arXiv 1909.00512). Scoped to
+the injection-relevant reading of retrieval mechanics — not a general IR/RAG
+survey; substrate for `retrieval_provenance`.
+
 ## reproducibility_practice
 
 Dossier `claim_family` (per ADR-007). Disclosure-gap audit of winning

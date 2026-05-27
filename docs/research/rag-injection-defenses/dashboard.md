@@ -1,13 +1,13 @@
 # Rag Injection Defenses — Trust Dashboard
 
-Generated: 2026-05-26
-Current as of: 2026-05-26
+Generated: 2026-05-27
+Current as of: 2026-05-27
 
 ## Trust State
 
 - stale blockers: 0
-- evidence coverage: 25/25 claims
-- cache completeness: 25/25 sources
+- evidence coverage: 33/33 claims
+- cache completeness: 28/28 sources
 - conflicts: 0
 - weak claims: 8
 
@@ -19,20 +19,20 @@ Current as of: 2026-05-26
 
 ## Claim Health (FACT framework)
 
-- total support links: 32
-- verbatim-anchored: 28/32 (88%)
-- strongly grounded: 28/32 (88%)
-- partially grounded: 2/32
-- weakly grounded (inferred/propagated): 2/32
-- corroborated (≥2 independent sources): 1/25 (4%)
+- total support links: 40
+- verbatim-anchored: 33/40 (82%)
+- strongly grounded: 33/40 (82%)
+- partially grounded: 5/40
+- weakly grounded (inferred/propagated): 2/40
+- corroborated (≥2 independent sources): 1/33 (3%)
 
 Top corroborated claims:
   - `claim_rag_echoleak_zeroclick`: 2 sources
-- atoms fully supported: 21/25 (84%)
+- atoms fully supported: 26/33 (79%)
 
 ## Discovery Rigor
 
-- fetches reviewed: 21
-- accept rate: 18/21 (86%)
+- fetches reviewed: 24
+- accept rate: 21/24 (88%)
 - rejected: 3
 - escalations needing manual review: 0

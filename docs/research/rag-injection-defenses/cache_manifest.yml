@@ -311,3 +311,46 @@ entries:
   extraction_status: ok
   extraction_method: pdftotext
   metadata_path: cache/body_meta/zhou2025sag.json
+# === E5 rag_retrieval_dynamics (added 2026-05-27): retrieval-mechanics substrate ===
+- cache_id: cache_c7248ce666cafa97
+  source_url: https://arxiv.org/abs/2307.03172
+  fetched_at: 2026-05-27
+  record_type: capture
+  content_type: text/html
+  bytes: 46250
+  sha256: c7248ce666cafa97d001d3ac00c24e82951bbe44a217adf7aedcf4852ca30c2a
+  raw_path: blobs/sha256/c7248ce666cafa97d001d3ac00c24e82951bbe44a217adf7aedcf4852ca30c2a
+  text_path: text/sha256/c7248ce666cafa97d001d3ac00c24e82951bbe44a217adf7aedcf4852ca30c2a.txt
+  metadata_path: metadata/sha256/c7248ce666cafa97d001d3ac00c24e82951bbe44a217adf7aedcf4852ca30c2a.json
+  restricted: false
+  rights_status: private_use
+  extraction_status: ok
+  http_last_modified: Wed, 22 Nov 2023 01:07:48 GMT
+- cache_id: cache_95ef63f38dfb6ae1
+  source_url: https://arxiv.org/abs/1908.10084
+  fetched_at: 2026-05-27
+  record_type: capture
+  content_type: text/html
+  bytes: 46259
+  sha256: 95ef63f38dfb6ae1b7897dd1e05c8c25e6df0e98d06828de5bea0028a907f808
+  raw_path: blobs/sha256/95ef63f38dfb6ae1b7897dd1e05c8c25e6df0e98d06828de5bea0028a907f808
+  text_path: text/sha256/95ef63f38dfb6ae1b7897dd1e05c8c25e6df0e98d06828de5bea0028a907f808.txt
+  metadata_path: metadata/sha256/95ef63f38dfb6ae1b7897dd1e05c8c25e6df0e98d06828de5bea0028a907f808.json
+  restricted: false
+  rights_status: private_use
+  extraction_status: ok
+  http_last_modified: Mon, 02 Mar 2026 02:23:20 GMT
+- cache_id: cache_8de513024580caef
+  source_url: https://arxiv.org/abs/1909.00512
+  fetched_at: 2026-05-27
+  record_type: capture
+  content_type: text/html
+  bytes: 46201
+  sha256: 8de513024580caef63dd5ddd477b55ebb2bdcca22c8c5aa3ccb6b6abcfa93cbb
+  raw_path: blobs/sha256/8de513024580caef63dd5ddd477b55ebb2bdcca22c8c5aa3ccb6b6abcfa93cbb
+  text_path: text/sha256/8de513024580caef63dd5ddd477b55ebb2bdcca22c8c5aa3ccb6b6abcfa93cbb.txt
+  metadata_path: metadata/sha256/8de513024580caef63dd5ddd477b55ebb2bdcca22c8c5aa3ccb6b6abcfa93cbb.json
+  restricted: false
+  rights_status: private_use
+  extraction_status: ok
+  http_last_modified: Wed, 04 Sep 2019 00:18:40 GMT

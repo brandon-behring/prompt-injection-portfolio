@@ -956,3 +956,210 @@ entries:
     - synthesis across 5 primary evidence_ids
     - aggregates 4 academic papers + 1 standards-consortium source
     - llm_inferred per Sprint 2 E3 synthesis-claim policy
+
+# ============================================================================
+# Net-new E5 rag_retrieval_dynamics (added 2026-05-27): retrieval-mechanics
+# substrate that indirect injection exploits + that retrieval-side defenses
+# must account for. Injection-relevant reading per research_plan.md E5 scope.
+# ============================================================================
+# Lost-in-the-Middle (Liu 2023): U-shaped positional attention
+- evidence_id: ev_rag_injection_defenses_0033
+  source_url: https://arxiv.org/abs/2307.03172
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  cache_ids:
+  - cache_c7248ce666cafa97
+  supports:
+  - claim_id: claim_rag_lostinmiddle_positional_attention
+    field_path: 'bib_ledger.entries[rag_liu2023lostinmiddle].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_c7248ce666cafa97
+      text_path_offset: [2762, 2972]
+      sha256_of_span: 2288af1a492ed4aaf4f502477f88e97f8bdf053a2aeac90ed04f2fed9f4d00f1
+  excerpt: 'performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle of long contexts'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - primary source
+    - cached raw snapshot
+- evidence_id: ev_rag_injection_defenses_0034
+  source_url: https://arxiv.org/abs/2307.03172
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  cache_ids:
+  - cache_c7248ce666cafa97
+  supports:
+  - claim_id: claim_rag_lostinmiddle_position_sensitivity
+    field_path: 'bib_ledger.entries[rag_liu2023lostinmiddle].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_c7248ce666cafa97
+      text_path_offset: [2537, 2625]
+      sha256_of_span: 25a20226ebbf99a8b86196e9a2b750ce2388d273e8fdf2f51be9b0d63bf5c2bc
+  excerpt: 'performance can degrade significantly when changing the position of relevant information'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - primary source
+    - cached raw snapshot
+- evidence_id: ev_rag_injection_defenses_0035
+  source_url: https://arxiv.org/abs/2307.03172
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  cache_ids:
+  - cache_c7248ce666cafa97
+  supports:
+  - claim_id: claim_rag_lostinmiddle_chunk_rank_salience
+    field_path: synthesis.rag_retrieval_dynamics_injection_relevance
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.60
+  excerpt: 'Injection-relevant reading: because attention is U-shaped over context position, a retrieved chunk''s rank in the assembled prompt changes how strongly it is attended — an injected/poisoned chunk surfaced at the head or tail of the context is more salient (more likely to drive output) than the same chunk buried in the middle. Retrieval-side defenses that re-rank or reposition retrieved spans therefore alter injection efficacy independent of the chunk''s content.'
+  rights_status: private_use
+  confidence:
+    score: 0.6
+    factors:
+    - primary source
+    - paraphrase-only injection-relevance interpretation per E5 scope
+
+# Sentence-BERT (Reimers & Gurevych 2019): siamese-network sentence embeddings
+- evidence_id: ev_rag_injection_defenses_0036
+  source_url: https://arxiv.org/abs/1908.10084
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  cache_ids:
+  - cache_95ef63f38dfb6ae1
+  supports:
+  - claim_id: claim_rag_sbert_siamese_embeddings
+    field_path: 'bib_ledger.entries[rag_reimers2019sentencebert].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_95ef63f38dfb6ae1
+      text_path_offset: [2871, 3008]
+      sha256_of_span: 96249d46152635f48bc727967495e119866cca1a15d20f0f9b213ab84bcdaa16
+  excerpt: 'siamese and triplet network structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - primary source
+    - cached raw snapshot
+- evidence_id: ev_rag_injection_defenses_0037
+  source_url: https://arxiv.org/abs/1908.10084
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  cache_ids:
+  - cache_95ef63f38dfb6ae1
+  supports:
+  - claim_id: claim_rag_sbert_dense_retrieval_primitive
+    field_path: synthesis.rag_retrieval_dynamics_injection_relevance
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.60
+  excerpt: 'Injection-relevant reading: SBERT''s cosine-comparable sentence embedding is the dense-retrieval similarity primitive — the function a RAG retriever uses to score query-chunk relevance. An indirect-injection payload is surfaced into context precisely when its embedding lands near the query embedding under this primitive, so an attacker who optimizes a poisoned chunk''s embedding similarity (or a defender who filters on it) operates directly on this mechanism.'
+  rights_status: private_use
+  confidence:
+    score: 0.6
+    factors:
+    - primary source
+    - paraphrase-only injection-relevance interpretation per E5 scope
+
+# Ethayarajh (2019): contextual embeddings are anisotropic / narrow cone
+- evidence_id: ev_rag_injection_defenses_0038
+  source_url: https://arxiv.org/abs/1909.00512
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  cache_ids:
+  - cache_8de513024580caef
+  supports:
+  - claim_id: claim_rag_ethayarajh_anisotropy
+    field_path: 'bib_ledger.entries[rag_ethayarajh2019anisotropy].abstract'
+    evidence_role: defines
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8de513024580caef
+      text_path_offset: [2785, 2892]
+      sha256_of_span: edd04cfc8840f88855ce5f37f306e91c1c0d299c8a1a6fd945f1fb7c12c0841d
+  excerpt: 'the contextualized representations of all words are not isotropic in any layer of the contextualizing model'
+  rights_status: private_use
+  confidence:
+    score: 0.95
+    factors:
+    - primary source
+    - cached raw snapshot
+- evidence_id: ev_rag_injection_defenses_0039
+  source_url: https://arxiv.org/abs/1909.00512
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  cache_ids:
+  - cache_8de513024580caef
+  supports:
+  - claim_id: claim_rag_ethayarajh_context_specificity
+    field_path: 'bib_ledger.entries[rag_ethayarajh2019anisotropy].abstract'
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_8de513024580caef
+      text_path_offset: [3100, 3184]
+      sha256_of_span: 2c2d9ce56055919702b7b51a37671fd65e0f294877a05ff81bc3653802e7f10e
+  excerpt: 'upper layers of contextualizing models produce more context-specific representations'
+  rights_status: private_use
+  confidence:
+    score: 0.92
+    factors:
+    - primary source
+    - cached raw snapshot
+- evidence_id: ev_rag_injection_defenses_0040
+  source_url: https://arxiv.org/abs/1909.00512
+  source_type: paper
+  source_quality: primary
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  cache_ids:
+  - cache_8de513024580caef
+  supports:
+  - claim_id: claim_rag_ethayarajh_provenance_separability
+    field_path: synthesis.rag_retrieval_dynamics_injection_relevance
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.60
+  excerpt: 'Injection-relevant reading: because contextual embeddings occupy an anisotropic narrow cone (high baseline cosine similarity between arbitrary tokens), naive cosine thresholds compress the separation between benign and poisoned chunks — bearing on retrieval dedup and on whether a provenance/trust signal is linearly separable in embedding space. Anisotropy is why retrieval-side detectors that rely on raw cosine geometry need calibration (whitening / isotropy correction) before they can distinguish an injected chunk from a legitimately-similar one.'
+  rights_status: private_use
+  confidence:
+    score: 0.6
+    factors:
+    - primary source
+    - paraphrase-only injection-relevance interpretation per E5 scope

@@ -420,3 +420,74 @@ entries:
   - ev_rag_injection_defenses_0020
   cache_ids:
   - cache_1a53a472fdf92607
+# === Net-new E5: rag_retrieval_dynamics — retrieval-mechanics substrate (added 2026-05-27) ===
+- bibkey: rag_liu2023lostinmiddle
+  primary_url: https://arxiv.org/abs/2307.03172
+  title: 'Lost in the Middle: How Language Models Use Long Contexts'
+  status: verified
+  claim_family: rag_retrieval_dynamics
+  authors: Liu et al. (2023)
+  venue: 'TACL 2024 (Transactions of the Association for Computational Linguistics; arXiv preprint)'
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  verified_at: '2026-05-27'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0033
+  - ev_rag_injection_defenses_0034
+  - ev_rag_injection_defenses_0035
+  cache_ids:
+  - cache_c7248ce666cafa97
+- bibkey: rag_reimers2019sentencebert
+  primary_url: https://arxiv.org/abs/1908.10084
+  title: 'Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks'
+  status: verified
+  claim_family: rag_retrieval_dynamics
+  authors: Reimers & Gurevych (2019)
+  venue: EMNLP 2019
+  aliases:
+  - SBERT
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  verified_at: '2026-05-27'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0036
+  - ev_rag_injection_defenses_0037
+  cache_ids:
+  - cache_95ef63f38dfb6ae1
+- bibkey: rag_ethayarajh2019anisotropy
+  primary_url: https://arxiv.org/abs/1909.00512
+  title: 'How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings'
+  status: verified
+  claim_family: rag_retrieval_dynamics
+  authors: Ethayarajh (2019)
+  venue: EMNLP 2019
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  verified_at: '2026-05-27'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_rag_injection_defenses_0038
+  - ev_rag_injection_defenses_0039
+  - ev_rag_injection_defenses_0040
+  cache_ids:
+  - cache_8de513024580caef

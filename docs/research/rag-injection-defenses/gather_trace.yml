@@ -261,3 +261,41 @@ fetches:
     is_useful: 1
   decision: reject
   reason: 'Original Aim Labs landing page redirects to catonetworks.com root (HTTP 301); Cato Networks coverage used as canonical primary URL instead.'
+
+# E5: rag_retrieval_dynamics — retrieval-mechanics substrate (added 2026-05-27)
+- fetch_id: fetch_rag_lostinmiddle
+  sub_area: 'E5'
+  query: 'Lost in the Middle Liu language models long contexts positional U-shaped TACL 2023'
+  source_url: https://arxiv.org/abs/2307.03172
+  fetched_at: 2026-05-27
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 5
+  decision: accept
+  reason: 'Liu et al. TACL — canonical U-shaped positional-attention finding; injection-relevant substrate (a retrieved chunk''s rank changes its salience). is_supported=partial because the paper covers retrieval-mechanics substrate, not RAG-injection defenses directly.'
+  assigned_bibkey: rag_liu2023lostinmiddle
+- fetch_id: fetch_rag_sentencebert
+  sub_area: 'E5'
+  query: 'Sentence-BERT Reimers Gurevych siamese sentence embeddings cosine similarity EMNLP 2019'
+  source_url: https://arxiv.org/abs/1908.10084
+  fetched_at: 2026-05-27
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 5
+  decision: accept
+  reason: 'Reimers & Gurevych EMNLP 2019 — siamese-network sentence embeddings = the dense-retrieval similarity primitive that surfaces a poisoned chunk. is_supported=partial: foundational retrieval primitive, not an injection-defense paper.'
+  assigned_bibkey: rag_reimers2019sentencebert
+- fetch_id: fetch_rag_anisotropy
+  sub_area: 'E5'
+  query: 'Ethayarajh contextual word representations geometry anisotropic BERT ELMo GPT-2 EMNLP 2019'
+  source_url: https://arxiv.org/abs/1909.00512
+  fetched_at: 2026-05-27
+  reflection:
+    is_relevant: true
+    is_supported: partial
+    is_useful: 4
+  decision: accept
+  reason: 'Ethayarajh EMNLP 2019 — contextual embeddings are anisotropic (narrow cone); bears on retrieval dedup + provenance-signal separability in embedding space. is_supported=partial: embedding-geometry substrate, not an injection-defense paper.'
+  assigned_bibkey: rag_ethayarajh2019anisotropy
