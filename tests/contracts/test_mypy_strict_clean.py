@@ -36,15 +36,15 @@ def test_pyproject_has_mypy_strict_block() -> None:
 
 
 @pytest.mark.contract
-def test_pyproject_pins_eval_toolkit_v047_floor() -> None:
-    """pyproject.toml must pin eval-toolkit >=0.47 per Round 20."""
+def test_pyproject_pins_eval_toolkit_v1_floor() -> None:
+    """pyproject.toml must pin eval-toolkit >=1.0 per ADR-051."""
     text = PYPROJECT.read_text()
-    # Match the [probes,losses]>=0.47 pin pattern
     assert "eval-toolkit" in text, "pyproject.toml missing eval-toolkit dep"
-    # Either [probes,losses]>=0.47 or just >=0.47 satisfies; reject <0.47
-    pinned_v047 = ">=0.47" in text
-    assert pinned_v047, (
-        "pyproject.toml eval-toolkit pin must be >=0.47 per Round 20 "
-        "(canonical v0.47 API surfaces: scorecard + metric_specs + sweep + "
-        "TextTransform + 12 dataclasses)."
+    # Reject pre-1.0 pins: ADR-051 adopts the v1.0 stability contract (upstream
+    # ADR 0003), which freezes the Tier-1 API + 9 Protocols for the 1.x line.
+    pinned_v1 = ">=1.0" in text
+    assert pinned_v1, (
+        "pyproject.toml eval-toolkit pin must be >=1.0 per ADR-051 "
+        "(opt into the v1.0 stability contract: frozen Tier-1 API + 9 Protocols "
+        "so M1+ lane code targets a stable surface)."
     )

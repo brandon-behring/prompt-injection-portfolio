@@ -55,8 +55,8 @@ Plus M0 ratification checklist from plan §21 Day 19 (covered by the above):
 - [x] experiments/MANIFEST.json populated (6 lanes registered)
 - [x] decisions/library_imports.md populated (14 v0.47 primitives + scaffold backfill)
 - [x] decisions/upstream_issues.md state machine current (8/9 closed; MR-12 added)
-- [x] pyproject.toml pins eval-toolkit[probes,losses]>=0.47 + runpod-deploy>=0.8.4
-- [x] book/package.json pins @brandon_m_behring/book-scaffold-astro: ^3.5.0
+- [x] pyproject.toml pins eval-toolkit[probes,losses]>=1.0 (R26; was >=0.47) + runpod-deploy>=0.8.4; research_toolkit dropped as a dep → repo-local tooling clone (ADR-051)
+- [x] book/package.json pins @brandon_m_behring/book-scaffold-astro: ^4.4.0 (R26; was ^3.5.0→^3.6.5)
 - [x] CI two-step submission ref: v1.3.0
 - [x] Dockerfile + compose.yaml + verify-docker green
 - [x] gh repo view returns 200 (public from M0; ADR-024)

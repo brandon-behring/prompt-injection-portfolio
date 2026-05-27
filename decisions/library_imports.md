@@ -15,7 +15,15 @@ surface verified via Day 3a step 4 Python REPL smoke-test
 
 ---
 
-## eval-toolkit (PyPI; floor `[probes,losses]>=0.47`)
+## eval-toolkit (PyPI; floor `[probes,losses]>=1.0`)
+
+**Round 26 (2026-05-26, ADR-051):** floor advanced `>=0.47` → `>=1.0` to opt into the
+upstream **v1.0 stability contract** (their ADR 0003: Tier-1 API + 9 Protocols frozen
+for the 1.x line; lock resolves 1.2.0). No consumer code exists yet, so this is **not yet
+dogfooded** — but **M1+ lane code must target the v1.0 surface**, which changed since v0.47:
+- `scorecard().to_dict()` keys are now `point` / `(low, high)` (was `point_estimate` / `ci_95`) — v0.48.
+- 3 adversarial classes renamed (see the `adversarial` row below) — v0.49.
+- `rng=` replaces `seed=` / `random_state=` across the stats fns, incl. `LogisticStacker(rng=…)` — v0.50.
 
 Per [ADR 0002](https://github.com/brandon-behring/eval-toolkit/blob/main/docs/source/adr/0002-scorecard-as-primary-metric-surface.md):
 **top-level `from eval_toolkit import <Name>` is the canonical contract**;
@@ -32,7 +40,7 @@ submodule paths are implementation. Portfolio code uses top-level imports.
 | `MetaLearner` | `eval_toolkit.stacking` | >=0.45 | `<pending Lane 4 stacker>` | bc30c52 | MR-12 (#69); MR-6 closed v0.45.0 | Stacker Protocol; canonical |
 | `loaders.ood_dataset_from_manifest` | `eval_toolkit.loaders` | >=0.43 | `<pending Lane 1 baseline>` | bc30c52 | MR-1 (#48) closed v0.43.0 | OOD slate declarative loader |
 | `loaders.OodManifestLoader` | `eval_toolkit.loaders` | >=0.43 | `<pending>` | bc30c52 | MR-1 (#48) | DatasetLoader Protocol wrapper |
-| `adversarial.{12 dataclasses}` | `eval_toolkit.adversarial` | >=0.47 | `<pending Lane 1b 12-tech matrix>` | bc30c52 | MR-2 + MR-10 closed v0.43.0 + v0.47.0 | `ALL_TECHNIQUES` 12-tuple: ZeroWidthSpace, Homoglyph, Diacritic, Whitespace, CaseRandomization, Punctuation (core-6) + BidiRTL, TagStripping, Synonym, TokenSplitting, UnicodeNormalization, InvisibleChars (advanced-6) |
+| `adversarial.{12 dataclasses}` | `eval_toolkit.adversarial` | >=0.47 | `<pending Lane 1b 12-tech matrix>` | bc30c52 | MR-2 + MR-10 closed v0.43.0 + v0.47.0 | `ALL_TECHNIQUES` 12-tuple: ZeroWidthSpace, Homoglyph, Diacritic, Whitespace, **CaseInjection**, Punctuation (core-6) + BidiRTL, TagStripping, Synonym, **TokenSplittingInjection**, **UnicodeNormalizationInjection**, InvisibleChars (advanced-6) — **3 bolded names renamed in v0.49** (ADR-051 forward-guidance; were CaseRandomization / TokenSplitting / UnicodeNormalization) |
 | `preprocessing.{3 dataclasses}` | `eval_toolkit.preprocessing` | >=0.47 | `<pending Lane 3>` | bc30c52 | MR-5 (#51) closed v0.44.0 | DelimitVariant, DatamarkVariant, EncodeVariant |
 | `losses.RecallAtLowFPR` | `eval_toolkit.losses` | >=0.44 | `<pending Lane 2 retrain>` | bc30c52 | MR-4 (#50) closed v0.44.0 | Meta PG2 recipe; `[losses]` extra |
 | `probes.ActivationDeltaProbe` | `eval_toolkit.probes` | >=0.43 | `<pending Lane 5>` | bc30c52 | MR-7 (#53) closed v0.43.0 | TaskTracker-style; `[probes]` extra |
@@ -65,7 +73,14 @@ Expected populations:
 
 ---
 
-## research_toolkit (git URL pinned to `v1.9.1`)
+## research_toolkit (TOOLING clone pinned to `v2.4.0` — NOT a pip dep)
+
+**Round 26 (2026-05-26, ADR-051):** dropped as a Python dependency (nothing imports it;
+its `docling`/`pdfplumber` deps are irrelevant to validation). Now consumed as a
+**repo-local clone** bootstrapped by `make dossier-audit` at tag `v2.4.0`
+(`.tooling/research_toolkit`, gitignored), validators run in an ephemeral `uv` env
+(PyYAML only) — plus the Claude skills below. Hence research_toolkit is no longer scanned
+by the `library_imports_registered` contract (it's tooling, not a Python import).
 
 | Symbol / skill | Min version | Used in | First commit | MR | Notes |
 |----------------|-------------|---------|--------------|----|-------|
@@ -73,7 +88,7 @@ Expected populations:
 | `/research-gather` | v2.2.1 | M0 + Sprint 2 E2 dossier sprint | `51785d9` (Phase 2) + `5bc9cf9` (Sprint 2 E2) | (none) | --cache-pdfs for ~124 arXiv PDFs across 5 topics |
 | `/agent-index` | v2.2.1 | M0 + Sprint 2 E4 dossier sprint | `8b0fdb4` (Phase 3) + `16e9169` (Sprint 2 E4) | (none) | v2.2+ Attribute-First atomic decomposition; pre_selection_manifest |
 | `/dossier-audit` | v2.2.1 | M0 + Sprint 2 E5 dossier sprint | `00d45c5` (Phase 4) + `b68329c` (Sprint 2 E5) | (none) | 6 Sprint 1 rounds + 3 Sprint 2 audit-trail rounds per topic |
-| `/dataset-synthesize` | v0.8+ (upstream) | Lane 2 (~M3) | (pending MR-3) | MR-3 | STILL OPEN per Round 21 — research_toolkit#1 |
+| `/dataset-synthesize` | v2.4.0 | Lane 2 (~M3) | MR-3 merged 2026-05-24 | MR-3 | **Designated primary, execution GATED** on #21/#22/#23 (silent-failure + install gaps) — see upstream_issues.md |
 
 Expected populations:
 - `/research-plan` ← M0 dossier sprint (week 1-3)
@@ -87,19 +102,23 @@ to PyPI for cleaner pinning (currently consumed via git URL).
 
 ---
 
-## @brandon_m_behring/book-scaffold-astro (npm; floor `^3.5.0` per Round 21)
+## @brandon_m_behring/book-scaffold-astro (npm; floor `^4.4.0`, resolves 4.5.1)
 
-Per Round 21: scaffold pin advanced from `^3.1.0` → `^3.5.0`; MR-8 + MR-9 both
-closed upstream. v3.5.0 ships `research-portfolio` preset (the Round 12 design
-spec). v3.6.0 adds `katexMacros` consumer-defined macros option (not currently
-needed but available).
+**Round 26 (2026-05-26, ADR-051):** pin advanced `^3.6.5` → `^4.4.0` and the book
+**switched from the academic profile to `research-portfolio`** (v4's `defineStyle`
+architecture). `astro.config.mjs` uses `styles: [researchPortfolioStyle]`;
+`content.config.ts` uses `defineBookSchemas({ preset: 'research-portfolio', chaptersBase:
+'./src/content/textbook' })` (BOOK_PROFILE env is dead in v4). The 13 `textbook/` chapters
+validate + build green. Consumer fixes forced: per-chapter `freshness` values, the
+**required** `last_verified`, and HTML→MDX comment conversion (see ADR-051 + DF-1/DF-2).
 
 | Component / API | Min version | Used in | First commit | MR | Notes |
 |-----------------|-------------|---------|--------------|----|-------|
-| `defineBookSchemas()` | ^3.1.0 (backfill-pinned-via Round 21 ^3.5.0) | `book/src/content.config.ts` | f011726 (M0 Day 2 scaffold bootstrap) | — | Stock scaffold |
+| `defineBookConfig({ styles })` | ^4.4.0 | `book/astro.config.mjs` | (R26) | — | `researchPortfolioStyle` (v4 defineStyle) |
+| `defineBookSchemas({ preset, chaptersBase })` | ^4.4.0 | `book/src/content.config.ts` | f011726 → R26 | — | `preset: 'research-portfolio'`; `chaptersBase: './src/content/textbook'` wires the 13 real chapters |
 
-Expected populations (post Day 14 chapter skeletons):
-- `research-portfolio` preset (union schema academic ∪ tools) — MR-8 (#6) closed v3.5.0
+Now active (research-portfolio adopted at v4.5.1, R26); components available, consumed as chapters author per Day 14+:
+- `research-portfolio` preset (union schema academic ∪ tools) — **ADOPTED** (was MR-8 (#6), closed v3.5.0)
 - `PreReleaseBanner` component (state + dismissAt + message)
 - `PolicyRef` component (generic cross-doc policy citation)
 - `AICollaborationDisclosure` component (YAML-config disclosure paragraph)

@@ -851,7 +851,7 @@ wheels = [
 
 [[package]]
 name = "eval-toolkit"
-version = "0.47.0"
+version = "1.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jsonschema" },
@@ -859,9 +859,9 @@ dependencies = [
     { name = "scikit-learn" },
     { name = "scipy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/15/ae/61d6130b35ace030595915ab69e940441e2ee0b04661561bb799cfd00278/eval_toolkit-0.47.0.tar.gz", hash = "sha256:c9b024137996198055102acca743a5ea9ed459a4604f344c257cccf9618b199b", size = 775019, upload-time = "2026-05-21T23:52:32.369Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/98/51/0ea5b2b8e2ab4ed3bf369f4ec0dcb9907bfc32f6660724b3104cd8210ee5/eval_toolkit-1.2.0.tar.gz", hash = "sha256:5fc8b08f82dddde2dd4b0c44b634409f1b0d7c5b0ff07c626d608185a9e1dde0", size = 859897, upload-time = "2026-05-26T21:21:25.867Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e1/b0/138cfe07fd178fcbf22477bc30d6a0750fb1fc65c25f170072cea7df5950/eval_toolkit-0.47.0-py3-none-any.whl", hash = "sha256:cd1cbb280f1c03d11e8af2accb0c036704509341852f5a857415378271c38d35", size = 236469, upload-time = "2026-05-21T23:52:30.323Z" },
+    { url = "https://files.pythonhosted.org/packages/64/b4/33aa12d72761df2460980bf4c447884a480209e03ec6cb5c8cc0673b0b79/eval_toolkit-1.2.0-py3-none-any.whl", hash = "sha256:fced56132eb52284056aef2f88453a9de3d11ac22724004334412fa9999bc38e", size = 276082, upload-time = "2026-05-26T21:21:24.12Z" },
 ]
 
 [package.optional-dependencies]
@@ -2740,7 +2740,6 @@ dependencies = [
     { name = "pyarrow" },
     { name = "pydantic" },
     { name = "pyyaml" },
-    { name = "research-toolkit" },
     { name = "scikit-learn" },
     { name = "sentence-transformers" },
     { name = "sentencepiece" },
@@ -2768,7 +2767,7 @@ requires-dist = [
     { name = "accelerate", specifier = ">=1.0" },
     { name = "anthropic", specifier = ">=0.40" },
     { name = "datasets", specifier = ">=3.0" },
-    { name = "eval-toolkit", extras = ["probes", "losses"], specifier = ">=0.47" },
+    { name = "eval-toolkit", extras = ["probes", "losses"], specifier = ">=1.0" },
     { name = "faiss-cpu", specifier = ">=1.8" },
     { name = "gradio", specifier = ">=4.0" },
     { name = "huggingface-hub", specifier = ">=0.25" },
@@ -2788,7 +2787,6 @@ requires-dist = [
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4" },
     { name = "pyyaml", specifier = ">=6" },
-    { name = "research-toolkit", git = "https://github.com/brandon-behring/research_toolkit?rev=v1.9.1" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.4" },
     { name = "runpod-deploy", marker = "extra == 'dev'", specifier = ">=0.8.4" },
     { name = "scikit-learn", specifier = ">=1.5" },
@@ -3356,14 +3354,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/ac/c3/e2a2b89f2d3e2179abd6d00ebd70bff6273f37fb3e0cc209f48b39d00cbf/requests-2.34.2.tar.gz", hash = "sha256:f288924cae4e29463698d6d60bc6a4da69c89185ad1e0bcc4104f584e960b9ed", size = 142856, upload-time = "2026-05-14T19:25:27.735Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl", hash = "sha256:2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0", size = 73075, upload-time = "2026-05-14T19:25:26.443Z" },
-]
-
-[[package]]
-name = "research-toolkit"
-version = "0.1.0"
-source = { git = "https://github.com/brandon-behring/research_toolkit?rev=v1.9.1#c4edf128445a7e938ce746214babad4ac86b0261" }
-dependencies = [
-    { name = "pyyaml" },
 ]
 
 [[package]]

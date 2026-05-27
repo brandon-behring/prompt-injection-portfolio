@@ -72,6 +72,41 @@ Workflow:
 
 ---
 
+## Dogfooding findings — Round 26 upstream adoption (2026-05-26, ADR-051)
+
+Adopting the newer versions by *using* them surfaced the following. Posture this
+pass: **file issues only** (clear repros; no upstream PRs). Lane 2 reliance is
+gated on the research_toolkit items below.
+
+| # | Repo | Friction surfaced by dogfooding | State |
+|---|------|---------------------------------|-------|
+| DF-1 | book-scaffold-astro | research-portfolio schema requires `last_verified` (`z.date()`), but recipe 13 / examples imply it's optional; all 13 portfolio chapters failed the astro build until it was added. | [#74](https://github.com/brandon-behring/book-scaffold-astro/issues/74) |
+| DF-2 | book-scaffold-astro | `book-scaffold validate` CLI ignores `defineBookSchemas({preset, chaptersBase})` from content.config.ts — reports `profile=minimal` + only checks the default `src/content/chapters/`, diverging from Astro's content layer (which correctly used research-portfolio + `textbook/`). | [#75](https://github.com/brandon-behring/book-scaffold-astro/issues/75) |
+| DF-3 | research_toolkit | `docling`/`pdfplumber` are *hard* deps, forcing validator-only consumers to install heavy ML deps they never use. Propose a `[validators]` extras split. (Motivated dropping the pip dep — ADR-051.) | [#26](https://github.com/brandon-behring/research_toolkit/issues/26) |
+| DF-4 | research_toolkit | `evidence_ledger` validator hard-fails on absent `excerpt_anchor.text_path` body-text with no distinction between "cache not populated (re-fetchable)" and a genuinely broken anchor. A structural-only / `--allow-missing-cache` mode would let clean-checkout consumers validate ledger structure without the heavy cache. | [#27](https://github.com/brandon-behring/research_toolkit/issues/27) |
+
+**Lane 2 `/dataset-synthesize` — readiness gate** (tracks EXISTING upstream issues; no dupes):
+
+| Repo | Issue | Why it gates Lane 2 |
+|------|-------|---------------------|
+| research_toolkit | [#22](https://github.com/brandon-behring/research_toolkit/issues/22) | P1: candidate/dogfood-pending; silent-failure path (`_extract_text` drops non-text blocks, returns "") would silently corrupt a training corpus. |
+| research_toolkit | [#23](https://github.com/brandon-behring/research_toolkit/issues/23) | P2: skill not installed by default (absent from Makefile SKILLS / quickstart / `~/.claude/skills`) → not reproducible. |
+| research_toolkit | [#21](https://github.com/brandon-behring/research_toolkit/issues/21) | Post-merge polish (pricing staleness, API-key check location, cost-invariant test). |
+
+Lane 2 keeps `/dataset-synthesize` as its **designated** primary data path (ADR-051),
+but **execution is gated** on #22/#23 closing — no reliance until then; the 3-tier
+fallback ladder remains the documented contingency.
+
+**Pin-state updates (this round):**
+- eval-toolkit: `>=0.47` → `>=1.0` (lock 1.2.0); v1.0 stability contract. Cannot be
+  dogfooded until M1 (no consumer code yet) — pin + forward-guidance only.
+- research_toolkit: git-pinned `@v1.9.1` dep → **dropped as a dep**; consumed as a
+  repo-local tooling clone pinned `v2.4.0` via `make dossier-audit` (ADR-051).
+- book-scaffold-astro: `^3.6.5` → `^4.4.0` (resolves 4.5.1) + research-portfolio profile.
+- runpod-deploy: unchanged (`>=0.8.4` == PyPI latest 0.8.4; the GitHub Releases lag was a false alarm).
+
+---
+
 ## Library-first invariant — restatement
 
 - 4 load-bearing libraries are infrastructure for multiple consumers; portfolio

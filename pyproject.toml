@@ -15,14 +15,17 @@ requires-python = ">=3.13"
 # Portfolio bumps these as upstream patches land; per ADR-013 cost discipline,
 # bumps that change behavior require a `decisions/library_imports.md` row.
 dependencies = [
-    # Round 20 floor: eval-toolkit v0.47.0+ (scorecard + metric_specs + sweep +
-    # TextTransform + 12-technique character_injection + LogisticStacker all in
-    # one canonical v1.0-prep surface). [probes,losses] extras pull torch + transformers
-    # for ActivationDeltaProbe + RecallAtLowFPR (already in main deps for ML stack).
-    "eval-toolkit[probes,losses]>=0.47",
-    # research_toolkit not yet on PyPI — track v0.8+ upstream issue to publish.
-    # For now, install via git URL pinned to v1.9.1 (matches submission).
-    "research_toolkit @ git+https://github.com/brandon-behring/research_toolkit@v1.9.1",
+    # eval-toolkit v1.0+ stability contract (ADR-051; upstream ADR 0003): the
+    # Tier-1 API + 9 Protocols are frozen for the 1.x line, so M1+ lane code is
+    # written against a stable surface. [probes,losses] extras pull torch +
+    # transformers for ActivationDeltaProbe + RecallAtLowFPR (already in ML stack).
+    # No consumer code yet (src/ placeholder) → dogfooding deferred to M1.
+    "eval-toolkit[probes,losses]>=1.0",
+    # research_toolkit is consumed as TOOLING — the dossier-audit validators +
+    # Claude skills — NOT a Python import, so it is deliberately NOT a dependency
+    # here (ADR-051). `make dossier-audit` bootstraps a repo-local clone pinned to
+    # a release tag (.tooling/research_toolkit). This keeps the portfolio env lean:
+    # research_toolkit's docling/pdfplumber deps are irrelevant to validation.
     # Standard ML stack (matches submission v1.0.7+):
     "huggingface_hub>=0.25",
     "pyyaml>=6",

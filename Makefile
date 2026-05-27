@@ -13,27 +13,44 @@ verify-docker:
 verify-deps:
 	@python3 scripts/verify_editable_dep.py
 
+# research_toolkit validators are consumed as a pinned TOOLING clone — NOT a pip
+# dependency (nothing imports research_toolkit in Python; its docling/pdfplumber
+# deps are irrelevant to validation). Bootstrapped repo-locally + gitignored for
+# fresh-machine + CI reproducibility (ADR-051). Bump RT_TAG to adopt a new release.
+RT_TAG := v2.4.0
+RT_DIR := .tooling/research_toolkit
+# Validators need only PyYAML — run them in an ephemeral uv env (--no-project, so
+# no project sync / torch / submission-sibling needed). Lightweight locally + CI.
+RT_PY := uv run --no-project --with pyyaml python
+
 # Dossier-audit close-gate (per ADR-007 M7-ratify gate).
 # Validates v2.2+ strict-live artifacts across all 5 topic dossiers.
 # Iterates: bib_ledger + evidence_ledger + cache_manifest + claim_graph +
 # gather_trace + agent_index + pre_selection_manifest + cross_stage --strict.
 dossier-audit:
-	@echo "=== M7 dossier-audit close-gate (5 topics) ==="
+	@test -d $(RT_DIR) || git clone --quiet --branch $(RT_TAG) --depth 1 \
+		https://github.com/brandon-behring/research_toolkit $(RT_DIR)
+	@git -C $(RT_DIR) -c advice.detachedHead=false checkout --quiet $(RT_TAG) 2>/dev/null || \
+		{ echo "  fetching research_toolkit $(RT_TAG)…"; \
+		  git -C $(RT_DIR) fetch --quiet --depth 1 origin tag $(RT_TAG) && \
+		  git -C $(RT_DIR) -c advice.detachedHead=false checkout --quiet $(RT_TAG); } || \
+		{ echo "✗ cannot put $(RT_DIR) at $(RT_TAG) — 'rm -rf $(RT_DIR)' and retry"; exit 1; }
+	@echo "=== M7 dossier-audit close-gate (5 topics) — validators @ research_toolkit $(RT_TAG) ==="
 	@for topic in detector-landscape direct-vs-indirect training-and-evaluation agentic-security-architecture rag-injection-defenses; do \
 		echo ""; \
 		echo "--- $$topic ---"; \
-		python3 ~/Claude/research_toolkit/validators/bib_ledger.py docs/research/$$topic/bib_ledger.yml || exit 1; \
-		python3 ~/Claude/research_toolkit/validators/evidence_ledger.py docs/research/$$topic/evidence_ledger.yml || exit 1; \
-		python3 ~/Claude/research_toolkit/validators/cache_manifest.py docs/research/$$topic/cache_manifest.yml || exit 1; \
-		python3 ~/Claude/research_toolkit/validators/claim_graph.py docs/research/$$topic/claim_graph.jsonl || exit 1; \
-		python3 ~/Claude/research_toolkit/validators/gather_trace.py docs/research/$$topic/gather_trace.yml || exit 1; \
-		python3 ~/Claude/research_toolkit/validators/agent_index.py docs/research/$$topic/agent_index/ || exit 1; \
-		python3 ~/Claude/research_toolkit/validators/pre_selection_manifest.py docs/research/$$topic/agent_index/pre_selection_manifest.yml || exit 1; \
-		python3 ~/Claude/research_toolkit/validators/audit_trail.py docs/research/$$topic/agent_index/README.md || exit 1; \
-		python3 ~/Claude/research_toolkit/validators/cross_stage.py docs/research/$$topic/ || exit 1; \
+		$(RT_PY) $(RT_DIR)/validators/bib_ledger.py docs/research/$$topic/bib_ledger.yml || exit 1; \
+		$(RT_PY) $(RT_DIR)/validators/evidence_ledger.py docs/research/$$topic/evidence_ledger.yml || exit 1; \
+		$(RT_PY) $(RT_DIR)/validators/cache_manifest.py docs/research/$$topic/cache_manifest.yml || exit 1; \
+		$(RT_PY) $(RT_DIR)/validators/claim_graph.py docs/research/$$topic/claim_graph.jsonl || exit 1; \
+		$(RT_PY) $(RT_DIR)/validators/gather_trace.py docs/research/$$topic/gather_trace.yml || exit 1; \
+		$(RT_PY) $(RT_DIR)/validators/agent_index.py docs/research/$$topic/agent_index/ || exit 1; \
+		$(RT_PY) $(RT_DIR)/validators/pre_selection_manifest.py docs/research/$$topic/agent_index/pre_selection_manifest.yml || exit 1; \
+		$(RT_PY) $(RT_DIR)/validators/audit_trail.py docs/research/$$topic/agent_index/README.md || exit 1; \
+		$(RT_PY) $(RT_DIR)/validators/cross_stage.py docs/research/$$topic/ || exit 1; \
 	done
 	@echo ""
-	@echo "✓ M7 dossier-audit PASS (5 topics validated)"
+	@echo "✓ M7 dossier-audit PASS (5 topics validated, research_toolkit $(RT_TAG))"
 
 # Aggregated quality gates (mirrors CI workflow).
 lint:
@@ -82,6 +99,6 @@ ratify-milestone:
 	@echo "Next (user-led): \`git tag v0.1.0\` + \`gh release create v0.1.0\` + announcement thread"
 	@echo "Outstanding (deferred to user session per Round 22 Q2 + Round 24 Sprint 2):"
 	@echo "  - Twitter/X + Mastodon account creation + M0 announcement post"
-	@echo "  - Open MRs to monitor: MR-3 (research_toolkit#1) + MR-12 (eval-toolkit#69)"
+	@echo "  - All M0-batch upstream MRs closed; Lane 2 gated on research_toolkit #21/#22/#23 (see decisions/upstream_issues.md)"
 	@echo "  Dossier sprint COMPLETE per Sprint 1 + Sprint 2 (210 entries / 5 topics):"
 	@echo "    Use 'make dossier-audit' to validate v2.2+ strict-live artifacts."

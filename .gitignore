@@ -10,6 +10,10 @@ build/
 dist/
 .DS_Store
 
+# Tooling clones — research_toolkit validators pinned at a release tag for
+# `make dossier-audit` (ADR-051). Bootstrapped on demand; never committed.
+/.tooling/
+
 # Portfolio eval artifacts (large; runtime outputs)
 evals/predictions/
 evals/predictions_val/

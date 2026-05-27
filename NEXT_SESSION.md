@@ -5,10 +5,14 @@ machine). Install instructions + commit summary + critical context.
 
 **Last update**: 2026-05-23 (Round 25 — M0 close follow-up cleanup after Round 24
 Sprint 2 closure + Sprint 3 fold-in).
-**Repo state**: 41 commits on main; `v0.1.0-pre` tagged at Day 3b;
-`make dossier-audit` PASSES (5 topics validated); M0 close artifact-state
-PASSES (Docker/torch/submission-sibling environmental gaps on this machine
-are NOT code-state failures — see Round 24 close).
+**Repo state**: 41 commits on main; `v0.1.0-pre` tagged at Day 3b.
+**R26 dogfooding adoption (2026-05-26, ADR-051)**: eval-toolkit `>=1.0`;
+research_toolkit consumed as a repo-local tooling clone pinned `v2.4.0` (dropped as a pip
+dep); book-scaffold-astro `^4.4.0` + research-portfolio profile (book builds green).
+`make dossier-audit` runs validators from the pinned v2.4.0 clone, but a FULL 5-topic pass
+needs the populated `~/Claude/research_cache` body-text cache — a re-fetchable heavy
+artifact, like torch (absent here ≠ code-state failure; see Round 24 close + ADR-051).
+M0 close artifact-state PASSES.
 **Pre-alpha banner**: ACTIVE.
 
 ---
@@ -160,9 +164,8 @@ Every upstream MR the portfolio filed is now resolved:
   lightweight + added ADR 0004 naming-conventions doc. Top-level
   canonical imports already work; no portfolio change needed.
 - **MR-13** (book-scaffold-astro#54): citation-js `%`-comment lexer —
-  **CLOSED: resolved in book-scaffold-astro v4.0.0**. Portfolio
-  workaround still compatible; v4.0.0 is a BREAKING `defineStyle`
-  change — review before bumping the `^3.6.5` pin past it.
+  **CLOSED: resolved in book-scaffold-astro v4.0.0**. Portfolio **adopted v4.x at R26**
+  (now `^4.4.0`, resolves 4.5.1; the BREAKING `defineStyle` migration is done — ADR-051).
 - **MR-14** (research_toolkit#14): cache_manifest path-resolution
   inconsistency — **MERGED 2026-05-24 (research_toolkit PR #15,
   squash 33f07f9)**. `make dossier-audit` PASSES again; cache_manifest
@@ -170,20 +173,24 @@ Every upstream MR the portfolio filed is now resolved:
 
 All 7 eval-toolkit MRs (MR-1/2/4/5/6/7 + MR-10 obsoleted) + 2
 book-scaffold-astro MRs (MR-8 + MR-9) + MR-3/-12/-13/-14 are CLOSED.
-**Zero open upstream MRs.**
+**Zero open upstream MRs from the M0 batch.** (R26 then dogfooded + adopted all three
+newer versions and filed fresh consumer-friction findings **DF-1..4** — see
+`decisions/upstream_issues.md`.)
 
 ---
 
-## Lane 2 data path (MR-3 shipped 2026-05-24)
+## Lane 2 data path (MR-3 shipped 2026-05-24; readiness-GATED per ADR-051)
 
-**PRIMARY (now available)**: use `/dataset-synthesize` from
-research_toolkit to generate the ~10k synthetic indirect-injection
-corpus. Recipe at `~/Claude/research_toolkit/templates/dataset_synthesis_recipe.template.yml`;
-cost-bounded via `--bail-at-cost 80.00` (per plan §16 + ADR-013);
-exit code 3 on API failure with resumable partial manifest. Seed
-templates from the 7 `production_rag_incidents` carriers (EchoLeak /
-Slack AI / Comet / Gemini / ChatGPT-plugin image / Unseeable /
-Greshake Bing) for production-realistic patterns.
+**DESIGNATED PRIMARY — execution GATED** (R26 dogfooding, ADR-051): `/dataset-synthesize`
+(research_toolkit v2.4.0) is the designated path to generate the ~10k synthetic
+indirect-injection corpus, **but do NOT rely on it until research_toolkit #22/#23 close**.
+#22 is a confirmed **silent-failure** path (`_extract_text` drops non-text blocks, returns
+"") that would silently corrupt the corpus; #23 = not-installed-by-default. See
+`decisions/upstream_issues.md` (DF findings + Lane 2 gate). When unblocked: recipe at
+`~/Claude/research_toolkit/templates/dataset_synthesis_recipe.template.yml`; cost-bounded
+via `--bail-at-cost 80.00` (per plan §16 + ADR-013); exit code 3 on API failure with
+resumable partial manifest. Seed templates from the 7 `production_rag_incidents` carriers
+(EchoLeak / Slack AI / Comet / Gemini / ChatGPT-plugin image / Unseeable / Greshake Bing).
 
 **Fallback ladder (only if `/dataset-synthesize` proves insufficient
 at M2)** — kept for reference, no longer the expected path:
