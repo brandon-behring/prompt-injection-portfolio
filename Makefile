@@ -17,7 +17,7 @@ verify-deps:
 # dependency (nothing imports research_toolkit in Python; its docling/pdfplumber
 # deps are irrelevant to validation). Bootstrapped repo-locally + gitignored for
 # fresh-machine + CI reproducibility (ADR-051). Bump RT_TAG to adopt a new release.
-RT_TAG := v2.4.1
+RT_TAG := v2.5.0
 RT_DIR := .tooling/research_toolkit
 # Validators need only PyYAML — run them in an ephemeral uv env (--no-project, so
 # no project sync / torch / submission-sibling needed). Lightweight locally + CI.
