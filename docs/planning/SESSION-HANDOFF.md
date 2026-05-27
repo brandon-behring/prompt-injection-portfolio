@@ -4,6 +4,55 @@ Cold-start anchor for the work done in the 2026-05-26 session. Complements `NEXT
 (the standing M0-close anchor); this doc is the **live in-flight delta**. Three distinct efforts ran;
 all are **UNCOMMITTED**.
 
+---
+
+## ⏭ 2026-05-27 UPDATE — supersedes the EXECUTION ROADMAP below (read this first)
+
+The continue-all-phases session ran. **STEP 1's premise was wrong** and is corrected; everything is now
+committed + pushed on `session/2026-05-26-adoption-and-research-ops`.
+
+- **STEP A (was STEP 1 "cache-repair") — ✅ DONE, committed `3d11757`.** The 63 "freshness errors" were
+  **not** missing cache — they were citation-audit **substring** failures from a **path-resolution bug**:
+  `verify_excerpt_anchor`'s callers didn't pass the manifest `cache_root`, so relative `text_path`
+  resolved against the empty dossier-local `text/` dir. The fix already existed upstream (`33f07f9`, #15,
+  merged to main, **never tagged**). Adopted by tagging **research_toolkit `v2.4.1`** at `33f07f9` +
+  `Makefile RT_TAG := v2.4.1`. Re-green: substring **0→100%** on all dossiers (detector 61/61, direct
+  51/51, training 13/13, rag 28/28, agentic 0/0); **`make dossier-audit` PASS ×5**. No re-fetching. ADR-051
+  follow-up records the misdiagnosis. (Lesson saved as memory `tag-pins-strand-fixes`.)
+- **STEP B — v3 excerpt-anchor PRODUCER built (the second dogfooding gap).** The toolkit could *check*
+  anchors but had no *producer* (BURN_IN 2026-05-25). New `scripts/build_excerpt_anchor.py` (manifest-mode,
+  whitespace-tolerant, multi-byte-correct, `--occurrence`, self-verifies through `verify_excerpt_anchor`).
+  14 tests, ruff clean, **reproduces all 61 real detector-landscape anchors** (41 via `--occurrence`).
+  Wired into `/agent-index` Phase 2a + `/research-gather`. **Opened as PR #28 — NOT merged (maintainer-gated;
+  do not self-merge).** `.tooling` stays at **v2.4.1**; the **v2.5.0 re-pin is pending the PR #28 merge**.
+  For Phase B now, run the producer from the `feat/build-excerpt-anchor` checkout of `~/Claude/research_toolkit`.
+- **Phase C dataset dossier — ✅ DONE, committed `ebfd2f2`.** `docs/research/datasets/` = 20-entry
+  `dataset_ledger.yml` + validated `agent_index/`. Feeds ADR-052 (cross-linked both ways). BIPIA is the
+  only set with a disjoint 15/15 attack-type split; honest flags kept (xTRam1 mismatched, PINT withheld,
+  5 license-unknown, arXiv 2604.27202 genuine but corpus unreleased).
+
+### Phase B — strict-live ingestion: REMAINING (multi-session)
+Per-topic loop, each ending **green**: update `research_plan.md` claim_family → `/research-gather` (append;
+`--escalate-on-failure`; caches + evidence_ledger v3 + claim_graph + gather_trace) → **anchor new verbatim
+claims with `build_excerpt_anchor.py`** → `/agent-index` → `/dossier-audit` → `/citation-audit`. Gate:
+`make dossier-audit` green ×5 + `missed_seeds` drained. Commit per topic.
+- Queue from `docs/research/_inbox/missed_seeds.md` (entries are **verify+complete-metadata stubs**, not
+  blind searches): **A** detector 18 · **B** direct 10 · **C** training 15 · **D** agentic 21 · **E** rag 9.
+  Plus this-session method sources: Attention Tracker `2411.00348`, ASIDE `2503.10566`, Mirror `2603.11875`,
+  PromptLocate `2510.12252`. Suggested order: thin dossiers first (**E rag**, **D agentic**).
+- **ETHICS exclusions (do NOT ingest):** `browserbench2025adversarial`, `restricted2025threatreport`
+  (synthetic/placeholder URLs); `piv4internaldata2026`, `piv4evaltoolkitfeedback2026` (internal-repo refs).
+  Cross-class entries (CaMeL/Spotlighting/MELON/BIPIA/EchoLeak/LlamaFirewall) get topic-prefixed bibkeys.
+
+### Loose ends (maintainer actions)
+- **Merge PR #28** → tag/push `research_toolkit v2.5.0` → bump `Makefile RT_TAG := v2.5.0` + re-bootstrap `.tooling`.
+- Open the portfolio PR for `session/2026-05-26-adoption-and-research-ops` (or merge to `main`).
+- Effort 2 / STEP 5-7 (attack-type-LODO training) still needs CI / ~$250 / the un-cloned submission sibling.
+
+---
+
+### ↓ Original 2026-05-26 roadmap below (STEP 1 misdiagnosed — see correction above) ↓
+
 ## ✅ Commit status (read first)
 
 - **Committed + pushed** on branch **`session/2026-05-26-adoption-and-research-ops`** (off `main`;
