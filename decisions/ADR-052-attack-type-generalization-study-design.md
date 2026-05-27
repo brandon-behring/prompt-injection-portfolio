@@ -21,7 +21,10 @@ crash). The open, decision-relevant question is **indirect→indirect: does a de
 *types* of indirect injection generalize to held-out types?** A data audit found this is feasible on
 real data via **BIPIA's native disjoint attack-type train/test split** (verified: 15 vs 15 types, only
 "Language Translation" overlapping; ~75 attack strings/split; task-intent + obfuscation-technique
-sub-families), whereas pure carrier-isolation leaks (attacks shared across scenarios).
+sub-families), whereas pure carrier-isolation leaks (attacks shared across scenarios). The full dataset
+audit is recorded in [`docs/research/datasets/`](../docs/research/datasets/agent_index/README.md) (20 sets;
+BIPIA is the only one shipping a disjoint attack-type split; `WAInjectBench` + the unreleased
+"Indirect-in-the-Wild" corpus are the nearest genuinely-indirect alternatives).
 
 ## Decision
 

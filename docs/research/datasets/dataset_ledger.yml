@@ -1,0 +1,475 @@
+# Dataset ledger — indirect prompt-injection attack & detection datasets
+# Maintained by /dataset-gather; validated by validators/dataset_ledger.py (v1.6, non-strict).
+# Built 2026-05-27 (Phase C of the research-ops sprint). Feeds decisions/ADR-052
+# (attack-type generalization) + docs/planning/attack-type-lodo-harness-spec.md.
+#
+# Encoder-readiness is captured per-entry in `notes` (c): whether the set is a
+# drop-in (text,label) corpus for ModernBERT-style training, or needs adaptation
+# (e.g. agent attack-success benchmarks that ship no labeled text).
+#
+# status: verified = WebFetch-confirmed name+url(+license); unverified = could not
+# confirm the *data* (e.g. PINT withheld; IPI-in-the-wild corpus unreleased);
+# mismatched = page attribution conflicts with recorded metadata.
+
+topic: indirect_prompt_injection_datasets
+generated_at: '2026-05-27'
+current_as_of: '2026-05-27'
+
+entries:
+
+# ============================================================================
+# Agent / benchmark harnesses (attack-success metrics; mostly need adaptation)
+# ============================================================================
+
+- bibkey: bipia2023microsoft
+  primary_url: https://github.com/microsoft/BIPIA
+  name: 'Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models (BIPIA)'
+  source: github
+  status: verified
+  task_family: classification
+  license: 'MIT (code, Microsoft Corporation) + custom restrictions: benchmark/README notes some context data (WebQA, Summarization) cannot be redistributed "due to the license issue" and must be regenerated locally'
+  size: 'text: 15+15 attack types x ~5 strings; code: 10+10 types x ~5; paired with Email/WebQA/TableQA/Summarization/CodeQA contexts'
+  rows: '~150 text + ~100 code attack strings (x context tasks => eval instances)'
+  columns: 'attack JSON {attack_type_name: [attack_string, ...]} + per-domain context data'
+  schema_url: https://github.com/microsoft/BIPIA/blob/main/benchmark/README.md
+  access_method: direct
+  auth_required: false
+  citation: 'Yi, Xie, Zhu, Hines, Kiciman, Sun, Xie, Wu (2023/2024). BIPIA. arXiv:2312.14197; KDD 2025.'
+  notes: >-
+    THE DIRECT INPUT TO ADR-052. (a) Explicit per-attack-type labels with a DISJOINT train/test
+    split. Text: 15 train types vs 15 test types, ONLY "Language Translation" overlaps (intentional,
+    for unseen-attack-type generalization), ~5 strings/type. Train text types = Information Retrieval,
+    Content Creation, Learning and Tutoring, Language Translation, Programming Help, Alphanumeric
+    Substitution, Homophonic Substitution, Misspelling Intentionally, Anagramming, Space Removal &
+    Grouping, Instruction, Social Interaction, Persuasion, Clickbait, Malware Distribution. Test text
+    types = Task Automation, Business Intelligence, Conversational Agent, Research Assistance, Sentiment
+    Analysis, Substitution Ciphers, Base Encoding, Reverse Text, Emoji Substitution, Language
+    Translation, Information Dissemination, Marketing & Advertising, Entertainment, Scams & Fraud,
+    Misinformation & Propaganda. Code: 10 train vs 10 disjoint test types. The obfuscation sub-family
+    (Alphanumeric/Homophonic Substitution, Anagramming, Substitution Ciphers, Base Encoding, etc.) is a
+    clean technique slice. (b) Constructed by injecting attack strings into otherwise-benign task
+    contexts (no fixed pre-split balance). (c) Encoder-readiness: NEAREST to plug-and-play here — clean
+    per-type malicious strings + benign carriers => a derivable (text,binary-label) corpus; the disjoint
+    type split is exactly the attack-type-LODO axis. CAVEAT: small diversity (~75 strings/split =>
+    memorization risk). No official microsoft-org HF mirror yet (README TODO; only 3rd-party mirrors).
+
+- bibkey: injecagent2024uiuc
+  primary_url: https://github.com/uiuc-kang-lab/InjecAgent
+  name: 'InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents'
+  source: github
+  status: verified
+  task_family: other
+  license: MIT
+  size: '1,054 test cases (17 user tools, 62 attacker tools)'
+  rows: '1054'
+  columns: 'user_cases.jsonl + attacker_cases_dh/ds.jsonl + test_cases_dh/ds_{setting}.json'
+  schema_url: https://github.com/uiuc-kang-lab/InjecAgent
+  access_method: direct
+  auth_required: false
+  citation: 'Zhan, Liang, Ying, Kang (2024). InjecAgent. arXiv:2403.02691; ACL 2024 Findings.'
+  notes: >-
+    (a) Two attack-intent categories: direct harm (dh) + data exfiltration/stealing (ds); not
+    fine-grained per-string type labels. (b) All-attack test cases (no benign control split); measures
+    whether injection succeeds (ASR-valid / ASR-all over ReAct tool-calling traces). (c) Encoder-readiness:
+    NOT a drop-in (text,label) set — agent ASR benchmark; injected attacker-tool prompts can be mined as
+    malicious text but no paired benign set, so a classifier corpus needs benign carriers supplied.
+
+- bibkey: agentdojo2024ethz
+  primary_url: https://github.com/ethz-spylab/agentdojo
+  name: 'AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents'
+  source: github
+  status: verified
+  task_family: other
+  license: MIT
+  size: '97 tasks + 629 security test cases'
+  rows: '629 security test cases across 4 suites (workspace/email, banking, travel, slack)'
+  columns: 'task suites: user_tasks + injection_tasks; environment state + tool defs (Python objects)'
+  schema_url: https://github.com/ethz-spylab/agentdojo
+  access_method: direct
+  auth_required: false
+  citation: 'Debenedetti, Zhang, Balunović, Beurer-Kellner, Fischer, Tramèr (2024). AgentDojo. arXiv:2406.13352; NeurIPS 2024 D&B.'
+  notes: >-
+    (a) Organized by injection-task + attack strategy (e.g. "important_instructions"), not (text,label)
+    per-string categories. (b) 97 benign user tasks vs 629 security test cases; benign-utility AND
+    under-attack performance both measured. (c) Encoder-readiness: NOT a drop-in static corpus — dynamic
+    agent environment; heavy adaptation needed to render payloads vs benign tool outputs into text. Strong
+    for agent-level eval, weak as encoder training data.
+
+- bibkey: llmailinject2025microsoft
+  primary_url: https://huggingface.co/datasets/microsoft/llmail-inject-challenge
+  name: 'LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge'
+  source: huggingface
+  status: verified
+  task_family: other
+  license: MIT
+  size: '~462k rows (Phase1 ~371k + Phase2 ~90.9k); 208,095 unique attack prompts'
+  rows: '~462000'
+  columns: 'RowKey, Timestamp, subject, body, objectives (13), scenario (40), success flags (email.retrieved/defense.undetected/exfil.sent/...)'
+  schema_url: https://huggingface.co/datasets/microsoft/llmail-inject-challenge
+  access_method: hf datasets
+  auth_required: false
+  citation: 'Abdelnabi, Fay, Salem, Zverev, et al. (2025). LLMail-Inject. arXiv:2506.09956; SaTML 2025 competition.'
+  notes: >-
+    (a) Labeled by objectives (13 classes) + scenario (40 classes); per-submission success as binary
+    flags (defense.undetected gives a usable detector target). (b) Heavily attack-skewed — 208k+ adaptive
+    ATTACK submissions (839 participants); the signal is which attacks BYPASS which defense, not
+    benign/malicious balance. (c) Encoder-readiness: PARTIAL — subject+body are real adversarial text and
+    defense.undetected is a binary-ish target, but ALL rows are attacks (no benign emails) => add benign
+    carriers for a balanced classifier. Largest real-world ADAPTIVE-attack corpus here; excellent hard-
+    positive pool for detector robustness.
+
+- bibkey: asb2024agiresearch
+  primary_url: https://github.com/agiresearch/ASB
+  name: 'Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents'
+  source: github
+  status: verified
+  task_family: other
+  license: MIT
+  size: '10 scenarios, 10 agents, 400+ tools, 27 attack/defense methods, 13 LLM backbones'
+  rows: 'combinatorial (scenarios x agents x attacks); not a flat row count'
+  columns: 'scenario configs + agent/tool defs + attack/defense modules (code+config)'
+  schema_url: https://github.com/agiresearch/ASB
+  access_method: direct
+  auth_required: false
+  citation: 'Zhang, Huang, Mei, Yao, Wang, Zhan, Wang, Zhang (2024). Agent Security Bench. arXiv:2410.02644; ICLR 2025.'
+  notes: >-
+    (a) 5 attack families — Direct Prompt Injection (DPI), Observation Prompt Injection (OPI), Memory
+    Poisoning, Plan-of-Thought (PoT) Backdoor, Mixed — over 27 methods; labels at method/scenario level,
+    not per-string. (b) Attack-success-rate benchmark (peak ASR ~84%); not benign/malicious balanced.
+    (c) Encoder-readiness: NOT a drop-in (text,label) set — ASR framework over a full agent stack; needs
+    substantial adaptation to extract a labeled text corpus.
+
+# ============================================================================
+# Detection / classifier corpora (mostly drop-in (text,label) for encoders)
+# ============================================================================
+
+- bibkey: deepset2023promptinjections
+  primary_url: https://huggingface.co/datasets/deepset/prompt-injections
+  name: deepset/prompt-injections
+  source: huggingface
+  status: verified
+  task_family: classification
+  license: apache-2.0
+  size: '~0.5 MB'
+  rows: '662 (train 546 / test 116)'
+  columns: 'text, label'
+  schema_url: https://huggingface.co/datasets/deepset/prompt-injections
+  access_method: hf datasets
+  auth_required: false
+  citation: 'deepset (2023). prompt-injections. HuggingFace Datasets.'
+  notes: >-
+    (a) Binary int64 label: 0 = legitimate/non-injection, 1 = prompt injection. (b) 662 rows, imbalanced
+    toward legitimate; bilingual (German + English). (c) Encoder-ready: clean (text,label) with a
+    predefined train/test split — ideal ModernBERT smoke-test set but too small to train alone. Lineage:
+    JasperLS/prompt-injections.
+
+- bibkey: jackhhao2023jailbreakclassification
+  primary_url: https://huggingface.co/datasets/jackhhao/jailbreak-classification
+  name: jackhhao/jailbreak-classification
+  source: huggingface
+  status: verified
+  task_family: classification
+  license: apache-2.0
+  size: '~1.3k rows'
+  rows: '1306 (train 1040 / test 262)'
+  columns: 'prompt, type'
+  schema_url: https://huggingface.co/datasets/jackhhao/jailbreak-classification
+  access_method: hf datasets
+  auth_required: false
+  citation: 'jackhhao (2023). jailbreak-classification. HuggingFace Datasets.'
+  notes: >-
+    (a) Binary string label type in {jailbreak, benign}; text column is `prompt`. (b) 1,306 rows, roughly
+    balanced. (c) Encoder-ready after a trivial rename/label-map (prompt->text, {benign:0, jailbreak:1});
+    has train/test split. Confirmed component of the ProtectAI deberta-v3-v2 training mixture.
+
+- bibkey: xtram12024safeguardpromptinjection
+  primary_url: https://huggingface.co/datasets/xTRam1/safe-guard-prompt-injection
+  name: xTRam1/safe-guard-prompt-injection
+  source: huggingface
+  status: mismatched
+  task_family: classification
+  license: unknown
+  size: '~5 MB'
+  rows: '10296 (train 8240 / test 2056)'
+  columns: 'text, label'
+  schema_url: https://huggingface.co/datasets/xTRam1/safe-guard-prompt-injection
+  access_method: hf datasets
+  auth_required: false
+  citation: 'xTRam1 (2024). safe-guard-prompt-injection. HuggingFace Datasets.'
+  notes: >-
+    (a) Binary int64: 0=safe, 1=prompt-injection. (b) 10,296 rows ~70/30 (~7,000 safe / ~3,000 injection),
+    English. (c) Encoder-ready clean (text,label) with split, good mid-size training set. FLAGGED
+    mismatched: license undisclosed (treat as unknown) AND the card cites arXiv:2402.13064 which is the
+    UNRELATED "Generalized Instruction Tuning (GLAN)" paper — do not propagate that citation. Verify
+    provenance before publishing a trained model.
+
+- bibkey: reshabhs2024spmlchatbotpromptinjection
+  primary_url: https://huggingface.co/datasets/reshabhs/SPML_Chatbot_Prompt_Injection
+  name: reshabhs/SPML_Chatbot_Prompt_Injection
+  source: huggingface
+  status: verified
+  task_family: classification
+  license: mit
+  size: '~40 MB'
+  rows: '16012 (single train split, no test split)'
+  columns: 'System Prompt, User Prompt, Prompt injection (0/1), Degree, Source'
+  schema_url: https://huggingface.co/datasets/reshabhs/SPML_Chatbot_Prompt_Injection
+  access_method: hf datasets
+  auth_required: false
+  citation: 'reshabhs (2024). SPML Chatbot Prompt Injection. HuggingFace; assoc. arXiv:2402.11755.'
+  notes: >-
+    (a) Binary injection flag in int col `Prompt injection` (0/1) + injection `Degree` (severity) +
+    `Source`; carries BOTH System Prompt and User Prompt => captures system-vs-user attack structure.
+    (b) 16,012 rows, single train split (no predefined test). (c) Encoder-usable but needs format work:
+    concatenate/select System+User as text, map Prompt injection -> label; supply your own split. English.
+
+- bibkey: jayavibhav2024promptinjection
+  primary_url: https://huggingface.co/datasets/jayavibhav/prompt-injection
+  name: jayavibhav/prompt-injection
+  source: huggingface
+  status: verified
+  task_family: classification
+  license: unknown
+  size: '~327k rows'
+  rows: '327154 (train 262k / test 65.4k)'
+  columns: 'text, label'
+  schema_url: https://huggingface.co/datasets/jayavibhav/prompt-injection
+  access_method: hf datasets
+  auth_required: false
+  citation: 'jayavibhav (2024). prompt-injection. HuggingFace Datasets.'
+  notes: >-
+    (a) Binary int64 label: 0=non-injection, 1=injection. (b) 327,154 rows with train/test split; balance
+    not stated; English; largest binary set surveyed. (c) Encoder-ready (text,label) with split — strong
+    candidate as a primary ModernBERT training corpus. CAVEAT: license UNDISCLOSED (clear before publishing
+    a trained model); likely synthetic/aggregated, provenance undocumented (empty card).
+
+- bibkey: jayavibhav2024promptinjectionsafety
+  primary_url: https://huggingface.co/datasets/jayavibhav/prompt-injection-safety
+  name: jayavibhav/prompt-injection-safety
+  source: huggingface
+  status: verified
+  task_family: classification
+  license: unknown
+  size: '~13.3 MB'
+  rows: '60000 (train 50k / test 10k)'
+  columns: 'text, label (multiclass 0/1/2)'
+  schema_url: https://huggingface.co/datasets/jayavibhav/prompt-injection-safety
+  access_method: hf datasets
+  auth_required: false
+  citation: 'jayavibhav (2024). prompt-injection-safety. HuggingFace Datasets.'
+  notes: >-
+    (a) MULTICLASS int64 label in {0,1,2} (3 classes; not explicitly named on card — appears benign /
+    injection / a third safety class). (b) 60,000 rows (50k/10k); balance not stated; English. (c)
+    Encoder-ready (text,label) with split, but confirm the 3-class meaning before training (collapse to
+    binary for an injection/benign head). CAVEAT: license UNDISCLOSED.
+
+- bibkey: gentellab2024gentelbench
+  primary_url: https://huggingface.co/datasets/GenTelLab/gentelbench-v1
+  name: 'GenTel-Bench (gentelbench-v1)'
+  source: huggingface
+  status: verified
+  task_family: classification
+  license: apache-2.0
+  size: '~tens of MB'
+  rows: '177015 (HF single split; differs from paper headline 84,812 attacks — likely bundles benign)'
+  columns: 'id, text, label (0/1), domain, subdomain'
+  schema_url: https://huggingface.co/datasets/GenTelLab/gentelbench-v1
+  access_method: hf datasets
+  auth_required: false
+  citation: 'Li, Chen, Hu, Chen, Xing, Han (2024). GenTel-Safe. arXiv:2409.19521.'
+  notes: >-
+    (a) `label` int64 (0/1) with a harm taxonomy in domain/subdomain (6 domains; paper frames 3 attack
+    categories: jailbreak / goal-hijacking / prompt-leaking over 28 scenarios). (b) HF reports 177,015 rows,
+    LARGER than the paper's 84,812 injection attacks => HF release likely bundles benign+attack; README
+    empty, confirm balance before quoting. (c) Encoder-ready (text,label) for binary; domain/subdomain
+    enable multiclass. English. Project: gentellab.github.io/gentel-safe.github.io.
+
+# ============================================================================
+# Over-defense / held-out eval (NOT for the training split)
+# ============================================================================
+
+- bibkey: leolee2024notinject
+  primary_url: https://huggingface.co/datasets/leolee99/NotInject
+  name: NotInject
+  source: huggingface
+  status: verified
+  task_family: other
+  license: mit
+  size: '339 rows (3 subsets x 113)'
+  rows: '339'
+  columns: 'prompt, word_list, category'
+  schema_url: https://huggingface.co/datasets/leolee99/NotInject
+  access_method: hf datasets
+  auth_required: false
+  citation: 'Li, Liu (2024). InjecGuard/PIGuard: Mitigating Over-defense in Prompt Injection Guardrails. arXiv:2410.22770; ACL 2025.'
+  notes: >-
+    (a) NO positive class — ALL 339 samples are BENIGN by construction; `category` in {Common Queries,
+    Technique Queries, Virtual Creation, Multilingual Queries}; `word_list` holds the injection-trigger words
+    deliberately embedded (the category is topic, NOT an attack-type label). (b) 339 benign rows in 3
+    difficulty subsets (1/2/3 trigger words, 113 each); multilingual. (c) NOT a training set — an
+    OVER-DEFENSE / false-positive-rate eval: score a detector by how few of these benign prompts it flags.
+    Pairs with the harness-spec benign-FPR metric. Model: leolee99/PIGuard.
+
+- bibkey: lakera2024pintbenchmark
+  primary_url: https://github.com/lakeraai/pint-benchmark
+  name: 'Prompt Injection Test (PINT) Benchmark'
+  source: github
+  status: unverified
+  task_family: other
+  license: 'MIT (harness/code) + custom restrictions: the labeled PINT dataset is NOT publicly distributed (anti-contamination)'
+  size: '4,314 inputs (3,016 English / 1,298 non-English)'
+  rows: '4314'
+  columns: 'text, label, category (YAML schema expected by the harness; real data withheld)'
+  schema_url: https://github.com/lakeraai/pint-benchmark
+  access_method: credentialed
+  auth_required: true
+  citation: 'Lakera AI (2024). Prompt Injection Test (PINT) Benchmark.'
+  notes: >-
+    CONTAMINATION-AVOIDANCE NON-PUBLIC (verbatim Lakera): "The PINT Benchmark dataset is not publicly
+    available in order to prevent the dilution of the PINT Benchmark from overfitting due to training on the
+    inputs" and "Lakera Guard is not - and will never be - directly trained on any of the inputs in the PINT
+    Benchmark dataset." (a) Categories: public/internal prompt injection, jailbreak, hard_negatives, chat,
+    documents (approx mix: injections ~5%, jailbreaks ~1%, hard negatives ~21%, chat ~36%, documents ~36%).
+    (b) ~4,314 inputs, mostly benign by design. (c) NOT encoder-ready / NOT for training — held-out neutral
+    eval only; repo ships the scoring harness + an EXAMPLE yaml, not the corpus. Request via Lakera.
+
+# ============================================================================
+# Competition / real-world / web-agent (direct unless noted)
+# ============================================================================
+
+- bibkey: hackaprompt2023emnlp
+  primary_url: https://huggingface.co/datasets/hackaprompt/hackaprompt-dataset
+  name: hackaprompt/hackaprompt-dataset
+  source: huggingface
+  status: verified
+  task_family: other
+  license: 'MIT (dataset card; companion paper arXiv:2311.16119 is CC BY 4.0 — different artifact)'
+  size: '~150 MB (HF 100K-1M category)'
+  rows: '~600000 (paper "over 600,000 adversarial prompts"; exact count not on card)'
+  columns: 'level, user_input, prompt, completion, model, expected_completion, correct, score, dataset, timestamp'
+  schema_url: https://huggingface.co/datasets/hackaprompt/hackaprompt-dataset
+  access_method: hf datasets
+  auth_required: false
+  citation: 'Schulhoff et al. (2023). Ignore This Title and HackAPrompt. EMNLP 2023. arXiv:2311.16119.'
+  notes: >-
+    (a) Per-row `correct` boolean (attack succeeded) + `level` (10 difficulty/defense levels) + `model`;
+    attack-type taxonomy is in the PAPER, not a column — rows are not pre-labeled by technique. (b) ~600K
+    prompts across GPT-3/ChatGPT/FlanT5-XXL (playground vs submission); effectively all-adversarial, no
+    benign balance. DIRECT-injection / jailbreak (single-turn user-vs-system), NOT indirect/RAG. (c)
+    Encoder-readiness: needs adaptation — (user_input, correct) is a weak attack-success signal with no clean
+    injection-type label; best as a large adversarial-prompt source, not a drop-in (text,label) set.
+
+- bibkey: tensortrust2023arxiv
+  primary_url: https://github.com/HumanCompatibleAI/tensor-trust-data
+  name: 'Tensor Trust'
+  source: github
+  status: verified
+  task_family: other
+  license: unknown
+  size: '~172,000 entries'
+  rows: '~126000 prompt-injection attacks + ~46000 defense prompts'
+  columns: 'documented in "Using the Tensor Trust dataset.ipynb"; dirs raw-data/, benchmarks/, detecting-extractions/'
+  schema_url: https://github.com/HumanCompatibleAI/tensor-trust-data
+  access_method: direct
+  auth_required: false
+  citation: 'Toyer et al. (2023). Tensor Trust: Interpretable Prompt Injection Attacks from an Online Game. arXiv:2311.01011.'
+  notes: >-
+    (a) Two interpretable attack families — prompt EXTRACTION and prompt HIJACKING — plus defense prompts;
+    ships derived benchmark splits (benchmarks/, detecting-extractions/). (b) ~172K largest human-generated
+    adversarial set; has both attacks AND defenses (natural malicious-vs-benign contrast). DIRECT injection
+    in a game framing, NOT indirect/web/RAG. (c) Encoder-readiness: PARTIAL — the extraction-detection
+    benchmark is closest to (text,label); column meanings need the bundled notebook. CAVEAT: NO license file
+    in the repo (license unknown) — do not redistribute/train-and-publish without confirming terms.
+
+- bibkey: wainjectbench2025arxiv
+  primary_url: https://github.com/Norrrrrrr-lyn/WAInjectBench
+  name: 'WAInjectBench: Benchmarking Prompt Injection Detections for Web Agents'
+  source: github
+  status: verified
+  task_family: classification
+  license: unknown
+  size: '6 attack types x 2 modalities (text + image)'
+  rows: 'not aggregated on README — count from JSONL after clone (8 text attack types + 4 benign categories)'
+  columns: 'text, label (text JSONL); path, label (image JSONL)'
+  schema_url: https://github.com/Norrrrrrr-lyn/WAInjectBench
+  access_method: direct
+  auth_required: false
+  citation: 'Liu, Xu, Wang, Jia, Gong (2025). WAInjectBench. arXiv:2510.01354.'
+  notes: >-
+    (a) Binary label (1=malicious, 0=benign) with fine-grained attack-type stratification (8 text + 7 image
+    attack types) + 4 benign text categories; web-agent / INDIRECT-injection oriented. (b) Both malicious
+    and benign provided (built-in balance) but README gives no totals — count post-download. (c)
+    Encoder-readiness: READY for the text modality — shipped as JSONL {"text","label"}; the most directly
+    encoder-usable web-agent/indirect detection set found. Image modality separate. License unconfirmed.
+
+- bibkey: injecguard2024arxiv
+  primary_url: https://github.com/SaFoLab-WISC/InjecGuard
+  name: 'InjecGuard / PIGuard training corpus'
+  source: github
+  status: verified
+  task_family: classification
+  license: mit
+  size: 'training set aggregated from ~20 open-source datasets + LLM-augmented data; 144-sample val'
+  rows: 'training count not printed on README — count from PIGuard/datasets after clone'
+  columns: 'binary benign vs malicious-injection label (training)'
+  schema_url: https://github.com/SaFoLab-WISC/InjecGuard
+  access_method: direct
+  auth_required: false
+  citation: 'Li, Liu (2024). InjecGuard. arXiv:2410.22770; ACL 2025 (PIGuard).'
+  notes: >-
+    (a) Binary benign vs malicious prompt-injection guardrail training corpus; aggregates ~20 open-source
+    injection datasets INCLUDING BIPIA (indirect) + Wildguard-Benign + PINT; companion NotInject (above) is
+    the all-benign over-defense eval. (b) Mixes benign + malicious; carries some indirect content via BIPIA
+    (unlike HackAPrompt/TensorTrust which are direct-only). (c) Encoder-readiness: READY — purpose-built
+    (text,label) guardrail corpus in PIGuard/datasets, MIT. Verify exact composition after clone.
+
+# ============================================================================
+# Pointers (recipe / unreleased — citable, not directly ingestable)
+# ============================================================================
+
+- bibkey: protectai2024debertav2mix
+  primary_url: https://huggingface.co/ProtectAI/deberta-v3-base-prompt-injection-v2
+  name: 'ProtectAI deberta-v3-base-prompt-injection-v2 (training mixture)'
+  source: huggingface
+  status: verified
+  task_family: other
+  license: apache-2.0
+  size: 'assembled mixture; per-source counts not published'
+  rows: 'unknown (recipe)'
+  columns: 'text, label (0=benign / 1=injection)'
+  schema_url: https://huggingface.co/ProtectAI/deberta-v3-base-prompt-injection-v2
+  access_method: hf datasets
+  auth_required: false
+  citation: 'ProtectAI.com (2024). Fine-Tuned DeBERTa-v3-base for Prompt Injection Detection v2. HuggingFace.'
+  notes: >-
+    This is the MODEL card for the dossier's SOTA reference detector (ProtectAI-v2). (a) Binary 0=benign /
+    1=injection. (b) NOT one dataset — a RECIPE: "meticulously assembled from various public open datasets"
+    (8 MIT + 1 CC0 + 6 public-domain). Named components include jackhhao/jailbreak-classification,
+    OpenSafetyLab/Salad-Data, natolambert/xstest-v2-copy, Harelix/Prompt-Injection-Mixed-Techniques-2024,
+    VMware/open-instruct, alespalla/chatbot_instruction_prompts, HuggingFaceH4/grok-conversation-harmless.
+    (c) NOT encoder-ready as a unit — reproduce by concatenating the listed sources (jackhhao is logged
+    separately above). Listed as the pointer to the v2 training mixture the submission benchmarks against.
+
+- bibkey: ipiwild2026arxiv
+  primary_url: https://arxiv.org/abs/2604.27202
+  name: 'Indirect Prompt Injection in the Wild: An Empirical Study of Prevalence, Techniques, and Objectives'
+  source: arxiv
+  status: unverified
+  task_family: other
+  license: unknown
+  size: '15,387 validated indirect-injection instances across 11,700 pages (paper counts; corpus NOT released)'
+  rows: 'unknown (no downloadable dataset located as of 2026-05-27)'
+  columns: 'unknown'
+  schema_url: https://arxiv.org/abs/2604.27202
+  access_method: direct
+  auth_required: false
+  citation: 'Khodayari, Zhang, Acharya, Pellegrino (2026). Indirect Prompt Injection in the Wild. arXiv:2604.27202.'
+  notes: >-
+    arXiv id 2604.27202 VERIFIED genuine (April-2026 submission; corroborated across arxiv + alphaXiv +
+    cs.CR feed) — do NOT confuse with arXiv:2601.07072 "Overcoming the Retrieval Barrier: Indirect Prompt
+    Injection in the Wild" (USENIX Security '26, Chang et al.). (a) Paper categorizes instances by recurring
+    lexical TEMPLATES (a small set drives ~95%), by objective (offensive vs defensive), and by visibility
+    (~87% non-visible / in HTML headers/comments/metadata). (b) ~15.3K validated INDIRECT real-world-web
+    instances — the only genuinely-in-the-wild indirect corpus here, exactly the dossier's gap. (c) NOT
+    released as (text,label) at verification time (no data-availability statement / repo found). Citable as
+    evidence; RE-CHECK for a data link in a later revision before relying on it.

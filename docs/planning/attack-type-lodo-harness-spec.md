@@ -5,6 +5,10 @@ Methodologist-first; independent rebuild (own pipeline; do NOT inherit submissio
 
 ## 1. Data construction (from BIPIA, verified v=`microsoft/BIPIA`)
 
+> Dataset survey + alternatives: [`docs/research/datasets/`](../research/datasets/agent_index/README.md)
+> — BIPIA's full 15/15 taxonomy (§ A1), the NotInject benign control (§ C1), and encoder-readiness tiers
+> (overview). BIPIA is the only surveyed set with a disjoint attack-type split.
+
 Build `(text, label)` rows for a content classifier ("does this untrusted content contain an
 injection?"):
 - **Positive:** a scenario context with one BIPIA attack string injected (record `attack_type`,
