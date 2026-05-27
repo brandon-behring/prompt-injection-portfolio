@@ -1,5 +1,23 @@
 # Session handoff — 2026-05-26
 
+## ✅ START HERE — next session (2026-05-27 final state)
+
+**Branch:** this session's work is **merged to `main`** (research_toolkit `v2.5.0` re-pin + Phase C dataset dossier + Phase B E/D + these handoffs). **Branch fresh from `main`.**
+
+**Phase B is essentially COMPLETE across all 5 topics (A–E), all green @ `v2.5.0`.** A read-only triage (2026-05-27) confirmed the `missed_seeds` "73-item backlog" was a raw scan **already fully consumed** by the 2026-05-22 drafters: **A (18) / B (10) / C (14) net-new are all already in** their bib_ledgers; **D + E** had cross-class items already in plus the 5 genuine net-new ingested this session (E5 `rag_retrieval_dynamics` ×3; D1 Anthropic ×2). Gate everywhere: `make dossier-audit` green ×5; citations 100% substring; 0 stale. *(Triage is read-only-confidence — spot-verify a couple if you do ingest.)*
+
+**The ONLY remaining Phase B ingestion = 3 "method source" papers** not in any dossier (verify-first, then the standard loop gather→anchor→`/agent-index`→audit; ~1 short pass):
+- **ASIDE `2503.10566`** · **Mirror `2603.11875`** · **PromptLocate `2510.12252`**
+- (Attention Tracker `2411.00348` is already in A + D — done.) WebFetch each, then assign to its topic/claim_family at gather time (likely A `detector_architectures`, B `injection_threat_model`, or D method).
+
+**Tooling:** pinned `v2.5.0` (`Makefile RT_TAG`). Gate = `make dossier-audit` (green ×5). Producer = `.tooling/research_toolkit/scripts/build_excerpt_anchor.py` (self-verifying; arXiv abstracts need `--occurrence 1` — they triplicate in the HTML).
+
+**Resolved loose ends:** `encoder-classification-design-space.md` → moved to gitignored `.scratch/`; session branch → merged to `main`.
+
+**Note:** `docs/research/_inbox/missed_seeds.md` is gitignored (local-only); its "## 2026-05-27 Phase B reconciliation" + the A/B/C triage are summarized here (the tracked source of truth). **Everything below this section is historical detail.**
+
+---
+
 Cold-start anchor for the work done in the 2026-05-26 session. Complements `NEXT_SESSION.md`
 (the standing M0-close anchor); this doc is the **live in-flight delta**. Three distinct efforts ran;
 all are **UNCOMMITTED**.
