@@ -126,12 +126,17 @@ deferral language ("see `make dossier-audit` per-topic bib_ledger
 summaries"). ADR text preserved unchanged per ADR-011 immutability
 discipline; this note documents the count refresh.
 
+### Round 26 (dogfood-driven upstream adoption — post-v0.1.0-close)
+
+- ✓ [ADR-051: dogfood-driven upstream adoption batch](ADR-051-dogfood-driven-upstream-adoption-batch.md) — eval-toolkit `>=1.0` (v1.0 stability contract); research_toolkit v2.4.0 reclassified as a repo-local tooling clone (dropped as a pip dep); book-scaffold-astro v4.x + research-portfolio profile. Advances ADR-045 / ADR-046; dogfooding findings logged in `upstream_issues.md`.
+- ✓ [ADR-052: attack-type-generalization study design](ADR-052-attack-type-generalization-study-design.md) — reorients the detector effort to indirect→indirect attack-type generalization (axis C: BIPIA disjoint type-LODO + joint carrier+attack shift), fair per-rung tuning on train-internal val, honest metric suite. Motivated by `docs/planning/submission-methodology-audit.md`; harness in `docs/planning/attack-type-lodo-harness-spec.md`. Lane/chapter restructure deferred to Phase 3.
+
 ## Tally
 
 | Status | Count |
 |---|---:|
-| ✓ Accepted | 44 |
+| ✓ Accepted | 46 |
 | 🔒 Reserved | 4 |
 | ⊘ DROPPED | 2 |
-| **Total entries** | **50** |
-| Files in `decisions/` | 48 (DROPPED entries are index-only) |
+| **Total entries** | **52** |
+| Files in `decisions/` | 50 (DROPPED entries are index-only) |
