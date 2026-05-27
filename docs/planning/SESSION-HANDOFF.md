@@ -6,6 +6,22 @@ all are **UNCOMMITTED**.
 
 ---
 
+## ⏭ 2026-05-27 UPDATE 2 — v2.5.0 released; Phase B started + backlog reconciled (READ THIS FIRST)
+
+Follow-on session on `session/2026-05-26-adoption-and-research-ops`. Supersedes UPDATE 1's "remaining" + loose-ends below.
+
+- **research_toolkit v2.5.0 released + re-pinned — ✅ `f3d26c3`.** PR #28 reviewed (15 tests, ruff clean, producer reproduces real detector anchors byte-for-byte) → maintainer merged + tagged `v2.5.0` (annotated, at the producer release commit) → `Makefile RT_TAG := v2.5.0` + `.tooling` re-bootstrapped; `make dossier-audit` green ×5. NB: the `v2.4.1..v2.5.0` audit-path is byte-identical (`verify_citations` + every dossier-audit validator unchanged; the only deltas are a new unused-here `topic_backlog.py` + the producer) — so the re-pin is a **reproducibility/provenance** step, not a functional gate change.
+- **Phase B premise corrected: `missed_seeds`'s "73-item backlog" is largely ALREADY-TRIAGED, not an open to-do list.** Both Sprint-2 "new" dossiers were built to their plans on 2026-05-22 (cross-class folded in; out-of-scope declined). Verified against the live ledgers this session:
+  - **E (rag) was already complete + green** (18 entries); the 3 cross-class items (BIPIA/Spotlighting/EchoLeak) already in. **Scope-expanded**: new family `rag_retrieval_dynamics` (E5) + 3 retrieval/embedding papers (Lost-in-the-Middle 2307.03172, SBERT 1908.10084, Ethayarajh 1909.00512) — `6b0a64f`.
+  - **D (agentic) was already complete + green** (25 entries); its "21" was mostly already-in (CaMeL/MELON/Task Shield/IsolateGPT/Design Patterns/LlamaFirewall/AgentDojo) or mis-routed. Added 2 real D1 net-new (Anthropic browser-PI blog + computer-use docs) — `eb31a3f`.
+  - **Mis-filed items re-routed** (recorded in the gitignored `_inbox/missed_seeds.md` → "## 2026-05-27 Phase B reconciliation"): UltraChat/LMSYS/XSTest→**C**; InjecAgent/ASB/WASP/WAInjectBench/MCPVerse→**B4**; Whispers→**B1**; the 6 vendor URLs→**A4 (unverified)**.
+  - Both E + D: `make dossier-audit` green ×5; citation substring 100% (E 33/33, D 5/5); 0 stale.
+
+### Phase B — what actually remains (corrected)
+⚠️ **A (18) / B (10) / C (14 + re-routed) are ESTABLISHED topics — do NOT take the raw `missed_seeds` counts at face value.** Like D/E, each listed net-new must be **checked against the actual bib_ledger first** (many are likely already in or out-of-scope): triage-before-grind. The 4 method sources (Attention Tracker `2411.00348` / ASIDE `2503.10566` / Mirror `2603.11875` / PromptLocate `2510.12252`) still need routing to their correct topics. The PR #28 + v2.5.0 loose-ends in UPDATE 1 below are now **DONE**.
+
+---
+
 ## ⏭ 2026-05-27 UPDATE — supersedes the EXECUTION ROADMAP below (read this first)
 
 The continue-all-phases session ran. **STEP 1's premise was wrong** and is corrected; everything is now
