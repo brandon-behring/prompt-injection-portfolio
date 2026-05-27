@@ -1,13 +1,13 @@
 # Detector Landscape — Trust Dashboard
 
-Generated: 2026-05-26
-Current as of: 2026-05-26
+Generated: 2026-05-27
+Current as of: 2026-05-27
 
 ## Trust State
 
 - stale blockers: 0
-- evidence coverage: 156/156 claims
-- cache completeness: 69/69 sources
+- evidence coverage: 162/162 claims
+- cache completeness: 71/71 sources
 - conflicts: 0
 - weak claims: 5
 
@@ -19,17 +19,17 @@ Current as of: 2026-05-26
 
 ## Claim Health (FACT framework)
 
-- total support links: 156
-- verbatim-anchored: 61/156 (39%)
-- strongly grounded: 61/156 (39%)
-- partially grounded: 93/156
-- weakly grounded (inferred/propagated): 2/156
-- corroborated (≥2 independent sources): 0/156 (0%)
-- atoms fully supported: 65/156 (42%)
+- total support links: 162
+- verbatim-anchored: 63/162 (39%)
+- strongly grounded: 63/162 (39%)
+- partially grounded: 97/162
+- weakly grounded (inferred/propagated): 2/162
+- corroborated (≥2 independent sources): 0/162 (0%)
+- atoms fully supported: 67/162 (41%)
 
 ## Discovery Rigor
 
-- fetches reviewed: 65
-- accept rate: 65/65 (100%)
+- fetches reviewed: 67
+- accept rate: 67/67 (100%)
 - rejected: 0
 - escalations needing manual review: 0

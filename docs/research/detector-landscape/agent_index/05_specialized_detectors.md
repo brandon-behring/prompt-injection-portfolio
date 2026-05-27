@@ -163,3 +163,21 @@ Detectors that depart from the encoder-classifier and LLM-judge defaults: activa
   - **Mechanism:** Foundational essay arguing that the dominance of certain ML architectures reflects co-evolution with available hardware rather than intrinsic superiority — arXiv title anchors the contribution [claim_detector_landscape_0065_01]. Methodological lens for the detector-landscape: encoder-vs-decoder vs activation-probe latency comparisons (§ A2.4, § A3.3, § A5.1) need matched-compute framing to avoid mis-attributing wins to architecture when they're really hardware-fit wins.
   - **Result:** Position paper — no detector-specific benchmark numbers; cited here as the canonical "matched compute" caveat that should accompany cross-architecture latency / accuracy comparisons across the detector ecosystem.
   - **Status:** Verified. (arXiv essay; matched-compute framing reference) [ev_detector_landscape_0066]
+
+## A5.19. The Mirror Design Pattern (Corll)
+
+- **The Mirror Design Pattern: Strict Data Geometry over Model Scale for Prompt Injection Detection** — Corll (arXiv 2026).
+  - **Source:** https://arxiv.org/abs/2603.11875
+  - **Code:** —
+  - **Mechanism:** Data-curation design pattern that organizes prompt-injection corpora into matched positive/negative cells so a classifier learns control-plane attack mechanics rather than incidental corpus shortcuts; from 5,000 strictly curated open-source samples it defines a 32-cell mirror topology (31 cells filled with public data), trains a sparse character n-gram linear SVM, and compiles the weights into a static Rust artifact with no external model runtime dependencies [claim_detector_landscape_0066_01]. Positions the first-screening detector as needing to be "fast, deterministic, non-promptable, and auditable" rather than a large semantic model [claim_detector_landscape_0066_02].
+  - **Result:** Abstract reports 95.97% recall and 92.07% F1 on a 524-case holdout at sub-millisecond latency; on the same holdout a 22-million-parameter Prompt Guard 2 model reaches only 44.35% recall and 59.14% F1 at 49 ms median / 324 ms p95 latency — the lightweight linear SVM beats the neural detector on both quality and latency (`unverified body claim` for the specific Prompt Guard 2 deltas; abstract states them but framing is the paper's).
+  - **Status:** Verified. (no widely-known repo) The reference case for "strict data geometry beats model scale" — a lightweight, sub-ms first-screening detector contrasting the encoder/decoder defaults (§ A1, § A3); pair with § A5.6 (embedding + classical-ML) and § A5.18 (matched-compute caveat). [ev_detector_landscape_0073]
+
+## A5.20. PromptLocate (Jia, Liu, Shao, Jia & Gong)
+
+- **PromptLocate: Localizing Prompt Injection Attacks** — Jia, Liu, Shao, Jia & Gong (IEEE Symposium on Security and Privacy 2026).
+  - **Source:** https://arxiv.org/abs/2510.12252
+  - **Code:** —
+  - **Mechanism:** Localizes the injected prompt within contaminated input data (rather than only flagging that an attack occurred) via three sequential steps: segmenting contaminated data into semantically coherent units, identifying which segments contain injected instructions, and pinpointing which segments contain injected data [claim_detector_landscape_0067_01]. Motivated by post-attack forensic analysis and data recovery, a use-case distinct from the binary detect/block default elsewhere in the dossier.
+  - **Result:** Abstract reports PromptLocate is the first method for localizing injected prompts [claim_detector_landscape_0067_02]; evaluated across 16 attack scenarios (eight existing and eight adaptive variants) with accurate localization (specific deltas `(unverified body claim)`).
+  - **Status:** Verified. (no widely-known repo) The first prompt-injection localization method — structurally distinct from the detect-only detectors (§ A5.1 - § A5.18); IEEE S&P 2026 venue. [ev_detector_landscape_0074]

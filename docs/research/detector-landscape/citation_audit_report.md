@@ -1,22 +1,22 @@
 # Citation Audit Report — detector-landscape
 
-Generated: 2026-05-26
+Generated: 2026-05-27
 
 ## Summary
 
-- Total support links: 156
-- Strongly grounded (verbatim_match + user_asserted): 61/156 (39%)
-- Partially grounded (paraphrase + manual_override): 93/156 (60%)
-- Weakly grounded (llm_inferred + propagated_from_child): 2/156 (1%)
-- Substring check pass rate: 61/61 (100%)
+- Total support links: 162
+- Strongly grounded (verbatim_match + user_asserted): 63/162 (39%)
+- Partially grounded (paraphrase + manual_override): 97/162 (60%)
+- Weakly grounded (llm_inferred + propagated_from_child): 2/162 (1%)
+- Substring check pass rate: 63/63 (100%)
 
 ## Per-method breakdown
 
 | extraction_method | count | avg link_confidence |
 |---|---|---|
 | llm_inferred | 2 | 0.55 |
-| paraphrase | 93 | 0.747 |
-| verbatim_match | 61 | 0.95 |
+| paraphrase | 97 | 0.747 |
+| verbatim_match | 63 | 0.95 |
 
 ## Per-claim grounding strength
 
@@ -171,6 +171,12 @@ Generated: 2026-05-26
 | claim_detector_landscape_0064_02 | partial |
 | claim_detector_landscape_0065_01 | strong |
 | claim_detector_landscape_0065_02 | partial |
+| claim_detector_landscape_0066_01 | strong |
+| claim_detector_landscape_0066_02 | partial |
+| claim_detector_landscape_0066_03 | partial |
+| claim_detector_landscape_0067_01 | strong |
+| claim_detector_landscape_0067_02 | partial |
+| claim_detector_landscape_0067_03 | partial |
 | claim_detector_landscape_guardrailsai2025_cluster_product_positioning | partial |
 | claim_detector_landscape_hiddenlayer2025_cluster_product_positioning | partial |
 | claim_detector_landscape_robustintelligence2025_cluster_product_positioning | partial |

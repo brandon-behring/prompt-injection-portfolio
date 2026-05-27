@@ -2204,3 +2204,73 @@ entries:
     score: 0.8
     factors:
     - Phase B vendor cluster verification
+- evidence_id: ev_detector_landscape_0073
+  source_url: https://arxiv.org/abs/2603.11875
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-27'
+  verification_method: webfetch
+  cache_ids:
+  - cache_520133db9c7488f6
+  supports:
+  - claim_id: claim_detector_landscape_0066_01
+    field_path: bib_ledger.entries[65].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_520133db9c7488f6
+      text_path_offset:
+      - 62
+      - 157
+      sha256_of_span: 18b5810cd6187b5d515b143ac03042884db0b7d3b7062bbf0b7c30abe10c8d24
+  - claim_id: claim_detector_landscape_0066_02
+    field_path: bib_ledger.entries[65].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0066_03
+    field_path: bib_ledger.entries[65].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'The Mirror Design Pattern: Strict Data Geometry over Model Scale for Prompt Injection Detection'
+  rights_status: private_use
+- evidence_id: ev_detector_landscape_0074
+  source_url: https://arxiv.org/abs/2510.12252
+  source_type: paper
+  source_quality: primary
+  retrieved_at: '2026-05-27'
+  verification_method: webfetch
+  cache_ids:
+  - cache_44218556964ca45c
+  supports:
+  - claim_id: claim_detector_landscape_0067_01
+    field_path: bib_ledger.entries[66].title
+    evidence_role: supports
+    evidence_role_strength: full
+    extraction_method: verbatim_match
+    link_confidence: 0.95
+    excerpt_anchor:
+      cache_id: cache_44218556964ca45c
+      text_path_offset:
+      - 62
+      - 111
+      sha256_of_span: 2e5b9ace058598592c64843bea18538753d3399753089f7d5b9bc5766cb8acfd
+  - claim_id: claim_detector_landscape_0067_02
+    field_path: bib_ledger.entries[66].excerpt[1]
+    evidence_role: supports
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.8
+  - claim_id: claim_detector_landscape_0067_03
+    field_path: bib_ledger.entries[66].authors
+    evidence_role: identifies
+    evidence_role_strength: partial
+    extraction_method: paraphrase
+    link_confidence: 0.7
+  excerpt: 'PromptLocate: Localizing Prompt Injection Attacks'
+  rights_status: private_use

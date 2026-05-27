@@ -581,3 +581,39 @@ selections:
     sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
     excerpt: |-
       We read every piece of feedback, and take your input very seriously.
+- selection_id: sel_corll2026mirror_b3
+  bullet_id: 'A5.19.B3'
+  atom_id: claim_detector_landscape_0066_01
+  cache_id: cache_520133db9c7488f6
+  span:
+    text_path_offset: [62, 157]
+    sha256_of_span: 18b5810cd6187b5d515b143ac03042884db0b7d3b7062bbf0b7c30abe10c8d24
+    excerpt: |-
+      The Mirror Design Pattern: Strict Data Geometry over Model Scale for Prompt Injection Detection
+- selection_id: sel_corll2026mirror_b4
+  bullet_id: 'A5.19.B4'
+  atom_id: claim_detector_landscape_0066_02
+  cache_id: cache_520133db9c7488f6
+  span:
+    text_path_offset: [2565, 2615]
+    sha256_of_span: 5606fe57c259353cd12e155486edb28b1545115c7964a2fc7092abc026b9218c
+    excerpt: |-
+      fast, deterministic, non-promptable, and auditable
+- selection_id: sel_jia2025promptlocate_b3
+  bullet_id: 'A5.20.B3'
+  atom_id: claim_detector_landscape_0067_01
+  cache_id: cache_44218556964ca45c
+  span:
+    text_path_offset: [62, 111]
+    sha256_of_span: 2e5b9ace058598592c64843bea18538753d3399753089f7d5b9bc5766cb8acfd
+    excerpt: |-
+      PromptLocate: Localizing Prompt Injection Attacks
+- selection_id: sel_jia2025promptlocate_b4
+  bullet_id: 'A5.20.B4'
+  atom_id: claim_detector_landscape_0067_02
+  cache_id: cache_44218556964ca45c
+  span:
+    text_path_offset: [2673, 2721]
+    sha256_of_span: d33abf2c80763a968be2d163a55d15109141840967f18780c01994fd7baed193
+    excerpt: |-
+      the first method for localizing injected prompts

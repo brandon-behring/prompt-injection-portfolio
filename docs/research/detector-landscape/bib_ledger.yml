@@ -1358,3 +1358,46 @@ entries:
   - ev_detector_landscape_0066
   cache_ids:
   - cache_7b898810604eda60
+- bibkey: corll2026mirror
+  primary_url: https://arxiv.org/abs/2603.11875
+  title: 'The Mirror Design Pattern: Strict Data Geometry over Model Scale for Prompt Injection Detection'
+  status: verified
+  verified_at: '2026-05-27'
+  claim_family: detector_architectures
+  authors: Corll (2026)
+  venue: arXiv preprint
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0073
+  cache_ids:
+  - cache_520133db9c7488f6
+- bibkey: jia2025promptlocate
+  primary_url: https://arxiv.org/abs/2510.12252
+  title: 'PromptLocate: Localizing Prompt Injection Attacks'
+  status: verified
+  verified_at: '2026-05-27'
+  claim_family: detector_architectures
+  authors: Jia et al. (2025)
+  venue: IEEE Symposium on Security and Privacy 2026
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  verified_fields:
+  - title
+  - authors
+  - year
+  - venue
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_detector_landscape_0074
+  cache_ids:
+  - cache_44218556964ca45c

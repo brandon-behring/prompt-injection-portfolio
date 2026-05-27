@@ -6,7 +6,7 @@
 **Primary intended consumer:** future Claude Code / LLM agents working in the `prompt-injection-portfolio` project (and adjacent AI-safety projects) who need detailed context on detector architectures, benchmarks, and known evasion findings. Secondary consumers: human readers researching the prompt-injection defense literature.
 **Self-containedness guarantee:** this folder has no hard dependence on sibling files outside itself. Move it elsewhere and it still works (URLs link to primary sources).
 **Scope:** Prompt-injection detector literature from mid-2024 to mid-2026. Includes ModernBERT- and DeBERTa-family encoder classifiers, decoder/LLM-judge detectors (PromptShield, CourtGuard, Llama Prompt Guard), commercial / vendor-hosted detection products (Lakera, Azure Prompt Shields, AWS Bedrock Guardrails, NVIDIA NeMo, Google Model Armor, Cisco AI Defense), and activation-probe / specialized detectors (TaskTracker, InstructDetector, InjecGuard, Attention Tracker, Task Shield, MELON, DataSentinel, AlignSentinel, embedding-classifier baselines). Also covers cross-cutting evaluation / evasion / postmortem literature (PromptShield benchmark, NotInject, PINT, WAInjectBench, the Firewalls-NeurIPS paper, the Bypassing Guardrails evasion paper, and "Attacker Moves Second" adaptive-attack systematization).
-**Coverage:** 44 entries across 5 topic files (A1-A5); structured 5-bullet entries (Source / Code / Mechanism / Result / Status). Every claim-bearing bullet is traceable to `evidence_ledger.yml` via Evidence IDs; Attribute-First pre-selection commitments live in `pre_selection_manifest.yml`.
+**Coverage:** 67 entries across 5 topic files (A1-A5); structured 5-bullet entries (Source / Code / Mechanism / Result / Status). Every claim-bearing bullet is traceable to `evidence_ledger.yml` via Evidence IDs; Attribute-First pre-selection commitments live in `pre_selection_manifest.yml`.
 **Last updated:** 2026-05-22.
 
 ## ⚠️ Scope boundary
@@ -33,7 +33,7 @@ Sub-section anchors use the per-file letter prefix from `research_plan.md`: `## 
 | `02_deberta_detectors.md` | A2: DeBERTa-based encoder detectors (anchors A2.1 - A2.5) | Picking an open-source DeBERTa-family encoder classifier or comparing ProtectAI v1 vs v2 |
 | `03_llm_detectors.md` | A3: LLM-based detectors — decoder and LLM-as-judge (anchors A3.1 - A3.7) | Picking a small-LM / 8B-judge detector or evaluating the latency vs. accuracy tradeoff |
 | `04_commercial_detectors.md` | A4: Commercial / proprietary detectors (anchors A4.1 - A4.10) | Comparing vendor-hosted guardrails (Lakera, Azure, AWS, NVIDIA, Google, Cisco, Meta) and PINT leaderboard methodology |
-| `05_specialized_detectors.md` | A5: Activation-probe + specialized + cross-cutting evaluation (anchors A5.1 - A5.17) | Activation-delta probes (TaskTracker, InstructDetector), attention-based (Attention Tracker), embedding-classifier baselines, agentic-defense detectors (Task Shield, MELON, DataSentinel), and the cross-cutting evaluation / evasion / postmortem literature |
+| `05_specialized_detectors.md` | A5: Activation-probe + specialized + cross-cutting evaluation (anchors A5.1 - A5.20) | Activation-delta probes (TaskTracker, InstructDetector), attention-based (Attention Tracker), embedding-classifier baselines, agentic-defense detectors (Task Shield, MELON, DataSentinel), lightweight char-ngram SVM (Mirror), prompt-injection localization (PromptLocate), and the cross-cutting evaluation / evasion / postmortem literature |
 
 ## Lookup recipes
 
@@ -56,6 +56,8 @@ Routes by question type. Each points to a specific file and section anchor.
 - **"What benchmark covers web-agent prompt injection detection specifically?"** → `05_specialized_detectors.md` § A5.11 (WAInjectBench, Liu et al. 2025).
 - **"What benchmark covers indirect prompt injection on RAG / external content?"** → `05_specialized_detectors.md` § A5.17 (BIPIA, Yi et al. 2023).
 - **"Which detector covers AlignSentinel-style 'aligned vs misaligned vs no instruction' three-class problem?"** → `05_specialized_detectors.md` § A5.5 (AlignSentinel, Jia et al. 2026).
+- **"Which detector is a lightweight char-ngram linear SVM that beats a small neural detector at sub-ms latency?"** → `05_specialized_detectors.md` § A5.19 (The Mirror Design Pattern, Corll 2026; 95.97% recall / 92.07% F1 vs. 22M Prompt Guard 2).
+- **"Which method localizes WHERE the injected prompt is inside contaminated data (not just whether an attack occurred)?"** → `05_specialized_detectors.md` § A5.20 (PromptLocate, Jia et al. IEEE S&P 2026; first prompt-injection localization method).
 - **"How do I find the latency vs. accuracy tradeoff curve?"** → glossary entry below ("Latency tradeoff classes") and entries A1.5, A2.4, A3.3, A3.4, A3.7.
 - **"Which encoder detector is multilingual?"** → `03_llm_detectors.md` § A3.3 (Llama Prompt Guard 2 86M mDeBERTa-base) and § A3.5 (original Prompt Guard 86M mDeBERTa-base).
 - **"What's the canonical industry critique of held-out-split accuracy?"** → `05_specialized_detectors.md` § A5.16 (CodeIntegrity "98% Accurate and Still Broken").

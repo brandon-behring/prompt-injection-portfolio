@@ -794,3 +794,27 @@ fetches:
   decision: accept
   reason: Hooker 2020 Hardware Lottery arXiv 2009.06489 confirmed; cite for ADR-018 cost-axis claims about detector encoder hardware-shaped progress (note bibkey says 2021 but submission year is 2020)
   assigned_bibkey: hooker2021hardware
+- fetch_id: fetch_corll2026mirror
+  sub_area: A5
+  query: Mirror design pattern strict data geometry prompt injection detection char-ngram linear SVM arXiv 2026
+  source_url: https://arxiv.org/abs/2603.11875
+  fetched_at: '2026-05-27'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arXiv abstract confirms verbatim title + first-author Corll + 2026; lightweight sparse char-ngram linear SVM detector (95.97% recall / 92.07% F1, sub-ms latency) beating a 22M Prompt Guard 2 — specialized lightweight/latency detector, claim_family detector_architectures
+  assigned_bibkey: corll2026mirror
+- fetch_id: fetch_jia2025promptlocate
+  sub_area: A5
+  query: PromptLocate localizing prompt injection attacks segment injected instructions IEEE S&P 2026 arXiv 2510.12252
+  source_url: https://arxiv.org/abs/2510.12252
+  fetched_at: '2026-05-27'
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: arXiv abstract confirms verbatim title + first-author Jia + IEEE Symposium on Security and Privacy 2026; first method to localize injected prompts (segments contaminated data, identifies injected-instruction/data segments) — A5 specialized detector, claim_family detector_architectures
+  assigned_bibkey: jia2025promptlocate

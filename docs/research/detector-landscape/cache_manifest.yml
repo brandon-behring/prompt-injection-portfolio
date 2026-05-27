@@ -869,3 +869,31 @@ entries:
   restricted: false
   rights_status: public
   extraction_status: ok
+- cache_id: cache_520133db9c7488f6
+  source_url: https://arxiv.org/abs/2603.11875
+  fetched_at: 2026-05-27
+  record_type: capture
+  content_type: text/html
+  bytes: 46581
+  sha256: 520133db9c7488f60e323fa10b48f249a51c4beaeaf8af751da0ca695ef28143
+  raw_path: blobs/sha256/520133db9c7488f60e323fa10b48f249a51c4beaeaf8af751da0ca695ef28143
+  text_path: text/sha256/520133db9c7488f60e323fa10b48f249a51c4beaeaf8af751da0ca695ef28143.txt
+  metadata_path: metadata/sha256/520133db9c7488f60e323fa10b48f249a51c4beaeaf8af751da0ca695ef28143.json
+  restricted: false
+  rights_status: private_use
+  extraction_status: ok
+  http_last_modified: Thu, 16 Apr 2026 00:18:50 GMT
+- cache_id: cache_44218556964ca45c
+  source_url: https://arxiv.org/abs/2510.12252
+  fetched_at: 2026-05-27
+  record_type: capture
+  content_type: text/html
+  bytes: 45475
+  sha256: 44218556964ca45c2541f2bd3fb90972b6688e43974d68cb17962a7c4620e576
+  raw_path: blobs/sha256/44218556964ca45c2541f2bd3fb90972b6688e43974d68cb17962a7c4620e576
+  text_path: text/sha256/44218556964ca45c2541f2bd3fb90972b6688e43974d68cb17962a7c4620e576.txt
+  metadata_path: metadata/sha256/44218556964ca45c2541f2bd3fb90972b6688e43974d68cb17962a7c4620e576.json
+  restricted: false
+  rights_status: private_use
+  extraction_status: ok
+  http_last_modified: Mon, 20 Oct 2025 00:16:19 GMT
