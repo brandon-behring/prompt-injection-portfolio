@@ -1,14 +1,14 @@
 # Citation Audit Report — agentic-security-architecture
 
-Generated: 2026-05-26
+Generated: 2026-05-27
 
 ## Summary
 
-- Total support links: 31
-- Strongly grounded (verbatim_match + user_asserted): 0/31 (0%)
-- Partially grounded (paraphrase + manual_override): 30/31 (97%)
-- Weakly grounded (llm_inferred + propagated_from_child): 1/31 (3%)
-- Substring check: not applicable (no verbatim_match anchors)
+- Total support links: 36
+- Strongly grounded (verbatim_match + user_asserted): 5/36 (14%)
+- Partially grounded (paraphrase + manual_override): 30/36 (83%)
+- Weakly grounded (llm_inferred + propagated_from_child): 1/36 (3%)
+- Substring check pass rate: 5/5 (100%)
 
 ## Per-method breakdown
 
@@ -16,11 +16,17 @@ Generated: 2026-05-26
 |---|---|---|
 | llm_inferred | 1 | 0.55 |
 | paraphrase | 30 | 0.83 |
+| verbatim_match | 5 | 0.95 |
 
 ## Per-claim grounding strength
 
 | claim_id | strongest_method_bucket |
 |---|---|
+| claim_agentic_anthropic_browser_pi_layered_defense | strong |
+| claim_agentic_anthropic_browser_pi_residual_risk | strong |
+| claim_agentic_computer_use_action_surface | strong |
+| claim_agentic_computer_use_isolation_guidance | strong |
+| claim_agentic_computer_use_pi_classifier_layer | strong |
 | claim_agentic_security_architecture_agentarmor_pdg_framework | partial |
 | claim_agentic_security_architecture_agentarmor_results | partial |
 | claim_agentic_security_architecture_agentdojo_benchmark_design | partial |

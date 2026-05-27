@@ -343,3 +343,56 @@ selections:
     sha256_of_span: unknown
     excerpt: Architectural defenses dominate AgentDojo by 1-2 orders of magnitude over classifier-only. CaMeL achieves 77% provably-secure (vs 84% undefended); Task
       Shield 2.07% ASR; MELON 0.24% ASR with 68.52% ut
+# --- 2026-05-27: D1 net-new vendor/harness defense primary sources (agentic32-agentic33) ---
+# Anchors verified via scripts/build_excerpt_anchor.py (occurrence 1 for each;
+# excerpts duplicate across the page <meta>/body, so occurrence is pinned).
+- selection_id: sel_D_032
+  bullet_id: agentic32
+  atom_id: claim_agentic_anthropic_browser_pi_layered_defense
+  cache_id: cache_7b181d75ad340114
+  span:
+    text_path_offset:
+    - 21817
+    - 21897
+    sha256_of_span: 529658255752cfc0dcceb19ccae6db604311292401a37cdf70d5ae382099ef5a
+    excerpt: reinforcement learning to build prompt injection robustness directly into Claude
+- selection_id: sel_D_033
+  bullet_id: agentic32
+  atom_id: claim_agentic_anthropic_browser_pi_residual_risk
+  cache_id: cache_7b181d75ad340114
+  span:
+    text_path_offset:
+    - 21302
+    - 21443
+    sha256_of_span: 1b05bf403f4a570b821dc58c12b5f72c90c0049789695f9ecd2bae74c248d643
+    excerpt: A 1% attack success rate—while a significant improvement—still represents meaningful risk. No browser agent is immune to prompt injection
+- selection_id: sel_D_034
+  bullet_id: agentic33
+  atom_id: claim_agentic_computer_use_action_surface
+  cache_id: cache_72516d5456283341
+  span:
+    text_path_offset:
+    - 130525
+    - 130610
+    sha256_of_span: e153ce1e4b23c375bf9d93f61532fc076bcebd7b2d44c51ad785420de3536f71
+    excerpt: screenshot capabilities and mouse/keyboard control for autonomous desktop interaction
+- selection_id: sel_D_035
+  bullet_id: agentic33
+  atom_id: claim_agentic_computer_use_isolation_guidance
+  cache_id: cache_72516d5456283341
+  span:
+    text_path_offset:
+    - 141633
+    - 141750
+    sha256_of_span: df1f5af8079f4e6710c137153db59b857f5c1b0e4cd10b30ba28b7390bbf9b75
+    excerpt: Using a dedicated virtual machine or container with minimal privileges to prevent direct system attacks or accidents.
+- selection_id: sel_D_036
+  bullet_id: agentic33
+  atom_id: claim_agentic_computer_use_pi_classifier_layer
+  cache_id: cache_72516d5456283341
+  span:
+    text_path_offset:
+    - 143532
+    - 143631
+    sha256_of_span: 4239f290dfc51adb7056bdc168da7f83451c5ffa9dddb322368c305ae46212e2
+    excerpt: classifiers will automatically run on your prompts to flag potential instances of prompt injections

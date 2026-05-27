@@ -409,3 +409,33 @@ fetches:
   decision: accept
   reason: 'D5 static-defense critique anchor; cross-classified from direct-vs-indirect/training-and-evaluation.'
   assigned_bibkey: agentic_nasr2025attackersecond
+
+# ============================================================================
+# D1 addendum (2026-05-27): vendor/official Anthropic sources
+# ============================================================================
+
+- fetch_id: fetch_anthropic_browser_pi_defenses
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'Anthropic browser use prompt injection defenses layered classifier RL research post'
+  source_url: https://www.anthropic.com/research/prompt-injection-defenses
+  fetched_at: 2026-05-27
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Vendor-primary (T1-official) Anthropic research post "Mitigating the risk of prompt injections in browser use" (Nov 24, 2025); documents a layered browser-agent PI defense (RL hardening + content-scanning classifiers + human red-teaming) with a reported 1% ASR on Claude Opus 4.5. Net-new D1 official source — no prior topic entry.'
+  assigned_bibkey: agentic_anthropic2025browserpidefenses
+
+- fetch_id: fetch_anthropic_computer_use_tool
+  sub_area: 'D1. Agent harness security architecture'
+  query: 'Claude computer use tool docs action surface security considerations prompt injection'
+  source_url: https://docs.claude.com/en/docs/agents-and-tools/tool-use/computer-use-tool
+  fetched_at: 2026-05-27
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 4
+  decision: accept
+  reason: 'Vendor-primary (T1-official) Claude computer-use tool docs (docs.claude.com -> platform.claude.com 302). Documents the tool action surface (screenshot/mouse/keyboard/zoom) plus a Security considerations section with a defense-in-depth checklist (dedicated VM/container, domain allowlist, avoid sensitive data, human confirmation) and an automatic prompt-injection classifier layer on screenshots. Net-new D1 official source — no prior topic entry.'
+  assigned_bibkey: agentic_anthropic2026computeruse

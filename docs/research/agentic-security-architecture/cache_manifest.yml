@@ -305,3 +305,30 @@ entries:
   restricted: false
   rights_status: private_use
   extraction_status: ok
+# --- D1 addendum 2026-05-27: vendor/official Anthropic sources ---
+- cache_id: cache_7b181d75ad340114
+  source_url: https://www.anthropic.com/research/prompt-injection-defenses
+  fetched_at: 2026-05-27
+  record_type: capture
+  content_type: text/html
+  bytes: 121084
+  sha256: 7b181d75ad3401147b0aa10e1bf2e7bc629c06e4826b8f792d897853974fc27a
+  raw_path: blobs/sha256/7b181d75ad3401147b0aa10e1bf2e7bc629c06e4826b8f792d897853974fc27a
+  text_path: text/sha256/7b181d75ad3401147b0aa10e1bf2e7bc629c06e4826b8f792d897853974fc27a.txt
+  metadata_path: metadata/sha256/7b181d75ad3401147b0aa10e1bf2e7bc629c06e4826b8f792d897853974fc27a.json
+  restricted: false
+  rights_status: private_use
+  extraction_status: ok
+- cache_id: cache_72516d5456283341
+  source_url: https://docs.claude.com/en/docs/agents-and-tools/tool-use/computer-use-tool
+  fetched_at: 2026-05-27
+  record_type: capture
+  content_type: text/html
+  bytes: 1624016
+  sha256: 72516d54562833415b2944511ca5909ed07befcb076013ac36f947650d813437
+  raw_path: blobs/sha256/72516d54562833415b2944511ca5909ed07befcb076013ac36f947650d813437
+  text_path: text/sha256/72516d54562833415b2944511ca5909ed07befcb076013ac36f947650d813437.txt
+  metadata_path: metadata/sha256/72516d54562833415b2944511ca5909ed07befcb076013ac36f947650d813437.json
+  restricted: false
+  rights_status: private_use
+  extraction_status: ok

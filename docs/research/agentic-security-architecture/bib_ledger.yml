@@ -183,6 +183,55 @@ entries:
   cache_ids:
   - cache_937568d9c8dbd86d
 
+# --- D1 addendum 2026-05-27: vendor/official Anthropic sources ---
+
+- bibkey: agentic_anthropic2025browserpidefenses
+  primary_url: https://www.anthropic.com/research/prompt-injection-defenses
+  title: Mitigating the risk of prompt injections in browser use
+  status: verified
+  claim_family: agent_harness_architecture
+  authors: Anthropic (2025)
+  venue: Anthropic research (vendor post)
+  aliases:
+  - Browser-use prompt-injection defenses
+  retrieved_at: 2026-05-27
+  verified_at: 2026-05-27
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 180
+  evidence_ids:
+  - ev_agentic_security_architecture_0032
+  - ev_agentic_security_architecture_0033
+  cache_ids:
+  - cache_7b181d75ad340114
+
+- bibkey: agentic_anthropic2026computeruse
+  primary_url: https://docs.claude.com/en/docs/agents-and-tools/tool-use/computer-use-tool
+  title: Computer use tool
+  status: verified
+  claim_family: agent_harness_architecture
+  authors: Anthropic (2026)
+  venue: Claude Docs (docs.claude.com)
+  aliases:
+  - Computer use tool
+  retrieved_at: 2026-05-27
+  verified_at: 2026-05-27
+  verification_method: webfetch
+  verified_fields:
+  - primary_url
+  - title
+  freshness_tier: stable
+  stale_after_days: 180
+  evidence_ids:
+  - ev_agentic_security_architecture_0034
+  - ev_agentic_security_architecture_0035
+  - ev_agentic_security_architecture_0036
+  cache_ids:
+  - cache_72516d5456283341
+
 # ============================================================================
 # D2: Capability-based isolation + dual-LLM patterns
 # claim_family: agent_capability_isolation, dual_llm_pattern
