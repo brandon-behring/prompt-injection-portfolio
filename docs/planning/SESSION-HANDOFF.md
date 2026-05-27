@@ -4,14 +4,18 @@ Cold-start anchor for the work done in the 2026-05-26 session. Complements `NEXT
 (the standing M0-close anchor); this doc is the **live in-flight delta**. Three distinct efforts ran;
 all are **UNCOMMITTED**.
 
-## ⚠️ Commit status (read first)
+## ✅ Commit status (read first)
 
-- Branch `main`, HEAD `438b1ae` (unchanged — **nothing committed this session**).
-- **44 uncommitted working-tree changes** (31 modified + 13 new). These live only on **this machine's
-  working tree** — a fresh clone on another machine will NOT have them until they're committed + pushed.
-- Suggested commit structure (on a branch, when ready): (1) dependency-adoption, (2) attack-study design
-  docs, (3) research-toolkit Phase-A audits. Nothing has been committed because the user hasn't asked.
-- Contract tests green throughout (`uv run --no-project --with pytest pytest -m contract` → 13 passed).
+- **Committed + pushed** on branch **`session/2026-05-26-adoption-and-research-ops`** (off `main`;
+  `main` untouched), 3 commits:
+  - `8a63794` — dependency adoption / dogfooding (ADR-051), 30 files
+  - `f0c1012` — attack-type-generalization reorientation (ADR-052) + design docs, 4 files
+  - `8cedd82` — research_toolkit Phase-A audits (5 dashboards + 5 citation reports) + this handoff, 11 files
+- Pushed to `origin` → **durable across machines**. PR not yet opened (yours to open/merge).
+- **Excluded (still untracked):** `encoder-classification-design-space.md` — the misplaced `.scratch/`
+  submission artifact (loose end: move to `.scratch/` or remove).
+- Contract tests green (`uv run --no-project --with pytest pytest -m contract` → 13 passed).
+- This handoff's roadmap edits + all further work are NEW changes on top of the 3 commits — commit per step.
 
 ## Plan file
 
@@ -122,8 +126,53 @@ refresh) → re-run freshness/citation until 5/5 green.
   own header says it's gitignored `.scratch/` (a submission artifact that landed here) — decide to move
   to `.scratch/` or remove. The user pointed at it; it seeded Effort 2.
 
-## How to resume
+## EXECUTION ROADMAP — continue all phases
 
-1. Read this + the plan file + `decisions/ADR-051` + `decisions/ADR-052` + `docs/planning/submission-methodology-audit.md`.
-2. `git status` (confirm the 44 changes present) + `git -C .tooling/research_toolkit describe --tags` (expect `v2.4.0`).
-3. Pick up Effort 3 (cache-repair → Phase B/C/D) or wherever directed; Efforts 1 & 2 are done-pending-commit.
+Integrated + dependency-ordered. **Research-ops (Effort 3) precedes the empirical study (Effort 2)** —
+the study must run on current, ingested research + the dataset dossier. **Commit per step.**
+
+### Quick-start (fresh session)
+1. `git fetch && git switch session/2026-05-26-adoption-and-research-ops` (or merge to `main` first).
+2. Read: this doc → `decisions/ADR-051` → `decisions/ADR-052` → `docs/planning/submission-methodology-audit.md` → `docs/planning/attack-type-lodo-harness-spec.md`.
+3. State-check: `git -C .tooling/research_toolkit describe --tags` (expect `v2.4.0`); `find ~/Claude/research_cache -type f | wc -l`; `grep -E 'stale|verbatim|corroborated' docs/research/*/dashboard.md`.
+4. Start at STEP 1.
+
+> **Invocation pattern (lean, no torch):** `uv run --no-project --with pyyaml --with requests [--with pdfplumber] python .tooling/research_toolkit/<path>`. Toolkit **skills** (`/freshness-audit`, `/citation-audit`, `/research-gather`, `/agent-index`, `/dossier-audit`, `/dataset-research`, `/research-kb-export`) are invocable in-session — prefer the pinned `.tooling` clone over the dirty `~/Claude/research_toolkit`.
+
+### STEP 1 — Effort 3: cache-repair → all 5 dossiers freshness-green
+Failing: direct-vs-indirect (16), training-and-evaluation (21), rag-injection-defenses (26) — all **missing cached sources**, not staleness.
+- Per failing dossier: list missing via `validators/freshness.py --strict docs/research/<t> --today <DATE>` (names bibkeys, e.g. direct-vs-indirect: `debenedetti2025camel` / `chen2025secalign` / `wallace2024instructionhierarchy` / `chen2025metasecalign`); get `source_url`s from that dossier's `cache_manifest.yml` / `bib_ledger.yml`; re-fetch with `scripts/cache_source.py <url> --topic <t> --escalate-on-failure` (writes `papers/` + `cache/body_text/` + `cache/body_meta/` + updates manifest). Mind the dual cache: global `~/Claude/research_cache` vs dossier-local `cache/`.
+- **Gate:** `freshness.py --strict` OK ×5 + `verify_citations.py` acceptable ×5; rebuild dashboards (`scripts/build_dashboard.py`). Commit.
+
+### STEP 2 — Effort 3 Phase B: full strict-live ingestion (biggest; multi-session)
+- Triage `docs/research/_inbox/missed_seeds.md` (67, binned A–E) + this-session sources: **Attention Tracker** (2411.00348), **ASIDE** (2503.10566), **Mirror** (2603.11875), **PromptLocate** (2510.12252), **Indirect-in-the-Wild** (2604.27202), the submission-audit findings, the BIPIA attack-type structure. Dedupe vs `bib_ledger`.
+- Per topic: update `research_plan.md` claim_family (new families: adaptive/"attacker-moves-second", OOD-eval-methodology, agentic-defense, RAG-defense) → `/research-gather` (append; caches + evidence_ledger v3 + claim_graph + gather_trace; **verifies/drops the recent arXiv IDs**) → `/agent-index` → `/dossier-audit` → `/citation-audit`.
+- **Gate:** `make dossier-audit` green ×5; `missed_seeds` drained; citation 5/5. Commit per topic. (Grows the thin D/agentic + E/RAG dossiers.)
+
+### STEP 3 — Effort 3 Phase C: dataset dossier (feeds Effort 2)
+- `/dataset-research` on indirect-injection attack/detection datasets → `dataset_ledger.yml` + index at `docs/research/datasets/`. Cover **BIPIA** (+ its 15/15 attack-type taxonomy — the ADR-052 input), InjecAgent, AgentDojo, LLMail-Inject, ASB, HackAPrompt, Indirect-in-the-Wild, deepset, ProtectAI-validation, NotInject, PINT, TensorTrust, GenTel-Bench (schema / size / license / attack-type labels / encoder-readiness). Cross-link `ADR-052` + the harness spec.
+- **Gate:** `dataset_ledger` validates (dataset-index audit); covers the harness-spec datasets. Commit.
+
+### STEP 4 — Effort 3 Phase D: ingestion protocol + export + ADR-053
+- Write `docs/planning/research-ingestion-protocol.md` (repeatable new-source → dossier workflow + standing `_inbox/` triage). `/research-kb-export` per dossier → `~/Claude/research-kb/inbox/` (only after citation-audit passes). **ADR-053**; update `decisions/README.md` + `decisions/library_imports.md` (skills now used: freshness-audit / citation-audit / dataset-research / research-kb-export) + `NEXT_SESSION.md`.
+- **Gate:** `research_kb_export.jsonl` per topic; ADR-053 indexed. Commit.
+
+### STEP 5 — Effort 2 Phase 1: build + run the attack-type-LODO ⚙️ NEEDS FULL ENV / CI (~$250)
+- Build per `docs/planning/attack-type-lodo-harness-spec.md`: `(content,label)` from BIPIA attacks×scenarios; **disjoint-attack-type folds** (train-types→test-types) + **obfuscation sub-split** + **joint carrier+attack shift**; train-internal val.
+- Independently train frozen-probe + LoRA + full-FT (ModernBERT-base) with **fair per-rung tuning on the train-internal val** (LODO test untouched); trainable-head option for LoRA.
+- Metrics: AUPRC + TPR@{1,0.5,0.1}%FPR + **random-floor per fold** + benign FPR + in-dist-vs-LODO inflation.
+- **Env:** clone the submission sibling (`git clone -b v1.3.0 https://github.com/brandon-behring/prompt-injection-detection-prototype.git ../prompt-injection-detection-submission`) + `uv sync --extra dev` (~4 GB torch) — NOT the lean local venv; run in CI / a complete machine.
+- **Gate:** reproduce random-floor + in-dist→LODO gap on ONE fold before scaling; per-fold results table. Commit.
+
+### STEP 6 — Effort 2 Phase 2: interventions (does anything beat the floor?)
+- **Attention Tracker** (training-free, inference-only → cheap first), **counterfactual augmentation**, optionally **ASIDE** — using the method research ingested in STEP 2.
+- **Gate:** per-intervention LODO delta vs the random floor. Commit.
+
+### STEP 7 — Effort 2 Phase 3: restructure + writeup
+- Reorganize the 6 mechanism-lanes → the robustness/eval-rigor structure (per the deliberation in git history); rewrite affected chapters (ch08–ch13); new ADR(s); the honest **"universal OOD wall + what (if anything) generalizes across injection types"** narrative + the in-dist-vs-LODO inflation demonstration.
+- **Gate:** book builds; ADRs consistent; `make dossier-audit` green. Commit.
+
+## Loose ends not on the critical path
+- Open the PR for the session branch (or merge to `main`).
+- Move/remove `encoder-classification-design-space.md` (misplaced `.scratch/` artifact).
+- `cache_manifest` schema still v2 (v3 substring-anchor upgrade deferred; not blocking).
