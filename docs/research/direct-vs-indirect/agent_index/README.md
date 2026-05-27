@@ -5,13 +5,13 @@
 **Purpose:** indexed primary-source synthesis of the conceptual + practical split between direct (user-supplied) and indirect / XPIA (retrieved-content) prompt injection — threat taxonomies, architectural defenses, production incidents, and indirect-injection benchmarks. Designed for dual consumption: humans skim directly; future LLM agents ground reasoning in the cited primary sources.
 **Primary intended consumer:** future LLM agents working on prompt-injection defenses, agentic-AI security audits, or AI-safety portfolio projects under `/Users/brandonbehring/Claude/prompt-injection-portfolio/`. Secondary consumers: human researchers and security practitioners.
 **Self-containedness guarantee:** this folder has no hard dependence on sibling files outside the parent `direct-vs-indirect/` directory and its YAML ledgers.
-**Scope:** 42 primary entries across 4 sub-areas (B1 threat-models / B2 architectural defenses / B3 production incidents / B4 indirect-injection benchmarks); date range 2022-11 (Perez & Ribeiro "Ignore Previous Prompt") through 2026-01 (ShadowPrompt fix). Strict-live freshness as of 2026-05-23.
+**Scope:** 43 primary entries across 4 sub-areas (B1 threat-models / B2 architectural defenses / B3 production incidents / B4 indirect-injection benchmarks); date range 2022-11 (Perez & Ribeiro "Ignore Previous Prompt") through 2026-01 (ShadowPrompt fix). Strict-live freshness as of 2026-05-27.
 **Coverage:** 4 topic files + this README; structured 5-bullet entries (Source / Code / Mechanism / Result / Status / Evidence) with inline atomic-claim IDs.
-**Last updated:** 2026-05-23 (Sprint 2: +9 B1 entries — Perez 2022, Liu 2024 formalizing, Liu 2023 LLM-apps, Shi 2024 JudgeDeceiver, Pasquini 2024 Neural Exec, Evertz 2024 Whispers, Wei 2023 Jailbroken, Rossi 2024 survey, MITRE ATLAS 2024; +4 B2 body-anchored evidence refs for CaMeL/SecAlign/Meta SecAlign/Instruction Hierarchy).
+**Last updated:** 2026-05-27 (+1 B2 entry — ASIDE (Zverev et al. ICLR 2026), embedding-level instruction/data separation via orthogonal rotation of data-token embeddings). Prior: 2026-05-23 (Sprint 2: +9 B1 entries — Perez 2022, Liu 2024 formalizing, Liu 2023 LLM-apps, Shi 2024 JudgeDeceiver, Pasquini 2024 Neural Exec, Evertz 2024 Whispers, Wei 2023 Jailbroken, Rossi 2024 survey, MITRE ATLAS 2024; +4 B2 body-anchored evidence refs for CaMeL/SecAlign/Meta SecAlign/Instruction Hierarchy).
 
 ## ⚠️ Scope boundary
 
-This folder covers the **direct-vs-indirect (XPIA) split** and its consequences: threat taxonomies, architectural defenses (Spotlighting, StruQ, SecAlign, CaMeL, Instruction Hierarchy, Jatmo, IsolateGPT, LlamaFirewall, design patterns), production incidents (EchoLeak, Slack AI, ChatGPT plugins, ShadowPrompt, Gemini Trifecta, Comet, Month-of-AI-Bugs), and indirect-injection benchmarks (BIPIA, InjecAgent, AgentDojo, LLMail-Inject, ASB, WASP). It is NOT a complete survey of all prompt-injection literature.
+This folder covers the **direct-vs-indirect (XPIA) split** and its consequences: threat taxonomies, architectural defenses (Spotlighting, StruQ, SecAlign, ASIDE, CaMeL, Instruction Hierarchy, Jatmo, IsolateGPT, LlamaFirewall, design patterns), production incidents (EchoLeak, Slack AI, ChatGPT plugins, ShadowPrompt, Gemini Trifecta, Comet, Month-of-AI-Bugs), and indirect-injection benchmarks (BIPIA, InjecAgent, AgentDojo, LLMail-Inject, ASB, WASP). It is NOT a complete survey of all prompt-injection literature.
 
 **For adjacent topics, look elsewhere:**
 
@@ -33,7 +33,7 @@ Section anchors per file use the letter prefix from `../research_plan.md`: `## B
 |---|---|---|
 | `README.md` (this file) | Hub: scope, lookup recipes, glossary, attribution | Always read first |
 | `01_threat_models.md` | B1 — Threat-model taxonomies + foundational framings (Greshake, OWASP LLM01:2025, Willison Dual-LLM, Willison Lethal Trifecta) | You need the conceptual split or want canonical taxonomy references |
-| `02_architectural_defenses.md` | B2 — Architectural defenses (Spotlighting, StruQ, SecAlign, Meta SecAlign, CaMeL, Instruction Hierarchy, Jatmo, IsolateGPT, LlamaFirewall, Design Patterns) | You're evaluating defenses beyond content classifiers |
+| `02_architectural_defenses.md` | B2 — Architectural defenses (Spotlighting, StruQ, SecAlign, Meta SecAlign, ASIDE, CaMeL, Instruction Hierarchy, Jatmo, IsolateGPT, LlamaFirewall, Design Patterns) | You're evaluating defenses beyond content classifiers |
 | `03_production_incidents.md` | B3 — Production incidents + adversarial-bypass research (EchoLeak, Month-of-AI-Bugs, ChatGPT image-exfil, Slack AI, ShadowPrompt, Gemini Trifecta, Comet, Hackett bypassing, Bhagwatkar firewalls, Nasr adaptive, Choudhary KAD) | You need real-world impact evidence or want to know what got patched in 2025 |
 | `04_indirect_benchmarks.md` | B4 — Indirect-injection benchmarks (BIPIA, InjecAgent, AgentDojo, LLMail-Inject, ASB, WASP) | You're evaluating a defense and need a benchmark |
 | `pre_selection_manifest.yml` | Phase 2b Attribute-First contract: span anchors that gate every bullet's evidence ID | You're an auditor verifying claim → source provenance |
@@ -61,6 +61,7 @@ Routes by question type. Each points to a specific file and section anchor.
 - **"What's StruQ?"** → `02_architectural_defenses.md` § B2 (Chen et al. USENIX 2025, reserved-delimiter SFT).
 - **"What's SecAlign?"** → `02_architectural_defenses.md` § B2 (Chen et al. CCS 2025, DPO over secure/insecure pairs).
 - **"What's Meta SecAlign / open-source secure LLM?"** → `02_architectural_defenses.md` § B2 (Chen et al. 2025, Llama-3.3-70B).
+- **"What's ASIDE / embedding-level instruction-data separation?"** → `02_architectural_defenses.md` § B2 (Zverev et al. ICLR 2026, orthogonal rotation of data-token embeddings).
 - **"What's CaMeL?"** → `02_architectural_defenses.md` § B2 (Debenedetti et al. Google DeepMind 2025).
 - **"What's the Instruction Hierarchy?"** → `02_architectural_defenses.md` § B2 (Wallace et al. OpenAI 2024).
 - **"What's Jatmo?"** → `02_architectural_defenses.md` § B2 (Piet et al. ESORICS 2024, task-specific distillation).
@@ -95,6 +96,7 @@ Canonical term + aliases + one-line definition. Resolves ambiguous lookups witho
 - **Spotlighting**: Microsoft's family of prompt-engineering defenses (delimiting / datamarking / encoding) that mark untrusted input so the LLM treats it as data, not instructions. Hines et al. 2024.
 - **StruQ**: Reserved-delimiter SFT defense — fine-tunes the LLM so instruction text and data text occupy non-overlapping token spaces. Chen et al. USENIX 2025.
 - **SecAlign**: DPO-based prompt-injection defense — trains on (secure, insecure) response pairs. Chen et al. CCS 2025. **Meta SecAlign** extends this to a fully open-source Llama-3.3-70B variant.
+- **ASIDE**: Embedding-level instruction/data-separation architecture — applies an orthogonal rotation to data-token embeddings so instructions and data get distinct representations, with no added parameters; improves instruction-data separation and prompt-injection robustness. Zverev et al. ICLR 2026.
 - **CaMeL**: Google DeepMind's capability-based isolation defense — extracts control and data flow from the trusted query so untrusted data cannot impact program flow. Debenedetti et al. 2025.
 - **Instruction Hierarchy**: OpenAI's training-time defense that explicitly orders system > developer > user > tool instructions; the model learns to honor that priority. Wallace et al. 2024.
 - **Jatmo**: Task-specific distillation defense — distills the base instruction-tuned LLM into a narrower task model that never sees free-form instructions at inference. Piet et al. ESORICS 2024.

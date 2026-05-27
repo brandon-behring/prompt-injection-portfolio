@@ -941,4 +941,31 @@ entries:
   - ev_direct_vs_indirect_0055
   cache_ids:
   - cache_263a74b6a552d75b
+- bibkey: zverev2025aside
+  primary_url: https://arxiv.org/abs/2503.10566
+  title: 'ASIDE: Architectural Separation of Instructions and Data in Language Models'
+  status: verified
+  claim_family: architectural_defense_methods
+  authors: Zverev et al. (2025)
+  venue: ICLR 2026 (arXiv preprint)
+  code_url: https://github.com/egozverev/aside
+  aliases:
+  - ASIDE
+  retrieved_at: 2026-05-27
+  verification_method: webfetch
+  verified_at: '2026-05-27'
+  verified_fields:
+  - title
+  - authors
+  - year
+  - primary_url
+  freshness_tier: stable
+  stale_after_days: 365
+  evidence_ids:
+  - ev_direct_vs_indirect_0060
+  - ev_direct_vs_indirect_0061
+  - ev_direct_vs_indirect_0062
+  - ev_direct_vs_indirect_0063
+  cache_ids:
+  - cache_a56d937bf8ce5972
 

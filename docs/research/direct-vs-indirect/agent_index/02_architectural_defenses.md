@@ -1,9 +1,9 @@
 # 02 — Architectural defenses (not classifier-shaped) (B2)
 
-**Scope:** primary sources on prompt-injection defenses that act on system architecture — prompt-engineering separators (Spotlighting), training-time interventions (StruQ, SecAlign, Meta SecAlign, Instruction Hierarchy), task-specific distillation (Jatmo), capability-based isolation (CaMeL, IsolateGPT), guardrail frameworks (LlamaFirewall), and design-pattern surveys (Beurer-Kellner et al.).
+**Scope:** primary sources on prompt-injection defenses that act on system architecture — prompt-engineering separators (Spotlighting), training-time interventions (StruQ, SecAlign, Meta SecAlign, Instruction Hierarchy), embedding-level instruction/data separation (ASIDE), task-specific distillation (Jatmo), capability-based isolation (CaMeL, IsolateGPT), guardrail frameworks (LlamaFirewall), and design-pattern surveys (Beurer-Kellner et al.).
 **Out of scope:** classifier-shaped detectors (Llama Guard, Prompt Guard, PromptShield) — see `../../detector-landscape/agent_index/`; benchmarks evaluating these defenses (see `04_indirect_benchmarks.md`); production incidents demonstrating bypass (see `03_production_incidents.md`).
 
-Section anchors below use the `## B2.` prefix from `../research_plan.md`. The 10 entries are roughly ordered along the architectural-layer continuum: prompt-engineering → training-time → task-specific → capability-isolation → guardrail-stack → design-pattern survey.
+Section anchors below use the `## B2.` prefix from `../research_plan.md`. The 11 entries are roughly ordered along the architectural-layer continuum: prompt-engineering → training-time → embedding-level → task-specific → capability-isolation → guardrail-stack → design-pattern survey.
 
 ## B2. Architectural defenses (not classifier-shaped)
 
@@ -87,5 +87,13 @@ Section anchors below use the `## B2.` prefix from `../research_plan.md`. The 10
   - **Status:** Verified (no widely-known repo) (recheck after 2026-08-20 — active freshness tier).
   - **Evidence:** ev_direct_vs_indirect_0016
 
+- **ASIDE: Architectural Separation of Instructions and Data in Language Models** — Zverev et al. (ICLR 2026, arXiv preprint).
+  - **Source:** https://arxiv.org/abs/2503.10566
+  - **Code:** https://github.com/egozverev/aside
+  - **Mechanism:** Proposes "a new architectural element, ASIDE, that allows language models to clearly separate instructions and data at the level of token embeddings" [claim_aside_architectural_separation]. Concretely, "ASIDE applies an orthogonal rotation to the embeddings of data tokens, thus creating clearly distinct representations of instructions and data tokens without introducing any additional parameters" [claim_aside_orthogonal_rotation_no_params] — an LLM-side instruction/data-separation architecture in the same defense class as StruQ (§ B2.2) and the Instruction Hierarchy (§ B2.6), but acting at the embedding layer rather than via reserved delimiters or training-priority labels.
+  - **Result:** Instruction-tuning LLMs with ASIDE "makes the models more robust to prompt injection benchmarks, even without dedicated safety training" while improving instruction-data separation without performance loss [claim_aside_prompt_injection_robustness]; the paper additionally gives a mechanistic representation-analysis account of why the embedding split works [claim_aside_mechanistic_representation_analysis]. Open-source code + training scripts released.
+  - **Status:** Verified.
+  - **Evidence:** ev_direct_vs_indirect_0060, ev_direct_vs_indirect_0061, ev_direct_vs_indirect_0062, ev_direct_vs_indirect_0063
+
 ---
-10 entries
+11 entries

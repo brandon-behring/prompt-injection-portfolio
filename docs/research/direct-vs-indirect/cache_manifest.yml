@@ -561,3 +561,17 @@ entries:
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
+- cache_id: cache_a56d937bf8ce5972
+  source_url: https://arxiv.org/abs/2503.10566
+  fetched_at: 2026-05-27
+  record_type: capture
+  content_type: text/html
+  bytes: 48188
+  sha256: a56d937bf8ce59722132e3554889ad32c4a596945e444cf8547c6a9d54cab53d
+  raw_path: blobs/sha256/a56d937bf8ce59722132e3554889ad32c4a596945e444cf8547c6a9d54cab53d
+  text_path: text/sha256/a56d937bf8ce59722132e3554889ad32c4a596945e444cf8547c6a9d54cab53d.txt
+  metadata_path: metadata/sha256/a56d937bf8ce59722132e3554889ad32c4a596945e444cf8547c6a9d54cab53d.json
+  restricted: false
+  rights_status: private_use
+  extraction_status: ok
+  http_last_modified: Tue, 10 Feb 2026 03:03:29 GMT

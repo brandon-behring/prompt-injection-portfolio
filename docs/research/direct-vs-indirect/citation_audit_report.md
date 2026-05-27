@@ -1,22 +1,22 @@
 # Citation Audit Report — direct-vs-indirect
 
-Generated: 2026-05-26
+Generated: 2026-05-27
 
 ## Summary
 
-- Total support links: 63
-- Strongly grounded (verbatim_match + user_asserted): 51/63 (81%)
-- Partially grounded (paraphrase + manual_override): 8/63 (13%)
-- Weakly grounded (llm_inferred + propagated_from_child): 4/63 (6%)
-- Substring check pass rate: 51/51 (100%)
+- Total support links: 67
+- Strongly grounded (verbatim_match + user_asserted): 54/67 (81%)
+- Partially grounded (paraphrase + manual_override): 9/67 (13%)
+- Weakly grounded (llm_inferred + propagated_from_child): 4/67 (6%)
+- Substring check pass rate: 54/54 (100%)
 
 ## Per-method breakdown
 
 | extraction_method | count | avg link_confidence |
 |---|---|---|
 | llm_inferred | 4 | 0.557 |
-| paraphrase | 8 | 0.8 |
-| verbatim_match | 51 | 0.942 |
+| paraphrase | 9 | 0.8 |
+| verbatim_match | 54 | 0.942 |
 
 ## Per-claim grounding strength
 
@@ -26,6 +26,10 @@ Generated: 2026-05-26
 | claim_agentdojo_extensible_environment | strong |
 | claim_asb_10_scenarios_400_tools | strong |
 | claim_asb_formalize_benchmark | strong |
+| claim_aside_architectural_separation | strong |
+| claim_aside_mechanistic_representation_analysis | partial |
+| claim_aside_orthogonal_rotation_no_params | strong |
+| claim_aside_prompt_injection_robustness | strong |
 | claim_attacker_moves_second_adaptive | strong |
 | claim_bipia_first_indirect_benchmark | strong |
 | claim_camel_agentdojo_provable_security_77pct | strong |

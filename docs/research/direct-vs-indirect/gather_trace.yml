@@ -519,3 +519,21 @@ fetches:
   decision: accept
   reason: 'MITRE ATLAS - canonical adversarial-tactic taxonomy for AI; AML.T0051 LLM Prompt Injection (with .000 direct + .001 indirect sub-techniques). Cache is SPA shell only.'
   assigned_bibkey: mitreatlas2024
+# ============================================================================
+# Phase B2 adoption (2026-05-27). Adding one LLM-side instruction/data-separation
+# architecture (ASIDE) to the architectural_defense_methods family. Live WebFetch
+# of the canonical arXiv /abs/ confirmed title + first author (Zverev) + ICLR 2026
+# venue; abstract page cached and anchored. Decision accept.
+# ============================================================================
+- fetch_id: fetch_zverev2025_aside
+  sub_area: 'B2'
+  query: 'ASIDE architectural separation instructions data language models orthogonal rotation token embeddings Zverev ICLR 2026'
+  source_url: https://arxiv.org/abs/2503.10566
+  fetched_at: 2026-05-27
+  reflection:
+    is_relevant: true
+    is_supported: full
+    is_useful: 5
+  decision: accept
+  reason: 'Zverev et al. 2025 ASIDE (ICLR 2026) - LLM-side architectural instruction/data separation via orthogonal rotation of data-token embeddings (no added parameters); same defense class as StruQ/SecAlign/Instruction-Hierarchy. Title + first author + venue verified via WebFetch on canonical /abs/.'
+  assigned_bibkey: zverev2025aside
