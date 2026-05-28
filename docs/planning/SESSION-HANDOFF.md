@@ -1,264 +1,112 @@
-# Session handoff — 2026-05-26
+# Session handoff — 2026-05-28
 
-## ✅ START HERE — next session (2026-05-27 final state)
+## ✅ START HERE — clean session: Phase 1 (foundational EDA)
 
-**Branch:** this session's work is **merged to `main`** (research_toolkit `v2.5.0` re-pin + Phase C dataset dossier + Phase B E/D + these handoffs). **Branch fresh from `main`.**
+**Phase A is COMPLETE.** A 2026-05-27/28 session-stretch took the dataset dossier from a never-audited 20-entry narrow-scope ledger to a comprehensive, saturation-checked, family-tagged, verified-and-audited reference — and authored the EDA design + prototype post-mortem that ground Phase 1. **Next is Phase 1: the foundational EDA itself** (eval-toolkit `eda` layer refinements → Job-1 integrity gate → Jobs 2–3 shortcut + shift).
 
-**Phase B is COMPLETE — no ingestion remains.** All 5 topics (A–E) green @ `v2.5.0`, and the method-source papers are in. A read-only triage (2026-05-27) confirmed the `missed_seeds` "73-item backlog" was a raw scan **already fully consumed** by the 2026-05-22 drafters (A/B/C net-new all already in their bib_ledgers; D+E too, plus 5 genuine net-new added this session: E5 `rag_retrieval_dynamics` ×3, D1 Anthropic ×2). The 3 genuinely-absent method papers were then ingested:
-- **ASIDE `2503.10566`** → B2 `architectural_defense_methods` (`zverev2025aside`)
-- **Mirror `2603.11875`** + **PromptLocate `2510.12252`** → A5 `detector_architectures` (`corll2026mirror`, `jia2025promptlocate`)
-- Attention Tracker `2411.00348` was already in A+D.
-
-Gate everywhere: `make dossier-audit` **green ×5**; per-topic citation substring **100%**; 0 stale.
-
-**Next frontier (post-Phase-B):** Effort-2 attack-type-LODO training (ADR-052) — needs the full torch/docling CI env (~$250) + the un-cloned submission sibling at `../prompt-injection-detection-submission`; plus the portfolio↔submission lane/chapter restructure (ADR-052 defers to Phase 3). See history below for the full roadmap.
-
-**Tooling:** pinned `v2.5.0` (`Makefile RT_TAG`). Gate = `make dossier-audit` (green ×5). Producer = `.tooling/research_toolkit/scripts/build_excerpt_anchor.py` (self-verifying; arXiv abstracts need `--occurrence 1` — they triplicate in the HTML).
-
-**Resolved loose ends:** `encoder-classification-design-space.md` → moved to gitignored `.scratch/`; session branch → merged to `main`.
-
-**Note:** `docs/research/_inbox/missed_seeds.md` is gitignored (local-only); its "## 2026-05-27 Phase B reconciliation" + the A/B/C triage are summarized here (the tracked source of truth). **Everything below this section is historical detail.**
+**Approved plan (source of truth):** `~/.claude/plans/use-the-following-handoff-bright-umbrella.md` — read first.
 
 ---
 
-Cold-start anchor for the work done in the 2026-05-26 session. Complements `NEXT_SESSION.md`
-(the standing M0-close anchor); this doc is the **live in-flight delta**. Three distinct efforts ran;
-all are **UNCOMMITTED**.
+## Current state (2026-05-28)
+
+### Phase A deliverables (done — uncommitted, in the working tree)
+- `docs/research/datasets/_candidate_universe.md` — the **saturation-checked landscape map** (20 + ~65 net-new across families injection-direct/indirect, jailbreak, toxicity-safety-guard, over-defense-control, agentic-trajectory, aggregated-recipe, helper). Cross-checked against awesome-prompt-injection, Awesome-Agent-Security, SafetyPrompts.com, JailbreakBench, the InjecGuard ~20-set + ProtectAI/PromptGuard mixture compositions, HF tag — *converged*.
+- `docs/research/datasets/dataset_ledger.yml` — **30 verified-tagged entries** (topic broadened to `unsafe_input_guardrail_detection`; every entry carries soft tags `family` / `encoder_readiness` / `study_relevance`). Honest flags retained: 1 `mismatched` (`xtram12024safeguardpromptinjection` — its card cites arXiv:2402.13064 = the unrelated GLAN paper); 6 `license: unknown`; 3 `unverified` (Harelix HF 401, PINT data withheld, IPI-in-the-wild unreleased). `validators/dataset_ledger.py` → `OK`.
+- `docs/research/datasets/agent_index/` — **regenerated**: 8 files (`README.md`, `00_overview.md`, `01_injection_direct.md` A1–A11, `02_injection_indirect.md` B1–B5, `03_jailbreak_and_toxicity.md` C1–C4, `04_over_defense.md` D1–D4, `05_agentic_trajectory.md` E1–E3, `06_aggregated_recipes.md` F1–F3). 5-bullet entries + soft-tag triple per entry; family-organized. `agent_index.py` + `cross_stage.py` → `OK`.
+- **First `/dossier-audit` round** (audit-trail in `agent_index/README.md`): 2 CORRECT (LLMail-Inject's 5 success flags are *nested* inside the `objectives` JSON, not top-level columns; XSTest's id column is `id_v1`/`id_v2`); 0 DROP / 0 new FLAG; all pre-existing flags re-verified + held. `audit_trail.py` → `OK`.
+
+### Phase-1 design (done — companions)
+- `docs/planning/eda-design.md` — **domain-grounded EDA design.** Thesis: EDA here = pre-registering what the data can support; measure the four properties the predecessor found too late. 8 PI-specific traits, A–F analysis catalog, V1–V11 visualization catalog with pitfalls, scope tiers (R = reusable `eval_toolkit.eda` vs D = portfolio-specific), the 6 highest-value analyses that would have *predicted* the OOD wall pre-GPU, build order. **THE doc to read for Phase 1 design.**
+- `docs/planning/prototype-postmortem.md` — the **prototype retrospective.** Wins to keep (clean LODO, OOD-wall finding, calibration signal) + the 3 confounds + the "8.4pp inflation" claim with **no derivation in either repo** + the §9.5 anti-correlation as interpretation-not-measurement + carry-forward (B1 calibration, B4 κ/error-correlation, B7 per-row score distributions, B8 cv_clt-vs-block-bootstrap sensitivity flag, B10 label-aware dedup) + doc-form lessons (avoid sprawl / immutability-cascade / planned-vs-happened drift).
+
+### eval-toolkit state (synced; layer built + held)
+- `/Users/brandonbehring/eval-toolkit` — **pulled v0.24.0 → v1.4.0** (clean `main` fast-forward). The v1.x metrics + Tier-1 stability contract is real (their ADR 0003). The reuse map was re-validated against v1.x source (the v0.24→v1.x rewrite is significant — don't reason against the old surface).
+- Branch **`feat/eda-data-audit`** — holds the **built + verified-green** Tier-2 `eval_toolkit.eda` integrity-gate subpackage:
+  - `src/eval_toolkit/eda/__init__.py` + `data_audit.py` (~565 lines): `audit_dataset` orchestrator + `DataAudit` / `SplitSummary` frozen dataclasses + `class_balance` / `length_quantiles` / `summarize_split` helpers + three `GateResult`-typed integrity gates (`class_balance`, `no_cross_split_leakage`, `context_window_fit`).
+  - `tests/test_eda.py` — 19 tests pass; **100% statement coverage**; ruff + black + mypy-strict + sybil doctests clean; full `make test-fast` style suite green.
+  - `pyproject.toml` `[eda]` extra = `["pandas>=2.0", "matplotlib>=3.8"]` (torch-free); **not** in top-level `_EXPORTS` (Tier-2 only — evolvable). `.doctest-modules` + `uv.lock` synced.
+- **UNCOMMITTED** — changes live in the working tree on `feat/eda-data-audit`. Held pending the `eda-design.md` refinements before commit + PR.
+
+### Portfolio git state (uncommitted)
+On branch **`session/2026-05-26-adoption-and-research-ops`**. Working tree carries: the eda-design + post-mortem + candidate-universe + the back-tagged 30-entry ledger + the regenerated 8-file agent_index + this handoff. Suggested commit boundaries (when you're ready):
+1. `docs(planning): EDA design + prototype post-mortem` — `docs/planning/eda-design.md`, `docs/planning/prototype-postmortem.md`.
+2. `docs(datasets): Phase A — broad scope + verified-tagged ledger + regenerated agent_index + first audit` — `docs/research/datasets/dataset_ledger.yml`, `docs/research/datasets/agent_index/**`, `docs/research/datasets/_candidate_universe.md`.
+3. `docs(handoff): 2026-05-28 — Phase A done; Phase 1 START HERE` — this file.
+
+(The eval-toolkit `feat/eda-data-audit` branch commits separately in *that* repo, once the layer is refined per `eda-design.md`.)
 
 ---
 
-## ⏭ 2026-05-27 UPDATE 2 — v2.5.0 released; Phase B started + backlog reconciled (READ THIS FIRST)
+## PHASE 1 — start here
 
-Follow-on session on `session/2026-05-26-adoption-and-research-ops`. Supersedes UPDATE 1's "remaining" + loose-ends below.
+### Goal
+Run the EDA-first program over the verified working set so that the **OOD-collapse magnitude becomes a *predicted* value pre-modeling** — not a post-hoc surprise. Resolves the roadmap-gating decision **RC0 (BIPIA adequacy)** and the data-conditional decisions the roadmap waits on.
 
-- **research_toolkit v2.5.0 released + re-pinned — ✅ `f3d26c3`.** PR #28 reviewed (15 tests, ruff clean, producer reproduces real detector anchors byte-for-byte) → maintainer merged + tagged `v2.5.0` (annotated, at the producer release commit) → `Makefile RT_TAG := v2.5.0` + `.tooling` re-bootstrapped; `make dossier-audit` green ×5. NB: the `v2.4.1..v2.5.0` audit-path is byte-identical (`verify_citations` + every dossier-audit validator unchanged; the only deltas are a new unused-here `topic_backlog.py` + the producer) — so the re-pin is a **reproducibility/provenance** step, not a functional gate change.
-- **Phase B premise corrected: `missed_seeds`'s "73-item backlog" is largely ALREADY-TRIAGED, not an open to-do list.** Both Sprint-2 "new" dossiers were built to their plans on 2026-05-22 (cross-class folded in; out-of-scope declined). Verified against the live ledgers this session:
-  - **E (rag) was already complete + green** (18 entries); the 3 cross-class items (BIPIA/Spotlighting/EchoLeak) already in. **Scope-expanded**: new family `rag_retrieval_dynamics` (E5) + 3 retrieval/embedding papers (Lost-in-the-Middle 2307.03172, SBERT 1908.10084, Ethayarajh 1909.00512) — `6b0a64f`.
-  - **D (agentic) was already complete + green** (25 entries); its "21" was mostly already-in (CaMeL/MELON/Task Shield/IsolateGPT/Design Patterns/LlamaFirewall/AgentDojo) or mis-routed. Added 2 real D1 net-new (Anthropic browser-PI blog + computer-use docs) — `eb31a3f`.
-  - **Mis-filed items re-routed** (recorded in the gitignored `_inbox/missed_seeds.md` → "## 2026-05-27 Phase B reconciliation"): UltraChat/LMSYS/XSTest→**C**; InjecAgent/ASB/WASP/WAInjectBench/MCPVerse→**B4**; Whispers→**B1**; the 6 vendor URLs→**A4 (unverified)**.
-  - Both E + D: `make dossier-audit` green ×5; citation substring 100% (E 33/33, D 5/5); 0 stale.
+### Decisions locked (from the plan + this session)
+- **Tier-2 submodule** (`eval_toolkit.eda`); **not** in the top-level `__all__`/`_EXPORTS` (evolvable; graduate later).
+- **Job-1 torch-free** (lean-local); **Jobs 2–3 use a one-time CPU torch + sentence-transformers** install — a scoped, recorded exception to ADR-051's lean-local rule (heavy GPU/training stays CI-only). To be ADR'd in Phase 2.
+- **Coupled delivery**: machine-checkable audit JSON/parquet (CI-gateable) + a jupytext notebook report (Decision/Gate callouts, book-chapter-ready per ADR-020) + committed figures.
+- **Sequence**: integrity gate first across the working set → then Jobs 2–3 deeper.
+- **Selection deferred to the EDA**: Phase A's soft `study_relevance` tag is a hint; the EDA *selects* the actual working set (filter on `encoder_readiness ∈ {drop-in, derivable}` + detection-relevant `family`).
 
-### Phase B — what actually remains (corrected)
-⚠️ **A (18) / B (10) / C (14 + re-routed) are ESTABLISHED topics — do NOT take the raw `missed_seeds` counts at face value.** Like D/E, each listed net-new must be **checked against the actual bib_ledger first** (many are likely already in or out-of-scope): triage-before-grind. The 4 method sources (Attention Tracker `2411.00348` / ASIDE `2503.10566` / Mirror `2603.11875` / PromptLocate `2510.12252`) still need routing to their correct topics. The PR #28 + v2.5.0 loose-ends in UPDATE 1 below are now **DONE**.
+### Step 1 — `eval_toolkit.eda` layer refinements (the held branch)
+Work in `/Users/brandonbehring/eval-toolkit` on `feat/eda-data-audit`:
+1. **Drop the `seed` param** from `audit_dataset` (`rng` is the §3a canonical via SPEC 7; the integrity gate is fully deterministic — no RNG; the param violates §1.5 anti-overengineering). Adjust `DataAudit` + tests.
+2. **Fold obfuscation/encoding/invisible-Unicode prevalence in as a Job-1 integrity prerequisite** (per `eda-design.md` §B2 — the *seen-text ≠ scored-text* hazard; invisible chars silently corrupt every downstream length/n-gram/embedding stat). Lightweight detectors: invisible U+200B/U+200C/U+200D + the U+E0000–U+E007F tag block + variation-selector range; homoglyph/confusables via NFKC-normalization delta; base64/hex via entropy; ROT13 round-trip; leetspeak rate. Expose a `raw vs NFKC` length-delta on `DataAudit`.
+3. Then **build the Jobs 2–3 modules** in `eval_toolkit.eda`:
+   - `lexical_association` — log-odds informative-Dirichlet (Monroe 2008) + PMI + scaled-F (Kessler / scattertext) + partial-input / structural-only competency baselines (Feng & Wallace 2019; Gururangan 2018 annotation artifacts).
+   - `distribution_shift` — proxy-A-distance (Ben-David 2010), MMD (Gretton 2012), k-NN purity, vocab/OOV overlap.
+   - Embedding-map helper using `eval_toolkit.embeddings.make_minilm_embedder` (the `[embeddings]` extra; soft-imports torch — Jobs 2–3 only).
+   - Cube/carrier tagging scaffold (intent × technique × channel; carrier+position for indirect).
+4. Branch + PR (don't self-merge); portfolio consumes via editable install during dev, re-pins on release.
 
----
+### Step 2 — Job-1 integrity gate run (torch-free; lean-local)
+- Select the working set from the ledger: `encoder_readiness ∈ {drop-in, derivable}` + detection-relevant families; high `study_relevance` first. Likely starters: `hendzh2025promptshield`, `guychuk2024benignmalicious`, `shen2023inthewild` (DAN), `lin2023toxicchat`, `han2024wildguard` (**gated** — needs HF token), `bipia2023microsoft` (the LODO axis), `deepset2023promptinjections`, `jackhhao2023jailbreakclassification`, `leolee2024notinject`, `rottger2024xstest`, `cui2024orbench`. Plus the prototype training-pool sources (LMSYS + UltraChat benigns) for parity.
+- **Own SHA-pinned manifest** (don't inherit from the submission).
+- Per dataset → counts, balance, token-length + %-over-8192 (ModernBERT tokenizer; caller-supplied), exact + near-dup, leakage, **obfuscation/encoding/invisible-Unicode prevalence**. Per-dataset audit JSON + a combined integrity-report notebook + figures; each analysis ends in a Decision/Gate. Certify usability.
 
-## ⏭ 2026-05-27 UPDATE — supersedes the EXECUTION ROADMAP below (read this first)
+### Step 3 — Jobs 2–3 (shortcut + shift; needs embeddings/torch)
+Per `eda-design.md`, **highest-value first** (the analyses that would have *predicted* the predecessor's OOD wall pre-GPU):
+- **V10** reference-scorer score-distributions per slice (ProtectAI on each slice) — the literal §9.5 missing figure; turns "anti-correlation" from *interpretation* into *measurement*.
+- **A1** positive-class cube decomposition (intent × technique × channel) — the heterogeneous-positive picture; map each source to a corner; shows train↔OOD as opposite corners with *zero modeling*.
+- **E1** per-fold proxy-A-distance (+ MMD) — the modeling go/no-go; tall PAD bars *predict* OOD collapse per fold pre-GPU.
+- + C1 log-odds + C2 partial-input/competency baselines (the *true* floor) + F2 BIPIA attack-type diversity / intra-type similarity (**resolves RC0**) + V4 embedding UMAP (pair with silhouette/ARI per the UMAP-distances-aren't-metric pitfall) + F1 NotInject validity + D3 ProtectAI contamination.
+- Cartography (Swayamdipta 2020) = a probe-pass diagnostic (needs one training run; not pre-modeling).
+- **Fix the prototype's BIPIA loader collapse** (`/Users/brandonbehring/Claude/prompt-injection-detection-submission/src/data/loaders.py:527-562` discards carrier identity + payload position — needed for the indirect analyses).
 
-The continue-all-phases session ran. **STEP 1's premise was wrong** and is corrected; everything is now
-committed + pushed on `session/2026-05-26-adoption-and-research-ops`.
-
-- **STEP A (was STEP 1 "cache-repair") — ✅ DONE, committed `3d11757`.** The 63 "freshness errors" were
-  **not** missing cache — they were citation-audit **substring** failures from a **path-resolution bug**:
-  `verify_excerpt_anchor`'s callers didn't pass the manifest `cache_root`, so relative `text_path`
-  resolved against the empty dossier-local `text/` dir. The fix already existed upstream (`33f07f9`, #15,
-  merged to main, **never tagged**). Adopted by tagging **research_toolkit `v2.4.1`** at `33f07f9` +
-  `Makefile RT_TAG := v2.4.1`. Re-green: substring **0→100%** on all dossiers (detector 61/61, direct
-  51/51, training 13/13, rag 28/28, agentic 0/0); **`make dossier-audit` PASS ×5**. No re-fetching. ADR-051
-  follow-up records the misdiagnosis. (Lesson saved as memory `tag-pins-strand-fixes`.)
-- **STEP B — v3 excerpt-anchor PRODUCER built (the second dogfooding gap).** The toolkit could *check*
-  anchors but had no *producer* (BURN_IN 2026-05-25). New `scripts/build_excerpt_anchor.py` (manifest-mode,
-  whitespace-tolerant, multi-byte-correct, `--occurrence`, self-verifies through `verify_excerpt_anchor`).
-  14 tests, ruff clean, **reproduces all 61 real detector-landscape anchors** (41 via `--occurrence`).
-  Wired into `/agent-index` Phase 2a + `/research-gather`. **Opened as PR #28 — NOT merged (maintainer-gated;
-  do not self-merge).** `.tooling` stays at **v2.4.1**; the **v2.5.0 re-pin is pending the PR #28 merge**.
-  For Phase B now, run the producer from the `feat/build-excerpt-anchor` checkout of `~/Claude/research_toolkit`.
-- **Phase C dataset dossier — ✅ DONE, committed `ebfd2f2`.** `docs/research/datasets/` = 20-entry
-  `dataset_ledger.yml` + validated `agent_index/`. Feeds ADR-052 (cross-linked both ways). BIPIA is the
-  only set with a disjoint 15/15 attack-type split; honest flags kept (xTRam1 mismatched, PINT withheld,
-  5 license-unknown, arXiv 2604.27202 genuine but corpus unreleased).
-
-### Phase B — strict-live ingestion: REMAINING (multi-session)
-Per-topic loop, each ending **green**: update `research_plan.md` claim_family → `/research-gather` (append;
-`--escalate-on-failure`; caches + evidence_ledger v3 + claim_graph + gather_trace) → **anchor new verbatim
-claims with `build_excerpt_anchor.py`** → `/agent-index` → `/dossier-audit` → `/citation-audit`. Gate:
-`make dossier-audit` green ×5 + `missed_seeds` drained. Commit per topic.
-- Queue from `docs/research/_inbox/missed_seeds.md` (entries are **verify+complete-metadata stubs**, not
-  blind searches): **A** detector 18 · **B** direct 10 · **C** training 15 · **D** agentic 21 · **E** rag 9.
-  Plus this-session method sources: Attention Tracker `2411.00348`, ASIDE `2503.10566`, Mirror `2603.11875`,
-  PromptLocate `2510.12252`. Suggested order: thin dossiers first (**E rag**, **D agentic**).
-- **ETHICS exclusions (do NOT ingest):** `browserbench2025adversarial`, `restricted2025threatreport`
-  (synthetic/placeholder URLs); `piv4internaldata2026`, `piv4evaltoolkitfeedback2026` (internal-repo refs).
-  Cross-class entries (CaMeL/Spotlighting/MELON/BIPIA/EchoLeak/LlamaFirewall) get topic-prefixed bibkeys.
-
-### Loose ends (maintainer actions)
-- **Merge PR #28** → tag/push `research_toolkit v2.5.0` → bump `Makefile RT_TAG := v2.5.0` + re-bootstrap `.tooling`.
-- Open the portfolio PR for `session/2026-05-26-adoption-and-research-ops` (or merge to `main`).
-- Effort 2 / STEP 5-7 (attack-type-LODO training) still needs CI / ~$250 / the un-cloned submission sibling.
+### Checkpoints for your review
+1. After the held layer's refinements (drop `seed`, fold obfuscation in) — eval-toolkit branch ready for PR.
+2. After the integrity gate certifies the working set + **RC0 is answerable with evidence**.
+3. After Jobs 2–3 — the **OOD-collapse prediction is recorded pre-modeling**.
 
 ---
 
-### ↓ Original 2026-05-26 roadmap below (STEP 1 misdiagnosed — see correction above) ↓
+## Read first (in order)
+1. `~/.claude/plans/use-the-following-handoff-bright-umbrella.md` — the approved plan.
+2. `docs/planning/eda-design.md` — the EDA design / analysis + viz catalogs / scope tiers.
+3. `docs/planning/prototype-postmortem.md` — the prototype retrospective + carry-forward list.
+4. `docs/research/datasets/agent_index/README.md` — agent-index hub (glossary, lookup recipes, audit-trail).
+5. `docs/research/datasets/dataset_ledger.yml` — the verified ledger (the EDA's selection input).
+6. `docs/research/datasets/_candidate_universe.md` — the saturation-checked completeness map (for selecting beyond the ledger).
 
-## ✅ Commit status (read first)
+## Tasks
+- **#5** `Step 1 — Build eval-toolkit EDA profiling + DataAudit layer (integrity-gate)` — **in_progress** (built + held; refinements pending: drop `seed`, fold obfuscation in, then build the Jobs 2–3 modules).
+- **#6** `Step 2 — Run Job-1 integrity gate across all datasets` — **pending** (unblocked now that #9 is done).
+- **#7** `Step 3 — Build + run Jobs 2-3 (shortcut + shift EDA)` — **pending**.
+- **#8** `Phase 2 — Consolidate ROADMAP.md + archive + fixes + post-mortem + ADRs` — **pending** (Phase 2; follows Phase 1).
+- **#9** `Phase A — Dataset-scope completeness` — **completed**.
+- **#10** `Dossier-audit round 1: dataset agent_index` — **completed**.
 
-- **Committed + pushed** on branch **`session/2026-05-26-adoption-and-research-ops`** (off `main`;
-  `main` untouched), 3 commits:
-  - `8a63794` — dependency adoption / dogfooding (ADR-051), 30 files
-  - `f0c1012` — attack-type-generalization reorientation (ADR-052) + design docs, 4 files
-  - `8cedd82` — research_toolkit Phase-A audits (5 dashboards + 5 citation reports) + this handoff, 11 files
-- Pushed to `origin` → **durable across machines**. PR not yet opened (yours to open/merge).
-- **Excluded (still untracked):** `encoder-classification-design-space.md` — the misplaced `.scratch/`
-  submission artifact (loose end: move to `.scratch/` or remove).
-- Contract tests green (`uv run --no-project --with pytest pytest -m contract` → 13 passed).
-- This handoff's roadmap edits + all further work are NEW changes on top of the 3 commits — commit per step.
-
-## Plan file
-
-`/Users/brandonbehring/.claude/plans/what-is-happening-here-parsed-dahl.md` currently holds **Effort 3's
-plan** (research-toolkit re-engagement). Efforts 1 & 2 were earlier plans (overwritten); their designs
-live in the repo (ADR-051, ADR-052, `docs/planning/*`).
-
----
-
-## Effort 1 — Dependency adoption (dogfooding) — ✅ DONE (uncommitted)
-
-Adopted newer upstream lib versions by *using* them (dogfooding), per **ADR-051**:
-- **eval-toolkit `>=0.47`→`>=1.0`** (`pyproject.toml`; lock → 1.2.0). No code consumed it yet; forward-guidance in `library_imports.md`.
-- **research_toolkit: dropped as a pip dep → repo-local pinned tooling clone `.tooling/research_toolkit@v2.4.0`** (`Makefile` `dossier-audit` bootstraps + runs validators via an ephemeral `uv` env; `.gitignore` += `/.tooling/`). Reason: it only dragged docling/pdfplumber for code nothing imports.
-- **book-scaffold-astro `^3.6.5`→`^4.4.0` (resolves 4.5.1) + research-portfolio profile.** `astro.config.mjs` → `styles:[researchPortfolioStyle]`; `content.config.ts` → `defineBookSchemas({preset:'research-portfolio', chaptersBase:'./src/content/textbook'})`. Forced consumer fixes: per-chapter `freshness` (all 13), required `last_verified`, HTML→MDX comments (6 chapters). **Book builds green.**
-- **runpod-deploy:** no change (PyPI 0.8.4 == pin).
-- **Test contracts updated:** `test_mypy_strict_clean.py` (eval pin `>=1.0`), `test_library_imports_registered.py` (research_toolkit reclassified out of the import scan).
-- **4 upstream issues filed:** book-scaffold-astro **#74** (freshness/last_verified docs), **#75** (validate CLI ignores preset/chaptersBase); research_toolkit **#26** (docling hard-dep packaging), **#27** (evidence_ledger cache-absent handling).
-- **2 memories saved** (`~/.claude/projects/.../memory/`): `interrogate-before-planning`, `dogfooding-upgrades`.
-
-**Next:** commit when ready. Heavy `uv sync` (torch) + submission sibling left to CI per decision.
+## Gotchas / open items
+- **eval-toolkit local clone** at `/Users/brandonbehring/eval-toolkit` was historically stale at v0.24.0; this session pulled it to v1.4.0 (clean ff). Always `git -C /Users/brandonbehring/eval-toolkit describe --tags` before reasoning about its surface.
+- The held `eda` code uses `seed: int = 42` — **must drop first** (§3a / SPEC 7 / deterministic gate) before PR.
+- **WildGuardMix is gated** (`auth_required: true` — AI2 Responsible Use); needs an HF token to actually download.
+- **Harelix** (`harelix2024mixedtechniques`) HF page is bot-blocked (HTTP 401 to WebFetch); the entry's `status: unverified` reflects that; schema + label semantics need a re-fetch via the HF API / `datasets` lib before training use.
+- The **scoped CPU-torch-for-EDA exception to ADR-051** is noted in the plan but **not yet ADR'd** — Phase 2 will author the ADR.
+- **`NEXT_SESSION.md` is stale** (last update 2026-05-23 — predates this entire session). Refresh deferred to Phase 2 consolidation.
+- The user's **strongest standing preference** (per memory `interrogate-before-planning`): present-first + interrogate inconsistencies in your *own* plan + ask focused goal-clarifying questions *before* convergence. `ExitPlanMode` will be rejected if you've under-interrogated — multiple times in this session. Surface real plan inconsistencies before requesting approval.
 
 ---
 
-## Effort 2 — Attack-type-generalization study — Phase 0 ✅ DONE; Phases 1-3 FUTURE (uncommitted)
-
-Reoriented the detector effort. **The reframe (verified against the submission's RESULTS.md v1.3.0):**
-on pooled OOD, **every rung AND SOTA ProtectAI sit at/below the random floor (0.374)** — frozen 0.364,
-ProtectAI-v1 0.361, v2 0.314, LoRA 0.293, TF-IDF 0.291. So direct→indirect transfer has no signal;
-"frozen>LoRA" is a **mirage** (two sub-random detectors) and the comparison was **confounded** (frozen
-pre-head + uniform untuned recipe + no model selection; LoRA hit 0.974 in-dist = overfitting not a bug;
-full-FT OOD was never measured — ADR-075 crash).
-
-**The pivot (ADR-052):** indirect→indirect **attack-type generalization** via BIPIA's native **disjoint
-15/15 attack-type train/test split** (verified in `microsoft/BIPIA`; only "Language Translation"
-overlaps; obfuscation sub-family is a clean technique slice; ⚠️ small diversity = ~75 attack strings/
-split → memorization risk). **Axis C** = attack-type-LODO core + joint carrier+attack-shift check.
-Methodologist-first; an honest negative result is acceptable.
-
-**Artifacts:** `decisions/ADR-052`, `docs/planning/attack-type-lodo-harness-spec.md`,
-`docs/planning/submission-methodology-audit.md`, `decisions/README.md` (index + tally → 52).
-
-**Next:** Phase 1 (build harness + independently train frozen-probe/LoRA/full-FT with **fair per-rung
-tuning on a train-internal val split**; ~$250/CI) → Phase 2 (interventions: Attention Tracker,
-counterfactual augmentation) → Phase 3 (lane/chapter restructure + writeup). The dataset dossier from
-Effort 3 (Phase C) is the upstream this study needs.
-
----
-
-## Effort 3 — Research-toolkit re-engagement sprint — 🔄 IN PROGRESS (Phase A done)
-
-Plan approved: **A→B→C→D, full strict-live**, one continuous sprint (re-engage overlooked toolkit
-patterns + ingest overlooked research). Skills (`/freshness-audit`, `/citation-audit`,
-`/research-gather`, `/agent-index`, `/dataset-research`, `/research-kb-export`) are available in-session.
-
-**Phase A ✅ DONE** — ran `freshness-audit` + `build_dashboard.py` + `verify_citations.py` on all 5
-dossiers (via `.tooling/research_toolkit@v2.4.0` + ephemeral `uv` env). Produced **5 new `dashboard.md`**
-(never existed) + completed `citation_audit_report.md` to **5/5** (was 2/5).
-
-**Phase A FINDINGS (the overlooked debt):**
-- `freshness --strict`: detector-landscape ✅, agentic ✅; **direct-vs-indirect 16 errors,
-  training-and-evaluation 21, rag-injection-defenses 26** (63 total). Root cause = **missing cached
-  files** (PDF + body_text + body_meta) for named sources (e.g. direct-vs-indirect: CaMeL/SecAlign/
-  Instruction-Hierarchy/Meta-SecAlign) — **NOT staleness** (0 stale blockers everywhere). The dossiers
-  reference a cache that isn't fully present on this machine.
-- Grounding gaps (dashboards): verbatim-anchored **0%** (agentic), **8%** (training-and-eval), 39%
-  (detector), 81% (direct), 88% (rag); **corroboration ~0% everywhere** (synthesis_entry unused).
-
-**Phase A remediation (diagnosed, bounded):** re-fetch the ~15–20 missing cached sources via
-`.tooling/research_toolkit/scripts/cache_source.py <url> --topic <t> --escalate-on-failure` (Phase-3
-refresh) → re-run freshness/citation until 5/5 green.
-
-**Next (pacing was the OPEN question to the user):**
-1. **Cache-repair** the missing sources → all 5 dossiers freshness-green.
-2. **Phase B** — full strict-live ingestion of the **67-source backlog in `docs/research/_inbox/
-   missed_seeds.md`** (incl. foundational Perez&Ribeiro 2022, DomainBed, Spotlighting, CaMeL, MELON,
-   WASP) + **this session's uncaptured sources** (Attention Tracker, ASIDE, Mirror, PromptLocate,
-   Indirect-in-the-Wild, BIPIA attack-type structure), topic-by-topic: `/research-gather` →
-   `/agent-index` → `/dossier-audit` → `/citation-audit`. (Notably grows the thin agentic + RAG dossiers.)
-3. **Phase C** — `/dataset-research` on indirect-injection attack datasets → `dataset_ledger`
-   (`docs/research/datasets/`); **directly feeds ADR-052** (BIPIA attack-type taxonomy + alternatives).
-4. **Phase D** — `docs/planning/research-ingestion-protocol.md` + `/research-kb-export` to
-   `~/Claude/research-kb/inbox/` + **ADR-053** + registry/`NEXT_SESSION` updates.
-
----
-
-## Environment notes (for a clean session)
-
-- **Lean portfolio venv** (no torch/docling deliberately — ADR-051). Full `uv sync --extra dev` (~4 GB
-  torch) needs the **submission sibling** `../prompt-injection-detection-submission` which is **NOT
-  cloned locally** → heavy gates (full sync, training) run in **CI / a complete env**, not here.
-- **`~/Claude/research_cache`** ≈ 2467 files (mostly populated; ~15–20 named sources missing → the
-  Phase-A freshness failures).
-- **`.tooling/research_toolkit@v2.4.0`** bootstrapped (pinned, gitignored). Run validators/scripts via:
-  `uv run --no-project --with pyyaml [--with requests] python .tooling/research_toolkit/...`.
-- The toolkit **skills** hardcode `~/Claude/research_toolkit` (a dirty feature branch); prefer the
-  pinned `.tooling` clone for reproducibility (as done in Phase A).
-- **`make dossier-audit`** bootstraps `.tooling` + runs the 9 validators (needs the cache populated;
-  will fail on the same ~15–20 missing sources until cache-repair).
-
-## Open decisions / loose ends
-
-- **Commit the 44-file working tree?** (suggested 3 commits on a branch). Nothing committed yet.
-- **Effort-3 pacing:** cache-repair now vs jump to dataset dossier (unblocks ADR-052) vs pause to review
-  the new dashboards/citation reports.
-- **Effort-2 Phase 1** needs CI/full env (training, ~$250).
-- **Misplaced file:** `encoder-classification-design-space.md` sits untracked at the repo root but its
-  own header says it's gitignored `.scratch/` (a submission artifact that landed here) — decide to move
-  to `.scratch/` or remove. The user pointed at it; it seeded Effort 2.
-
-## EXECUTION ROADMAP — continue all phases
-
-Integrated + dependency-ordered. **Research-ops (Effort 3) precedes the empirical study (Effort 2)** —
-the study must run on current, ingested research + the dataset dossier. **Commit per step.**
-
-### Quick-start (fresh session)
-1. `git fetch && git switch session/2026-05-26-adoption-and-research-ops` (or merge to `main` first).
-2. Read: this doc → `decisions/ADR-051` → `decisions/ADR-052` → `docs/planning/submission-methodology-audit.md` → `docs/planning/attack-type-lodo-harness-spec.md`.
-3. State-check: `git -C .tooling/research_toolkit describe --tags` (expect `v2.4.0`); `find ~/Claude/research_cache -type f | wc -l`; `grep -E 'stale|verbatim|corroborated' docs/research/*/dashboard.md`.
-4. Start at STEP 1.
-
-> **Invocation pattern (lean, no torch):** `uv run --no-project --with pyyaml --with requests [--with pdfplumber] python .tooling/research_toolkit/<path>`. Toolkit **skills** (`/freshness-audit`, `/citation-audit`, `/research-gather`, `/agent-index`, `/dossier-audit`, `/dataset-research`, `/research-kb-export`) are invocable in-session — prefer the pinned `.tooling` clone over the dirty `~/Claude/research_toolkit`.
-
-### STEP 1 — Effort 3: cache-repair → all 5 dossiers freshness-green
-Failing: direct-vs-indirect (16), training-and-evaluation (21), rag-injection-defenses (26) — all **missing cached sources**, not staleness.
-- Per failing dossier: list missing via `validators/freshness.py --strict docs/research/<t> --today <DATE>` (names bibkeys, e.g. direct-vs-indirect: `debenedetti2025camel` / `chen2025secalign` / `wallace2024instructionhierarchy` / `chen2025metasecalign`); get `source_url`s from that dossier's `cache_manifest.yml` / `bib_ledger.yml`; re-fetch with `scripts/cache_source.py <url> --topic <t> --escalate-on-failure` (writes `papers/` + `cache/body_text/` + `cache/body_meta/` + updates manifest). Mind the dual cache: global `~/Claude/research_cache` vs dossier-local `cache/`.
-- **Gate:** `freshness.py --strict` OK ×5 + `verify_citations.py` acceptable ×5; rebuild dashboards (`scripts/build_dashboard.py`). Commit.
-
-### STEP 2 — Effort 3 Phase B: full strict-live ingestion (biggest; multi-session)
-- Triage `docs/research/_inbox/missed_seeds.md` (67, binned A–E) + this-session sources: **Attention Tracker** (2411.00348), **ASIDE** (2503.10566), **Mirror** (2603.11875), **PromptLocate** (2510.12252), **Indirect-in-the-Wild** (2604.27202), the submission-audit findings, the BIPIA attack-type structure. Dedupe vs `bib_ledger`.
-- Per topic: update `research_plan.md` claim_family (new families: adaptive/"attacker-moves-second", OOD-eval-methodology, agentic-defense, RAG-defense) → `/research-gather` (append; caches + evidence_ledger v3 + claim_graph + gather_trace; **verifies/drops the recent arXiv IDs**) → `/agent-index` → `/dossier-audit` → `/citation-audit`.
-- **Gate:** `make dossier-audit` green ×5; `missed_seeds` drained; citation 5/5. Commit per topic. (Grows the thin D/agentic + E/RAG dossiers.)
-
-### STEP 3 — Effort 3 Phase C: dataset dossier (feeds Effort 2)
-- `/dataset-research` on indirect-injection attack/detection datasets → `dataset_ledger.yml` + index at `docs/research/datasets/`. Cover **BIPIA** (+ its 15/15 attack-type taxonomy — the ADR-052 input), InjecAgent, AgentDojo, LLMail-Inject, ASB, HackAPrompt, Indirect-in-the-Wild, deepset, ProtectAI-validation, NotInject, PINT, TensorTrust, GenTel-Bench (schema / size / license / attack-type labels / encoder-readiness). Cross-link `ADR-052` + the harness spec.
-- **Gate:** `dataset_ledger` validates (dataset-index audit); covers the harness-spec datasets. Commit.
-
-### STEP 4 — Effort 3 Phase D: ingestion protocol + export + ADR-053
-- Write `docs/planning/research-ingestion-protocol.md` (repeatable new-source → dossier workflow + standing `_inbox/` triage). `/research-kb-export` per dossier → `~/Claude/research-kb/inbox/` (only after citation-audit passes). **ADR-053**; update `decisions/README.md` + `decisions/library_imports.md` (skills now used: freshness-audit / citation-audit / dataset-research / research-kb-export) + `NEXT_SESSION.md`.
-- **Gate:** `research_kb_export.jsonl` per topic; ADR-053 indexed. Commit.
-
-### STEP 5 — Effort 2 Phase 1: build + run the attack-type-LODO ⚙️ NEEDS FULL ENV / CI (~$250)
-- Build per `docs/planning/attack-type-lodo-harness-spec.md`: `(content,label)` from BIPIA attacks×scenarios; **disjoint-attack-type folds** (train-types→test-types) + **obfuscation sub-split** + **joint carrier+attack shift**; train-internal val.
-- Independently train frozen-probe + LoRA + full-FT (ModernBERT-base) with **fair per-rung tuning on the train-internal val** (LODO test untouched); trainable-head option for LoRA.
-- Metrics: AUPRC + TPR@{1,0.5,0.1}%FPR + **random-floor per fold** + benign FPR + in-dist-vs-LODO inflation.
-- **Env:** clone the submission sibling (`git clone -b v1.3.0 https://github.com/brandon-behring/prompt-injection-detection-prototype.git ../prompt-injection-detection-submission`) + `uv sync --extra dev` (~4 GB torch) — NOT the lean local venv; run in CI / a complete machine.
-- **Gate:** reproduce random-floor + in-dist→LODO gap on ONE fold before scaling; per-fold results table. Commit.
-
-### STEP 6 — Effort 2 Phase 2: interventions (does anything beat the floor?)
-- **Attention Tracker** (training-free, inference-only → cheap first), **counterfactual augmentation**, optionally **ASIDE** — using the method research ingested in STEP 2.
-- **Gate:** per-intervention LODO delta vs the random floor. Commit.
-
-### STEP 7 — Effort 2 Phase 3: restructure + writeup
-- Reorganize the 6 mechanism-lanes → the robustness/eval-rigor structure (per the deliberation in git history); rewrite affected chapters (ch08–ch13); new ADR(s); the honest **"universal OOD wall + what (if anything) generalizes across injection types"** narrative + the in-dist-vs-LODO inflation demonstration.
-- **Gate:** book builds; ADRs consistent; `make dossier-audit` green. Commit.
-
-## Loose ends not on the critical path
-- Open the PR for the session branch (or merge to `main`).
-- Move/remove `encoder-classification-design-space.md` (misplaced `.scratch/` artifact).
-- `cache_manifest` schema still v2 (v3 substring-anchor upgrade deferred; not blocking).
+*↓ Historical content (pre-2026-05-28 — Phase B research-ingestion close, R26 dogfooding adoption, etc.) preserved in git history. The above is the current source of truth.*
