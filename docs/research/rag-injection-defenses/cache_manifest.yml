@@ -238,79 +238,79 @@ entries:
   fetched_at: 2026-05-23
   content_type: application/pdf
   bytes: 383223
-  sha256: 2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878
-  raw_path: blobs/sha256/2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878
-  text_path: text/sha256/2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878.txt
+  sha256: 8c57c6da480eb46c0deaec1f34dfd98fc75810bd352d4391c6f423430774877d
+  raw_path: blobs/sha256/8c57c6da480eb46c0deaec1f34dfd98fc75810bd352d4391c6f423430774877d
+  text_path: text/sha256/8c57c6da480eb46c0deaec1f34dfd98fc75810bd352d4391c6f423430774877d.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
-  metadata_path: metadata/sha256/2d58408c3b4f8e5df2be287f08a82e90c321323ff9955814bab02aac08bda878.json
+  metadata_path: metadata/sha256/8c57c6da480eb46c0deaec1f34dfd98fc75810bd352d4391c6f423430774877d.json
 - cache_id: cache_body_rag_yi2025bipia
   source_url: https://arxiv.org/abs/2312.14197
   fetched_at: 2026-05-23
   content_type: application/pdf
   bytes: 1236869
-  sha256: 70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713
-  raw_path: blobs/sha256/70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713
-  text_path: text/sha256/70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713.txt
+  sha256: 3f8f991fc3e3f507acfad759dfa76e6f94f8bcf49e189def3ddb99a4f64efbeb
+  raw_path: blobs/sha256/3f8f991fc3e3f507acfad759dfa76e6f94f8bcf49e189def3ddb99a4f64efbeb
+  text_path: text/sha256/3f8f991fc3e3f507acfad759dfa76e6f94f8bcf49e189def3ddb99a4f64efbeb.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
-  metadata_path: metadata/sha256/70d4cfd50519178f534c15b1a27c3b97e19f145ee1f1ad3f270b1f74f1384713.json
+  metadata_path: metadata/sha256/3f8f991fc3e3f507acfad759dfa76e6f94f8bcf49e189def3ddb99a4f64efbeb.json
 - cache_id: cache_body_rag_abdelnabi2025llmailinject
   source_url: https://arxiv.org/abs/2506.09956
   fetched_at: 2026-05-23
   content_type: application/pdf
   bytes: 5908192
-  sha256: 8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6
-  raw_path: blobs/sha256/8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6
-  text_path: text/sha256/8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6.txt
+  sha256: 9474a8d30995836ca3ffa5a4654103d4422b0e198b59169cca9249bdf80edf14
+  raw_path: blobs/sha256/9474a8d30995836ca3ffa5a4654103d4422b0e198b59169cca9249bdf80edf14
+  text_path: text/sha256/9474a8d30995836ca3ffa5a4654103d4422b0e198b59169cca9249bdf80edf14.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
-  metadata_path: metadata/sha256/8e0c41db3ea23938d570d96d89c8ca7e3701ef605ee22081d03db4280b4ddda6.json
+  metadata_path: metadata/sha256/9474a8d30995836ca3ffa5a4654103d4422b0e198b59169cca9249bdf80edf14.json
 - cache_id: cache_body_li2024llatrieval
   source_url: https://arxiv.org/abs/2311.07838
   fetched_at: 2026-05-23
   content_type: application/pdf
   bytes: 834333
-  sha256: 0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377
-  raw_path: blobs/sha256/0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377
-  text_path: text/sha256/0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377.txt
+  sha256: 92a0fe36189fda83199f067b9cf5f4168c3b24ef1c9d432efa8840994ae9fb60
+  raw_path: blobs/sha256/92a0fe36189fda83199f067b9cf5f4168c3b24ef1c9d432efa8840994ae9fb60
+  text_path: text/sha256/92a0fe36189fda83199f067b9cf5f4168c3b24ef1c9d432efa8840994ae9fb60.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
-  metadata_path: metadata/sha256/0791dc731c58273802528f8231c54391aa52f54626d788415be95f6f6c330377.json
+  metadata_path: metadata/sha256/92a0fe36189fda83199f067b9cf5f4168c3b24ef1c9d432efa8840994ae9fb60.json
 - cache_id: cache_body_lu2025drag
   source_url: https://arxiv.org/abs/2511.07577
   fetched_at: 2026-05-23
   content_type: application/pdf
   bytes: 5094058
-  sha256: 253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526
-  raw_path: blobs/sha256/253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526
-  text_path: text/sha256/253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526.txt
+  sha256: 3403370115147acb96653c507c769fa31fb6a1c5b6cf1be7b98061e83fa8ce7c
+  raw_path: blobs/sha256/3403370115147acb96653c507c769fa31fb6a1c5b6cf1be7b98061e83fa8ce7c
+  text_path: text/sha256/3403370115147acb96653c507c769fa31fb6a1c5b6cf1be7b98061e83fa8ce7c.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
-  metadata_path: metadata/sha256/253cee74d309b716350579cc4b1bfe1b5c904cb0bb78dce5fcf2b19fa16c3526.json
+  metadata_path: metadata/sha256/3403370115147acb96653c507c769fa31fb6a1c5b6cf1be7b98061e83fa8ce7c.json
 - cache_id: cache_body_zhou2025sag
   source_url: https://arxiv.org/abs/2508.01084
   fetched_at: 2026-05-23
   content_type: application/pdf
   bytes: 9771091
-  sha256: 08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c
-  raw_path: blobs/sha256/08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c
-  text_path: text/sha256/08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c.txt
+  sha256: c4f4558691e964328f325a8b13c43509b52606870abfdadae1abe130c447d9bb
+  raw_path: blobs/sha256/c4f4558691e964328f325a8b13c43509b52606870abfdadae1abe130c447d9bb
+  text_path: text/sha256/c4f4558691e964328f325a8b13c43509b52606870abfdadae1abe130c447d9bb.txt
   restricted: false
   rights_status: private_use
   extraction_status: ok
   extraction_method: pdftotext
-  metadata_path: metadata/sha256/08a2701d30db2ed863233a99d9c974354fda515407208b0306aded1769a5b23c.json
+  metadata_path: metadata/sha256/c4f4558691e964328f325a8b13c43509b52606870abfdadae1abe130c447d9bb.json
 - cache_id: cache_c7248ce666cafa97
   source_url: https://arxiv.org/abs/2307.03172
   fetched_at: 2026-05-27
