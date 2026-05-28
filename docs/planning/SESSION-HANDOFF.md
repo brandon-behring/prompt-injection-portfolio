@@ -1,40 +1,36 @@
-# Session handoff — 2026-05-28
+# Session handoff — 2026-05-28 (PM update — PR-1 open)
 
-## ✅ START HERE — clean session: Phase 1 (foundational EDA)
+## ✅ START HERE — clean session: Phase 1 Step 2 (Job-1 integrity gate run)
 
-**Phase A is COMPLETE.** A 2026-05-27/28 session-stretch took the dataset dossier from a never-audited 20-entry narrow-scope ledger to a comprehensive, saturation-checked, family-tagged, verified-and-audited reference — and authored the EDA design + prototype post-mortem that ground Phase 1. **Next is Phase 1: the foundational EDA itself** (eval-toolkit `eda` layer refinements → Job-1 integrity gate → Jobs 2–3 shortcut + shift).
+**Phase A is COMPLETE; Phase 1 Step 1 refinements are COMPLETE.** The 2026-05-28 PM session shipped the eval-toolkit `eda` Tier-2 layer + Job-1 integrity gate + the §B2 obfuscation prevalence detectors as **PR-1 (`brandon-behring/eval-toolkit#83`, OPEN)**. Two commits on `feat/eda-data-audit`: Tier-2 layer (audit_dataset, schema v2, no seed) + obfuscation profile (full §B2 detector list). 71 tests, 99.46% coverage on `eda/`, lint + mypy strict + doctest all clean. Portfolio's 4 docs commits are now pushed too.
+
+**Next** is Phase 1 **Step 2** — Job-1 integrity gate **run** across the verified working set, via editable install of the PR-1 branch while review proceeds. Step 3 (Jobs 2–3 build: `lexical_association`, `distribution_shift`, embedding-map, cube/carrier scaffold) becomes a follow-on PR-2 later.
 
 **Approved plan (source of truth):** `~/.claude/plans/use-the-following-handoff-bright-umbrella.md` — read first.
 
 ---
 
-## Current state (2026-05-28)
+## Current state (2026-05-28 PM — post-PR-1)
 
-### Phase A deliverables (done — uncommitted, in the working tree)
+### Phase A deliverables (done — committed in `f214089`, pushed)
 - `docs/research/datasets/_candidate_universe.md` — the **saturation-checked landscape map** (20 + ~65 net-new across families injection-direct/indirect, jailbreak, toxicity-safety-guard, over-defense-control, agentic-trajectory, aggregated-recipe, helper). Cross-checked against awesome-prompt-injection, Awesome-Agent-Security, SafetyPrompts.com, JailbreakBench, the InjecGuard ~20-set + ProtectAI/PromptGuard mixture compositions, HF tag — *converged*.
 - `docs/research/datasets/dataset_ledger.yml` — **30 verified-tagged entries** (topic broadened to `unsafe_input_guardrail_detection`; every entry carries soft tags `family` / `encoder_readiness` / `study_relevance`). Honest flags retained: 1 `mismatched` (`xtram12024safeguardpromptinjection` — its card cites arXiv:2402.13064 = the unrelated GLAN paper); 6 `license: unknown`; 3 `unverified` (Harelix HF 401, PINT data withheld, IPI-in-the-wild unreleased). `validators/dataset_ledger.py` → `OK`.
 - `docs/research/datasets/agent_index/` — **regenerated**: 8 files (`README.md`, `00_overview.md`, `01_injection_direct.md` A1–A11, `02_injection_indirect.md` B1–B5, `03_jailbreak_and_toxicity.md` C1–C4, `04_over_defense.md` D1–D4, `05_agentic_trajectory.md` E1–E3, `06_aggregated_recipes.md` F1–F3). 5-bullet entries + soft-tag triple per entry; family-organized. `agent_index.py` + `cross_stage.py` → `OK`.
 - **First `/dossier-audit` round** (audit-trail in `agent_index/README.md`): 2 CORRECT (LLMail-Inject's 5 success flags are *nested* inside the `objectives` JSON, not top-level columns; XSTest's id column is `id_v1`/`id_v2`); 0 DROP / 0 new FLAG; all pre-existing flags re-verified + held. `audit_trail.py` → `OK`.
 
-### Phase-1 design (done — companions)
+### Phase-1 design (done — committed in `881a0e8`, pushed)
 - `docs/planning/eda-design.md` — **domain-grounded EDA design.** Thesis: EDA here = pre-registering what the data can support; measure the four properties the predecessor found too late. 8 PI-specific traits, A–F analysis catalog, V1–V11 visualization catalog with pitfalls, scope tiers (R = reusable `eval_toolkit.eda` vs D = portfolio-specific), the 6 highest-value analyses that would have *predicted* the OOD wall pre-GPU, build order. **THE doc to read for Phase 1 design.**
 - `docs/planning/prototype-postmortem.md` — the **prototype retrospective.** Wins to keep (clean LODO, OOD-wall finding, calibration signal) + the 3 confounds + the "8.4pp inflation" claim with **no derivation in either repo** + the §9.5 anti-correlation as interpretation-not-measurement + carry-forward (B1 calibration, B4 κ/error-correlation, B7 per-row score distributions, B8 cv_clt-vs-block-bootstrap sensitivity flag, B10 label-aware dedup) + doc-form lessons (avoid sprawl / immutability-cascade / planned-vs-happened drift).
 
-### eval-toolkit state (synced; layer built + held)
-- `/Users/brandonbehring/eval-toolkit` — **pulled v0.24.0 → v1.4.0** (clean `main` fast-forward). The v1.x metrics + Tier-1 stability contract is real (their ADR 0003). The reuse map was re-validated against v1.x source (the v0.24→v1.x rewrite is significant — don't reason against the old surface).
-- Branch **`feat/eda-data-audit`** — holds the **built + verified-green** Tier-2 `eval_toolkit.eda` integrity-gate subpackage:
-  - `src/eval_toolkit/eda/__init__.py` + `data_audit.py` (~565 lines): `audit_dataset` orchestrator + `DataAudit` / `SplitSummary` frozen dataclasses + `class_balance` / `length_quantiles` / `summarize_split` helpers + three `GateResult`-typed integrity gates (`class_balance`, `no_cross_split_leakage`, `context_window_fit`).
-  - `tests/test_eda.py` — 19 tests pass; **100% statement coverage**; ruff + black + mypy-strict + sybil doctests clean; full `make test-fast` style suite green.
-  - `pyproject.toml` `[eda]` extra = `["pandas>=2.0", "matplotlib>=3.8"]` (torch-free); **not** in top-level `_EXPORTS` (Tier-2 only — evolvable). `.doctest-modules` + `uv.lock` synced.
-- **UNCOMMITTED** — changes live in the working tree on `feat/eda-data-audit`. Held pending the `eda-design.md` refinements before commit + PR.
+### eval-toolkit state (PR-1 OPEN — `feat/eda-data-audit`)
+- `/Users/brandonbehring/eval-toolkit` — synced at `v1.4.0`-derived; branch **`feat/eda-data-audit`** carries **two commits** ahead of `main`, both pushed to `origin`. **PR #83 OPEN** (`https://github.com/brandon-behring/eval-toolkit/pull/83`).
+  - `ef79b2c` **feat(eda): Tier-2 EDA layer + Job-1 integrity gate** — `audit_dataset` + `DataAudit` / `SplitSummary` frozen dataclasses + `class_balance` / `length_quantiles` / `summarize_split` helpers + three `GateResult`-typed integrity gates (`class_balance`, `no_cross_split_leakage`, `context_window_fit`). **Schema authored as v2 from the outset — no `seed` field** (gate is deterministic; STYLE.md §3a). `[eda]` extra pins `pandas>=2.0` + `matplotlib>=3.8` (torch-free); **not** in top-level `_EXPORTS` (Tier-2 only).
+  - `ae4d375` **feat(eda): obfuscation prevalence detection (§B2 integrity prerequisite)** — new `eval_toolkit.eda.obfuscation` module (pure stdlib): invisible Unicode (U+200B/C/D + Tags block + variation selectors + BOM + WJ); NFKC change + char-count delta (fullwidth Latin / math-bold / ligatures); base64- / hex-alphabet high-entropy runs; ROT13 PI markers; leetspeak tokens (length-capped 3–12 to filter hex hashes). `analyze_obfuscation(texts) → ObfuscationProfile`. Integrated into `SplitSummary.obfuscation` + `audit_dataset(obfuscation=True)` flag. **Profile-only — does NOT gate `gate_passed`.**
+- Quality bar: **71 tests** (19 + 40 + 12 doctests), **99.46% statement coverage on `eda/`** (100% on `obfuscation.py`), ruff + black + mypy strict + `.doctest-modules` doctests clean.
+- **NOT in this PR (deferred to PR-2):** `lexical_association`, `distribution_shift`, MiniLM embedding-map, cube/carrier scaffold + the ADR for the scoped CPU-torch-for-EDA exception (ADR-051).
 
-### Portfolio git state (uncommitted)
-On branch **`session/2026-05-26-adoption-and-research-ops`**. Working tree carries: the eda-design + post-mortem + candidate-universe + the back-tagged 30-entry ledger + the regenerated 8-file agent_index + this handoff. Suggested commit boundaries (when you're ready):
-1. `docs(planning): EDA design + prototype post-mortem` — `docs/planning/eda-design.md`, `docs/planning/prototype-postmortem.md`.
-2. `docs(datasets): Phase A — broad scope + verified-tagged ledger + regenerated agent_index + first audit` — `docs/research/datasets/dataset_ledger.yml`, `docs/research/datasets/agent_index/**`, `docs/research/datasets/_candidate_universe.md`.
-3. `docs(handoff): 2026-05-28 — Phase A done; Phase 1 START HERE` — this file.
-
-(The eval-toolkit `feat/eda-data-audit` branch commits separately in *that* repo, once the layer is refined per `eda-design.md`.)
+### Portfolio git state (pushed)
+On branch **`session/2026-05-26-adoption-and-research-ops`**, **pushed to `origin`** (`0037ee3..8dffced`). 4 commits cover: EDA design + post-mortem (`881a0e8`); Phase-A dataset ledger + agent_index + first audit (`f214089`); Phase-1 START HERE handoff (`f2cd014`); NEXT_SESSION redirect (`8dffced`).
 
 ---
 
@@ -50,21 +46,25 @@ Run the EDA-first program over the verified working set so that the **OOD-collap
 - **Sequence**: integrity gate first across the working set → then Jobs 2–3 deeper.
 - **Selection deferred to the EDA**: Phase A's soft `study_relevance` tag is a hint; the EDA *selects* the actual working set (filter on `encoder_readiness ∈ {drop-in, derivable}` + detection-relevant `family`).
 
-### Step 1 — `eval_toolkit.eda` layer refinements (the held branch)
-Work in `/Users/brandonbehring/eval-toolkit` on `feat/eda-data-audit`:
-1. **Drop the `seed` param** from `audit_dataset` (`rng` is the §3a canonical via SPEC 7; the integrity gate is fully deterministic — no RNG; the param violates §1.5 anti-overengineering). Adjust `DataAudit` + tests.
-2. **Fold obfuscation/encoding/invisible-Unicode prevalence in as a Job-1 integrity prerequisite** (per `eda-design.md` §B2 — the *seen-text ≠ scored-text* hazard; invisible chars silently corrupt every downstream length/n-gram/embedding stat). Lightweight detectors: invisible U+200B/U+200C/U+200D + the U+E0000–U+E007F tag block + variation-selector range; homoglyph/confusables via NFKC-normalization delta; base64/hex via entropy; ROT13 round-trip; leetspeak rate. Expose a `raw vs NFKC` length-delta on `DataAudit`.
-3. Then **build the Jobs 2–3 modules** in `eval_toolkit.eda`:
-   - `lexical_association` — log-odds informative-Dirichlet (Monroe 2008) + PMI + scaled-F (Kessler / scattertext) + partial-input / structural-only competency baselines (Feng & Wallace 2019; Gururangan 2018 annotation artifacts).
-   - `distribution_shift` — proxy-A-distance (Ben-David 2010), MMD (Gretton 2012), k-NN purity, vocab/OOV overlap.
-   - Embedding-map helper using `eval_toolkit.embeddings.make_minilm_embedder` (the `[embeddings]` extra; soft-imports torch — Jobs 2–3 only).
-   - Cube/carrier tagging scaffold (intent × technique × channel; carrier+position for indirect).
-4. Branch + PR (don't self-merge); portfolio consumes via editable install during dev, re-pins on release.
+### Step 1 — eval-toolkit eda layer ✅ DONE (PR #83 OPEN)
+Shipped as PR-1 (commits `ef79b2c` + `ae4d375` on `feat/eda-data-audit`). Schema authored as v2 with no `seed` param/field; the full §B2 obfuscation list lives in the new `eval_toolkit.eda.obfuscation` module. Profile-only integration (does not gate `gate_passed`). Jobs 2–3 build is **deferred to PR-2** (next-session Phase-1 Step-3 work):
+- `lexical_association` — log-odds informative-Dirichlet (Monroe 2008) + PMI + scaled-F (Kessler / scattertext) + partial-input / competency baselines (Feng & Wallace 2019; Gururangan 2018).
+- `distribution_shift` — proxy-A-distance (Ben-David 2010), MMD (Gretton 2012), k-NN purity, vocab/OOV overlap.
+- Embedding-map helper via `eval_toolkit.embeddings.make_minilm_embedder` (the `[embeddings]` extra; soft-imports torch).
+- Cube/carrier tagging scaffold (intent × technique × channel; carrier+position for indirect).
+- ADR-051 amendment authoring the scoped CPU-torch-for-EDA exception.
 
-### Step 2 — Job-1 integrity gate run (torch-free; lean-local)
+### Step 2 — Job-1 integrity gate run (torch-free; lean-local) — **START HERE NEXT**
+**Consume the open PR via editable install** while review proceeds:
+```bash
+# In the portfolio repo:
+uv pip install -e /Users/brandonbehring/eval-toolkit
+# (or `pip install -e ../../eval-toolkit` from inside the portfolio venv)
+```
+Then:
 - Select the working set from the ledger: `encoder_readiness ∈ {drop-in, derivable}` + detection-relevant families; high `study_relevance` first. Likely starters: `hendzh2025promptshield`, `guychuk2024benignmalicious`, `shen2023inthewild` (DAN), `lin2023toxicchat`, `han2024wildguard` (**gated** — needs HF token), `bipia2023microsoft` (the LODO axis), `deepset2023promptinjections`, `jackhhao2023jailbreakclassification`, `leolee2024notinject`, `rottger2024xstest`, `cui2024orbench`. Plus the prototype training-pool sources (LMSYS + UltraChat benigns) for parity.
 - **Own SHA-pinned manifest** (don't inherit from the submission).
-- Per dataset → counts, balance, token-length + %-over-8192 (ModernBERT tokenizer; caller-supplied), exact + near-dup, leakage, **obfuscation/encoding/invisible-Unicode prevalence**. Per-dataset audit JSON + a combined integrity-report notebook + figures; each analysis ends in a Decision/Gate. Certify usability.
+- Per dataset → counts, balance, token-length + %-over-8192 (ModernBERT tokenizer; caller-supplied), exact + near-dup, leakage, **obfuscation prevalence (now built-in: `audit_dataset(obfuscation=True)` is the default)**. Per-dataset audit JSON + a combined integrity-report notebook + figures; each analysis ends in a Decision/Gate. Certify usability.
 
 ### Step 3 — Jobs 2–3 (shortcut + shift; needs embeddings/torch)
 Per `eda-design.md`, **highest-value first** (the analyses that would have *predicted* the predecessor's OOD wall pre-GPU):
@@ -76,7 +76,7 @@ Per `eda-design.md`, **highest-value first** (the analyses that would have *pred
 - **Fix the prototype's BIPIA loader collapse** (`/Users/brandonbehring/Claude/prompt-injection-detection-submission/src/data/loaders.py:527-562` discards carrier identity + payload position — needed for the indirect analyses).
 
 ### Checkpoints for your review
-1. After the held layer's refinements (drop `seed`, fold obfuscation in) — eval-toolkit branch ready for PR.
+1. ✅ After the layer's refinements (drop `seed`, fold obfuscation in) — eval-toolkit **PR #83 OPEN**.
 2. After the integrity gate certifies the working set + **RC0 is answerable with evidence**.
 3. After Jobs 2–3 — the **OOD-collapse prediction is recorded pre-modeling**.
 
@@ -91,21 +91,22 @@ Per `eda-design.md`, **highest-value first** (the analyses that would have *pred
 6. `docs/research/datasets/_candidate_universe.md` — the saturation-checked completeness map (for selecting beyond the ledger).
 
 ## Tasks
-- **#5** `Step 1 — Build eval-toolkit EDA profiling + DataAudit layer (integrity-gate)` — **in_progress** (built + held; refinements pending: drop `seed`, fold obfuscation in, then build the Jobs 2–3 modules).
-- **#6** `Step 2 — Run Job-1 integrity gate across all datasets` — **pending** (unblocked now that #9 is done).
-- **#7** `Step 3 — Build + run Jobs 2-3 (shortcut + shift EDA)` — **pending**.
+- **#5** `Step 1 — Build eval-toolkit EDA profiling + DataAudit layer (integrity-gate)` — **PR-1 OPEN** (`brandon-behring/eval-toolkit#83`); Jobs 2–3 build deferred to PR-2 (see #7).
+- **#6** `Step 2 — Run Job-1 integrity gate across all datasets` — **unblocked, START HERE** (consume PR-1 via editable install).
+- **#7** `Step 3 — Build + run Jobs 2-3 (shortcut + shift EDA)` — **pending** (now reframed as the PR-2 eval-toolkit work + portfolio Job-2/3 run).
 - **#8** `Phase 2 — Consolidate ROADMAP.md + archive + fixes + post-mortem + ADRs` — **pending** (Phase 2; follows Phase 1).
 - **#9** `Phase A — Dataset-scope completeness` — **completed**.
 - **#10** `Dossier-audit round 1: dataset agent_index` — **completed**.
 
 ## Gotchas / open items
-- **eval-toolkit local clone** at `/Users/brandonbehring/eval-toolkit` was historically stale at v0.24.0; this session pulled it to v1.4.0 (clean ff). Always `git -C /Users/brandonbehring/eval-toolkit describe --tags` before reasoning about its surface.
-- The held `eda` code uses `seed: int = 42` — **must drop first** (§3a / SPEC 7 / deterministic gate) before PR.
 - **WildGuardMix is gated** (`auth_required: true` — AI2 Responsible Use); needs an HF token to actually download.
 - **Harelix** (`harelix2024mixedtechniques`) HF page is bot-blocked (HTTP 401 to WebFetch); the entry's `status: unverified` reflects that; schema + label semantics need a re-fetch via the HF API / `datasets` lib before training use.
-- The **scoped CPU-torch-for-EDA exception to ADR-051** is noted in the plan but **not yet ADR'd** — Phase 2 will author the ADR.
+- **`xtram12024safeguardpromptinjection`** is `mismatched` — its card cites arXiv:2402.13064 = the unrelated GLAN paper. Flag in any downstream use.
+- The **scoped CPU-torch-for-EDA exception to ADR-051** is noted in the plan but **not yet ADR'd** — to be authored alongside PR-2 (the embedding-map work) or in Phase 2 consolidation.
 - **`NEXT_SESSION.md` is stale** (last update 2026-05-23 — predates this entire session). Refresh deferred to Phase 2 consolidation.
-- The user's **strongest standing preference** (per memory `interrogate-before-planning`): present-first + interrogate inconsistencies in your *own* plan + ask focused goal-clarifying questions *before* convergence. `ExitPlanMode` will be rejected if you've under-interrogated — multiple times in this session. Surface real plan inconsistencies before requesting approval.
+- **Editable install of the open PR** (`uv pip install -e /Users/brandonbehring/eval-toolkit`) is the recommended Step-2 consumption path; re-pin to a released version once PR-1 lands.
+- **NFKC limitation documented in the layer** (`obfuscation.py` + `test_eda_obfuscation.py`): NFKC does not fold cross-script homoglyphs (Cyrillic 'а' stays 'а'). A future cross-script detector belongs in Job-2.
+- The user's **strongest standing preference** (per memory `interrogate-before-planning`): present-first + interrogate inconsistencies in your *own* plan + ask focused goal-clarifying questions *before* convergence. `ExitPlanMode` will be rejected if you've under-interrogated. Surface real plan inconsistencies before requesting approval.
 
 ---
 
