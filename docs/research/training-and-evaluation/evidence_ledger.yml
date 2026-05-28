@@ -2683,8 +2683,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_6788a3f0f61cebd9
       text_path_offset:
-      - 24550
-      - 24676
+      - 4984
+      - 5110
       sha256_of_span: d95c60b8a18231429d06f5be83c0646033720fe728ab8ee3fc8fae3dc8e56a4c
   excerpt: 85% F-score on your test data is likely more meaningful than a classical ML model scoring 95% but fit to the test
     distribution
@@ -2717,8 +2717,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_6788a3f0f61cebd9
       text_path_offset:
-      - 30135
-      - 30157
+      - 7666
+      - 7688
       sha256_of_span: 595ec9d33f4c602330ebc782140c9678583451486b82cb858f92c0a9d76243f7
   excerpt: speed bump, not a wall
   rights_status: private_use

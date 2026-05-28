@@ -86,8 +86,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_8c9faa216a4c8c67
       text_path_offset:
-      - 82002
-      - 82159
+      - 1107
+      - 1264
       sha256_of_span: 9574b5b5c9fde6cf39f10323ae41e0978e137ae6ea174f87277e929c501ce558
   - claim_id: claim_detector_landscape_0002_02
     field_path: bib_ledger.entries[2].authors
@@ -116,8 +116,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_0eed2baeb115d544
       text_path_offset:
-      - 70612
-      - 70747
+      - 688
+      - 823
       sha256_of_span: dde72b3abe936fc95edd9f790771a4f7f1fa809c12ad924df5ce6b6b662cc4f5
   - claim_id: claim_detector_landscape_0003_02
     field_path: bib_ledger.entries[3].authors
@@ -149,8 +149,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_e848e632a6fbe6b5
       text_path_offset:
-      - 86999
-      - 87061
+      - 797
+      - 859
       sha256_of_span: 1d9fb0a6f8e8fcfc3ea282aa1c38bcf3dbdff96e3ab79e894310df46a5cdad4f
   - claim_id: claim_detector_landscape_0004_02
     field_path: bib_ledger.entries[4].authors
@@ -179,16 +179,16 @@ entries:
     excerpt_anchor:
       cache_id: cache_8c2403762307c627
       text_path_offset:
-      - 125780
-      - 125937
-      sha256_of_span: a1f7ee6cdcd413ea5469612db559d2875c863481a4eea9a09399ea9c703c7eda
+      - 2176
+      - 2303
+      sha256_of_span: 13f244d89150458917287afab9d1be567678e573826be0ec11da879a7b33ff9c
   - claim_id: claim_detector_landscape_0005_02
     field_path: bib_ledger.entries[5].authors
     evidence_role: identifies
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'It aims to identify prompt injections, classifying inputs into two categories: <code>0</code> for no injection and <code>1</code> for injection detected.</p>'
+  excerpt: 'It aims to identify prompt injections, classifying inputs into two categories: 0 for no injection and 1 for injection detected.'
   rights_status: private_use
   confidence:
     score: 0.9
@@ -212,8 +212,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_f4d5b713b2d15854
       text_path_offset:
-      - 102895
-      - 102970
+      - 950
+      - 1025
       sha256_of_span: d2ac2f32aed7a160f693e60aea3132a129b58c4467fe812ec3dd60d8f2038f95
   - claim_id: claim_detector_landscape_0006_02
     field_path: bib_ledger.entries[6].authors
@@ -241,8 +241,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_cb8885d33147703d
       text_path_offset:
-      - 100586
-      - 100649
+      - 879
+      - 942
       sha256_of_span: 4ee83cef1c61ca04783960f1b53fa83c1b0a8173825e7141733f3a42a66808d0
   - claim_id: claim_detector_landscape_0007_02
     field_path: bib_ledger.entries[7].authors
@@ -593,8 +593,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_84c0e7c4f7fbd712
       text_path_offset:
-      - 138490
-      - 138558
+      - 1893
+      - 1961
       sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
   - claim_id: claim_detector_landscape_0018_02
     field_path: bib_ledger.entries[18].authors
@@ -713,8 +713,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_12e1c56bb0b8a8a2
       text_path_offset:
-      - 1624498
-      - 1624661
+      - 225
+      - 388
       sha256_of_span: 0beddec297f2b1bc10deb048a7de83de9a6b0e56f448dacaa6de54cb6b4a877b
   - claim_id: claim_detector_landscape_0022_02
     field_path: bib_ledger.entries[22].authors
@@ -805,8 +805,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_5f3477a159885625
       text_path_offset:
-      - 138673
-      - 138741
+      - 1864
+      - 1932
       sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
   - claim_id: claim_detector_landscape_0025_02
     field_path: bib_ledger.entries[25].authors
@@ -1384,8 +1384,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_6788a3f0f61cebd9
       text_path_offset:
-      - 17368
-      - 17449
+      - 874
+      - 955
       sha256_of_span: 4b3d9e21f55437b3e38ebcf9ecd5f2825fa02f024e6624d6ed5eb25464f472c7
   - claim_id: claim_detector_landscape_0042_02
     field_path: bib_ledger.entries[42].authors
@@ -1413,8 +1413,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_0bdbfb50ac3ff273
       text_path_offset:
-      - 138914
-      - 138982
+      - 1934
+      - 2002
       sha256_of_span: 979525ffcc20241c9b355fbda6923844c7c78ebcaf67c01413eb3de0531a4135
   - claim_id: claim_detector_landscape_0043_02
     field_path: bib_ledger.entries[43].authors
@@ -1471,8 +1471,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_2b5da62e8ad9c08f
       text_path_offset:
-      - 96920
-      - 96985
+      - 908
+      - 973
       sha256_of_span: d774671872c56760bae3162ffdf40d9217d97ce1221fd01f9feba5af362d3750
   - claim_id: claim_detector_landscape_0045_02
     field_path: bib_ledger.entries[44].authors
@@ -1529,8 +1529,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_2b5c95d0b3d55934
       text_path_offset:
-      - 97994
-      - 98070
+      - 939
+      - 1015
       sha256_of_span: 5824c954cfecc488bb337d707d1780dd588a50514ccdf63eb6bb6ad2a4ecc0ad
   - claim_id: claim_detector_landscape_0047_02
     field_path: bib_ledger.entries[46].authors
@@ -1558,8 +1558,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_a43dc71238166651
       text_path_offset:
-      - 25907
-      - 25969
+      - 9
+      - 71
       sha256_of_span: e13a6cafabde592bf2c8a482f3ee5d3b81faf26f1ee3241341964df3dd96f106
   - claim_id: claim_detector_landscape_0048_02
     field_path: bib_ledger.entries[47].authors
@@ -1733,8 +1733,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_940fe3ed52b65baa
       text_path_offset:
-      - 591
-      - 624
+      - 0
+      - 33
       sha256_of_span: 43053283b8c71c63eb4d1e596a82b3d87ea1c44ef4bd65a3cc95c97a03162d54
   - claim_id: claim_detector_landscape_0054_02
     field_path: bib_ledger.entries[53].authors
@@ -1762,8 +1762,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_fbf82b40f5520ea7
       text_path_offset:
-      - 591
-      - 637
+      - 0
+      - 46
       sha256_of_span: 167467d65da31ee4c288a70be64614f5f4df2b02264ed090e01b87e5334ee5cf
   - claim_id: claim_detector_landscape_0055_02
     field_path: bib_ledger.entries[54].authors
@@ -1936,8 +1936,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_c40f0f2e053383cb
       text_path_offset:
-      - 4696
-      - 4712
+      - 0
+      - 16
       sha256_of_span: 0828806860fe3ff8adac27820705cd39bd8e54251a27abf665e8d158e37526b3
   - claim_id: claim_detector_landscape_0061_02
     field_path: bib_ledger.entries[60].excerpt[1]
@@ -1965,16 +1965,16 @@ entries:
     excerpt_anchor:
       cache_id: cache_9a2f45a3640522ee
       text_path_offset:
-      - 25907
-      - 25943
-      sha256_of_span: 9a90cb9299ef628db49aca3839da87f44cf2b91f80b433cb87a5e6f31226d777
+      - 9
+      - 41
+      sha256_of_span: d12c74f03bf575a2b4be37c3da5bdc5bdebcea3499a9c859eb2f218b4487b2dc
   - claim_id: claim_detector_landscape_0062_02
     field_path: bib_ledger.entries[61].authors
     evidence_role: identifies
     evidence_role_strength: partial
     extraction_method: paraphrase
     link_confidence: 0.7
-  excerpt: 'vijilAI/vijil-dome: Vijil&#39;s Dome'
+  excerpt: "vijilAI/vijil-dome: Vijil's Dome"
   rights_status: private_use
 - evidence_id: ev_detector_landscape_0064
   source_url: https://github.com/guardrails-ai/guardrails
@@ -1994,8 +1994,8 @@ entries:
     excerpt_anchor:
       cache_id: cache_9b039b36827185e8
       text_path_offset:
-      - 25907
-      - 25950
+      - 9
+      - 52
       sha256_of_span: 9a5c6da2f814c09e45be938c11cdb0b74100bf1025a59655a0a5345cc6ee879a
   - claim_id: claim_detector_landscape_0063_02
     field_path: bib_ledger.entries[62].authors
