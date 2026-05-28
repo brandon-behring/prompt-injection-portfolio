@@ -1,8 +1,0 @@
-{
-  "cache_id": "cache_body_gulrajani2021domainbed",
-  "bibkey": "gulrajani2021domainbed",
-  "extraction_method": "pdftotext",
-  "extraction_date": "2026-05-23",
-  "source_pdf": "papers/gulrajani2021domainbed.pdf",
-  "text_path": "cache/body_text/gulrajani2021domainbed.txt"
-}

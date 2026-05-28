@@ -1,8 +1,0 @@
-{
-  "cache_id": "cache_body_rag_hines2024spotlighting",
-  "bibkey": "rag_hines2024spotlighting",
-  "extraction_method": "pdftotext",
-  "extraction_date": "2026-05-23",
-  "source_pdf": "papers/spotlighting_hines_2024.pdf",
-  "text_path": "cache/body_text/rag_hines2024spotlighting.txt"
-}
