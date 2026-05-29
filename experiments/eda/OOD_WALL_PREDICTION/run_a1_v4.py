@@ -2,11 +2,11 @@
 
 A1 — occupancy of the positive class over (channel × intent/subfamily × technique
 [attack_type] × split): is "PI detection" actually one corner of the cube? V4 —
-2-D embedding geometry. UMAP is absent locally, so a deterministic **PCA**
-projection is used; per the design the rigor is the **silhouette / ARI / PAD**
-pairing (which grouping the geometry actually separates), NOT eyeballing the
-scatter. The metrics quantify the carrier-dominates-embedding finding from
-`run_prediction.py`.
+2-D embedding geometry via **UMAP** (the design's choice; `umap-learn` is a [dev]
+EDA tool under the ADR-051 GPU-EDA exception). Per the design the rigor is the
+**silhouette / ARI / PAD** pairing — computed on the FULL embedding
+(projector-independent), NOT eyeballing the scatter — so the carrier-dominance
+finding is identical regardless of projector; UMAP only makes the scatter faithful.
 
 Run:  uv run python experiments/eda/OOD_WALL_PREDICTION/run_a1_v4.py
 """
@@ -24,8 +24,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
-from sklearn.decomposition import PCA
 from sklearn.metrics import adjusted_rand_score, silhouette_score
+from umap import UMAP
 
 from eval_toolkit.embeddings import make_minilm_embedder
 
@@ -55,7 +55,7 @@ def main() -> None:
     samp = pos.sample(n=min(1800, len(pos)), random_state=SEED).reset_index(drop=True)
     embed = make_minilm_embedder()
     emb = np.asarray(embed(samp["text"].tolist()), dtype=float)
-    coords = PCA(n_components=2, random_state=SEED).fit_transform(emb)
+    coords = UMAP(n_components=2, random_state=SEED).fit_transform(emb)
 
     carrier_codes = samp["carrier"].astype("category").cat.codes.to_numpy()
     type_codes = samp["attack_type"].astype("category").cat.codes.to_numpy()
@@ -109,12 +109,12 @@ def main() -> None:
         ax.scatter(coords[m, 0], coords[m, 1], s=6, alpha=0.5, label=name)
     ax.legend(title="carrier")
     ax.set_title(
-        f"V4 — PCA-2D of injected positives (colored by carrier)\n"
+        f"V4 — UMAP-2D of injected positives (colored by carrier)\n"
         f"silhouette: carrier={sil['by_carrier']:.2f}  attack_type={sil['by_attack_type']:.2f}  "
         f"(carrier dominates the geometry)"
     )
-    ax.set_xlabel("PC1")
-    ax.set_ylabel("PC2")
+    ax.set_xlabel("UMAP-1")
+    ax.set_ylabel("UMAP-2")
     fig.tight_layout()
     fig.savefig(HERE / "V4_embedding_geometry.png", dpi=120)
     plt.close(fig)

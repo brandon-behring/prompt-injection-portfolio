@@ -73,6 +73,7 @@ dev = [
     "jupytext>=1.16",
     "jupyter>=1.0",
     "nbval>=0.11",
+    "umap-learn>=0.5",
 ]
 
 [tool.uv.sources]
