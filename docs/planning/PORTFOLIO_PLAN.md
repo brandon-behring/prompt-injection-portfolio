@@ -661,6 +661,17 @@ public locations.
   - **docs/planning/README.md** = index of design rationale + how to
     read planning artifacts + update-policy
 
+### Round 24–26 cascade — M0 technical close + pre-modeling EDA arc (2026-05-23 → 05-29)
+
+Continues the Round 20→23 cascade above; records the post-`v0.1.0-pre` work through the close of the pre-modeling EDA arc. No discrete R25 lock (R24 → R26).
+
+- **M0 technical close (2026-05-23)** — all §21 ratification gates green (reconciled in §21 below) at `v0.1.0-pre`+68 commits. The formal `v0.1.0` tag (`git tag` + `gh release`) and the build-in-public announcement remain **user-led** (accounts not yet created); see `M0_READINESS.md`.
+- **Round 24 (2026-05-23) — dossier Sprint 2 + close policies.** 3-topic → **5-topic** dossier (210 bib_ledger / 347+ evidence / 157 BibTeX / ~124 cached PDFs); detailed in §4 "Round 24 update". Three policy ADRs locked: **ADR-048** (cross-classification — topic-prefixed bibkeys), **ADR-049** (body-quote anchoring discipline), **ADR-050** (vendor-cluster posture — unverified-by-design).
+- **Round 26 (2026-05-26) — dogfood adoption + study reorientation.** **ADR-051**: eval-toolkit pin floor `>=0.47`→`>=1.0` (v1.6.0 in `uv.lock`); book-scaffold `^3.5`→`^4.4.0`; `research_toolkit` dropped as a dep → repo-local tooling clone; DF-1..4 consumer-friction issues filed upstream. **ADR-052**: attack-type-generalization study design (axis C: type-LODO + joint carrier×attack shift); executable spec at `docs/planning/attack-type-lodo-harness-spec.md`.
+- **Pre-modeling EDA arc (2026-05-26 → 05-29, Phases 0–3; executed under the EDA plan, not a numbered round).** RC0 BIPIA adequacy = **GO**; 13-dataset verified-spec survey (`configs/data/dataset_specs.yml`); 5 leaky splits + 3 mislabels caught. Phase 3 recorded a **pre-registered, falsifiable OOD-wall prediction** (`experiments/eda/OOD_WALL_PREDICTION/{criteria.md, results.json, FINDINGS.md}`). Headline finding: **the carrier dominates the MiniLM embedding** — the attack-type signal is embedding-invisible (silhouette by-carrier 0.197 vs by-attack-type −0.023; KMeans→carrier ARI 0.98 vs →attack-type −0.001). eval-toolkit `eda` layer shipped + consumed at **v1.6.0**.
+- **Open tracked items (GitHub Issues):** **#1** (`P3`) rerun V10 with Prompt-Guard-86M once the Meta Llama gate is granted; **#2** (`P2`) run the OOD-wall falsification (top-k vs bottom-k) when Lane-1 produces per-test-attack-type LODO gaps.
+- **Next phase:** the ADR-052 attack-type-LODO modeling study (Lane 1) — the unblocked path that produces the per-type gaps gating issue #2.
+
 ---
 
 ## 1. Decisions locked via `/exploring-options` (17 questions across 3 rounds)
@@ -2079,26 +2090,28 @@ Locked via Round 9 sub-questions: MR scheduling = concentrated week 1 + spillove
 
 ### M0 ratification checklist (Day 19 close gate per Round 9 Q3)
 
-- [ ] All 7 test-contracts pass in CI
-- [ ] mypy --strict clean on all `src/` modules
-- [ ] ruff format check clean
-- [ ] pytest unit + smoke green
-- [ ] nbval green across 5-6 notebook scaffolds (empty notebooks OK at v0.1.0)
-- [ ] book/dist-pdf/portfolio.pdf renders without Paged.js errors
-- [ ] Pre-alpha banner renders on README + book frontmatter
-- [ ] `ETHICS.md` + `SECURITY.md` + `CODE_OF_CONDUCT.md` present at repo root
-- [ ] All 13 chapter skeletons exist with KF triadic structure
-- [ ] All 6 experiment record `experiments/lane-N-*/hypothesis.md` + `protocol.md` populated (skeleton state, not stubs)
-- [ ] `experiments/MANIFEST.json` populated for all 6 lanes
-- [ ] `book/bibliography.bib` seeded 1:1 with dossier `claim_family` keys
-- [ ] `decisions/library_imports.md` lists all upstream primitives consumed
-- [ ] `decisions/upstream_issues.md` tracks MR-1 + MR-2 + MR-7 at `released-vX.Y.Z` + `pinned-in-portfolio` state
-- [ ] `pyproject.toml` pins `eval-toolkit>=0.42.x` + `runpod-deploy>=0.8.4` + `book/package.json` pins `@brandon_m_behring/book-scaffold-astro>=3.0`
-- [ ] Submission `[tool.uv.sources]` ref = `v1.1.1` (or `v1.1.2` if DeBERTa execution lands during M0)
-- [ ] Docker build clean + `verify_docker.py` green
-- [ ] `gh repo view brandon-behring/prompt-injection-portfolio` returns 200
-- [ ] First push CI green
-- [ ] M0 announcement thread posted to Twitter/X + Mastodon
+*(Reconciled 2026-05-29 against `M0_READINESS.md`: technical gates green at `v0.1.0-pre`+68 commits; formal `v0.1.0` tag + announcement remain user-led — see `M0_READINESS.md` §"User-led items remaining".)*
+
+- [x] All 7 test-contracts pass in CI
+- [x] mypy --strict clean on all `src/` modules
+- [x] ruff format check clean
+- [x] pytest unit + smoke green
+- [x] nbval green across 5-6 notebook scaffolds (empty notebooks OK at v0.1.0)
+- [x] book/dist-pdf/portfolio.pdf renders without Paged.js errors
+- [x] Pre-alpha banner renders on README + book frontmatter
+- [x] `ETHICS.md` + `SECURITY.md` + `CODE_OF_CONDUCT.md` present at repo root
+- [x] All 13 chapter skeletons exist with KF triadic structure
+- [x] All 6 experiment record `experiments/lane-N-*/hypothesis.md` + `protocol.md` populated (skeleton state, not stubs)
+- [x] `experiments/MANIFEST.json` populated for all 6 lanes
+- [x] `book/bibliography.bib` seeded 1:1 with dossier `claim_family` keys
+- [x] `decisions/library_imports.md` lists all upstream primitives consumed
+- [x] `decisions/upstream_issues.md` state machine current (8/9 MRs closed; MR-12 added) — *(R26; was "tracks MR-1 + MR-2 + MR-7")*
+- [x] `pyproject.toml` pins `eval-toolkit[probes,losses]>=1.0` (v1.6.0 in `uv.lock`; R26 per ADR-051; was `>=0.47`) + `runpod-deploy>=0.8.4`; `book/package.json` pins `@brandon_m_behring/book-scaffold-astro: ^4.4.0` (R26; was `>=3.0`); `research_toolkit` dropped as a dep → repo-local tooling clone (ADR-051)
+- [x] Submission `[tool.uv.sources]` ref = `v1.3.0` (two-step CI ref; R22, was `v1.1.1`)
+- [x] Docker build clean + `verify_docker.py` green
+- [x] `gh repo view brandon-behring/prompt-injection-portfolio` returns 200
+- [x] First push CI green
+- [ ] M0 announcement thread posted to Twitter/X + Mastodon — **DEFERRED (user-led; X/Mastodon accounts not yet created; see `M0_READINESS.md` §"User-led items remaining")**
 
 ### Day-by-day total
 
