@@ -15,7 +15,15 @@ surface verified via Day 3a step 4 Python REPL smoke-test
 
 ---
 
-## eval-toolkit (PyPI; floor `[probes,losses]>=1.0`)
+## eval-toolkit (PyPI; floor `[probes,losses]>=1.5`)
+
+**Round 27 (2026-05-29, ADR-051 EDA):** floor advanced `>=1.0` → `[probes,losses]>=1.5` to consume the
+**Tier-2 `eda` layer** (upstream #83: `audit_dataset`/`DataAudit`/`SplitSummary` + 3 integrity gates +
+obfuscation) and the **schema-aware `HFDatasetsLoader`** (#85: `feature_cols`/`feature_join`/`label_map`/
+`revision`). **This is the first DOGFOODED consumption** — both were exercised on real data in the
+pre-modeling EDA (`experiments/eda/`: the RC0 BIPIA attack-type-split adequacy gate + the 13-dataset
+full-landscape survey), unlike the rows below still tagged `<pending lane work>`. v1.5.0 published to
+PyPI 2026-05-29 via Trusted Publishing (tag `v1.5.0`, OIDC, no tokens). New symbols in the table below.
 
 **Round 26 (2026-05-26, ADR-051):** floor advanced `>=0.47` → `>=1.0` to opt into the
 upstream **v1.0 stability contract** (their ADR 0003: Tier-1 API + 9 Protocols frozen
@@ -45,6 +53,10 @@ submodule paths are implementation. Portfolio code uses top-level imports.
 | `losses.RecallAtLowFPR` | `eval_toolkit.losses` | >=0.44 | `<pending Lane 2 retrain>` | bc30c52 | MR-4 (#50) closed v0.44.0 | Meta PG2 recipe; `[losses]` extra |
 | `probes.ActivationDeltaProbe` | `eval_toolkit.probes` | >=0.43 | `<pending Lane 5>` | bc30c52 | MR-7 (#53) closed v0.43.0 | TaskTracker-style; `[probes]` extra |
 | `stacking.LogisticStacker` | `eval_toolkit.stacking` | >=0.45 | `<pending Lane 4>` | bc30c52 | MR-6 (#52) closed v0.45.0 | Stacker reference impl |
+| `eda.audit_dataset` | `eval_toolkit.eda` | >=1.5 | `experiments/eda/` (RC0 + `survey_v2.py`) | R27 | #83 | **DOGFOODED.** Job-1 integrity engine; gates `class_balance` / `no_cross_split_leakage` / `context_window_fit` + obfuscation → returns `DataAudit` |
+| `eda.DataAudit` / `eda.SplitSummary` | `eval_toolkit.eda` | >=1.5 | `experiments/eda/` | R27 | #83 | **DOGFOODED.** audit result dataclasses (`.gate_passed`, `.split_summaries`, `.write(path)`) |
+| `loaders.HFDatasetsLoader` (extended) | `eval_toolkit.loaders` | >=1.5 | `experiments/eda/survey_v2.py` | R27 | #85 | **DOGFOODED.** added `feature_cols`/`feature_join` (multi-col text join), `label_map` (raw→0/1), `revision` (SHA pin); fail-fast lists OBSERVED cols on mismatch |
+| `embeddings.make_minilm_embedder` | `eval_toolkit.embeddings` | >=1.0 | `experiments/eda/RC0_BIPIA/run_rc0.py` | R27 | — | **DOGFOODED.** within-type MiniLM cosine (BIPIA memorization-floor check) |
 
 Additional primitives expected (NOT yet consumed; populate at lane start):
 - `eval_toolkit.metrics` submodule (per ADR 0002 implementation-side access
