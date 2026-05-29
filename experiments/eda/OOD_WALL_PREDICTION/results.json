@@ -1,0 +1,480 @@
+{
+  "pre_registration": "experiments/eda/OOD_WALL_PREDICTION/criteria.md",
+  "recorded": "pre-modeling (Lane-1 LODO gaps do not yet exist)",
+  "fold_set": "14 per-test-attack-type, carrier-pooled (email/code/table)",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "frozen_mmd_bandwidth": 1.3708107787447372,
+  "n_permutations": 1000,
+  "per_type_mmd_cap": 200,
+  "fusion_rule": "weighted rank-average(E1 shift-rank, C2 shortcut-failure-rank); tie-break C2",
+  "predicted_collapse_order": [
+    "Task Automation",
+    "Business Intelligence",
+    "Conversational Agent",
+    "Research Assistance",
+    "Sentiment Analysis",
+    "Information Dissemination",
+    "Emoji Substitution",
+    "Marketing & Advertising",
+    "Base Encoding",
+    "Entertainment",
+    "Reverse Text",
+    "Substitution Ciphers",
+    "Scams & Fraud",
+    "Misinformation & Propaganda"
+  ],
+  "top_k_predicted_worst": [
+    "Task Automation",
+    "Business Intelligence",
+    "Conversational Agent",
+    "Research Assistance"
+  ],
+  "bottom_k_predicted_best": [
+    "Reverse Text",
+    "Substitution Ciphers",
+    "Scams & Fraud",
+    "Misinformation & Propaganda"
+  ],
+  "k": 4,
+  "per_type": {
+    "Base Encoding": {
+      "competency_auprc": 0.7612131811192693,
+      "competency_baseline": "bow",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 0.9263157894736842,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.003475707093498759,
+      "mmd_p": 0.014985014985014986,
+      "mmd_ci_low": 0.005195176272231455,
+      "mmd_ci_high": 0.012824691730458004,
+      "knn_purity": 0.6110526315789474,
+      "pad_tfidf": 1.368421052631579,
+      "shift_z": -1.6230372582378512,
+      "e1_rank": 12,
+      "c2_rank": 7,
+      "fused_rank": 9.5
+    },
+    "Business Intelligence": {
+      "competency_auprc": 0.6224626608638912,
+      "competency_baseline": "bow",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 1.263157894736842,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.01031541816064152,
+      "mmd_p": 0.000999000999000999,
+      "mmd_ci_low": 0.011673600269654227,
+      "mmd_ci_high": 0.016798636061902305,
+      "knn_purity": 0.6784210526315789,
+      "pad_tfidf": 1.6631578947368422,
+      "shift_z": 2.4785816300155297,
+      "e1_rank": 2,
+      "c2_rank": 3,
+      "fused_rank": 2.5
+    },
+    "Conversational Agent": {
+      "competency_auprc": 0.5710971516178709,
+      "competency_baseline": "char_ngram",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 1.0,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.005043268475211082,
+      "mmd_p": 0.003996003996003996,
+      "mmd_ci_low": 0.006892077604424468,
+      "mmd_ci_high": 0.011708046768130375,
+      "knn_purity": 0.6378947368421053,
+      "pad_tfidf": 1.5789473684210527,
+      "shift_z": -0.7041450100322648,
+      "e1_rank": 8,
+      "c2_rank": 1,
+      "fused_rank": 4.5
+    },
+    "Emoji Substitution": {
+      "competency_auprc": 0.8152321105566532,
+      "competency_baseline": "char_ngram",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 0.9157894736842105,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.00627529816481176,
+      "mmd_p": 0.001998001998001998,
+      "mmd_ci_low": 0.006950819815305076,
+      "mmd_ci_high": 0.013950643421983443,
+      "knn_purity": 0.65,
+      "pad_tfidf": 1.2526315789473683,
+      "shift_z": -0.8366273265903679,
+      "e1_rank": 9,
+      "c2_rank": 8,
+      "fused_rank": 8.5
+    },
+    "Entertainment": {
+      "competency_auprc": 0.8299033671022443,
+      "competency_baseline": "bow",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 0.9789473684210526,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.00597369647531143,
+      "mmd_p": 0.004995004995004995,
+      "mmd_ci_low": 0.007296585987656567,
+      "mmd_ci_high": 0.01585087771138812,
+      "knn_purity": 0.6442105263157895,
+      "pad_tfidf": 1.6421052631578947,
+      "shift_z": -0.5483528371299355,
+      "e1_rank": 7,
+      "c2_rank": 12,
+      "fused_rank": 9.5
+    },
+    "Information Dissemination": {
+      "competency_auprc": 0.8192617757329416,
+      "competency_baseline": "bow",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 1.2736842105263158,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.007257680165314806,
+      "mmd_p": 0.000999000999000999,
+      "mmd_ci_low": 0.008234942983346833,
+      "mmd_ci_high": 0.014016925385566297,
+      "knn_purity": 0.6231578947368421,
+      "pad_tfidf": 1.6421052631578947,
+      "shift_z": 1.61382074469816,
+      "e1_rank": 4,
+      "c2_rank": 9,
+      "fused_rank": 6.5
+    },
+    "Marketing & Advertising": {
+      "competency_auprc": 0.8624249226373694,
+      "competency_baseline": "bow",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 1.1894736842105265,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.01050406197123932,
+      "mmd_p": 0.000999000999000999,
+      "mmd_ci_low": 0.010901215800505326,
+      "mmd_ci_high": 0.018087698562982108,
+      "knn_purity": 0.6526315789473685,
+      "pad_tfidf": 1.7157894736842105,
+      "shift_z": 2.092720531350948,
+      "e1_rank": 3,
+      "c2_rank": 14,
+      "fused_rank": 8.5
+    },
+    "Misinformation & Propaganda": {
+      "competency_auprc": 0.8296018638938027,
+      "competency_baseline": "char_ngram",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 0.8526315789473684,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.004561821126878751,
+      "mmd_p": 0.004995004995004995,
+      "mmd_ci_low": 0.006280184195925959,
+      "mmd_ci_high": 0.01141809550298689,
+      "knn_purity": 0.6131578947368421,
+      "pad_tfidf": 1.4842105263157894,
+      "shift_z": -1.7365044551971618,
+      "e1_rank": 13,
+      "c2_rank": 11,
+      "fused_rank": 12.0
+    },
+    "Research Assistance": {
+      "competency_auprc": 0.6607506980190025,
+      "competency_baseline": "char_ngram",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 1.1052631578947367,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.010213434401795674,
+      "mmd_p": 0.000999000999000999,
+      "mmd_ci_low": 0.010910775129600026,
+      "mmd_ci_high": 0.016868590428311174,
+      "knn_purity": 0.6868421052631579,
+      "pad_tfidf": 1.5578947368421052,
+      "shift_z": 1.4980919048404542,
+      "e1_rank": 5,
+      "c2_rank": 4,
+      "fused_rank": 4.5
+    },
+    "Reverse Text": {
+      "competency_auprc": 0.7450910148993073,
+      "competency_baseline": "bow",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 0.6947368421052631,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.0024276414668615853,
+      "mmd_p": 0.04095904095904096,
+      "mmd_ci_low": 0.003672287894182791,
+      "mmd_ci_high": 0.009336633347720391,
+      "knn_purity": 0.5626315789473684,
+      "pad_tfidf": 1.4,
+      "shift_z": -3.333792104690514,
+      "e1_rank": 14,
+      "c2_rank": 6,
+      "fused_rank": 10.0
+    },
+    "Scams & Fraud": {
+      "competency_auprc": 0.8498561848609805,
+      "competency_baseline": "bow",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 0.9789473684210526,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.004630256017526424,
+      "mmd_p": 0.006993006993006993,
+      "mmd_ci_low": 0.00647553291771481,
+      "mmd_ci_high": 0.012118181644072027,
+      "knn_purity": 0.6342105263157894,
+      "pad_tfidf": 1.6105263157894738,
+      "shift_z": -0.9561045136928985,
+      "e1_rank": 10,
+      "c2_rank": 13,
+      "fused_rank": 11.5
+    },
+    "Sentiment Analysis": {
+      "competency_auprc": 0.7211482470886108,
+      "competency_baseline": "char_ngram",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 1.094736842105263,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.006218235619026791,
+      "mmd_p": 0.002997002997002997,
+      "mmd_ci_low": 0.006738815829776518,
+      "mmd_ci_high": 0.01365300902772082,
+      "knn_purity": 0.6126315789473684,
+      "pad_tfidf": 1.7473684210526317,
+      "shift_z": 0.2221946171096429,
+      "e1_rank": 6,
+      "c2_rank": 5,
+      "fused_rank": 5.5
+    },
+    "Substitution Ciphers": {
+      "competency_auprc": 0.8205482175438117,
+      "competency_baseline": "char_ngram",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 0.8210526315789475,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.005664922272741624,
+      "mmd_p": 0.003996003996003996,
+      "mmd_ci_low": 0.007523482351931193,
+      "mmd_ci_high": 0.012162865646067278,
+      "knn_purity": 0.6168421052631579,
+      "pad_tfidf": 1.3789473684210525,
+      "shift_z": -1.591606155315052,
+      "e1_rank": 11,
+      "c2_rank": 10,
+      "fused_rank": 10.5
+    },
+    "Task Automation": {
+      "competency_auprc": 0.6214860899351303,
+      "competency_baseline": "char_ngram",
+      "competency_floor": 0.41189931350114417,
+      "pad_emb": 1.1789473684210527,
+      "pad_emb_ci_low": null,
+      "pad_emb_ci_high": null,
+      "mmd_emb": 0.015101367558401746,
+      "mmd_p": 0.000999000999000999,
+      "mmd_ci_low": 0.013702821479645693,
+      "mmd_ci_high": 0.02329455847937248,
+      "knn_purity": 0.7078947368421052,
+      "pad_tfidf": 1.7263157894736842,
+      "shift_z": 3.4247602328713325,
+      "e1_rank": 1,
+      "c2_rank": 2,
+      "fused_rank": 1.5
+    }
+  },
+  "secondary_fold_structures": {
+    "core_attack_type": {
+      "pad": 0.51,
+      "mmd": 0.0021794478996137734,
+      "mmd_p": 0.03796203796203796
+    },
+    "obfuscation_technique": {
+      "pad": 0.8300000000000001,
+      "mmd": 0.0029523494273007156,
+      "mmd_p": 0.02197802197802198
+    },
+    "carrier_plus_attack_external": {
+      "pad": 2.0,
+      "mmd": 0.22273639940444334,
+      "mmd_p": 0.000999000999000999
+    }
+  },
+  "secondary_fold_collapse_order": [
+    "carrier_plus_attack_external",
+    "obfuscation_technique",
+    "core_attack_type"
+  ],
+  "c1_top_positive_tokens": [
+    [
+      "'",
+      17.06302883137774
+    ],
+    [
+      "your",
+      12.114338832263662
+    ],
+    [
+      "in",
+      9.512919147696879
+    ],
+    [
+      "to",
+      9.101796931387687
+    ],
+    [
+      "''",
+      8.937572198771466
+    ],
+    [
+      "a",
+      8.505071748354034
+    ],
+    [
+      "the",
+      8.41226733821339
+    ],
+    [
+      "you",
+      7.862327865381367
+    ],
+    [
+      "for",
+      7.058286488531716
+    ],
+    [
+      "mercury",
+      6.97805835630048
+    ],
+    [
+      "reply",
+      6.683277770057736
+    ],
+    [
+      "is",
+      6.6402170117748
+    ],
+    [
+      "this",
+      6.381020296948753
+    ],
+    [
+      "response",
+      6.237419121426049
+    ],
+    [
+      "with",
+      6.010521155819446
+    ],
+    [
+      "com",
+      5.641994356555871
+    ],
+    [
+      "answer",
+      5.521708665798579
+    ],
+    [
+      "by",
+      5.441834697049773
+    ],
+    [
+      "from",
+      5.26792049527969
+    ],
+    [
+      "an",
+      5.2145405909169495
+    ]
+  ],
+  "c1_top_negative_tokens": [
+    [
+      "million",
+      -11.453446946409699
+    ],
+    [
+      "1",
+      -10.693775194845992
+    ],
+    [
+      "0",
+      -10.471670293357358
+    ],
+    [
+      "6",
+      -10.31966208194508
+    ],
+    [
+      "20",
+      -9.775183066961999
+    ],
+    [
+      "8",
+      -9.65620390819707
+    ],
+    [
+      "marathon",
+      -9.65560122729194
+    ],
+    [
+      "w",
+      -9.269076027770156
+    ],
+    [
+      "4",
+      -9.2532002240827
+    ],
+    [
+      "na",
+      -8.39084986960394
+    ],
+    [
+      "2014",
+      -8.380417120355627
+    ],
+    [
+      "joint",
+      -8.337907674516723
+    ],
+    [
+      "grand",
+      -8.242989582478316
+    ],
+    [
+      "2",
+      -8.169317552554656
+    ],
+    [
+      "128",
+      -8.11965905718656
+    ],
+    [
+      "7",
+      -8.00056827574268
+    ],
+    [
+      "1st",
+      -7.683778050520995
+    ],
+    [
+      "mi",
+      -7.619227701067551
+    ],
+    [
+      "benassi",
+      -7.53760674904442
+    ],
+    [
+      "1978",
+      -7.490397896167777
+    ]
+  ],
+  "falsification": "top-k vs bottom-k one-sided permutation contrast on the eventual per-test-type diagnostic LODO AUPRC drops; dual rule p<0.05 AND bootstrap-CI>0 (run at verification time, not now)."
+}
