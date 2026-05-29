@@ -15,7 +15,16 @@ surface verified via Day 3a step 4 Python REPL smoke-test
 
 ---
 
-## eval-toolkit (PyPI; floor `[probes,losses]>=1.5`)
+## eval-toolkit (PyPI; floor `[probes,losses]>=1.6`)
+
+**Round 28 (2026-05-29, ADR-051 EDA / Phase 3):** floor advanced `>=1.5` → `[probes,losses]>=1.6` to
+consume the **Tier-2 `eda` Job-2 + Job-3 modules**, both built upstream this session: `lexical_association`
+(#86 — C1 weighted log-odds/PMI + C2 partial-input competency baselines → V5) and `distribution_shift`
+(#87 — E1 proxy-A-distance + unbiased RBF MMD + kNN purity → V9). v1.6.0 published to PyPI 2026-05-29 via
+Trusted Publishing (tag `v1.6.0`, OIDC; receipt independently verified at the per-version endpoint). These
+back the Phase-3 **pre-modeling OOD-wall prediction** (`experiments/eda/OOD_WALL_PREDICTION/`); the
+real-data **dogfood run is P3.6 (pending)** — so the rows below are tagged *consumed-by-P3.6*, promoted to
+`DOGFOODED` once the run lands. New symbols in the table below.
 
 **Round 27 (2026-05-29, ADR-051 EDA):** floor advanced `>=1.0` → `[probes,losses]>=1.5` to consume the
 **Tier-2 `eda` layer** (upstream #83: `audit_dataset`/`DataAudit`/`SplitSummary` + 3 integrity gates +
@@ -57,6 +66,9 @@ submodule paths are implementation. Portfolio code uses top-level imports.
 | `eda.DataAudit` / `eda.SplitSummary` | `eval_toolkit.eda` | >=1.5 | `experiments/eda/` | R27 | #83 | **DOGFOODED.** audit result dataclasses (`.gate_passed`, `.split_summaries`, `.write(path)`) |
 | `loaders.HFDatasetsLoader` (extended) | `eval_toolkit.loaders` | >=1.5 | `experiments/eda/survey_v2.py` | R27 | #85 | **DOGFOODED.** added `feature_cols`/`feature_join` (multi-col text join), `label_map` (raw→0/1), `revision` (SHA pin); fail-fast lists OBSERVED cols on mismatch |
 | `embeddings.make_minilm_embedder` | `eval_toolkit.embeddings` | >=1.0 | `experiments/eda/RC0_BIPIA/run_rc0.py` | R27 | — | **DOGFOODED.** within-type MiniLM cosine (BIPIA memorization-floor check) |
+| `eda.class_lexical_association` / `eda.weighted_log_odds` | `eval_toolkit.eda` | >=1.6 | `experiments/eda/OOD_WALL_PREDICTION/` (P3.6 pending) | R28 | #86 | C1: Monroe-2008 informative-Dirichlet weighted log-odds z + smoothed PMI → `LexicalAssociationResult` (V5). *Consumed-by-P3.6.* |
+| `eda.competency_baselines` | `eval_toolkit.eda` | >=1.6 | `experiments/eda/OOD_WALL_PREDICTION/` (P3.6 pending) | R28 | #86 | C2: partial-input shortcut floor (length / char-n-gram / BoW) → `CompetencyResult`; the per-type shortcut-exposure signal. *Consumed-by-P3.6.* |
+| `eda.distribution_shift` / `eda.proxy_a_distance` / `eda.maximum_mean_discrepancy` / `eda.knn_purity` | `eval_toolkit.eda` | >=1.6 | `experiments/eda/OOD_WALL_PREDICTION/` (P3.6 pending) | R28 | #87 | E1: linear-CV PAD + unbiased RBF MMD (median bandwidth, permutation p) + kNN purity → `DistributionShiftResult` (V9). *Consumed-by-P3.6.* |
 
 Additional primitives expected (NOT yet consumed; populate at lane start):
 - `eval_toolkit.metrics` submodule (per ADR 0002 implementation-side access

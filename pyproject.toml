@@ -19,11 +19,13 @@ dependencies = [
     # Tier-1 API + 9 Protocols are frozen for the 1.x line, so M1+ lane code is
     # written against a stable surface. [probes,losses] extras pull torch +
     # transformers for ActivationDeltaProbe + RecallAtLowFPR (already in ML stack).
-    # Floor >=1.5 (R27, 2026-05-29): opts into the Tier-2 `eda` layer (#83) +
-    # schema-aware HFDatasetsLoader (#85), DOGFOODED in the pre-modeling EDA
-    # (experiments/eda/ — RC0 BIPIA adequacy + 13-dataset landscape survey). First
-    # real consumption; lane code (M1+) still targets the same frozen v1.x surface.
-    "eval-toolkit[probes,losses]>=1.5",
+    # Floor >=1.6 (R28, 2026-05-29): adds the Tier-2 `eda` Job-2 + Job-3 modules —
+    # `lexical_association` (C1 log-odds/PMI + C2 competency baselines, #86) +
+    # `distribution_shift` (E1 proxy-A-distance + MMD + kNN purity, #87) — built
+    # upstream + DOGFOODED in Phase-3 pre-modeling EDA (experiments/eda/ — the
+    # OOD-wall prediction's V5 + V9). Extends the >=1.5 floor (Job-1 eda #83 +
+    # schema-aware HFDatasetsLoader #85). Lane code (M1+) still targets the frozen v1.x surface.
+    "eval-toolkit[probes,losses]>=1.6",
     # research_toolkit is consumed as TOOLING — the dossier-audit validators +
     # Claude skills — NOT a Python import, so it is deliberately NOT a dependency
     # here (ADR-051). `make dossier-audit` bootstraps a repo-local clone pinned to

@@ -54,6 +54,12 @@ bf16 + fp32-softmax-cast; class_weight balanced. Each rung gets its *own* val-se
 - **Benign FPR** on NotInject (over-defense).
 - **In-distribution (val) vs LODO (test) inflation** — the "benchmarks lie" gap, measured per rung.
 - Per-attack-type breakdown (noisy at N=5/type — report as diagnostic, not headline).
+  **Retention pre-commit (2026-05-29):** the per-test-attack-type diagnostic AUPRC **and** its
+  val→test drop **MUST be persisted** (per `(rung, fold, seed)`, alongside the predictions parquet),
+  not merely shown then discarded. The pre-registered OOD-wall prediction
+  (`experiments/eda/OOD_WALL_PREDICTION/criteria.md`) is falsification-tested against these per-type
+  drops via a one-sided top-k vs bottom-k contrast; the test is impossible if they are not retained.
+  They remain *diagnostic* (never headline) — retention ≠ promotion.
 
 Reporting template per fold: `{rung, fold, AUPRC[CI], floor, TPR@FPR×3, benign_FPR, val→test_drop}`.
 

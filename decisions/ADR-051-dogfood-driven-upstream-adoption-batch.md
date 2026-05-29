@@ -84,3 +84,26 @@ merged-but-unreleased validator-correctness fix. The pin should track validator-
 releases, not a frozen point. A second gap surfaced the same way — no mechanical v3
 excerpt-anchor *producer* exists (only a verifier) — addressed separately (producer built +
 `v2.5.0`).
+
+## 2026-05-29 amendment — NARROW GPU-ML-stack-for-EDA exception (Phase-3 pre-modeling EDA)
+
+**Scope of the lean-local / library-first posture, clarified.** The ML stack (torch +
+sentence-transformers + transformers) is already declared in `pyproject.toml` for M1+ **lane**
+modeling. Phase-3 pre-modeling EDA (the deep shortcut/shift analyses → the pre-registered OOD-wall
+prediction, `experiments/eda/OOD_WALL_PREDICTION/`) is the first use of that stack **outside** lane
+modeling — it runs MiniLM (GPU, via `eval_toolkit.embeddings.make_minilm_embedder`) to compute
+embeddings for proxy-A-distance / MMD / UMAP, and loads frozen off-the-shelf reference-scorer probes
+(Prompt-Guard-86M, protectai-v2, Prompt-Guard-2) for the V10 score-distribution figure.
+
+**Decision (NARROW):** the local GPU ML stack is authorized **strictly for pre-modeling EDA under
+`experiments/eda/`** — embedding-based shift metrics, the reference-scorer probes, and figure
+generation. This does **not** widen the posture elsewhere: lane/library code stays library-first
+(consumes the frozen eval-toolkit surface; new analytical primitives are built **upstream** in
+eval-toolkit, not hand-rolled here — the two Phase-3 modules `eda.lexical_association` +
+`eda.distribution_shift` ship as upstream Tier-2 PRs per that invariant). The reference-scorer probes
+are **frozen, inference-only** (no training) and carry per-slice contamination/scope caveats — they
+are a diagnostic probe, not a trained detector, so this is not "modeling on assumed data."
+
+**Why narrow, not broad:** preserves the lean-local invariant everywhere except the one place with a
+concrete, bounded need; avoids re-litigating each future EDA run while not granting a blanket
+"EDA may pull anything" licence.
