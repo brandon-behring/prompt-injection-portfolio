@@ -672,6 +672,20 @@ Continues the Round 20→23 cascade above; records the post-`v0.1.0-pre` work th
 - **Open tracked items (GitHub Issues):** **#1** (`P3`) rerun V10 with Prompt-Guard-86M once the Meta Llama gate is granted; **#2** (`P2`) run the OOD-wall falsification (top-k vs bottom-k) when Lane-1 produces per-test-attack-type LODO gaps.
 - **Next phase:** the ADR-052 attack-type-LODO modeling study (Lane 1) — the unblocked path that produces the per-type gaps gating issue #2.
 
+### Round 27 update — milestone rethink: EDA-arc placement + conditional rescope gates (2026-05-29)
+
+Post-EDA-arc review of the M0→M7 ladder (locked pre-EDA, R1–R7). The Phase-3 findings (**carrier dominates the embedding; the attack-type signal is embedding-invisible**) **reframe value-props but falsify none of the six lane hypotheses**, and the Zone-2 dossier rescopes are all *conditional* (trigger-gated). Per **ADR-052** ("this ADR locks the *design*, not the lane reorganization; lane/chapter restructure is deferred to Phase 3 — after results"), a full re-ladder now would be premature. This round records only what is settled and registers the branch-points; it does **not** reorganize lanes.
+
+**Decisions locked** (3):
+- **Q1 (EDA-arc placement)**: the pre-modeling EDA arc (Phases 0–3) is recorded as **M1's entry-gate / pre-flight**, not a new milestone — the ADR-052 attack-type-LODO study *is* M1's Lane-1 modeling, and the EDA arc was its pre-registration + RC0 go/no-go. §9's "8 milestones M0-M7" header is unchanged (no rung added).
+- **Q2 (conditional rescopes)**: the Lane 1b / Lane 4 / Lane 5 rescope proposals (`dossier_implications_for_roadmap.md` Zone 2) are **promoted to named trigger-gates in §16** beside the existing M1→M2 / M3→M4 gates — registering the branch-points without committing to any branch until a trigger fires.
+- **Q3 (full re-ladder)**: **deferred to post-LODO-results** per ADR-052. The committed Round 24–26 narrative above stands as historical record (not rewritten).
+
+**Implications**:
+- §16 execution-order guide gains a Round-27 EDA-arc **M1 entry-gate** + **3 conditional rescope gates** (Lane 1b / Lane 4 / Lane 5), each cross-referencing `dossier_implications_for_roadmap.md` as the canonical detail (register, don't duplicate).
+- The EDA findings **reframe Lane 1's value-prop**: from "we trained a detector" to "we measured operating-point honesty" (the field's floor is already laid; the contribution is saturation-aware reporting — `dossier_implications` Zone 2). Lane 1's *hypothesis* and milestone (M1) are unchanged.
+- No ADR filed (ADR-052 already governs the deferral; ADR-053 left available for when the LODO results actually trigger a re-ladder).
+
 ---
 
 ## 1. Decisions locked via `/exploring-options` (17 questions across 3 rounds)
@@ -1565,6 +1579,15 @@ Full budget breakdown across all tiers with execution-order guidance:
 6. **M7 / v0.7.0**: ratify; build NEXT_SESSION.md with Tier D items for v0.8+ planning.
 
 **Contingency-unlock discipline** (per ADR-013): each Tier C execution requires a `decisions/contingency_unlock_N.md` entry pointing to the specific interim signal that justified the spend. Default is **do NOT execute Tier C** unless the gate signal fires.
+
+#### Round-27 gates (EDA-arc entry + conditional rescopes)
+
+Added at the milestone rethink (Round 27, 2026-05-29). The EDA entry-gate is settled; the three rescope gates are *registered branch-points* — each fires only if its trigger trips, and the full lane/chapter re-ladder remains deferred to post-LODO-results per ADR-052. Detailed rationale in [`dossier_implications_for_roadmap.md`](dossier_implications_for_roadmap.md) (Zone 2).
+
+- **M1 entry-gate (EDA arc, settled)**: the pre-modeling EDA arc (Phases 0–3) is M1's pre-flight — RC0 BIPIA = GO + the pre-registered, falsifiable OOD-wall prediction (`experiments/eda/OOD_WALL_PREDICTION/`). The ADR-052 attack-type-LODO study *is* M1's Lane-1 modeling; it must persist per-test-attack-type diagnostic AUPRCs (harness-spec §5 retention pre-commit), which trigger the issue-#2 falsification (§6.5). Findings reframe Lane 1's value-prop to operating-point honesty.
+- **M1→M2 gate (Lane 1b rescope)**: **if M1 confirms `hackett2025bypassing` 100% character-injection ASR ±5pp on the primary detector set**, cut Lane 1b from "12-technique × 5-detector matrix" → "3 representative techniques × 5 detectors + per-technique severity ranking"; reallocate freed budget to Lane 4's adaptive-eval path. Document in `experiments/lane-1b/decisions.md`.
+- **M5-close gate (Lane 4 benchmark pivot)**: **if any 2 of {PINT, PromptShield, WildGuardMix} saturate above 95% AUPRC on the stacker at M5 close**, declare them legacy comparators and pivot Lane 4's headline to LLMail-Inject adaptive eval as primary.
+- **M3-entry gate (Lane 5 surface-third-path)**: **if the encoder activation-delta probe does not separate direct + indirect distributions with d′ > 0.5 at the M3 smoke-test**, declare the port-only (TaskTracker-on-encoder) hypothesis falsified and promote the surface-third-path (capability-isolation pairing / CaMeL) to Lane 5's primary contribution.
 
 ---
 
