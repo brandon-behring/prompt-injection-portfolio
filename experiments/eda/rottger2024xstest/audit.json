@@ -1,0 +1,352 @@
+{
+  "schema_version": "v2",
+  "dataset_name": "rottger2024xstest",
+  "run_timestamp": "2026-05-29T03:04:33Z",
+  "split_summaries": {
+    "gpt4": {
+      "split": "gpt4",
+      "n_rows": 450,
+      "n_positive": 0,
+      "n_negative": 450,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 42.0,
+        "p95": 72.0,
+        "max": 99
+      },
+      "word_lengths": {
+        "p50": 8.0,
+        "p95": 13.0,
+        "max": 17
+      },
+      "token_lengths": {
+        "p50": 12.0,
+        "p95": 17.0,
+        "max": 21
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 450,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 3938,
+        "leetspeak_token_rate": 0.0
+      }
+    },
+    "llama2new": {
+      "split": "llama2new",
+      "n_rows": 450,
+      "n_positive": 0,
+      "n_negative": 450,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 42.0,
+        "p95": 72.0,
+        "max": 99
+      },
+      "word_lengths": {
+        "p50": 8.0,
+        "p95": 13.0,
+        "max": 17
+      },
+      "token_lengths": {
+        "p50": 12.0,
+        "p95": 17.0,
+        "max": 21
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 450,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 3938,
+        "leetspeak_token_rate": 0.0
+      }
+    },
+    "llama2orig": {
+      "split": "llama2orig",
+      "n_rows": 450,
+      "n_positive": 0,
+      "n_negative": 450,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 42.0,
+        "p95": 72.0,
+        "max": 99
+      },
+      "word_lengths": {
+        "p50": 8.0,
+        "p95": 13.0,
+        "max": 17
+      },
+      "token_lengths": {
+        "p50": 12.0,
+        "p95": 17.0,
+        "max": 21
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 450,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 3938,
+        "leetspeak_token_rate": 0.0
+      }
+    },
+    "mistralguard": {
+      "split": "mistralguard",
+      "n_rows": 450,
+      "n_positive": 0,
+      "n_negative": 450,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 42.0,
+        "p95": 72.0,
+        "max": 99
+      },
+      "word_lengths": {
+        "p50": 8.0,
+        "p95": 13.0,
+        "max": 17
+      },
+      "token_lengths": {
+        "p50": 12.0,
+        "p95": 17.0,
+        "max": 21
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 450,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 3938,
+        "leetspeak_token_rate": 0.0
+      }
+    },
+    "mistralinstruct": {
+      "split": "mistralinstruct",
+      "n_rows": 450,
+      "n_positive": 0,
+      "n_negative": 450,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 42.0,
+        "p95": 72.0,
+        "max": 99
+      },
+      "word_lengths": {
+        "p50": 8.0,
+        "p95": 13.0,
+        "max": 17
+      },
+      "token_lengths": {
+        "p50": 12.0,
+        "p95": 17.0,
+        "max": 21
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 450,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 3938,
+        "leetspeak_token_rate": 0.0
+      }
+    },
+    "prompts": {
+      "split": "prompts",
+      "n_rows": 450,
+      "n_positive": 0,
+      "n_negative": 450,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 42.0,
+        "p95": 72.0,
+        "max": 99
+      },
+      "word_lengths": {
+        "p50": 8.0,
+        "p95": 13.0,
+        "max": 17
+      },
+      "token_lengths": {
+        "p50": 12.0,
+        "p95": 17.0,
+        "max": 21
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 450,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 3937,
+        "leetspeak_token_rate": 0.0
+      }
+    }
+  },
+  "leakage_reports": {
+    "within_split": {
+      "findings": [
+        {
+          "check_name": "ExactDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {},
+          "evidence": {
+            "dropped_pairs_by_split": {}
+          },
+          "message": "no exact duplicates found",
+          "n_affected": 0
+        },
+        {
+          "check_name": "NearDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {},
+          "evidence": {
+            "threshold": 0.9,
+            "strategy": "TfidfCosineStrategy",
+            "dropped_pairs_by_split": {}
+          },
+          "message": "no near-duplicates above threshold=0.90",
+          "n_affected": 0
+        }
+      ]
+    }
+  },
+  "gates": [
+    {
+      "name": "class_balance",
+      "passed": false,
+      "severity": "error",
+      "message": "6 split(s) outside neg:pos ratio [0.1, 10.0] (or single-class)",
+      "evidence": {
+        "min_ratio": 0.1,
+        "max_ratio": 10.0,
+        "offending_splits": {
+          "gpt4": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 450
+          },
+          "llama2new": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 450
+          },
+          "llama2orig": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 450
+          },
+          "mistralguard": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 450
+          },
+          "mistralinstruct": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 450
+          },
+          "prompts": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 450
+          }
+        }
+      }
+    },
+    {
+      "name": "no_cross_split_leakage",
+      "passed": true,
+      "severity": "error",
+      "message": "cross-split leakage check skipped (no train split / disabled)",
+      "evidence": {
+        "skipped": true
+      }
+    },
+    {
+      "name": "context_window_fit",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits keep <5% of rows over the context window",
+      "evidence": {
+        "threshold": 0.05,
+        "offending_splits": {}
+      }
+    }
+  ],
+  "gate_passed": false,
+  "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED"
+}

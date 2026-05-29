@@ -1,0 +1,110 @@
+{
+  "dataset": "BIPIA text attacks",
+  "source": "microsoft/BIPIA@benchmark",
+  "criterion_i_disjoint_split": {
+    "n_train_types": 15,
+    "n_test_types": 15,
+    "overlap_types": [
+      "Language Translation"
+    ],
+    "n_overlap": 1,
+    "after_drop_overlap": {
+      "n_train": 14,
+      "n_test": 14
+    },
+    "PASS": true
+  },
+  "criterion_ii_per_type_N": {
+    "train_min": 5,
+    "train_median": 5,
+    "test_min": 5,
+    "test_median": 5,
+    "total_train_strings": 70,
+    "total_test_strings": 70,
+    "PASS": true
+  },
+  "criterion_iii_within_type_diversity": {
+    "metric": "mean pairwise within-type MiniLM cosine",
+    "aggregate_mean": 0.3524,
+    "per_type": {
+      "train:Information Retrieval": 0.1138,
+      "train:Content Creation": 0.1615,
+      "train:Learning and Tutoring": 0.133,
+      "train:Programming Help": 0.1189,
+      "train:Alphanumeric Substitution": 0.4384,
+      "train:Homophonic Substitution": 0.478,
+      "train:Misspelling Intentionally": 0.4961,
+      "train:Anagramming": 0.5521,
+      "train:Space Removal & Grouping": 0.4238,
+      "train:Instruction": 0.1981,
+      "train:Social Interaction": 0.4135,
+      "train:Persuasion": 0.3167,
+      "train:Clickbait": 0.3117,
+      "train:Malware Distribution": 0.3781,
+      "test:Task Automation": 0.2141,
+      "test:Business Intelligence": 0.22,
+      "test:Conversational Agent": 0.1694,
+      "test:Research Assistance": 0.1548,
+      "test:Sentiment Analysis": 0.2906,
+      "test:Substitution Ciphers": 0.6248,
+      "test:Base Encoding": 0.6194,
+      "test:Reverse Text": 0.5286,
+      "test:Emoji Substitution": 0.7035,
+      "test:Information Dissemination": 0.2926,
+      "test:Marketing & Advertising": 0.4883,
+      "test:Entertainment": 0.3618,
+      "test:Scams & Fraud": 0.2748,
+      "test:Misinformation & Propaganda": 0.3904
+    },
+    "hard_threshold_0.95": {
+      "n_flagged": 0,
+      "flagged": {}
+    },
+    "ref_threshold_0.80_context_only": {
+      "n_at_or_above": 0
+    },
+    "PASS": true
+  },
+  "criterion_iv_train_test_separation": {
+    "centroid_cosine": 0.8291,
+    "note": "descriptive (split is by type); near-1.0 would be a red flag"
+  },
+  "criterion_v_benign_control": {
+    "dataset": "leolee99/NotInject",
+    "loaded": true,
+    "split": "NotInject_one",
+    "rows": 113,
+    "columns": [
+      "prompt",
+      "word_list",
+      "category"
+    ],
+    "PASS": true
+  },
+  "eda_layer_dogfood": {
+    "gate_summary": "2 gate(s) evaluated; 1 error gate(s) FAILED",
+    "splits": {
+      "train": {
+        "n_rows": 70,
+        "char_p95": 98.1,
+        "obfuscation_invisible_rate": 0.0
+      },
+      "test": {
+        "n_rows": 70,
+        "char_p95": 110.94999999999997,
+        "obfuscation_invisible_rate": 0.0
+      }
+    },
+    "cross_split_attack_string_leakage": "no train/test attack-string overlap"
+  },
+  "VERDICT": {
+    "gates": {
+      "i": true,
+      "ii": true,
+      "iii": true,
+      "v": true
+    },
+    "GO": true,
+    "rule": "GO iff i & ii & iii & v all PASS (iv descriptive)"
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "schema_version": "v2",
+  "dataset_name": "deepset2023promptinjections",
+  "run_timestamp": "2026-05-29T02:59:32Z",
+  "split_summaries": {
+    "train": {
+      "split": "train",
+      "n_rows": 546,
+      "n_positive": 203,
+      "n_negative": 343,
+      "pos_pct": 0.3717948717948718,
+      "neg_pos_ratio": 1.6896551724137931,
+      "is_single_class": false,
+      "char_lengths": {
+        "p50": 63.0,
+        "p95": 317.25,
+        "max": 4545
+      },
+      "word_lengths": {
+        "p50": 10.0,
+        "p95": 52.0,
+        "max": 783
+      },
+      "token_lengths": {
+        "p50": 19.0,
+        "p95": 93.0,
+        "max": 999
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 546,
+        "n_with_invisible_chars": 3,
+        "total_invisible_chars": 26,
+        "invisible_char_rate": 0.005494505494505495,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 12,
+        "n_total_alnum_tokens": 10966,
+        "leetspeak_token_rate": 0.0010942914462885281
+      }
+    },
+    "test": {
+      "split": "test",
+      "n_rows": 116,
+      "n_positive": 60,
+      "n_negative": 56,
+      "pos_pct": 0.5172413793103449,
+      "neg_pos_ratio": 0.9333333333333333,
+      "is_single_class": false,
+      "char_lengths": {
+        "p50": 73.5,
+        "p95": 357.5,
+        "max": 632
+      },
+      "word_lengths": {
+        "p50": 12.0,
+        "p95": 59.0,
+        "max": 98
+      },
+      "token_lengths": {
+        "p50": 21.0,
+        "p95": 105.5,
+        "max": 204
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 116,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 2436,
+        "leetspeak_token_rate": 0.0
+      }
+    }
+  },
+  "leakage_reports": {
+    "within_split": {
+      "findings": [
+        {
+          "check_name": "ExactDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {},
+          "evidence": {
+            "dropped_pairs_by_split": {}
+          },
+          "message": "no exact duplicates found",
+          "n_affected": 0
+        },
+        {
+          "check_name": "NearDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {
+            "train": [
+              336,
+              487,
+              490,
+              493,
+              500,
+              503,
+              511,
+              515,
+              520,
+              522,
+              530,
+              533,
+              540
+            ],
+            "test": [
+              107,
+              109,
+              110
+            ]
+          },
+          "evidence": {
+            "threshold": 0.9,
+            "strategy": "TfidfCosineStrategy",
+            "dropped_pairs_by_split": {
+              "train": [
+                [
+                  520,
+                  78,
+                  0.934753591074704
+                ],
+                [
+                  487,
+                  141,
+                  0.9055052966325909
+                ],
+                [
+                  336,
+                  241,
+                  0.9030939974890235
+                ],
+                [
+                  522,
+                  253,
+                  1.0
+                ],
+                [
+                  511,
+                  258,
+                  0.9756763851298202
+                ],
+                [
+                  490,
+                  310,
+                  0.9420479414368255
+                ],
+                [
+                  530,
+                  310,
+                  0.9020072598520158
+                ],
+                [
+                  493,
+                  338,
+                  0.9800293126685652
+                ],
+                [
+                  533,
+                  338,
+                  0.9592350137183707
+                ],
+                [
+                  503,
+                  358,
+                  0.9030121512843708
+                ],
+                [
+                  500,
+                  402,
+                  0.9641115407096201
+                ],
+                [
+                  540,
+                  402,
+                  0.9117223378101845
+                ],
+                [
+                  515,
+                  450,
+                  0.9135614308607993
+                ]
+              ],
+              "test": [
+                [
+                  110,
+                  6,
+                  0.9358899645590159
+                ],
+                [
+                  107,
+                  8,
+                  0.98443793649878
+                ],
+                [
+                  109,
+                  20,
+                  0.9210711462333934
+                ]
+              ]
+            }
+          },
+          "message": "near-duplicate dedup affected 16 rows (threshold=0.90)",
+          "n_affected": 16
+        }
+      ]
+    },
+    "cross_split": {
+      "findings": [
+        {
+          "check_name": "CrossSplitLeakageCheck",
+          "severity": "error",
+          "drop_indices": {},
+          "evidence": {
+            "train_split": "train",
+            "eval_splits": [
+              "test"
+            ],
+            "threshold": 0.9,
+            "strategy": "TfidfCosineStrategy"
+          },
+          "message": "no cross-split leakage above threshold=0.90",
+          "n_affected": 0
+        }
+      ]
+    }
+  },
+  "gates": [
+    {
+      "name": "class_balance",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits within neg:pos ratio [0.1, 10.0]",
+      "evidence": {
+        "min_ratio": 0.1,
+        "max_ratio": 10.0,
+        "offending_splits": {}
+      }
+    },
+    {
+      "name": "no_cross_split_leakage",
+      "passed": true,
+      "severity": "error",
+      "message": "no cross-split leakage errors",
+      "evidence": {
+        "n_error_findings": 0,
+        "n_affected": 0,
+        "findings": []
+      }
+    },
+    {
+      "name": "context_window_fit",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits keep <5% of rows over the context window",
+      "evidence": {
+        "threshold": 0.05,
+        "offending_splits": {}
+      }
+    }
+  ],
+  "gate_passed": true,
+  "gate_summary": "3 gate(s) evaluated; all passed"
+}

@@ -105,6 +105,11 @@ entries:
     for agent-level eval, weak as encoder training data.
 
 - bibkey: llmailinject2025microsoft
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 461640
+    role: needs_custom_derivation
+    note: success flags nested in objectives JSON; needs custom parse
   primary_url: https://huggingface.co/datasets/microsoft/llmail-inject-challenge
   name: 'LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge'
   source: huggingface
@@ -162,6 +167,11 @@ entries:
 # ============================================================================
 
 - bibkey: deepset2023promptinjections
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 662
+    role: binary_detection
+    gate: PASS
   primary_url: https://huggingface.co/datasets/deepset/prompt-injections
   name: deepset/prompt-injections
   source: huggingface
@@ -185,6 +195,12 @@ entries:
     JasperLS/prompt-injections.
 
 - bibkey: jackhhao2023jailbreakclassification
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 1306
+    role: binary_detection
+    flags:
+    - 'leaky_official_split: 51/262 test rows >=0.9 train-match (verified near-dup)'
   primary_url: https://huggingface.co/datasets/jackhhao/jailbreak-classification
   name: jackhhao/jailbreak-classification
   source: huggingface
@@ -207,6 +223,13 @@ entries:
     has train/test split. Confirmed component of the ProtectAI deberta-v3-v2 training mixture.
 
 - bibkey: xtram12024safeguardpromptinjection
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 10296
+    role: binary_detection
+    flags:
+    - 'leaky_official_split: 120 affected'
+    - mismatched_citation (card cites GLAN arXiv:2402.13064)
   primary_url: https://huggingface.co/datasets/xTRam1/safe-guard-prompt-injection
   name: xTRam1/safe-guard-prompt-injection
   source: huggingface
@@ -231,6 +254,13 @@ entries:
     provenance before publishing a trained model.
 
 - bibkey: reshabhs2024spmlchatbotpromptinjection
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 16012
+    role: binary_detection
+    gate: PASS
+    encoder_readiness_corrected: drop-in (was derivable)
+    note: multi-col text System+User Prompt -> Prompt injection 0/1; heuristic false-negative corrected
   primary_url: https://huggingface.co/datasets/reshabhs/SPML_Chatbot_Prompt_Injection
   name: reshabhs/SPML_Chatbot_Prompt_Injection
   source: huggingface
@@ -254,6 +284,13 @@ entries:
     concatenate/select System+User as text, map Prompt injection -> label; supply your own split. English.
 
 - bibkey: jayavibhav2024promptinjection
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 327154
+    role: binary_detection
+    flags:
+    - leaky_official_split
+    - much larger than carded (~327k)
   primary_url: https://huggingface.co/datasets/jayavibhav/prompt-injection
   name: jayavibhav/prompt-injection
   source: huggingface
@@ -277,6 +314,12 @@ entries:
     a trained model); likely synthetic/aggregated, provenance undocumented (empty card).
 
 - bibkey: jayavibhav2024promptinjectionsafety
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 60000
+    role: multiclass
+    encoder_readiness_corrected: multiclass (was drop-in)
+    note: 3-class {0:23414,1:22586,2:4000}; NOT binary
   primary_url: https://huggingface.co/datasets/jayavibhav/prompt-injection-safety
   name: jayavibhav/prompt-injection-safety
   source: huggingface
@@ -300,6 +343,13 @@ entries:
     binary for an injection/benign head). CAVEAT: license UNDISCLOSED.
 
 - bibkey: gentellab2024gentelbench
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 177015
+    role: binary_detection
+    gate: PASS
+    encoder_readiness_corrected: drop-in via per-file load
+    note: HF auto-concat fails (jailbreaking file uses combined_text not text); load 3 parquets + rename. Heuristic false LOAD-FAIL corrected
   primary_url: https://huggingface.co/datasets/GenTelLab/gentelbench-v1
   name: 'GenTel-Bench (gentelbench-v1)'
   source: huggingface
@@ -328,6 +378,11 @@ entries:
 # ============================================================================
 
 - bibkey: leolee2024notinject
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 339
+    role: benign_control
+    note: all-benign over-defense FPR set (4 categories)
   primary_url: https://huggingface.co/datasets/leolee99/NotInject
   name: NotInject
   source: huggingface
@@ -383,6 +438,11 @@ entries:
 # ============================================================================
 
 - bibkey: hackaprompt2023emnlp
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 601757
+    role: different_task
+    note: '`correct` label = ATTACK-SUCCESS, not injection-presence; NOT a binary injection detector'
   primary_url: https://huggingface.co/datasets/hackaprompt/hackaprompt-dataset
   name: hackaprompt/hackaprompt-dataset
   source: huggingface
@@ -547,6 +607,13 @@ entries:
 # ============================================================================
 
 - bibkey: hendzh2025promptshield
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 43425
+    role: binary_detection
+    splits: train/val/test
+    flags:
+    - 'leaky_official_split: 86 affected'
   primary_url: https://huggingface.co/datasets/hendzh/PromptShield
   name: 'PromptShield (hendzh/PromptShield)'
   source: huggingface
@@ -572,6 +639,14 @@ entries:
     native train/val/test — directly ModernBERT-usable. apache-2.0, ungated. arXiv:2501.15145 (UC Berkeley).
 
 - bibkey: guychuk2024benignmalicious
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 464470
+    role: binary_detection
+    gate: PASS
+    flags:
+    - very large (~464k)
+    - has a >8192-token text
   primary_url: https://huggingface.co/datasets/guychuk/benign-malicious-prompt-classification
   name: guychuk/benign-malicious-prompt-classification
   source: huggingface
@@ -598,6 +673,10 @@ entries:
     apache-2.0, ungated. Provenance undocumented (no paper/source on card) — flag for data-provenance.
 
 - bibkey: harelix2024mixedtechniques
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    role: excluded
+    note: "404 \u2014 dataset does not exist on the Hub (confirms unverified)"
   primary_url: https://huggingface.co/datasets/Harelix/Prompt-Injection-Mixed-Techniques-2024
   name: Harelix/Prompt-Injection-Mixed-Techniques-2024
   source: huggingface
@@ -624,6 +703,11 @@ entries:
     lib to lock columns + label semantics before any training use.
 
 - bibkey: shen2023inthewild
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    role: positive_pool
+    flags:
+    - single_class (all jailbreak); pair with benigns
   primary_url: https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts
   name: 'TrustAIRLab/in-the-wild-jailbreak-prompts ("Do Anything Now")'
   source: huggingface
@@ -678,6 +762,13 @@ entries:
 # --- Phase-A expansion — BATCH 2 (guard / over-defense / agentic; high study_relevance) ---
 
 - bibkey: lin2023toxicchat
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 10165
+    role: binary_detection
+    flags:
+    - 'class_imbalance: 7% positive (ratio>=10)'
+    - 'leaky_official_split: 362 affected'
   primary_url: https://huggingface.co/datasets/lmsys/toxic-chat
   name: lmsys/toxic-chat
   source: huggingface
@@ -703,6 +794,10 @@ entries:
     predefined split. ⚠ NC license => non-commercial research only.
 
 - bibkey: han2024wildguard
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    role: excluded
+    note: "gated \u2014 load blocked even with HF token; needs gate acceptance"
   primary_url: https://huggingface.co/datasets/allenai/wildguardmix
   name: allenai/wildguardmix
   source: huggingface
@@ -729,6 +824,11 @@ entries:
     license odc-by. `adversarial` flag is a useful shortcut-vs-adversarial signal for our EDA.
 
 - bibkey: rottger2024xstest
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 2700
+    role: benign_control
+    note: over-refusal eval (18 types)
   primary_url: https://huggingface.co/datasets/natolambert/xstest-v2-copy
   name: natolambert/xstest-v2-copy
   source: huggingface
@@ -755,6 +855,11 @@ entries:
     license cc-by-4.0 (prompts; model completions retain Meta/Mistral/OpenAI terms).
 
 - bibkey: cui2024orbench
+  verification: load-inspected 2026-05-28 (see experiments/eda/ledger_corrections.md)
+  eda:
+    rows: 80359
+    role: benign_control
+    note: over-refusal eval (10 categories; config or-bench-80k)
   primary_url: https://huggingface.co/datasets/bench-llm/or-bench
   name: bench-llm/or-bench
   source: huggingface

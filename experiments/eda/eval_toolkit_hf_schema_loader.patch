@@ -1,0 +1,189 @@
+diff --git a/src/eval_toolkit/loaders.py b/src/eval_toolkit/loaders.py
+index 9392661..c07e3f0 100644
+--- a/src/eval_toolkit/loaders.py
++++ b/src/eval_toolkit/loaders.py
+@@ -429,6 +429,10 @@ class HFDatasetsLoader:
+     label_col: str = "label"
+     strata_col: str | None = None
+     config_name: str | None = None
++    feature_cols: Sequence[str] | None = None
++    feature_join: str = "\n\n"
++    label_map: Mapping[Any, int] | None = None
++    revision: str | None = None
+     name: str = ""
+     description: str = ""
+     cite_as: str = ""
+@@ -452,34 +456,66 @@ class HFDatasetsLoader:
+                 "HFDatasetsLoader requires datasets. Install with: pip install datasets"
+             ) from exc
+         if self.config_name is not None:
+-            return cast(Mapping[str, Any], load_dataset(self.repo_id, name=self.config_name))
+-        return cast(Mapping[str, Any], load_dataset(self.repo_id))
++            return cast(
++                Mapping[str, Any],
++                load_dataset(self.repo_id, name=self.config_name, revision=self.revision),
++            )
++        return cast(Mapping[str, Any], load_dataset(self.repo_id, revision=self.revision))
+ 
+     def load_splits(self) -> dict[str, EvalSlice]:
+         """Convert each requested HF split to an :class:`EvalSlice`.
+ 
++        When ``feature_cols`` is given, those columns are stringified and joined
++        with ``feature_join`` into a single synthesized feature column (e.g. a
++        system+user prompt pair). When ``label_map`` is given, raw label values
++        are remapped through it (e.g. ``{"benign": 0, "injection": 1}``); any
++        value the map does not cover raises ``ValueError`` (fail-fast, no silent
++        NaN labels).
++
+         Raises
+         ------
+         KeyError
+-            If any split's pandas DataFrame is missing ``feature_col`` or
+-            ``label_col``.
++            If any split's DataFrame is missing a required feature/label column
++            (the error lists the observed columns).
++        ValueError
++            If ``label_map`` leaves any label value unmapped.
+         """
+         ds = self._load_dataset()
+         ds_splits = list(ds.keys()) if self.splits is None else list(self.splits)
++        feat_cols = list(self.feature_cols) if self.feature_cols else [self.feature_col]
+         out: dict[str, EvalSlice] = {}
+         for split_name in ds_splits:
+-            sub = ds[split_name]
+-            df = sub.to_pandas()
++            df = ds[split_name].to_pandas()
+             _check_required_columns(
+                 df,
+-                (self.feature_col, self.label_col),
++                (*feat_cols, self.label_col),
+                 context=f"HFDatasetsLoader: split {split_name!r}",
+             )
++            if self.feature_cols:
++                df = df.copy()
++                synth = "\x00".join(feat_cols)  # collision-proof synthesized name
++                # NaN-safe: fill missing then stringify per column (pandas 3.0 keeps
++                # NaN as a float through a bare astype(str), which breaks str.join).
++                cols = df[feat_cols].apply(lambda s: s.fillna("").astype(str))
++                df[synth] = cols.apply(lambda row: self.feature_join.join(row.tolist()), axis=1)
++                feature_col = synth
++            else:
++                feature_col = self.feature_col
++            if self.label_map is not None:
++                df = df.copy()
++                mapped = df[self.label_col].map(self.label_map)
++                if mapped.isna().any():
++                    unmapped = sorted(set(df[self.label_col][mapped.isna()].unique()), key=str)
++                    raise ValueError(
++                        f"HFDatasetsLoader: split {split_name!r} label_map did not cover "
++                        f"values {unmapped}; map keys: {sorted(self.label_map, key=str)}"
++                    )
++                df[self.label_col] = mapped
+             out[split_name] = EvalSlice(
+                 name=split_name,
+                 df=df,
+                 description=self.description,
+-                feature_col=self.feature_col,
++                feature_col=feature_col,
+                 label_col=self.label_col,
+                 strata_col=self.strata_col,
+             )
+diff --git a/tests/test_loaders.py b/tests/test_loaders.py
+index 5f74f70..ffb5eb7 100644
+--- a/tests/test_loaders.py
++++ b/tests/test_loaders.py
+@@ -159,3 +159,94 @@ def test_dataframe_loader_rejects_missing_strata() -> None:
+     df = pd.DataFrame({"split": ["train"], "text": ["a"], "label": [0]})
+     with pytest.raises(KeyError, match="strata column"):
+         DataFrameLoader(df=df, split_col="split", strata_col="missing")
++
++
++# --- HFDatasetsLoader schema-aware extensions (feature_cols / label_map / revision) ---
++
++
++class _FakeHFDataset:
++    """Minimal stand-in for a HF Dataset (exposes .to_pandas())."""
++
++    def __init__(self, df: pd.DataFrame) -> None:
++        self._df = df
++
++    def to_pandas(self) -> pd.DataFrame:
++        return self._df
++
++
++@pytest.mark.unit
++def test_hf_loader_feature_cols_joins_multiple_columns(monkeypatch) -> None:
++    df = pd.DataFrame(
++        {"System Prompt": ["sys"], "User Prompt": ["usr"], "Prompt injection": [1]}
++    )
++    loader = HFDatasetsLoader(
++        repo_id="x",
++        feature_cols=["System Prompt", "User Prompt"],
++        feature_join=" || ",
++        label_col="Prompt injection",
++    )
++    monkeypatch.setattr(HFDatasetsLoader, "_load_dataset", lambda self: {"train": _FakeHFDataset(df)})
++    sl = loader.load_splits()["train"]
++    assert sl.df[sl.feature_col].iloc[0] == "sys || usr"
++    assert sl.label_col == "Prompt injection"
++
++
++@pytest.mark.unit
++def test_hf_loader_feature_cols_nan_safe(monkeypatch) -> None:
++    # A missing value in one feature column must not break the join (pandas 3.0
++    # keeps NaN as float through astype(str)); it should render as empty.
++    df = pd.DataFrame({"System Prompt": ["sys", None], "User Prompt": ["usr", "u2"], "label": [0, 1]})
++    loader = HFDatasetsLoader(repo_id="x", feature_cols=["System Prompt", "User Prompt"], feature_join=" | ")
++    monkeypatch.setattr(HFDatasetsLoader, "_load_dataset", lambda self: {"train": _FakeHFDataset(df)})
++    sl = loader.load_splits()["train"]
++    assert sl.df[sl.feature_col].iloc[0] == "sys | usr"
++    assert sl.df[sl.feature_col].iloc[1] == " | u2"  # missing System Prompt -> empty
++
++
++@pytest.mark.unit
++def test_hf_loader_label_map_remaps_string_labels(monkeypatch) -> None:
++    df = pd.DataFrame({"text": ["a", "b"], "verdict": ["benign", "injection"]})
++    loader = HFDatasetsLoader(
++        repo_id="x", feature_col="text", label_col="verdict",
++        label_map={"benign": 0, "injection": 1},
++    )
++    monkeypatch.setattr(HFDatasetsLoader, "_load_dataset", lambda self: {"train": _FakeHFDataset(df)})
++    sl = loader.load_splits()["train"]
++    assert list(sl.df["verdict"]) == [0, 1]
++
++
++@pytest.mark.unit
++def test_hf_loader_label_map_fail_fast_on_unmapped_value(monkeypatch) -> None:
++    df = pd.DataFrame({"text": ["a"], "verdict": ["surprise"]})
++    loader = HFDatasetsLoader(repo_id="x", feature_col="text", label_col="verdict", label_map={"benign": 0})
++    monkeypatch.setattr(HFDatasetsLoader, "_load_dataset", lambda self: {"train": _FakeHFDataset(df)})
++    with pytest.raises(ValueError, match=r"label_map did not cover.*surprise"):
++        loader.load_splits()
++
++
++@pytest.mark.unit
++def test_hf_loader_missing_feature_col_lists_observed_columns(monkeypatch) -> None:
++    df = pd.DataFrame({"prompt": ["a"], "label": [1]})  # has 'prompt', not 'text'
++    loader = HFDatasetsLoader(repo_id="x", feature_col="text", label_col="label")
++    monkeypatch.setattr(HFDatasetsLoader, "_load_dataset", lambda self: {"train": _FakeHFDataset(df)})
++    with pytest.raises(KeyError, match=r"missing column 'text'.*available.*prompt"):
++        loader.load_splits()
++
++
++@pytest.mark.unit
++def test_hf_loader_forwards_revision_to_load_dataset(monkeypatch) -> None:
++    import sys
++    import types
++
++    captured: dict[str, object] = {}
++
++    def fake_load_dataset(repo_id, name=None, revision=None):  # noqa: ANN001
++        captured.update(repo_id=repo_id, name=name, revision=revision)
++        return {"train": _FakeHFDataset(pd.DataFrame({"text": ["a"], "label": [1]}))}
++
++    fake_mod = types.ModuleType("datasets")
++    fake_mod.load_dataset = fake_load_dataset  # type: ignore[attr-defined]
++    monkeypatch.setitem(sys.modules, "datasets", fake_mod)
++    HFDatasetsLoader(repo_id="repo/x", revision="abc123").load_splits()
++    assert captured["revision"] == "abc123"
++    assert captured["repo_id"] == "repo/x"

@@ -1,0 +1,562 @@
+{
+  "schema_version": "v2",
+  "dataset_name": "hendzh2025promptshield",
+  "run_timestamp": "2026-05-29T03:01:48Z",
+  "split_summaries": {
+    "train": {
+      "split": "train",
+      "n_rows": 6569,
+      "n_positive": 3297,
+      "n_negative": 3272,
+      "pos_pct": 0.5019028771502512,
+      "neg_pos_ratio": 0.9924173491052471,
+      "is_single_class": false,
+      "char_lengths": {
+        "p50": 319.0,
+        "p95": 2354.5999999999995,
+        "max": 31102
+      },
+      "word_lengths": {
+        "p50": 51.0,
+        "p95": 394.0,
+        "max": 4778
+      },
+      "token_lengths": {
+        "p50": 78.0,
+        "p95": 545.5999999999995,
+        "max": 6743
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 6569,
+        "n_with_invisible_chars": 8,
+        "total_invisible_chars": 13,
+        "invisible_char_rate": 0.001217841376160755,
+        "n_with_nfkc_change": 111,
+        "n_with_nfkc_length_delta": 31,
+        "total_nfkc_char_delta": 93,
+        "nfkc_change_rate": 0.016897549094230475,
+        "n_with_high_entropy_run": 1,
+        "high_entropy_run_rate": 0.00015223017202009437,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 615,
+        "n_total_alnum_tokens": 651074,
+        "leetspeak_token_rate": 0.0009445930877288911
+      }
+    },
+    "test": {
+      "split": "test",
+      "n_rows": 8091,
+      "n_positive": 2229,
+      "n_negative": 5862,
+      "pos_pct": 0.27549128661475714,
+      "neg_pos_ratio": 2.629878869448183,
+      "is_single_class": false,
+      "char_lengths": {
+        "p50": 422.0,
+        "p95": 2622.0,
+        "max": 19453
+      },
+      "word_lengths": {
+        "p50": 67.0,
+        "p95": 426.0,
+        "max": 3306
+      },
+      "token_lengths": {
+        "p50": 105.0,
+        "p95": 599.0,
+        "max": 5501
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 8091,
+        "n_with_invisible_chars": 9,
+        "total_invisible_chars": 20,
+        "invisible_char_rate": 0.0011123470522803114,
+        "n_with_nfkc_change": 128,
+        "n_with_nfkc_length_delta": 11,
+        "total_nfkc_char_delta": 24,
+        "nfkc_change_rate": 0.01582004696576443,
+        "n_with_high_entropy_run": 2,
+        "high_entropy_run_rate": 0.00024718823384006923,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 2287,
+        "n_total_alnum_tokens": 995262,
+        "leetspeak_token_rate": 0.0022978873904559802
+      }
+    },
+    "validation": {
+      "split": "validation",
+      "n_rows": 340,
+      "n_positive": 186,
+      "n_negative": 154,
+      "pos_pct": 0.5470588235294118,
+      "neg_pos_ratio": 0.8279569892473119,
+      "is_single_class": false,
+      "char_lengths": {
+        "p50": 304.0,
+        "p95": 2432.55,
+        "max": 5899
+      },
+      "word_lengths": {
+        "p50": 50.0,
+        "p95": 410.1,
+        "max": 1013
+      },
+      "token_lengths": {
+        "p50": 75.0,
+        "p95": 579.5000000000003,
+        "max": 1247
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 340,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 6,
+        "n_with_nfkc_length_delta": 3,
+        "total_nfkc_char_delta": 5,
+        "nfkc_change_rate": 0.01764705882352941,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 29,
+        "n_total_alnum_tokens": 34376,
+        "leetspeak_token_rate": 0.000843611822201536
+      }
+    }
+  },
+  "leakage_reports": {
+    "within_split": {
+      "findings": [
+        {
+          "check_name": "ExactDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {
+            "train": [
+              2485,
+              3330,
+              3644,
+              4382,
+              4383,
+              4491,
+              4531,
+              4556,
+              5243,
+              5374,
+              5721,
+              5975,
+              6012,
+              6269,
+              6356
+            ],
+            "test": [
+              1061,
+              1121,
+              1196,
+              1792,
+              1850,
+              2169,
+              2531,
+              2748,
+              2847,
+              2937,
+              2948,
+              3390,
+              3416,
+              3602,
+              3651,
+              3668,
+              4315,
+              4478,
+              4494,
+              5262,
+              5385,
+              5705,
+              5920,
+              6106,
+              6543,
+              6934,
+              7243,
+              7339,
+              7665,
+              7858
+            ],
+            "validation": [
+              175
+            ]
+          },
+          "evidence": {
+            "dropped_pairs_by_split": {
+              "train": [
+                [
+                  5975,
+                  169,
+                  1.0
+                ],
+                [
+                  2485,
+                  877,
+                  1.0
+                ],
+                [
+                  5243,
+                  1120,
+                  1.0
+                ],
+                [
+                  6356,
+                  1254,
+                  1.0
+                ],
+                [
+                  4531,
+                  1751,
+                  1.0
+                ],
+                [
+                  6012,
+                  1751,
+                  1.0
+                ],
+                [
+                  3330,
+                  2235,
+                  1.0
+                ],
+                [
+                  5721,
+                  2261,
+                  1.0
+                ],
+                [
+                  4383,
+                  2385,
+                  1.0
+                ],
+                [
+                  6269,
+                  2677,
+                  1.0
+                ],
+                [
+                  4556,
+                  2894,
+                  1.0
+                ],
+                [
+                  4491,
+                  2967,
+                  1.0
+                ],
+                [
+                  3644,
+                  3204,
+                  1.0
+                ],
+                [
+                  4382,
+                  4073,
+                  1.0
+                ],
+                [
+                  5374,
+                  4207,
+                  1.0
+                ]
+              ],
+              "test": [
+                [
+                  2169,
+                  125,
+                  1.0
+                ],
+                [
+                  1196,
+                  307,
+                  1.0
+                ],
+                [
+                  7858,
+                  492,
+                  1.0
+                ],
+                [
+                  1061,
+                  765,
+                  1.0
+                ],
+                [
+                  1121,
+                  765,
+                  1.0
+                ],
+                [
+                  1850,
+                  765,
+                  1.0
+                ],
+                [
+                  2531,
+                  765,
+                  1.0
+                ],
+                [
+                  2748,
+                  765,
+                  1.0
+                ],
+                [
+                  2847,
+                  765,
+                  1.0
+                ],
+                [
+                  2937,
+                  765,
+                  1.0
+                ],
+                [
+                  2948,
+                  765,
+                  1.0
+                ],
+                [
+                  3416,
+                  765,
+                  1.0
+                ],
+                [
+                  3602,
+                  765,
+                  1.0
+                ],
+                [
+                  4315,
+                  765,
+                  1.0
+                ],
+                [
+                  4478,
+                  765,
+                  1.0
+                ],
+                [
+                  4494,
+                  765,
+                  1.0
+                ],
+                [
+                  5262,
+                  765,
+                  1.0
+                ],
+                [
+                  5385,
+                  765,
+                  1.0
+                ],
+                [
+                  5920,
+                  765,
+                  1.0
+                ],
+                [
+                  6106,
+                  765,
+                  1.0
+                ],
+                [
+                  6934,
+                  765,
+                  1.0
+                ],
+                [
+                  7665,
+                  765,
+                  1.0
+                ],
+                [
+                  1792,
+                  1389,
+                  1.0
+                ],
+                [
+                  3390,
+                  1389,
+                  1.0
+                ],
+                [
+                  5705,
+                  1389,
+                  1.0
+                ],
+                [
+                  3668,
+                  2528,
+                  1.0
+                ],
+                [
+                  3651,
+                  3227,
+                  1.0
+                ],
+                [
+                  6543,
+                  4412,
+                  1.0
+                ],
+                [
+                  7243,
+                  5673,
+                  1.0
+                ],
+                [
+                  7339,
+                  6386,
+                  1.0
+                ]
+              ],
+              "validation": [
+                [
+                  175,
+                  173,
+                  1.0
+                ]
+              ]
+            }
+          },
+          "message": "exact-duplicate dedup affected 46 rows across 3 split(s)",
+          "n_affected": 46
+        }
+      ]
+    },
+    "cross_split": {
+      "findings": [
+        {
+          "check_name": "CrossSplitLeakageCheck",
+          "severity": "error",
+          "drop_indices": {
+            "validation": [
+              2,
+              4,
+              16,
+              28,
+              56,
+              68,
+              71,
+              80,
+              84,
+              94,
+              145,
+              158,
+              178,
+              196,
+              211,
+              261,
+              267,
+              276,
+              290,
+              304,
+              309,
+              311
+            ]
+          },
+          "evidence": {
+            "train_split": "train",
+            "eval_splits": [
+              "test",
+              "validation"
+            ],
+            "threshold": 0.9,
+            "strategy": "TfidfCosineStrategy"
+          },
+          "message": "cross-split leakage: 22 eval rows near-duplicate to 'train' (threshold=0.90)",
+          "n_affected": 22
+        }
+      ]
+    }
+  },
+  "gates": [
+    {
+      "name": "class_balance",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits within neg:pos ratio [0.1, 10.0]",
+      "evidence": {
+        "min_ratio": 0.1,
+        "max_ratio": 10.0,
+        "offending_splits": {}
+      }
+    },
+    {
+      "name": "no_cross_split_leakage",
+      "passed": false,
+      "severity": "error",
+      "message": "22 eval row(s) leak across splits (1 error finding(s))",
+      "evidence": {
+        "n_error_findings": 1,
+        "n_affected": 22,
+        "findings": [
+          {
+            "check_name": "CrossSplitLeakageCheck",
+            "severity": "error",
+            "drop_indices": {
+              "validation": [
+                2,
+                4,
+                16,
+                28,
+                56,
+                68,
+                71,
+                80,
+                84,
+                94,
+                145,
+                158,
+                178,
+                196,
+                211,
+                261,
+                267,
+                276,
+                290,
+                304,
+                309,
+                311
+              ]
+            },
+            "evidence": {
+              "train_split": "train",
+              "eval_splits": [
+                "test",
+                "validation"
+              ],
+              "threshold": 0.9,
+              "strategy": "TfidfCosineStrategy"
+            },
+            "message": "cross-split leakage: 22 eval rows near-duplicate to 'train' (threshold=0.90)",
+            "n_affected": 22
+          }
+        ]
+      }
+    },
+    {
+      "name": "context_window_fit",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits keep <5% of rows over the context window",
+      "evidence": {
+        "threshold": 0.05,
+        "offending_splits": {}
+      }
+    }
+  ],
+  "gate_passed": false,
+  "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED"
+}

@@ -88,6 +88,9 @@ prompt-injection-detection-prototype = { path = "../prompt-injection-detection-s
 [tool.ruff]
 line-length = 100
 target-version = "py313"
+# experiments/ holds exploratory EDA drivers + experiment-record scaffolds, not library
+# code — excluded from strict lint (src/ scripts/ tests/ stay fully linted + mypy-strict).
+extend-exclude = ["experiments/"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "N", "W"]

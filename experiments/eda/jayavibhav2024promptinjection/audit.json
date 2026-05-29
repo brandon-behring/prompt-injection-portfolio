@@ -1,0 +1,186 @@
+{
+  "schema_version": "v2",
+  "dataset_name": "jayavibhav2024promptinjection",
+  "run_timestamp": "2026-05-29T03:00:46Z",
+  "split_summaries": {
+    "test": {
+      "split": "test",
+      "n_rows": 2980,
+      "n_positive": 1516,
+      "n_negative": 1464,
+      "pos_pct": 0.508724832214765,
+      "neg_pos_ratio": 0.9656992084432717,
+      "is_single_class": false,
+      "char_lengths": {
+        "p50": 352.0,
+        "p95": 669.0,
+        "max": 2407
+      },
+      "word_lengths": {
+        "p50": 51.0,
+        "p95": 106.0,
+        "max": 437
+      },
+      "token_lengths": {
+        "p50": 79.0,
+        "p95": 143.0,
+        "max": 553
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 2980,
+        "n_with_invisible_chars": 11,
+        "total_invisible_chars": 36,
+        "invisible_char_rate": 0.003691275167785235,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 134,
+        "n_total_alnum_tokens": 169354,
+        "leetspeak_token_rate": 0.000791242013769973
+      }
+    },
+    "train": {
+      "split": "train",
+      "n_rows": 12020,
+      "n_positive": 5997,
+      "n_negative": 6023,
+      "pos_pct": 0.49891846921797006,
+      "neg_pos_ratio": 1.0043355010838753,
+      "is_single_class": false,
+      "char_lengths": {
+        "p50": 349.0,
+        "p95": 673.0499999999993,
+        "max": 8374
+      },
+      "word_lengths": {
+        "p50": 50.0,
+        "p95": 105.0,
+        "max": 1330
+      },
+      "token_lengths": {
+        "p50": 78.0,
+        "p95": 145.0,
+        "max": 1864
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 12020,
+        "n_with_invisible_chars": 37,
+        "total_invisible_chars": 107,
+        "invisible_char_rate": 0.0030782029950083196,
+        "n_with_nfkc_change": 4,
+        "n_with_nfkc_length_delta": 3,
+        "total_nfkc_char_delta": 6,
+        "nfkc_change_rate": 0.00033277870216306157,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 631,
+        "n_total_alnum_tokens": 685718,
+        "leetspeak_token_rate": 0.0009202033488985268
+      }
+    }
+  },
+  "leakage_reports": {
+    "within_split": {
+      "findings": [
+        {
+          "check_name": "ExactDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {},
+          "evidence": {
+            "dropped_pairs_by_split": {}
+          },
+          "message": "no exact duplicates found",
+          "n_affected": 0
+        }
+      ]
+    },
+    "cross_split": {
+      "findings": [
+        {
+          "check_name": "CrossSplitLeakageCheck",
+          "severity": "error",
+          "drop_indices": {
+            "test": [
+              280
+            ]
+          },
+          "evidence": {
+            "train_split": "train",
+            "eval_splits": [
+              "test"
+            ],
+            "threshold": 0.9,
+            "strategy": "TfidfCosineStrategy"
+          },
+          "message": "cross-split leakage: 1 eval rows near-duplicate to 'train' (threshold=0.90)",
+          "n_affected": 1
+        }
+      ]
+    }
+  },
+  "gates": [
+    {
+      "name": "class_balance",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits within neg:pos ratio [0.1, 10.0]",
+      "evidence": {
+        "min_ratio": 0.1,
+        "max_ratio": 10.0,
+        "offending_splits": {}
+      }
+    },
+    {
+      "name": "no_cross_split_leakage",
+      "passed": false,
+      "severity": "error",
+      "message": "1 eval row(s) leak across splits (1 error finding(s))",
+      "evidence": {
+        "n_error_findings": 1,
+        "n_affected": 1,
+        "findings": [
+          {
+            "check_name": "CrossSplitLeakageCheck",
+            "severity": "error",
+            "drop_indices": {
+              "test": [
+                280
+              ]
+            },
+            "evidence": {
+              "train_split": "train",
+              "eval_splits": [
+                "test"
+              ],
+              "threshold": 0.9,
+              "strategy": "TfidfCosineStrategy"
+            },
+            "message": "cross-split leakage: 1 eval rows near-duplicate to 'train' (threshold=0.90)",
+            "n_affected": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "context_window_fit",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits keep <5% of rows over the context window",
+      "evidence": {
+        "threshold": 0.05,
+        "offending_splits": {}
+      }
+    }
+  ],
+  "gate_passed": false,
+  "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED"
+}

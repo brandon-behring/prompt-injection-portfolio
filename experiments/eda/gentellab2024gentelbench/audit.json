@@ -1,0 +1,376 @@
+{
+  "schema_version": "v2",
+  "dataset_name": "gentellab2024gentelbench",
+  "run_timestamp": "2026-05-29T03:05:18Z",
+  "split_summaries": {
+    "train": {
+      "split": "train",
+      "n_rows": 15000,
+      "n_positive": 7823,
+      "n_negative": 7177,
+      "pos_pct": 0.5215333333333333,
+      "neg_pos_ratio": 0.9174229835101624,
+      "is_single_class": false,
+      "char_lengths": {
+        "p50": 506.0,
+        "p95": 1446.0499999999993,
+        "max": 22627
+      },
+      "word_lengths": {
+        "p50": 81.0,
+        "p95": 216.0,
+        "max": 2298
+      },
+      "token_lengths": {
+        "p50": 117.0,
+        "p95": 361.0,
+        "max": 6555
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 15000,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 70,
+        "n_with_nfkc_length_delta": 56,
+        "total_nfkc_char_delta": 329,
+        "nfkc_change_rate": 0.004666666666666667,
+        "n_with_high_entropy_run": 9,
+        "high_entropy_run_rate": 0.0006,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 2802,
+        "n_total_alnum_tokens": 1508093,
+        "leetspeak_token_rate": 0.0018579756023003886
+      }
+    }
+  },
+  "leakage_reports": {
+    "within_split": {
+      "findings": [
+        {
+          "check_name": "ExactDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {
+            "train": [
+              265,
+              333,
+              385,
+              647,
+              671,
+              720,
+              735,
+              790,
+              907,
+              992,
+              1054,
+              1337,
+              1428,
+              1684,
+              1814,
+              1831,
+              1923,
+              2463,
+              2491,
+              2534,
+              2694,
+              2722,
+              2787,
+              3938,
+              6542,
+              7141,
+              7754,
+              7844,
+              7930,
+              7950,
+              9284,
+              10187,
+              10325,
+              10882,
+              11038,
+              11146,
+              11766,
+              12788,
+              13563,
+              14092,
+              14095,
+              14888
+            ]
+          },
+          "evidence": {
+            "dropped_pairs_by_split": {
+              "train": [
+                [
+                  265,
+                  227,
+                  1.0
+                ],
+                [
+                  333,
+                  227,
+                  1.0
+                ],
+                [
+                  385,
+                  227,
+                  1.0
+                ],
+                [
+                  647,
+                  227,
+                  1.0
+                ],
+                [
+                  671,
+                  227,
+                  1.0
+                ],
+                [
+                  720,
+                  227,
+                  1.0
+                ],
+                [
+                  735,
+                  227,
+                  1.0
+                ],
+                [
+                  992,
+                  227,
+                  1.0
+                ],
+                [
+                  1054,
+                  227,
+                  1.0
+                ],
+                [
+                  1337,
+                  227,
+                  1.0
+                ],
+                [
+                  1428,
+                  227,
+                  1.0
+                ],
+                [
+                  1814,
+                  227,
+                  1.0
+                ],
+                [
+                  1923,
+                  227,
+                  1.0
+                ],
+                [
+                  2463,
+                  227,
+                  1.0
+                ],
+                [
+                  2491,
+                  227,
+                  1.0
+                ],
+                [
+                  2534,
+                  227,
+                  1.0
+                ],
+                [
+                  2694,
+                  227,
+                  1.0
+                ],
+                [
+                  2722,
+                  227,
+                  1.0
+                ],
+                [
+                  2787,
+                  227,
+                  1.0
+                ],
+                [
+                  790,
+                  289,
+                  1.0
+                ],
+                [
+                  1831,
+                  349,
+                  1.0
+                ],
+                [
+                  907,
+                  438,
+                  1.0
+                ],
+                [
+                  12788,
+                  878,
+                  1.0
+                ],
+                [
+                  1684,
+                  980,
+                  1.0
+                ],
+                [
+                  11038,
+                  1095,
+                  1.0
+                ],
+                [
+                  3938,
+                  1420,
+                  1.0
+                ],
+                [
+                  14095,
+                  2300,
+                  1.0
+                ],
+                [
+                  10882,
+                  3013,
+                  1.0
+                ],
+                [
+                  7754,
+                  3633,
+                  1.0
+                ],
+                [
+                  7141,
+                  3668,
+                  1.0
+                ],
+                [
+                  6542,
+                  3943,
+                  1.0
+                ],
+                [
+                  10325,
+                  4430,
+                  1.0
+                ],
+                [
+                  7844,
+                  5486,
+                  1.0
+                ],
+                [
+                  11766,
+                  5631,
+                  1.0
+                ],
+                [
+                  9284,
+                  6283,
+                  1.0
+                ],
+                [
+                  7930,
+                  6424,
+                  1.0
+                ],
+                [
+                  10187,
+                  6424,
+                  1.0
+                ],
+                [
+                  7950,
+                  6437,
+                  1.0
+                ],
+                [
+                  13563,
+                  6706,
+                  1.0
+                ],
+                [
+                  14092,
+                  8367,
+                  1.0
+                ],
+                [
+                  11146,
+                  9230,
+                  1.0
+                ],
+                [
+                  14888,
+                  13397,
+                  1.0
+                ]
+              ]
+            }
+          },
+          "message": "exact-duplicate dedup affected 42 rows across 1 split(s)",
+          "n_affected": 42
+        }
+      ]
+    },
+    "cross_split": {
+      "findings": [
+        {
+          "check_name": "CrossSplitLeakageCheck",
+          "severity": "error",
+          "drop_indices": {},
+          "evidence": {
+            "train_split": "train",
+            "eval_splits": [],
+            "threshold": 0.9,
+            "strategy": "TfidfCosineStrategy"
+          },
+          "message": "no cross-split leakage above threshold=0.90",
+          "n_affected": 0
+        }
+      ]
+    }
+  },
+  "gates": [
+    {
+      "name": "class_balance",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits within neg:pos ratio [0.1, 10.0]",
+      "evidence": {
+        "min_ratio": 0.1,
+        "max_ratio": 10.0,
+        "offending_splits": {}
+      }
+    },
+    {
+      "name": "no_cross_split_leakage",
+      "passed": true,
+      "severity": "error",
+      "message": "no cross-split leakage errors",
+      "evidence": {
+        "n_error_findings": 0,
+        "n_affected": 0,
+        "findings": []
+      }
+    },
+    {
+      "name": "context_window_fit",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits keep <5% of rows over the context window",
+      "evidence": {
+        "threshold": 0.05,
+        "offending_splits": {}
+      }
+    }
+  ],
+  "gate_passed": true,
+  "gate_summary": "3 gate(s) evaluated; all passed"
+}

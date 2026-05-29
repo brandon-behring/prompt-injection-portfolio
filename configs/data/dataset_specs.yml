@@ -1,0 +1,162 @@
+# Verified dataset specs — the machine-readable, load-INSPECTED recipe for each
+# survey dataset. Built 2026-05-28 from ACTUAL load-inspection (not card prose,
+# not heuristic guessing — see experiments/eda/ledger_corrections.md). Each entry
+# is consumed by eval_toolkit.loaders.HFDatasetsLoader (feature_cols/label_map/
+# revision) or a documented custom adapter. `revision` pins the HF SHA so the
+# schema is locked. `role` is the evidence-determined usability verdict.
+#
+# Provenance: the AUDITED mappings were PROVEN by a successful Job-1 audit; the
+# rest were verified by direct column/label inspection (the heuristic survey_run.py
+# gave false verdicts on gentellab + reshabhs — those are corrected here).
+schema_version: "1.0"
+verified_at: "2026-05-28"
+
+datasets:
+  # --- binary injection/jailbreak/toxicity detection (loader-direct) ---
+  deepset2023promptinjections:
+    hf_id: deepset/prompt-injections
+    revision: 4f61ecb038e9
+    feature_col: text
+    label_col: label
+    role: binary_detection
+    evidence: {label: "numeric 0/1", splits: [train, test], rows: 662, gates: PASS}
+
+  jackhhao2023jailbreakclassification:
+    hf_id: jackhhao/jailbreak-classification
+    revision: 2f2ceeb39658
+    feature_col: prompt
+    label_col: type
+    label_map: {benign: 0, jailbreak: 1}
+    role: binary_detection
+    evidence: {label: "string benign/jailbreak", splits: [train, test], rows: 1306,
+               leaky_official_split: "51/262 test rows >=0.9 train-match (VERIFIED near-dup)"}
+
+  xtram12024safeguardpromptinjection:
+    hf_id: xTRam1/safe-guard-prompt-injection
+    revision: a3a877d608f3
+    feature_col: text
+    label_col: label
+    role: binary_detection
+    evidence: {label: "numeric 0/1", splits: [train, test], rows: 10296,
+               mismatched_citation: "card cites arXiv:2402.13064 (unrelated GLAN paper)",
+               leaky_official_split: "120 affected"}
+
+  jayavibhav2024promptinjection:
+    hf_id: jayavibhav/prompt-injection
+    revision: a5bd9869c16d
+    feature_col: text
+    label_col: label
+    role: binary_detection
+    evidence: {label: "numeric 0/1", splits: [train, test], rows: 327154,
+               note: "much larger than carded; leaky split (4 affected in 40k sample)"}
+
+  hendzh2025promptshield:
+    hf_id: hendzh/PromptShield
+    revision: a5234cb1f5cd
+    feature_col: prompt
+    label_col: label
+    role: binary_detection
+    evidence: {label: "numeric 0/1", splits: [train, validation, test], rows: 43425,
+               leaky_official_split: "86 affected"}
+
+  guychuk2024benignmalicious:
+    hf_id: guychuk/benign-malicious-prompt-classification
+    revision: e13090643e6f
+    feature_col: prompt
+    label_col: label
+    role: binary_detection
+    evidence: {label: "numeric 0/1", splits: [train], rows: 464470, gates: PASS,
+               note: "very large; has a >8192-token text"}
+
+  lin2023toxicchat:
+    hf_id: lmsys/toxic-chat
+    config: toxicchat0124
+    revision: 29df8e4dba60
+    feature_col: user_input
+    label_col: toxicity
+    role: binary_detection
+    evidence: {label: "numeric 0/1", splits: [train, test], rows: 10165,
+               imbalance: "7% positive (ratio >=10 — class_balance gate FAIL)",
+               leaky_official_split: "362 affected"}
+
+  reshabhs2024spmlchatbotpromptinjection:   # CORRECTED (heuristic false-negative)
+    hf_id: reshabhs/SPML_Chatbot_Prompt_Injection
+    revision: 02ce8084e979
+    feature_cols: ["System Prompt", "User Prompt"]
+    feature_join: "\n\n"
+    label_col: "Prompt injection"
+    role: binary_detection
+    evidence: {label: "numeric 0/1", rows: 16012, source: Gandalf,
+               note: "multi-col text; heuristic missed spaced/capitalized columns"}
+
+  # --- positive-only pool (single class; pair with benigns at modeling time) ---
+  shen2023inthewild:
+    hf_id: TrustAIRLab/in-the-wild-jailbreak-prompts
+    config: jailbreak_2023_12_25
+    revision: a10aab8eff1c
+    feature_col: prompt
+    label_col: jailbreak
+    label_map: {true: 1, false: 0}
+    role: positive_pool
+    evidence: {label: "bool (all True)", rows: 666, single_class: true}
+
+  # --- benign / over-refusal CONTROLS (non-binary category labels; FPR sets) ---
+  leolee2024notinject:
+    hf_id: leolee99/NotInject
+    revision: 847ae76cf8fe
+    feature_col: prompt
+    role: benign_control
+    evidence: {labels: "4 benign categories (all-benign)", rows: 339,
+               use: "benign-FPR / over-defense control, not binary training"}
+  rottger2024xstest:
+    hf_id: natolambert/xstest-v2-copy
+    feature_col: prompt
+    role: benign_control
+    evidence: {labels: "18 type categories", rows: 2700, use: "over-refusal eval"}
+  cui2024orbench:
+    hf_id: bench-llm/or-bench
+    config: or-bench-80k
+    feature_col: prompt
+    role: benign_control
+    evidence: {labels: "10 category labels", rows: 80359, use: "over-refusal eval"}
+
+  # --- custom-load (loader can't auto-concat / needs adapter) ---
+  gentellab2024gentelbench:                  # CORRECTED (heuristic false-LOAD-FAIL)
+    hf_id: GenTelLab/gentelbench-v1
+    revision: bf27033065d7
+    load_method: custom_parquet
+    parquet_files: [goal_hijacking_attack_dataset.parquet, jailbreaking_attack_dataset.parquet,
+                    prompt_leaking_attack_dataset.parquet]
+    column_renames: {combined_text: text}   # jailbreaking file uses combined_text
+    feature_col: text
+    label_col: label
+    role: binary_detection
+    evidence: {label: "numeric 0/1", rows: ~177015, taxonomy: "domain/subdomain",
+               note: "HF auto-concat fails on combined_text-vs-text mismatch; load per-file + rename"}
+
+  # --- different task / not binary injection-detection (honest exclusions) ---
+  hackaprompt2023emnlp:
+    hf_id: hackaprompt/hackaprompt-dataset
+    revision: 25b87fbedfb8
+    role: different_task
+    evidence: {rows: 601757, label_candidate: "`correct` = ATTACK-SUCCESS (not injection-presence)",
+               note: "competition log; the derivable label is attack success, a different task"}
+  jayavibhav2024promptinjectionsafety:
+    hf_id: jayavibhav/prompt-injection-safety
+    role: multiclass
+    evidence: {label: "3-class {0:23414, 1:22586, 2:4000}", rows: 60000,
+               note: "NOT binary; carded as drop-in but is 3-class"}
+  llmailinject2025microsoft:
+    hf_id: microsoft/llmail-inject-challenge
+    role: needs_custom_derivation
+    evidence: {rows: 461640, note: "success flags nested in `objectives` JSON; needs custom parse"}
+
+  # --- excluded: genuinely unavailable ---
+  harelix2024mixedtechniques:
+    hf_id: Harelix/Prompt-Injection-Mixed-Techniques-2024
+    role: excluded
+    evidence: {status: "404 — dataset does not exist on the Hub (confirms `unverified`)"}
+  han2024wildguard:
+    hf_id: allenai/wildguardmix
+    role: excluded
+    evidence: {status: "gated — load blocked even with HF token; needs explicit gate acceptance"}

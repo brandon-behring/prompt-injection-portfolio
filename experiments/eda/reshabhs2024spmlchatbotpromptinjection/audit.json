@@ -1,0 +1,118 @@
+{
+  "schema_version": "v2",
+  "dataset_name": "reshabhs2024spmlchatbotpromptinjection",
+  "run_timestamp": "2026-05-29T03:04:16Z",
+  "split_summaries": {
+    "train": {
+      "split": "train",
+      "n_rows": 15000,
+      "n_positive": 11748,
+      "n_negative": 3252,
+      "pos_pct": 0.7832,
+      "neg_pos_ratio": 0.27681307456588355,
+      "is_single_class": false,
+      "char_lengths": {
+        "p50": 1578.0,
+        "p95": 3160.0,
+        "max": 4508
+      },
+      "word_lengths": {
+        "p50": 236.0,
+        "p95": 460.0,
+        "max": 663
+      },
+      "token_lengths": {
+        "p50": 292.0,
+        "p95": 566.0,
+        "max": 821
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 15000,
+        "n_with_invisible_chars": 2,
+        "total_invisible_chars": 2,
+        "invisible_char_rate": 0.00013333333333333334,
+        "n_with_nfkc_change": 2,
+        "n_with_nfkc_length_delta": 1,
+        "total_nfkc_char_delta": 2,
+        "nfkc_change_rate": 0.00013333333333333334,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 102,
+        "n_total_alnum_tokens": 4052399,
+        "leetspeak_token_rate": 2.517027568114591e-05
+      }
+    }
+  },
+  "leakage_reports": {
+    "within_split": {
+      "findings": [
+        {
+          "check_name": "ExactDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {},
+          "evidence": {
+            "dropped_pairs_by_split": {}
+          },
+          "message": "no exact duplicates found",
+          "n_affected": 0
+        }
+      ]
+    },
+    "cross_split": {
+      "findings": [
+        {
+          "check_name": "CrossSplitLeakageCheck",
+          "severity": "error",
+          "drop_indices": {},
+          "evidence": {
+            "train_split": "train",
+            "eval_splits": [],
+            "threshold": 0.9,
+            "strategy": "TfidfCosineStrategy"
+          },
+          "message": "no cross-split leakage above threshold=0.90",
+          "n_affected": 0
+        }
+      ]
+    }
+  },
+  "gates": [
+    {
+      "name": "class_balance",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits within neg:pos ratio [0.1, 10.0]",
+      "evidence": {
+        "min_ratio": 0.1,
+        "max_ratio": 10.0,
+        "offending_splits": {}
+      }
+    },
+    {
+      "name": "no_cross_split_leakage",
+      "passed": true,
+      "severity": "error",
+      "message": "no cross-split leakage errors",
+      "evidence": {
+        "n_error_findings": 0,
+        "n_affected": 0,
+        "findings": []
+      }
+    },
+    {
+      "name": "context_window_fit",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits keep <5% of rows over the context window",
+      "evidence": {
+        "threshold": 0.05,
+        "offending_splits": {}
+      }
+    }
+  ],
+  "gate_passed": true,
+  "gate_summary": "3 gate(s) evaluated; all passed"
+}

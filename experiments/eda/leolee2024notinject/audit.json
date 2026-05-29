@@ -1,0 +1,211 @@
+{
+  "schema_version": "v2",
+  "dataset_name": "leolee2024notinject",
+  "run_timestamp": "2026-05-29T03:04:32Z",
+  "split_summaries": {
+    "NotInject_one": {
+      "split": "NotInject_one",
+      "n_rows": 113,
+      "n_positive": 0,
+      "n_negative": 113,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 87.0,
+        "p95": 136.2,
+        "max": 171
+      },
+      "word_lengths": {
+        "p50": 14.0,
+        "p95": 22.39999999999999,
+        "max": 29
+      },
+      "token_lengths": {
+        "p50": 20.0,
+        "p95": 32.599999999999966,
+        "max": 41
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 113,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 7,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.061946902654867256,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 1395,
+        "leetspeak_token_rate": 0.0
+      }
+    },
+    "NotInject_two": {
+      "split": "NotInject_two",
+      "n_rows": 113,
+      "n_positive": 0,
+      "n_negative": 113,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 85.0,
+        "p95": 130.0,
+        "max": 187
+      },
+      "word_lengths": {
+        "p50": 14.0,
+        "p95": 21.0,
+        "max": 29
+      },
+      "token_lengths": {
+        "p50": 21.0,
+        "p95": 38.39999999999999,
+        "max": 71
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 113,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 13,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.11504424778761062,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 1291,
+        "leetspeak_token_rate": 0.0
+      }
+    },
+    "NotInject_three": {
+      "split": "NotInject_three",
+      "n_rows": 113,
+      "n_positive": 0,
+      "n_negative": 113,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 105.0,
+        "p95": 175.79999999999998,
+        "max": 233
+      },
+      "word_lengths": {
+        "p50": 17.0,
+        "p95": 29.0,
+        "max": 33
+      },
+      "token_lengths": {
+        "p50": 27.0,
+        "p95": 51.599999999999966,
+        "max": 81
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 113,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 18,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.1592920353982301,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 0,
+        "n_total_alnum_tokens": 1723,
+        "leetspeak_token_rate": 0.0
+      }
+    }
+  },
+  "leakage_reports": {
+    "within_split": {
+      "findings": [
+        {
+          "check_name": "ExactDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {},
+          "evidence": {
+            "dropped_pairs_by_split": {}
+          },
+          "message": "no exact duplicates found",
+          "n_affected": 0
+        },
+        {
+          "check_name": "NearDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {},
+          "evidence": {
+            "threshold": 0.9,
+            "strategy": "TfidfCosineStrategy",
+            "dropped_pairs_by_split": {}
+          },
+          "message": "no near-duplicates above threshold=0.90",
+          "n_affected": 0
+        }
+      ]
+    }
+  },
+  "gates": [
+    {
+      "name": "class_balance",
+      "passed": false,
+      "severity": "error",
+      "message": "3 split(s) outside neg:pos ratio [0.1, 10.0] (or single-class)",
+      "evidence": {
+        "min_ratio": 0.1,
+        "max_ratio": 10.0,
+        "offending_splits": {
+          "NotInject_one": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 113
+          },
+          "NotInject_two": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 113
+          },
+          "NotInject_three": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 113
+          }
+        }
+      }
+    },
+    {
+      "name": "no_cross_split_leakage",
+      "passed": true,
+      "severity": "error",
+      "message": "cross-split leakage check skipped (no train split / disabled)",
+      "evidence": {
+        "skipped": true
+      }
+    },
+    {
+      "name": "context_window_fit",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits keep <5% of rows over the context window",
+      "evidence": {
+        "threshold": 0.05,
+        "offending_splits": {}
+      }
+    }
+  ],
+  "gate_passed": false,
+  "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED"
+}

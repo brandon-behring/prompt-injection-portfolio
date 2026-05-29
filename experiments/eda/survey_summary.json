@@ -1,0 +1,493 @@
+[
+  {
+    "bibkey": "deepset2023promptinjections",
+    "hf_id": "deepset/prompt-injections",
+    "measured_rows": 662,
+    "measured_splits": {
+      "train": 546,
+      "test": 116
+    },
+    "measured_columns": [
+      "text",
+      "label"
+    ],
+    "mapped_text_col": "text",
+    "mapped_label_col": "label",
+    "label_semantics": "numeric ['0', '1']",
+    "status": "AUDITED",
+    "gate_passed": true,
+    "gate_summary": "3 gate(s) evaluated; all passed",
+    "label_distribution": {
+      "train": {
+        "pos": 203,
+        "neg": 343,
+        "pos_pct": 0.4
+      },
+      "test": {
+        "pos": 60,
+        "neg": 56,
+        "pos_pct": 0.5
+      }
+    },
+    "pct_over_8192": {
+      "train": 0.0,
+      "test": 0.0
+    },
+    "obfuscation_invisible_rate": {
+      "train": 0.0055,
+      "test": 0.0
+    }
+  },
+  {
+    "bibkey": "jackhhao2023jailbreakclassification",
+    "hf_id": "jackhhao/jailbreak-classification",
+    "measured_rows": 1306,
+    "measured_splits": {
+      "train": 1044,
+      "test": 262
+    },
+    "measured_columns": [
+      "prompt",
+      "type"
+    ],
+    "mapped_text_col": "prompt",
+    "mapped_label_col": "type",
+    "label_semantics": "string ['benign', 'jailbreak']",
+    "status": "AUDITED",
+    "gate_passed": false,
+    "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED",
+    "label_distribution": {
+      "train": {
+        "pos": 527,
+        "neg": 517,
+        "pos_pct": 0.5
+      },
+      "test": {
+        "pos": 139,
+        "neg": 123,
+        "pos_pct": 0.5
+      }
+    },
+    "pct_over_8192": {
+      "train": 0.0,
+      "test": 0.0
+    },
+    "obfuscation_invisible_rate": {
+      "train": 0.0067,
+      "test": 0.0076
+    }
+  },
+  {
+    "bibkey": "xtram12024safeguardpromptinjection",
+    "hf_id": "xTRam1/safe-guard-prompt-injection",
+    "measured_rows": 10296,
+    "measured_splits": {
+      "train": 8236,
+      "test": 2060
+    },
+    "measured_columns": [
+      "text",
+      "label"
+    ],
+    "mapped_text_col": "text",
+    "mapped_label_col": "label",
+    "label_semantics": "numeric ['0', '1']",
+    "status": "AUDITED",
+    "gate_passed": false,
+    "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED",
+    "label_distribution": {
+      "train": {
+        "pos": 2496,
+        "neg": 5740,
+        "pos_pct": 0.3
+      },
+      "test": {
+        "pos": 650,
+        "neg": 1410,
+        "pos_pct": 0.3
+      }
+    },
+    "pct_over_8192": {
+      "train": 0.0,
+      "test": 0.0
+    },
+    "obfuscation_invisible_rate": {
+      "train": 0.0007,
+      "test": 0.0
+    }
+  },
+  {
+    "bibkey": "jayavibhav2024promptinjection",
+    "hf_id": "jayavibhav/prompt-injection",
+    "measured_rows": 327154,
+    "measured_splits": {
+      "train": 261738,
+      "test": 65416
+    },
+    "measured_columns": [
+      "text",
+      "label"
+    ],
+    "mapped_text_col": "text",
+    "mapped_label_col": "label",
+    "label_semantics": "numeric ['0', '1']",
+    "sampled": "audited on 40000-row seeded sample of 327154 (dedup/leakage partial)",
+    "status": "AUDITED",
+    "gate_passed": false,
+    "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED",
+    "label_distribution": {
+      "test": {
+        "pos": 3989,
+        "neg": 4032,
+        "pos_pct": 0.5
+      },
+      "train": {
+        "pos": 15934,
+        "neg": 16045,
+        "pos_pct": 0.5
+      }
+    },
+    "pct_over_8192": {
+      "test": 0.0,
+      "train": 0.0
+    },
+    "obfuscation_invisible_rate": {
+      "test": 0.0037,
+      "train": 0.003
+    }
+  },
+  {
+    "bibkey": "jayavibhav2024promptinjectionsafety",
+    "hf_id": "jayavibhav/prompt-injection-safety",
+    "measured_rows": 60000,
+    "measured_splits": {
+      "train": 50000,
+      "test": 10000
+    },
+    "measured_columns": [
+      "text",
+      "label"
+    ],
+    "mapped_text_col": "text",
+    "mapped_label_col": "label",
+    "label_semantics": "non-binary (3 vals: [np.int64(0), np.int64(1), np.int64(2)])",
+    "status": "NON-BINARY-LABEL"
+  },
+  {
+    "bibkey": "gentellab2024gentelbench",
+    "hf_id": "GenTelLab/gentelbench-v1",
+    "status": "LOAD-FAILED",
+    "error": "An error occurred while generating the dataset"
+  },
+  {
+    "bibkey": "hendzh2025promptshield",
+    "hf_id": "hendzh/PromptShield",
+    "measured_rows": 43425,
+    "measured_splits": {
+      "train": 18909,
+      "validation": 1000,
+      "test": 23516
+    },
+    "measured_columns": [
+      "prompt",
+      "label"
+    ],
+    "mapped_text_col": "prompt",
+    "mapped_label_col": "label",
+    "label_semantics": "numeric ['0', '1']",
+    "sampled": "audited on 40000-row seeded sample of 43425 (dedup/leakage partial)",
+    "status": "AUDITED",
+    "gate_passed": false,
+    "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED",
+    "label_distribution": {
+      "train": {
+        "pos": 8686,
+        "neg": 8714,
+        "pos_pct": 0.5
+      },
+      "test": {
+        "pos": 5999,
+        "neg": 15679,
+        "pos_pct": 0.3
+      },
+      "validation": {
+        "pos": 459,
+        "neg": 463,
+        "pos_pct": 0.5
+      }
+    },
+    "pct_over_8192": {
+      "train": 0.0,
+      "test": 0.0,
+      "validation": 0.0
+    },
+    "obfuscation_invisible_rate": {
+      "train": 0.001,
+      "test": 0.0013,
+      "validation": 0.0
+    }
+  },
+  {
+    "bibkey": "guychuk2024benignmalicious",
+    "hf_id": "guychuk/benign-malicious-prompt-classification",
+    "measured_rows": 464470,
+    "measured_splits": {
+      "train": 464470
+    },
+    "measured_columns": [
+      "prompt",
+      "label"
+    ],
+    "mapped_text_col": "prompt",
+    "mapped_label_col": "label",
+    "label_semantics": "numeric ['0', '1']",
+    "sampled": "audited on 40000-row seeded sample of 464470 (dedup/leakage partial)",
+    "status": "AUDITED",
+    "gate_passed": true,
+    "gate_summary": "3 gate(s) evaluated; all passed",
+    "label_distribution": {
+      "train": {
+        "pos": 20403,
+        "neg": 19597,
+        "pos_pct": 0.5
+      }
+    },
+    "pct_over_8192": {
+      "train": 0.002125
+    },
+    "obfuscation_invisible_rate": {
+      "train": 0.0076
+    }
+  },
+  {
+    "bibkey": "harelix2024mixedtechniques",
+    "hf_id": "Harelix/Prompt-Injection-Mixed-Techniques-2024",
+    "status": "LOAD-FAILED",
+    "error": "Dataset 'Harelix/Prompt-Injection-Mixed-Techniques-2024' doesn't exist on the Hub or cannot be accessed."
+  },
+  {
+    "bibkey": "lin2023toxicchat",
+    "hf_id": "lmsys/toxic-chat",
+    "config": "toxicchat0124",
+    "measured_rows": 10165,
+    "measured_splits": {
+      "train": 5082,
+      "test": 5083
+    },
+    "measured_columns": [
+      "conv_id",
+      "user_input",
+      "model_output",
+      "human_annotation",
+      "toxicity",
+      "jailbreaking",
+      "openai_moderation"
+    ],
+    "mapped_text_col": "user_input",
+    "mapped_label_col": "toxicity",
+    "label_semantics": "numeric ['0', '1']",
+    "status": "AUDITED",
+    "gate_passed": false,
+    "gate_summary": "3 gate(s) evaluated; 2 error gate(s) FAILED",
+    "label_distribution": {
+      "train": {
+        "pos": 384,
+        "neg": 4698,
+        "pos_pct": 0.1
+      },
+      "test": {
+        "pos": 362,
+        "neg": 4721,
+        "pos_pct": 0.1
+      }
+    },
+    "pct_over_8192": {
+      "train": 0.0,
+      "test": 0.0
+    },
+    "obfuscation_invisible_rate": {
+      "train": 0.0,
+      "test": 0.0
+    }
+  },
+  {
+    "bibkey": "reshabhs2024spmlchatbotpromptinjection",
+    "hf_id": "reshabhs/SPML_Chatbot_Prompt_Injection",
+    "measured_rows": 16012,
+    "measured_splits": {
+      "train": 16012
+    },
+    "measured_columns": [
+      "System Prompt",
+      "User Prompt",
+      "Prompt injection",
+      "Degree",
+      "Source"
+    ],
+    "mapped_text_col": null,
+    "mapped_label_col": null,
+    "status": "NEEDS-MANUAL-MAPPING",
+    "note": "no clear text+label column"
+  },
+  {
+    "bibkey": "shen2023inthewild",
+    "hf_id": "TrustAIRLab/in-the-wild-jailbreak-prompts",
+    "config": "jailbreak_2023_05_07",
+    "measured_rows": 666,
+    "measured_splits": {
+      "train": 666
+    },
+    "measured_columns": [
+      "platform",
+      "source",
+      "prompt",
+      "jailbreak",
+      "created_at",
+      "date",
+      "community_id",
+      "community_name"
+    ],
+    "mapped_text_col": "prompt",
+    "mapped_label_col": "jailbreak",
+    "label_semantics": "bool",
+    "status": "AUDITED",
+    "gate_passed": false,
+    "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED",
+    "label_distribution": {
+      "train": {
+        "pos": 666,
+        "neg": 0,
+        "pos_pct": 1.0
+      }
+    },
+    "pct_over_8192": {
+      "train": 0.0
+    },
+    "obfuscation_invisible_rate": {
+      "train": 0.0105
+    }
+  },
+  {
+    "bibkey": "han2024wildguard",
+    "hf_id": "allenai/wildguardmix",
+    "status": "LOAD-FAILED",
+    "error": "Dataset 'allenai/wildguardmix' is a gated dataset on the Hub. Visit the dataset page at https://huggingface.co/datasets/allenai/wildguardmix to ask for access."
+  },
+  {
+    "bibkey": "leolee2024notinject",
+    "hf_id": "leolee99/NotInject",
+    "measured_rows": 339,
+    "measured_splits": {
+      "NotInject_one": 113,
+      "NotInject_two": 113,
+      "NotInject_three": 113
+    },
+    "measured_columns": [
+      "prompt",
+      "word_list",
+      "category"
+    ],
+    "mapped_text_col": "prompt",
+    "mapped_label_col": "category",
+    "label_semantics": "non-binary (4 vals: ['Technique Queries', 'Multilingual', 'Common Queries', 'Virtual Creation'])",
+    "status": "NON-BINARY-LABEL"
+  },
+  {
+    "bibkey": "rottger2024xstest",
+    "hf_id": "natolambert/xstest-v2-copy",
+    "measured_rows": 2700,
+    "measured_splits": {
+      "gpt4": 450,
+      "llama2new": 450,
+      "llama2orig": 450,
+      "mistralguard": 450,
+      "mistralinstruct": 450,
+      "prompts": 450
+    },
+    "measured_columns": [
+      "id",
+      "type",
+      "prompt",
+      "completion",
+      "annotation_1",
+      "annotation_2",
+      "agreement",
+      "final_label"
+    ],
+    "mapped_text_col": "prompt",
+    "mapped_label_col": "type",
+    "label_semantics": "non-binary (18 vals: ['homonyms', 'contrast_homonyms', 'figurative_language', 'contrast_figurative_language', 'safe_targets', 'contrast_safe_targets'])",
+    "status": "NON-BINARY-LABEL"
+  },
+  {
+    "bibkey": "cui2024orbench",
+    "hf_id": "bench-llm/or-bench",
+    "config": "or-bench-80k",
+    "measured_rows": 80359,
+    "measured_splits": {
+      "train": 80359
+    },
+    "measured_columns": [
+      "prompt",
+      "category"
+    ],
+    "mapped_text_col": "prompt",
+    "mapped_label_col": "category",
+    "label_semantics": "non-binary (10 vals: ['deception', 'harassment', 'harmful', 'hate', 'illegal', 'privacy'])",
+    "status": "NON-BINARY-LABEL"
+  },
+  {
+    "bibkey": "hackaprompt2023emnlp",
+    "hf_id": "hackaprompt/hackaprompt-dataset",
+    "measured_rows": 601757,
+    "measured_splits": {
+      "train": 601757
+    },
+    "measured_columns": [
+      "level",
+      "prompt",
+      "user_input",
+      "completion",
+      "model",
+      "expected_completion",
+      "token_count",
+      "correct",
+      "error",
+      "score",
+      "dataset",
+      "timestamp",
+      "session_id"
+    ],
+    "mapped_text_col": "prompt",
+    "mapped_label_col": null,
+    "status": "NEEDS-MANUAL-MAPPING",
+    "note": "no clear label column"
+  },
+  {
+    "bibkey": "llmailinject2025microsoft",
+    "hf_id": "microsoft/llmail-inject-challenge",
+    "measured_rows": 461640,
+    "measured_splits": {
+      "Phase1": 370724,
+      "Phase2": 90916
+    },
+    "measured_columns": [
+      "RowKey",
+      "Timestamp",
+      "body",
+      "completed_time",
+      "job_id",
+      "objectives",
+      "output",
+      "scenario",
+      "scheduled_time",
+      "started_time",
+      "subject",
+      "team_id"
+    ],
+    "mapped_text_col": null,
+    "mapped_label_col": null,
+    "status": "NEEDS-MANUAL-MAPPING",
+    "note": "no clear text+label column"
+  }
+]
