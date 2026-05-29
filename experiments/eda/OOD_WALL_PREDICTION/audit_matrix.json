@@ -1,0 +1,116 @@
+{
+  "datasets": [
+    "BIPIA",
+    "deepset",
+    "jackhhao",
+    "xtram1",
+    "jayavibhav",
+    "hendzh",
+    "guychuk",
+    "reshabhs"
+  ],
+  "cap_per_dataset": 250,
+  "pad_matrix": [
+    [
+      0.064,
+      1.912,
+      1.976,
+      1.976,
+      1.992,
+      1.928,
+      1.976,
+      2.0
+    ],
+    [
+      1.912,
+      0.108,
+      1.77,
+      1.859,
+      1.903,
+      1.647,
+      1.859,
+      1.982
+    ],
+    [
+      1.976,
+      1.77,
+      0.0,
+      1.608,
+      1.952,
+      1.832,
+      1.768,
+      1.976
+    ],
+    [
+      1.976,
+      1.859,
+      1.608,
+      0.144,
+      1.904,
+      1.888,
+      1.864,
+      1.952
+    ],
+    [
+      1.992,
+      1.903,
+      1.952,
+      1.904,
+      0.304,
+      1.96,
+      1.944,
+      1.992
+    ],
+    [
+      1.928,
+      1.647,
+      1.832,
+      1.888,
+      1.96,
+      0.0,
+      1.2,
+      2.0
+    ],
+    [
+      1.976,
+      1.859,
+      1.768,
+      1.864,
+      1.944,
+      1.2,
+      0.0,
+      1.984
+    ],
+    [
+      2.0,
+      1.982,
+      1.976,
+      1.952,
+      1.992,
+      2.0,
+      1.984,
+      0.0
+    ]
+  ],
+  "within_dataset_pad_floor": {
+    "BIPIA": 0.064,
+    "deepset": 0.108,
+    "jackhhao": 0.0,
+    "xtram1": 0.144,
+    "jayavibhav": 0.304,
+    "hendzh": 0.0,
+    "guychuk": 0.0,
+    "reshabhs": 0.0
+  },
+  "bipia_near_dup_contamination": {
+    "deepset": 0.0,
+    "jackhhao": 0.0,
+    "xtram1": 0.0,
+    "jayavibhav": 0.0,
+    "hendzh": 0.0,
+    "guychuk": 0.0,
+    "reshabhs": 0.0
+  },
+  "near_dup_threshold": 0.9,
+  "caveat": "cross-dataset PAD conflates covariate + label-semantics shift and is a dataset fingerprint (length/vocab/format) \u2014 ordinal only. Informative signal = contamination overlap + the within-dataset floor (should be ~0), not the (saturated) off-diagonal PAD."
+}
