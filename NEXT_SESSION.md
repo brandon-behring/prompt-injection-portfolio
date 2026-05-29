@@ -1,6 +1,6 @@
 # NEXT_SESSION
 
-> **↑ 2026-05-28 — see [`docs/planning/SESSION-HANDOFF.md`](docs/planning/SESSION-HANDOFF.md) for the current START HERE.** Phase A (dataset-scope completeness — broad unsafe-input/guardrail scope; 30-entry verified-tagged ledger; regenerated agent_index; first `/dossier-audit` round) is done; **Phase 1 (foundational EDA) starts there**, with `docs/planning/eda-design.md` as the design source and `docs/planning/prototype-postmortem.md` as the retrospective. This file below is preserved as M0-close historical context; full refresh deferred to Phase 2 consolidation.
+> **↑ 2026-05-29 — see [`docs/planning/SESSION-HANDOFF.md`](docs/planning/SESSION-HANDOFF.md) for the current START HERE.** The **pre-modeling dataset-EDA arc (Phases 0–3) is COMPLETE**: eval-toolkit **v1.6.0** shipped (eda Job-1/2/3) + consumed; a **falsifiable, pre-registered OOD-wall prediction is recorded pre-modeling** in `experiments/eda/OOD_WALL_PREDICTION/` (V4/V5/V9/V10/A1 + D2 + `FINDINGS.md`). **Next phase = the ADR-052 attack-type-LODO modeling study** (`docs/planning/attack-type-lodo-harness-spec.md` is the executable spec), which produces the LODO gaps that trigger the OOD-wall falsification (tracked issue #2). Open follow-ups: GitHub issues #1 (PG1 V10 rerun, gate-pending) + #2 (falsification). Everything below is preserved M0-close historical context.
 
 **Scope**: cold-start anchor for a fresh session (potentially on a different
 machine). Install instructions + commit summary + critical context.
