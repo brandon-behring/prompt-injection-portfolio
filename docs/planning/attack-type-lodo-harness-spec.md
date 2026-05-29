@@ -68,6 +68,24 @@ Reporting template per fold: `{rung, fold, AUPRC[CI], floor, TPR@FPR×3, benign_
 Seeds (≥3); `experiments/attack-type-lodo/MANIFEST.yml`; predictions parquet per `(rung, fold, seed)`;
 source-disjointness assertion (no train↔test attack-type or context overlap) as a pre-run check.
 
+## 6.5 Post-run — OOD-wall prediction falsification (2026-05-29)
+
+**After** the per-test-attack-type diagnostic AUPRCs are persisted (§5 retention pre-commit), run the
+pre-registered Phase-3 **OOD-wall falsification** — the verification half of the pre-modeling
+prediction recorded in `experiments/eda/OOD_WALL_PREDICTION/` (`criteria.md` + `results.json`).
+This step is **mandatory** for the writeup; skipping it leaves the pre-registered prediction unverified.
+
+1. Compute each test-attack-type's **val→test AUPRC drop** (the per-type collapse gap).
+2. **Primary** — one-sided top-k vs bottom-k permutation contrast (k=4): do the
+   `top_k_predicted_worst` types (in `results.json`) collapse *more* than `bottom_k_predicted_best`?
+3. **Secondary** — Kendall τ-b over the 14 types (exact null).
+4. **Decision rule (FIXED in `criteria.md`, no knob revisited):** the prediction SURVIVES iff the
+   one-sided permutation p<0.05 **and** the one-sided 95% bootstrap-CI (≥10k item-level resamples)
+   lower bound on the top-k−bottom-k mean-drop difference > 0; otherwise FALSIFIED. Record the
+   SURVIVES/FALSIFIED verdict in the OOD_WALL_PREDICTION artifacts (a null result is publishable).
+
+Tracked as issue **#2** (`tracked` / `P2` / `research`).
+
 ## 7. Honest limitations (document in the writeup)
 
 - **Small attack diversity** (75 strings/split, 5/type) → memorization risk; generalization is to 75
