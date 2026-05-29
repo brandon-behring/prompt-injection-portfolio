@@ -1,0 +1,13 @@
+{
+  "silhouette": {
+    "by_carrier": 0.19733279244938368,
+    "by_attack_type": -0.02269314397495792,
+    "by_subfamily": -0.0006605492318070247
+  },
+  "ari": {
+    "kmeans_vs_carrier": 0.9803480096930121,
+    "kmeans_vs_attack_type": -0.0006489098913694917
+  },
+  "dominant_axis": "by_carrier",
+  "note": "carrier-dominates-embedding: silhouette_by_carrier >> by_attack_type confirms the MiniLM geometry tracks the email/code/table carrier, not the injected attack-type \u2014 consistent with the secondary-fold PAD (carrier+attack external 2.0 >> core 0.51)."
+}
