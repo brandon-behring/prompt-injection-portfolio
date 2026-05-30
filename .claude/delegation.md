@@ -28,7 +28,7 @@ this main context stays on decisions, synthesis, and presenting forks to the use
 
 ## Cost / cloud notes
 - Local RTX 2070 (8 GB) OOMs at spec config (`decisions/contingency_unlock_1.md`) → only smoke/minimal
-  runs locally; the real sweep is RunPod (24 GB+) via `runpod_deploy.Session` (M1-gated wiring).
+  runs locally; the real sweep is RunPod (24 GB+) via `scripts/runpod_sweep.py` (`load_job_spec→run_job`; wired per ADR-053, paid launch user-gated).
 - `gpu-run-watcher` auto-kills only on hard guards (cost ≥ ceiling, default $15; or no progress for N
   min, default 20) and records any `runpod-deploy` friction into `decisions/upstream_issues.md`
   (drafts the upstream issue; you file it).

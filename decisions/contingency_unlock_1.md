@@ -2,7 +2,7 @@
 
 **Filed:** 2026-05-30 · **Status:** Budget **RESOLVED → base-budget** (2026-05-30 spend tally below:
 $0.00 realized, $5–15 « $250 base) ⇒ **no contingency draw; ADR-014 stays Reserved.** The spend itself
-still awaits the user's launch go-ahead + the `runpod_deploy.Session` wiring (the other M1 blocker).
+still awaits the user's launch go-ahead (the launch glue is now wired — ADR-053, `4862e21`).
 Routed via the cost-driven slot ([ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md)), **not** the
 ADR-039 method-expansion.
 
@@ -43,8 +43,8 @@ local throughput → the full sweep completes reliably in **~1.5–3 h**.
 > the absent `make cost-report`; see *Spend tally* below) confirms **$0.00 realized cumulative spend** —
 > all compute to date is local (CPU + the owned RTX 2070 probe), no cloud GPU rented, no paid API. The
 > $5–15 sweep therefore sits **inside the base $250**: a normal **base-budget GPU spend, NOT a contingency
-> draw**. ADR-014 stays **Reserved**. *(The spend itself still awaits the user's launch go-ahead + the
-> `runpod_deploy.Session` wiring.)*
+> draw**. ADR-014 stays **Reserved**. *(The spend itself still awaits the user's launch go-ahead; the launch
+> glue is wired — ADR-053.)*
 
 ### Spend tally (manual attestation — 2026-05-30; substitutes for `make cost-report`)
 
@@ -99,8 +99,9 @@ falsification verdict (the deferred deliverable):
 - [x] Cost attestation (manual ledger tally — `make cost-report` absent) showing projected **$5–15 < $350**.
 - [x] Correct the spec/plan's "Turing → fp16" note already applied (`_select_device_dtype` gates on
       native bf16) — the cloud Ampere+ card will select **bf16** as intended.
-- [ ] **User launch go-ahead at spend time** (the spend itself stays user-led) + `runpod_deploy.Session`
-      wiring (the other M1 blocker) — both still open.
+- [x] `runpod_deploy.Session` wiring → **resolved** (there is no `Session`; wired via `scripts/runpod_sweep.py`
+      → `load_job_spec→run_job`, ADR-053, `4862e21`).
+- [ ] **User launch go-ahead at spend time** (the spend itself stays user-led) — still open.
 
 ## Cross-references
 

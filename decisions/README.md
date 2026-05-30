@@ -131,12 +131,16 @@ discipline; this note documents the count refresh.
 - ✓ [ADR-051: dogfood-driven upstream adoption batch](ADR-051-dogfood-driven-upstream-adoption-batch.md) — eval-toolkit `>=1.0` (v1.0 stability contract); research_toolkit v2.4.0 reclassified as a repo-local tooling clone (dropped as a pip dep); book-scaffold-astro v4.x + research-portfolio profile. Advances ADR-045 / ADR-046; dogfooding findings logged in `upstream_issues.md`.
 - ✓ [ADR-052: attack-type-generalization study design](ADR-052-attack-type-generalization-study-design.md) — reorients the detector effort to indirect→indirect attack-type generalization (axis C: BIPIA disjoint type-LODO + joint carrier+attack shift), fair per-rung tuning on train-internal val, honest metric suite. Motivated by `docs/planning/submission-methodology-audit.md`; harness in `docs/planning/attack-type-lodo-harness-spec.md`. Lane/chapter restructure deferred to Phase 3.
 
+### Round 29 (M1 Lane-1 launch wiring)
+
+- ✓ [ADR-053: RunPod launch via job spec + `run_job` (phantom-`Session` correction); Lane-1 sweep base-budget](ADR-053-runpod-job-spec-run-job-not-session.md) — `runpod_deploy.load_job_spec → run_job` over a strict YAML job spec replaces the phantom `runpod_deploy.Session` (plan + submission ADR-059); `lifecycle.on_success: delete` for one-shot sweeps; $5–15 sweep classified base-budget ($0.00 realized) so ADR-014 stays Reserved. Glue committed `4862e21`.
+
 ## Tally
 
 | Status | Count |
 |---|---:|
-| ✓ Accepted | 46 |
+| ✓ Accepted | 47 |
 | 🔒 Reserved | 4 |
 | ⊘ DROPPED | 2 |
-| **Total entries** | **52** |
-| Files in `decisions/` | 50 (DROPPED entries are index-only) |
+| **Total entries** | **53** |
+| Files in `decisions/` | 51 (DROPPED entries are index-only) |

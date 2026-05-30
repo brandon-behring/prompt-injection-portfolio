@@ -790,7 +790,7 @@ Post-EDA-arc review of the M0→M7 ladder (locked pre-EDA, R1–R7). The Phase-3
 **Library-first — strict, no local workarounds**:
 - **4 load-bearing infrastructure projects** (all maintained by Brandon; portfolio is one consumer):
   - `eval-toolkit` (PyPI, **v0.42+** per submission v1.0.9 pin; canonical Platt+Beta+Isotonic binary calibrator API)
-  - `runpod-deploy` (PyPI, **v0.8.4+** per submission v1.1.0 pin; lifecycle.on_success: recycle supported)
+  - `runpod-deploy` (PyPI, **v0.8.4+** per submission v1.1.0 pin; launch via `load_job_spec → run_job` over a YAML job spec — there is **no** `Session`; ADR-053)
   - `research_toolkit` (PyPI)
   - `@brandon_m_behring/book-scaffold-astro` (**npm package v3.1.0+**; pivoted from GitHub template overnight 2026-05-19; v3.1.0 academic ChapterHeader polish landed 2026-05-19). Bootstrapped via `@brandon_m_behring/create-book` CLI. `npm update` propagates fixes.
 - **All reusable primitives belong in those libraries; portfolio NEVER hand-rolls equivalents.** Missing primitives → file upstream issue → implement as merge request → release new version → portfolio's `pyproject.toml` (or scaffold reference) pins the new version → lane work proceeds.
@@ -857,7 +857,7 @@ Loose milestone tags `v0.1.0` (M0) → `v0.7.0` (M7; **textbook guide ratified p
 dependencies = [
     # PyPI infrastructure libraries — NEVER hand-rolled
     "eval-toolkit>=0.47",        # Round 14 floor: ships MR-1/2/4/5/7 primitives + canonical binary calibrator API
-    "runpod-deploy>=0.8.4",      # lifecycle.on_success: recycle per submission v1.1.0 ADR-059
+    "runpod-deploy>=0.8.4",      # cloud-eval launch via load_job_spec→run_job (ADR-053; no Session)
     "research-toolkit>=...",     # PyPI; dossier pipeline
     "transformers", "torch", "anthropic", "sklearn", ...
 ]
