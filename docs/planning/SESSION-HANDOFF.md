@@ -1,92 +1,107 @@
-# Session handoff — 2026-05-29 (PM) — Phase-2 consolidation + Round 27 milestone rethink DONE
+# Session handoff — 2026-05-30 — Context-engineering subagent suite SHIPPED + prior WIP committed
 
 ## ✅ START HERE — clean session
 
-**Two things landed this session, both committed, neither pushed:**
-1. **Plan reconciliation** (`2054a26`) — `PORTFOLIO_PLAN.md` §21 M0 checklist brought in line with `M0_READINESS.md` (19 technical gates ✓; the X/Mastodon announcement honestly kept **unchecked + DEFERRED**), drifted pins corrected, + a Round 24–26 / EDA-arc narrative block. (This commit was amended from `6a385ef` to fix its Co-Authored-By trailer.)
-2. **Round 27 milestone rethink** (`e49918e`) — recorded the one *settled* structural change (the pre-modeling EDA arc = **M1's entry-gate**) and **registered the conditional Lane 1b/4/5 rescopes as §16 trigger-gates**, while **deferring the full lane/chapter re-ladder to post-LODO-results per ADR-052.**
+**Three things landed this session, all committed, none pushed:**
+1. **Context-engineering subagent suite** (`1bfefaf`) — six focused agents under `.claude/agents/` + wiring (`CLAUDE.md` pointer → `.claude/delegation.md` + committed `.claude/settings.json` allowlist) + `survey_run.py --out` (collision-free parallel audits) + its test.
+2. **M1 attack-type-LODO harness** (`695a739`) — the previously-uncommitted Lane-1 modeling harness (code + 3 tests + dogfooded-symbol registry + spec precision note). CI-green.
+3. **Lane-1 pre-registration + cloud-GPU contingency** (`a3026f7`) — `lane-1/{hypothesis,protocol}.md` reconciled to ADR-052, `contingency_unlock_1.md` (RunPod unlock, DRAFT), working plan.
 
-**The big-picture fork from the prior handoff is RESOLVED** — the user chose Phase-2 consolidation (not "start Lane 1 now"), then "reconcile the plan," then a focused milestone rethink. **Do NOT re-present that fork as open.**
+**🔑 The subagent suite is now LIVE for you.** Custom agents load at Claude Code **startup** — they were written last session but become invocable this (restarted) session. **Dogfood them** (that's the point): orient with `session-orienter`, run gates with `gate-runner`, local smoke with `experiment-runner`, the RunPod sweep with `gpu-run-watcher`, draft ADRs/Rounds with `adr-scribe`, fan out the dataset survey with `dataset-auditor`. The When→Delegate→Invocation table is `.claude/delegation.md`. **They are present-first: no agent decides a fork, ratifies, commits, pushes, or files a public issue** — they run/parse/brief/draft, you decide.
 
-**⚠️ Milestones are under active reconsideration.** The user has signalled the M0→M7 ladder will be rethought; Round 27 captured only what's settled and the branch-points. **Treat the M0→M7 ladder as provisional, not a locked forward-plan**, and **the formal `v0.1.0` M0 close (tag / release / announcement) is DEFERRED pending that rethink** — do not push to close M0 formally.
+**⚠️ Milestones still under active reconsideration** (carried from last session). Treat M0→M7 as provisional; the formal `v0.1.0` M0 close (tag/release/announcement) stays **DEFERRED** pending the rethink — do not push to close M0 formally.
 
-**Git state:** `session/2026-05-26-adoption-and-research-ops`, **HEAD `e49918e`, AHEAD 2 / UNPUSHED** (origin tip is still `151db97`). Tree clean. eval-toolkit **v1.6.0** live on PyPI + `main`.
-
----
-
-## What happened this session (2026-05-29 PM)
-
-Entered from the prior handoff's fork. Worked it via `/exploring-options` (the user rejected `ExitPlanMode` and a first plan in favour of exploring) across several rounds:
-
-- **Chose Phase-2 consolidation** over starting Lane 1. Then narrowed to **"reconcile the plan"** after exploration **falsified the handoff's "ROADMAP / ADRs / archive" framing**: ADRs were already done (50 files `ADR-001…052`, no stubs/gaps — nothing to draft); archive was trivial (dossier complete, tree clean). The only real work was a **doc desync**: `PORTFOLIO_PLAN.md` §21 said M0 was unstarted while `M0_READINESS.md` said done, and the round narrative dead-ended at Round 23.
-- **`2054a26`** fixed that: §21 reconciled (honest-state — announcement stays `[ ]`), pins corrected (eval-toolkit `>=1.0`/v1.6.0, scaffold `^4.4.0`, submission ref `v1.3.0`), Round 24–26 narrative added.
-- **Trailer fix:** `2054a26` was an amend of `6a385ef` to switch its Co-Authored-By to the repo's **model-specific** form. **House convention = `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>`** (NOT the generic `Claude <…>` from global `git.md`) — match the last commits, not the global pattern.
-- **`e49918e`** = Round 27 rethink (above). Key reasoning: the EDA findings (**carrier dominates the embedding; attack-type signal embedding-invisible**) **reframe value-props but falsify NO lane hypothesis**, and ADR-052 already defers lane reorg to post-results — so a full re-ladder now would be premature/speculative. Recorded the settled delta + registered triggers only.
-
-This session's approved plan: `~/.claude/plans/use-the-following-to-rustling-adleman.md`.
+**Git state:** `session/2026-05-26-adoption-and-research-ops`, **HEAD `a3026f7`, 6 commits UNPUSHED** vs upstream `origin/session/2026-05-26-adoption-and-research-ops` (still at `151db97`); 0 behind → push is a clean fast-forward. Tree clean. (The 6: `2054a26 e49918e 93ba8ee` from prior sessions + this session's `1bfefaf 695a739 a3026f7`.) eval-toolkit **v1.6.0** live on PyPI + `main`.
 
 ---
 
-## NEXT — three live options (confirm the fork with the user; do not barrel in)
+## What happened this session (2026-05-30)
 
-1. **Push the 2 commits.** They're local-only per the commit-when-asked default. `git push` (no force needed — fast-forward over `151db97`). Lowest-effort; gets the reconciliation + Round 27 onto origin.
-2. **Continue the milestone rethink.** The full M0→M7 re-ladder is the deferred piece. ADR-052 parks the *lane/chapter* reorganization until LODO results exist — but the user may want to rethink the ladder's *shape* (sequencing, the v0.7/0.8/0.9 guide pegs, the formal-close criteria) independently. If so: another `/exploring-options` round → Round 28 + possibly ADR-053.
-3. **Start the ADR-052 attack-type-LODO study (Lane 1).** Still the unblocked modeling path; `docs/planning/attack-type-lodo-harness-spec.md` is the executable spec; reuse `experiments/eda/OOD_WALL_PREDICTION/bipia_carrier.py`. Produces the per-test-attack-type LODO gaps that **trigger the issue-#2 falsification** (§6.5). NOTE: this is now recorded as **M1's modeling step** (Round 27), and it's multi-session + GPU-bound (~12–18 GPU-hrs).
+The user asked for better **context + environment engineering** — subagents that do parallel/independent context-heavy work so the main agent sees only distilled results. Worked it via `/exploring-options` (the user rejected an initial `ExitPlanMode` to interrogate the design first — present-first, again) across **8 locked decisions**:
 
-The formal `v0.1.0` M0 close is **NOT** on this list — deferred pending the milestone rethink (see START HERE).
+1. **Granularity** → six focused single-responsibility agents (not consolidated).
+2. **Long jobs** → split by target: local = detached-and-parse; RunPod = a watcher agent.
+3. **Watcher** → its own 6th agent `gpu-run-watcher` (distinct tool grant + telemetry contract).
+4. **Watcher authority** → alert + recommend; auto-kill ONLY on hard cost-ceiling / no-progress guards; + draft `runpod-deploy` friction upstream.
+5. **Playbook** → ~lean `CLAUDE.md` pointer → `.claude/delegation.md`.
+6. **Survey I/O** → patch `survey_run.py --out` (+ test) for collision-free parallel persistence.
+7. **Permissions** → committed `.claude/settings.json`; safe ops auto-approved; **paid RunPod launch + git commit/push deliberately excluded → always prompt**.
+8. **Scribe I/O** → return draft only; user ratifies + writes.
+
+Then committed the suite, and — at the user's request — committed the **previously-uncommitted M1 harness and Lane-1 pre-registration** as their own `feat:` / `docs:` commits.
+
+This session's approved plan: `~/.claude/plans/i-want-o-have-async-bee.md` (the 6-agent design + full verification).
 
 ---
 
-## Current state (2026-05-29)
+## NEXT — live options (confirm the fork with the user; do not barrel in)
 
-### Phases 0–3 (the pre-modeling EDA arc — all done; now recorded as M1's entry-gate)
-- **Phase 0–2** (`9d0073d`): RC0 BIPIA go/no-go = **GO** (`experiments/eda/RC0_BIPIA/`); 13-dataset verified-spec survey (`configs/data/dataset_specs.yml`, `experiments/eda/survey_v2.py`, `ledger_corrections.md`).
-- **Phase 3** (`0e49792`..`380cc43`) — `experiments/eda/OOD_WALL_PREDICTION/`:
-  - `criteria.md` — pre-registration, **attested before any metric/model** (the anti-prototype crux).
-  - `results.json` + `FINDINGS.md` — the falsifiable per-test-attack-type **collapse RANK**. top-4 predicted-worst = the **task-intent** types (Task Automation, Business Intelligence, Conversational Agent, Research Assistance); bottom-4 = Reverse Text / Substitution Ciphers / Scams&Fraud / Misinfo.
-  - Figures V5 / V9 / A1 / V4 (UMAP) / V10 / D2; drivers `bipia_carrier.py` + `run_prediction.py` / `run_a1_v4.py` / `run_v10_probes.py` / `run_audit_matrix.py`.
-  - **Key finding:** the **carrier dominates the MiniLM embedding** — silhouette by-carrier 0.197 vs by-attack-type −0.023; KMeans→carrier ARI 0.98 vs →type −0.001. The attack-type signal is embedding-invisible. (BIPIA also lexically subtle; uncontaminated — 0.0 near-dup vs the 8-dataset working set.)
+This session was a **tooling detour** — the milestone/modeling work below is still pending. Options:
 
-### Plan doc (after this session)
-- `PORTFOLIO_PLAN.md` now reflects post-M0 reality: §21 reconciled; Round 24–26 + **Round 27** narrative blocks; §16 carries the EDA M1 entry-gate + 3 conditional rescope trigger-gates.
-- **§16 Round-27 gates** (registered branch-points; each fires only on its trigger — full detail in `dossier_implications_for_roadmap.md` Zone 2):
-  - *M1→M2 (Lane 1b):* if M1 confirms `hackett2025bypassing` 100% char-injection ASR ±5pp → cut 12-technique → 3 representative + severity ranking.
-  - *M5-close (Lane 4):* if 2-of-3 {PINT, PromptShield, WildGuardMix} saturate >95% AUPRC on the stacker → pivot headline to LLMail-Inject.
-  - *M3-entry (Lane 5):* if encoder probe d′ ≤ 0.5 → falsify port-only, promote surface-third-path (CaMeL).
-- **§9 "8 milestones M0-M7" header unchanged** (EDA = entry-gate, no new rung). The committed Round 24–26 narrative was left intact (historical record).
+1. **Push the 6 commits.** Clean fast-forward to `origin/session/…`. Lowest-effort; gets the suite + harness + prereg + the prior Round 27 work onto origin.
+2. **Run the M1 attack-type-LODO headline sweep on RunPod** — the big deferred deliverable: produces the per-type LODO gaps → the **write-gate-OPEN §6.5 verdict** (issue #2 falsification). Now better-equipped (harness committed; `gpu-run-watcher` ready). **Clear two blockers first:** (a) wire `runpod_deploy.Session` — `gpu-run-watcher`'s launch glue is **M1-gated** on it (`library_imports.md:96` has no symbols yet); (b) resolve `contingency_unlock_1.md`'s **budget classification** — `make cost-report` doesn't exist yet (M1), so confirm base-vs-contingency from the spend ledger *before* spend. Then `gpu-run-watcher` drives + watches it.
+3. **Continue the milestone rethink** (the deferred M0→M7 re-ladder) → another `/exploring-options` round → Round 28 (± ADR-053).
+4. **Dogfood the new suite on real work** — e.g. `adr-scribe` → draft the ADR recording the suite itself (worth ratifying; currently undocumented as an ADR); `dataset-auditor` → refresh the dataset survey via the new `--out` fan-out.
+
+The formal `v0.1.0` M0 close is **NOT** on this list — deferred pending the milestone rethink.
+
+---
+
+## Current state (2026-05-30)
+
+### The subagent suite (`1bfefaf`) — `.claude/agents/`
+- `experiment-runner` (sonnet) — LOCAL smoke/minimal harness + §6.5 falsification + OOD parse → metrics + write-gate verdict.
+- `dataset-auditor` (sonnet) — ONE HF dataset per call, fan-out, reads its own `--out` JSON → one status row.
+- `gate-runner` (sonnet) — lint/test/contracts/ratify/dossier-audit → PASS/FAIL + actionable failures only.
+- `gpu-run-watcher` (sonnet) — RunPod launch+watch via `runpod_deploy.Session`; poll + alert + guarded auto-kill (cost ceiling default $15 / no-progress default 20 min); drafts upstream friction. **Launch glue M1-gated.**
+- `session-orienter` (opus) — cold-start briefing; never decides.
+- `adr-scribe` (opus) — draft ADR / Round-update; never ratifies.
+- Each has a tight OUTPUT CONTRACT + anti-pattern guardrails (counters the `BURN_IN_NOTES.md` failure modes). Verified: frontmatter valid, smoke sweep produces parseable `metrics.json`, `make lint/test/contracts` green.
+
+### M1 harness (`695a739`) — `experiments/attack-type-lodo/`
+- `folds.py` (core / obfuscation sub-split / external-carrier; purge-from-train for 11 shared BIPIA email contexts), `detectors.py` (4 rungs; device-adaptive precision — native bf16 Ampere+ else fp16), `metrics.py` (scorecard battery + per-type AUPRC + TPR@FPR), `harness.py` (sweep + strict-JSON + git-SHA MANIFEST), `falsify_ood_wall.py` (§6.5 write-gated verdict).
+- `results/` is now **gitignored** (large runtime parquet; regenerated by the harness). Full sweep is RunPod-only (local OOMs at spec config).
+
+### Pre-modeling EDA arc (Phases 0–3, prior sessions; M1's entry-gate)
+- `experiments/eda/OOD_WALL_PREDICTION/` — pre-registered falsifiable collapse RANK. **Key finding: carrier dominates the MiniLM embedding** (silhouette by-carrier 0.197 vs by-type −0.023; KMeans→carrier ARI 0.98 vs →type −0.001) — attack-type signal is embedding-invisible. Reframes value-props, falsifies NO lane hypothesis.
+
+### Plan doc + §16 Round-27 gates (unchanged this session)
+- `PORTFOLIO_PLAN.md` reflects post-M0 reality; §16 carries the EDA M1 entry-gate + 3 conditional rescope trigger-gates (M1→M2 Lane 1b / M5-close Lane 4 / M3-entry Lane 5 — detail in `dossier_implications_for_roadmap.md` Zone 2).
 
 ### eval-toolkit — v1.6.0 shipped + consumed
-- `~/Claude/eval-toolkit` `main` at **v1.6.0** (PyPI, Trusted Publishing). `eda` Tier-2 layer complete (Job-1 #83 / `HFDatasetsLoader` #85 / Job-2 #86→V5 / Job-3 #87→V9).
-- ⚠️ **Concurrent work** on eval-toolkit branch `feat/review-eval-tooling` (dirty `loaders.py`). **Do ALL eval-toolkit work in an isolated worktree off `origin/main`** (`git worktree add -b <br> /tmp/etk-pr origin/main`); never touch that checkout. (`gh` from `/tmp` needs `GIT_DISCOVERY_ACROSS_FILESYSTEM=1 gh ... -R brandon-behring/eval-toolkit`.)
-- Portfolio pinned **`eval-toolkit[probes,losses]>=1.6`** (`uv.lock` 1.6.0; `library_imports.md` R28). **Always `uv sync --extra dev`** — bare `uv sync` PRUNES the 92-pkg dev extra.
+- `~/Claude/eval-toolkit` `main` at v1.6.0 (PyPI). Portfolio pinned `eval-toolkit[probes,losses]>=1.6`. ⚠️ Concurrent work on branch `feat/review-eval-tooling` (dirty `loaders.py`) — do ALL eval-toolkit work in an isolated worktree off `origin/main`; never touch that checkout. **Always `uv sync --extra dev`** (bare `uv sync` prunes the dev extra).
 
 ---
 
 ## Read first (in order)
-1. `docs/planning/PORTFOLIO_PLAN.md` — the canonical plan; read the **Round 27 block** (after Round 24–26, before §1) + the **§16 Round-27 gates** for the current milestone framing.
-2. `experiments/eda/OOD_WALL_PREDICTION/FINDINGS.md` — the Phase-3 result + the pre-modeling prediction.
-3. `experiments/eda/OOD_WALL_PREDICTION/criteria.md` — the pre-registered method + falsification rule.
-4. `docs/planning/attack-type-lodo-harness-spec.md` — executable spec for the Lane-1 modeling phase.
-5. `docs/planning/dossier_implications_for_roadmap.md` (Zone 2) — the canonical home of the Lane 1b/4/5 rescope rationale the §16 gates reference.
-6. `~/.claude/plans/use-the-following-to-rustling-adleman.md` — this session's approved plan (consolidation + Round 27).
-7. `decisions/ADR-052-…md` — locks the LODO study *design*; **defers lane/chapter reorg to post-results** (the constraint that bounded Round 27).
+1. `.claude/delegation.md` — the subagent suite's When→Delegate→Invocation table (you can dogfood the agents this session).
+2. `~/.claude/plans/i-want-o-have-async-bee.md` — this session's approved plan (the 6-agent design + 8 decisions + verification).
+3. `docs/planning/PORTFOLIO_PLAN.md` — canonical plan; read the **Round 27 block** + **§16 gates** for the milestone framing.
+4. `docs/planning/attack-type-lodo-harness-spec.md` — executable spec for the Lane-1 modeling phase (now implemented in `experiments/attack-type-lodo/`).
+5. `experiments/lane-1/{hypothesis,protocol}.md` — the Lane-1 pre-registration (H-LANE-1; outcome pre-commitment + §6.5 falsification).
+6. `decisions/contingency_unlock_1.md` — the RunPod unlock (DRAFT; budget classification pending `make cost-report`).
+7. `experiments/eda/OOD_WALL_PREDICTION/FINDINGS.md` + `criteria.md` — Phase-3 result + the pre-registered falsification rule.
+8. `decisions/ADR-052-…md` — locks the LODO study design; defers lane/chapter reorg to post-results.
 
 ## Open tracked items (GitHub Issues + Work-Tracker project #1)
-- **#1** `tracked`/`P3`/`improvement` — **Rerun V10 with Prompt-Guard-86M once its Meta Llama gate is granted.** PG1 (the only indirect-valid probe) is gated-pending; protectai-v2 + PG2 are direct-scope, blind to BIPIA indirect. Fix = rerun `run_v10_probes.py` (it skips PG1 gracefully today).
-- **#2** `tracked`/`P2`/`research` — **Falsify the OOD-wall prediction** when Lane-1 produces per-type LODO gaps (top-k vs bottom-k; the §6.5 step).
+- **#1** `tracked`/`P3`/`improvement` — Rerun V10 with Prompt-Guard-86M once its Meta Llama gate is granted (`run_v10_probes.py` skips PG1 gracefully today).
+- **#2** `tracked`/`P2`/`research` — Falsify the OOD-wall prediction when Lane-1 produces per-type LODO gaps (the §6.5 step; now executable via the committed harness + `gpu-run-watcher`).
 
 ## Gotchas / open items
-- **Working-style (the single most important note — borne out AGAIN this session):** the user is present-first / interrogates inconsistencies / wants `/exploring-options`-style focused questions **before** convergence. This session: `ExitPlanMode` + a first plan were rejected in favour of exploring; the milestone framing was interrogated before converging. **Surface real forks + ask before requesting approval; do not barrel into execution.**
-- **Commit-trailer convention:** use **`Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>`** (model-specific; matches the branch), NOT the generic `Claude <…>` form in global `git.md`. A commit this session was amended to fix exactly this.
-- **2 commits are UNPUSHED** (`ahead 2`); push is a fast-forward over `151db97` when the user asks.
-- **Milestones under rethink** — don't treat M0→M7 / the formal `v0.1.0` close as settled (see START HERE).
-- **PG1 (`meta-llama/Prompt-Guard-86M`) gate is PENDING** Meta approval (re-checked 2026-05-29: 403). PG2's gate WAS granted. `model_info()` succeeding for a gated repo ≠ download access.
-- **`uv sync --extra dev`** always (bare prunes dev).
-- **Disk:** healthy (**165 GB free**). Phase-3 EDA is BIPIA-internal (tiny); only the audit matrix / model downloads pressure disk.
+- **Working-style (single most important — borne out AGAIN):** present-first; interrogates inconsistencies; wants `/exploring-options`-style focused questions **before** convergence. This session: `ExitPlanMode` rejected in favour of exploring the agent design across 8 forks. **Surface real forks + ask before requesting approval; do not barrel into execution.**
+- **🔑 Subagents are LIVE this session + you should use them.** See `.claude/delegation.md`. Present-first: they never decide forks, ratify, commit, push, or file public issues. The `.claude/settings.json` allowlist auto-approves safe read-only/local-run ops but **deliberately NOT the paid RunPod launch or git commit/push** → those always prompt.
+- **`gpu-run-watcher` launch glue is M1-gated** — `runpod_deploy.Session` has no symbols wired yet (`library_imports.md:96`); the monitor/parse/guard/contract logic is built, but the actual cloud launch needs that wiring. If invoked before it's wired, the agent reports `STATUS: m1-gated` and stops (no improvised launch).
+- **Before any RunPod spend:** resolve `contingency_unlock_1.md` base-vs-contingency from the spend ledger — its required `make cost-report` attestation **does not exist yet** (slated M1).
+- **Commit-trailer convention:** `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>` (model-specific; matches the branch), NOT the generic global `git.md` form. All 3 commits this session used it.
+- **6 commits UNPUSHED** — clean fast-forward to `origin/session/…` (upstream at `151db97`) when the user asks.
+- **Milestones under rethink** — M0→M7 / formal `v0.1.0` close not settled.
+- **PG1 (`meta-llama/Prompt-Guard-86M`) gate PENDING** Meta approval (403 as of 2026-05-29). PG2's gate WAS granted.
+- **`uv sync --extra dev`** always (bare prunes the dev extra).
+- **Disk:** healthy (~165 GB free); only model downloads / a real sweep pressure it.
 - **Excluded (honest ceiling):** PINT + Indirect-in-the-Wild (un-loadable); BIPIA qa/abstract carriers (license-gated); gentellab (custom-parquet).
-- **research-kb integration is a standing BOUNDARY** — handled in a separate session; do not touch.
-- Session `TaskList` is all `completed`; live follow-ups are GitHub issues #1/#2.
+- **research-kb integration is a standing BOUNDARY** — separate session; do not touch.
+- Session `TaskList` all `completed`; live follow-ups are GitHub issues #1/#2.
 
 ---
 
-*↓ Prior handoff (2026-05-29 AM — "Phase 3 COMPLETE; fork: Lane-1-modeling vs consolidation") is superseded by the above: the fork was resolved (consolidation → reconcile → Round 27 rethink). Preserved in git history at `151db97`.*
+*↓ Prior handoff (2026-05-29 PM — "Phase-2 consolidation + Round 27 rethink") is superseded by the above (the suite shipped + the M1 harness/Lane-1 prereg got committed). Preserved in git history at `93ba8ee`.*
