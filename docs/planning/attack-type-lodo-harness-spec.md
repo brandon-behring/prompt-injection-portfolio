@@ -44,7 +44,9 @@ model selection (not test tuning), unlike the submission's uniform untuned recip
 
 ModernBERT-base: **frozen-probe**, **LoRA** (r∈{8,16} swept on val), **full-FT** (LR swept on val incl.
 ~2e-5 — the submission's shared 1e-4 was too high for full-FT). TF-IDF+LR classical floor as anchor.
-bf16 + fp32-softmax-cast; class_weight balanced. Each rung gets its *own* val-selected recipe.
+precision is device-adaptive — **native** bf16 (Ampere+) else fp16 (Turing reports only *emulated*
+bf16, so the harness gates on native support) + fp32-softmax-cast; class_weight balanced. Each rung
+gets its *own* val-selected recipe.
 
 ## 5. Metrics + reporting (per fold)
 
