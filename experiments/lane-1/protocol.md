@@ -1,90 +1,109 @@
 ---
 lane_id: lane-1
-slug: lane-1-direct-baselines
+slug: lane-1-attack-type-lodo
 hypothesis_id: H-LANE-1
-title: Lane 1 execution protocol — reference scorers + classical floor + same-corpus baselines
-date_locked: TBD-M1
-status: skeleton
+title: Lane 1 execution protocol — attack-type-LODO detector harness (ADR-052)
+date_locked: 2026-05-29
+status: active
+supersedes: lane-1-direct-baselines (reference-scorer comparison; pre-ADR-052 skeleton)
 ---
 
-# Lane 1 — Protocol
+# Lane 1 — Protocol (attack-type-LODO)
 
-## Eval slate
+> **Reconciled 2026-05-29 (ADR-052).** The pre-ADR-052 framing of this lane (a reference-scorer
+> comparison on a pooled-OOD slate, TF-IDF trained on the Lane-2 MR-3 corpus, slate incl.
+> PINT/AgentDojo/InjecAgent) was a `skeleton` that the pre-modeling EDA arc superseded: it depended on
+> the not-yet-built Lane-2 corpus and on datasets excluded as un-loadable (the EDA "honest ceiling"). Lane
+> 1's modeling is now the **attack-type-LODO generalization study** locked by **ADR-052**. The reference-
+> scorer baselines (ProtectAI v1/v2, Meta Prompt-Guard 2) are **descoped from Lane 1** (they survive only
+> as the V10 reference-scorer diagnostic in `experiments/eda/OOD_WALL_PREDICTION/`).
 
-| Source | SHA pin | Size | Stratification | Notes |
-|---|---|---|---|---|
-| BIPIA | TBD | TBD | source-disjoint LODO | Inherited from submission `configs/data/source_manifest.yaml` |
-| AgentDojo | TBD | TBD | agentic-flow | Carryover per plan §5 |
-| InjecAgent | TBD | TBD | agentic | Carryover |
-| NotInject | TBD | TBD | over-defense probe | Carryover (per ADR-027 retired single-class metric) |
-| LLMail-Inject EN | TBD | 5000 | LLMail subset | Round 1 Q5 stratified pull |
-| PINT EN | TBD | 3016 | hard-negative | Lakera English-only |
+**Executable spec (source of truth):** `docs/planning/attack-type-lodo-harness-spec.md`.
+**Code:** `experiments/attack-type-lodo/`. **Pre-registration this lane validates:**
+`experiments/eda/OOD_WALL_PREDICTION/{criteria.md,results.json}` (the §6.5 OOD-wall falsification, issue #2).
 
-## Checkpoints in scope
+## Question
 
-- Frozen-probe baseline (from submission HF Hub `BBehring/prompt-injection-frozen-probe-v1`)
-- ProtectAI v1 + v2 (HF Hub `protectai/deberta-v3-base-prompt-injection*`)
-- Meta Prompt Guard 2 86M (HF Hub `meta-llama/Prompt-Guard-86M`)
-- TF-IDF + LogisticRegression (sklearn; trained on Lane 2 MR-3 corpus per Round 16 Q1)
-- Optional: PromptShield Llama-3.1-8B (Tier C; gated)
+Does a content-injection detector trained on a disjoint set of BIPIA attack-types **generalize** to
+held-out attack-types — and can the *ordering* of its per-type collapse be predicted pre-modeling
+(`hypothesis.md`)? Carrier is held constant; the only shift is attack type.
 
-## Execution sequence
+## Data (spec §1)
 
-### Phase 1: data prep (~$0; M1 Day 1)
-1. `make verify-data-sources` (re-verify all 6 OOD sources reachable + SHA-pinned)
-2. `python scripts/eval_from_hub.py --slate pooled_ood --predictions out/` (T0 entry)
-3. Stratified pulls: LLMail-Inject 5K + PINT-EN 3016
+BIPIA (`microsoft/BIPIA`, verified, local `data/raw/BIPIA/benchmark/`), via the reused loader
+`experiments/eda/OOD_WALL_PREDICTION/bipia_carrier.py` (`build_examples()`):
+- **Positive:** a scenario context with one BIPIA attack string suffix-injected (records `attack_type`,
+  `subfamily ∈ {task-intent, obfuscation}`, `carrier`, `position`).
+- **Negative:** the same contexts clean + NotInject benign-with-trigger prompts (over-defense control).
+- Carriers: `email` / `code` / `table` (redistributable). `qa` / `abstract` license-gated → **excluded**.
+- Attack pool: 15 types × 5 strings/split; **drop "Language Translation"** (only overlap) → **14v14 disjoint**.
+- BIPIA's own context train/test split keeps contexts disjoint (no context-memorization confound).
 
-### Phase 2: reference scorer eval (~$10 GPU; M1 Day 2-3)
-1. Score each detector against pooled OOD slate
-2. Compute `scorecard()` + `metric_specs.{pr_auc, roc_auc, brier, ece(n_bins=15)}`
-3. Compute TPR@LowFPR (1%, 0.5%, 0.1%, 0.05%) per ADR-036
-4. Paired-bootstrap delta CIs vs frozen-probe (10K resamples; BCa 95%)
+## Folds (spec §2)
 
-### Phase 3: TF-IDF + LR training (~$0; M1 Day 4)
-1. Train sklearn TfidfVectorizer + LogisticRegression on Lane 2 MR-3
-   synthetic-indirect-v2 corpus (~20k rows; per Round 16 Q1 same-corpus rule)
-2. Eval on pooled OOD; compute scorecard + TPR@LowFPR
+1. **Core — attack-type-LODO** (carrier constant): train contexts(train) × train-types → test contexts(test) × test-types. *Headline.*
+2. **Obfuscation technique-LODO:** train {Alphanumeric, Homophonic, Misspelling, Anagram, Space-Removal} → test {Substitution-Ciphers, Base-Encoding, Reverse-Text, Emoji-Sub}.
+3. **External — joint carrier+attack shift:** train {code, table} × train-types → test {email} × test-types.
 
-### Phase 4: aggregate + persist (~$0; M1 Day 5)
-1. Per-row predictions parquet at `evals/lane-1/predictions.parquet`
-2. Cost ledger row at `evals/cost_ledger.csv`
-3. results.md + decisions.md drafts
+Pre-run **source-disjointness assertion** (spec §6): no train↔test attack-type or context overlap.
 
-## Contingency-unlock gates
+## Detectors / rungs (spec §3–§4)
 
-- Tier C PromptShield SOTA anchor ($40-50): unlock if M1 Tier B results show
-  base detectors fall meaningfully behind expected SOTA on TPR@LowFPR
-  benchmarks. Requires `decisions/contingency_unlock_N.md` row + ADR-039.
+ModernBERT-base rungs — **frozen-probe**, **LoRA** (r∈{8,16} swept on val), **full-FT** (LR swept incl ~2e-5);
+**TF-IDF + LogisticRegression** classical floor. Each rung gets its **own val-selected recipe** from a
+**train-internal val split** (carve from TRAIN only; never touch test-types/contexts). Precision is
+**device-adaptive** (bf16 on Ampere+, else fp16 + fp32-softmax-cast — the RTX 2070 SUPER is Turing);
+`class_weight` balanced.
 
-## Test-contract attestations
+## Metrics + reporting (spec §5)
 
-- `no_handrolled_metrics`: lane code uses `eval_toolkit.scorecard` +
-  `metric_specs` exclusively (no F1/AUC reimplementation).
-- `predictions_persisted`: parquet at `evals/lane-1/predictions.parquet`.
-- `leakage_scan_present`: `scripts/leakage_scan.py` confirms no overlap
-  between Lane 2 MR-3 training data + Lane 1 eval slates.
-- `library_imports_registered`: every `from eval_toolkit ...` import
-  registered in `decisions/library_imports.md`.
+Per fold: **AUPRC** (primary) with bootstrap CI + **random-floor = positive prevalence**;
+**TPR@{1, 0.5, 0.1}% FPR**; **benign FPR** on NotInject; **val→test (ID→LODO) inflation** per rung.
+**Retention pre-commit:** the per-test-attack-type **diagnostic AUPRC + val→test drop** are **persisted**
+per `(rung, fold, seed)` alongside the predictions parquet (the §6.5 test is impossible otherwise). They
+stay diagnostic (N=5/type) — retention ≠ promotion.
+
+## §6.5 deliverable — OOD-wall falsification (issue #2)
+
+After the per-type drops are persisted, run `experiments/attack-type-lodo/falsify_ood_wall.py`: the FIXED
+rule in `OOD_WALL_PREDICTION/criteria.md` (one-sided top-k vs bottom-k permutation p<0.05 **AND** ≥10k
+bootstrap-CI lower bound >0; Kendall τ-b secondary) → **SURVIVES / FALSIFIED**, written into the
+OOD_WALL_PREDICTION artifacts **only** for a complete headline sweep (write-gated). A null result is publishable.
+
+## Reproducibility (spec §6)
+
+Seeds ≥3; `experiments/attack-type-lodo/MANIFEST.yml`; predictions parquet per `(rung, fold, seed)`;
+source-disjointness assertion as a pre-run check.
+
+## Test-contract attestations (preserved)
+
+- `no_handrolled_metrics`: metrics use `eval_toolkit.scorecard` + `metric_specs` + `losses.RecallAtLowFPR` exclusively.
+- `predictions_persisted`: parquet per `(rung, fold, seed)` under `experiments/attack-type-lodo/`.
+- `library_imports_registered`: every `from eval_toolkit …` registered in `decisions/library_imports.md`.
+- `source_disjoint`: `assert_source_disjoint` proves no train↔test attack-type/context overlap.
 
 ## Single-class slice handling
 
-- NotInject (over-defense probe): val-fixed TPR only per submission ADR-027
-  upstream enforcement (eval-toolkit#39); AUPRC/AUROC skipped via
-  scorecard `status="skipped"` for single-class slices.
+NotInject (over-defense probe): val-fixed FPR only per submission ADR-027; AUPRC/AUROC skipped via
+scorecard `status="skipped"` for single-class slices.
 
-## Metric reporting deliverables
+## Contingency-unlock gates
 
-- Tier A (per ADR-036): TPR@LowFPR (1%, 0.5%, 0.1%, 0.05%) for every detector
-- Tier B citations (per Round 7 Q1''''''): V0 rung decomposition (Ch 4
-  citation); V4 contamination signature (Ch 5 sidenote)
-- AUPRC + AUROC + Brier + ECE(n_bins=15) on multi-class slices via
-  `scorecard()`
-- Paired-bootstrap delta CIs vs frozen-probe
+- **M1→M2 (Lane 1b)** — if M1 confirms `hackett2025bypassing` 100% char-injection ASR ±5pp → cut Lane 1b
+  12-technique matrix → 3 representative + severity ranking (per `docs/planning/dossier_implications_for_roadmap.md` Zone 2; §16).
+- Tier C PromptShield SOTA anchor: unlock only on a `decisions/contingency_unlock_N.md` row + ADR-039.
+
+## Honest limitations (spec §7)
+
+Small attack diversity (75 strings/split, 5/type) → memorization risk; generalization is to 75 disjoint
+test strings, not an open technique space. Per-type N=5 → diagnostic only; headline is the aggregate
+type-split + obfuscation sub-family. qa/abstract excluded (license-gated). Likely outcome: collapse to
+~random on disjoint test-types — accepted; the value is the *correct, fair* measurement + the val→test
+inflation demonstration.
 
 ## Cross-references
 
 - Hypothesis: `experiments/lane-1/hypothesis.md`
-- Dependent lanes: Lane 2 (training corpus); Lane 4 (stacker uses Lane 1
-  scores as detectors)
+- Spec: `docs/planning/attack-type-lodo-harness-spec.md`; ADR: `decisions/ADR-052-attack-type-generalization-study-design.md`
+- Dependent lanes: Lane 4 (stacker consumes Lane 1 rung scores as base features); Lane 2 (distillation comparison)
 - Book chapter 8 + fragments at `book/src/content/fragments/lane-1/`
