@@ -53,6 +53,18 @@ collapse will show *larger* measured per-type LODO AUPRC drops than those ranked
   λ non-estimable (Zhao et al. 2019); separability ≠ collapse (arXiv:2602.14161 — 96.6% separable ↔ 8.4pp drop).
 - Submission v1.1.2 DeBERTa null result (backbone-invariance); Round-7 V0 rung decomposition.
 
+## Encoder-transfer note (S2 — limitation, empirically mitigated)
+
+The OOD-wall prediction's shift/shortcut signals are computed on `all-MiniLM-L6-v2`
+(criteria.md locked knob), but the detector backbone is **ModernBERT-base**. The
+MiniLM→ModernBERT *predictive* transfer is supported empirically: in the cheap-rung
+rehearsal the MiniLM-derived collapse ranking **SURVIVES** the §6.5 contrast against the
+**frozen rung** — which embeds with ModernBERT — at Kendall τ-b = 0.58 (stronger than the
+tfidf rung's 0.45). So the prediction's validity does not hinge on the prediction encoder.
+The *geometry* claim (carrier-dominance) was not recomputed on ModernBERT; this is recorded
+as a stated limitation, not re-run (a low-value robustness check given the predictive
+transfer is already demonstrated).
+
 ## Success criteria
 
 - AUPRC (+ bootstrap CI) + TPR@LowFPR (1%, 0.5%, 0.1%) per fold per ADR-036; benign FPR on NotInject.

@@ -22,7 +22,12 @@ from eval_toolkit.thresholds import recall_at_fpr
 __all__ = ["compute_fold_metrics", "per_type_diagnostics", "benign_fpr", "FPR_TARGETS"]
 
 # pr_auc/roc_auc/brier are ready MetricSpec instances; ece is a parameterised builder.
-_SPECS = [metric_specs.pr_auc, metric_specs.roc_auc, metric_specs.brier, metric_specs.ece(n_bins=15)]
+_SPECS = [
+    metric_specs.pr_auc,
+    metric_specs.roc_auc,
+    metric_specs.brier,
+    metric_specs.ece(n_bins=15),
+]
 FPR_TARGETS: tuple[float, ...] = (0.01, 0.005, 0.001)
 
 
@@ -89,8 +94,12 @@ def compute_fold_metrics(
     ys = np.asarray(y_score)
     do_boot = n_bootstrap > 0
     res = scorecard(
-        yt, ys, metrics=_SPECS, bootstrap=do_boot,
-        n_resamples=n_bootstrap if do_boot else 1000, rng=seed,
+        yt,
+        ys,
+        metrics=_SPECS,
+        bootstrap=do_boot,
+        n_resamples=n_bootstrap if do_boot else 1000,
+        rng=seed,
     )
     out: dict[str, object] = {name: _cell(m) for name, m in res.items()}
     out["prevalence_floor"] = float(np.mean(yt == 1))
@@ -99,10 +108,11 @@ def compute_fold_metrics(
 
 
 def benign_fpr(benign_scores: npt.ArrayLike, *, threshold: float = 0.5) -> float | None:
-    """Over-defense FPR on a benign-only slice (NotInject): fraction scored ≥ ``threshold``.
+    """FPR on a benign-only slice: fraction scored ≥ ``threshold``.
 
     Single-class slice ⇒ a val-fixed-threshold FPR only (submission ADR-027); pass the
-    val-derived threshold from the harness. Returns ``None`` for an empty slice.
+    val-derived threshold from the harness. Used for both the clean-context and the
+    NotInject over-defense slices (the harness records each). Returns ``None`` if empty.
     """
     arr = np.asarray(benign_scores)
     return None if arr.size == 0 else float(np.mean(arr >= threshold))
@@ -141,7 +151,12 @@ def per_type_diagnostics(
         s = scores[sel]
         n_total = int(sel.sum())
         if n_total < min_items or len(np.unique(y)) < 2:
-            out[t] = {"test_auprc": None, "drop": None, "n_pos": int(pos_mask.sum()), "n_total": n_total}
+            out[t] = {
+                "test_auprc": None,
+                "drop": None,
+                "n_pos": int(pos_mask.sum()),
+                "n_total": n_total,
+            }
             continue
         auprc = _pr_auc(y, s)
         out[t] = {

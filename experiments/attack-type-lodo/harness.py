@@ -29,6 +29,7 @@ Nothing here is GPU-gated; the transformer rungs self-select device
 from __future__ import annotations
 
 import argparse
+import functools
 import sys
 from collections.abc import Sequence
 from datetime import UTC, datetime
@@ -92,6 +93,24 @@ def _val_threshold(val_df: pd.DataFrame, val_scores: np.ndarray, *, fpr: float) 
     return float(np.quantile(neg, 1.0 - fpr))
 
 
+@functools.lru_cache(maxsize=1)
+def _load_notinject() -> tuple[str, ...]:
+    """Load NotInject benign-with-trigger prompts (over-defense control, spec §5).
+
+    Best-effort: returns an empty tuple if the dataset cannot be fetched, so the
+    over-defense FPR is recorded as an explicit ``None`` (never a silent pass). Cached
+    across the (rung, fold, seed) calls of a sweep.
+    """
+    try:
+        from datasets import load_dataset
+
+        ds = load_dataset("leolee99/NotInject", split="NotInject_one")
+        return tuple(str(p) for p in ds["prompt"])
+    except Exception as exc:  # noqa: BLE001 — optional over-defense control; never block the sweep
+        print(f"[warn] NotInject unavailable ({type(exc).__name__}: {exc}); notinject_fpr=None")
+        return ()
+
+
 def run_one(
     frame: pd.DataFrame,
     fold_name: str,
@@ -124,8 +143,10 @@ def run_one(
     fold = folds.make_fold(frame, fold_name, seed=seed)
     detector = detectors.make_detector(rung, seed=seed)
     recipe = detector.fit(
-        fold.train["text"].tolist(), fold.train["label"].tolist(),
-        fold.val["text"].tolist(), fold.val["label"].tolist(),
+        fold.train["text"].tolist(),
+        fold.train["label"].tolist(),
+        fold.val["text"].tolist(),
+        fold.val["label"].tolist(),
     )
     test_scores = np.asarray(detector.predict_proba(fold.test["text"].tolist()), dtype=float)
 
@@ -139,7 +160,19 @@ def run_one(
 
     val_scores = np.asarray(detector.predict_proba(fold.val["text"].tolist()), dtype=float)
     thr = _val_threshold(fold.val, val_scores, fpr=_BENIGN_FPR_TARGET)
-    benign = metrics.benign_fpr(test_scores[fold.test["label"].to_numpy() == 0], threshold=thr)
+    # Two benign FPRs at the val-fixed threshold: clean carrier contexts (the fold's own
+    # negatives) and NotInject benign-with-trigger prompts (the spec §5 over-defense control).
+    clean_context_fpr = metrics.benign_fpr(
+        test_scores[fold.test["label"].to_numpy() == 0], threshold=thr
+    )
+    ni_texts = _load_notinject()
+    notinject_fpr = (
+        metrics.benign_fpr(
+            np.asarray(detector.predict_proba(list(ni_texts)), dtype=float), threshold=thr
+        )
+        if ni_texts
+        else None
+    )
 
     record: dict[str, object] = {
         "rung": rung,
@@ -148,8 +181,10 @@ def run_one(
         "val_auprc": val_auprc,
         "recipe": recipe,
         "headline": headline,
-        "benign_fpr": benign,
+        "clean_context_fpr": clean_context_fpr,
+        "notinject_fpr": notinject_fpr,
         "benign_threshold": None if thr == float("inf") else thr,
+        "n_notinject": len(ni_texts),
         "test_types": list(fold.test_types),
         "per_type": per_type,
         "n_train": int(len(fold.train)),
@@ -200,7 +235,9 @@ def run_sweep(
                 write_json_strict(record, json_path)
                 artifacts.append(
                     {
-                        "rung": rung, "fold": fold_name, "seed": str(seed),
+                        "rung": rung,
+                        "fold": fold_name,
+                        "seed": str(seed),
                         "predictions": str(pq_path.relative_to(out_dir)),
                         "metrics": str(json_path.relative_to(out_dir)),
                     }
