@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run pytest:*)",
+      "Bash(uv run ruff:*)",
+      "Bash(uv run mypy:*)",
+      "Bash(uv run python experiments/:*)",
+      "Bash(make lint)",
+      "Bash(make test)",
+      "Bash(make contracts)",
+      "Bash(make verify-data-sources)",
+      "Bash(make verify-docker)",
+      "Bash(make verify-deps)",
+      "Bash(make ratify-milestone)",
+      "Bash(make dossier-audit)",
+      "Bash(git log:*)",
+      "Bash(git status)",
+      "Bash(git diff:*)"
+    ]
+  }
+}

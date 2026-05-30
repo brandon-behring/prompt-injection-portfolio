@@ -7,6 +7,8 @@ survives (loads + sound + mappable). No silent caps: large sets are sampled with
 
 Usage: uv run --no-project python experiments/eda/survey_run.py [bibkey ...]
        (no args = full batch; one arg = dogfood that single dataset)
+       --out PATH selects the output file (default experiments/eda/survey_summary.json),
+       enabling collision-free parallel per-dataset runs (one --out each).
 """
 from __future__ import annotations
 import json, sys, pathlib, warnings
@@ -132,23 +134,75 @@ def survey_one(bibkey, hf_id, tok):
     return rec
 
 
-def main(argv):
-    from transformers import AutoTokenizer
-    hf_tok = AutoTokenizer.from_pretrained("answerdotai/ModernBERT-base")
-    tok = lambda s: hf_tok(s, truncation=False, add_special_tokens=True)["input_ids"]
-    targets = {k: CANDIDATES[k] for k in argv if k in CANDIDATES} if argv else CANDIDATES
+def main(argv: list[str] | None = None) -> int:
+    """Run the dataset survey and persist the records to a JSON file.
+
+    Parameters
+    ----------
+    argv : list[str] | None
+        CLI tokens. Zero positional bibkeys = the full ``CANDIDATES`` batch;
+        one or more = dogfood just those keys. ``--out PATH`` selects the output
+        file (default ``experiments/eda/survey_summary.json``), enabling
+        collision-free parallel per-dataset runs (one ``--out`` each).
+
+    Returns
+    -------
+    int
+        Process exit code (``0`` on success).
+
+    Raises
+    ------
+    ValueError
+        If ``--out`` points at an existing directory rather than a file path.
+    """
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Phase-2 broad dataset survey.")
+    parser.add_argument("bibkeys", nargs="*", help="bibkeys to survey (default: all CANDIDATES)")
+    parser.add_argument(
+        "--out",
+        type=pathlib.Path,
+        default=OUT / "survey_summary.json",
+        help="output JSON path (default: experiments/eda/survey_summary.json)",
+    )
+    args = parser.parse_args(argv)
+
+    out_path: pathlib.Path = args.out
+    if out_path.exists() and out_path.is_dir():
+        raise ValueError(f"--out must be a file path, not a directory: {out_path}")
+
+    targets = (
+        {k: CANDIDATES[k] for k in args.bibkeys if k in CANDIDATES}
+        if args.bibkeys
+        else dict(CANDIDATES)
+    )
+
     records = []
-    for bibkey, hf_id in targets.items():
-        print(f"--- {bibkey} ({hf_id}) ---", flush=True)
-        r = survey_one(bibkey, hf_id, tok)
-        print(f"    {r.get('status')}  rows={r.get('measured_rows')}  text={r.get('mapped_text_col')} label={r.get('mapped_label_col')} ({r.get('label_semantics','')})", flush=True)
-        records.append(r)
-    (OUT / "survey_summary.json").write_text(json.dumps(records, indent=2))
+    if targets:  # only pay the tokenizer/model load when there is work to do
+        from transformers import AutoTokenizer
+
+        hf_tok = AutoTokenizer.from_pretrained("answerdotai/ModernBERT-base")
+        tok = lambda s: hf_tok(s, truncation=False, add_special_tokens=True)["input_ids"]
+        for bibkey, hf_id in targets.items():
+            print(f"--- {bibkey} ({hf_id}) ---", flush=True)
+            r = survey_one(bibkey, hf_id, tok)
+            print(
+                f"    {r.get('status')}  rows={r.get('measured_rows')}  "
+                f"text={r.get('mapped_text_col')} label={r.get('mapped_label_col')} "
+                f"({r.get('label_semantics', '')})",
+                flush=True,
+            )
+            records.append(r)
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(records, indent=2))
+    print(f"wrote {len(records)} record(s) -> {out_path}", file=sys.stderr)
+
     audited = [r for r in records if r.get("status") == "AUDITED"]
     print(f"\n=== {len(audited)}/{len(records)} AUDITED ===")
     for r in records:
         if r.get("status") != "AUDITED":
-            print(f"  {r['status']:20} {r['bibkey']}  {r.get('note','') or r.get('error','')[:60]}")
+            print(f"  {r['status']:20} {r['bibkey']}  {r.get('note', '') or r.get('error', '')[:60]}")
     return 0
 
 

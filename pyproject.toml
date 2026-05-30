@@ -110,6 +110,15 @@ warn_return_any = true
 warn_unused_ignores = true
 disallow_untyped_defs = true
 
+# The attack-type-LODO harness modules live in experiments/attack-type-lodo/ — a
+# hyphenated dir (not an importable package) loaded by its tests via sys.path
+# injection (mirroring experiments/eda/OOD_WALL_PREDICTION/run_prediction.py).
+# experiments/ is outside the mypy target set (src/scripts/tests), so mypy cannot
+# resolve these by name; silence the unavoidable import-not-found in tests/experiments/.
+[[tool.mypy.overrides]]
+module = ["folds", "metrics", "detectors", "falsify_ood_wall", "harness", "bipia_carrier", "survey_run"]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 minversion = "8.0"
 testpaths = ["tests"]
