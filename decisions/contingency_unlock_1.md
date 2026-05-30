@@ -1,9 +1,10 @@
 # Contingency unlock 1 — cloud GPU for the M1 Lane-1 attack-type-LODO headline sweep
 
-**Filed:** 2026-05-30 · **Status:** DRAFT — filed pre-spend per
-[ADR-013](ADR-013-cost-contingency-unlock-policy.md); **not yet ratified** (awaits the
-ADR-014 advancement + user go-ahead at spend time). **Ratifying ADR:**
-[ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md) (cost-driven slot 1) — **not** ADR-039.
+**Filed:** 2026-05-30 · **Status:** Budget **RESOLVED → base-budget** (2026-05-30 spend tally below:
+$0.00 realized, $5–15 « $250 base) ⇒ **no contingency draw; ADR-014 stays Reserved.** The spend itself
+still awaits the user's launch go-ahead + the `runpod_deploy.Session` wiring (the other M1 blocker).
+Routed via the cost-driven slot ([ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md)), **not** the
+ADR-039 method-expansion.
 
 > **Why ADR-014, not ADR-039.** ADR-039 is the Lane-1 PromptShield SOTA-anchor *method-expansion*,
 > gated on a **research signal** (all base detectors cluster <0.40 AUPRC). This unlock is **not** a
@@ -38,12 +39,34 @@ the `runpod-deploy` orchestrator already pinned in `decisions/library_imports.md
 config (batch 16 / max_len 512, **native bf16** on Ampere+) runs with no desktop contention at ~3–5×
 local throughput → the full sweep completes reliably in **~1.5–3 h**.
 
-> ⚠️ **Budget classification PENDING — may not draw contingency at all.** Whether this is a *contingency*
-> draw (→ advance ADR-014) or fits inside the **base $250** (→ no contingency ADR needed, just a normal
-> base-budget spend) depends on current cumulative spend. ADR-013's required `make cost-report`
-> attestation **cannot be run** — that Makefile target does not exist yet (slated for M1 per the Makefile
-> header comment). **Resolve before spend:** confirm base-vs-contingency from the actual spend ledger; if
-> base budget covers it, file this as a base-budget GPU run and leave ADR-014 Reserved.
+> ✅ **Budget classification RESOLVED → BASE-BUDGET (2026-05-30).** A manual spend tally (substituting for
+> the absent `make cost-report`; see *Spend tally* below) confirms **$0.00 realized cumulative spend** —
+> all compute to date is local (CPU + the owned RTX 2070 probe), no cloud GPU rented, no paid API. The
+> $5–15 sweep therefore sits **inside the base $250**: a normal **base-budget GPU spend, NOT a contingency
+> draw**. ADR-014 stays **Reserved**. *(The spend itself still awaits the user's launch go-ahead + the
+> `runpod_deploy.Session` wiring.)*
+
+### Spend tally (manual attestation — 2026-05-30; substitutes for `make cost-report`)
+
+| line | $ |
+|------|---|
+| **Realized cumulative spend to date** | **$0.00** |
+| — EDA Phases 0–3, dataset survey, harness build, cheap-rung rehearsals (all CPU) | $0 |
+| — local RTX 2070 SUPER GPU feasibility probe (owned hardware) | $0 |
+| — cloud GPU rented (`runpod-deploy` is a dependency pin, not usage) | $0 |
+| — paid API (PG2 / CourtGuard not yet run; PG1 Meta-gated/not-run; V10 used local HF models) | $0 |
+| **This sweep** (cloud GPU, ~1.5–3 h on 24 GB+) | **$5–15** |
+| **Projected realized cumulative after sweep** | **$5–15** |
+| *context:* full-project base forecast if all lanes complete (ADR-002) | ~$187–267 |
+| *context:* full-project forecast **incl.** this sweep | ~$202–282 |
+| Base cap (ADR-002) | $250 |
+| Hard cap (ADR-002) | $350 |
+
+**Method:** no spend-ledger file exists (the repo's `*_ledger.yml` are bibliography / evidence / dataset
+ledgers, not cost), so this enumerates realized spend from the project record. **Classification:** against
+**$0 realized**, the $5–15 sweep is **BASE-BUDGET** — no contingency draw, ADR-014 stays Reserved.
+**Hard-cap check:** even the full-project forecast (~$202–282, incl. this sweep) stays **< $350** ✓; the
+$5–15 realized add is « the $250 base ✓.
 
 ## Expected outcome / hypothesis being tested
 
@@ -70,12 +93,14 @@ falsification verdict (the deferred deliverable):
 
 ## Pre-spend checklist (per ADR-013, to complete at ratification)
 
-- [ ] Confirm base-vs-contingency from the spend ledger (resolves whether ADR-014 advances at all).
+- [x] Confirm base-vs-contingency from the spend ledger → **BASE-BUDGET** ($0.00 realized; see *Spend tally*).
 - [ ] If contingency: advance [ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md) `Reserved → Accepted`
-      with the trigger event + amount drawn + this file as the ratified unlock.
-- [ ] Cost attestation (once `make cost-report` exists, or a manual ledger tally) showing projected < $350.
-- [ ] Correct the spec/plan's "Turing → fp16" note already applied (`_select_device_dtype` gates on
+      — **N/A** (base-budget, not a contingency draw; ADR-014 stays Reserved).
+- [x] Cost attestation (manual ledger tally — `make cost-report` absent) showing projected **$5–15 < $350**.
+- [x] Correct the spec/plan's "Turing → fp16" note already applied (`_select_device_dtype` gates on
       native bf16) — the cloud Ampere+ card will select **bf16** as intended.
+- [ ] **User launch go-ahead at spend time** (the spend itself stays user-led) + `runpod_deploy.Session`
+      wiring (the other M1 blocker) — both still open.
 
 ## Cross-references
 

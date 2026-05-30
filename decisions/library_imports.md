@@ -93,12 +93,16 @@ session-launch boundary.
 
 | Symbol | Min version | Used in | First commit | MR | Notes |
 |--------|-------------|---------|--------------|----|-------|
-| (none yet) | | | | | |
+| `runpod_deploy.load_job_spec` | 0.8.4 | `scripts/runpod_sweep.py` | (runpod-wiring) | — | loads the strict-v2 YAML job spec |
+| `runpod_deploy.run_job` | 0.8.4 | `scripts/runpod_sweep.py` | (runpod-wiring) | — | provision→stage→run→pull→lifecycle; `offline_dry_run` validates w/o spend |
+| `runpod_deploy.RunpodJobSpec` | 0.8.4 | `scripts/runpod_sweep.py` (type) | (runpod-wiring) | — | returned by `load_job_spec` |
 
-Expected populations:
-- `runpod_deploy.Session` ← session-launch for Lane 2 retrain (M4) +
-  Lane 1 / Lane 1b / Lane 5 evals (M1-M2) — `lifecycle.on_success: recycle`
-  per submission ADR-059.
+> **Correction (2026-05-30): there is no `runpod_deploy.Session`.** The earlier "expected
+> population" (and submission ADR-059) named a phantom symbol; the real `runpod-deploy>=0.8.4` API is
+> a strict YAML job spec (`experiments/attack-type-lodo/runpod_lane1_sweep.yaml`) loaded via
+> `load_job_spec` → `run_job`. `lifecycle` values are `preserve|stop|delete|recycle` (the Lane-1
+> sweep uses `on_success: delete`). Lane 2 / 1b / 5 launches reuse this same `run_job` glue with
+> their own job specs. Wiring validated via `scripts/runpod_sweep.py --offline-dry-run` (zero spend).
 
 ---
 

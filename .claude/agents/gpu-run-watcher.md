@@ -13,13 +13,18 @@ model: sonnet
 You own a long-running RunPod sweep so the calling agent doesn't have to babysit a GPU.
 You watch, you alert, you parse — and you return only a distilled telemetry + result contract.
 
-## Status: launch glue is M1-gated
-The cloud path runs through `runpod_deploy.Session` (the `runpod-deploy>=0.8.4` local orchestrator,
-`decisions/library_imports.md:89-101`, lifecycle `on_success: recycle`). Its symbols are NOT wired
-yet (populated at M1). **If the launch primitives are unavailable, report that the RunPod path is
-M1-gated and stop — do NOT improvise a launch mechanism (no ad-hoc ssh/curl/CLI hacks).** The
-monitoring, guard, parse, and upstream-friction logic below is the durable part and applies the
-moment the launch is wired.
+## Status: launch glue WIRED (2026-05-30)
+The cloud path is `scripts/runpod_sweep.py` → `runpod_deploy.{load_job_spec, run_job}` over the job
+spec `experiments/attack-type-lodo/runpod_lane1_sweep.yaml` (`runpod-deploy>=0.8.4`,
+`decisions/library_imports.md`). **There is no `runpod_deploy.Session`** — the plan/ADR-059 named a
+phantom symbol; the real API is the YAML spec + `run_job`. Validated end-to-end via
+`uv run python scripts/runpod_sweep.py --offline-dry-run` (zero spend, no provider calls). To launch
+the watched sweep: run `scripts/runpod_sweep.py` (PAID — user go-ahead required; `--dry-run` does a
+price/inventory check first). Hard guards live in the spec: `budget.cost_cap_usd: 15`,
+`max_runtime_minutes: 240`, `lifecycle.on_success: delete` (pod auto-terminates → billing stops).
+Provider-side values (`pod.image`, `pod.datacenters`, `pod.gpu_order`, the SSH key registered with
+RunPod) must be confirmed before the paid launch. The monitoring, guard, parse, and upstream-friction
+logic below is the durable part.
 
 ## The run (per decisions/contingency_unlock_1.md)
 On a 24 GB+ pod, run the full headline sweep:

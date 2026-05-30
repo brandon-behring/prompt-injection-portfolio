@@ -19,6 +19,8 @@ evals/predictions/
 evals/predictions_val/
 evals/checkpoints/
 evals/lane*/predictions/
+# runpod-deploy per-run telemetry + log pulls (scripts/runpod_sweep.py)
+artifacts/runpod/
 
 # Data — gitignored by default; manifests + processed parquets per plan §3
 data/raw/
