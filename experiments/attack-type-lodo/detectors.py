@@ -310,7 +310,9 @@ class LoRADetector:
             lora_alpha=2 * r,
             lora_dropout=0.05,
             target_modules="all-linear",
-            modules_to_save=["classifier"],
+            # spec §4: ModernBERT's `head` (dense+norm) precedes `classifier`; save both so the
+            # prediction head trains fully rather than being half-frozen (head.norm) under LoRA.
+            modules_to_save=["classifier", "head"],
         )
         return get_peft_model(base, cfg)
 

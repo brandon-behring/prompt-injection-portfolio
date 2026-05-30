@@ -82,7 +82,7 @@ dilution, Spearman 1904).
 - **SECONDARY effect size — Kendall τ-b** over all 14 types (`scipy.stats.kendalltau`,
   `variant='b'`, exact null when untied), reported one-sided; *descriptive, not the gate* (n=14
   critical τ-b ≈ 0.36 one-sided, but attenuation makes it conservative).
-- **Uncertainty** — bootstrap the whole pipeline (**≥10 000** item-level resamples within each type;
+- **Uncertainty** — bootstrap the whole pipeline (**≥10 000** item-level resamples within each type — **superseded by payload-cluster, Revision 1**;
   percentile **and** BCa CIs on the top-k−bottom-k mean-drop difference); flag fragility if
   percentile and BCa disagree materially.
 - **DECISION RULE — the prediction SURVIVES iff:** (1) the one-sided permutation p < 0.05 **AND**
@@ -104,7 +104,7 @@ dilution, Spearman 1904).
 | MMD caveat | a non-significant MMD p is **not** evidence of "no shift" (low power at d=384, small n) — pre-committed |
 | Log-odds (C1) | Monroe et al. 2008 informative-Dirichlet, per class/type, min-count threshold (pre-registered, e.g. ≥ 5 occurrences) |
 | Competency (C2) | length-only, char-n-gram, BoW logistic; trained on train pool, evaluated per test-type; AUPRC vs per-type floor |
-| Bootstrap | ≥ 10 000 item-level resamples; percentile + BCa |
+| Bootstrap | ≥ 10 000 item-level resamples; percentile + BCa **(superseded → payload-cluster, Revision 1)** |
 | Rank fusion | equal-weight average of E1-shift rank + C2-shortcut-failure rank; C2 tiebreak |
 
 ## Cross-dataset confound controls (for the DESCRIPTIVE audit matrix only — NOT the prediction)
@@ -146,3 +146,47 @@ collapse-rank order, the per-type E1/C2 components, the top-k/bottom-k sets, and
 
 *Apply the FIXED decision rule above: top-k vs bottom-k one-sided permutation test + bootstrap CI;
 report Kendall τ-b; record SURVIVES / FALSIFIED. No knob is revisited at that point.*
+
+## Revision 1 — 2026-05-30: resampling unit (payload-clustered) + what the gate tests
+
+**Status:** amendment to the FIXED test, appended per the Revision policy. Adopted
+**before the confirmatory Lane-1 LoRA/full-FT headline data exists** (only the $0
+cheap-rung rehearsal — tfidf + frozen — has run); motivated by a statistical error in
+the locked uncertainty spec, not by any confirmatory result.
+
+**R1 — resampling unit corrected to the payload cluster (the honest independent unit).**
+Each test-type's positives are **5 BIPIA attack strings (payloads) × 12 contexts × 3
+carriers = 180 rows**, so the independent unit is the **payload (n=5/type)**, not the row.
+- *Bootstrap (gate 2)* — the locked "≥10 000 **item-level** resamples within each type"
+  (§Falsification, §Locked knobs) is **pseudo-replicated** (treats 180 dependent rows as
+  independent). Corrected to **payload-cluster** resampling: resample each type's 5 payload
+  ids with replacement (shared across seeds), recompute per-type AUPRC, then the
+  top-k−bottom-k contrast; ≥10 000 iters; one-sided 95% percentile CI lower bound.
+  Negatives held fixed (shared across types ⇒ cancel in the contrast); seeds averaged.
+- *Permutation (gate 1)* — **restored to the pre-registered type unit** ("averages k types
+  per tail", §primary), which the multi-seed implementation had inflated by pooling seeds.
+  Exact one-sided permutation over the 2k=8 tail types, all C(2k,k)=**70** splits. Minimum
+  achievable one-sided p = **1/70 ≈ 0.0143** (the k=4 design is near-saturated; disclosed).
+- *Decision rule UNCHANGED*: SURVIVES iff permutation p<0.05 AND bootstrap CI-low>0.
+- *Estimator*: `experiments/attack-type-lodo/falsify_clustered.py` (reads
+  `predictions.parquet`; the pre-pooled drop in `metrics.json` cannot support clustering).
+
+**R2 — what the gate tests (levels, not magnitude).** The per-type drop is
+`val_auprc − test_auprc[t]` with `val_auprc` one per-(rung,seed) scalar; in the
+top-k−bottom-k difference the constant minuend **cancels**, so the contrast is
+algebraically a test on per-type test-AUPRC **levels** — the predicted **detectability
+ordering**, not collapse *magnitude*. H1's "collapse" wording stands as the motivating
+hypothesis; the gate is honestly an ordering test. The "benchmarks-lie / ID→LODO
+inflation" claim is carried **separately and descriptively** by the per-rung val-vs-test
+table and the headline-AUPRC-vs-prevalence-floor observation (headline AUPRC ≈0.96–0.98
+vs no-skill floor ≈0.926 at 92.6% positive prevalence) — **not** by this gate.
+
+**R3 — permutation resolution (disclosure, no rule change).** At k=4 the exact
+permutation is near-saturated (min-p 0.0143, no headroom). The bootstrap CI and the
+Kendall τ-b over all 14 types (secondary) carry the higher-resolution evidence.
+
+**Rehearsal validation (cheap rungs, NOT confirmatory).** Under the corrected estimator
+both cheap rungs SURVIVE — tfidf: T=+0.135, perm p=0.0143 (floor = perfect tail
+separation), cluster-bootstrap CI-low=+0.111 (100% of resamples >0), τ-b=0.45 (p=.013);
+frozen: T=+0.082, perm p=0.0143, CI-low=+0.064 (100% >0), τ-b=0.58 (p=.0015). The
+confirmatory verdict still requires the complete ≥3-seed × 4-rung sweep (write-gate).
