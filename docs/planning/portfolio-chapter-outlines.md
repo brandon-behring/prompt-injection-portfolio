@@ -1,9 +1,9 @@
 # Portfolio Book Chapter Outlines (13 chapters)
 
-**Companion to** `/home/brandon_behring/.claude/plans/i-want-to-consider-merry-milner.md` §19.
+**Companion to** `~/.claude/plans/i-want-to-consider-merry-milner.md` §19.
 Produced during 2026-05-19 round-7 holistic review (focus area #1: book pedagogy + 13-chapter outline refinement).
 
-Note: full per-chapter KF-decomposed detail (R/O/E structure, callout strategy, citation density) was generated as a ~70KB analysis. This document captures the **concise summary table + per-part narrative arc**. The original detailed analysis is preserved at `/home/brandon_behring/.claude/projects/-home-brandon-behring-Claude-prompt-injection-detection-submission/1fb54a91-9509-4e4b-a0d1-890a107d8a8d/tool-results/toolu_01NVpxGnKRZyPj2ZRdBUyCAV.json` (28K tokens; read in chunks if needed at M0 chapter authoring).
+Note: full per-chapter KF-decomposed detail (R/O/E structure, callout strategy, citation density) was generated as a ~70KB analysis. This document captures the **concise summary table + per-part narrative arc**. The original detailed analysis is preserved in a local Claude Code transcript artifact (28K tokens; author-local, not in the repo; read in chunks if needed at M0 chapter authoring).
 
 ---
 

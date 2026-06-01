@@ -1,6 +1,6 @@
 # Portfolio Experiment Record Template Schema
 
-**Companion to** `/home/brandon_behring/.claude/plans/i-want-to-consider-merry-milner.md` §17.
+**Companion to** `~/.claude/plans/i-want-to-consider-merry-milner.md` §17.
 Produced during 2026-05-19 round-7 holistic review (focus area #2: experiment record templates).
 
 ---

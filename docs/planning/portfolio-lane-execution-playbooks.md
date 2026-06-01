@@ -1,6 +1,6 @@
 # Portfolio Lane Execution Playbooks
 
-**Companion to** `/home/brandon_behring/.claude/plans/i-want-to-consider-merry-milner.md` §18.
+**Companion to** `~/.claude/plans/i-want-to-consider-merry-milner.md` §18.
 Produced during 2026-05-19 round-7 holistic review (focus area #4: lane execution playbooks).
 
 Six lanes (1, 1b, 2, 3, 4, 5); each playbook is execution-ready as of v0.1.0 portfolio bootstrap.

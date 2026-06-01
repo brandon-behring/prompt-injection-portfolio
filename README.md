@@ -142,10 +142,10 @@ blog post per Round 3 Q4''. Archive at `docs/build-in-public/`.
 
 Plan + companion docs:
 
-- Plan: `/home/brandon_behring/.claude/plans/i-want-to-consider-merry-milner.md`
-- Chapter outlines: `/home/brandon_behring/.claude/plans/portfolio-chapter-outlines.md`
-- Experiment record template: `/home/brandon_behring/.claude/plans/portfolio-experiment-record-template.md`
-- Lane execution playbooks: `/home/brandon_behring/.claude/plans/portfolio-lane-execution-playbooks.md`
+- Plan: `~/.claude/plans/i-want-to-consider-merry-milner.md`
+- Chapter outlines: `~/.claude/plans/portfolio-chapter-outlines.md`
+- Experiment record template: `~/.claude/plans/portfolio-experiment-record-template.md`
+- Lane execution playbooks: `~/.claude/plans/portfolio-lane-execution-playbooks.md`
 
 (These plan + companion docs are private; portfolio's public ADR + dossier
 + chapter prose will mirror the decisions at M0 close.)

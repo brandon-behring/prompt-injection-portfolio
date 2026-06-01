@@ -2,7 +2,7 @@
 
 ## Context
 
-The current repo at `/home/brandon_behring/Claude/prompt-injection-detection-submission/`
+The submission repo (sibling `../prompt-injection-detection-submission/`)
 shipped v1.0.1 as a locked case-study submission. Its headline finding is
 **honest and uncomfortable**: training the ModernBERT backbone on
 direct-injection-heavy LODO data made the indirect/agentic OOD slice *worse*
@@ -848,7 +848,7 @@ Loose milestone tags `v0.1.0` (M0) → `v0.7.0` (M7; **textbook guide ratified p
 
 ## 3. Repo topology
 
-**New repo**: `/home/brandon_behring/Claude/prompt-injection-portfolio/`. Public on GitHub from M0 via `gh repo create --public` (Q2'').
+**New repo**: `prompt-injection-portfolio` (this repo). Public on GitHub from M0 via `gh repo create --public` (Q2'').
 
 **Dependency policy** (per round-3 reinforcement + round-6 v3.0 npm pivot + Round-14 v0.43.0/v0.44.0 advances):
 ```toml
@@ -1594,7 +1594,7 @@ Added at the milestone rethink (Round 27, 2026-05-29). The EDA entry-gate is set
 
 ## 17. Book chapter outlines (Round 7 holistic-review focus #1)
 
-**Companion doc**: `/home/brandon_behring/.claude/plans/portfolio-chapter-outlines.md`
+**Companion doc**: `~/.claude/plans/portfolio-chapter-outlines.md`
 
 13-chapter outline refined per scaffold v3.0 academic profile (KF triadic R/O/E + 7-state freshness + 18 callouts + T1-T4 source tiers + volatility classes):
 
@@ -1603,13 +1603,13 @@ Added at the milestone rethink (Round 27, 2026-05-29). The EDA entry-gate is set
 - **Part III (Ch 7-12) — Evolution**: the 6 experimental chapters. Ch 7 anchors EchoLeak (CVE-2025-32711) + submission **ADR-075** (unified full-FT OOD drop rationale; supersedes ADR-050 R2 + ADR-052 per Round 14) + v1.1.2 DeBERTa null result (backbone-invariance). Ch 8-12 map 1-to-1 to Lane 1/1b/2/3/4/5 experiment outcomes. `feature-surface` volatility; ResultBox + CaseStudy emphasis; freshness progresses `planned` → `prose_only` → `implemented` as lanes close.
 - **Part IV (Ch 13) — Methodology lessons**: CodeIntegrity 98% post-mortem anchor + V0/V4/SDD reprise (Round 7 Tier B citations). `architectural-pattern` volatility; Cross-cutting Convergence/Divergence.
 
-**Full per-chapter detail** (KF triadic structure, callout strategy, citation density target, freshness state, volatility class, cross-references, failure-branch prose) lives in the companion doc. Original ~70KB analysis preserved at `/home/brandon_behring/.claude/projects/-home-brandon-behring-Claude-prompt-injection-detection-submission/1fb54a91-9509-4e4b-a0d1-890a107d8a8d/tool-results/toolu_01NVpxGnKRZyPj2ZRdBUyCAV.json`.
+**Full per-chapter detail** (KF triadic structure, callout strategy, citation density target, freshness state, volatility class, cross-references, failure-branch prose) lives in the companion doc. Original ~70KB analysis preserved in a local Claude Code transcript artifact (author-local; not in the repo).
 
 ---
 
 ## 18. Experiment record schema (Round 7 holistic-review focus #2)
 
-**Companion doc**: `/home/brandon_behring/.claude/plans/portfolio-experiment-record-template.md`
+**Companion doc**: `~/.claude/plans/portfolio-experiment-record-template.md`
 
 Experiment records are the **primary unit of work** for portfolio (§2 Tier-2). Each of the 6 lanes (1, 1b, 2, 3, 4, 5) has `experiments/lane-N-<slug>/{hypothesis,protocol,results,decisions}.md`.
 
@@ -1633,7 +1633,7 @@ Experiment records are the **primary unit of work** for portfolio (§2 Tier-2). 
 
 ## 19. Lane execution playbooks (Round 7 holistic-review focus #4)
 
-**Companion doc**: `/home/brandon_behring/.claude/plans/portfolio-lane-execution-playbooks.md`
+**Companion doc**: `~/.claude/plans/portfolio-lane-execution-playbooks.md`
 
 Each of the 6 lanes (1, 1b, 2, 3, 4, 5) has a self-contained execution playbook. Concise table:
 
