@@ -43,8 +43,10 @@ verdict" + `criteria.md` footer. **Issue #2 CLOSED.**
    **The verdict is FALSIFIED (no wall at LoRA capacity)** → more capacity (full-FT) would only dissolve it
    further → **no decision-relevant info → the trigger does NOT fire; `full_ft` stays deferred.** (Record this
    if ratifying ADR-054 / closing the gate.)
-3. **Milestone rethink** — M0→M7 still provisional; the formal `v0.1.0` M0 close stays **DEFERRED**.
-   `/exploring-options` → Round 28 (± a milestone-rethink ADR-055+).
+3. **Milestone rethink — DEFERRED to a fresh session; inputs captured.** The post-LODO-results re-ladder
+   condition (Round 27 / ADR-052) is now **met**; M1's implications are distilled in
+   **`docs/planning/milestone-rethink-inputs.md`** (the read-first brief). M0→M7 still provisional; the
+   formal `v0.1.0` M0 close stays user-led. Pick up the full re-ladder fresh → `/exploring-options` → ADR-055+.
 4. **Optional housekeeping:** file **DF-5** (pricing-403) upstream (drafted in `upstream_issues.md`; user-led);
    address new **issue #3** (scrub absolute `/home/` paths from the repo); rerun `run_v10_probes.py` with **PG1**
    now its Meta gate is cleared (**issue #1**).
