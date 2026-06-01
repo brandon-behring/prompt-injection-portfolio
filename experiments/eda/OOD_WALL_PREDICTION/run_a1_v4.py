@@ -50,7 +50,7 @@ def main() -> None:
     )
     split_line = len(ex.train_types)
 
-    # --- V4 geometry: PCA-2D of a balanced positive sample + silhouette/ARI. ---
+    # --- V4 geometry: UMAP-2D of a balanced positive sample + silhouette/ARI. ---
     rng = np.random.default_rng(SEED)
     samp = pos.sample(n=min(1800, len(pos)), random_state=SEED).reset_index(drop=True)
     embed = make_minilm_embedder()

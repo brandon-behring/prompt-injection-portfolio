@@ -1,0 +1,575 @@
+{
+  "_about": "Condensed committed snapshot of the M1 attack-type-LODO per-fold metrics. The raw predictions.parquet + per-fold metrics.json under experiments/attack-type-lodo/results/ are gitignored + reproducible; this is the durable in-repo summary (mean over seeds).",
+  "_provenance": "Aggregated from experiments/attack-type-lodo/results/seed=*/<fold>/<rung>.metrics.json (eval_toolkit.scorecard outputs). This snapshot only averages pre-computed values; it computes no new metric. Independently re-verified 2026-06 (experiments/AUDIT_2026-06/verification_report.md).",
+  "_reference_metric_caveat": "Audit V3: for the off-the-shelf reference column (not in this file), prefer roc_auc/means over pr_auc \u2014 at prevalence ~0.93, pr_auc ~0.92 is chance.",
+  "_headline_verdict": "\u00a76.5 OOD-wall FALSIFIED at the lora ceiling on core_attack_type (capacity-dependent). Canonical: experiments/eda/OOD_WALL_PREDICTION/falsification_verdict.json.",
+  "_fold_status": {
+    "core_attack_type": "pre-registered \u00a76.5 headline",
+    "obfuscation_technique": "exploratory (non-pre-registered generalization diagnostic)",
+    "carrier_plus_attack_external": "exploratory (non-pre-registered generalization diagnostic)"
+  },
+  "generated_utc": "2026-06-01T22:02:41.141070+00:00",
+  "folds": {
+    "core_attack_type": {
+      "tfidf": {
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "pr_auc_mean": 0.96668,
+        "roc_auc_mean": 0.71283,
+        "prevalence_floor": 0.92647,
+        "tpr_at_fpr_mean": {
+          "0.01": 0.1254,
+          "0.005": 0.10317,
+          "0.001": 0.0664
+        },
+        "clean_context_fpr_mean": 0.01,
+        "notinject_overdefense_fpr_mean": 0.13274,
+        "per_type_auprc_mean": {
+          "Base Encoding": {
+            "test_auprc": 0.68334,
+            "val_to_test_drop": 0.25558
+          },
+          "Business Intelligence": {
+            "test_auprc": 0.61664,
+            "val_to_test_drop": 0.32227
+          },
+          "Conversational Agent": {
+            "test_auprc": 0.56046,
+            "val_to_test_drop": 0.37845
+          },
+          "Emoji Substitution": {
+            "test_auprc": 0.74289,
+            "val_to_test_drop": 0.19603
+          },
+          "Entertainment": {
+            "test_auprc": 0.77351,
+            "val_to_test_drop": 0.16541
+          },
+          "Information Dissemination": {
+            "test_auprc": 0.7776,
+            "val_to_test_drop": 0.16132
+          },
+          "Marketing & Advertising": {
+            "test_auprc": 0.77188,
+            "val_to_test_drop": 0.16704
+          },
+          "Misinformation & Propaganda": {
+            "test_auprc": 0.76042,
+            "val_to_test_drop": 0.17849
+          },
+          "Research Assistance": {
+            "test_auprc": 0.62647,
+            "val_to_test_drop": 0.31245
+          },
+          "Reverse Text": {
+            "test_auprc": 0.6884,
+            "val_to_test_drop": 0.25052
+          },
+          "Scams & Fraud": {
+            "test_auprc": 0.76745,
+            "val_to_test_drop": 0.17147
+          },
+          "Sentiment Analysis": {
+            "test_auprc": 0.61553,
+            "val_to_test_drop": 0.32339
+          },
+          "Substitution Ciphers": {
+            "test_auprc": 0.72345,
+            "val_to_test_drop": 0.21547
+          },
+          "Task Automation": {
+            "test_auprc": 0.5956,
+            "val_to_test_drop": 0.34332
+          }
+        }
+      },
+      "frozen": {
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "pr_auc_mean": 0.98481,
+        "roc_auc_mean": 0.85727,
+        "prevalence_floor": 0.92647,
+        "tpr_at_fpr_mean": {
+          "0.01": 0.25675,
+          "0.005": 0.19947,
+          "0.001": 0.13452
+        },
+        "clean_context_fpr_mean": 0.02,
+        "notinject_overdefense_fpr_mean": 0.84956,
+        "per_type_auprc_mean": {
+          "Base Encoding": {
+            "test_auprc": 0.84237,
+            "val_to_test_drop": 0.13804
+          },
+          "Business Intelligence": {
+            "test_auprc": 0.77224,
+            "val_to_test_drop": 0.20817
+          },
+          "Conversational Agent": {
+            "test_auprc": 0.76961,
+            "val_to_test_drop": 0.2108
+          },
+          "Emoji Substitution": {
+            "test_auprc": 0.89832,
+            "val_to_test_drop": 0.08209
+          },
+          "Entertainment": {
+            "test_auprc": 0.87356,
+            "val_to_test_drop": 0.10685
+          },
+          "Information Dissemination": {
+            "test_auprc": 0.85765,
+            "val_to_test_drop": 0.12276
+          },
+          "Marketing & Advertising": {
+            "test_auprc": 0.83428,
+            "val_to_test_drop": 0.14613
+          },
+          "Misinformation & Propaganda": {
+            "test_auprc": 0.87662,
+            "val_to_test_drop": 0.10379
+          },
+          "Research Assistance": {
+            "test_auprc": 0.78536,
+            "val_to_test_drop": 0.19505
+          },
+          "Reverse Text": {
+            "test_auprc": 0.83096,
+            "val_to_test_drop": 0.14945
+          },
+          "Scams & Fraud": {
+            "test_auprc": 0.86843,
+            "val_to_test_drop": 0.11198
+          },
+          "Sentiment Analysis": {
+            "test_auprc": 0.8112,
+            "val_to_test_drop": 0.16921
+          },
+          "Substitution Ciphers": {
+            "test_auprc": 0.87573,
+            "val_to_test_drop": 0.10468
+          },
+          "Task Automation": {
+            "test_auprc": 0.79681,
+            "val_to_test_drop": 0.1836
+          }
+        }
+      },
+      "lora": {
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "pr_auc_mean": 0.99788,
+        "roc_auc_mean": 0.97412,
+        "prevalence_floor": 0.92647,
+        "tpr_at_fpr_mean": {
+          "0.01": 0.86984,
+          "0.005": 0.86389,
+          "0.001": 0.79021
+        },
+        "clean_context_fpr_mean": 0.02333,
+        "notinject_overdefense_fpr_mean": 0.15634,
+        "per_type_auprc_mean": {
+          "Base Encoding": {
+            "test_auprc": 0.97856,
+            "val_to_test_drop": 0.01774
+          },
+          "Business Intelligence": {
+            "test_auprc": 0.97954,
+            "val_to_test_drop": 0.01676
+          },
+          "Conversational Agent": {
+            "test_auprc": 0.98149,
+            "val_to_test_drop": 0.01481
+          },
+          "Emoji Substitution": {
+            "test_auprc": 0.98141,
+            "val_to_test_drop": 0.01489
+          },
+          "Entertainment": {
+            "test_auprc": 0.98274,
+            "val_to_test_drop": 0.01356
+          },
+          "Information Dissemination": {
+            "test_auprc": 0.98368,
+            "val_to_test_drop": 0.01262
+          },
+          "Marketing & Advertising": {
+            "test_auprc": 0.98061,
+            "val_to_test_drop": 0.01569
+          },
+          "Misinformation & Propaganda": {
+            "test_auprc": 0.97832,
+            "val_to_test_drop": 0.01798
+          },
+          "Research Assistance": {
+            "test_auprc": 0.97386,
+            "val_to_test_drop": 0.02244
+          },
+          "Reverse Text": {
+            "test_auprc": 0.97661,
+            "val_to_test_drop": 0.01969
+          },
+          "Scams & Fraud": {
+            "test_auprc": 0.97094,
+            "val_to_test_drop": 0.02536
+          },
+          "Sentiment Analysis": {
+            "test_auprc": 0.95604,
+            "val_to_test_drop": 0.04026
+          },
+          "Substitution Ciphers": {
+            "test_auprc": 0.97514,
+            "val_to_test_drop": 0.02116
+          },
+          "Task Automation": {
+            "test_auprc": 0.97848,
+            "val_to_test_drop": 0.01782
+          }
+        }
+      }
+    },
+    "obfuscation_technique": {
+      "tfidf": {
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "pr_auc_mean": 0.94829,
+        "roc_auc_mean": 0.85008,
+        "prevalence_floor": 0.78261,
+        "tpr_at_fpr_mean": {
+          "0.01": 0.19306,
+          "0.005": 0.1463,
+          "0.001": 0.12176
+        },
+        "clean_context_fpr_mean": 0.00833,
+        "notinject_overdefense_fpr_mean": 0.06785,
+        "per_type_auprc_mean": {
+          "Base Encoding": {
+            "test_auprc": 0.80337,
+            "val_to_test_drop": 0.14096
+          },
+          "Emoji Substitution": {
+            "test_auprc": 0.88277,
+            "val_to_test_drop": 0.06156
+          },
+          "Reverse Text": {
+            "test_auprc": 0.80337,
+            "val_to_test_drop": 0.14097
+          },
+          "Substitution Ciphers": {
+            "test_auprc": 0.84626,
+            "val_to_test_drop": 0.09807
+          }
+        }
+      },
+      "frozen": {
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "pr_auc_mean": 0.96348,
+        "roc_auc_mean": 0.8858,
+        "prevalence_floor": 0.78261,
+        "tpr_at_fpr_mean": {
+          "0.01": 0.30231,
+          "0.005": 0.26389,
+          "0.001": 0.23102
+        },
+        "clean_context_fpr_mean": 0.00667,
+        "notinject_overdefense_fpr_mean": 0.56047,
+        "per_type_auprc_mean": {
+          "Base Encoding": {
+            "test_auprc": 0.85708,
+            "val_to_test_drop": 0.09947
+          },
+          "Emoji Substitution": {
+            "test_auprc": 0.91078,
+            "val_to_test_drop": 0.04577
+          },
+          "Reverse Text": {
+            "test_auprc": 0.85277,
+            "val_to_test_drop": 0.10378
+          },
+          "Substitution Ciphers": {
+            "test_auprc": 0.90011,
+            "val_to_test_drop": 0.05644
+          }
+        }
+      },
+      "lora": {
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "pr_auc_mean": 0.9896,
+        "roc_auc_mean": 0.95885,
+        "prevalence_floor": 0.78261,
+        "tpr_at_fpr_mean": {
+          "0.01": 0.88241,
+          "0.005": 0.86991,
+          "0.001": 0.8088
+        },
+        "clean_context_fpr_mean": 0.02,
+        "notinject_overdefense_fpr_mean": 0.11209,
+        "per_type_auprc_mean": {
+          "Base Encoding": {
+            "test_auprc": 0.97107,
+            "val_to_test_drop": 0.01564
+          },
+          "Emoji Substitution": {
+            "test_auprc": 0.97306,
+            "val_to_test_drop": 0.01365
+          },
+          "Reverse Text": {
+            "test_auprc": 0.96686,
+            "val_to_test_drop": 0.01984
+          },
+          "Substitution Ciphers": {
+            "test_auprc": 0.96659,
+            "val_to_test_drop": 0.02012
+          }
+        }
+      }
+    },
+    "carrier_plus_attack_external": {
+      "tfidf": {
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "pr_auc_mean": 0.97955,
+        "roc_auc_mean": 0.73917,
+        "prevalence_floor": 0.94382,
+        "tpr_at_fpr_mean": {
+          "0.01": 0.23571,
+          "0.005": 0.23571,
+          "0.001": 0.23571
+        },
+        "clean_context_fpr_mean": 0.02667,
+        "notinject_overdefense_fpr_mean": 0.0708,
+        "per_type_auprc_mean": {
+          "Base Encoding": {
+            "test_auprc": 0.81595,
+            "val_to_test_drop": 0.10074
+          },
+          "Business Intelligence": {
+            "test_auprc": 0.71389,
+            "val_to_test_drop": 0.2028
+          },
+          "Conversational Agent": {
+            "test_auprc": 0.63805,
+            "val_to_test_drop": 0.27864
+          },
+          "Emoji Substitution": {
+            "test_auprc": 0.88352,
+            "val_to_test_drop": 0.03316
+          },
+          "Entertainment": {
+            "test_auprc": 0.8747,
+            "val_to_test_drop": 0.04198
+          },
+          "Information Dissemination": {
+            "test_auprc": 0.88135,
+            "val_to_test_drop": 0.03534
+          },
+          "Marketing & Advertising": {
+            "test_auprc": 0.85512,
+            "val_to_test_drop": 0.06157
+          },
+          "Misinformation & Propaganda": {
+            "test_auprc": 0.85221,
+            "val_to_test_drop": 0.06447
+          },
+          "Research Assistance": {
+            "test_auprc": 0.74294,
+            "val_to_test_drop": 0.17375
+          },
+          "Reverse Text": {
+            "test_auprc": 0.78936,
+            "val_to_test_drop": 0.12733
+          },
+          "Scams & Fraud": {
+            "test_auprc": 0.86309,
+            "val_to_test_drop": 0.0536
+          },
+          "Sentiment Analysis": {
+            "test_auprc": 0.71777,
+            "val_to_test_drop": 0.19891
+          },
+          "Substitution Ciphers": {
+            "test_auprc": 0.83513,
+            "val_to_test_drop": 0.08156
+          },
+          "Task Automation": {
+            "test_auprc": 0.67668,
+            "val_to_test_drop": 0.24
+          }
+        }
+      },
+      "frozen": {
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "pr_auc_mean": 0.9864,
+        "roc_auc_mean": 0.81537,
+        "prevalence_floor": 0.94382,
+        "tpr_at_fpr_mean": {
+          "0.01": 0.35079,
+          "0.005": 0.35079,
+          "0.001": 0.35079
+        },
+        "clean_context_fpr_mean": 0.96,
+        "notinject_overdefense_fpr_mean": 0.98525,
+        "per_type_auprc_mean": {
+          "Base Encoding": {
+            "test_auprc": 0.88337,
+            "val_to_test_drop": 0.08034
+          },
+          "Business Intelligence": {
+            "test_auprc": 0.75711,
+            "val_to_test_drop": 0.2066
+          },
+          "Conversational Agent": {
+            "test_auprc": 0.82103,
+            "val_to_test_drop": 0.14268
+          },
+          "Emoji Substitution": {
+            "test_auprc": 0.92978,
+            "val_to_test_drop": 0.03393
+          },
+          "Entertainment": {
+            "test_auprc": 0.88061,
+            "val_to_test_drop": 0.0831
+          },
+          "Information Dissemination": {
+            "test_auprc": 0.87374,
+            "val_to_test_drop": 0.08996
+          },
+          "Marketing & Advertising": {
+            "test_auprc": 0.85194,
+            "val_to_test_drop": 0.11176
+          },
+          "Misinformation & Propaganda": {
+            "test_auprc": 0.87774,
+            "val_to_test_drop": 0.08597
+          },
+          "Research Assistance": {
+            "test_auprc": 0.79469,
+            "val_to_test_drop": 0.16902
+          },
+          "Reverse Text": {
+            "test_auprc": 0.87542,
+            "val_to_test_drop": 0.08829
+          },
+          "Scams & Fraud": {
+            "test_auprc": 0.91397,
+            "val_to_test_drop": 0.04973
+          },
+          "Sentiment Analysis": {
+            "test_auprc": 0.79469,
+            "val_to_test_drop": 0.16902
+          },
+          "Substitution Ciphers": {
+            "test_auprc": 0.92124,
+            "val_to_test_drop": 0.04247
+          },
+          "Task Automation": {
+            "test_auprc": 0.83042,
+            "val_to_test_drop": 0.13329
+          }
+        }
+      },
+      "lora": {
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "pr_auc_mean": 0.99822,
+        "roc_auc_mean": 0.97157,
+        "prevalence_floor": 0.94382,
+        "tpr_at_fpr_mean": {
+          "0.01": 0.7619,
+          "0.005": 0.7619,
+          "0.001": 0.7619
+        },
+        "clean_context_fpr_mean": 0.31333,
+        "notinject_overdefense_fpr_mean": 0.31858,
+        "per_type_auprc_mean": {
+          "Base Encoding": {
+            "test_auprc": 0.99509,
+            "val_to_test_drop": -0.00129
+          },
+          "Business Intelligence": {
+            "test_auprc": 0.99216,
+            "val_to_test_drop": 0.00163
+          },
+          "Conversational Agent": {
+            "test_auprc": 0.99361,
+            "val_to_test_drop": 0.00018
+          },
+          "Emoji Substitution": {
+            "test_auprc": 0.99662,
+            "val_to_test_drop": -0.00283
+          },
+          "Entertainment": {
+            "test_auprc": 0.99177,
+            "val_to_test_drop": 0.00203
+          },
+          "Information Dissemination": {
+            "test_auprc": 0.98979,
+            "val_to_test_drop": 0.00401
+          },
+          "Marketing & Advertising": {
+            "test_auprc": 0.99043,
+            "val_to_test_drop": 0.00336
+          },
+          "Misinformation & Propaganda": {
+            "test_auprc": 0.99391,
+            "val_to_test_drop": -0.00011
+          },
+          "Research Assistance": {
+            "test_auprc": 0.97732,
+            "val_to_test_drop": 0.01647
+          },
+          "Reverse Text": {
+            "test_auprc": 0.99594,
+            "val_to_test_drop": -0.00215
+          },
+          "Scams & Fraud": {
+            "test_auprc": 0.97543,
+            "val_to_test_drop": 0.01836
+          },
+          "Sentiment Analysis": {
+            "test_auprc": 0.75076,
+            "val_to_test_drop": 0.24303
+          },
+          "Substitution Ciphers": {
+            "test_auprc": 0.99812,
+            "val_to_test_drop": -0.00432
+          },
+          "Task Automation": {
+            "test_auprc": 0.97734,
+            "val_to_test_drop": 0.01646
+          }
+        }
+      }
+    }
+  }
+}

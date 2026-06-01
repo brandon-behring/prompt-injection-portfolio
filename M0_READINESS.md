@@ -99,7 +99,8 @@ These need user presence + cannot be automated by /loop:
 ## Outstanding upstream MRs (per decisions/upstream_issues.md)
 
 - **MR-3** (research_toolkit#1): `/dataset-synthesize` skill —
-  M3-blocking; portfolio monitors at Day 13-style intervals
+  **MERGED 2026-05-24 (research_toolkit PR #16)**; Lane 2 *execution* now gated on
+  research_toolkit #22/#23 (silent-failure + skill-not-installed-by-default), not MR-3.
 - **MR-12** (eval-toolkit#69): Tier-2 Protocol consolidation —
   NOT blocking; targets eval-toolkit v0.48+
 
