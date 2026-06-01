@@ -15,6 +15,8 @@ supersedes: []
 
 Accepted (Round 29 lock). **Amends, does not supersede, [ADR-052](ADR-052-attack-type-generalization-study-design.md) and [ADR-053](ADR-053-runpod-job-spec-run-job-not-session.md)** — both stay Accepted; this ADR re-scopes their rung set and execution plan. The harness/detectors/falsify/reference-scorer code carrying these six points is committed; the *paid* GPU launch remains user-led and unfired ([ADR-053](ADR-053-runpod-job-spec-run-job-not-session.md)).
 
+**Update 2026-06-01 (post-M1, write-gate OPEN):** the launch has since fired (~$0.83 on a SECURE H100) and the §6.5 verdict is in — the §16 full-FT trigger (Decision 2) is now **resolved: it does NOT fire** (see [Trigger-gate resolution](#trigger-gate-resolution--2026-06-01-post-m1-write-gate-open) below).
+
 ## Context
 
 [ADR-052](ADR-052-attack-type-generalization-study-design.md) added `full_ft` (full fine-tune of all ModernBERT-base weights) to the M1 attack-type-LODO headline sweep "to close the never-measured full-FT OOD gap." But `full_ft` is the costliest rung, and four facts make running it on *every* M1 cell front-load the largest GPU cost for the least marginal signal:
@@ -70,3 +72,11 @@ Does **not** perform the deferred M0→M7 milestone re-ladder — still deferred
 - `decisions/contingency_unlock_1.md` ($0.00 realized spend tally + base-budget classification + the 2026-06-01 LoRA-only revision)
 - `docs/planning/attack-type-lodo-harness-spec.md` §4 (the detector rungs) + §6.5 (the OOD-wall falsification step + FIXED decision rule)
 - `experiments/attack-type-lodo/detectors.py` (`REQUIRED_RUNGS` / `RUNG_NAMES` / `make_detector`), `harness.py` (`rebuild_manifest` / `--finalize-manifest`), `falsify_ood_wall.py` (`manifest_complete` unchanged; `_RUNG_PREFERENCE` lora-first), `reference_scorers.py` (non-gating reference column)
+
+## Trigger-gate resolution — 2026-06-01 (post-M1, write-gate OPEN)
+
+The Decision-2 trigger asked: re-run `full_ft` **iff** the merged §6.5 `lora` verdict is decision-relevant — LoRA SURVIVES with a real capacity lift over `frozen`, **or** is borderline such that the never-measured full-FT OOD point would change the writeup.
+
+**Verdict** (persisted in `experiments/eda/OOD_WALL_PREDICTION/falsification_verdict.json`): `lora` → **FALSIFIED** (T = −0.003, perm p = 0.90, CI-low = −0.008) — not a SURVIVE, and not borderline (decisively null). Cross-rung on the merged tree: tfidf +0.135 / frozen +0.082 **SURVIVE**, `lora` **FALSIFIED**; `T` collapses monotonically as capacity rises.
+
+**Resolution: the trigger does NOT fire — `full_ft` stays deferred (and selectable).** A full fine-tune adds *more* capacity than `lora`, and `lora` already drives the per-type detectability gap to ~zero (uniform test AUPRC 0.98–0.999, held-out types included), so a full-FT OOD point would only dissolve the wall *further* — changing no conclusion. The finding (*the OOD wall is capacity-dependent: real for lexical/frozen detectors, surmountable by end-to-end LoRA*) is complete at the LoRA ceiling; running `full_ft` would cost ~$2–6 for zero decision-relevant signal. [ADR-052](ADR-052-attack-type-generalization-study-design.md)'s intent (measure the full-FT OOD point) is **not discharged — it remains a fireable gate** should a future result make it relevant; it is simply not triggered now. Realized M1 spend: **$0.83** (base-budget; [ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md) stays Reserved).

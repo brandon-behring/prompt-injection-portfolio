@@ -134,7 +134,7 @@ discipline; this note documents the count refresh.
 ### Round 29 (M1 Lane-1 launch wiring)
 
 - ✓ [ADR-053: RunPod launch via job spec + `run_job` (phantom-`Session` correction); Lane-1 sweep base-budget](ADR-053-runpod-job-spec-run-job-not-session.md) — `runpod_deploy.load_job_spec → run_job` over a strict YAML job spec replaces the phantom `runpod_deploy.Session` (plan + submission ADR-059); `lifecycle.on_success: delete` for one-shot sweeps; $5–15 sweep classified base-budget ($0.00 realized) so ADR-014 stays Reserved. Glue committed `4862e21`.
-- ✓ [ADR-054: M1 attack-type-LODO ceiling = LoRA (3-rung write-gate); full-FT deferred to a §16 trigger-gate; hybrid local+RunPod execution; off-the-shelf reference column](ADR-054-m1-lora-ceiling-full-ft-deferred.md) — amends (not supersedes) ADR-052 (rung set) + ADR-053 (launch YAML now `--rungs lora`, on-pod falsify dropped, `cost_cap` 15→8). `REQUIRED_RUNGS=(tfidf,frozen,lora)` decoupled from 4-wide `RUNG_NAMES`; `full_ft` selectable but not required; `criteria.md` Revision 2 (decision rule UNCHANGED).
+- ✓ [ADR-054: M1 attack-type-LODO ceiling = LoRA (3-rung write-gate); full-FT deferred to a §16 trigger-gate; hybrid local+RunPod execution; off-the-shelf reference column](ADR-054-m1-lora-ceiling-full-ft-deferred.md) — amends (not supersedes) ADR-052 (rung set) + ADR-053 (launch YAML now `--rungs lora`, on-pod falsify dropped, `cost_cap` 15→8). `REQUIRED_RUNGS=(tfidf,frozen,lora)` decoupled from 4-wide `RUNG_NAMES`; `full_ft` selectable but not required; `criteria.md` Revision 2 (decision rule UNCHANGED). **Trigger resolved 2026-06-01: does NOT fire** — the §6.5 verdict is FALSIFIED on `lora` (decisively null), so `full_ft` stays deferred.
 
 ## Tally
 
