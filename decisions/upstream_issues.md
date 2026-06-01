@@ -109,6 +109,16 @@ fallback ladder remains the documented contingency.
 
 ---
 
+## Dogfooding findings — RunPod LoRA launch readiness (2026-06-01, ADR-054)
+
+Surfaced while preparing the paid Lane-1 LoRA launch (`scripts/runpod_sweep.py --dry-run`).
+
+| # | Repo | Friction surfaced by dogfooding | State |
+|---|------|---------------------------------|-------|
+| DF-5 | runpod-deploy | `pricing.fetch_gpu_prices` returns **0 cards**. `_post_graphql` (`pricing.py:139-146`) authenticates the RunPod GraphQL `gpuTypes` query (`GRAPHQL_ENDPOINT = https://api.runpod.io/graphql`, `pricing.py:50`) with an `Authorization: Bearer <key>` header → **HTTP 403 Forbidden**. RunPod's GraphQL API classically expects the key as a `?api_key=<key>` query param, not a Bearer header. Reproduced with a valid 50-char key that authenticates `runpodctl` fine (the dry-run provisions normally). **NON-BLOCKING**: provisioning uses `runpodctl`; the budget guard falls back to `assumed_hourly_rate_usd`. Cost: the live-price display is empty and the `--max-gpu-price-usd` filter is inert (no prices to compare). | **issue-pending** — flagged for user-led filing (`gh issue create --repo brandon-behring/runpod-deploy`). No workaround needed; rely on `assumed_hourly_rate_usd` + `cost_cap_usd` + `max_runtime_minutes`. |
+
+---
+
 ## Library-first invariant — restatement
 
 - 4 load-bearing libraries are infrastructure for multiple consumers; portfolio

@@ -103,6 +103,11 @@ run:
     export PATH="$HOME/.local/bin:$PATH"
     cd /workspace/repo
     uv sync --extra dev
+    # Fail-fast GPU guard (ADR-054): never train the LoRA rung on CPU on a PAID pod.
+    # torch 2.12 ships a cu13 runtime (needs host driver >= 580); if cuda is unavailable the
+    # AssertionError prints a Traceback the monitor's fail-grep catches -> on_failure: stop ->
+    # spend stays in cents, not the ~$7.50 a silent 3 h CPU run would burn.
+    uv run python -c "import torch; assert torch.cuda.is_available(), 'FATAL: torch.cuda unavailable - refusing to train the LoRA rung on CPU on a paid GPU pod'; print('GPU OK:', torch.cuda.get_device_name(0), '| torch', torch.__version__, '| cuda', torch.version.cuda, '| bf16_native', torch.cuda.is_bf16_supported(including_emulation=False))"
     uv run python experiments/attack-type-lodo/harness.py \
       --rungs lora \
       --folds core_attack_type obfuscation_technique carrier_plus_attack_external \
