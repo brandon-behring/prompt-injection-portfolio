@@ -3,6 +3,8 @@
 **Created:** 2026-05-29 · **Branch:** `session/2026-05-26-adoption-and-research-ops` · **HEAD at start:** `93ba8ee`
 **Governs:** ADR-052 · **Spec:** `docs/planning/attack-type-lodo-harness-spec.md` · **Validates:** the pre-modeling EDA arc (`experiments/eda/OOD_WALL_PREDICTION/`).
 
+> **Superseded in part (2026-06-01, ADR-054).** The deferred "≥3-seed × **4-rung** headline sweep" recorded below is re-scoped to a **3-rung ceiling** (`tfidf+frozen+lora`); `full_ft` is **deferred** to a §16 trigger-gate (still selectable), and execution is now **hybrid** — `tfidf`+`frozen`+§6.5-falsify+off-the-shelf baselines run **local**, only `lora` trains on RunPod (`cost_cap` 15→8). The dated build/probe records below are **preserved as-is** (historical).
+
 ## Goal
 
 Start M1's modeling step: build the attack-type-LODO detector harness that produces the per-test-attack-type

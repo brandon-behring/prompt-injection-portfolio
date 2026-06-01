@@ -2,8 +2,9 @@
 
 Reads the pre-registered prediction (``OOD_WALL_PREDICTION/{criteria.md,results.json}``)
 and the harness ``predictions.parquet`` files, applies the **FIXED** decision rule from
-``criteria.md`` (as corrected by **Revision 1** — payload-clustered resampling), and
-persists the SURVIVES/FALSIFIED verdict into the pre-registered record **only** for a
+``criteria.md`` (estimator corrected by **Revision 1** — payload-clustered resampling;
+required rung set scoped by **Revision 2** — the 3-rung ``tfidf+frozen+lora`` ceiling, ADR-054),
+and persists the SURVIVES/FALSIFIED verdict into the pre-registered record **only** for a
 *complete headline sweep*.
 
 The scientific computation (type-level permutation + payload-cluster bootstrap, contrast
@@ -124,7 +125,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     out = {
         "computed_utc": datetime.now(UTC).isoformat(),
-        "pre_registration": "experiments/eda/OOD_WALL_PREDICTION/criteria.md (Revision 1)",
+        "pre_registration": "experiments/eda/OOD_WALL_PREDICTION/criteria.md (Revision 2)",
         "harness_results": str(args.results_dir.relative_to(_HERE.parent.parent)),
         "harness_rung": rung,
         "harness_fold": _HEADLINE_FOLD,

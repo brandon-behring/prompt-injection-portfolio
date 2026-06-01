@@ -27,9 +27,12 @@ this main context stays on decisions, synthesis, and presenting forks to the use
   returns raw logs/dumps, that's a bug in its prompt, not a signal to widen the contract.
 
 ## Cost / cloud notes
-- Local RTX 2070 (8 GB) OOMs at spec config (`decisions/contingency_unlock_1.md`) → only smoke/minimal
-  runs locally; the real sweep is RunPod (24 GB+) via `scripts/runpod_sweep.py` (`load_job_spec→run_job`; wired per ADR-053, paid launch user-gated).
-- `gpu-run-watcher` auto-kills only on hard guards (cost ≥ ceiling, default $15; or no progress for N
+- **Hybrid (ADR-054):** the cheap rungs (`tfidf`+`frozen`), the §6.5 falsification, and the off-the-shelf
+  reference baselines run **locally** (CPU + 8 GB frozen, no-grad inference; all folds/seeds); only `lora`
+  *training* needs RunPod (24 GB+) via `scripts/runpod_sweep.py` (`load_job_spec→run_job`; wired per ADR-053,
+  paid launch user-gated). `full_ft` is deferred to a §16 trigger-gate (still selectable). Local RTX 2070
+  (8 GB) OOMs only on transformer training at spec config (`decisions/contingency_unlock_1.md`).
+- `gpu-run-watcher` auto-kills only on hard guards (cost ≥ ceiling, default $8 per ADR-054; or no progress for N
   min, default 20) and records any `runpod-deploy` friction into `decisions/upstream_issues.md`
   (drafts the upstream issue; you file it).
 

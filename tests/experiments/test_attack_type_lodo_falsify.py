@@ -20,8 +20,12 @@ _LODO_DIR = Path(__file__).resolve().parent.parent.parent / "experiments" / "att
 if str(_LODO_DIR) not in sys.path:
     sys.path.insert(0, str(_LODO_DIR))
 
+import detectors  # noqa: E402
 import falsify_clustered as fc  # noqa: E402
 import falsify_ood_wall as fw  # noqa: E402
+import folds  # noqa: E402
+import harness  # noqa: E402
+import reference_scorers as rs  # noqa: E402
 
 _TOP = ["w1", "w2", "w3", "w4"]  # predicted-worst (lower AUPRC expected)
 _BOTTOM = ["b1", "b2", "b3", "b4"]  # predicted-best (higher AUPRC expected)
@@ -183,3 +187,91 @@ def test_write_gate_open_on_complete_sweep(tmp_path: Path) -> None:
     )
     ok, _reason = fw.manifest_complete(tmp_path)
     assert ok
+
+
+# ── ADR-054: rebuild_manifest disk-union write-gate + non-gating reference column ──
+
+
+@pytest.mark.unit
+def test_rebuild_manifest_complete_on_required_rungs(tmp_path: Path) -> None:
+    """rebuild_manifest opens the gate when the 3 REQUIRED_RUNGS × ≥3 seeds are on disk."""
+    levels = ([0.30, 0.33, 0.36, 0.39], [0.60, 0.63, 0.66, 0.69])
+    for rung in detectors.REQUIRED_RUNGS:  # tfidf, frozen, lora — the ADR-054 ceiling
+        _write_synth(tmp_path, rung, *levels)
+    manifest = harness.rebuild_manifest(tmp_path)
+    assert manifest["complete_headline_sweep"] is True
+    cfg = manifest["config"]
+    assert isinstance(cfg, dict)
+    assert set(cfg["rungs"]) == set(detectors.REQUIRED_RUNGS)
+    ok, _reason = fw.manifest_complete(tmp_path)
+    assert ok
+
+
+@pytest.mark.unit
+def test_rebuild_manifest_incomplete_without_lora(tmp_path: Path) -> None:
+    """Cheap rungs only (lora absent) → gate CLOSED — the honest local-only state (ADR-054)."""
+    levels = ([0.30, 0.33, 0.36, 0.39], [0.60, 0.63, 0.66, 0.69])
+    for rung in ("tfidf", "frozen"):
+        _write_synth(tmp_path, rung, *levels)
+    manifest = harness.rebuild_manifest(tmp_path)
+    assert manifest["complete_headline_sweep"] is False
+    ok, _reason = fw.manifest_complete(tmp_path)
+    assert not ok
+
+
+@pytest.mark.unit
+def test_required_rungs_ceiling_and_full_ft_selectable() -> None:
+    """lora is the write-gate ceiling; full_ft is deferred-not-dropped (still runnable). ADR-054."""
+    assert detectors.REQUIRED_RUNGS == ("tfidf", "frozen", "lora")
+    assert "full_ft" not in detectors.REQUIRED_RUNGS
+    assert "full_ft" in detectors.RUNG_NAMES  # selectable for the trigger-gate
+    assert detectors.make_detector("full_ft").name == "full_ft"
+
+
+@pytest.mark.unit
+def test_reference_scores_are_non_gating(tmp_path: Path) -> None:
+    """reference_*.test_scores.parquet is invisible to the rung scan / write-gate (ADR-054)."""
+    levels = ([0.30, 0.33, 0.36, 0.39], [0.60, 0.63, 0.66, 0.69])
+    for rung in detectors.REQUIRED_RUNGS:
+        _write_synth(tmp_path, rung, *levels)
+    ref_dir = tmp_path / "seed=0" / "core_attack_type"
+    pd.DataFrame(
+        {"text": ["x"], "label": [1], "attack_type": ["w1"], "carrier": ["email"], "y_score": [0.9]}
+    ).to_parquet(ref_dir / "reference_protectai_v2.test_scores.parquet", index=False)
+    rungs = {a["rung"] for a in harness._scan_artifacts(tmp_path)}
+    assert rungs == set(detectors.REQUIRED_RUNGS)  # the reference file is not counted as a rung
+    assert harness.rebuild_manifest(tmp_path)["complete_headline_sweep"] is True
+
+
+@pytest.mark.unit
+def test_reference_scorer_skips_gated(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """A gated/unavailable probe is recorded 'skipped' and writes nothing (never raises)."""
+    test_df = pd.DataFrame(
+        {
+            "text": ["ctx\n\nP", "clean"],
+            "label": [1, 0],
+            "attack_type": ["w1", ""],
+            "carrier": ["email", "email"],
+        }
+    )
+    fold = folds.Fold(
+        name="core_attack_type", train=test_df, val=test_df, test=test_df, test_types=("w1",)
+    )
+
+    def _fake_make_fold(*_a: object, **_k: object) -> folds.Fold:
+        return fold
+
+    def _boom(*_a: object, **_k: object) -> object:
+        raise OSError("403 gated repo")
+
+    monkeypatch.setattr(folds, "make_fold", _fake_make_fold)
+    monkeypatch.setattr(rs, "score_texts", _boom)
+    records = rs.score_fold(
+        test_df,
+        "core_attack_type",
+        seed=0,
+        probes={"prompt_guard_1": "meta-llama/Prompt-Guard-86M"},
+        out_dir=tmp_path,
+    )
+    assert records["prompt_guard_1"]["status"] == "skipped"
+    assert not list(tmp_path.glob("**/*.test_scores.parquet"))

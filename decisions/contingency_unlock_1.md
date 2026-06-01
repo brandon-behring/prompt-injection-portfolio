@@ -1,7 +1,7 @@
 # Contingency unlock 1 — cloud GPU for the M1 Lane-1 attack-type-LODO headline sweep
 
 **Filed:** 2026-05-30 · **Status:** Budget **RESOLVED → base-budget** (2026-05-30 spend tally below:
-$0.00 realized, $5–15 « $250 base) ⇒ **no contingency draw; ADR-014 stays Reserved.** The spend itself
+$0.00 realized, $1–5 « $250 base) ⇒ **no contingency draw; ADR-014 stays Reserved.** The spend itself
 still awaits the user's launch go-ahead (the launch glue is now wired — ADR-053, `4862e21`).
 Routed via the cost-driven slot ([ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md)), **not** the
 ADR-039 method-expansion.
@@ -34,7 +34,7 @@ clause is met by infeasibility, independent of remaining $.
 
 ## Amount requested
 
-**~$5–15 envelope** — a few hours on a single **24 GB+ cloud GPU** (e.g. A5000 / A40 / L4 / A100 via
+**~$1–5 envelope** — a few hours on a single **24 GB+ cloud GPU** (e.g. A5000 / A40 / L4 / A100 via
 the `runpod-deploy` orchestrator already pinned in `decisions/library_imports.md`). At 24 GB+ the spec
 config (batch 16 / max_len 512, **native bf16** on Ampere+) runs with no desktop contention at ~3–5×
 local throughput → the full sweep completes reliably in **~1.5–3 h**.
@@ -42,7 +42,7 @@ local throughput → the full sweep completes reliably in **~1.5–3 h**.
 > ✅ **Budget classification RESOLVED → BASE-BUDGET (2026-05-30).** A manual spend tally (substituting for
 > the absent `make cost-report`; see *Spend tally* below) confirms **$0.00 realized cumulative spend** —
 > all compute to date is local (CPU + the owned RTX 2070 probe), no cloud GPU rented, no paid API. The
-> $5–15 sweep therefore sits **inside the base $250**: a normal **base-budget GPU spend, NOT a contingency
+> $1–5 sweep therefore sits **inside the base $250**: a normal **base-budget GPU spend, NOT a contingency
 > draw**. ADR-014 stays **Reserved**. *(The spend itself still awaits the user's launch go-ahead; the launch
 > glue is wired — ADR-053.)*
 
@@ -55,30 +55,41 @@ local throughput → the full sweep completes reliably in **~1.5–3 h**.
 | — local RTX 2070 SUPER GPU feasibility probe (owned hardware) | $0 |
 | — cloud GPU rented (`runpod-deploy` is a dependency pin, not usage) | $0 |
 | — paid API (PG2 / CourtGuard not yet run; PG1 Meta-gated/not-run; V10 used local HF models) | $0 |
-| **This sweep** (cloud GPU, ~1.5–3 h on 24 GB+) | **$5–15** |
-| **Projected realized cumulative after sweep** | **$5–15** |
+| **This sweep** — LoRA-only on RunPod (~0.75–1.5 h, 24 GB+; tfidf+frozen+falsify+baselines now local) | **$1–5** |
+| **Projected realized cumulative after sweep** | **$1–5** |
 | *context:* full-project base forecast if all lanes complete (ADR-002) | ~$187–267 |
-| *context:* full-project forecast **incl.** this sweep | ~$202–282 |
+| *context:* full-project forecast **incl.** this sweep | ~$188–272 |
 | Base cap (ADR-002) | $250 |
 | Hard cap (ADR-002) | $350 |
 
 **Method:** no spend-ledger file exists (the repo's `*_ledger.yml` are bibliography / evidence / dataset
 ledgers, not cost), so this enumerates realized spend from the project record. **Classification:** against
-**$0 realized**, the $5–15 sweep is **BASE-BUDGET** — no contingency draw, ADR-014 stays Reserved.
-**Hard-cap check:** even the full-project forecast (~$202–282, incl. this sweep) stays **< $350** ✓; the
-$5–15 realized add is « the $250 base ✓.
+**$0 realized**, the $1–5 sweep is **BASE-BUDGET** — no contingency draw, ADR-014 stays Reserved.
+**Hard-cap check:** even the full-project forecast (~$188–272, incl. this sweep) stays **< $350** ✓; the
+$1–5 realized add is « the $250 base ✓.
+
+**Revision (2026-06-01, ADR-054 — LoRA-only hybrid).** The sweep was re-scoped from the 4-rung
+(`tfidf+frozen+lora+full_ft`) cloud run to **LoRA-only on RunPod**: `tfidf`, `frozen`, the §6.5
+falsification, and the off-the-shelf reference baselines now run **locally** (free; only transformer
+training at spec batch needs the 24 GB card). This *lowers* the cloud estimate (4-rung $5–15 →
+LoRA-only **$1–5**) and only strengthens the base-budget classification. `full_ft` is deferred to a
+conditional trigger-gate (PORTFOLIO §16); **if that trigger later fires**, a `full_ft × 3 folds × 3
+seeds` pass is a separate **~$2–6** (LoRA-class card) increment to re-tally then. Realized cumulative
+spend is still **$0.00**.
 
 ## Expected outcome / hypothesis being tested
 
 Run the full pre-registered headline sweep → produce the **write-gate-OPEN** §6.5 OOD-wall
 falsification verdict (the deferred deliverable):
 
-- `harness.py --rungs tfidf frozen lora full_ft --folds <all 3> --seeds 0 1 2` → per-`(rung,fold,seed)`
-  predictions parquet + metrics JSON (with per-type drops) + a complete `MANIFEST.yml`
-  (`complete_headline_sweep: true`).
+- **Local** `harness.py --rungs tfidf frozen --folds <all 3> --seeds 0 1 2` + **RunPod** `--rungs lora`,
+  merged into one tree and re-stamped via `harness.py --finalize-manifest` (ADR-054 hybrid) →
+  per-`(rung,fold,seed)` predictions parquet + metrics JSON (with per-type drops) + a complete
+  `MANIFEST.yml` (`complete_headline_sweep: true`).
 - `falsify_ood_wall.py` then **writes** the SURVIVES/FALSIFIED verdict into
-  `experiments/eda/OOD_WALL_PREDICTION/` (the write-gate opens only on a complete ≥3-seed × 4-rung
-  sweep — verified CLOSED on partial runs). Tests H1 (shortcut-mediated collapse ordering); a null
+  `experiments/eda/OOD_WALL_PREDICTION/` (the write-gate opens only on a complete ≥3-seed × 3-rung
+  `tfidf+frozen+lora` sweep — `full_ft` deferred, ADR-054; verified CLOSED on partial runs). Tests H1
+  (shortcut-mediated collapse ordering); a null
   result is publishable.
 
 ## Bail-out criteria (when to stop drawing further)
@@ -96,7 +107,7 @@ falsification verdict (the deferred deliverable):
 - [x] Confirm base-vs-contingency from the spend ledger → **BASE-BUDGET** ($0.00 realized; see *Spend tally*).
 - [ ] If contingency: advance [ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md) `Reserved → Accepted`
       — **N/A** (base-budget, not a contingency draw; ADR-014 stays Reserved).
-- [x] Cost attestation (manual ledger tally — `make cost-report` absent) showing projected **$5–15 < $350**.
+- [x] Cost attestation (manual ledger tally — `make cost-report` absent) showing projected **$1–5 < $350**.
 - [x] Correct the spec/plan's "Turing → fp16" note already applied (`_select_device_dtype` gates on
       native bf16) — the cloud Ampere+ card will select **bf16** as intended.
 - [x] `runpod_deploy.Session` wiring → **resolved** (there is no `Session`; wired via `scripts/runpod_sweep.py`

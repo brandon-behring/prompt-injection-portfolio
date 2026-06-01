@@ -1,6 +1,6 @@
 """Attack-type-LODO harness (ADR-052, spec §5/§6) — orchestrate + persist.
 
-Drives the three pre-registered LODO folds (:mod:`folds`) × four detector rungs
+Drives the three pre-registered LODO folds (:mod:`folds`) × the detector rungs
 (:mod:`detectors`) × a seed loop, computing the spec-§5 metric battery
 (:mod:`metrics`) and **persisting** — per ``(rung, fold, seed)`` — the per-row
 predictions parquet **and** a metrics JSON carrying the per-test-attack-type
@@ -12,18 +12,22 @@ The val→test ("benchmarks lie") inflation reference is each rung's own
 val-selected ``val_pr_auc`` (the in-distribution AUPRC under the chosen recipe);
 the per-type drop is ``val_pr_auc − per_type_test_auprc``.
 
-Run (full sweep, ≥3 seeds)::
+Run (default = the headline ceiling ``tfidf frozen lora``; ``full_ft`` deferred per ADR-054)::
 
     python experiments/attack-type-lodo/harness.py
 
-Run (CPU smoke — TF-IDF, core fold, one seed)::
+``lora`` needs a 24 GB+ card (RunPod); the local cheap-rung half restricts ``--rungs``::
 
-    python experiments/attack-type-lodo/harness.py --rungs tfidf \
-        --folds core_attack_type --seeds 0
+    python experiments/attack-type-lodo/harness.py --rungs tfidf frozen \
+        --folds core_attack_type obfuscation_technique carrier_plus_attack_external --seeds 0 1 2
 
-Nothing here is GPU-gated; the transformer rungs self-select device
-(:func:`detectors._select_device_dtype`). The smoke runs CPU-only by restricting
-``--rungs`` to ``tfidf``.
+Re-stamp ``MANIFEST.yml`` from the on-disk union after a RunPod ``lora`` merge (no training)::
+
+    python experiments/attack-type-lodo/harness.py \
+        --finalize-manifest --out experiments/attack-type-lodo/results
+
+The transformer rungs self-select device (:func:`detectors._select_device_dtype`); the CPU
+smoke is ``--rungs tfidf --folds core_attack_type --seeds 0``.
 """
 
 from __future__ import annotations
@@ -196,6 +200,103 @@ def run_one(
     return record, predictions
 
 
+def _scan_artifacts(out_dir: Path) -> list[dict[str, str]]:
+    """Discover every persisted ``(rung, fold, seed)`` record on disk under ``out_dir``.
+
+    Mirrors the ``seed=*/{fold}/{rung}.predictions.parquet`` layout :func:`run_sweep` writes.
+    The ``{rung}.``-prefixed filenames are what make a merge of independently-produced rung
+    trees a safe file-tree union (ADR-054 hybrid: local ``tfidf``/``frozen`` + a RunPod
+    ``lora`` pull). Reference-scorer files (``reference_*.test_scores.parquet``) do not match
+    the ``*.predictions.parquet`` glob, so they are never counted as rungs.
+    """
+    artifacts: list[dict[str, str]] = []
+    for pq_path in sorted(out_dir.glob("seed=*/*/*.predictions.parquet")):
+        rung = pq_path.name.split(".")[0]
+        fold_name = pq_path.parent.name
+        seed = pq_path.parent.parent.name.split("=")[1]
+        json_path = pq_path.with_name(f"{rung}.metrics.json")
+        artifacts.append(
+            {
+                "rung": rung,
+                "fold": fold_name,
+                "seed": seed,
+                "predictions": str(pq_path.relative_to(out_dir)),
+                "metrics": str(json_path.relative_to(out_dir)),
+            }
+        )
+    return artifacts
+
+
+def rebuild_manifest(
+    out_dir: Path,
+    *,
+    base_config: dict[str, object] | None = None,
+    git_sha: str | None = None,
+) -> dict[str, object]:
+    """(Re)write ``MANIFEST.yml`` from the **on-disk union** of artifacts under ``out_dir``.
+
+    ``complete_headline_sweep`` is computed from what is present on disk (the union across
+    possibly several invocations — e.g. local ``tfidf``/``frozen`` merged with a RunPod
+    ``lora`` pull) against :data:`detectors.REQUIRED_RUNGS` (ADR-054). ``full_ft`` is
+    selectable but **not** required, so it never blocks the §6.5 write-gate. The read-side
+    gate (``falsify_ood_wall.manifest_complete``) is unchanged — it still trusts this flag.
+
+    Parameters
+    ----------
+    out_dir : pathlib.Path
+        The results tree (``seed=*/{fold}/{rung}.predictions.parquet``).
+    base_config : dict, optional
+        Invocation config to record (``n_bootstrap`` / ``contexts_per_attack`` / ``bipia_root``);
+        when finalizing a merge, missing keys fall back to the prior manifest.
+    git_sha : str, optional
+        Provenance sha; falls back to the prior manifest's value, else a fresh capture.
+
+    Returns
+    -------
+    dict
+        The manifest payload (also written to ``{out_dir}/MANIFEST.yml``).
+    """
+    artifacts = _scan_artifacts(out_dir)
+    present_rungs = {a["rung"] for a in artifacts}
+    present_folds = {a["fold"] for a in artifacts}
+    present_seeds = sorted({int(a["seed"]) for a in artifacts})
+
+    prior_path = out_dir / "MANIFEST.yml"
+    prior = (
+        yaml.safe_load(prior_path.read_text(encoding="utf-8")) or {}
+        if prior_path.exists()
+        else {}
+    )
+    prior_cfg = prior.get("config", {}) if isinstance(prior.get("config"), dict) else {}
+    cfg = dict(base_config or {})
+    for key in ("n_bootstrap", "contexts_per_attack", "bipia_root"):
+        cfg.setdefault(key, prior_cfg.get(key))
+
+    manifest: dict[str, object] = {
+        "spec": "docs/planning/attack-type-lodo-harness-spec.md",
+        "adr": "ADR-052; ceiling per ADR-054",
+        "generated_utc": datetime.now(UTC).isoformat(),
+        "git_sha": git_sha or prior.get("git_sha") or capture_git_sha(REPO_ROOT),
+        "config": {
+            "seeds": present_seeds,
+            "folds": sorted(present_folds),
+            "rungs": sorted(present_rungs),
+            "n_bootstrap": cfg.get("n_bootstrap"),
+            "contexts_per_attack": cfg.get("contexts_per_attack"),
+            "bipia_root": cfg.get("bipia_root"),
+        },
+        "required_rungs": list(detectors.REQUIRED_RUNGS),
+        "complete_headline_sweep": (
+            "core_attack_type" in present_folds
+            and len(present_seeds) >= 3
+            and present_rungs >= set(detectors.REQUIRED_RUNGS)
+        ),
+        "artifacts": artifacts,
+    }
+    prior_path.write_text(yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8")
+    return manifest
+
+
 def run_sweep(
     *,
     seeds: Sequence[int],
@@ -217,7 +318,7 @@ def run_sweep(
         The manifest payload (also written to disk).
     """
     out_dir.mkdir(parents=True, exist_ok=True)
-    artifacts: list[dict[str, str]] = []
+    n_written = 0
     for seed in seeds:
         frame = build_examples(
             root=BIPIA_ROOT, contexts_per_attack=contexts_per_attack, seed=seed
@@ -229,19 +330,9 @@ def run_sweep(
                 record, predictions = run_one(
                     frame, fold_name, rung, seed=seed, n_bootstrap=n_bootstrap
                 )
-                pq_path = fold_dir / f"{rung}.predictions.parquet"
-                json_path = fold_dir / f"{rung}.metrics.json"
-                predictions.to_parquet(pq_path, index=False)
-                write_json_strict(record, json_path)
-                artifacts.append(
-                    {
-                        "rung": rung,
-                        "fold": fold_name,
-                        "seed": str(seed),
-                        "predictions": str(pq_path.relative_to(out_dir)),
-                        "metrics": str(json_path.relative_to(out_dir)),
-                    }
-                )
+                predictions.to_parquet(fold_dir / f"{rung}.predictions.parquet", index=False)
+                write_json_strict(record, fold_dir / f"{rung}.metrics.json")
+                n_written += 1
                 print(
                     f"[seed={seed} {fold_name} {rung}] "
                     f"val_auprc={record['val_auprc']:.3f} "
@@ -249,30 +340,25 @@ def run_sweep(
                     f"n_test={record['n_test']}"
                 )
 
-    manifest: dict[str, object] = {
-        "spec": "docs/planning/attack-type-lodo-harness-spec.md",
-        "adr": "ADR-052",
-        "generated_utc": datetime.now(UTC).isoformat(),
-        "git_sha": capture_git_sha(REPO_ROOT),
-        "config": {
-            "seeds": list(seeds),
-            "folds": list(fold_names),
-            "rungs": list(rungs),
+    # Completeness is derived from the on-disk UNION, not this invocation's rungs: a hybrid run
+    # adds only some rungs (e.g. local tfidf+frozen, later merged with a RunPod lora pull —
+    # ADR-054), and the manifest must reflect the merged tree to open the §6.5 write-gate.
+    manifest = rebuild_manifest(
+        out_dir,
+        base_config={
             "n_bootstrap": n_bootstrap,
             "contexts_per_attack": contexts_per_attack,
             "bipia_root": str(BIPIA_ROOT.relative_to(REPO_ROOT)),
         },
-        "complete_headline_sweep": (
-            set(fold_names) >= {"core_attack_type"}
-            and len(seeds) >= 3
-            and set(rungs) >= set(detectors.RUNG_NAMES)
-        ),
-        "artifacts": artifacts,
-    }
-    (out_dir / "MANIFEST.yml").write_text(
-        yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8"
+        git_sha=capture_git_sha(REPO_ROOT),
     )
-    print(f"\nwrote {len(artifacts)} (rung,fold,seed) records + MANIFEST.yml to {out_dir}")
+    on_disk = manifest["artifacts"]
+    assert isinstance(on_disk, list)
+    print(
+        f"\nwrote {n_written} (rung,fold,seed) record(s) this run; MANIFEST.yml now lists "
+        f"{len(on_disk)} on disk (complete_headline_sweep={manifest['complete_headline_sweep']}) "
+        f"in {out_dir}"
+    )
     return manifest
 
 
@@ -291,18 +377,33 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Attack-type-LODO harness (ADR-052, spec §5/§6).")
     p.add_argument("--seeds", type=int, nargs="+", default=list(DEFAULT_SEEDS))
     p.add_argument("--folds", nargs="+", default=list(folds.FOLD_NAMES), choices=folds.FOLD_NAMES)
+    # Default = the REQUIRED_RUNGS ceiling (tfidf+frozen+lora); full_ft stays selectable via
+    # ``choices`` for the deferred trigger-gate (ADR-054).
     p.add_argument(
-        "--rungs", nargs="+", default=list(detectors.RUNG_NAMES), choices=detectors.RUNG_NAMES
+        "--rungs", nargs="+", default=list(detectors.REQUIRED_RUNGS), choices=detectors.RUNG_NAMES
     )
     p.add_argument("--n-bootstrap", type=int, default=1000)
     p.add_argument("--contexts-per-attack", type=int, default=12)
     p.add_argument("--out", type=Path, default=RESULTS_DIR)
+    p.add_argument(
+        "--finalize-manifest",
+        action="store_true",
+        help="re-stamp MANIFEST.yml from the on-disk union (post-merge), no training, then exit",
+    )
     return p.parse_args(argv)
 
 
 def main(argv: Sequence[str] | None = None) -> None:
-    """CLI entry point: parse args, run the sweep, persist artifacts."""
+    """CLI entry point: parse args, run the sweep (or finalize a merged manifest), persist."""
     args = _parse_args(argv)
+    if args.finalize_manifest:
+        # Post-merge re-stamp only (ADR-054 hybrid): no training, no BIPIA needed.
+        manifest = rebuild_manifest(args.out)
+        print(
+            f"re-stamped {args.out}/MANIFEST.yml from the on-disk union "
+            f"(complete_headline_sweep={manifest['complete_headline_sweep']})"
+        )
+        return
     if not BIPIA_ROOT.exists():
         raise FileNotFoundError(
             f"BIPIA benchmark not found at {BIPIA_ROOT}; expected data/raw/BIPIA/benchmark/."

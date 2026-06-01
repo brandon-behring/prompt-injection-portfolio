@@ -1,10 +1,11 @@
 """Launch the Lane-1 attack-type-LODO headline sweep on RunPod (runpod-deploy).
 
 Session-launch wrapper (ADR-026 library-first): load the strict YAML job spec and hand it
-to ``runpod_deploy.run_job`` — provision a 24 GB+ GPU pod, stage the repo, run the full
-``tfidf+frozen+lora+full_ft × 3 folds × 3 seeds`` sweep + the §6.5 falsification, pull the
-results + verdict back, then apply the lifecycle (delete on success). The job spec lives in
-``experiments/attack-type-lodo/runpod_lane1_sweep.yaml``.
+to ``runpod_deploy.run_job`` — provision a 24 GB+ GPU pod, stage the repo, train the ``lora`` rung
+only (``--rungs lora``, 3 folds × 3 seeds; ADR-054 hybrid), pull → ``results_runpod_lora/``, then
+apply the lifecycle (delete on success). The cheap rungs, the §6.5 falsification, and the
+off-the-shelf baselines all run locally; merge + ``--finalize-manifest`` + falsify run locally
+afterward. The job spec lives in ``experiments/attack-type-lodo/runpod_lane1_sweep.yaml``.
 
 The paid launch is **user-led**. ``--offline-dry-run`` validates the spec + local paths with
 **zero provider calls and zero spend**; ``--dry-run`` adds price/inventory checks but does

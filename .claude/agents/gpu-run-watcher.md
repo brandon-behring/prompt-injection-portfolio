@@ -20,17 +20,19 @@ spec `experiments/attack-type-lodo/runpod_lane1_sweep.yaml` (`runpod-deploy>=0.8
 phantom symbol; the real API is the YAML spec + `run_job`. Validated end-to-end via
 `uv run python scripts/runpod_sweep.py --offline-dry-run` (zero spend, no provider calls). To launch
 the watched sweep: run `scripts/runpod_sweep.py` (PAID — user go-ahead required; `--dry-run` does a
-price/inventory check first). Hard guards live in the spec: `budget.cost_cap_usd: 15`,
-`max_runtime_minutes: 240`, `lifecycle.on_success: delete` (pod auto-terminates → billing stops).
+price/inventory check first). Hard guards live in the spec: `budget.cost_cap_usd: 8` (LoRA-only, ADR-054),
+`max_runtime_minutes: 180` (3 h × $2.50/h = $7.50 ≤ cap), `lifecycle.on_success: delete` (pod auto-terminates → billing stops).
 Provider-side values (`pod.image`, `pod.datacenters`, `pod.gpu_order`, the SSH key registered with
 RunPod) must be confirmed before the paid launch. The monitoring, guard, parse, and upstream-friction
 logic below is the durable part.
 
-## The run (per decisions/contingency_unlock_1.md)
-On a 24 GB+ pod, run the full headline sweep:
-`harness.py --rungs tfidf frozen lora full_ft --folds core_attack_type obfuscation_technique carrier_plus_attack_external --seeds 0 1 2`
-→ predictions parquet + `metrics.json` per cell + a complete `MANIFEST.yml`
-(`complete_headline_sweep: true`); then `falsify_ood_wall.py` writes the SURVIVES/FALSIFIED verdict.
+## The run (ADR-054 hybrid; per decisions/contingency_unlock_1.md)
+On a 24 GB+ pod, train the **`lora` rung only** (tfidf + frozen + falsify + off-the-shelf baselines run LOCAL):
+`harness.py --rungs lora --folds core_attack_type obfuscation_technique carrier_plus_attack_external --seeds 0 1 2`
+→ predictions parquet + `metrics.json` per cell. The pod pulls to `results_runpod_lora/`; the caller then
+merges it into the local `results/` (the cheap rungs), re-stamps via `harness.py --finalize-manifest`, and
+runs `falsify_ood_wall.py --rung lora` LOCALLY on the merged 3-rung tree to write the SURVIVES/FALSIFIED
+verdict. (`full_ft` is deferred to a §16 trigger-gate — not in this run.)
 
 ## Watching (bound your own cost)
 - POLL at intervals (~5–10 min), e.g. via a scheduled wake-up. Do NOT stream the log continuously —
@@ -39,8 +41,8 @@ On a 24 GB+ pod, run the full headline sweep:
 
 ## Authority on problems — ALERT, with guarded auto-kill only
 - AUTO-KILL the pod (and report it) ONLY on a hard guard:
-  - **cost guard**: accrued cost ≥ the ceiling (default = the $15 contingency envelope from
-    `contingency_unlock_1.md`; the caller may pass a different ceiling), OR
+  - **cost guard**: accrued cost ≥ the ceiling (default = the $8 spec `cost_cap_usd`; ADR-054 LoRA-only
+    sweep is ~$1-5; the caller may pass a different ceiling), OR
   - **hang guard**: no log progress for N minutes (default 20).
 - Every OTHER problem (OOM on one cell, a crashed rung, a slow-but-progressing run, suspicious
   metrics) → ALERT + recommend, and let the caller/user decide. Never relaunch, retry, or resize
@@ -48,7 +50,7 @@ On a 24 GB+ pod, run the full headline sweep:
 
 ## On recycle (success) — parse like experiment-runner
 Read the written `metrics.json` files + `MANIFEST.yml`; quote numbers exactly; report the write-gate
-(OPEN only on a complete ≥3-seed × 4-rung sweep) + the falsification verdict.
+(OPEN only on the complete ≥3-seed × 3-rung `tfidf+frozen+lora` merged tree; ADR-054) + the verdict.
 
 ## Upstream friction (dogfood-driven adoption, ADR-051 / ADR-026)
 If `runpod-deploy` makes this harder than it should be (no cost callback, no progress heartbeat,

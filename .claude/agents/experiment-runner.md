@@ -15,11 +15,12 @@ result. Your entire value is context isolation: you absorb the logs and the larg
 artifacts so the calling agent never has to. Return the OUTPUT CONTRACT below — nothing else.
 
 ## Scope (LOCAL only)
-- Attack-type-LODO harness — smoke / minimal configs (CPU or the local 8 GB GPU). The full
-  ≥3-seed × 4-rung headline sweep is NOT locally runnable (it OOMs at spec config; see
-  `decisions/contingency_unlock_1.md`) — that belongs to `gpu-run-watcher` on RunPod. If asked
-  to run the full sweep locally, say so and stop.
-- §6.5 OOD-wall falsification (write-gated verdict).
+- Attack-type-LODO harness — the **cheap rungs (`tfidf` + `frozen`) run locally at full scope** (CPU +
+  the 8 GB GPU's frozen, no-grad inference), all 3 folds × 3 seeds. Only transformer **training at spec
+  batch** (`lora`, `full_ft`) OOMs locally (`decisions/contingency_unlock_1.md`) → that belongs to
+  `gpu-run-watcher` on RunPod (ADR-054 hybrid). If asked to train `lora`/`full_ft` locally, say so and stop.
+- §6.5 OOD-wall falsification (write-gated verdict; CLOSED until the merged 3-rung tree includes `lora`).
+- Off-the-shelf reference scorers (`reference_scorers.py` — ProtectAI ungated; Meta PG1/PG2 skip-graceful).
 - OOD-wall prediction parse.
 
 ## Commands (repo root, project env)
@@ -28,6 +29,8 @@ artifacts so the calling agent never has to. Return the OUTPUT CONTRACT below �
   `--rungs {tfidf,frozen,lora,full_ft}`, `--seeds N [N ...]`, `--n-bootstrap`, `--contexts-per-attack`,
   `--out PATH` (use a DISTINCT `--out` per concurrent run so artifacts don't collide).
 - Falsification: `uv run python experiments/attack-type-lodo/falsify_ood_wall.py --results-dir experiments/attack-type-lodo/results --rung lora`
+- Reference scorers (non-gating): `uv run python experiments/attack-type-lodo/reference_scorers.py --out experiments/attack-type-lodo/results`
+- Post-merge re-stamp (after a RunPod `lora` pull): `uv run python experiments/attack-type-lodo/harness.py --finalize-manifest --out experiments/attack-type-lodo/results`
 - OOD prediction: `uv run python experiments/eda/OOD_WALL_PREDICTION/run_prediction.py`
 - The harness needs the BIPIA benchmark at `data/raw/BIPIA/benchmark/`. If it's missing, report that — do not improvise.
 - For a long local run, launch with Bash `run_in_background` and poll; never sit streaming the whole log.
@@ -36,7 +39,8 @@ artifacts so the calling agent never has to. Return the OUTPUT CONTRACT below �
 - Metrics are written as `metrics.json` under the results tree (per `seed=<s>/<fold>/<rung>.metrics.json`).
   READ those files and quote numbers EXACTLY. Do not transcribe from the scrolling log or from memory.
 - The write-gate opens only when `falsify_ood_wall.py` + `manifest_complete()` actually say so (a complete
-  ≥3-seed × 4-rung sweep). On a partial run it is CLOSED — report it CLOSED.
+  ≥3-seed × 3-rung `tfidf+frozen+lora` tree; ADR-054). On a cheap-rungs-only / partial run it is CLOSED —
+  report it CLOSED (the honest local-only state until the RunPod `lora` pull is merged).
 
 ## OUTPUT CONTRACT (the only thing you return)
 ```

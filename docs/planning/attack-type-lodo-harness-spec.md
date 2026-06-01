@@ -48,6 +48,15 @@ precision is device-adaptive — **native** bf16 (Ampere+) else fp16 (Turing rep
 bf16, so the harness gates on native support) + fp32-softmax-cast; class_weight balanced. Each rung
 gets its *own* val-selected recipe.
 
+**M1 ceiling (ADR-054).** The executed headline ceiling is **`lora`** (`detectors.REQUIRED_RUNGS =
+tfidf, frozen, lora`); **`full_ft` is deferred** to a conditional §16 trigger-gate — it stays selectable
+(`RUNG_NAMES` / `--rungs full_ft`) but is not required to open the §6.5 write-gate. **Hybrid execution:**
+`tfidf` + `frozen` + the §6.5 falsification run **local** (CPU + 8 GB frozen inference); only `lora`
+trains on RunPod (24 GB+), pulled + merged + re-stamped via `harness.py --finalize-manifest`. A separate
+off-the-shelf **reference column** (`reference_scorers.py`: ProtectAI ungated; Meta PG1/PG2 when their gate
+is granted) scores the LODO test sets alongside the rungs — **non-gating** (`reference_*.test_scores.parquet`,
+outside `REQUIRED_RUNGS`).
+
 ## 5. Metrics + reporting (per fold)
 
 - **AUPRC** (primary) with bootstrap CI; **random-floor = positive prevalence** in the fold (report

@@ -12,13 +12,13 @@
 
 **🔑 The §6.5 verdict is now honest AND looks positive.** A 4-agent audit found three defects pre-registration missed (all fixed locally, $0): (a) the §6.5 "drop" *cancels* `val_auprc` → it's a detectability-**ordering** test, not collapse-magnitude (relabeled, F1=A); (b) the bootstrap was **pseudo-replicated** (180 rows vs 5 payloads) → rebuilt as payload-clustered; (c) the prediction's encoder gap (MiniLM vs ModernBERT) — empirically closed by the frozen rung. **Under the honest estimator, the cheap rungs (tfidf+frozen) SURVIVE** (perm at the 1/70 floor = perfect tail separation; cluster-CI 100% positive; τ-b 0.45/0.58) — so the eventual GPU verdict is a de-risked *confirmation*, not a discovery.
 
-**⚠️ Milestones still under reconsideration** — M0→M7 provisional; the formal `v0.1.0` M0 close stays **DEFERRED**. (Note: `ADR-053` is now **taken** by the RunPod decision; a future milestone-rethink ADR is ADR-054+.)
+**⚠️ Milestones still under reconsideration** — M0→M7 provisional; the formal `v0.1.0` M0 close stays **DEFERRED**. (Note: `ADR-053` + `ADR-054` are now **taken** — ADR-054 = M1 LoRA-ceiling / full-FT-deferred / hybrid execution (this session); a future milestone-rethink ADR is ADR-055+.)
 
 ---
 
 ## NEXT — live options (confirm the fork with the user; present-first)
 
-1. **Launch the M1 headline sweep on RunPod — the marquee remaining deliverable (closes issue #2).** Everything is wired + validated; this is user-led + paid (~$1–6). Steps: set `RUNPOD_API_KEY` + give go-ahead → `uv run python scripts/runpod_sweep.py --dry-run` (a *fresh* dry-run to confirm live availability + price; tune to a cheap ~$0.40/h 24 GB card by switching `pod.cloud_type: COMMUNITY` + broadening `pod.datacenters` — the SECURE H100 fallback resolves in-budget now but is pricier) → `scripts/runpod_sweep.py` (the live launch) → **`gpu-run-watcher`** drives + watches the ~1.5–3 h sweep (poll + guarded auto-kill at the `cost_cap_usd=15` / `max_runtime=240` guards) → `falsify_ood_wall.py` writes the **write-gate-OPEN SURVIVES/FALSIFIED verdict** into `OOD_WALL_PREDICTION/` (the §6.5 falsification, issue #2).
+1. **Launch the M1 headline sweep on RunPod — the marquee remaining deliverable (closes issue #2).** Everything is wired + validated; this is user-led + paid (~$1–6). Steps: set `RUNPOD_API_KEY` + give go-ahead → `uv run python scripts/runpod_sweep.py --dry-run` (a *fresh* dry-run to confirm live availability + price; tune to a cheap ~$0.40/h 24 GB card by switching `pod.cloud_type: COMMUNITY` + broadening `pod.datacenters` — the SECURE H100 fallback resolves in-budget now but is pricier) → `scripts/runpod_sweep.py` (the live launch) → **`gpu-run-watcher`** drives + watches the ~1.5–3 h sweep (poll + guarded auto-kill at the `cost_cap_usd=8` / `max_runtime=180` guards) → `falsify_ood_wall.py` writes the **write-gate-OPEN SURVIVES/FALSIFIED verdict** into `OOD_WALL_PREDICTION/` (the §6.5 falsification, issue #2).
 2. **Continue the milestone rethink** (deferred M0→M7 re-ladder) → another `/exploring-options` round → Round 28 (± ADR-054+).
 3. **Dogfood the suite further** — e.g. `dataset-auditor` → refresh the dataset survey via `survey_run.py --out`; or other lanes.
 
@@ -30,10 +30,10 @@ The formal `v0.1.0` M0 close is **NOT** on this list — deferred pending the re
 
 ### §6.5 falsification — honest unit (this session)
 - `experiments/attack-type-lodo/falsify_clustered.py` — the payload-clustered estimator (type-level exact permutation, min-p 1/70; payload-cluster bootstrap; contrast on per-type test-AUPRC **levels** per F1=A). `falsify_ood_wall.py` is now a thin write-gated wrapper that delegates to it. `criteria.md` **Revision 1** records the amendment (R1 unit, R2 levels-not-magnitude, R3 permutation-resolution).
-- **Honest-unit rehearsal verdict on the cheap rungs: SURVIVES** (tfidf T=+0.135, frozen T=+0.082; both perm p=0.0143 floor, cluster-CI >0, 100% of resamples positive). The GPU run adds `lora`+`full_ft` to complete the 4-rung manifest → open the write-gate.
+- **Honest-unit rehearsal verdict on the cheap rungs: SURVIVES** (tfidf T=+0.135, frozen T=+0.082; both perm p=0.0143 floor, cluster-CI >0, 100% of resamples positive). The GPU run adds `lora` to complete the 3-rung manifest (ADR-054 hybrid: tfidf+frozen run local; `full_ft` deferred) → open the write-gate.
 
 ### RunPod launch glue (`4862e21`; ADR-053)
-- `experiments/attack-type-lodo/runpod_lane1_sweep.yaml` (24 GB+ GPU; stage repo; run `tfidf+frozen+lora+full_ft × 3 folds × 3 seeds` + `falsify_ood_wall`; pull results+verdict; `cost_cap_usd=15` + `max_runtime_minutes=240`; `on_success: delete`) + `scripts/runpod_sweep.py` (`load_job_spec → run_job`; `--offline-dry-run` = zero-spend validation, `--dry-run` = live price/inventory). **There is no `runpod_deploy.Session`** — ADR-053 records the correction.
+- `experiments/attack-type-lodo/runpod_lane1_sweep.yaml` (24 GB+ GPU; stage repo; train `lora` only — `--rungs lora × 3 folds × 3 seeds`, ADR-054 hybrid; pull → `results_runpod_lora/`; `cost_cap_usd=8` + `max_runtime_minutes=180`; `on_success: delete`) + `scripts/runpod_sweep.py` (`load_job_spec → run_job`; `--offline-dry-run` = zero-spend validation, `--dry-run` = live price/inventory). Cheap rungs + falsify + off-the-shelf baselines run LOCAL; after the pull, merge + `harness.py --finalize-manifest` + `falsify_ood_wall.py` run locally. **There is no `runpod_deploy.Session`** — ADR-053 records the correction.
 - **Budget = base-budget** ($0.00 realized cloud spend; $5–15 « $250; ADR-014 stays Reserved; tally in `contingency_unlock_1.md`).
 
 ### M1 harness (`695a739` + this session) — `experiments/attack-type-lodo/`

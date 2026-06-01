@@ -190,3 +190,38 @@ both cheap rungs SURVIVE — tfidf: T=+0.135, perm p=0.0143 (floor = perfect tai
 separation), cluster-bootstrap CI-low=+0.111 (100% of resamples >0), τ-b=0.45 (p=.013);
 frozen: T=+0.082, perm p=0.0143, CI-low=+0.064 (100% >0), τ-b=0.58 (p=.0015). The
 confirmatory verdict still requires the complete ≥3-seed × 4-rung sweep (write-gate).
+[Superseded by **Revision 2** (2026-06-01): the required set is now the 3-rung
+`tfidf+frozen+lora` ceiling; `full_ft` deferred to a trigger-gate — ADR-054.]
+
+## Revision 2 — 2026-06-01: write-gate required rung set 4→3 (full-FT deferred to a trigger-gate)
+
+**Status:** amendment to the FIXED test, appended per the Revision policy. Adopted **before any
+confirmatory LoRA headline data exists** (only the $0 cheap-rung rehearsal — tfidf + frozen — has
+run); motivated by an **execution/cost reprioritization** (ADR-054), **not** by any confirmatory
+result. The decision rule, statistics, fold set, `k`, tail sets, and the payload-clustered estimator
+(Revision 1) are all **unchanged**; only the *manifest-completeness predicate* moves.
+
+**R2.1 — required rung set reduced from 4 to 3.** The write-gate (`falsify_ood_wall.manifest_complete`,
+fed by `harness.rebuild_manifest` / `detectors.REQUIRED_RUNGS`) now opens on the complete ≥3-seed
+**`tfidf + frozen + lora`** sweep. The §6.5 verdict is judged on the **`lora`** rung — already the
+preferred headline rung (`falsify_ood_wall._RUNG_PREFERENCE` lists `lora` first) and the confirmatory
+target this criteria always named ("LoRA/full-FT"). `full_ft` is **deferred to a conditional
+trigger-gate** (PORTFOLIO_PLAN §16, ADR-054): it stays selectable (`--rungs full_ft`) and is run +
+folded in **iff** the trigger fires. This supersedes Revision 1's closing "still requires … 4-rung" clause.
+
+**R2.2 — the decision rule is UNCHANGED.** SURVIVES iff the type-level permutation p < 0.05 **AND** the
+payload-cluster bootstrap one-sided 95% CI lower bound > 0. No knob, statistic, fold set, `k`, tail set,
+embedding, or estimator changes. The evidence basis (which rung's per-type AUPRCs are judged) was always
+LoRA-first; only *which rungs must finish before the verdict may be written* moved.
+
+**R2.3 — why this is not goalpost-moving (honesty clause).** (i) the decision rule is byte-for-byte
+unchanged; (ii) the judged rung (`lora`) is unchanged and was always the headline; (iii) `full_ft` is
+*deferred with a written, fireable re-activation trigger*, not deleted — the never-measured full-FT OOD
+point remains a registered branch (ADR-052's goal preserved, not abandoned); (iv) logged with a timestamp
++ rationale, not a silent edit; (v) adopted before the confirmatory LoRA data exists, so it cannot be a
+reaction to a result. The dropped rung is the *ceiling above the ceiling*, not the rung H1 is about.
+
+**Reference column (non-gating).** ADR-054 also adds an off-the-shelf reference column
+(`reference_scorers.py`: ProtectAI now; Meta PG1/PG2 when their gate is granted) scored on the LODO test
+sets. These untrained probes are **outside** the rung ladder (`reference_*.test_scores.parquet`, not in
+`REQUIRED_RUNGS`) and **cannot** affect this gate or the verdict — they are descriptive context only.

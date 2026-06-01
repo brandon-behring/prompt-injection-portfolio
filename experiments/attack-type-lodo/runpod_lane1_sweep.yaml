@@ -1,4 +1,6 @@
-# RunPod job spec — Lane-1 attack-type-LODO headline sweep (contingency_unlock_1).
+# RunPod job spec — Lane-1 attack-type-LODO sweep: LoRA rung ONLY (ADR-054 hybrid).
+# tfidf + frozen + the §6.5 falsification + off-the-shelf reference baselines run LOCAL; only the
+# `lora` rung trains here (24 GB+). Pull → results_runpod_lora/, merge + finalize + falsify locally.
 #
 # Consumed at the session-launch boundary by scripts/runpod_sweep.py via
 # runpod_deploy.load_job_spec → run_job (provision → stage → run → pull artifacts →
@@ -27,14 +29,14 @@ local:
     - uv.lock
 
 pod:
-  # 24 GB+ runs the spec config (batch 16 / max_len 512, native bf16 on Ampere+) with no
-  # desktop contention; ~3-5x local throughput → full sweep in ~1.5-3 h.
+  # 24 GB+ trains the `lora` rung at spec config (batch 16 / max_len 512, native bf16 on Ampere+)
+  # with no desktop contention; LoRA-only (ADR-054) → ~0.75-1.5 h. tfidf+frozen+falsify run local.
   image: runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
   cloud_type: SECURE # reliable + resolves now in these DCs; cheap COMMUNITY cards need RUNPOD_API_KEY + broader DCs
   container_disk_gb: 40
   gpu_count: 1
   # Prefer cheap 24 GB cards; fall back to whatever premium card is available so the job resolves.
-  # cost_cap_usd=15 + max_runtime_minutes=240 bound total spend regardless of card. ⚠️ Re-confirm with
+  # cost_cap_usd=8 + max_runtime_minutes=180 bound total spend regardless of card. ⚠️ Re-confirm with
   # a fresh --dry-run at launch (availability is momentary; the cheap COMMUNITY path needs the API key).
   gpu_order:
     - "NVIDIA RTX A5000"
@@ -61,9 +63,9 @@ storage:
   volume_gb: 50 # ephemeral workspace: repo + HF model/dataset cache + results
 
 budget:
-  cost_cap_usd: 15.0 # top of the contingency_unlock_1 $5-15 envelope
-  assumed_hourly_rate_usd: 2.50 # conservative for the available H100 fallback (cheap 24 GB cards ~$0.40/h)
-  max_runtime_minutes: 240 # hard wall-clock guard (~1.5-3 h expected)
+  cost_cap_usd: 8.0 # LoRA-only ~$1-5 expected (ADR-054); tightened from the 4-rung $5-15 envelope
+  assumed_hourly_rate_usd: 2.50 # conservative for the H100 fallback (cheap 24 GB cards ~$0.40/h)
+  max_runtime_minutes: 180 # 3 h × $2.50/h = $7.50 ≤ $8 cap (runpod_deploy enforces timeout×rate≤cap); lora-only ~0.75-1.5 h; gpu-run-watcher's 20-min no-progress guard is the real stall catch
   poll_interval_sec: 60
   ssh_ready_timeout_sec: 900
 
@@ -102,24 +104,20 @@ run:
     cd /workspace/repo
     uv sync --extra dev
     uv run python experiments/attack-type-lodo/harness.py \
-      --rungs tfidf frozen lora full_ft \
+      --rungs lora \
       --folds core_attack_type obfuscation_technique carrier_plus_attack_external \
       --seeds 0 1 2 \
       --out experiments/attack-type-lodo/results
-    uv run python experiments/attack-type-lodo/falsify_ood_wall.py \
-      --results-dir experiments/attack-type-lodo/results
     echo "LANE1_SWEEP_COMPLETE_OK"
 
 artifacts:
+  # Pull the lora-only tree into a SEPARATE dir so it never clobbers the local tfidf+frozen MANIFEST;
+  # merge into results/ + re-stamp via `harness.py --finalize-manifest`, then run falsify_ood_wall.py
+  # on the merged tree LOCALLY (ADR-054 — falsify no longer runs on the pod, so no verdict artifact here).
   - label: results
     remote_path: /workspace/repo/experiments/attack-type-lodo/results
-    local_path: experiments/attack-type-lodo/results
+    local_path: experiments/attack-type-lodo/results_runpod_lora
     required: true
-    delete: false
-  - label: verdict
-    remote_path: /workspace/repo/experiments/eda/OOD_WALL_PREDICTION/falsification_verdict.json
-    local_path: experiments/eda/OOD_WALL_PREDICTION/falsification_verdict.json
-    required: false
     delete: false
 
 lifecycle:

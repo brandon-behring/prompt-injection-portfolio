@@ -1,6 +1,9 @@
 """Detector rungs for the attack-type-LODO harness (spec §4).
 
-Four rungs behind a common :class:`Detector` protocol:
+Four rungs behind a common :class:`Detector` protocol. The M1 headline ceiling is
+``lora``; ``full_ft`` is deferred to a conditional trigger-gate (ADR-054, PORTFOLIO §16) —
+it stays selectable here but is **not** in :data:`REQUIRED_RUNGS`, the set that opens the
+§6.5 write-gate.
 
 * ``tfidf``  — TF-IDF + LogisticRegression classical floor (CPU).
 * ``frozen`` — frozen ModernBERT-base mean-pooled embeddings → LogisticRegression head.
@@ -26,10 +29,25 @@ from eval_toolkit import metric_specs, scorecard
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
-__all__ = ["Detector", "TfidfLogReg", "FrozenProbe", "LoRADetector", "FullFT", "make_detector", "RUNG_NAMES"]
+__all__ = [
+    "Detector",
+    "TfidfLogReg",
+    "FrozenProbe",
+    "LoRADetector",
+    "FullFT",
+    "make_detector",
+    "RUNG_NAMES",
+    "REQUIRED_RUNGS",
+]
 
 _DEFAULT_MODEL = "answerdotai/ModernBERT-base"
+# All implemented rungs (full ladder). ``full_ft`` stays here so it remains selectable
+# (``--rungs full_ft``) for the deferred trigger-gate.
 RUNG_NAMES: tuple[str, ...] = ("tfidf", "frozen", "lora", "full_ft")
+# The M1 headline ceiling (ADR-054): the rungs whose presence opens the §6.5 write-gate.
+# ``full_ft`` is DEFERRED to a conditional trigger-gate (PORTFOLIO §16), so it is selectable
+# but NOT required — the judged headline rung is ``lora``.
+REQUIRED_RUNGS: tuple[str, ...] = ("tfidf", "frozen", "lora")
 
 
 @runtime_checkable

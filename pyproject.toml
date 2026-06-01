@@ -116,7 +116,7 @@ disallow_untyped_defs = true
 # experiments/ is outside the mypy target set (src/scripts/tests), so mypy cannot
 # resolve these by name; silence the unavoidable import-not-found in tests/experiments/.
 [[tool.mypy.overrides]]
-module = ["folds", "metrics", "detectors", "falsify_ood_wall", "falsify_clustered", "harness", "bipia_carrier", "survey_run"]
+module = ["folds", "metrics", "detectors", "falsify_ood_wall", "falsify_clustered", "harness", "reference_scorers", "bipia_carrier", "survey_run"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
