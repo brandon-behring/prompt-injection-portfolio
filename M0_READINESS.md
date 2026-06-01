@@ -133,8 +133,8 @@ Per the Round-30 session: `make ratify-milestone` is **GREEN** on HEAD `0dd0aa4`
 is **staged but HELD** until the build-in-public accounts (Twitter/X + Mastodon) exist, so the close +
 announcement land together (user's call). The held bundle is a ~15-min **user-led** runbook:
 
-1. Open + merge the PR `session/2026-05-26-adoption-and-research-ops → main` (fast-forward preferred —
-   `main` is a strict ancestor of HEAD, ~40+ commits; keeps history linear).
+1. ✅ **DONE (2026-06-01 PM)** — merged via **PR #4** (fast-forward; `origin/main` = `116cfd5`; 42
+   commits, linear, same SHAs). Remaining held steps (2–6) are tag → release → announce.
 2. `git checkout main && git pull` → re-run `make ratify-milestone` on `main` (confirm still green).
 3. `git tag -a v0.1.0 -m "<message below>"` → `git push origin v0.1.0`.
 4. `gh release create v0.1.0 --notes-file docs/build-in-public/2026-06-01-v0.1.0-announcement.md`.

@@ -1,5 +1,10 @@
 # Session handoff — 2026-06-01 (PM) — milestone re-ladder DONE (Round 30 / ADR-055); v0.1.0 M0 close STAGED + held for accounts
 
+> **✅ Post-session update (2026-06-01 PM):** the 2 commits are **pushed**, and the full 42-commit
+> session arc is **merged to `main` via PR #4** (fast-forward; `origin/main` = `116cfd5`, linear,
+> same SHAs). The "push / merge-to-main" steps in NEXT below are **DONE** — only the **`v0.1.0` tag +
+> release + announcement remain held** for accounts (the merge prerequisite is now satisfied).
+
 ## ✅ START HERE — clean session
 
 **The milestone re-ladder is DONE (Round 30 → ADR-055), and the `v0.1.0` M0 close is STAGED + held for
