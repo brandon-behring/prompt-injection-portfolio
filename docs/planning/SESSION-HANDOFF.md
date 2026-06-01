@@ -23,13 +23,16 @@ and it's credible *because* the rule + tail sets + judged-rung were fixed before
 write-gated. Record: `experiments/eda/OOD_WALL_PREDICTION/falsification_verdict.json` + `FINDINGS.md` §"Realized
 verdict" + `criteria.md` footer. **Issue #2 CLOSED.**
 
-**Five commits this session (branch `session/2026-05-26-adoption-and-research-ops`; ALL UNPUSHED):**
-1. **`81d7093`** — ADR-054: defer `full_ft` to a trigger-gate, `lora` = M1 ceiling, hybrid local+RunPod,
-   `REQUIRED_RUNGS` decoupling, off-the-shelf reference column, criteria Revision 2.
-2. **`d187a50`** — fail-fast GPU guard in the pod run-script + DF-5 (pricing-403) logged.
-3. **`f0f1523`** — the LoRA verdict + FINDINGS/criteria realized-verdict record + budget actuals
-   ($0.83) + the `falsify_ood_wall.py` relative-path fix + the `rsync` setup step + DF-6.
-4. **(pending, this handoff's commit)** — DF-6 → filed as [runpod-deploy#116] + this handoff refresh.
+**Nine commits this session (branch `session/2026-05-26-adoption-and-research-ops`; ALL PUSHED — HEAD `76b68d3`):**
+1. **`81d7093`** — ADR-054: defer `full_ft`, `lora` = M1 ceiling, hybrid, `REQUIRED_RUNGS`, reference column, criteria Rev 2.
+2. **`d187a50`** — fail-fast GPU guard + DF-5 (pricing-403) logged.
+3. **`f0f1523`** — LoRA verdict + FINDINGS/criteria realized-verdict + budget actuals ($0.83) + falsify path fix + rsync setup + DF-6.
+4. **`98c1804`** — handoff refresh + DF-6 filed ([runpod-deploy#116]).
+5. **`f241bcc`** — ADR-054 ratified: full-FT §16 trigger RESOLVED (does not fire).
+6. **`47ed870`** — DF-5 (pricing-403) filed ([runpod-deploy#117]).
+7. **`3dde171`** — milestone-rethink inputs captured (re-ladder deferred to a fresh session).
+8. **`8762ad4`** — scrub absolute `/home/` paths (closes #3).
+9. **`76b68d3`** — V10 completed with PG1; the indirect-capable probe fires (closes #1).
 
 **Cost:** $0.83 realized of the $250 base (base-budget; ADR-014 stays Reserved; « the $350 hard cap).
 
@@ -37,19 +40,19 @@ verdict" + `criteria.md` footer. **Issue #2 CLOSED.**
 
 ## NEXT — live options (confirm the fork with the user; present-first)
 
-1. **Push the branch** — 3+ commits unpushed (user-led; the push itself always prompts).
-2. **`full_ft` trigger-gate decision (§16, ADR-054).** The trigger fires iff LoRA SURVIVES with a real
-   capacity lift **or** is borderline such that the never-measured full-FT OOD point would change the writeup.
-   **The verdict is FALSIFIED (no wall at LoRA capacity)** → more capacity (full-FT) would only dissolve it
-   further → **no decision-relevant info → the trigger does NOT fire; `full_ft` stays deferred.** (Record this
-   if ratifying ADR-054 / closing the gate.)
-3. **Milestone rethink — DEFERRED to a fresh session; inputs captured.** The post-LODO-results re-ladder
+The M1 arc is **fully closed, ratified, and pushed**; both upstream frictions filed ([#116] rsync, [#117]
+pricing-403); issues **#1 / #2 / #3 all CLOSED**. Only two things remain, both user-led:
+
+1. **Milestone rethink — DEFERRED to a fresh session; inputs captured.** The post-LODO-results re-ladder
    condition (Round 27 / ADR-052) is now **met**; M1's implications are distilled in
-   **`docs/planning/milestone-rethink-inputs.md`** (the read-first brief). M0→M7 still provisional; the
-   formal `v0.1.0` M0 close stays user-led. Pick up the full re-ladder fresh → `/exploring-options` → ADR-055+.
-4. **Optional housekeeping:** file **DF-5** (pricing-403) upstream (drafted in `upstream_issues.md`; user-led);
-   address new **issue #3** (scrub absolute `/home/` paths from the repo); rerun `run_v10_probes.py` with **PG1**
-   now its Meta gate is cleared (**issue #1**).
+   **`docs/planning/milestone-rethink-inputs.md`** (read-first brief). Pick up the full re-ladder fresh →
+   `/exploring-options` → ADR-055+.
+2. **Formal `v0.1.0` M0 close** — `git tag v0.1.0` + `gh release` + the build-in-public announcement. Stays
+   **user-led** (accounts not created); see `M0_READINESS.md`. Orthogonal to the rethink.
+
+*(Done this session: the paid LoRA sweep + §6.5 verdict, ADR-054 ratification + trigger resolution, the push,
+both DF filings, the `/home/`-path scrub, and the V10/PG1 completion. The `full_ft` §16 trigger is RESOLVED —
+does not fire: FALSIFIED ⇒ no decision-relevant full-FT point.)*
 
 ---
 
@@ -93,9 +96,11 @@ verdict" + `criteria.md` footer. **Issue #2 CLOSED.**
 6. `decisions/upstream_issues.md` — DF-5 (pricing-403, pending) + DF-6 (rsync, filed #116).
 
 ## Open tracked items (GitHub Issues + Work-Tracker #1)
-- **#2** — §6.5 OOD-wall falsification — **CLOSED** (FALSIFIED at the LoRA ceiling).
-- **#3** `tracked` — Scrub absolute `/home/` paths from the repo (opened 2026-06-01). Not yet triaged.
-- **#1** `P3`/`improvement` — Rerun V10 with PG1 (Meta gate now CLEARED → unblocked).
+- **No open portfolio issues.** All three closed this session:
+  - **#2** — §6.5 OOD-wall falsification — CLOSED (FALSIFIED at the LoRA ceiling; `76b68d3`/`f0f1523`).
+  - **#3** — Scrub absolute `/home/` paths — CLOSED (`8762ad4`).
+  - **#1** — Rerun V10 with PG1 — CLOSED (PG1 fires; `76b68d3`).
+- Upstream (runpod-deploy): **#116** (rsync on lean base image) + **#117** (GraphQL pricing 403) — filed, open upstream.
 
 ## Gotchas
 - **Working-style (most load-bearing):** present-first; interrogates inconsistencies; wants `/exploring-options`
