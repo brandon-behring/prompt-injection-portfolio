@@ -38,11 +38,14 @@ Survives iff the predicted-worst tail collapses more than the predicted-best tai
    content). The lexical shortcut is weak/generic, so a shortcut-reliant detector has
    little to over-fit — but C2 still discriminates across types (AUPRC spread 0.29).
 
-3. **Off-the-shelf direct-injection probes are blind to BIPIA (V10 scope caveat, confirmed).**
-   `protectai-v2` scores BIPIA attacks (0.25) ≈ benign (0.28); `Prompt-Guard-2` barely fires
-   (0.03 vs 0.007). Their "collapse" is **probe scope-blindness**, not data — exactly the
-   pre-registered caveat. The one indirect-capable probe (`Prompt-Guard-86M`/PG1) is **pending**
-   its Meta Llama gate; rerun `run_v10_probes.py` adds it once granted.
+3. **Off-the-shelf probe behaviour splits by training scope (V10 — now complete; PG1 added 2026-06-01).**
+   The two *direct*-injection probes are blind to BIPIA's indirect attacks: `protectai-v2` scores attacks
+   (0.25) **below** its own benign floor (0.28) — no separation; `Prompt-Guard-2` barely fires (0.03 vs
+   0.007). But the one *indirect*-capable probe, `Prompt-Guard-86M` (PG1; Meta gate now granted), **fires
+   strongly** — mean attack **0.86** vs benign **0.04**, clean separation across all 14 attack types. So the
+   "collapse" of the off-the-shelf probes is **scope-blindness, not undetectable data** — the pre-registered
+   caveat, now confirmed *both* ways: a direct-trained probe misses indirect injection, while the
+   indirect-trained probe catches it. (Closes issue #1; `v10_scores.json` `skipped_probes={}`.)
 
 4. **The study anchor is uncontaminated.** Cross-dataset audit: BIPIA shares **0.0**
    near-duplicates (TF-IDF cosine ≥ 0.9) with any of the 8 certified working-set datasets;
