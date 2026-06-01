@@ -123,6 +123,28 @@ Prompt Injection and Jailbreak Detection in LLM Guardrails" (Hackett et al.
 2025), Goodhart's law on public benchmarks, training-data leakage,
 selection bias in self-reported numbers, weak-attack pathologies.
 
+## carrier (OOD axis)
+
+The trust-boundary / content-format axis of an indirect-injection eval — the
+email / code / table / qa / abstract scaffold the injected payload sits in
+(BIPIA's per-subset structure; see `rag_evaluation_harness`). Per the M1 EDA, the
+carrier **dominates the frozen-embedding geometry** (silhouette by-carrier 0.197
+vs by-attack-type −0.023; KMeans→carrier ARI 0.98), so the Round-30 multi-axis
+spine (ADR-055) names it the **standing wall** — distinct from the *attack-type*
+axis, which M1 showed is capacity-dependent. M1 held the carrier constant by
+design (ADR-052); `carrier-LODO` measures it.
+
+## carrier-LODO
+
+Leave-one-carrier-out evaluation: train on a subset of carriers, test on a
+held-out `carrier` (email/code/table available; qa/abstract license-gated). The
+carrier-axis sibling of attack-type-LODO, reusing the M1 harness with the LODO
+axis swapped and a **carrier-clustered** estimator (the held-out unit is the
+carrier, n=3; the bootstrap resamples payload ids *within* the held-out carrier).
+Registered by ADR-055 (Round 30) as the M1-exit → Lane-2-entry pre-flight gate:
+does end-to-end LoRA dissolve the carrier OOD gap (spine revised) or does it
+persist (spine validated)? Pre-registered at `experiments/carrier-lodo/criteria.md`.
+
 ## claim_family
 
 A `bib_ledger.yml` taxonomy key that groups dossier entries by topic
@@ -271,6 +293,18 @@ load-bearing libraries (eval-toolkit / runpod-deploy / research_toolkit
 Round 21: 8 of 9 M0-batch MRs closed by upstream; only MR-3 + new MR-12
 remain open.
 
+## multi-axis OOD spine (capacity-dependent)
+
+The Round-30 reframe (ADR-055) of the portfolio's thesis: the `OOD wall` is not
+one wall but several **axes**, each with its own capacity regime. The
+*attack-type* axis is **capacity-dependent** — M1's pre-registered §6.5 prediction
+SURVIVES on tfidf/frozen but is FALSIFIED at the LoRA ceiling (T 0.135 → 0.082 →
+−0.003): end-to-end LoRA dissolves the per-type gap. The *carrier* axis dominates
+the representation geometry and is the standing wall (geometric so far;
+`carrier-LODO` measures it). Reconciles with the submission's "backbone-invariant"
+null — backbone-invariant ≠ capacity-invariant, and the submission measured the
+carrier axis while M1 measured attack-type-within-indirect.
+
 ## OOD wall
 
 The bottom-line finding from the submission predecessor (per ADR-075):
@@ -278,6 +312,9 @@ fine-tuning on direct-injection-heavy training pool actively HURTS
 generalization to indirect/agentic OOD slices (-0.071 AUPRC delta vs
 frozen-probe with CI clearing zero). Portfolio asks whether the wall
 is data-bound or structural across backbones + parameter budgets.
+**Round 30 (ADR-055) re-axis:** now understood as multi-axis — the *attack-type*
+axis is capacity-dependent (M1 dissolved it with end-to-end LoRA), the *carrier*
+axis is the standing wall (see `multi-axis OOD spine (capacity-dependent)`).
 
 ## ood_evaluation_methodology
 

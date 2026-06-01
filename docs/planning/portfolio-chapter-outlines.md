@@ -139,6 +139,8 @@ Note: full per-chapter KF-decomposed detail (R/O/E structure, callout strategy, 
 | **Freshness state at v0.1.0** | `scaffolded` (anchors EchoLeak + submission ADRs at skeleton; results filled at M1 close) |
 | **Cross-references** | All subsequent Part III chapters trace back here |
 
+> **Round 30 re-axis (ADR-055).** The anchor reframes from a single "backbone-invariant OOD wall" to the **multi-axis, capacity-dependent** spine: the submission's backbone-invariant null is the **carrier** axis; M1 adds the **attack-type** axis, where the per-type wall is **capacity-dependent** (FALSIFIED at the LoRA ceiling; SURVIVES tfidf/frozen). The OpenQuestion ("data-bound vs structural") is now axis-typed — the *attack-type* wall is not structural (capacity dissolves it); the *carrier* wall's structural status is the open question the carrier-LODO M2 pre-flight gate sizes. backbone-invariant ≠ capacity-invariant.
+
 ### Ch 8: Lane 1 — Reading the OOD Wall, More Carefully
 
 | Field | Value |
@@ -153,6 +155,8 @@ Note: full per-chapter KF-decomposed detail (R/O/E structure, callout strategy, 
 | **Freshness state at v0.1.0** | `planned` → `prose_only` at M1 close → `implemented` after Lane 1 ratification |
 | **Cross-references** | Lane 1 + Lane 1b experiment records; Ch 7 (foundation); Ch 11 (fusion uses Lane 1 scores) |
 
+> **Round 30 re-axis (ADR-055).** Ch 8 now headlines M1's **pre-registered §6.5 falsification** as the chapter's result: the attack-type-LODO per-type "wall" is **capacity-dependent** (T = +0.135 tfidf / +0.082 frozen / −0.003 lora; FALSIFIED on `lora`, SURVIVES cheap rungs). The "E" branch ("backbone-invariance confirmed across encoders") is re-axised — M1 varied *capacity*, not backbone; the finding is that end-to-end LoRA dissolves the attack-type gap (test AUPRC 0.98–0.999), a capacity-axis result distinct from (and consistent with) the carrier-axis backbone-invariance.
+
 ### Ch 9: Lane 2 — Climbing with New Training Data
 
 | Field | Value |
@@ -166,6 +170,8 @@ Note: full per-chapter KF-decomposed detail (R/O/E structure, callout strategy, 
 | **Volatility** | `feature-surface` |
 | **Freshness state at v0.1.0** | `planned` → `prose_only` at M4 close → `implemented` |
 | **Cross-references** | Lane 2 experiment records; Ch 7 foundation; Ch 11 (Lane 2 variants feed Lane 4 stacker) |
+
+> **Round 30 re-axis (ADR-055).** Lane 2's headline evaluation axis moves from attack-type to **carrier generalization** (method unchanged — LoRA + 2-variant loss per ADR-043). The thesis ("does indirect data overcome active-harm + backbone-invariance") re-axises to "can training data close the **carrier**-axis OOD gap M1 left standing," sized first by the carrier-LODO M2 pre-flight gate. The E-branches re-axis to the carrier wall (the *attack-type* wall is capacity-solved). "Confirm attack-type generalization" is a cheap optional secondary.
 
 ### Ch 10: Lane 3 — Watching the Wall in the Demo
 
@@ -209,6 +215,8 @@ Note: full per-chapter KF-decomposed detail (R/O/E structure, callout strategy, 
 | **Freshness state at v0.1.0** | `planned` → `prose_only` at M7 close |
 | **Cross-references** | Lane 5 experiment record; Ch 13 lessons (what activation-space results imply for future architectural work) |
 
+> **Round 30 re-axis (ADR-055).** Lane 5's probe hypothesis is sharpened: M1 showed the attack-type signal is **learnable end-to-end** (LoRA, AUPRC 0.98–0.999) **but embedding-invisible** (frozen final-layer silhouette −0.023). The probe question becomes recovering the signal from **intermediate** activations — between the embedding-invisible final layer and the LoRA-visible end-to-end. The M3-entry d′ > 0.5 gate is unchanged (port-only vs surface-third-path / CaMeL capability-isolation).
+
 ---
 
 ## Part IV — Methodology lessons (Ch 13)
@@ -226,6 +234,8 @@ Note: full per-chapter KF-decomposed detail (R/O/E structure, callout strategy, 
 | **Volatility** | `architectural-pattern` |
 | **Freshness state at v0.1.0** | `scaffolded` (skeleton + lesson list) → `prose_only` at M7 close |
 | **Cross-references** | All chapters; NEXT_SESSION.md (Tier D candidates) |
+
+> **Round 30 re-axis (ADR-055).** Add the durable lesson: the OOD "wall" is **axis-typed and capacity-typed** — not one wall but several axes (attack-type vs carrier), each with its own capacity regime. M1's pre-registered falsification (capacity dissolves the attack-type wall; the carrier wall stands, pending the carrier-LODO gate) is itself a methodology centerpiece: a falsifiable prediction that passed a write-gate at the cheap rungs and was honestly overturned at the LoRA ceiling.
 
 ---
 

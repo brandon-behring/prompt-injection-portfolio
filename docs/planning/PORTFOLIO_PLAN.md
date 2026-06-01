@@ -686,6 +686,25 @@ Post-EDA-arc review of the M0→M7 ladder (locked pre-EDA, R1–R7). The Phase-3
 - The EDA findings **reframe Lane 1's value-prop**: from "we trained a detector" to "we measured operating-point honesty" (the field's floor is already laid; the contribution is saturation-aware reporting — `dossier_implications` Zone 2). Lane 1's *hypothesis* and milestone (M1) are unchanged.
 - No ADR filed (ADR-052 already governs the deferral; ADR-053 left available for when the LODO results actually trigger a re-ladder).
 
+### Round 30 update — post-M1 milestone re-ladder: the multi-axis capacity-dependent spine (2026-06-01)
+
+The re-ladder deferred at Round 27 (and at **ADR-052**, "restructure deferred to Phase 3 — after results") is now run: M1 (attack-type-LODO, Lane 1) closed on 2026-06-01 with its §6.5 verdict, meeting the deferral condition. This `/exploring-options` round folded two input streams — `milestone-rethink-inputs.md` (the M1 result) + `dossier_implications_for_roadmap.md` Zone 2 (the dossier rescopes) — and reorganizes **narrative + lane framing + the M1→M2 sequencing checkpoint only**. It does **not** re-sequence milestones (still M0→M7) and does **not** re-open M1.
+
+**The pivot:** M1's §6.5 falsification is **capacity-dependent and attack-type-axis-only** — tfidf +0.135 / frozen +0.082 **SURVIVE**, `lora` −0.003 **FALSIFIED** (`falsification_verdict.json`), with M1 holding the carrier constant by design. So "there is an OOD wall" splits into axes.
+
+**Decisions locked** (5):
+- **Spine → multi-axis, capacity-dependent**: *OOD is several axes; the **attack-type** axis is capacity-dependent (end-to-end LoRA dissolves it), the **carrier** axis dominates the geometry and is the standing wall.* Stronger, more precise — a pre-registered falsification overturned only at the LoRA ceiling. Carries the **submission reconciliation**: backbone-invariant (submission's v1.1.2 DeBERTa carrier null) ≠ capacity-invariant, and the submission measured **carrier** while M1 measured **attack-type within indirect** — the multi-axis spine unifies them, no contradiction.
+- **Lane 2 → re-point to the carrier axis**: method UNCHANGED (LoRA-retrain + 2-variant loss per **ADR-043**); evaluation axis moves from attack-type (M1 answered it: LoRA generalizes near-perfectly) to **carrier generalization** on the available set (email/code/table; qa/abstract license-gated). "Confirm attack-type generalization" becomes a cheap §16 optional secondary.
+- **Lane 5 → sharpened, gate kept**: recover the signal from **intermediate** activations (between the embedding-invisible final layer and the LoRA-visible end-to-end signal); the M3-entry **d′ > 0.5** gate stays as the port-only-vs-surface-third-path decision; CaMeL / capability-isolation stays the flagged lead alternative.
+- **§16 rescope gates → both untripped, one watch-note**: M1 tested **neither** the Lane 1b (Hackett char-injection ASR) nor the Lane 4 (saturation) trigger — both stay registered as-is. New **Lane-4 watch-note**: M1's 0.98–0.999 LoRA AUPRC foreshadows the saturation gate (revisit at M5-close).
+- **Converge → reframe + ADR-055 + one sequencing tweak**: insert a **carrier-LODO validation gate** at **M1-exit → Lane 2-entry** (an M2 pre-flight, mirroring the EDA-arc-as-M1-entry-gate pattern). The gate reuses the attack-type-LODO harness with the LODO axis swapped to **carrier** and a **carrier-clustered** estimator (§6.5 was payload-clustered), criteria pre-registered before any run. It answers: does LoRA dissolve the carrier gap too (spine revised) or does carrier persist under LoRA (spine validated), and sizes Lane 2's scope. **Scheduled now; the run is a separate present-first go.**
+
+**Implications**:
+- The "carrier is the standing wall" half of the spine is currently **geometric, not a modeling result** (silhouette by-carrier 0.197 vs by-attack-type −0.023; KMeans→carrier ARI 0.98 — `OOD_WALL_PREDICTION/FINDINGS.md`). The carrier-LODO gate converts it to a modeling result or revises the spine — that is the gate's whole purpose; until it runs, prose must name the axis + capacity regime of every "wall" claim.
+- §16 gains the carrier-LODO gate + the Lane-4 watch-note + a one-line "1b/4 untripped by M1" confirmation (Round-30 gates subsection). §9 gains the M2 pre-flight checkpoint. §5 re-points the Lane-2 framing and re-axises "structural wall (likely)" (M1 showed the *attack-type* wall is not structural; the open structural question is the *carrier* wall). §17 Ch 7/8/9/12/13 outlines re-axis (canonical detail lives in those sections + the chapter-outlines companion — register, don't duplicate).
+- A new `experiments/carrier-lodo/criteria.md` pre-registration is owed **before** that run (carrier-clustered estimator; §6.5 decision rule reused byte-for-byte). Cost: tfidf/frozen local (free) + `lora` ~$1 → base-budget; **ADR-014** stays Reserved.
+- **ADR-055 filed** (discharges ADR-052's Phase-3 deferral + the Round-27 placeholder; builds on ADR-054; supersedes nothing).
+
 ---
 
 ## 1. Decisions locked via `/exploring-options` (17 questions across 3 rounds)
@@ -1028,7 +1047,7 @@ Lane 1, 1b, 2 (2-variant LoRA base per Round 15 Q1; optional 3rd energy-loss LoR
   + 2 trained + 1 classical + 2 reference scorers per ADR-050 R1+R2 +
   ADR-052 + ADR-075). [ADR-052 superseded; ADR-050 R2 axis superseded;
   both retained in submission's `decisions/` per immutability rule.]
-- **v1.1.2 DeBERTa-v3-base null result**: chunk_and_average 0.2912 ≈ head_truncation 0.2895 on pooled OOD. Backbone-dominant verdict: ModernBERT advantage is NOT context-window-driven; OOD wall extends across backbones + truncation strategies.
+- **v1.1.2 DeBERTa-v3-base null result**: chunk_and_average 0.2912 ≈ head_truncation 0.2895 on pooled OOD. Backbone-dominant verdict: ModernBERT advantage is NOT context-window-driven; OOD wall extends across backbones + truncation strategies. **[Round 30 / ADR-055 — axis-precision:** this null is on the **carrier / direct→indirect** axis; *backbone*-invariant ≠ *capacity*-invariant. M1's attack-type-axis result (end-to-end LoRA dissolves the per-type gap) is a **different axis** and does **not** bear on this carrier null — see the Round-30 Lane-2 re-point below.**]**
 
 Lane 2's question becomes (Round 15 framing): *does adding
 indirect-injection training data, while holding parameter budget at
@@ -1051,6 +1070,10 @@ Ch 7 case study cites BOTH **ADR-075 (canonical unified full-FT OOD
 drop rationale; supersedes ADR-052; supports Round 15 LoRA-only scoping
 decision)** AND v1.1.2 DeBERTa null result (backbone-invariance) as
 foundation for the OOD wall framing.
+
+**Round 30 re-point (post-M1; ADR-055) — Lane 2 → the carrier axis.** M1 (attack-type-LODO) answered the *attack-type* half: end-to-end LoRA generalizes near-uniformly across held-out attack types (test AUPRC 0.98–0.999), so the §6.5 per-type "wall" is **capacity-dependent** (dissolved by LoRA — FALSIFIED at the ceiling; SURVIVES on tfidf/frozen). The interesting *unsolved* axis is therefore the **carrier** (held constant by ADR-052 design), which dominates the representation geometry (silhouette by-carrier 0.197 vs by-attack-type −0.023). **Decision (R30):** Lane 2's **method is unchanged** (LoRA-retrain + 2-variant loss per ADR-043); its **headline evaluation axis moves to carrier generalization** on the available carrier set (email/code/table; qa/abstract license-gated). "Confirm attack-type generalization persists under the Lane-2 recipe" is registered as a cheap §16 optional secondary, not the headline.
+
+The three outcomes above are **re-axised to the carrier wall**: M1 showed the *attack-type* wall is **not** structural (capacity dissolves it), so "wall confirmed structural beyond data choice" now refers specifically to the **carrier** wall — whose size is measured *before* Lane 2 commits by the **carrier-LODO M2 pre-flight gate** (§16 Round-30 gates; ADR-055). If that gate finds the carrier gap persists under LoRA, the carrier wall is the live structural question Lane 2 attacks; if LoRA dissolves it too, the spine is revised (capacity dissolves both axes) and Lane 2's headline is resized accordingly.
 
 ---
 
@@ -1307,6 +1330,10 @@ ADR-035 (portfolio-clean-T0-strategy) supersedes ADR-033 (T0 deferral).
 ### Per-milestone
 
 Each lane milestone: prose fill for corresponding chapter + companion notebook (if applicable) + weekly build-in-public posts + monthly deep-dive at the relevant month boundary.
+
+### M1→M2 entry-gate — carrier-LODO pre-flight (Round 30; ADR-055)
+
+Before Lane 2 commits, a **carrier-LODO validation read** sits at the M1-exit → Lane-2-entry boundary (an M2 pre-flight, mirroring the Round-27 EDA-arc-as-M1-entry-gate). It tests whether the multi-axis spine's "carrier is the standing wall" claim — geometric so far (silhouette by-carrier 0.197 vs by-attack-type −0.023) — survives end-to-end LoRA, and sizes Lane 2's scope. Registered in §16 (Round-30 gates) + ADR-055; criteria pre-registered at `experiments/carrier-lodo/criteria.md`; the run is a separate present-first go. Milestone *order* is unchanged (still M0→M7; no rung added).
 
 ### v0.7.0 → v1.0.0 polish window (~3 months post-M7)
 
@@ -1589,6 +1616,15 @@ Added at the milestone rethink (Round 27, 2026-05-29). The EDA entry-gate is set
 - **M5-close gate (Lane 4 benchmark pivot)**: **if any 2 of {PINT, PromptShield, WildGuardMix} saturate above 95% AUPRC on the stacker at M5 close**, declare them legacy comparators and pivot Lane 4's headline to LLMail-Inject adaptive eval as primary.
 - **M3-entry gate (Lane 5 surface-third-path)**: **if the encoder activation-delta probe does not separate direct + indirect distributions with d′ > 0.5 at the M3 smoke-test**, declare the port-only (TaskTracker-on-encoder) hypothesis falsified and promote the surface-third-path (capability-isolation pairing / CaMeL) to Lane 5's primary contribution.
 - **M1 full-FT trigger-gate (Lane 1 ceiling, ADR-054)**: the M1 attack-type-LODO headline ceiling is **`lora`** (3-rung ladder `tfidf → frozen → lora`); `full_ft` is **deferred, not dropped** — it stays selectable in the harness (`detectors.RUNG_NAMES`; `--rungs full_ft`). **If the merged 3-rung §6.5 LoRA verdict is decision-relevant** — i.e. LoRA SURVIVES with a per-type test-AUPRC ceiling materially above the frozen rung (a real capacity effect worth confirming at full capacity), **or** LoRA's verdict is borderline (permutation at the 1/70 floor with bootstrap CI-low near 0) such that the never-measured full-FT OOD point (ADR-052's stated goal; ADR-075's open question) would change the writeup's claim — **then** run `full_ft × 3 folds × 3 seeds` on RunPod and fold it into the §6.5 verdict; otherwise `full_ft` stays deferred to v0.8+ (Tier D). Incremental cost ~$2-6 (LoRA-class card), disclosed in `contingency_unlock_1.md`. Hybrid execution (ADR-054): tfidf + frozen + §6.5-falsify + off-the-shelf reference baselines run **local**; only the trainable transformer rungs need the 24 GB cloud card. Cross-ref ADR-052 (added full-FT to M1), ADR-054 (deferred it behind this gate). **RESOLVED 2026-06-01 — trigger does NOT fire:** the merged 3-rung §6.5 verdict is **FALSIFIED on `lora`** (T=−0.003, perm p=0.90 — decisively null, not borderline; cheap rungs SURVIVE), so a higher-capacity full-FT point would only dissolve the wall further and change no conclusion. `full_ft` stays deferred (still selectable); ADR-052's intent preserved as a still-fireable gate. See ADR-054 "Trigger-gate resolution".
+
+#### Round-30 gates (post-M1 re-ladder; ADR-055)
+
+Added at the post-M1 milestone re-ladder (Round 30, 2026-06-01; ADR-055). M1's §6.5 verdict is **capacity-dependent and attack-type-axis-only** (carrier held constant), so the re-ladder reframes the spine, re-points Lane 2 to the carrier axis, and registers one new validation gate. The five Round-27 gates above are unchanged except as noted. Detailed rationale in ADR-055 + [`dossier_implications_for_roadmap.md`](dossier_implications_for_roadmap.md).
+
+- **M1→M2 gate (carrier-LODO validation, NEW)**: the multi-axis spine asserts the **carrier** is the standing wall, but M1 held the carrier constant — that claim is so far **geometric** (carrier dominates the frozen MiniLM embedding: silhouette by-carrier 0.197 vs by-attack-type −0.023; KMeans→carrier ARI 0.98), not a modeling result. Before Lane 2 commits, run a **leave-one-carrier-out (carrier-LODO)** read across the rung ladder (tfidf/frozen local + free; `lora` ~$1) — **reusing the attack-type-LODO harness with the LODO axis swapped (attack-type → carrier) and a carrier-clustered estimator** (the §6.5 estimator was payload-clustered). It answers: does LoRA dissolve the carrier gap too (→ capacity dissolves both axes; spine revised) or does it persist (→ carrier is capacity-resistant; spine validated), and sizes Lane 2's scope. Criteria pre-registered at `experiments/carrier-lodo/criteria.md` **before** the run; the run is a separate present-first go. Cross-ref ADR-055 (gate), ADR-052 (harness reused), `experiments/eda/OOD_WALL_PREDICTION/criteria.md` (pre-registration pattern + the payload-clustered unit being swapped).
+- **M1→M2 gate (Lane 1b rescope) — NOT tripped by M1**: M1 measured attack-type LODO, **not** the `hackett2025bypassing` character-injection ASR the Lane-1b trigger watches for. The Round-27 gate stays registered as-is; its trigger is rechecked at Lane 1b's own fast-iter ASR confirmation step.
+- **M5-close gate (Lane 4 benchmark pivot) — watch-note**: M1's near-uniform **0.98–0.999 LoRA test AUPRC** on BIPIA-indirect is an early foreshadow of the fixed-benchmark saturation the M5-close gate watches for. The gate is **not** tripped (its criterion is 2-of-{PINT, PromptShield, WildGuardMix} > 95% AUPRC *on the stacker at M5 close* — none measured by M1); recorded here as evidence to revisit at M5-close.
+- **M3-entry gate (Lane 5 surface-third-path) — unchanged; hypothesis sharpened**: the d′ > 0.5 gate stays the port-only-vs-surface-third-path decision. ADR-055 sharpens only the *hypothesis it guards* — recover the attack-type signal from **intermediate** activations (between the embedding-invisible final layer and the LoRA-visible end-to-end signal); surface-third-path (CaMeL / capability-isolation) stays the flagged lead alternative.
 
 ---
 

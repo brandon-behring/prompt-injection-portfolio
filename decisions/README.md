@@ -136,12 +136,16 @@ discipline; this note documents the count refresh.
 - ✓ [ADR-053: RunPod launch via job spec + `run_job` (phantom-`Session` correction); Lane-1 sweep base-budget](ADR-053-runpod-job-spec-run-job-not-session.md) — `runpod_deploy.load_job_spec → run_job` over a strict YAML job spec replaces the phantom `runpod_deploy.Session` (plan + submission ADR-059); `lifecycle.on_success: delete` for one-shot sweeps; $5–15 sweep classified base-budget ($0.00 realized) so ADR-014 stays Reserved. Glue committed `4862e21`.
 - ✓ [ADR-054: M1 attack-type-LODO ceiling = LoRA (3-rung write-gate); full-FT deferred to a §16 trigger-gate; hybrid local+RunPod execution; off-the-shelf reference column](ADR-054-m1-lora-ceiling-full-ft-deferred.md) — amends (not supersedes) ADR-052 (rung set) + ADR-053 (launch YAML now `--rungs lora`, on-pod falsify dropped, `cost_cap` 15→8). `REQUIRED_RUNGS=(tfidf,frozen,lora)` decoupled from 4-wide `RUNG_NAMES`; `full_ft` selectable but not required; `criteria.md` Revision 2 (decision rule UNCHANGED). **Trigger resolved 2026-06-01: does NOT fire** — the §6.5 verdict is FALSIFIED on `lora` (decisively null), so `full_ft` stays deferred.
 
+### Round 30 (post-M1 milestone re-ladder)
+
+- ✓ [ADR-055: post-M1 re-ladder — the multi-axis capacity-dependent OOD spine; Lane 2 re-pointed to the carrier axis; Lane 5 sharpened to intermediate-activation recovery; a carrier-LODO M2 pre-flight gate](ADR-055-post-m1-re-ladder-multi-axis-spine.md) — discharges ADR-052's deferred Phase-3 re-ladder (and the Round-27 placeholder). Multi-axis spine: the **attack-type** axis is capacity-dependent (M1: LoRA dissolves it), the **carrier** axis is the standing wall (geometric only so far — silhouette by-carrier 0.197 vs by-attack-type −0.023). Re-points Lane 2's headline to carrier generalization (method unchanged per ADR-043); sharpens Lane 5 to intermediate-activation recovery (d′ > 0.5 M3 gate kept); registers a **carrier-LODO M2 pre-flight gate** (reuses the attack-type-LODO harness, axis swapped, carrier-clustered estimator). Builds on ADR-054; supersedes nothing. Reconciles the submission's backbone-invariant carrier null (backbone-invariant ≠ capacity-invariant).
+
 ## Tally
 
 | Status | Count |
 |---|---:|
-| ✓ Accepted | 48 |
+| ✓ Accepted | 49 |
 | 🔒 Reserved | 4 |
 | ⊘ DROPPED | 2 |
-| **Total entries** | **54** |
-| Files in `decisions/` | 52 (DROPPED entries are index-only) |
+| **Total entries** | **55** |
+| Files in `decisions/` | 53 (DROPPED entries are index-only) |
