@@ -1,71 +1,114 @@
-# Session handoff — 2026-05-30 (PM) — M1 pre-launch gate COMPLETE; only the paid RunPod launch remains
+# Session handoff — 2026-06-01 — M1 LoRA headline sweep DONE; §6.5 OOD-wall **FALSIFIED** (capacity-dependent); push + milestone-rethink remain
 
 ## ✅ START HERE — clean session
 
-**The M1 attack-type-LODO headline sweep is LAUNCH-READY.** This session was an *audit-first methodological hardening* of the EDA→§6.5 chain (the user's call: "be confident in the local work + framing before spending on RunPod"), carried all the way through to a validated, decision-recorded launch mechanism. Everything up to provisioning is **done, gate-clean, and PUSHED**. The **only** remaining step is the paid RunPod launch (user-led).
+**The M1 attack-type-LODO LoRA headline sweep is COMPLETE, and §6.5 has a verdict.** The paid RunPod H100
+run trained `lora × 3 folds × 3 seeds` (**~$0.83 realized**), was merged with the local `tfidf`+`frozen`
+tree, the §6.5 **write-gate OPENED**, and the falsification verdict is persisted. Everything is committed
+(unpushed). The remaining work is **push + the milestone rethink** — no more paid compute is queued.
 
-**Four commits this session, all pushed to `origin/session/2026-05-26-adoption-and-research-ops` (HEAD `170cb51`, 0 unpushed):**
-1. **`216bb7c`** — S1 honest **payload-clustered §6.5 estimator** (`falsify_clustered.py`; `criteria.md` **Revision 1**) fixing a pseudo-replication error; **F1=levels** framing; **M2** LoRA head fix.
-2. **`6d21dc9`** — **M1** NotInject over-defense FPR (now records clean-context AND NotInject) + **S2** recorded as an empirically-mitigated limitation.
-3. **`4862e21`** — **RunPod launch glue** (`runpod_lane1_sweep.yaml` + `scripts/runpod_sweep.py`, offline + live `--dry-run`-validated) + **base-budget** spend tally.
-4. **`170cb51`** — **ADR-053** ratified + 9 phantom-`runpod_deploy.Session` refs scrubbed across 5 files.
+**The headline result — the OOD wall is capacity-dependent:**
 
-**🔑 The §6.5 verdict is now honest AND looks positive.** A 4-agent audit found three defects pre-registration missed (all fixed locally, $0): (a) the §6.5 "drop" *cancels* `val_auprc` → it's a detectability-**ordering** test, not collapse-magnitude (relabeled, F1=A); (b) the bootstrap was **pseudo-replicated** (180 rows vs 5 payloads) → rebuilt as payload-clustered; (c) the prediction's encoder gap (MiniLM vs ModernBERT) — empirically closed by the frozen rung. **Under the honest estimator, the cheap rungs (tfidf+frozen) SURVIVE** (perm at the 1/70 floor = perfect tail separation; cluster-CI 100% positive; τ-b 0.45/0.58) — so the eventual GPU verdict is a de-risked *confirmation*, not a discovery.
+| rung | representation | T (top−bottom per-type AUPRC) | perm p | CI-low | verdict |
+|---|---|---|---|---|---|
+| tfidf | lexical | +0.135 | 0.014 | +0.111 | SURVIVES |
+| frozen | frozen MiniLM emb + LogReg | +0.082 | 0.014 | +0.064 | SURVIVES |
+| **lora** | **end-to-end ModernBERT FT** | **−0.003** | **0.900** | **−0.008** | **FALSIFIED** |
 
-**⚠️ Milestones still under reconsideration** — M0→M7 provisional; the formal `v0.1.0` M0 close stays **DEFERRED**. (Note: `ADR-053` + `ADR-054` are now **taken** — ADR-054 = M1 LoRA-ceiling / full-FT-deferred / hybrid execution (this session); a future milestone-rethink ADR is ADR-055+.)
+Judged on `lora` per criteria **Revision 2** → **FALSIFIED at the ceiling**. `T` collapses monotonically as
+capacity rises: the pre-modeling OOD-wall prediction (built on the frozen MiniLM embedding, where the
+carrier dominates) **does not transfer** to an end-to-end LoRA, which detects every attack type near-uniformly
+(test AUPRC 0.98–0.999, held-out included). This is the **pre-registered S2 encoder-transfer caveat, realized** —
+and it's credible *because* the rule + tail sets + judged-rung were fixed before any LoRA datum existed and
+write-gated. Record: `experiments/eda/OOD_WALL_PREDICTION/falsification_verdict.json` + `FINDINGS.md` §"Realized
+verdict" + `criteria.md` footer. **Issue #2 CLOSED.**
+
+**Five commits this session (branch `session/2026-05-26-adoption-and-research-ops`; ALL UNPUSHED):**
+1. **`81d7093`** — ADR-054: defer `full_ft` to a trigger-gate, `lora` = M1 ceiling, hybrid local+RunPod,
+   `REQUIRED_RUNGS` decoupling, off-the-shelf reference column, criteria Revision 2.
+2. **`d187a50`** — fail-fast GPU guard in the pod run-script + DF-5 (pricing-403) logged.
+3. **`f0f1523`** — the LoRA verdict + FINDINGS/criteria realized-verdict record + budget actuals
+   ($0.83) + the `falsify_ood_wall.py` relative-path fix + the `rsync` setup step + DF-6.
+4. **(pending, this handoff's commit)** — DF-6 → filed as [runpod-deploy#116] + this handoff refresh.
+
+**Cost:** $0.83 realized of the $250 base (base-budget; ADR-014 stays Reserved; « the $350 hard cap).
 
 ---
 
 ## NEXT — live options (confirm the fork with the user; present-first)
 
-1. **Launch the M1 headline sweep on RunPod — the marquee remaining deliverable (closes issue #2).** Everything is wired + validated; this is user-led + paid (~$1–6). Steps: set `RUNPOD_API_KEY` + give go-ahead → `uv run python scripts/runpod_sweep.py --dry-run` (a *fresh* dry-run to confirm live availability + price; tune to a cheap ~$0.40/h 24 GB card by switching `pod.cloud_type: COMMUNITY` + broadening `pod.datacenters` — the SECURE H100 fallback resolves in-budget now but is pricier) → `scripts/runpod_sweep.py` (the live launch) → **`gpu-run-watcher`** drives + watches the ~1.5–3 h sweep (poll + guarded auto-kill at the `cost_cap_usd=8` / `max_runtime=180` guards) → `falsify_ood_wall.py` writes the **write-gate-OPEN SURVIVES/FALSIFIED verdict** into `OOD_WALL_PREDICTION/` (the §6.5 falsification, issue #2).
-2. **Continue the milestone rethink** (deferred M0→M7 re-ladder) → another `/exploring-options` round → Round 28 (± ADR-054+).
-3. **Dogfood the suite further** — e.g. `dataset-auditor` → refresh the dataset survey via `survey_run.py --out`; or other lanes.
-
-The formal `v0.1.0` M0 close is **NOT** on this list — deferred pending the rethink.
+1. **Push the branch** — 3+ commits unpushed (user-led; the push itself always prompts).
+2. **`full_ft` trigger-gate decision (§16, ADR-054).** The trigger fires iff LoRA SURVIVES with a real
+   capacity lift **or** is borderline such that the never-measured full-FT OOD point would change the writeup.
+   **The verdict is FALSIFIED (no wall at LoRA capacity)** → more capacity (full-FT) would only dissolve it
+   further → **no decision-relevant info → the trigger does NOT fire; `full_ft` stays deferred.** (Record this
+   if ratifying ADR-054 / closing the gate.)
+3. **Milestone rethink** — M0→M7 still provisional; the formal `v0.1.0` M0 close stays **DEFERRED**.
+   `/exploring-options` → Round 28 (± a milestone-rethink ADR-055+).
+4. **Optional housekeeping:** file **DF-5** (pricing-403) upstream (drafted in `upstream_issues.md`; user-led);
+   address new **issue #3** (scrub absolute `/home/` paths from the repo); rerun `run_v10_probes.py` with **PG1**
+   now its Meta gate is cleared (**issue #1**).
 
 ---
 
-## Current state (2026-05-30 PM)
+## Current state (2026-06-01)
 
-### §6.5 falsification — honest unit (this session)
-- `experiments/attack-type-lodo/falsify_clustered.py` — the payload-clustered estimator (type-level exact permutation, min-p 1/70; payload-cluster bootstrap; contrast on per-type test-AUPRC **levels** per F1=A). `falsify_ood_wall.py` is now a thin write-gated wrapper that delegates to it. `criteria.md` **Revision 1** records the amendment (R1 unit, R2 levels-not-magnitude, R3 permutation-resolution).
-- **Honest-unit rehearsal verdict on the cheap rungs: SURVIVES** (tfidf T=+0.135, frozen T=+0.082; both perm p=0.0143 floor, cluster-CI >0, 100% of resamples positive). The GPU run adds `lora` to complete the 3-rung manifest (ADR-054 hybrid: tfidf+frozen run local; `full_ft` deferred) → open the write-gate.
+### §6.5 falsification — COMPLETE
+- Write-gate OPEN on the merged `tfidf+frozen+lora` 3-rung tree (3 seeds × 3 folds). Verdict FALSIFIED on
+  `lora`, persisted to `OOD_WALL_PREDICTION/falsification_verdict.json`. Cross-rung table reproducible via
+  `falsify_ood_wall.py --rung {tfidf,frozen,lora}` (or `falsify_clustered.compute_verdict` directly to avoid
+  overwriting the persisted `lora` verdict).
+- `results/` holds the full merged tree (`tfidf+frozen+lora`, gitignored); RunPod telemetry in
+  `artifacts/runpod/20260601T174326Z/` (gitignored). The committed record is the verdict JSON + FINDINGS.
 
-### RunPod launch glue (`4862e21`; ADR-053)
-- `experiments/attack-type-lodo/runpod_lane1_sweep.yaml` (24 GB+ GPU; stage repo; train `lora` only — `--rungs lora × 3 folds × 3 seeds`, ADR-054 hybrid; pull → `results_runpod_lora/`; `cost_cap_usd=8` + `max_runtime_minutes=180`; `on_success: delete`) + `scripts/runpod_sweep.py` (`load_job_spec → run_job`; `--offline-dry-run` = zero-spend validation, `--dry-run` = live price/inventory). Cheap rungs + falsify + off-the-shelf baselines run LOCAL; after the pull, merge + `harness.py --finalize-manifest` + `falsify_ood_wall.py` run locally. **There is no `runpod_deploy.Session`** — ADR-053 records the correction.
-- **Budget = base-budget** ($0.00 realized cloud spend; $5–15 « $250; ADR-014 stays Reserved; tally in `contingency_unlock_1.md`).
+### RunPod launch — DONE (ADR-053 + ADR-054)
+- `runpod_lane1_sweep.yaml` (LoRA-only, SECURE H100 resolved at launch, `cost_cap=8`/`max_runtime=180`,
+  `on_success: delete`) + `scripts/runpod_sweep.py`. **Two run-script hardenings landed:** the fail-fast GPU
+  guard (`assert torch.cuda.is_available()`) and a `setup:` step that `apt-get install`s `rsync` (lean base
+  image lacks it — DF-6/#116). Pod `j6xy6h8wi7ycfu` deleted; billing stopped.
+- **Wrapper logging gotcha:** `scripts/runpod_sweep.py` configures NO logging → run with
+  `logging.basicConfig(level=INFO)` (via an importlib shim) to see `run_job` price/plan/progress.
+- **API key:** not in the environment — source inline from `~/.runpod/config.toml` (`apikey`, 50 chars);
+  `runpodctl` reads it natively.
 
-### M1 harness (`695a739` + this session) — `experiments/attack-type-lodo/`
-- `folds.py` / `detectors.py` (4 rungs; LoRA now `modules_to_save=["classifier","head"]`) / `metrics.py` / `harness.py` (now records `clean_context_fpr` + `notinject_fpr`) / `falsify_*`. `results*/` gitignored. 40 tests; ruff + mypy --strict green.
+### Off-the-shelf reference column (local, non-gating)
+- `reference_scorers.py`: ProtectAI + PG1 + PG2 scored on the 3 LODO test folds (`reference_*.test_scores.parquet`,
+  outside `REQUIRED_RUNGS`). PG1 gate is CLEARED (issue #1 unblocked).
 
 ### Pre-modeling EDA arc + subagent suite + eval-toolkit
-- EDA `OOD_WALL_PREDICTION/` (carrier dominates the MiniLM embedding; the §6.5 prediction). The six `.claude/agents/` are LIVE + dogfooded this session (session-orienter, experiment-runner, gate-runner, adr-scribe all exercised). eval-toolkit v1.6.0 (pinned `[probes,losses]>=1.6`); concurrent dirty `feat/review-eval-tooling` — do eval-toolkit work in an isolated worktree off `origin/main`.
+- EDA `OOD_WALL_PREDICTION/` (carrier dominates the MiniLM embedding → the §6.5 prediction, now FALSIFIED at
+  the LoRA ceiling). The six `.claude/agents/` are LIVE + heavily dogfooded (experiment-runner ran the LoRA
+  smoke; gpu-run-watcher drove the paid sweep). eval-toolkit v1.6.0 pinned.
 
 ---
 
 ## Read first (in order)
-1. `experiments/eda/OOD_WALL_PREDICTION/criteria.md` — the pre-registration **incl. Revision 1** (the payload-cluster amendment + F1=A).
-2. `decisions/ADR-053-runpod-job-spec-run-job-not-session.md` — the RunPod launch decision + base-budget ruling.
-3. `experiments/attack-type-lodo/runpod_lane1_sweep.yaml` + `scripts/runpod_sweep.py` — the launch glue (read before launching; confirm provider-side values).
-4. `decisions/contingency_unlock_1.md` — the spend tally + base-budget classification (RESOLVED).
-5. `decisions/ADR-052-…md` + `experiments/lane-1/{hypothesis,protocol}.md` — the study design + Lane-1 pre-registration (incl. the S2 encoder-transfer note).
-6. `experiments/attack-type-lodo/falsify_clustered.py` + `falsify_ood_wall.py` — the honest §6.5 estimator + write-gate.
-7. `docs/planning/PORTFOLIO_PLAN.md` — Round 27 block + §16 gates (milestone framing, under rethink).
+1. `experiments/eda/OOD_WALL_PREDICTION/FINDINGS.md` §"Realized verdict" — the headline + capacity-dependent reading.
+2. `experiments/eda/OOD_WALL_PREDICTION/falsification_verdict.json` — the machine-readable verdict.
+3. `experiments/eda/OOD_WALL_PREDICTION/criteria.md` — the pre-registration (incl. Revision 2 + the record-only verdict footer).
+4. `decisions/ADR-054-m1-lora-ceiling-full-ft-deferred.md` — the M1 ceiling / hybrid / trigger-gate decision (awaiting ratification).
+5. `decisions/contingency_unlock_1.md` — the $0.83 realized tally (base-budget, RESOLVED).
+6. `decisions/upstream_issues.md` — DF-5 (pricing-403, pending) + DF-6 (rsync, filed #116).
 
 ## Open tracked items (GitHub Issues + Work-Tracker #1)
-- **#2** `P2`/`research` — Falsify the OOD-wall prediction (§6.5). **Now one launch away:** the harness + honest estimator + write-gate are committed; the RunPod sweep produces the verdict.
-- **#1** `P3`/`improvement` — Rerun V10 with Prompt-Guard-86M once its Meta gate is granted.
+- **#2** — §6.5 OOD-wall falsification — **CLOSED** (FALSIFIED at the LoRA ceiling).
+- **#3** `tracked` — Scrub absolute `/home/` paths from the repo (opened 2026-06-01). Not yet triaged.
+- **#1** `P3`/`improvement` — Rerun V10 with PG1 (Meta gate now CLEARED → unblocked).
 
 ## Gotchas
-- **Working-style (most load-bearing, borne out all session):** present-first; interrogates inconsistencies; wants `/exploring-options`-style focused forks **before** convergence. **Surface real forks + ask before requesting approval; do not barrel into execution.** (This session: the user reframed a menu-pick into "is the methodology sound?" — which paid off.)
-- **RunPod launch mechanics:** no `Session` (ADR-053); it's the YAML spec + `run_job`. The cheap-card path needs `RUNPOD_API_KEY` + COMMUNITY/broader datacenters; `--offline-dry-run` does NOT check provider-side values (image/datacenter/GPU/SSH-key) — always do a fresh live `--dry-run` at launch. The paid launch + git commit/push always prompt (not auto-approved).
-- **Commit trailer:** `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>` (model-specific; NOT the generic global `git.md` form).
-- **`uv sync --extra dev`** always (bare prunes the dev extra). eval-toolkit work → isolated worktree off `origin/main`.
-- **PG1 (`meta-llama/Prompt-Guard-86M`)** Meta gate still PENDING (403). **research-kb integration is a standing BOUNDARY** — separate session.
+- **Working-style (most load-bearing):** present-first; interrogates inconsistencies; wants `/exploring-options`
+  forks **before** convergence. This session the user caught a launch that was verified only for GPU-*use* but
+  not end-to-end *runnability* — a local LoRA code-path smoke gate was added before paying. Surface real forks;
+  do not barrel into execution or commits.
+- **Commit trailer:** `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>` (model-specific).
+- **Paid launch + git push always prompt** (not auto-approved). Filing public issues is user-led (the user
+  directed the DF-6 / #116 filing explicitly).
+- **`uv sync --extra dev`** always. eval-toolkit work → isolated worktree off `origin/main`.
 - **Milestones under rethink** — M0→M7 / formal `v0.1.0` close not settled.
-- Session `TaskList` all `completed`; live follow-ups are GitHub issues #1/#2.
+- The `full_ft` rung stays selectable (`--rungs full_ft`); its trigger did NOT fire (see NEXT #2).
 
 ---
 
-*↓ Prior handoff (2026-05-30 — "subagent suite SHIPPED") is superseded by the above (this session hardened the §6.5 methodology, wired + ratified the RunPod launch, and pushed everything). Preserved in git history at `b0cb448`.*
+*↓ Prior handoff (2026-05-30 PM — "M1 pre-launch gate COMPLETE; only the paid launch remains") is superseded
+by the above: the launch ran (~$0.83), the §6.5 verdict came back FALSIFIED at the LoRA ceiling, and issue #2
+closed. Preserved in git history at `6db5c45`.*
