@@ -1,0 +1,135 @@
+# RunPod job spec — carrier-LODO M2 pre-flight: LoRA rung ONLY (ADR-055 + carrier-lodo/criteria.md).
+# The cheap rungs (tfidf+frozen) + the carrier-LODO ROC-gap falsification (falsify_carrier_lodo.py)
+# run LOCAL; only the `lora` rung trains here (24 GB+). Pull → results_runpod_carrier_lora/, merge +
+# finalize + falsify locally. Sibling of runpod_lane1_sweep.yaml (attack-type axis); same orchestration.
+#
+# Consumed at the session-launch boundary by scripts/runpod_sweep.py --config <this file> via
+# runpod_deploy.load_job_spec → run_job (provision → stage → run → pull artifacts → lifecycle).
+# NEVER imported by the remote pod (ADR-026 library-first; runpod-deploy is a local orchestrator only).
+#
+#   validate (zero spend):  uv run python scripts/runpod_sweep.py --config experiments/attack-type-lodo/runpod_carrier_lodo_sweep.yaml --offline-dry-run
+#   price/inventory check :  uv run python scripts/runpod_sweep.py --config experiments/attack-type-lodo/runpod_carrier_lodo_sweep.yaml --dry-run
+#   launch (PAID, user-led): uv run python scripts/runpod_sweep.py --config experiments/attack-type-lodo/runpod_carrier_lodo_sweep.yaml
+#
+# ⚠️ Provider-side values are NOT checked by --offline-dry-run — confirm against current
+#    RunPod offerings before the paid launch: pod.image, pod.gpu_order, pod.datacenters,
+#    budget.assumed_hourly_rate_usd.
+schema_version: 2
+name: carrier-lodo-sweep
+run_id_prefix: carrier-lodo
+
+local:
+  project_root: "../.." # config lives in experiments/attack-type-lodo/; repo root is two up
+  required_paths:
+    - experiments/attack-type-lodo/harness.py
+    - experiments/attack-type-lodo/falsify_carrier_lodo.py
+    - experiments/carrier-lodo/criteria.md
+    - data/raw/BIPIA/benchmark
+    - pyproject.toml
+    - uv.lock
+
+pod:
+  # 24 GB+ trains the `lora` rung at spec config (batch 16 / max_len 512, native bf16 on Ampere+).
+  # carrier-LODO folds pool both BIPIA roles → a bit larger than the attack-type folds; still ~1-2 h.
+  image: runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
+  cloud_type: SECURE # reliable + resolves now in these DCs; cheap COMMUNITY cards need RUNPOD_API_KEY + broader DCs
+  container_disk_gb: 40
+  gpu_count: 1
+  # Prefer cheap 24 GB cards; fall back to whatever premium card is available so the job resolves.
+  # cost_cap_usd=8 + max_runtime_minutes=180 bound total spend regardless of card. ⚠️ Re-confirm with
+  # a fresh --dry-run at launch (availability is momentary; the cheap COMMUNITY path needs the API key).
+  gpu_order:
+    - "NVIDIA RTX A5000"
+    - "NVIDIA L4"
+    - "NVIDIA A40"
+    - "NVIDIA RTX A6000"
+    - "NVIDIA H100 80GB HBM3"
+    - "NVIDIA H100 NVL"
+    - "NVIDIA H200"
+  datacenters: # cost-search across these; ⚠️ confirm IDs against current RunPod regions
+    - "US-CA-2"
+    - "US-OR-1"
+    - "US-TX-3"
+    - "US-KS-2"
+    - "EU-RO-1"
+    - "EU-NL-1"
+    - "CA-MTL-1"
+  ports:
+    - "22/tcp"
+
+storage:
+  mode: ephemeral
+  volume_mount: /workspace
+  volume_gb: 50 # ephemeral workspace: repo + HF model/dataset cache + results
+
+budget:
+  cost_cap_usd: 8.0 # LoRA-only ~$1-5 expected; same envelope as the attack-type lora sweep ($0.83 realized)
+  assumed_hourly_rate_usd: 2.50 # conservative for the H100 fallback (cheap 24 GB cards ~$0.40/h)
+  max_runtime_minutes: 180 # 3 h × $2.50/h = $7.50 ≤ $8 cap (runpod_deploy enforces timeout×rate≤cap); lora-only ~1-2 h
+  poll_interval_sec: 60
+  ssh_ready_timeout_sec: 900
+
+remote_env:
+  exports:
+    HF_HUB_ENABLE_HF_TRANSFER: "1"
+
+staging:
+  - label: repo
+    source: "."
+    destination: /workspace/repo
+    excludes_default: true # .git/, .venv/, caches, __pycache__
+    excludes_extra:
+      - "experiments/attack-type-lodo/results/"
+      - "experiments/attack-type-lodo/results_*/"
+      - "**/*.parquet"
+      - "book/"
+      - ".tooling/"
+      - "**/node_modules/"
+      - "**/*.apkg"
+    delete: true
+
+setup:
+  # Install rsync on the remote container so the orchestrator's rsync-push staging works.
+  # The RunPod pytorch base image does not include rsync; apt-get install takes ~5-10 s (DF-6/#116).
+  - command: apt-get update -qq && apt-get install -y -qq rsync
+    timeout_sec: 120
+
+preflight:
+  - command: nvidia-smi
+    timeout_sec: 60
+
+run:
+  script_path: /workspace/run_sweep.sh
+  log_path: /workspace/sweep.log
+  success_marker: "CARRIER_LODO_SWEEP_COMPLETE_OK"
+  body: |
+    set -euo pipefail
+    export PATH="$HOME/.local/bin:$PATH"
+    command -v uv >/dev/null 2>&1 || curl -LsSf https://astral.sh/uv/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+    cd /workspace/repo
+    uv sync --extra dev
+    # Fail-fast GPU guard (ADR-054): never train the LoRA rung on CPU on a PAID pod.
+    uv run python -c "import torch; assert torch.cuda.is_available(), 'FATAL: torch.cuda unavailable - refusing to train the LoRA rung on CPU on a paid GPU pod'; print('GPU OK:', torch.cuda.get_device_name(0), '| torch', torch.__version__, '| cuda', torch.version.cuda, '| bf16_native', torch.cuda.is_bf16_supported(including_emulation=False))"
+    uv run python experiments/attack-type-lodo/harness.py \
+      --rungs lora \
+      --folds carrier_lodo_email carrier_lodo_code carrier_lodo_table \
+      --seeds 0 1 2 \
+      --out experiments/attack-type-lodo/results
+    echo "CARRIER_LODO_SWEEP_COMPLETE_OK"
+
+artifacts:
+  # Pull the lora-only tree into a SEPARATE dir so it never clobbers the local tfidf+frozen MANIFEST;
+  # merge into results/ + re-stamp via `harness.py --finalize-manifest`, then run falsify_carrier_lodo.py
+  # on the merged tree LOCALLY (falsify does not run on the pod — no verdict artifact here).
+  - label: results
+    remote_path: /workspace/repo/experiments/attack-type-lodo/results
+    local_path: experiments/attack-type-lodo/results_runpod_carrier_lora
+    required: true
+    delete: false
+
+lifecycle:
+  # "delete" is the unambiguous billing-stop for a one-shot sweep. Failure → stop (keep for forensics;
+  # the gpu-run-watcher captures the partial MANIFEST before lifecycle runs).
+  on_success: delete
+  on_failure: stop

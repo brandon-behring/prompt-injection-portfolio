@@ -32,16 +32,24 @@ from bipia_carrier import OBFUSCATION_TEST, OBFUSCATION_TRAIN  # noqa: E402
 __all__ = [
     "Fold",
     "FOLD_NAMES",
+    "CARRIER_LODO_FOLDS",
     "make_fold",
     "assert_source_disjoint",
+    "assert_carrier_disjoint",
     "purge_train_context_overlap",
     "carve_val_from_train",
 ]
+
+# Leave-one-carrier-out folds (carrier-lodo/criteria.md Revision 1): hold out each available
+# BIPIA carrier in turn; the carrier is the ONLY shifted axis (attack types are shared).
+_LODO_CARRIERS: tuple[str, ...] = ("email", "code", "table")
+CARRIER_LODO_FOLDS: tuple[str, ...] = tuple(f"carrier_lodo_{c}" for c in _LODO_CARRIERS)
 
 FOLD_NAMES: tuple[str, ...] = (
     "core_attack_type",
     "obfuscation_technique",
     "carrier_plus_attack_external",
+    *CARRIER_LODO_FOLDS,
 )
 
 _EXTERNAL_TRAIN_CARRIERS = ("code", "table")
@@ -114,10 +122,33 @@ def _build_carrier_external(frame: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataF
     return train, test
 
 
+def _carrier_lodo_builder(
+    held_out: str,
+) -> Callable[[pd.DataFrame], tuple[pd.DataFrame, pd.DataFrame]]:
+    """Factory: a leave-one-carrier-out builder holding out ``held_out`` (criteria.md Rev 1).
+
+    Train = all rows with ``carrier != held_out`` (both BIPIA roles, all attack types); test = all
+    rows with ``carrier == held_out``. The carrier is the ONLY held-out axis — attack types are
+    shared across the split — so carrier-LODO folds assert :func:`assert_carrier_disjoint`, not the
+    attack-type :func:`assert_source_disjoint`.
+    """
+
+    def build(frame: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+        train = frame[frame["carrier"] != held_out].reset_index(drop=True)
+        test = frame[frame["carrier"] == held_out].reset_index(drop=True)
+        return train, test
+
+    return build
+
+
 _BUILDERS: dict[str, Callable[[pd.DataFrame], tuple[pd.DataFrame, pd.DataFrame]]] = {
     "core_attack_type": _build_core,
     "obfuscation_technique": _build_obfuscation,
     "carrier_plus_attack_external": _build_carrier_external,
+    **{
+        name: _carrier_lodo_builder(carrier)
+        for name, carrier in zip(CARRIER_LODO_FOLDS, _LODO_CARRIERS, strict=True)
+    },
 }
 
 
@@ -135,10 +166,7 @@ def _row_context(text: str, label: int) -> str:
 
 def _underlying_contexts(df: pd.DataFrame) -> set[str]:
     """Set of underlying clean contexts across **both** classes of a split."""
-    return {
-        _row_context(t, lab)
-        for t, lab in zip(df["text"], df["label"], strict=True)
-    }
+    return {_row_context(t, lab) for t, lab in zip(df["text"], df["label"], strict=True)}
 
 
 def purge_train_context_overlap(train: pd.DataFrame, test: pd.DataFrame) -> pd.DataFrame:
@@ -201,6 +229,36 @@ def assert_source_disjoint(train: pd.DataFrame, test: pd.DataFrame) -> None:
         raise ValueError(f"train↔test context overlap: {len(ctx_overlap)} shared contexts")
 
 
+def assert_carrier_disjoint(train: pd.DataFrame, test: pd.DataFrame) -> None:
+    """Raise ``ValueError`` if train and test share a carrier or an underlying context.
+
+    The carrier-LODO sibling of :func:`assert_source_disjoint` (carrier-lodo/criteria.md Rev 1):
+    the carrier-LODO claim is void if the held-out carrier also appears in training. Attack types
+    are **shared** across the split by design (the carrier is the only shifted axis), so attack-type
+    overlap is **not** an error here. Cross-carrier contexts are disjoint by construction (each
+    carrier owns its context pool); the context check is kept as a defensive guard.
+
+    Parameters
+    ----------
+    train, test : pandas.DataFrame
+        Fold splits with ``carrier`` / ``label`` / ``text`` columns.
+
+    Raises
+    ------
+    ValueError
+        If a carrier or an underlying context is shared across the split boundary.
+    """
+    train_carriers = {str(c) for c in train["carrier"].unique()}
+    test_carriers = {str(c) for c in test["carrier"].unique()}
+    carrier_overlap = train_carriers & test_carriers
+    if carrier_overlap:
+        raise ValueError(f"train↔test carrier overlap: {sorted(carrier_overlap)}")
+
+    ctx_overlap = _underlying_contexts(train) & _underlying_contexts(test)
+    if ctx_overlap:
+        raise ValueError(f"train↔test context overlap: {len(ctx_overlap)} shared contexts")
+
+
 def carve_val_from_train(
     train: pd.DataFrame,
     *,
@@ -253,7 +311,9 @@ def carve_val_from_train(
     for name, split in (("inner-train", inner), ("val", val)):
         classes = set(split["label"].unique().tolist())
         if classes != {0, 1}:
-            raise ValueError(f"{name} split is single-class ({classes}); cannot score — adjust val_frac/seed")
+            raise ValueError(
+                f"{name} split is single-class ({classes}); cannot score — adjust val_frac/seed"
+            )
     return inner, val
 
 
@@ -282,6 +342,15 @@ def make_fold(frame: pd.DataFrame, name: str, *, seed: int = 0, **carve_kwargs: 
         raise KeyError(f"unknown fold {name!r}; expected one of {FOLD_NAMES}")
     train_full, test = _BUILDERS[name](frame)
     train_full = purge_train_context_overlap(train_full, test)  # leakage hygiene (spec §6)
-    assert_source_disjoint(train_full, test)
-    inner, val = carve_val_from_train(train_full, seed=seed, **carve_kwargs)  # type: ignore[arg-type]
+    carve: dict[str, object] = dict(carve_kwargs)
+    if name in CARRIER_LODO_FOLDS:
+        assert_carrier_disjoint(train_full, test)  # carrier-LODO: the carrier is the held-out axis
+        # In-distribution val reference (carrier-lodo/criteria.md Rev 2): carrier-LODO must carve val
+        # as a row-holdout with attack type HELD FIXED (not the attack-type mini-LODO), so val_roc is an
+        # in-(train-carrier-)distribution reference — else G = val_roc − test_roc conflates the carrier
+        # shift with the attack-type axis (which §6.5 showed collapses with capacity), biasing the verdict.
+        carve.setdefault("min_types_for_typeholdout", 10**9)
+    else:
+        assert_source_disjoint(train_full, test)
+    inner, val = carve_val_from_train(train_full, seed=seed, **carve)  # type: ignore[arg-type]
     return Fold(name=name, train=inner, val=val, test=test, test_types=_test_types(test))
