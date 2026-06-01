@@ -77,6 +77,14 @@ conditional trigger-gate (PORTFOLIO §16); **if that trigger later fires**, a `f
 seeds` pass is a separate **~$2–6** (LoRA-class card) increment to re-tally then. Realized cumulative
 spend is still **$0.00**.
 
+**Post-launch actuals (2026-06-01).** The LoRA sweep ran on a **SECURE H100 80GB / US-CA-2** (pod
+`j6xy6h8wi7ycfu`); wall-clock ~15 min over the 9 cells. **Realized: $0.83** (actual rate $3.29/h — H100
+SXM SECURE ran above the $2.50/h assumption, but the short runtime kept it far under the $8 cost-cap and
+inside the $1–5 envelope). A first-attempt rsync-staging failure cost **$0** (no GPU time; logged DF-6).
+**Realized cumulative spend → $0.83** « $250 base ⇒ classification **UNCHANGED** (base-budget; ADR-014
+stays Reserved; full-project forecast still « the $350 hard cap). The §6.5 write-gate opened; verdict
+**FALSIFIED** on `lora` (the cheap rungs SURVIVE — the OOD wall is capacity-dependent).
+
 ## Expected outcome / hypothesis being tested
 
 Run the full pre-registered headline sweep → produce the **write-gate-OPEN** §6.5 OOD-wall
@@ -112,7 +120,7 @@ falsification verdict (the deferred deliverable):
       native bf16) — the cloud Ampere+ card will select **bf16** as intended.
 - [x] `runpod_deploy.Session` wiring → **resolved** (there is no `Session`; wired via `scripts/runpod_sweep.py`
       → `load_job_spec→run_job`, ADR-053, `4862e21`).
-- [ ] **User launch go-ahead at spend time** (the spend itself stays user-led) — still open.
+- [x] **User launch go-ahead at spend time** (the spend itself stays user-led) — **DONE 2026-06-01**: launched on user go-ahead; **$0.83 realized**.
 
 ## Cross-references
 

@@ -225,3 +225,15 @@ reaction to a result. The dropped rung is the *ceiling above the ceiling*, not t
 (`reference_scorers.py`: ProtectAI now; Meta PG1/PG2 when their gate is granted) scored on the LODO test
 sets. These untrained probes are **outside** the rung ladder (`reference_*.test_scores.parquet`, not in
 `REQUIRED_RUNGS`) and **cannot** affect this gate or the verdict — they are descriptive context only.
+
+---
+
+## Realized verdict — 2026-06-01 (record only; does NOT alter the fixed test above)
+
+The write-gate opened on the complete `tfidf + frozen + lora` sweep (3 folds × 3 seeds; LoRA on a
+RunPod H100). Applying the **unchanged** rule to the **`lora`** rung: `T = −0.003`, perm p = 0.900,
+CI-low = −0.008 → **FALSIFIED**. The cheap rungs SURVIVE on the same merged tree (tfidf T = +0.135 /
+frozen T = +0.082; both perm p = 0.014, CI-low > 0). The monotone collapse of `T` with capacity is the
+realized reading: the OOD wall is real for lexical / frozen-embedding detectors and **dissolves** under
+end-to-end LoRA — the pre-registered S2 encoder-transfer caveat, realized. Full record + interpretation:
+`FINDINGS.md` §"Realized verdict"; machine-readable: `falsification_verdict.json`.

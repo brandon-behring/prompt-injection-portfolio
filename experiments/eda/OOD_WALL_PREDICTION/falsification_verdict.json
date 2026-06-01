@@ -1,0 +1,66 @@
+{
+  "computed_utc": "2026-06-01T18:05:22.531687+00:00",
+  "pre_registration": "experiments/eda/OOD_WALL_PREDICTION/criteria.md (Revision 2)",
+  "harness_results": "experiments/attack-type-lodo/results",
+  "harness_rung": "lora",
+  "harness_fold": "core_attack_type",
+  "k": 4,
+  "top_k_predicted_worst": [
+    "Task Automation",
+    "Business Intelligence",
+    "Conversational Agent",
+    "Research Assistance"
+  ],
+  "bottom_k_predicted_best": [
+    "Reverse Text",
+    "Substitution Ciphers",
+    "Scams & Fraud",
+    "Misinformation & Propaganda"
+  ],
+  "decision_rule": "SURVIVES iff type-level permutation p<0.05 AND payload-cluster bootstrap CI-low>0",
+  "estimator": "payload-clustered (criteria.md Revision 1)",
+  "verdict": "FALSIFIED",
+  "statistic_T": -0.0030903498559000653,
+  "mean_auprc_top_k": 0.978342417333634,
+  "mean_auprc_bottom_k": 0.975252067477734,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "permutation": {
+    "p_one_sided": 0.9,
+    "n_splits": 70,
+    "min_p": 0.014285714285714285,
+    "unit": "attack_type",
+    "passed": false
+  },
+  "bootstrap": {
+    "ci_low": -0.007454300196182961,
+    "frac_gt0": 0.0991,
+    "n_resamples": 10000,
+    "unit": "payload_cluster",
+    "passed": false
+  },
+  "kendall_tau_b": {
+    "statistic": -0.18681318681318684,
+    "p_one_sided": 0.8345942895012836,
+    "note": "secondary, 14 types"
+  },
+  "per_type_auprc": {
+    "Base Encoding": 0.9785587815719657,
+    "Business Intelligence": 0.9795414362454901,
+    "Conversational Agent": 0.9814867880914719,
+    "Emoji Substitution": 0.9814081149498438,
+    "Entertainment": 0.9827383641200208,
+    "Information Dissemination": 0.9836802208530678,
+    "Marketing & Advertising": 0.9806130936026269,
+    "Misinformation & Propaganda": 0.9783196261645539,
+    "Research Assistance": 0.9738585351550619,
+    "Reverse Text": 0.9766060123044961,
+    "Scams & Fraud": 0.9709446522823183,
+    "Sentiment Analysis": 0.956036994982821,
+    "Substitution Ciphers": 0.9751379791595677,
+    "Task Automation": 0.9784829098425121
+  }
+}

@@ -88,6 +88,12 @@ staging:
       - "**/*.apkg"
     delete: true
 
+setup:
+  # Install rsync on the remote container so the orchestrator's rsync-push staging works.
+  # The RunPod pytorch base image does not include rsync; apt-get install takes ~5-10 s.
+  - command: apt-get update -qq && apt-get install -y -qq rsync
+    timeout_sec: 120
+
 preflight:
   - command: nvidia-smi
     timeout_sec: 60

@@ -59,6 +59,35 @@ Survives iff the predicted-worst tail collapses more than the predicted-best tai
 - V10 is incomplete pending PG1 (the indirect-valid probe).
 - qa/abstract carriers (license-gated) + PINT + Indirect-in-the-Wild excluded (honest ceiling).
 
+## Realized verdict — 2026-06-01 (post-LoRA, write-gate OPEN)
+
+The headline §6.5 falsification ran on the complete 3-rung sweep (`tfidf + frozen + lora`,
+3 folds × 3 seeds; LoRA trained on a RunPod H100, ~$0.83). Verdict judged on `lora` per
+criteria Revision 2; machine-readable record in `falsification_verdict.json`.
+
+| rung | capacity / representation | T (top−bottom per-type AUPRC) | perm p | CI-low | verdict |
+|---|---|---|---|---|---|
+| tfidf | lexical | +0.135 | 0.014 | +0.111 | **SURVIVES** |
+| frozen | frozen MiniLM emb + LogReg | +0.082 | 0.014 | +0.064 | **SURVIVES** |
+| **lora** | **end-to-end ModernBERT fine-tune** | **−0.003** | **0.900** | **−0.008** | **FALSIFIED** |
+
+**The prediction is FALSIFIED at the LoRA ceiling — and that is the finding, not a miss.**
+`T` collapses monotonically as capacity rises (0.135 → 0.082 → 0.000): the predicted-worst
+attack-type tail is genuinely harder for lexical / frozen-embedding detectors, but a LoRA
+fine-tune detects **every** type near-uniformly (test AUPRC 0.98–0.999, held-out types
+included), erasing the per-type gap.
+
+This is precisely the **encoder-transfer caveat (S2)** realized. The ranking was built from the
+**frozen MiniLM embedding**, where the carrier dominates and the attack-type signal is
+embedding-invisible (Key finding 1). End-to-end LoRA learns the attack-type signal directly, so
+an embedding-derived ordering does not transfer. **The "OOD wall" is a property of the
+representation, not the task: real for lexical / frozen detectors, surmountable with a small
+amount of end-to-end capacity.**
+
+The FALSIFIED verdict is credible *because* it could not be gamed: the rule (judge on `lora`;
+SURVIVES iff perm p < 0.05 AND CI-low > 0), the tail sets, `k`, and the estimator were all fixed
+in `criteria.md` *before* any LoRA datum existed, and the write-gate only opened on a complete sweep.
+
 ## Reproduce
 
 ```

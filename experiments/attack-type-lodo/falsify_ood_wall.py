@@ -126,7 +126,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     out = {
         "computed_utc": datetime.now(UTC).isoformat(),
         "pre_registration": "experiments/eda/OOD_WALL_PREDICTION/criteria.md (Revision 2)",
-        "harness_results": str(args.results_dir.relative_to(_HERE.parent.parent)),
+        "harness_results": str(args.results_dir.resolve().relative_to(_HERE.parent.parent)),
         "harness_rung": rung,
         "harness_fold": _HEADLINE_FOLD,
         "k": pred["k"],
