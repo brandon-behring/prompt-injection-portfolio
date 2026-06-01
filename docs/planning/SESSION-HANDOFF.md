@@ -1,11 +1,14 @@
-# Session handoff — 2026-06-01 — M1 LoRA headline sweep DONE; §6.5 OOD-wall **FALSIFIED** (capacity-dependent); push + milestone-rethink remain
+# Session handoff — 2026-06-01 (PM) — milestone re-ladder DONE (Round 30 / ADR-055); v0.1.0 M0 close STAGED + held for accounts
 
 ## ✅ START HERE — clean session
 
-**The M1 attack-type-LODO LoRA headline sweep is COMPLETE, and §6.5 has a verdict.** The paid RunPod H100
-run trained `lora × 3 folds × 3 seeds` (**~$0.83 realized**), was merged with the local `tfidf`+`frozen`
-tree, the §6.5 **write-gate OPENED**, and the falsification verdict is persisted. Everything is committed
-(unpushed). The remaining work is **push + the milestone rethink** — no more paid compute is queued.
+**The milestone re-ladder is DONE (Round 30 → ADR-055), and the `v0.1.0` M0 close is STAGED + held for
+accounts.** M1 (attack-type-LODO) closed with its §6.5 verdict (capacity-dependent; table below); this
+session ran the deferred post-LODO re-ladder and staged the formal close. The re-ladder edits are
+**committed this session (2 commits on the session branch, UNPUSHED)**: ADR-055 +
+a Round-30 PORTFOLIO_PLAN block + §5/§9/§16 edits + Ch 7/8/9/12/13 re-axis notes + a new
+`experiments/carrier-lodo/criteria.md`. `make ratify-milestone` is **GREEN** on the committed tree. See
+"NEXT" for the three remaining (all user-led).
 
 **The headline result — the OOD wall is capacity-dependent:**
 
@@ -38,10 +41,28 @@ verdict" + `criteria.md` footer. **Issue #2 CLOSED.**
 
 ---
 
-## NEXT — live options (confirm the fork with the user; present-first)
+## NEXT — three things remain (all user-led; present-first)
+
+**Updated 2026-06-01 PM (post-rethink).** The milestone re-ladder ran this session (Round 30 → ADR-055,
+committed — 2 commits, unpushed); the `v0.1.0` close is staged + held for accounts; a carrier-LODO
+validation run is scheduled as a separate go. Concretely:
+
+1. **Push the 2 session-branch commits** (re-ladder + close-staging) — committed this session,
+   **UNPUSHED**. Commit 1 = ADR-055 + Round-30 PORTFOLIO_PLAN + §5/§9/§16 + Ch 7/8/9/12/13 + glossary +
+   `experiments/carrier-lodo/criteria.md`; commit 2 = the staged `v0.1.0` close + handoff. Push is
+   user-led (always prompts).
+2. **The `v0.1.0` M0 close bundle (HELD for accounts)** — once Twitter/X + Mastodon exist: merge the PR
+   `session → main` → `git tag v0.1.0` on `main` → `gh release` → post announcement → `gh release edit`
+   to link it. `make ratify-milestone` GREEN on the committed tree; release notes + announcement + PR body
+   drafted. Nothing outward has fired.
+3. **The carrier-LODO M2 pre-flight run** — a separate present-first go (not queued): validates the
+   spine's "carrier is the standing wall" claim (cheap rungs free; `lora` ~$1). Criteria pre-registered
+   at `experiments/carrier-lodo/criteria.md`; finalize its implementation Revision before launching.
+
+*(Superseded — the prior "two things remain" framing just below is from the M1-close state, preserved as history.)*
 
 The M1 arc is **fully closed, ratified, and pushed**; both upstream frictions filed ([#116] rsync, [#117]
-pricing-403); issues **#1 / #2 / #3 all CLOSED**. Only two things remain, both user-led:
+pricing-403); issues **#1 / #2 / #3 all CLOSED**. ~~Only two things remain, both user-led:~~
 
 1. **Milestone rethink — DEFERRED to a fresh session; inputs captured.** The post-LODO-results re-ladder
    condition (Round 27 / ADR-052) is now **met**; M1's implications are distilled in

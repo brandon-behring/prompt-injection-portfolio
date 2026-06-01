@@ -124,3 +124,57 @@ upstream per Round 14-21 cascade.
   `hierarchical_depth_derivation_rule` +
   `snap-gh-needs-repo-path-for-body-file` +
   `exploring-options-over-handoff-doc-preferred`
+
+---
+
+## v0.1.0 close — staged artifacts (2026-06-01; HELD for accounts)
+
+Per the Round-30 session: `make ratify-milestone` is **GREEN** on HEAD `0dd0aa4` (9/9 stages). The close
+is **staged but HELD** until the build-in-public accounts (Twitter/X + Mastodon) exist, so the close +
+announcement land together (user's call). The held bundle is a ~15-min **user-led** runbook:
+
+1. Open + merge the PR `session/2026-05-26-adoption-and-research-ops → main` (fast-forward preferred —
+   `main` is a strict ancestor of HEAD, ~40+ commits; keeps history linear).
+2. `git checkout main && git pull` → re-run `make ratify-milestone` on `main` (confirm still green).
+3. `git tag -a v0.1.0 -m "<message below>"` → `git push origin v0.1.0`.
+4. `gh release create v0.1.0 --notes-file docs/build-in-public/2026-06-01-v0.1.0-announcement.md`.
+5. Post the announcement thread (accounts) → `gh release edit v0.1.0` to link it.
+6. Update `MEMORY.md` + the `portfolio_plan_approved` memory ("v0.1.0 tagged <date>").
+
+### Annotated tag message (for `git tag -a v0.1.0 -m "..."` on `main`)
+
+```
+M0 close (v0.1.0): public pre-alpha portfolio + first result (capacity-dependent OOD wall)
+
+Snapshots the M0 framework + M1's first finding + the Round-30 re-laddered roadmap:
+- Public repo, pre-alpha banner (through v0.7.0); 13-chapter textbook skeleton; 6-lane
+  experiment-record framework; 210-entry research dossier (5 topics, 97% verified); Docker
+  repro; ETHICS/SECURITY/CODE_OF_CONDUCT; 55 ADRs.
+- M1 (attack-type-LODO): pre-registered §6.5 OOD-wall prediction FALSIFIED at the LoRA ceiling —
+  the per-attack-type wall is capacity-dependent (tfidf +0.135 / frozen +0.082 SURVIVE; lora -0.003).
+- Round-30 re-ladder (ADR-055): multi-axis capacity-dependent spine; Lane 2 re-pointed to the
+  carrier axis; a carrier-LODO M2 pre-flight gate scheduled.
+
+Pre-alpha: experiments in flight; chapter prose fills as lanes close.
+
+Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+```
+
+### PR body (`session/2026-05-26-adoption-and-research-ops` → `main`; ~40+ commits)
+
+**Title:** Merge the adoption/research-ops + M1 + Round-30 re-ladder arc into `main` (v0.1.0 snapshot)
+
+**Body:**
+> This branch carries the full arc since `main` last advanced (~40 commits; `main` is a strict ancestor →
+> clean fast-forward). It is the snapshot the `v0.1.0` M0-close tag is cut from.
+>
+> **What landed:** the M0 technical close (CI-green framework, dossier, governance, ADRs, Docker); the
+> pre-modeling EDA arc + the context-engineering subagent suite; **M1 (attack-type-LODO)** with the
+> pre-registered §6.5 OOD-wall prediction **FALSIFIED at the LoRA ceiling** (capacity-dependent —
+> tfidf/frozen SURVIVE, lora FALSIFIED); and the **Round-30 re-ladder** (ADR-055: multi-axis spine, Lane 2
+> → carrier axis, a carrier-LODO M2 pre-flight gate).
+>
+> **Gate:** `make ratify-milestone` GREEN on HEAD. **Cost:** $0.83 realized (« the $250 base).
+>
+> Merge as fast-forward to keep `main` linear; tag `v0.1.0` on `main` immediately after.
+
