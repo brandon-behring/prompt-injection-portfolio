@@ -1,6 +1,21 @@
-# Session handoff — 2026-06-01 (PM) — milestone re-ladder DONE (Round 30 / ADR-055); v0.1.0 M0 close STAGED + held for accounts
+# Session handoff — 2026-06-01 — audit + carrier-LODO DONE (verdict SMALL-THROUGHOUT); re-ladder DONE (Round 30 / ADR-055); v0.1.0 M0 close STAGED + held for accounts
 
-> **✅ Post-session update (2026-06-01 PM):** the 2 commits are **pushed**, and the full 42-commit
+> **✅ Post-session update (2026-06-01 — audit + carrier-LODO session):** ran the post-M1 **audit +
+> independent re-examination** (5 adversarial verifier agents; **5/5 results reproduce, no mismatch** —
+> `experiments/AUDIT_2026-06/verification_report.md`) and the **carrier-LODO M2 pre-flight** end-to-end.
+> **Carrier-LODO verdict: `SMALL-THROUGHOUT`** — the carrier gap is real at frozen (G=+0.167) but
+> **capacity-attenuated** at the LoRA ceiling (G=+0.067, CI-low +0.064 → not FALSIFIED; < ½·G(frozen) → not
+> capacity-resistant), with a **residual table-carrier wall** (+0.205; email/code close). So the carrier axis
+> is *partially* capacity-resistant — more than the attack-type axis (which fully dissolved). The spine's
+> "carrier is the standing wall" claim is **refined → capacity-attenuated, residual, table-concentrated**; the
+> formal **ADR-055 amendment is DEFERRED** to a fresh present-first session. Records:
+> `experiments/carrier-lodo/{verdict.json,FINDINGS.md}` + criteria Rev 1 (ROC basis) + Rev 2 (in-distribution
+> val). **3 commits this session, UNPUSHED:** `cef309d` (audit + Phase-2 record fixes), `876b867`
+> (carrier-LODO harness + criteria), + the verdict/FINDINGS/PLAN-pointer commit. `make lint` + 57 unit + 13
+> contracts green; the paid `lora` ran on a RunPod H100 (~$0.85–1.20, pod deleted). The carrier-LODO "run"
+> item in NEXT below is **DONE**; the new deferred item is the formal ADR-055 carrier amendment.
+>
+> **✅ Prior post-session update (2026-06-01 PM):** the 2 commits are **pushed**, and the full 42-commit
 > session arc is **merged to `main` via PR #4** (fast-forward; `origin/main` = `116cfd5`, linear,
 > same SHAs). The "push / merge-to-main" steps in NEXT below are **DONE** — only the **`v0.1.0` tag +
 > release + announcement remain held** for accounts (the merge prerequisite is now satisfied).
@@ -47,6 +62,12 @@ verdict" + `criteria.md` footer. **Issue #2 CLOSED.**
 ---
 
 ## NEXT — three things remain (all user-led; present-first)
+
+> **Superseded — see the top post-session block (audit + carrier-LODO session) for the CURRENT state.** Below
+> is prior-session context: item 3 (the carrier-LODO run) is now **DONE** (verdict `SMALL-THROUGHOUT`); the new
+> deferred item is the **formal ADR-055 carrier amendment** (refine "standing wall" → capacity-attenuated,
+> residual, table-concentrated). The current unpushed set is this session's 3 commits (`cef309d`, `876b867`,
+> + the verdict/FINDINGS/PLAN commit). Push + the held `v0.1.0` close remain user-led.
 
 **Updated 2026-06-01 PM (post-rethink).** The milestone re-ladder ran this session (Round 30 → ADR-055,
 committed — 2 commits, unpushed); the `v0.1.0` close is staged + held for accounts; a carrier-LODO

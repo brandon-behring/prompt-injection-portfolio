@@ -1,0 +1,97 @@
+{
+  "decision_rule": "SURVIVES iff G(lora)>0 AND bootstrap CI-low(G(lora))>0 AND G(lora)>=0.5*G(frozen); FALSIFIED iff CI-low(G(lora))<=0; else SMALL-THROUGHOUT",
+  "estimator": "carrier-LODO ROC-AUC gap, payload-clustered within carrier (criteria.md Revision 1)",
+  "metric": "roc_auc (prevalence-invariant)",
+  "verdict": "SMALL-THROUGHOUT",
+  "G_by_rung": {
+    "tfidf": -0.15584481863259855,
+    "frozen": 0.1670102581592786,
+    "lora": 0.0670170359592001
+  },
+  "ci_low_by_rung": {
+    "tfidf": -0.15795076805216732,
+    "frozen": 0.1633914938459248,
+    "lora": 0.06394663350717454
+  },
+  "lora": {
+    "G": 0.0670170359592001,
+    "ci_low": 0.06394663350717454,
+    "half_G_frozen": 0.0835051290796393
+  },
+  "n_boot": 10000,
+  "carriers": [
+    "carrier_lodo_email",
+    "carrier_lodo_code",
+    "carrier_lodo_table"
+  ],
+  "per_rung": {
+    "tfidf": {
+      "G": -0.15584481863259855,
+      "ci_low": -0.15795076805216732,
+      "frac_gt0": 0.0,
+      "per_carrier_G": {
+        "carrier_lodo_email": -0.27823820248820264,
+        "carrier_lodo_code": -0.04081118618618618,
+        "carrier_lodo_table": -0.14848506722340682
+      },
+      "val_roc_mean": {
+        "carrier_lodo_email": 0.6846645752895753,
+        "carrier_lodo_code": 0.8234864328614329,
+        "carrier_lodo_table": 0.7793526785714285
+      },
+      "test_roc_point": {
+        "carrier_lodo_email": 0.9629027777777779,
+        "carrier_lodo_code": 0.864297619047619,
+        "carrier_lodo_table": 0.9278377457948354
+      }
+    },
+    "frozen": {
+      "G": 0.1670102581592786,
+      "ci_low": 0.1633914938459248,
+      "frac_gt0": 1.0,
+      "per_carrier_G": {
+        "carrier_lodo_email": -0.00367471042471057,
+        "carrier_lodo_code": 0.17064577970827965,
+        "carrier_lodo_table": 0.33405970519426675
+      },
+      "val_roc_mean": {
+        "carrier_lodo_email": 0.8637320356070356,
+        "carrier_lodo_code": 0.9057003432003432,
+        "carrier_lodo_table": 0.9590215773809524
+      },
+      "test_roc_point": {
+        "carrier_lodo_email": 0.8674067460317462,
+        "carrier_lodo_code": 0.7350545634920636,
+        "carrier_lodo_table": 0.6249618721866856
+      }
+    },
+    "lora": {
+      "G": 0.0670170359592001,
+      "ci_low": 0.06394663350717454,
+      "frac_gt0": 1.0,
+      "per_carrier_G": {
+        "carrier_lodo_email": -0.011574780137280194,
+        "carrier_lodo_code": 0.0072365401115399575,
+        "carrier_lodo_table": 0.2053893479033405
+      },
+      "val_roc_mean": {
+        "carrier_lodo_email": 0.9652744262119262,
+        "carrier_lodo_code": 0.9735192782067782,
+        "carrier_lodo_table": 0.9981894841269842
+      },
+      "test_roc_point": {
+        "carrier_lodo_email": 0.9768492063492064,
+        "carrier_lodo_code": 0.9662827380952382,
+        "carrier_lodo_table": 0.7928001362236436
+      }
+    }
+  },
+  "computed_utc": "2026-06-01T23:30:54.460928+00:00",
+  "pre_registration": "experiments/carrier-lodo/criteria.md (Revision 2)",
+  "harness_results": "experiments/attack-type-lodo/results",
+  "harness_rungs": [
+    "tfidf",
+    "frozen",
+    "lora"
+  ]
+}
