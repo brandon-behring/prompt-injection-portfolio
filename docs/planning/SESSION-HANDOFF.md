@@ -10,8 +10,8 @@
 > "carrier is the standing wall" claim is **refined → capacity-attenuated, residual, table-concentrated**; the
 > formal **ADR-055 amendment is DEFERRED** to a fresh present-first session. Records:
 > `experiments/carrier-lodo/{verdict.json,FINDINGS.md}` + criteria Rev 1 (ROC basis) + Rev 2 (in-distribution
-> val). **3 commits this session, UNPUSHED:** `cef309d` (audit + Phase-2 record fixes), `876b867`
-> (carrier-LODO harness + criteria), + the verdict/FINDINGS/PLAN-pointer commit. `make lint` + 57 unit + 13
+> val). **3 commits this session, PUSHED (`ee397a7..3c8662a`):** `cef309d` (audit + Phase-2 record fixes),
+> `876b867` (carrier-LODO harness + criteria), `3c8662a` (verdict/FINDINGS/PLAN-pointer). `make lint` + 57 unit + 13
 > contracts green; the paid `lora` ran on a RunPod H100 (~$0.85–1.20, pod deleted). The carrier-LODO "run"
 > item in NEXT below is **DONE**; the new deferred item is the formal ADR-055 carrier amendment.
 >
@@ -66,8 +66,8 @@ verdict" + `criteria.md` footer. **Issue #2 CLOSED.**
 > **Superseded — see the top post-session block (audit + carrier-LODO session) for the CURRENT state.** Below
 > is prior-session context: item 3 (the carrier-LODO run) is now **DONE** (verdict `SMALL-THROUGHOUT`); the new
 > deferred item is the **formal ADR-055 carrier amendment** (refine "standing wall" → capacity-attenuated,
-> residual, table-concentrated). The current unpushed set is this session's 3 commits (`cef309d`, `876b867`,
-> + the verdict/FINDINGS/PLAN commit). Push + the held `v0.1.0` close remain user-led.
+> residual, table-concentrated). This session's 3 commits (`cef309d`, `876b867`, `3c8662a`) are **PUSHED**;
+> the formal ADR amendment + the held `v0.1.0` close remain user-led.
 
 **Updated 2026-06-01 PM (post-rethink).** The milestone re-ladder ran this session (Round 30 → ADR-055,
 committed — 2 commits, unpushed); the `v0.1.0` close is staged + held for accounts; a carrier-LODO
