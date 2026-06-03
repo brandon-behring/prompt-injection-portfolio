@@ -42,7 +42,7 @@ test-type to the extent that (a) that test-type's positives sit far from the tra
 Rationale + literature: distance alone is necessary-not-sufficient (Kpotufe & Martinet COLT 2018;
 Geirhos NMI 2020); the H-divergence bound's λ term is non-estimable and large under our cross-type
 label structure (Zhao et al. ICML 2019); and PI-specifically, separability ≠ collapse
-(arXiv:2602.14161, 2026: 96.6% dataset-separability ↔ 8.4pp drop). Hence the fusion of shift **and**
+(arXiv:2602.14161, 2026: a **96.6% dataset-classifier accuracy** *and, separately,* an **8.4pp CV→LODO AUC drop** (0.996→0.912) — two distinct figures the paper *associates*, not equates). Hence the fusion of shift **and**
 shortcut, not shift alone.
 
 ## Prediction construction (fusion rule — FIXED here)
@@ -235,5 +235,5 @@ RunPod H100). Applying the **unchanged** rule to the **`lora`** rung: `T = −0.
 CI-low = −0.008 → **FALSIFIED**. The cheap rungs SURVIVE on the same merged tree (tfidf T = +0.135 /
 frozen T = +0.082; both perm p = 0.014, CI-low > 0). The monotone collapse of `T` with capacity is the
 realized reading: the OOD wall is real for lexical / frozen-embedding detectors and **dissolves** under
-end-to-end LoRA — the pre-registered S2 encoder-transfer caveat, realized. Full record + interpretation:
+end-to-end LoRA — a **capacity-dependence** effect. (The pre-registered S2 caveat covered prediction-*encoder* choice — MiniLM → frozen ModernBERT — and held: the ranking transferred to the frozen rung; the LoRA dissolution is the broader capacity finding S2 did not pre-commit.) Full record + interpretation:
 `FINDINGS.md` §"Realized verdict"; machine-readable: `falsification_verdict.json`.

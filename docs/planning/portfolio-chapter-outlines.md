@@ -139,7 +139,7 @@ Note: full per-chapter KF-decomposed detail (R/O/E structure, callout strategy, 
 | **Freshness state at v0.1.0** | `scaffolded` (anchors EchoLeak + submission ADRs at skeleton; results filled at M1 close) |
 | **Cross-references** | All subsequent Part III chapters trace back here |
 
-> **Round 30 re-axis (ADR-055).** The anchor reframes from a single "backbone-invariant OOD wall" to the **multi-axis, capacity-dependent** spine: the submission's backbone-invariant null is the **carrier** axis; M1 adds the **attack-type** axis, where the per-type wall is **capacity-dependent** (FALSIFIED at the LoRA ceiling; SURVIVES tfidf/frozen). The OpenQuestion ("data-bound vs structural") is now axis-typed — the *attack-type* wall is not structural (capacity dissolves it); the *carrier* wall's structural status is the open question the carrier-LODO M2 pre-flight gate sizes. backbone-invariant ≠ capacity-invariant.
+> **Round 30 re-axis (ADR-055).** The anchor reframes from a single "backbone-invariant OOD wall" to the **multi-axis, capacity-dependent** spine: the submission's backbone-invariant null is the **carrier** axis; M1 adds the **attack-type** axis, where the per-type wall is **capacity-dependent** (FALSIFIED at the LoRA ceiling; SURVIVES tfidf/frozen). The OpenQuestion ("data-bound vs structural") is now axis-typed — the *attack-type* wall is not structural (capacity dissolves it); the *carrier* wall is **partially capacity-resistant (provisional, n=3), residual at table** — the carrier-LODO M2 pre-flight gate resolved it `SMALL-THROUGHOUT` (ADR-055). backbone-invariant ≠ capacity-invariant.
 
 ### Ch 8: Lane 1 — Reading the OOD Wall, More Carefully
 
@@ -164,14 +164,14 @@ Note: full per-chapter KF-decomposed detail (R/O/E structure, callout strategy, 
 | **Thesis** | Does indirect-injection training data + Recall@LowFPR loss overcome BOTH active-harm + backbone-invariance? **3-way pre-commitment**: positive (data-bound wall) / null (structural wall) / negative (worsened distribution shift). |
 | **R** | Synthetic indirect-injection corpus (Sonnet + Opus audit) + 2-variant ablation (CE baseline + Recall@LowFPR per Meta PG2 recipe) |
 | **O** | Sonnet synthesis ($88-128 API) + 2-variant retrain ($68 GPU). **Optional Tier C #2 3rd variant**: energy-based loss ($34 gated). |
-| **E** | If RFPR pooled OOD AUPRC ≥0.40 with CI clear of zero → wall is data-bound. If clusters near 0.36 ± 0.02 → wall is structural (likely per ADR-052 framing). If drops below 0.32 → indirect augmentation induces distribution shift. |
+| **E** | If RFPR pooled OOD AUPRC ≥0.40 with CI clear of zero → wall is data-bound. If clusters near 0.36 ± 0.02 → residual table-carrier wall (per ADR-055 carrier-LODO `SMALL-THROUGHOUT`). If drops below 0.32 → indirect augmentation induces distribution shift. |
 | **Callouts** | KeyIdea (data-bound vs structural framing), **CaseStudy: Lane 2 attribution table** (3-row: CE-direct only / CE-mixed / RFPR-mixed), ResultBox (per-variant per-slice grid), OpenQuestion (energy-loss Tier C contingency), Divergence (if results contradict ADR-052) |
 | **Citations** | ADR-052 active-harm baseline; ADR-060 DeBERTa methodology; Meta PG2 RFPR loss recipe (compass §2.1); Liu NeurIPS 2020 energy-based loss (Tier C reference); dossier `claim_family=indirect_injection_training` |
 | **Volatility** | `feature-surface` |
 | **Freshness state at v0.1.0** | `planned` → `prose_only` at M4 close → `implemented` |
 | **Cross-references** | Lane 2 experiment records; Ch 7 foundation; Ch 11 (Lane 2 variants feed Lane 4 stacker) |
 
-> **Round 30 re-axis (ADR-055).** Lane 2's headline evaluation axis moves from attack-type to **carrier generalization** (method unchanged — LoRA + 2-variant loss per ADR-043). The thesis ("does indirect data overcome active-harm + backbone-invariance") re-axises to "can training data close the **carrier**-axis OOD gap M1 left standing," sized first by the carrier-LODO M2 pre-flight gate. The E-branches re-axis to the carrier wall (the *attack-type* wall is capacity-solved). "Confirm attack-type generalization" is a cheap optional secondary.
+> **Round 30 re-axis (ADR-055).** Lane 2's headline evaluation axis moves from attack-type to **carrier generalization** (method unchanged — LoRA + 2-variant loss per ADR-043). The thesis ("does indirect data overcome active-harm + backbone-invariance") re-axises to "can training data close the **carrier**-axis OOD gap M1 left **partially standing** — `SMALL-THROUGHOUT`, with a residual **table** wall to close (provisional, n=3; ADR-055)," sized first by the carrier-LODO M2 pre-flight gate. The E-branches re-axis to the carrier wall (the *attack-type* wall is capacity-solved). "Confirm attack-type generalization" is a cheap optional secondary.
 
 ### Ch 10: Lane 3 — Watching the Wall in the Demo
 

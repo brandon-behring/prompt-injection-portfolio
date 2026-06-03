@@ -59,7 +59,6 @@ Survives iff the predicted-worst tail collapses more than the predicted-best tai
   and falsified only via the **tail contrast** (never a full correlation, which N=5 attenuates).
 - Embedding-space shift is small *because* the carrier dominates — the per-type PAD spread
   (0.69–1.27) is modest; the prediction leans on C2 shortcut-transfer to break ties.
-- V10 is incomplete pending PG1 (the indirect-valid probe).
 - qa/abstract carriers (license-gated) + PINT + Indirect-in-the-Wild excluded (honest ceiling).
 
 ## Realized verdict — 2026-06-01 (post-LoRA, write-gate OPEN)
@@ -77,15 +76,24 @@ criteria Revision 2; machine-readable record in `falsification_verdict.json`.
 **The prediction is FALSIFIED at the LoRA ceiling — and that is the finding, not a miss.**
 `T` collapses monotonically as capacity rises (0.135 → 0.082 → 0.000): the predicted-worst
 attack-type tail is genuinely harder for lexical / frozen-embedding detectors, but a LoRA
-fine-tune detects **every** type near-uniformly (test AUPRC 0.98–0.999, held-out types
+fine-tune detects **every** type near-uniformly (test AUPRC 0.956–0.984, held-out types
 included), erasing the per-type gap.
 
-This is precisely the **encoder-transfer caveat (S2)** realized. The ranking was built from the
+This is **capacity-dependence** — it confirms the pre-registered **S2** caveat where S2 applied, and
+goes beyond it. S2 (`lane-1/hypothesis.md`) pre-registered only that the *prediction-encoder choice*
+(MiniLM → frozen ModernBERT) does not change the ordering — and that held: the ranking **SURVIVES**
+at the frozen rung (T +0.082). S2 said nothing about end-to-end capacity; the LoRA dissolution is the
+broader, not-pre-committed finding (S2 argued, if anything, that the ordering *transfers*). The ranking was built from the
 **frozen MiniLM embedding**, where the carrier dominates and the attack-type signal is
 embedding-invisible (Key finding 1). End-to-end LoRA learns the attack-type signal directly, so
-an embedding-derived ordering does not transfer. **The "OOD wall" is a property of the
-representation, not the task: real for lexical / frozen detectors, surmountable with a small
-amount of end-to-end capacity.**
+an embedding-derived ordering does not transfer. **On the attack-type axis, within BIPIA indirect injection, the "OOD wall" is a property of the
+representation, not the task:** real for lexical / frozen-embedding detectors, and surmountable by a
+small amount of end-to-end capacity, which detects every held-out attack-type near-uniformly (test
+AUPRC 0.956–0.984). *Two scope caveats:* (a) at that near-ceiling level the top-k−bottom-k contrast is
+partly saturation-compressed, so `T → 0` reflects uniform high detection as much as a "dissolved"
+gap; (b) the held-out type shares carrier and corpus with training — this is *within-corpus*
+generalization, **not** the prototype's *cross-family* (direct→indirect, cross-dataset) wall, which
+was not re-derived under fair tuning (`ADR-052`) and remains **open**.
 
 The FALSIFIED verdict is credible *because* it could not be gamed: the rule (judge on `lora`;
 SURVIVES iff perm p < 0.05 AND CI-low > 0), the tail sets, `k`, and the estimator were all fixed

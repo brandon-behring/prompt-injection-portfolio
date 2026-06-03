@@ -19,8 +19,9 @@ JSONs), and (3) **analyze "2"** = run the **carrier-LODO** M2 pre-flight gate (L
 - **M1 headline — the OOD wall is capacity-dependent (attack-type axis):** `lora` T=−0.003 / p=0.90 /
   CI-low=−0.008 **FALSIFIED**; cheap rungs SURVIVE (tfidf +0.135, frozen +0.082). Verdict:
   `experiments/eda/OOD_WALL_PREDICTION/falsification_verdict.json`.
-- **Re-ladder:** multi-axis spine; the **carrier** axis is the *standing wall* but **geometric-only**
-  (silhouette by-carrier 0.197 vs by-attack-type −0.023 — untested by modeling). The **carrier-LODO
+- **Re-ladder:** multi-axis spine; the **carrier** axis is **partially capacity-resistant (provisional,
+  n=3), residual at table** (carrier-LODO `SMALL-THROUGHOUT`; ADR-055 — refined from the geometric-only
+  "standing wall" prior). The **carrier-LODO
   M2 pre-flight gate** is pre-registered at `experiments/carrier-lodo/criteria.md` to test it.
 - **Disk check (post-compaction):** 36 result parquets / 15 MB present at
   `experiments/attack-type-lodo/results/` — the recompute is executable, no regeneration needed.
