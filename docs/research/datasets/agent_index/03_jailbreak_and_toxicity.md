@@ -38,4 +38,22 @@ Two adjacent unsafe-input axes co-housed because both are user-turn safety signa
 - **Status:** Verified.
 - **Soft tags:** family=jailbreak · encoder_readiness=derivable · study_relevance=medium
 
-_4 entries._
+### C5. nvidia/Aegis-AI-Content-Safety-Dataset-2.0 — NVIDIA (2025)
+- **Source:** https://huggingface.co/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-2.0
+- **Access:** hf datasets; auth_required: N
+- **Schema:** `prompt` + `prompt_label` (string {safe, unsafe}).
+- **Size+License:** ~33.4K rows (binary safe/unsafe); CC-BY-4.0. (Corrected id 2026-06-03 — the handoff `nvidia/Aegis-2.0` 404s.)
+- **Tasks:** Content-safety / toxicity moderation — `prompt_label` marks content harm (criminal / sexual / harassment categories), **NOT injection-presence**. EDA-gate verdict (2026-06-03): **off-axis for injection** (the label is a content-safety axis, not an attack-carrier axis); near-zero leakage (jackhhao 2). Research-role: **PARKED for injection** — catalogue as a toxicity / content-safety reference (an optional hard-negative source for guardrail co-training), not an injection set. Encoder-readiness: **derivable but off-axis** — a clean `(text, label)` via `prompt`+`prompt_label`{safe:0,unsafe:1}, but the target is content-safety not injection.
+- **Status:** Verified.
+- **Soft tags:** family=toxicity-safety-guard · encoder_readiness=derivable (off-axis) · study_relevance=parked
+
+### C6. youbin2014/JailbreakDB — youbin2014 (2025)
+- **Source:** https://huggingface.co/datasets/youbin2014/JailbreakDB
+- **Access:** hf datasets; auth_required: N (HF Viewer 500s ⇒ pull files / raw-CSV adapter)
+- **Schema:** `user_prompt` + `jailbreak` (0/1) + `source` (provenance); ships as 2 raw CSVs.
+- **Size+License:** 1,539,874 records (445,752 + 1,094,122; the "12.2M" was a multi-line-quoted-field line-count artifact); CC-BY-4.0.
+- **Tasks:** A 14-source aggregate of jailbreak / instruction-tuning corpora. EDA-gate verdict (2026-06-03): **PARK — not slate-eligible**, on two decisive findings. (1) **Severe contamination** — full 1.54M scan finds 19,458 exact overlaps with our universe: `shen_dan` 17,783 (almost all via its `DAN` source), `jackhhao` 1,387, `jbb` 288 (via JBB-Behaviors/AdvBench/HarmBench) ⇒ using it contaminates any split holding out shen_dan/jackhhao/jbb, plus a ~2.1% near-dup tail. (2) **Scrambled labels** — the classic `DAN` jailbreak sits in `text_regular` (jailbreak=0) while benign Safe-RLHF questions sit in `text_jailbreak` (jailbreak=1); provenance explains it (the set mixes instruction-tuning corpora — OpenHermes-2.5 494K, glaive-code 181K, metamath, alpaca, platypus — with jailbreak/harm sets, so `jailbreak` is not the intuitive label). Research-role: **PARKED** (contaminated + unreliable labels). Encoder-readiness: **derivable but parked**.
+- **Status:** Verified (parked — contamination + scrambled labels).
+- **Soft tags:** family=jailbreak · encoder_readiness=derivable but parked · study_relevance=parked
+
+_6 entries._

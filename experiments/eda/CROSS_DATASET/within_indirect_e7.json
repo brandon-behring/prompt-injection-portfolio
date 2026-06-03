@@ -1,0 +1,33 @@
+{
+  "question": "Is BIPIA representative of the indirect-injection family, or one indirect dialect? Compare within-indirect PAD (BIPIA/llmail/wainject) against the ~1.9 indirect-vs-direct baseline from cross_dataset_geometry.json (BIPIA-vs-direct PAD 1.86-2.0).",
+  "per_corpus_n": {
+    "bipia": 250,
+    "llmail": 250,
+    "wainject": 250
+  },
+  "wainject_benign_count_seen": 2707,
+  "pad_matrix": {
+    "bipia": {
+      "bipia": null,
+      "llmail": 1.984,
+      "wainject": 1.92
+    },
+    "llmail": {
+      "bipia": 1.984,
+      "llmail": null,
+      "wainject": 1.944
+    },
+    "wainject": {
+      "bipia": 1.92,
+      "llmail": 1.944,
+      "wainject": null
+    }
+  },
+  "within_indirect_silhouette": 0.095,
+  "indirect_vs_direct_baseline_pad_range": [
+    1.864,
+    2.0
+  ],
+  "blockers": [],
+  "interpretation": "within-indirect PAD much LOWER than ~1.9 => indirect corpora cluster together apart from the direct cloud => BIPIA is representative. within-indirect PAD comparably high (~1.9) => the indirect family is internally fragmented => BIPIA is one dialect, which weakens BIPIA-as-the-cross-family-test-anchor."
+}

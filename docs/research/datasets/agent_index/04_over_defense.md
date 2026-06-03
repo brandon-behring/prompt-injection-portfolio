@@ -38,4 +38,13 @@ Benign-heavy or benign-by-construction sets used to measure **false positives / 
 - **Status:** Unverified (data deliberately withheld; harness verified).
 - **Soft tags:** family=over-defense-control · encoder_readiness=eval-only · study_relevance=medium
 
-_4 entries._
+### D5. AmazonScience/FalseReject — Amazon Science (2025)
+- **Source:** https://huggingface.co/datasets/AmazonScience/FalseReject
+- **Access:** hf datasets; auth_required: N
+- **Schema:** `prompt` (no binary label — all-benign by construction); 44 topical categories.
+- **Size+License:** ~15.8K rows (all benign); cc-by-nc-4.0.
+- **Tasks:** Benign prompts deliberately **crafted to look unsafe** — the textbook over-refusal / false-positive probe. EDA-gate verdict (2026-06-03): leakage-clean; all-benign (no positive class). Research-role: a **benign-FPR / over-defense control** (same family as NotInject D2 / XSTest D3 / OR-Bench D1) — score a detector by how few of these benign prompts it flags. **Keep out of any training split.** Encoder-readiness: **eval-only** — `prompt` only, no benign/comply binary, derivable into an over-refusal eval. ⚠️ **NC license** ⇒ non-commercial research / eval-only.
+- **Status:** Verified.
+- **Soft tags:** family=over-defense-control · encoder_readiness=eval-only · study_relevance=medium
+
+_5 entries._

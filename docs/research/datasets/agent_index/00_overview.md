@@ -1,7 +1,8 @@
 # Overview — unsafe-input / guardrail-detection datasets
 
-30 public datasets for **unsafe-input / guardrail detection** (broadened from the
-original 20-entry indirect-prompt-injection scope on 2026-05-27). Built to feed
+38 public datasets for **unsafe-input / guardrail detection** (broadened from the
+original 20-entry indirect-prompt-injection scope on 2026-05-27; +8 EDA-gated in the
+2026-06-03 Phase-2 expansion — see the ledger "Newly-surfaced 2026-06-03" table). Built to feed
 [ADR-052](../../../decisions/ADR-052-attack-type-generalization.md) (attack-type
 generalization) and the [attack-type-LODO harness spec](../../planning/attack-type-lodo-harness-spec.md).
 
@@ -20,15 +21,17 @@ discovery; the EDA decides which ones graduate into a training/eval pipeline.
 | File | Family | Entries |
 |---|---|---|
 | `01_injection_direct.md` | Direct prompt injection (user-turn attacks) | 11 |
-| `02_injection_indirect.md` | Indirect injection (retrieved/tool/observed) | 5 |
-| `03_jailbreak_and_toxicity.md` | Jailbreak + toxicity-safety-guard (merged) | 4 |
-| `04_over_defense.md` | Over-defense / false-refusal controls | 4 |
-| `05_agentic_trajectory.md` | Agent-environment ASR benchmarks | 3 |
-| `06_aggregated_recipes.md` | Training-mixture recipes | 3 |
+| `02_injection_indirect.md` | Indirect injection (retrieved/tool/observed) | 7 |
+| `03_jailbreak_and_toxicity.md` | Jailbreak + toxicity-safety-guard (merged) | 6 |
+| `04_over_defense.md` | Over-defense / false-refusal controls | 5 |
+| `05_agentic_trajectory.md` | Agent-environment ASR benchmarks | 5 |
+| `06_aggregated_recipes.md` | Training-mixture recipes | 4 |
 
-By status: **27 verified · 3 unverified** (Harelix/Mixed-Techniques HF 401 at
+By status: **35 verified · 3 unverified** (Harelix/Mixed-Techniques HF 401 at
 gather; PINT data deliberately withheld; Indirect-in-the-Wild corpus unreleased) ·
-**1 mismatched** (xTRam1 — citation wrong + license unknown).
+**1 mismatched** (xTRam1 — citation wrong + license unknown). The +8 Phase-2 sets
+(2026-06-03) are all EDA-gated + verified; 5 earn roles (2 indirect-carrier prizes +
+1 benign control + 1 dedup-salvageable), 3 parked (off-axis / contaminated / env).
 
 By license shorthand (verbatim from ledger): apache-2.0 (deepset, jackhhao,
 guychuk, jayavibhav×2 → `unknown`, hendzh PromptShield, Harelix, GenTel-Bench,
