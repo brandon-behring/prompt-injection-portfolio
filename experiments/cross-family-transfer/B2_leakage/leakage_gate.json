@@ -1,0 +1,77 @@
+{
+  "near_threshold": 0.8,
+  "folds": [
+    {
+      "held_out": "bipia",
+      "train_dialects": [
+        "browsesafe",
+        "fujitsu",
+        "injecagent"
+      ],
+      "train_size_before": 38730,
+      "test_size": 5508,
+      "exact_purged": 0,
+      "near_purged_total": 0,
+      "near_only_purged": 0,
+      "total_purged": 0,
+      "train_size_after": 38730,
+      "purged_by_train_dialect": {},
+      "near_threshold": 0.8,
+      "sampled_colliding_pairs": []
+    },
+    {
+      "held_out": "browsesafe",
+      "train_dialects": [
+        "bipia",
+        "fujitsu",
+        "injecagent"
+      ],
+      "train_size_before": 29519,
+      "test_size": 14719,
+      "exact_purged": 0,
+      "near_purged_total": 0,
+      "near_only_purged": 0,
+      "total_purged": 0,
+      "train_size_after": 29519,
+      "purged_by_train_dialect": {},
+      "near_threshold": 0.8,
+      "sampled_colliding_pairs": []
+    },
+    {
+      "held_out": "fujitsu",
+      "train_dialects": [
+        "bipia",
+        "browsesafe",
+        "injecagent"
+      ],
+      "train_size_before": 22352,
+      "test_size": 21886,
+      "exact_purged": 0,
+      "near_purged_total": 0,
+      "near_only_purged": 0,
+      "total_purged": 0,
+      "train_size_after": 22352,
+      "purged_by_train_dialect": {},
+      "near_threshold": 0.8,
+      "sampled_colliding_pairs": []
+    },
+    {
+      "held_out": "injecagent",
+      "train_dialects": [
+        "bipia",
+        "browsesafe",
+        "fujitsu"
+      ],
+      "train_size_before": 42113,
+      "test_size": 2125,
+      "exact_purged": 0,
+      "near_purged_total": 0,
+      "near_only_purged": 0,
+      "total_purged": 0,
+      "train_size_after": 42113,
+      "purged_by_train_dialect": {},
+      "near_threshold": 0.8,
+      "sampled_colliding_pairs": []
+    }
+  ]
+}

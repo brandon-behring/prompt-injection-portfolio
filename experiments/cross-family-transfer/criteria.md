@@ -249,3 +249,87 @@ change the collapse-vs-persistence logic, the ROC-AUC basis, the SURVIVES thresh
 A **separate present-first ADR action** (sibling of the carrier amendment) then promotes Lane 6 to active
 and adds the "indirect-dialect / corpus-level carrier generalization" axis to the ADR-055 spine — drafted
 **from** the result, not pre-committed beyond the directional hypotheses above (E7).
+
+---
+
+## Revision 1 — Arm-B implementation finalization (read-from-data specifics), 2026-06-03
+
+**Dated, before any cross-family/dialect detector has been trained or any `Gx` computed.** This is the
+"implementation-finalization Revision (B2, before the run)" the original anticipated (Revision policy). The
+**decision logic, the ROC-AUC basis, the SURVIVES thresholds (½·Gx(frozen) AND the 0.05 SESOI floor), and the
+verdict labels are UNCHANGED.** This Revision finalizes only the **Arm-B** read-from-data specifics and records
+the harness build (sibling module `experiments/cross-family-transfer/{assemble,folds_dialect,leakage_gate}.py`,
+reusing the attack-type-LODO `Fold`/`carve_val_from_train` + upstream `eval_toolkit.text_dedup`). Arm A's
+direct pool + the **B+** training composition are deferred to a later dated Revision (B2.4).
+
+### (i) Arm-B assembly + per-dialect cluster definitions (read from the loaders)
+
+Unified frame `(text, label, dialect, cluster_id)`; each dialect's natural resampling cluster:
+
+| dialect | rows | pos | neg | clusters | cluster_id |
+|---|---|---|---|---|---|
+| bipia | 5,508 | 5,040 | 468 | 143 | `attack_type::payload-idx` (140 pos) + `clean::carrier` (3 neg) |
+| browsesafe | 14,719 | 7,297 | 7,422 | 14,719 | `page::split::row` (1 per page) |
+| fujitsu | 21,886 | 10,943 | 10,943 | 10,943 | `doc::<id GUID>` |
+| injecagent | 2,125 | 2,108 | 17 | 63 | `tool::<attacker-tool>` (62 pos) + `clean::tool-output` (1 neg) |
+
+- **bipia** pools email/code/table carriers **and** both BIPIA roles (= the dialect) → **143 clusters** (140
+  positive payloads ≈ 5 strings × 28 disjoint train+test attack-types, + 3 clean-carrier negatives). This
+  corrects the design's "~70" (which counted one role); the dialect pools both. Logic unchanged.
+- **browsesafe** head+tail truncation = ~6K head + 2K tail **tokens**, applied as a **char proxy** (~4
+  chars/token → 24K head + 8K tail chars; short pages pass through). The model tokenizer does the final
+  truncation; the char-proxy ensures the page top/bottom (where injections cluster) survive into the window.
+- **fujitsu B1** read from the on-disk core `rag_poisoning_benchmark_combined_deduplicated.jsonl`, which
+  natively carries a per-document `id` GUID → `source_id` **already present, no re-persist needed**; the
+  **augmented configs are excluded** (never read) and the B2 image modality skipped, per the design.
+- **InjecAgent** positives = the canonical `injecagent_derived.parquet` (2,108, label 1); `cluster_id` =
+  attacker-tool id, derived by matching each row's embedded attacker instruction to
+  `attacker_cases_{dh,ds}.jsonl` (**62 tool clusters**). Negatives = clean tool-output templates (the
+  `<Attacker Instruction>` placeholder removed), deduped (**17**, one `clean::tool-output` cluster).
+
+### (ii) ★ Added honest limitation — InjecAgent negative-side is thin (read-from-data)
+
+The held-out **injecagent** fold has **2,108 positives but only 17 negatives in a single negative cluster**.
+Pre-committed consequences: (a) the per-dialect natural-cluster bootstrap on this fold resamples 62 positive
+tool-clusters but only **1** negative cluster → negative-side sampling variability is essentially
+unrepresented; (b) 17 negatives poorly resolve a ROC-AUC. ⇒ **the injecagent held-out fold is the
+weakest-powered of the four**; its `Gx` CI will be wide and is to be read as **indicative only** — it must not
+drive a headline. This is precisely why the pre-reg leads with the **per-dialect table** (not the aggregate)
+and labels the verdict **directional/low-power**. The negatives are reconstructed templates (InjecAgent ships
+positives only); a better real-benign-tool-output source, if found, would be a future dated Revision. (No
+logic change; recorded data limitation.)
+
+### (iii) Dialect-LODO folds + the in-distribution val carve (UNCHANGED logic)
+
+`folds_dialect.py` mirrors `attack-type-lodo/folds.py::_carrier_lodo_builder` (`_dialect_lodo_builder`,
+`assert_dialect_disjoint`, `DIALECT_LODO_FOLDS`, `make_dialect_fold`) and forces `min_types_for_typeholdout =
+10**9` — the carrier-LODO **Rev 2** in-distribution carve (val = label-stratified row-holdout, attack-type
+held fixed), so `val_roc` does not inherit the §6.5 attack-type collapse. Per-fold (**B−**, indirect-only,
+seed 0):
+
+| held out | train | val | test | test pos/neg |
+|---|---|---|---|---|
+| bipia | 30,984 | 7,746 | 5,508 | 5,040 / 468 |
+| browsesafe | 23,615 | 5,904 | 14,719 | 7,297 / 7,422 |
+| fujitsu | 17,882 | 4,470 | 21,886 | 10,943 / 10,943 |
+| injecagent | 33,690 | 8,423 | 2,125 | 2,108 / 17 |
+
+### (iv) Leakage gate (Q2 — exact + MinHash≥0.8, purge-from-train) — result
+
+`leakage_gate.py` (reusing upstream `eval_toolkit.text_dedup`) scanned each fold's train dialects vs the
+held-out test dialect, purging matches **from train only** (held-out test sacrosanct). **Result: zero
+cross-dialect leakage** (0 exact, 0 near-dup ≥0.8 across all 4 folds). The registered **fujitsu⊃InjecAgent**
+concern (MANIFEST:242) produced **no overlap** — the InjecAgent aggregation lives only in fujitsu's
+*augmented* configs, which the design excludes and the loader does not read; the gate empirically confirms the
+exclusion is clean. Artifact: `experiments/cross-family-transfer/B2_leakage/leakage_gate.json`.
+
+### (v) Embedder + deferred items
+
+- **Frozen-rung embedder = ModernBERT-base** (`answerdotai/ModernBERT-base`), the M1/carrier-LODO embedder
+  (NOT MiniLM, which was only the EDA-geometry embedder). tfidf + frozen are local/free; lora is B3.
+- **Deferred to a later dated Revision (B2.4):** Arm A's 9-corpus direct→indirect slate (rebuilt from
+  `data/raw/`, with its own leakage gate) + the **B+** training composition (the direct base pool). **B−**
+  (indirect-only Arm-B) is finalized here.
+
+**Nothing in (i)–(v) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
+½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels.**
