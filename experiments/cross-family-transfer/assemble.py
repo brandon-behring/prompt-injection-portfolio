@@ -301,32 +301,39 @@ def _tool_for_text(text: str, instr_to_tool: dict[str, str]) -> str:
     raise ValueError(f"injecagent: no attacker tool matched for text prefix {head[:60]!r}")
 
 
-def _benign_tool_outputs() -> list[str]:
-    """Clean tool-output negatives = test-case templates with the attacker placeholder removed.
+def _benign_user_cases() -> list[tuple[str, str]]:
+    """Real benign tool-output negatives, one per InjecAgent user-case (criteria.md Revision 2).
 
-    InjecAgent's derived parquet ships positives only; the matched benign counterpart is the
-    same ``Tool Response Template`` with the ``<Attacker Instruction>`` placeholder stripped
-    (the clean tool output a benign agent would observe). Deduped across the four test-case
-    files. Documented label construction (criteria.md: "else document the label construction").
+    InjecAgent ships 17 canonical benign user scenarios in ``user_cases.jsonl`` (distinct
+    ``User Tool``s). Each ``Tool Response Template`` carries an ``<Attacker Instruction>``
+    placeholder; removing it yields the clean tool output a benign agent would observe. These 17
+    real responses are the negatives, **each its own per-``User Tool`` cluster** (17 negative
+    clusters, not one) so the label-stratified cluster bootstrap can represent negative-side
+    variability. (Revision 2 supersedes the earlier reconstruct-from-test-cases approach, which
+    collapsed all negatives into a single degenerate cluster.)
+
+    Returns
+    -------
+    list[tuple[str, str]]
+        ``(benign_text, user_tool)`` pairs, one per user-case.
     """
-    seen: set[str] = set()
-    out: list[str] = []
-    for fn in (
-        "test_cases_dh_base.json",
-        "test_cases_dh_enhanced.json",
-        "test_cases_ds_base.json",
-        "test_cases_ds_enhanced.json",
-    ):
-        path = INJECAGENT_DIR / fn
-        if not path.exists():
-            raise FileNotFoundError(f"injecagent test cases missing: {path}")
-        cases = json.loads(path.read_text(encoding="utf-8"))
-        for c in cases:
-            tmpl = str(c.get("Tool Response Template", ""))
-            clean = tmpl.replace("<Attacker Instruction>", "").strip()
-            if clean and clean not in seen:
-                seen.add(clean)
-                out.append(clean)
+    path = INJECAGENT_DIR / "user_cases.jsonl"
+    if not path.exists():
+        raise FileNotFoundError(f"injecagent user cases missing: {path}")
+    out: list[tuple[str, str]] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        c = json.loads(line)
+        tool = str(c.get("User Tool", "")).strip()
+        tmpl = str(c.get("Tool Response Template", ""))
+        clean = tmpl.replace("<Attacker Instruction>", "").strip()
+        if not tool or not clean:
+            raise ValueError(f"injecagent user-case missing User Tool / benign response: {c!r}")
+        out.append((clean, tool))
+    if not out:
+        raise ValueError("injecagent: no benign user-cases parsed")
     return out
 
 
@@ -335,9 +342,10 @@ def load_injecagent() -> pd.DataFrame:
 
     Positives: the on-disk ``injecagent_derived.parquet`` (the canonical static text slate,
     all label=1). ``cluster_id`` = the attacker tool id, derived by joining each row's
-    embedded attacker instruction to ``attacker_cases_{dh,ds}.jsonl``. Negatives: matched
-    clean tool outputs reconstructed from the test-case templates (placeholder removed);
-    ``cluster_id`` = ``clean::tool-output`` (no attacker tool).
+    embedded attacker instruction to ``attacker_cases_{dh,ds}.jsonl``. Negatives: the 17 real
+    benign user-cases (``user_cases.jsonl``), each its clean ``Tool Response Template`` with the
+    attacker placeholder removed; ``cluster_id`` = ``clean::<User Tool>`` (17 per-tool negative
+    clusters; criteria.md Revision 2).
 
     Returns
     -------
@@ -363,13 +371,13 @@ def load_injecagent() -> pd.DataFrame:
             "attack_type": df.get("attack_type", pd.Series([""] * len(df))).astype(str),
         }
     )
-    benign_texts = _benign_tool_outputs()
+    benign = _benign_user_cases()
     neg = pd.DataFrame(
         {
-            "text": benign_texts,
+            "text": [t for t, _ in benign],
             "label": 0,
             "dialect": "injecagent",
-            "cluster_id": "clean::tool-output",
+            "cluster_id": [f"clean::{tool}" for _, tool in benign],
             "attack_type": "",
         }
     )

@@ -333,3 +333,60 @@ exclusion is clean. Artifact: `experiments/cross-family-transfer/B2_leakage/leak
 
 **Nothing in (i)–(v) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
 ½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels.**
+
+---
+
+## Revision 2 — InjecAgent negative re-cluster + B2 inference/run finalization, 2026-06-03
+
+**Dated, before any cross-family/dialect detector has been trained or any `Gx` computed.** Supersedes the
+Revision 1 InjecAgent negative construction (a double-check found a better real-benign source) and finalizes
+the remaining B2 inference + run specifics. **Decision logic, ROC-AUC basis, the ½·Gx(frozen) + 0.05 SESOI
+thresholds, and verdict labels remain UNCHANGED.**
+
+### (a) InjecAgent negatives — re-sourced + re-clustered (supersedes Rev 1 §i/§ii)
+
+The double-check found `user_cases.jsonl`: InjecAgent's **17 canonical benign user-scenarios** (distinct
+`User Tool`s), each a real `Tool Response Template` whose `<Attacker Instruction>` placeholder, removed,
+yields the clean tool output a benign agent would observe. Negatives are now **those 17 real responses, one
+per-`User Tool` cluster** (was: templates reconstructed from the test-cases, collapsed into 1 cluster). Effect:
+injecagent **negative-clusters 1 → 17** (the dialect now has **79 clusters** = 62 positive attacker-tool + 17
+negative user-tool); the per-dialect natural-cluster bootstrap is **no longer degenerate** on the negative side.
+
+**The 17 : 2,108 imbalance is inherent** to InjecAgent (17 benign scenarios × 62 attacker cases) and cannot be
+enlarged — so the injecagent held-out fold **remains the weakest-powered** (17 negatives / 17 clusters, below
+the ~24–50-cluster comfort floor for nominal bootstrap coverage) and is read **indicative-only**, not
+headline-driving. The improvement: its ROC-AUC CI is now well-defined.
+
+### (b) Inference layer (finalized)
+
+- **Gate = the single pre-registered aggregate `Gx(lora)` CI per arm** → no multiplicity on the verdict. The
+  per-dialect permutation p-values are reported **uncorrected, as diagnostics only**; no per-dialect
+  significance is claimed from them (any such claim, if ever made, would use Holm–Bonferroni).
+- **Bootstrap = label-stratified cluster** (resample positive- and negative-clusters separately within each
+  held-out dialect — preserves prevalence, never single-class), ≥10 000 iters, one-sided 95 % percentile CI.
+  **Lead = the per-dialect table; no cross-fold n=4 aggregate bootstrap** (below the ~24–50-cluster coverage
+  floor; the few-clusters literature). Seed-aggregation + permutation-test construction + iteration counts
+  **match `../attack-type-lodo/falsify_carrier_lodo.py`** (single source of truth; verified at build).
+
+### (c) Run conditions (finalized)
+
+- **Conditions:** B− (train = K−1 indirect only) and B+ (= + the Arm-A direct base) × **natural-mix** and
+  **dialect-balanced** (downsample each train dialect to the smallest). **Primary verdict = B− natural-mix**
+  (the faithful, well-powered test of H_dialect — B−'s ~30k-row ~50 %-benign pool is not under-trained);
+  B+ − B− = the direct-data-bridging contrast (links to Arm A); dialect-balanced = the dominance robustness
+  check. The primary-condition choice gates nothing in B2.3 and is reconfirmable at the lora rung.
+- **Rungs / compute:** tfidf (CPU) + frozen **ModernBERT-base on the local RTX 2070S, fp16** (free) ×**≥3
+  seeds**; lora → RunPod (B3). All rungs see the same head+tail-truncated raw text; M1 grids; `val_frac=0.2`;
+  `contexts_per_attack=12`.
+- **E8 long docs:** browsesafe / fujitsu scored by **chunking into 512-token windows + max-pool** per detector
+  (the steel-man "are deployed guards blind?" test).
+- **Sequencing:** B2.3 = Arm-B **B− only** (B+ needs the Arm-A direct base → built at B2.4). **Arm-A
+  positive/negative construction is deferred to B2.4.**
+
+### (d) Leakage gate — re-confirmed with the new negatives
+
+Re-run after the InjecAgent re-source: **still zero cross-dialect leakage** (0 exact, 0 near-dup ≥0.8 across
+all 4 folds; train/test sizes unchanged) — `B2_leakage/leakage_gate.json`.
+
+**Nothing in (a)–(d) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
+½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels.**
