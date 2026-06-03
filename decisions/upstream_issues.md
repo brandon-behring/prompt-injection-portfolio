@@ -120,6 +120,22 @@ Surfaced while preparing the paid Lane-1 LoRA launch (`scripts/runpod_sweep.py -
 
 ---
 
+## Dogfooding findings — Phase-2 dataset-universe EDA (2026-06-03) — DRAFT, NOT YET FILED (user-led)
+
+Surfaced while EDA-gating the Phase-2 new datasets. Per the present-first discipline, public issue filing is
+**user-led** — these are **drafted repros awaiting your go to file** (`gh issue create --repo
+brandon-behring/eval-toolkit --label enhancement`). Both are genuine missing primitives that forced a local
+one-off in the (ruff-excluded) `experiments/eda/` drivers; neither belongs in portfolio long-term.
+
+| # | Repo | Friction surfaced by dogfooding | Proposed primitive | State |
+|---|------|---------------------------------|--------------------|-------|
+| DF-7 | eval-toolkit | `loaders.HFDatasetsLoader` assumes the HF Dataset Viewer / `load_dataset` works. `youbin2014/JailbreakDB` has a **broken Viewer** (500 "generation failed"; parquet-export job failed) → `load_dataset` cannot read it; it ships as two raw multi-line CSVs (~1.54M records). Also `perplexity-ai/browsesafe-bench` rows are ~46–140 KB HTML (34K tokens) and the in-scope corpora include multi-GB sets — loading full into memory to then sample is wasteful. Had to hand-roll a local `custom_csv_loader` (+ the pre-existing local `custom_parquet_loader`) in `experiments/eda/survey_v2.py` that reads via the HF `resolve/` URL **or** a local snapshot, with **memory-bounded per-chunk Bernoulli sampling**. | `eval_toolkit.loaders.RawFileLoader` (or a `streaming=`/`sample_rows=` mode on a CSV/parquet loader): Viewer-independent raw-file read (resolve-URL or local path), with an optional memory-bounded representative sample for multi-GB / multi-M-row corpora. | **DRAFT — not filed** |
+| DF-8 | eval-toolkit | `eval_toolkit.leakage` checks (`CrossSplitLeakageCheck`) and `text_dedup.cross_dedup_pairs` are **in-memory** (both sides as `list[str]`). To leakage-gate JailbreakDB (~1.54M records) vs a ~68K probe (our jackhhao/shen/jbb), neither side composition fits the in-memory pair-finder at scale. Had to hand-roll `experiments/eda/jailbreakdb_leakage_scan.py`: **exact normalized-hash membership over a stream** + `MinHashLSHStrategy` near-dup on a bounded sample, asymmetric (index the small probe, stream the big corpus). | `eval_toolkit.leakage` streaming/asymmetric variant: index a small reference set, **stream** a large corpus, report exact + MinHash-near overlap **per reference corpus**. Reuses the existing `MinHashLSHStrategy` + `normalize_text_for_dedup` + `sha256_text` (so it's an orchestration layer, not new core). | **DRAFT — not filed** |
+
+*(Cleanup companion, not an upstream gap: portfolio's `experiments/eda/cross_dataset_geometry.py` had local re-implementations of `proxy_a_distance` (as `pad()`) and a cross-source near-dup (`cross_dataset_neardup()`) that DUPLICATE existing upstream — `eval_toolkit.eda.proxy_a_distance` + `eval_toolkit.text_dedup.audit_source_label_similarity`. Resolved in-portfolio by consuming the upstream primitives — no issue needed.)*
+
+---
+
 ## Library-first invariant — restatement
 
 - 4 load-bearing libraries are infrastructure for multiple consumers; portfolio
