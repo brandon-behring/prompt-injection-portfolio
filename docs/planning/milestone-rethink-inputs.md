@@ -14,7 +14,7 @@ that session.
   `lora` −0.003 FALSIFIED** — `T` collapses monotonically as capacity rises.
 - **The headline reframe:** the OOD wall is a property of the **representation, not the task** — real for
   lexical / frozen-embedding detectors, **dissolved by end-to-end LoRA** (uniform test AUPRC 0.98–0.999
-  across attack types, held-out included). The pre-registered **S2 encoder-transfer caveat, realized**.
+  across attack types, held-out included). A **capacity-dependence** effect (S2 pre-registered the frozen-encoder transfer, verified at frozen; the LoRA dissolution is broader than S2's letter).
 - **`full_ft` §16 trigger RESOLVED — does not fire** (ADR-054 "Trigger-gate resolution"): LoRA is the
   measured M1 ceiling; more capacity adds no decision-relevant OOD signal. M1's modeling scope is closed.
 - **Cost:** $0.83 (base-budget; ADR-014 stays Reserved). Both runpod-deploy frictions filed (#116 rsync,

@@ -19,8 +19,7 @@
 
 Judged on `lora` per criteria Revision 2 → **FALSIFIED at the ceiling**. The pre-modeling collapse-ordering
 prediction (built on the carrier-dominated frozen MiniLM embedding) does **not** transfer to an end-to-end
-LoRA, which detects every attack type near-uniformly (test AUPRC 0.98–0.999). This is the **pre-registered
-S2 encoder-transfer caveat, realized** — credible because the rule + tail sets + judged rung were fixed and
+LoRA, which detects every attack type near-uniformly (test AUPRC 0.98–0.999). This is **capacity-dependence** (S2 pre-registered the frozen-encoder transfer, verified at frozen; the LoRA dissolution extends beyond S2's letter) — credible because the rule + tail sets + judged rung were fixed and
 write-gated before any LoRA datum existed (audit V1 confirmed the pre-registration order + clustering unit +
 leakage purge + write-gate all hold). Canonical:
 `experiments/eda/OOD_WALL_PREDICTION/{falsification_verdict.json, FINDINGS.md, criteria.md, results.json}`.
@@ -58,6 +57,6 @@ non-gating (outside `REQUIRED_RUNGS`; both verdict scripts glob only `*.predicti
 
 ## Formal-close checklist (deferred to the prose pass)
 - [ ] `results.md` — per-type AUPRC table + NotInject over-defense FPR (per-fold `metrics.json`) + val→test inflation
-- [ ] `decisions.md` — S2 encoder-transfer realized; capacity-dependent reading; Lane-2 → carrier-axis implication
+- [ ] `decisions.md` — capacity-dependent reading (S2 = frozen-encoder transfer verified; LoRA dissolution beyond S2's letter); Lane-2 → carrier-axis implication
 - [ ] 3 book fragments — `book/src/content/fragments/lane-1/{methodology,results,interpretation}.mdx`
 - [ ] flip MANIFEST `lane-1.state` → `closed`

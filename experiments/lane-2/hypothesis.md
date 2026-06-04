@@ -13,29 +13,43 @@ status: skeleton
 
 ## Question
 
-Does adding indirect-injection training data overcome (a) the active-harm
-LoRA pattern from submission's direct-injection training AND (b) backbone-
-invariant OOD limit per v1.1.2 DeBERTa null? Per Round 15 Q1: parameter
-budget held at LoRA-only (no full-FT); two loss variants tested in
-parallel (CE + Recall@LowFPR). All comparator baselines (TF-IDF + frozen-
-probe + reference scorers) share the same training corpus per Round 16 Q1.
+**Re-pointed to the carrier axis per [ADR-055](../../decisions/ADR-055-post-m1-re-ladder-multi-axis-spine.md)
+Decision 2 (Round 30); method unchanged.** M1 answered the attack-type axis (end-to-end LoRA already
+generalizes near-uniformly across held-out attack types — §6.5 FALSIFIED), and the carrier-LODO M2
+pre-flight sized the live gap: a **residual, capacity-attenuated carrier wall concentrated at the
+*table* carrier** (aggregate G(lora)=+0.067, **+0.205 at table**; email/code close —
+`experiments/carrier-lodo/FINDINGS.md`).
+
+Does **carrier-diverse indirect-injection training data** close that residual carrier wall — i.e.
+lift held-out-carrier (esp. table) detection toward the in-distribution ceiling — under end-to-end
+LoRA? Per Round 15 Q1: parameter budget held at LoRA-only (no full-FT); two loss variants tested in
+parallel (CE + Recall@LowFPR). All comparator baselines (TF-IDF + frozen-probe + reference scorers)
+share the same training corpus per Round 16 Q1. **Cheap §16 optional secondary:** confirm
+attack-type generalization persists under the Lane-2 recipe (M1 showed it holds at the `lora` ceiling).
 
 ## 3-way outcome pre-commitment
 
-- **H1 (positive)**: Both LoRA loss variants lift to non-negative AUPRC
-  delta vs frozen-probe on pooled OOD with CI clearing zero. Indirect
-  training data overcomes both prior limits; the OOD wall is data-bound
-  (counter-evidence to backbone-dominant verdict).
-- **H0 (data-bottleneck-partial)**: One LoRA variant lifts; the other
-  does not. Loss-function asymmetry distinguishes the two recipes.
-- **H∅ (null)**: Both LoRA variants still produce negative AUPRC deltas
-  vs frozen-probe. The OOD wall is confirmed structural beyond data
-  choice; the active-harm LoRA pattern persists with indirect-injection
-  training data. Methodology lesson: current detector framing has a
-  hard ceiling.
+Measured as the **carrier-LODO gap** (held-out-carrier val→test ROC-AUC drop, per
+`experiments/carrier-lodo/criteria.md`; the **table** carrier is the live residual), each of
+CE + Recall@LowFPR vs the same-corpus frozen-probe:
+
+- **H1 (positive — carrier wall is data-bound)**: carrier-diverse training closes the residual
+  table-carrier gap (held-out-carrier ROC-AUC drop → CI clears zero from above) for at least the CE
+  variant. The residual carrier wall is a *data-diversity* limit, surmountable with carrier-diverse
+  indirect data + capacity.
+- **H0 (partial / loss-asymmetric)**: one loss variant closes the table gap, the other does not —
+  loss-function asymmetry distinguishes the recipes on the hard carrier.
+- **H∅ (null — residual carrier wall is structural)**: both variants leave a statistically-real
+  table-carrier gap. The residual wall is structural at the table carrier beyond data choice + LoRA
+  capacity. Methodology lesson: carrier (esp. tabular-context) generalization has a hard ceiling for
+  encoder detectors.
 
 ## Prior evidence references
 
+- **Carrier-LODO M2 pre-flight (`experiments/carrier-lodo/`): SMALL-THROUGHOUT — the carrier wall is
+  capacity-attenuated (frozen +0.167 → lora +0.067) with a residual +0.205 at the table carrier.
+  This is the gap Lane 2 targets; the spine ([ADR-055](../../decisions/ADR-055-post-m1-re-ladder-multi-axis-spine.md))
+  is multi-axis capacity-dependent.**
 - Submission ADR-075 (canonical; supersedes ADR-050 R2 + ADR-052): full-FT
   OOD drop methodologically load-bearing
 - Submission v1.1.2 DeBERTa null result: backbone-invariance evidence

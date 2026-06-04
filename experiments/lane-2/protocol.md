@@ -9,6 +9,15 @@ status: skeleton
 
 # Lane 2 — Protocol
 
+> **Re-pointed to the carrier axis per [ADR-055](../../decisions/ADR-055-post-m1-re-ladder-multi-axis-spine.md)
+> Decision 2 (Round 30); LoRA-only method + 2-variant loss unchanged
+> ([ADR-043](../../decisions/ADR-043-lane-2-lora-only-and-baseline-expansion.md)).** Headline axis =
+> **carrier generalization** — close the residual **table**-carrier wall (+0.205) the carrier-LODO M2
+> pre-flight sized (`experiments/carrier-lodo/FINDINGS.md`: SMALL-THROUGHOUT, capacity-attenuated).
+> Attack-type generalization is a cheap §16 optional secondary (M1 showed it holds). Headline eval =
+> **carrier-LODO** (held-out carrier, ROC-AUC gap) reusing
+> `experiments/attack-type-lodo/{folds.py, falsify_carrier_lodo.py}`, not pooled OOD.
+
 ## Phases
 
 - **M2**: `dataset-synthesize` skill (research_toolkit MR-3) + Opus audit
