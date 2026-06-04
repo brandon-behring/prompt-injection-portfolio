@@ -16,6 +16,12 @@ Scoring recipe (mirrors ``run_v10_probes.score_texts``): malicious = ``1 − P(b
 resolved from ``id2label``. The probes are untrained, so a probe's score for a given text is
 deterministic; we score the **seed-0 test set** as the representative reference column.
 
+Reporting discipline (audit 2026-06): report this column with **AUROC + per-class means**, not
+AUPRC alone. The BIPIA LODO test sets are ~93% positive, so chance AUPRC ≈ 0.92 — a direct-trained
+probe blind to indirect injection (e.g. ProtectAI: mean attack 0.259 < mean benign 0.262) still
+scores AUPRC ≈ 0.92 while its AUROC ≈ 0.44 (below chance). AUPRC at this prevalence flatters a
+scope-blind probe to look like a 0.92 separator; AUROC / class-means reveal the scope-blindness.
+
 Run::
 
     python experiments/attack-type-lodo/reference_scorers.py --out experiments/attack-type-lodo/results
