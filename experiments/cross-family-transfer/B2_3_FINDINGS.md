@@ -103,11 +103,14 @@ shift, browsesafe, leaves a +0.44 wall). Honest residue: browsesafe carries a sm
   +0.46 wall). The magnitude lives in the bootstrap CI; do **not** read `perm_p = 0` as "wall confirmed."
 - **bipia (3) and injecagent (17) are negative-cluster-poor** → coarser neg-side CIs; browsesafe/fujitsu are
   well-powered. injecagent stays the stated low-power, indicative-only fold.
-- **Bootstrap is currently the hand-rolled serial `falsify_dialect_lodo` loop.** The parallel, label-stratified
-  upstream replacement (`eval_toolkit.bootstrap.cluster_bootstrap_ci`, DF-9) is filed + PR'd
-  ([eval-toolkit#89](https://github.com/brandon-behring/eval-toolkit/issues/89) /
-  [#90](https://github.com/brandon-behring/eval-toolkit/pull/90)); consumption here is **release-gated** (the
-  method will be re-locked on the upstream primitive before B3).
+- **Bootstrap re-derived on the upstream primitive (2026-06-04).** The headline `Gx` point estimates +
+  CI-low were **independently reproduced** on `eval_toolkit.bootstrap.stratified_cluster_bootstrap_ci`
+  (v1.8.0, DF-10 — the composite multi-stratum generalisation; the single-block `cluster_bootstrap_ci`
+  DF-9/v1.7.0 could not express the seed-averaging): **point EXACT, CI-low within MC noise** (bipia/injecagent
+  Δ ≤ 0.0010 ≪ the 0.05 SESOI), directional reading unchanged — see
+  [`experiments/REPRODUCTION_2026-06/`](../../REPRODUCTION_2026-06/README.md). The committed numbers here
+  remain the serial `falsify_dialect_lodo` reference; the production loop is unchanged (re-locking it onto the
+  primitive for parallel future runs is a separate, optional follow-up).
 
 ## The open question (deferred — the point of the experiment)
 

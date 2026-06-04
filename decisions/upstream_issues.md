@@ -151,6 +151,17 @@ Per the user directive (2026-06-04) this is filed upstream, not worked around lo
 
 *Side finding (separate, pre-existing — not in PR #90):* `tests/benchmarks/test_kernel_benchmarks.py` calls `bootstrap_ci(..., seed=…)` / `paired_bootstrap_diff(..., seed=…)` but those migrated to `rng=` (SPEC 7) → 2 bootstrap benchmark tests `TypeError` on the nightly-benchmarks workflow (excluded from PR CI). Trivial `seed=`→`rng=` fix; noted in #89, separate one-line PR offered.
 
+**DF-10 (follow-on to DF-9, surfaced 2026-06-04 during the reproduction audit).** Consuming
+`cluster_bootstrap_ci` (DF-9, v1.7.0) revealed it is **single-block** and cannot express the
+**seed-averaging** all three LODO estimators do *inside* the bootstrap (`Gx = val − mean_seed(test_roc)`;
+carrier additionally means over carriers; §6.5 a composite top−bottom `T`). So the single-block primitive
+fits **none** of the three sites — an honest mis-scope on the DF-9 PR. The DF-9 "consumption" plan is
+**superseded**: the correct primitive is the multi-stratum generalisation below.
+
+| # | Repo | Friction surfaced by dogfooding | Proposed primitive | State |
+|---|------|---------------------------------|--------------------|-------|
+| DF-10 | eval-toolkit | `cluster_bootstrap_ci` (v1.7.0) is **single-block** → cannot express the seed-averaged / multi-group composite statistics the real LODO estimators bootstrap (dialect `val − mean_seed`; carrier mean-over-carriers; §6.5 top−bottom `T`). | `eval_toolkit.bootstrap.stratified_cluster_bootstrap_ci(strata, per_stratum_metric, combine, *, resample_labels, …)` — a composite statistic reduced over independently-resampled cluster **strata** (`strata={key:(y,score,groups)}`); `cluster_bootstrap_ci` = single-stratum identity-reduce special case; parallel + `n_jobs`-reproducible. | **released-v1.8.0 + consumed + reproduced** ([#92](https://github.com/brandon-behring/eval-toolkit/pull/92) merged `7284365`; [release v1.8.0](https://github.com/brandon-behring/eval-toolkit/releases/tag/v1.8.0); **PyPI 1.8.0 live**, 2026-06-04; pin `>=1.8`): fn + 11 tests (single-stratum-equivalence / seed-averaged / composite-`T` / n_jobs-reproducibility / validation) + `__all__`/`_EXPORTS`/CHANGELOG/golden; ruff + mypy-strict + doctests green. **Consumed in the reproduction audit** (`experiments/REPRODUCTION_2026-06/`): all 3 LODO verdicts (dialect 8/8 · carrier 3/3 incl. lora · §6.5 lora FALSIFIED) **re-derived — point EXACT, CI within MC noise (Δ ≤ 0.001)**. Production `falsify_*` loops unchanged (optional parallel re-lock = a future follow-up). |
+
 ---
 
 ## Library-first invariant — restatement

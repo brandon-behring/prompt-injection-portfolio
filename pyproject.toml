@@ -25,7 +25,11 @@ dependencies = [
     # upstream + DOGFOODED in Phase-3 pre-modeling EDA (experiments/eda/ — the
     # OOD-wall prediction's V5 + V9). Extends the >=1.5 floor (Job-1 eda #83 +
     # schema-aware HFDatasetsLoader #85). Lane code (M1+) still targets the frozen v1.x surface.
-    "eval-toolkit[probes,losses]>=1.6",
+    # Floor >=1.8 (2026-06-04): adds `bootstrap.stratified_cluster_bootstrap_ci` (DF-10, #92) — the
+    # composite multi-stratum cluster bootstrap that fits the seed-averaged LODO estimators (the
+    # v1.7.0 single-block `cluster_bootstrap_ci` (DF-9, #90) could not). Consumed to re-lock +
+    # reproduce the 3 LODO bootstraps (attack-type §6.5 / carrier / dialect).
+    "eval-toolkit[probes,losses]>=1.8",
     # research_toolkit is consumed as TOOLING — the dossier-audit validators +
     # Claude skills — NOT a Python import, so it is deliberately NOT a dependency
     # here (ADR-051). `make dossier-audit` bootstraps a repo-local clone pinned to

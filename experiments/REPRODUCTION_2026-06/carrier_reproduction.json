@@ -1,0 +1,44 @@
+{
+  "axis": "carrier",
+  "n_boot": 5000,
+  "ci_tol": 0.02,
+  "rows": [
+    {
+      "rung": "tfidf",
+      "serial_g": -0.15584481863259855,
+      "new_G": -0.15584481863259855,
+      "point_exact_match": true,
+      "serial_ci_low": -0.15795076805216732,
+      "new_ci_low": -0.15799892903297752,
+      "ci_low_drift": 4.816098081020237e-05,
+      "ci_within_tol": true,
+      "sign_unchanged": true,
+      "reproduced": true
+    },
+    {
+      "rung": "frozen",
+      "serial_g": 0.1670102581592786,
+      "new_G": 0.1670102581592786,
+      "point_exact_match": true,
+      "serial_ci_low": 0.1633914938459248,
+      "new_ci_low": 0.16324559955744655,
+      "ci_low_drift": 0.0001458942884782488,
+      "ci_within_tol": true,
+      "sign_unchanged": true,
+      "reproduced": true
+    },
+    {
+      "rung": "lora",
+      "serial_g": 0.0670170359592001,
+      "new_G": 0.0670170359592001,
+      "point_exact_match": true,
+      "serial_ci_low": 0.06394663350717454,
+      "new_ci_low": 0.06409910330106229,
+      "ci_low_drift": 0.0001524697938877495,
+      "ci_within_tol": true,
+      "sign_unchanged": true,
+      "reproduced": true
+    }
+  ],
+  "all_reproduced": true
+}

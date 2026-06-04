@@ -183,3 +183,23 @@ $250 base « $350 hard cap is untouched; [ADR-014](ADR-014-cost-contingency-unlo
 "**pre-registration owed**" Consequence (`experiments/carrier-lodo/criteria.md`) → **discharged**
 (Rev 1 + Rev 2, dated pre-run). Decision 5's "the decision it answers" → **neither pole**; the third
 pre-registered outcome (`SMALL-THROUGHOUT`).
+
+## Reproduction stamp + dialect open-axis — 2026-06-04
+
+**All three axes' bootstrap verdicts independently re-derived.** A consolidation pass reproduced the
+attack-type §6.5 (FALSIFIED), carrier (SMALL-THROUGHOUT), and dialect (directional) bootstrap verdicts
+on the released, tested upstream primitive `eval_toolkit.bootstrap.stratified_cluster_bootstrap_ci`
+(v1.8.0 — the composite multi-stratum generalisation; **DF-10**, after the v1.7.0 single-block
+`cluster_bootstrap_ci` proved unable to express the seed-averaging these estimators do *inside* the
+bootstrap): **point estimates EXACT, CI bounds within MC noise (Δ ≤ 0.001), conclusions unchanged**
+(`experiments/REPRODUCTION_2026-06/`). The spine now rests on independently re-derived numbers. The
+production `falsify_*` loops are unchanged (an optional parallel re-lock onto the primitive is a tracked
+follow-up — it does not affect any verdict).
+
+**Dialect transfer registered as a fourth, OPEN/directional axis.** Within-indirect dialect-LODO (B2.3,
+cheap rungs, `B2_3_FINDINGS.md`): the frozen-rung transfer walls **persist or grow** (browsesafe `Gx`
++0.46 with test ≈ chance; fujitsu +0.15 → +0.35; injecagent the no-wall exception) — but a *frozen*
+encoder cannot re-tokenize the carrier, so its **`lora` verdict is OPEN** (B3-gated; a separate
+present-first go). Per the carrier-amendment-after-verdict precedent, the **formal dialect
+capacity-dependence amendment is deferred until its `lora` verdict** — this note registers the axis as
+open/directional, *not* a spine claim.

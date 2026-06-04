@@ -1,0 +1,104 @@
+{
+  "axis": "dialect",
+  "n_boot": 10000,
+  "ci_tol": 0.02,
+  "rows": [
+    {
+      "fold": "bipia",
+      "rung": "tfidf",
+      "serial_Gx": 0.3533454049141389,
+      "new_Gx": 0.3533454049141389,
+      "point_exact_match": true,
+      "sign_unchanged": true,
+      "ci_checked": true,
+      "serial_ci_low": 0.3009769871804827,
+      "new_ci_low": 0.30158706428193366,
+      "ci_low_drift": 0.0006100771014509454,
+      "ci_within_tol": true,
+      "reproduced": true
+    },
+    {
+      "fold": "browsesafe",
+      "rung": "tfidf",
+      "serial_Gx": 0.46070311134373954,
+      "new_Gx": 0.46070311134373954,
+      "point_exact_match": true,
+      "sign_unchanged": true,
+      "ci_checked": false,
+      "reproduced": true
+    },
+    {
+      "fold": "fujitsu",
+      "rung": "tfidf",
+      "serial_Gx": 0.1515064808050186,
+      "new_Gx": 0.1515064808050186,
+      "point_exact_match": true,
+      "sign_unchanged": true,
+      "ci_checked": false,
+      "reproduced": true
+    },
+    {
+      "fold": "injecagent",
+      "rung": "tfidf",
+      "serial_Gx": -0.03578310762227577,
+      "new_Gx": -0.03578310762227577,
+      "point_exact_match": true,
+      "sign_unchanged": true,
+      "ci_checked": true,
+      "serial_ci_low": -0.043038381648394686,
+      "new_ci_low": -0.04292676204799295,
+      "ci_low_drift": 0.00011161960040173557,
+      "ci_within_tol": true,
+      "reproduced": true
+    },
+    {
+      "fold": "bipia",
+      "rung": "frozen",
+      "serial_Gx": 0.35586985306865015,
+      "new_Gx": 0.35586985306865015,
+      "point_exact_match": true,
+      "sign_unchanged": true,
+      "ci_checked": true,
+      "serial_ci_low": 0.27922369247381945,
+      "new_ci_low": 0.27823918657988617,
+      "ci_low_drift": 0.0009845058939332851,
+      "ci_within_tol": true,
+      "reproduced": true
+    },
+    {
+      "fold": "browsesafe",
+      "rung": "frozen",
+      "serial_Gx": 0.4589904843753754,
+      "new_Gx": 0.4589904843753754,
+      "point_exact_match": true,
+      "sign_unchanged": true,
+      "ci_checked": false,
+      "reproduced": true
+    },
+    {
+      "fold": "fujitsu",
+      "rung": "frozen",
+      "serial_Gx": 0.3542528658648081,
+      "new_Gx": 0.3542528658648081,
+      "point_exact_match": true,
+      "sign_unchanged": true,
+      "ci_checked": false,
+      "reproduced": true
+    },
+    {
+      "fold": "injecagent",
+      "rung": "frozen",
+      "serial_Gx": -0.03396006569730592,
+      "new_Gx": -0.03396006569730592,
+      "point_exact_match": true,
+      "sign_unchanged": true,
+      "ci_checked": true,
+      "serial_ci_low": -0.03743887657649625,
+      "new_ci_low": -0.03743887657649625,
+      "ci_low_drift": 0.0,
+      "ci_within_tol": true,
+      "reproduced": true
+    }
+  ],
+  "all_reproduced": true
+}

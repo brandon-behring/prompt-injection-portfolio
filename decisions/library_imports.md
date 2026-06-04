@@ -15,7 +15,16 @@ surface verified via Day 3a step 4 Python REPL smoke-test
 
 ---
 
-## eval-toolkit (PyPI; floor `[probes,losses]>=1.6`)
+## eval-toolkit (PyPI; floor `[probes,losses]>=1.8`)
+
+**Reproduction audit (2026-06-04):** floor advanced `>=1.6` → `>=1.8` across two upstream contributions
+this session, both consumed in the bootstrap **reproduction audit** (`experiments/REPRODUCTION_2026-06/`):
+`>=1.7` added `bootstrap.cluster_bootstrap_ci` (DF-9, #90 — label-stratified single-block cluster
+bootstrap) and `>=1.8` added `bootstrap.stratified_cluster_bootstrap_ci` (DF-10, #92 — the composite
+**multi-stratum** generalisation that actually fits the seed-averaged LODO estimators; the single-block
+one could not). Both v1.7.0/v1.8.0 published to PyPI via Trusted Publishing (OIDC; receipts verified).
+**DOGFOODED:** the new primitive re-derived all 3 LODO verdicts (dialect/carrier/§6.5) — point EXACT, CI
+within MC noise. Production `falsify_*` loops unchanged (optional parallel re-lock = future follow-up).
 
 **Round 28 (2026-05-29, ADR-051 EDA / Phase 3):** floor advanced `>=1.5` → `[probes,losses]>=1.6` to
 consume the **Tier-2 `eda` Job-2 + Job-3 modules**, both built upstream this session: `lexical_association`

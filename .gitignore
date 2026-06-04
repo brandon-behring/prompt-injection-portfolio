@@ -86,5 +86,8 @@ experiments/cross-family-transfer/*.log
 # dataset-auditor per-dataset scratch JSON (fan-out --out outputs; regenerated)
 experiments/eda/_survey/
 
+# Reproduction audit scratch logs (the *.json results + scripts + README ARE committed)
+experiments/REPRODUCTION_2026-06/*.log
+
 # Claude Code session lock (runtime artifact)
 .claude/scheduled_tasks.lock

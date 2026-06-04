@@ -1,0 +1,18 @@
+{
+  "axis": "attack_type_6.5",
+  "n_boot": 5000,
+  "ci_tol": 0.02,
+  "row": {
+    "rung": "lora",
+    "serial_T": -0.0030903498559000653,
+    "new_T": -0.0030903498559000653,
+    "point_exact_match": true,
+    "serial_ci_low": -0.007454300196182961,
+    "new_ci_low": -0.006718932638383768,
+    "ci_low_drift": 0.0007353675577991929,
+    "ci_within_tol": true,
+    "verdict_unchanged": true,
+    "reproduced": true
+  },
+  "reproduced": true
+}
