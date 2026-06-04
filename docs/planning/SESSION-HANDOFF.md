@@ -1,6 +1,45 @@
+# Session handoff — 2026-06-04 — Phase B underway: pre-reg RATIFIED + Arm-B harness built + tfidf directional read DONE+PUSHED; FROZEN RUNG = the clean-session resume · [Phase-2 + M0/M1 arc below]
+
+> **🆕 LATEST (2026-06-04) — Phase B (cross-family + within-indirect dialect transfer) underway; RESUME = the frozen rung.**
+> Pre-reg **RATIFIED** (`c8248f4`) · Arm-B harness + leakage gate + criteria **Rev 1** (`5cb81f4`) · InjecAgent
+> re-cluster + **Rev 2** (`7d169a8`) · **B2.3 tfidf directional read DONE** (`e574912`) — **ALL PUSHED**
+> (`origin/session/2026-05-26-…`; branch in sync). Dir = `experiments/cross-family-transfer/`: `criteria.md`
+> (locked pre-reg + Rev 1+2) · `B2_3_FINDINGS.md` (tfidf result) · `falsify_dialect_lodo.py` + `run_b2_3.py` +
+> `e8_reference.py` (harness) · `assemble.py` + `folds_dialect.py` (data/folds). Per-fold parquet gitignored
+> (~650 MB); `summary.json` committed.
+>
+> **tfidf FINDING (directional — NOT a verdict):** a LARGE within-indirect dialect-transfer wall at the cheap rung
+> for **3/4 dialects** — browsesafe `Gx +0.46` (test ROC **0.535 ≈ chance**), bipia `+0.35`, fujitsu `+0.15`;
+> injecagent `−0.04` (no wall — the 17-negative low-power fold). CIs exclude 0; robust under dialect-balancing.
+> The pre-registered question — does **capacity** (frozen→lora) shrink these gaps — is what the frozen rung tests.
+>
+> **▶ RESUME — the frozen rung, in a clean session:**
+> 1. **Clear the GPU.** Local **RTX 2070S (8 GB) is SHARED with `research-kb` (~3.2 GB)** (`nvidia-smi`); frozen
+>    needs ~2 GB but crawls under contention. **NO subagents for this run** (the B2.3 build subagent ran away
+>    ~96 min/1317 calls + spawned a GPU-hog that survived `pkill`); run via a **tracked background Bash**, kill
+>    strays by **PID** (`pkill -f <script>` self-matches the issuing shell).
+> 2. **Frozen smoke first** (a frozen fold was never seen to finish — only timed out under contention):
+>    `uv run python experiments/cross-family-transfer/run_b2_3.py --dialects bipia --conditions natural --seeds 0 --rungs frozen --skip-e8`
+> 3. **Full sweep at the pre-registered ≥10k bootstrap, BOTH rungs** (~1–2 h; background):
+>    `PYTHONUNBUFFERED=1 uv run python experiments/cross-family-transfer/run_b2_3.py --rungs tfidf frozen --n-boot 10000 --n-perm 10000 > experiments/cross-family-transfer/B2_3_run.log 2>&1`
+>    (cached embedder reuses embeddings across seeds; redirect-masking bit me before → keep `PYTHONUNBUFFERED` + read the log).
+> 4. **E8** (`e8_reference.py`, chunk+max — BUILT but UNRUN): drop `--skip-e8`; cap-and-LOG if browsesafe/fujitsu
+>    scoring is impractically slow (no silent truncation).
+> 5. **Update `B2_3_FINDINGS.md` (frozen+E8) + commit.** Still **NO verdict** (lora-gated). Then **B2.4** (Arm A
+>    9-corpus direct→indirect rebuild + B+; pos/neg construction TBD) → **B3** paid lora (~$6 cap, `gpu-run-watcher`)
+>    → **B4** verdict (criteria Rev 1/2: ½·Gx(frozen) + 0.05 SESOI, lora-gated).
+>
+> **Read-first:** this block → plan `~/.claude/plans/use-the-following-handoff-iridescent-firefly.md` (full B2 spec
+> + ops lessons) → `experiments/cross-family-transfer/B2_3_FINDINGS.md` + `criteria.md` → memory
+> `[[dataset-strategy-rethink-and-acquisition]]`. **Working-style:** present-first; `/proceeding-now` (never
+> ExitPlanMode); **no subagents for long/GPU runs.** *(A weekly usage limit was hit 2026-06-04, resets 7 am ET —
+> why the frozen rung was deferred to a clean session.)*
+
+---
+
 # Session handoff — 2026-06-03 — dataset-universe Phase-2 EDA-gate DONE + pushed; experiment DESIGNED (E1–E8); Phase-A foundation-correction NEXT · [M0/M1 arc below]
 
-> **🆕 LATEST (2026-06-03, evening) — Phase-2 EDA-gate DONE + COMMITTED + PUSHED; experiment DESIGNED.**
+> **PRIOR (2026-06-03, evening) — Phase-2 EDA-gate DONE; experiment DESIGNED (superseded by the 2026-06-04 block above; kept for detail).**
 > Phase 2 (the plan in the block below) is complete. **8 new datasets EDA-gated** (materialize → survey →
 > geometry → leakage scan → content deep-dive); **3 commits PUSHED** (`71c8526` materialize+specs / `1482d8f`
 > EDA tooling / `b3068fd` findings+catalogue → `origin/session/2026-05-26-…`).
