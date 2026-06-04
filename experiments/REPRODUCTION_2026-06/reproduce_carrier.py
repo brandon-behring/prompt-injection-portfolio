@@ -36,7 +36,7 @@ _VERDICT = _REPO / "experiments" / "carrier-lodo" / "verdict.json"
 _CARRIERS = ("code", "email", "table")
 _RUNGS = ("tfidf", "frozen", "lora")
 _CI_TOL = 0.02
-_N_BOOT = 5_000  # plenty for the CI cross-check (point is n_boot-invariant; serial baseline used 10k)
+_N_BOOT = 5_000  # plenty for the CI cross-check (point is n_boot-invariant)
 _ONE_SIDED_CONF = 0.90
 
 
