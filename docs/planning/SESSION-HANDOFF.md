@@ -1,4 +1,45 @@
-# Session handoff — 2026-06-04 — Phase B underway: pre-reg RATIFIED + Arm-B harness built + tfidf directional read DONE+PUSHED; FROZEN RUNG = the clean-session resume · [Phase-2 + M0/M1 arc below]
+# Session handoff — 2026-06-04 (PM) — Consolidation DONE: `stratified_cluster_bootstrap_ci` v1.8.0 + ALL 3 LODO verdicts REPRODUCED + B2.3 frozen rung DONE · [Phase B / M0/M1 arc below]
+
+> **🆕 LATEST (2026-06-04 PM) — consolidation pass complete; the next EXPERIMENT axis is the open decision.**
+> This session: resumed + finished the **B2.3 frozen rung** (directional read in `B2_3_FINDINGS.md`: browsesafe
+> `Gx` +0.459 at chance / **fujitsu +0.354 GROWS** / bipia +0.356 / injecagent −0.034 no-wall), then ran a
+> **reproduction audit** — re-derive all 3 LODO bootstrap verdicts on a tested upstream primitive (distrust →
+> independent re-derivation, CPU-only).
+>
+> **Two eval-toolkit releases (PyPI live):** `cluster_bootstrap_ci` **v1.7.0** (DF-9, #90 — single-block) then,
+> after the audit found it **can't express the seed-averaging** the LODO estimators do inside the bootstrap
+> (`Gx = val − mean_seed`), **`stratified_cluster_bootstrap_ci` v1.8.0** (DF-10, #92 — the composite
+> **multi-stratum** primitive they actually need; the single-block one is its special case). Honest mis-scope,
+> corrected + on the record.
+>
+> **Reproduction (`experiments/REPRODUCTION_2026-06/`): all 3 re-derived — point EXACT, CI within MC noise
+> (Δ ≤ 0.001), conclusions unchanged:** dialect 8/8 (walls persist/grow) · carrier 3/3 incl. **lora
+> SMALL-THROUGHOUT** · §6.5 **lora FALSIFIED**. Records: README + 3 scripts + 3 JSON; B2.3 re-lock note; DF-10
+> ledger; `library_imports.md` floor `>=1.8` DOGFOODED; ADR-055 "reproduction stamp + dialect open-axis" note.
+> **Commits PUSHED:** `a7c0f4d` (reproduction + notes) + `69fa8cd` (ruff) + this handoff → `origin/session/2026-05-26-…`.
+>
+> **▶ NEXT (all user-led, present-first):**
+> 1. **The next EXPERIMENT axis — the deliberately-deferred decision** (the consolidation `/exploring-options`
+>    Q1 deferred it). Re-open fresh: `/exploring-options` over { **Arm-A** cross-family direct→indirect (B2.4) ·
+>    **dialect `lora`** verdict (B3, paid ~$6, `gpu-run-watcher`) · the **formal ADR-055 carrier amendment** }.
+>    The foundation is now re-locked + reproduced ⇒ the spine reflects re-derived numbers.
+> 2. **Optional production re-lock** (follow-up): refactor `falsify_dialect_lodo` / `falsify_carrier_lodo` /
+>    `falsify_clustered` to consume `stratified_cluster_bootstrap_ci` (parallel future runs; does NOT affect any
+>    verdict). Self-contained unit; the reproduction scripts already prove equivalence.
+> 3. **The held `v0.1.0` M0 close** (accounts-gated; unchanged).
+>
+> **Read-first:** this block → `experiments/REPRODUCTION_2026-06/README.md` → memory `[[bootstrap-reproduction-audit]]`
+> → the deferred-experiment context in the (now-superseded) Phase-B block just below. **Working-style:**
+> present-first; `/proceeding-now` (never ExitPlanMode); **run full `make ci` before pushing eval-toolkit**
+> (public-API golden on #90 + `black --check` on #92 each cost a CI round-trip; repo pre-commit gates gitleaks
+> only); no subagents for long/GPU runs.
+
+---
+
+# Session handoff — 2026-06-04 (AM, SUPERSEDED) — Phase B underway: pre-reg RATIFIED + Arm-B harness built + tfidf directional read DONE+PUSHED; FROZEN RUNG = the clean-session resume · [Phase-2 + M0/M1 arc below]
+
+> **⚠️ SUPERSEDED by the LATEST block above** — the frozen rung is now DONE (result in `B2_3_FINDINGS.md`) and
+> B2.3's verdicts were reproduced on `stratified_cluster_bootstrap_ci` v1.8.0. Kept for the Arm-B / B2.4 spec + ops detail.
 
 > **🆕 LATEST (2026-06-04) — Phase B (cross-family + within-indirect dialect transfer) underway; RESUME = the frozen rung.**
 > Pre-reg **RATIFIED** (`c8248f4`) · Arm-B harness + leakage gate + criteria **Rev 1** (`5cb81f4`) · InjecAgent
