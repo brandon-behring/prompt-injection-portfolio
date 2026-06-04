@@ -136,6 +136,23 @@ one-off in the (ruff-excluded) `experiments/eda/` drivers; neither belongs in po
 
 ---
 
+## Dogfooding findings — B2.3 cluster-bootstrap parallelism (2026-06-04)
+
+Surfaced while running the cross-family **dialect-LODO** cheap-rung sweep (`experiments/cross-family-transfer/`).
+The label-stratified **cluster** bootstrap for the transfer-gap CI (`Gx = val_roc − test_roc`, positive- and
+negative-clusters resampled separately) was **hand-rolled as a serial Python loop** in
+`falsify_dialect_lodo.per_dialect_gap` — and the same shape was previously hand-rolled in
+`falsify_carrier_lodo` (§6.5) and the attack-type LODO. Three call sites, one missing primitive ⇒ Rule of Three.
+Per the user directive (2026-06-04) this is filed upstream, not worked around locally.
+
+| # | Repo | Friction surfaced by dogfooding | Proposed primitive | State |
+|---|------|---------------------------------|--------------------|-------|
+| DF-9 | eval-toolkit | `eval_toolkit.bootstrap` ships **row-level** (`bootstrap_ci`), **fold-level** (`block_bootstrap_on_folds`), and **paired** (`paired_bootstrap_diff`, already `n_jobs`-parallel) bootstraps + analytic DeLong (`delong_roc_variance`) — but **no label-stratified cluster/group bootstrap**, the "missing middle" for clustered eval data (prompts sharing a payload; a doc contributing a poisoned + a benign row). DeLong assumes row-independence ⇒ under-covers clustered test sets. So portfolio hand-rolled a **serial** 10k-iter cluster bootstrap (using none of the upstream `parallel_map` + `spawn_seed_sequences` infra) in 3 LODO call sites — single-threaded on a 128-core box. | `eval_toolkit.bootstrap.cluster_bootstrap_ci(y_true, y_score, groups, statistic, *, resample_labels=(0,1), n_resamples, confidence, rng, n_jobs)` — resamples whole `groups` with replacement, unit = `(label, group)` (mixed-label groups split by label; `resample_labels=(1,)` = positives-only, negatives fixed = the carrier convention); percentile `BootstrapCI`; parallel via `parallel_map` + `spawn_seed_sequences` ⇒ **bit-identical across `n_jobs`**. | **issue-filed [#89](https://github.com/brandon-behring/eval-toolkit/issues/89) → pr-opened [#90](https://github.com/brandon-behring/eval-toolkit/pull/90)** (2026-06-04; branch `feat/cluster-bootstrap-ci`, commit `f6ce0e2`): fn + tests (unit/n_jobs-reproducibility/cluster-CI-wider-than-row/edge/doctest) + `__all__`/`_EXPORTS` + CHANGELOG `[Unreleased]`; ruff + mypy-strict + 11 tests + doctests green, coverage 92.6%. **Consumption release-gated** (PyPI-never-editable, pyproject:89): after merge + release + pin bump → consume in `falsify_dialect_lodo` + retrofit `falsify_carrier_lodo` (§6.5), re-lock method before B3. |
+
+*Side finding (separate, pre-existing — not in PR #90):* `tests/benchmarks/test_kernel_benchmarks.py` calls `bootstrap_ci(..., seed=…)` / `paired_bootstrap_diff(..., seed=…)` but those migrated to `rng=` (SPEC 7) → 2 bootstrap benchmark tests `TypeError` on the nightly-benchmarks workflow (excluded from PR CI). Trivial `seed=`→`rng=` fix; noted in #89, separate one-line PR offered.
+
+---
+
 ## Library-first invariant — restatement
 
 - 4 load-bearing libraries are infrastructure for multiple consumers; portfolio
