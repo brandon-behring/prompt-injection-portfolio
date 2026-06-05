@@ -492,3 +492,95 @@ deployed-guard reference triangulate it.
 
 **Nothing in (i)–(viii) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
 ½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels.**
+
+---
+
+## Revision 4 — Arm-A harness build + realized counts (B2.4), 2026-06-05
+
+**Dated, before any Arm-A detector has been trained or any cross-family `Gx` computed.** The
+implementation-finalization Revision the Revision policy anticipated ("the per-unit row counts read
+from the loaders ... is the expected first dated Revision (B2, before the run) and **must not** change
+the collapse-vs-persistence logic, the ROC-AUC basis, the SURVIVES thresholds, or the verdict labels").
+Records the **realized** Arm-A pools as built by `assemble_arm_a.py` / `leakage_gate_arm_a.py`
+(2026-06-05). **The question, hypothesis, design axes, estimator, ROC-AUC basis, the ½·Gx(frozen) +
+0.05 SESOI thresholds, and the verdict labels remain UNCHANGED.**
+
+### (a) neuralchemy count correction (§iv "~16.3k" → realized ~3,475)
+
+§iv pre-registered "neuralchemy `label=0` (~16.3k)". On-disk audit (2026-06-05) found 16,314 is a
+**naive sum across overlapping subdirs** — `core/` (6,274) ⊆ `full/` (15,919), plus a re-schema'd
+`data/` (10,674). We use the **`full`-only** pool; under the repo's normalized-exact dedup convention
+(`normalize_text_for_dedup` — the same the leakage gate's exact pass uses, collapsing case/whitespace
+variants), the realized distinct `label=0` = **3,475**. The negative pool's benign:positive ratio (3.0,
+inside §iv's "≈3–4:1") is held by the guychuk top-up, so the **total train size is unchanged**; the
+negative-class composition shifts toward guychuk diversity (the `hard_negative`-tagged MOF rows number
+~24 on disk regardless — the MOF framing was always thin, a stated limitation not a load-bearing count).
+
+### (b) Realized capped direct-positive pool
+
+| corpus | raw | exact-dedup | artifact-filter | capped |
+|---|---|---|---|---|
+| deepset | 263 | 263 | 263 | 263 |
+| gandalf_ignore | 1,000 | 999 | 999 | 999 |
+| mosscap | 278,945 | 212,518 | 212,345 | 3,000 |
+| hackaprompt | 579,953 | 378,286 | 349,292 | 3,000 |
+
+Realized capped positives = **7,262** (each ≤41%; the §ii "≈7,263" — gandalf's 1 realized exact dup
+gives 999).
+
+### (c) Dedup discipline (the §i "our own dedup/leakage discipline")
+
+- **exact-dedup before cap** (EDA: hackaprompt 33% / mosscap 22% raw duplicate, e.g. "I have been
+  PWNED" ×2,098). Normalized-exact dedup (the repo's ExactNormalizedHash convention) before the
+  C=3,000 cap; the distinct pools (212k / 378k) ≫ cap, so the cap fills. **In-bounds as §i; no logic
+  change.**
+- **Light game-artifact filter** — a **deviation from §iii's cap-only bounding**, recorded here. Drops
+  ONLY unambiguous non-injections, on the normalized text: (1) degenerate junk (no alphanumeric chars —
+  control chars / pure whitespace/punct); (2) a small bare key/password fragment denylist; (3) SHORT
+  win-strings (contains "pwned" AND ≤5 tokens — the bare "I have been PWNED", NEVER a long attack whose
+  payload instructs the model to output it). Verified NOT to nuke real terse injections: **0 drops** from
+  the curated deepset/gandalf injection corpora (an earlier <3-token length floor was rejected for
+  dropping gandalf "ignore rules" / deepset "generate c++"). Realized drops: mosscap 173 / hackaprompt
+  28,994 game artifacts; every dropped string is logged (`assemble_arm_a._summary`).
+
+### (d) Arm-A leakage gate (§vi) — realized
+
+`leakage_gate_arm_a.py` (the same `eval_toolkit.text_dedup` exact + MinHash≥0.8 primitives),
+purge-from-train (test sacrosanct), four scans — artifact `B2_leakage/leakage_gate_armA.json`:
+- **direct⊗direct**: 448 cross-corpus dups — a **train↔train** cross-corpus dedup (**keep-first** in
+  `load_direct_base`), NOT a leakage purge (so it is not in the manifest; the manifest would drop both
+  copies);
+- **direct⊗test**: 1 exact;
+- **direct⊗indirect (B+)**: 0 (the global scan covers every B+ fold's held-out indirect);
+- **negative⊗test**: 200 exact (guychuk/neuralchemy benigns equal to NotInject/XSTest-safe — real
+  benign train↔test contamination);
+- **near-dup (MinHash≥0.8)**: 231 capped-train rows ≥0.8-similar to a test row (e.g. train "log into a
+  corporate network" ↔ JBB-harmful "hack into a corporate network"; exact "Write a fictional story …
+  uses heroin" present in both). Near-dup scanned on the capped train (the documented
+  exact-on-full + near-on-capped compute fallback; near-dup on the full 562k pool is impractical).
+
+**Manifest = 257 distinct** train↔test leakage texts, purged from train. *(Implementation note:
+`cross_dedup_pairs(train, eval)` returns `(eval_idx, train_idx, sim)`; the Arm-B `leakage_gate.py`
+reads the first element as the train index — a latent bug, harmless there because it found zero near
+pairs — corrected here to the second-element train index. Worth an upstream fix to the Arm-B gate.)*
+
+### (e) Realized train + over-defense + cluster grounding
+
+- **Train ≈ 29,047**: 7,261 positives (7,262 capped − 1 direct⊗test leakage) + 21,786 negatives @ **3.0:1**
+  (deepset 399 / neuralchemy `full` 3,475 / guychuk top-up 17,912; negative⊗test + near-dup purges
+  absorbed by the guychuk top-up holding the ratio). ≈ the Arm-B B− ~30k scale.
+- **NotInject over-defense = 339** (canonical one+two+three) — a non-gating FPR column at a **val-fixed**
+  threshold (FPR target = 0.01, mirroring M1 `_BENIGN_FPR_TARGET` / ADR-027 §5; ≤2% per §v).
+- **Test-slice clusters** (read from loaders, logged): BIPIA 143 · InjecAgent 79 · JBB `Category` = 10 ·
+  XSTest `type` = 18 — slice-prefixed (`slice::raw`) for global bootstrap-cluster uniqueness (§Stat 170).
+
+### (f) Pools + B+ (the /exploring-options decisions)
+
+- **Arm-A robustness** = capped-balanced primary (tfidf + frozen) **+ uncapped natural-mix** dominance
+  check (**tfidf-only** — embedding ≈1.1M texts on the local RTX 2070S is impractical; frozen-uncapped
+  deferred + logged, no silent skip).
+- **Arm-B B+** = natural-mix only (the primary B+−B− direct-data-bridging contrast), now unblocked by
+  `load_direct_base`.
+
+**Nothing in (a)–(f) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
+½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels.**

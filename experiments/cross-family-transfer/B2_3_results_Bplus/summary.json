@@ -1,0 +1,147 @@
+{
+  "study": "cross-family-transfer B2.3 (Arm-B B+ cheap-rung directional read)",
+  "criteria": "experiments/cross-family-transfer/criteria.md (Rev 1/2; B+ per Rev 3/4)",
+  "note": "Directional only \u2014 NO verdict (lora-gated at B3). Primary = natural-mix (Rev 2 (c)). B+ = +Arm-A direct base; compare to B\u2212 for the B+\u2212B\u2212 direct-data-bridging contrast.",
+  "variant": "B+",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "dialects": [
+    "bipia",
+    "browsesafe",
+    "fujitsu",
+    "injecagent"
+  ],
+  "conditions": [
+    "natural"
+  ],
+  "rungs": [
+    "tfidf",
+    "frozen"
+  ],
+  "directional_table": {
+    "natural": {
+      "estimator": "dialect-LODO ROC-AUC gap Gx=val_roc-test_roc; label-stratified cluster bootstrap (positive- and negative-clusters resampled separately; criteria Rev 2 (b))",
+      "metric": "roc_auc (prevalence-invariant)",
+      "note": "B2.3 directional read (cheap rungs tfidf+frozen only); NO verdict \u2014 the SURVIVES/FALSIFIED/SMALL-THROUGHOUT verdict is lora-gated (B3). Per-dialect permutation p is an uncorrected diagnostic (criteria Rev 2 (b)).",
+      "n_boot": 10000,
+      "n_perm": 10000,
+      "rungs": [
+        "tfidf",
+        "frozen"
+      ],
+      "per_rung": {
+        "tfidf": {
+          "dialect_lodo_bipia": {
+            "val_roc": 0.96237109464342,
+            "test_roc": 0.5899364909781576,
+            "Gx": 0.3724346036652624,
+            "ci_low": 0.35199046114209376,
+            "ci_high": 0.41439712231944753,
+            "perm_p": 0.0,
+            "n_pos": 5040,
+            "n_neg": 468,
+            "n_pos_clusters": 140,
+            "n_neg_clusters": 3,
+            "n_seeds": 3
+          },
+          "dialect_lodo_browsesafe": {
+            "val_roc": 0.9945144362706322,
+            "test_roc": 0.5355263820830727,
+            "Gx": 0.4589880541875595,
+            "ci_low": 0.45449960063456313,
+            "ci_high": 0.46355135463915753,
+            "perm_p": 0.0,
+            "n_pos": 7297,
+            "n_neg": 7422,
+            "n_pos_clusters": 7297,
+            "n_neg_clusters": 7422,
+            "n_seeds": 3
+          },
+          "dialect_lodo_fujitsu": {
+            "val_roc": 0.8827748094975062,
+            "test_roc": 0.655295455478528,
+            "Gx": 0.22747935401897823,
+            "ci_low": 0.22392972090186358,
+            "ci_high": 0.23092722672059876,
+            "perm_p": 0.0,
+            "n_pos": 10943,
+            "n_neg": 10943,
+            "n_pos_clusters": 10943,
+            "n_neg_clusters": 10943,
+            "n_seeds": 3
+          },
+          "dialect_lodo_injecagent": {
+            "val_roc": 0.9599143853546813,
+            "test_roc": 0.9805967927968151,
+            "Gx": -0.020682407442133788,
+            "ci_low": -0.029854748105154302,
+            "ci_high": -0.009594860468885358,
+            "perm_p": 0.0,
+            "n_pos": 2108,
+            "n_neg": 17,
+            "n_pos_clusters": 62,
+            "n_neg_clusters": 17,
+            "n_seeds": 3
+          }
+        },
+        "frozen": {
+          "dialect_lodo_bipia": {
+            "val_roc": 0.9723861339027443,
+            "test_roc": 0.6226998117623118,
+            "Gx": 0.3496863221404325,
+            "ci_low": 0.28558837485541116,
+            "ci_high": 0.48150427764172127,
+            "perm_p": 0.0,
+            "n_pos": 5040,
+            "n_neg": 468,
+            "n_pos_clusters": 140,
+            "n_neg_clusters": 3,
+            "n_seeds": 3
+          },
+          "dialect_lodo_browsesafe": {
+            "val_roc": 0.9977490961102419,
+            "test_roc": 0.5414771098140992,
+            "Gx": 0.45627198629614263,
+            "ci_low": 0.45178511129367305,
+            "ci_high": 0.4607322690539788,
+            "perm_p": 0.0,
+            "n_pos": 7297,
+            "n_neg": 7422,
+            "n_pos_clusters": 7297,
+            "n_neg_clusters": 7422,
+            "n_seeds": 3
+          },
+          "dialect_lodo_fujitsu": {
+            "val_roc": 0.9189327761135688,
+            "test_roc": 0.42493238238735564,
+            "Gx": 0.4940003937262132,
+            "ci_low": 0.49032196230657227,
+            "ci_high": 0.49761636393297964,
+            "perm_p": 1.0,
+            "n_pos": 10943,
+            "n_neg": 10943,
+            "n_pos_clusters": 10943,
+            "n_neg_clusters": 10943,
+            "n_seeds": 3
+          },
+          "dialect_lodo_injecagent": {
+            "val_roc": 0.9673773081495011,
+            "test_roc": 0.8786694943632102,
+            "Gx": 0.08870781378629089,
+            "ci_low": 0.0361349819970288,
+            "ci_high": 0.1474811143778748,
+            "perm_p": 0.0,
+            "n_pos": 2108,
+            "n_neg": 17,
+            "n_pos_clusters": 62,
+            "n_neg_clusters": 17,
+            "n_seeds": 3
+          }
+        }
+      }
+    }
+  }
+}

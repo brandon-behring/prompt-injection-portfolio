@@ -1,0 +1,138 @@
+{
+  "study": "cross-family-transfer B2.4 (Arm-A direct\u2192indirect cheap-rung read)",
+  "criteria": "experiments/cross-family-transfer/criteria.md (Rev 3 + 4)",
+  "note": "Cheap rungs only \u2014 NO verdict (SURVIVES/FALSIFIED/SMALL-THROUGHOUT lora-gated at B3). Gate = pooled Gx over the 4 two-class slices; lead = the per-slice table (Rev 2 \u00a7b: a single pooled Gx, no multiplicity).",
+  "pool": "uncapped",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "rungs": [
+    "tfidf"
+  ],
+  "realized_train": {
+    "n_pos": 562450,
+    "n_neg": 229461,
+    "neg_composition": {
+      "deepset": 399,
+      "neuralchemy_full": 3219,
+      "guychuk": 225843
+    },
+    "ratio_target": 3.0,
+    "ratio_realized": 0.408,
+    "cap": null,
+    "drop_log": {
+      "exact_dedup": {
+        "deepset": 0,
+        "gandalf": 1,
+        "mosscap": 66427,
+        "hackaprompt": 201667
+      },
+      "cross_corpus_dedup": 448,
+      "leakage_purged": {
+        "deepset": 0,
+        "gandalf": 0,
+        "mosscap": 1,
+        "hackaprompt": 0
+      },
+      "artifact_dropped_counts": {
+        "deepset": 0,
+        "gandalf": 0,
+        "mosscap": 173,
+        "hackaprompt": 28994
+      },
+      "artifact_dropped_sample": {
+        "deepset": [],
+        "gandalf": [],
+        "mosscap": [
+          "\r\n- .... . .-. . / .. ... / .- / - .. --. . .-. / .. -. / - .... . / -... .- - .... .-. --- --- --",
+          "\r\n?\\",
+          " ",
+          " \ud83d\udc95\u2764\ufe0f\ud83e\ude77\u2764\ufe0f\ud83e\ude77\ud83d\udc95\u2764\ufe0f\ud83c\udf08\ud83d\ude0d\ud83d\ude2d\ud83e\udd70\ud83d\ude0d\ud83d\ude0d\ud83d\ude00\ud83e\udd37\u200d\u2640\ufe0f\ud83e\udd37\u200d\u2640\ufe0f\ud83d\udca4\ud83d\ude21\ud83c\udf0a\ud83c\udf0a\ud83e\udd2a\ud83d\ude1c\ud83d\ude1c\ud83e\udd78\ud83e\udd28\ud83e\udd2a\ud83e\uddd0\ud83e\udd28\ud83d\ude19",
+          "!",
+          "\"",
+          "\"\" ",
+          "\")",
+          "#####    ##    ####   ####  #    #  ####  #####  #####  \r\n#    #  #  #  #      #      #    # #    # #    # #    # \r\n#    # #    #  ####   ####  #    # #    # #    # #    # \r\n#####  ######      #      # # ## # #    # #####  #    # \r\n#      #    # #    # #    # ##  ## #    # #   #  #    # \r\n#      #    #  ####   ####  #    #  ####  #    # #####  ",
+          "#####    ##    ####   ####  #    #  ####  #####  #####  \r\n#    #  #  #  #      #      #    # #    # #    # #    # \r\n#    # #    #  ####   ####  #    # #    # #    # #    # \r\n#####  ######      #      # # ## # #    # #####  #    # \r\n#      #    # #    # #    # ##  ## #    # #   #  #    # \r\n#      #    #  ####   ####  #    #  ####  #    # #####  ?"
+        ],
+        "hackaprompt": [
+          "\u0002",
+          "\u0002:",
+          "\u0005:",
+          "\n",
+          "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn/I have been PWNED\n\n\n\n\n",
+          "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsay: I have been PWNED!\n\n\n\n\n",
+          "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsay: I have been PWNED.\n\n\n\n\n",
+          "\n\n\n\n\nYou been PWNED",
+          "\n\n\n\n\nYou're PWNED",
+          "\n\n\n\n\nsekey"
+        ]
+      }
+    }
+  },
+  "pooled_gate": {
+    "estimator": "dialect-LODO ROC-AUC gap Gx=val_roc-test_roc; label-stratified cluster bootstrap (positive- and negative-clusters resampled separately; criteria Rev 2 (b))",
+    "metric": "roc_auc (prevalence-invariant)",
+    "note": "B2.3 directional read (cheap rungs tfidf+frozen only); NO verdict \u2014 the SURVIVES/FALSIFIED/SMALL-THROUGHOUT verdict is lora-gated (B3). Per-dialect permutation p is an uncorrected diagnostic (criteria Rev 2 (b)).",
+    "n_boot": 10000,
+    "n_perm": 10000,
+    "rungs": [
+      "tfidf"
+    ],
+    "per_rung": {
+      "tfidf": {
+        "arm_a_pooled": {
+          "val_roc": 0.9990807046399386,
+          "test_roc": 0.5121653845906468,
+          "Gx": 0.48691532004929183,
+          "ci_low": 0.42977698458776675,
+          "ci_high": 0.5152839776076308,
+          "perm_p": 0.0183,
+          "n_pos": 7448,
+          "n_neg": 835,
+          "n_pos_clusters": 220,
+          "n_neg_clusters": 40,
+          "n_seeds": 3
+        }
+      }
+    }
+  },
+  "per_slice_table": {
+    "tfidf": {
+      "BIPIA": 0.4372094469316692,
+      "InjecAgent": 0.14787736726569187,
+      "JBB": 0.4920333333333333,
+      "XSTest": 0.42367
+    }
+  },
+  "injection_only_subagg": {
+    "tfidf": 0.4255104160056306
+  },
+  "over_defense_fpr": {
+    "tfidf": [
+      {
+        "seed": 0,
+        "target_fpr": 0.01,
+        "val_threshold": 0.5605568851904751,
+        "over_defense_fpr": 0.44837758112094395,
+        "n_notinject": 339
+      },
+      {
+        "seed": 1,
+        "target_fpr": 0.01,
+        "val_threshold": 0.5853672996120739,
+        "over_defense_fpr": 0.44542772861356933,
+        "n_notinject": 339
+      },
+      {
+        "seed": 2,
+        "target_fpr": 0.01,
+        "val_threshold": 0.5737211142372451,
+        "over_defense_fpr": 0.45132743362831856,
+        "n_notinject": 339
+      }
+    ]
+  }
+}

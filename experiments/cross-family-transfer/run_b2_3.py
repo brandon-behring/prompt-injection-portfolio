@@ -152,8 +152,13 @@ def run_condition(
     contexts_per_attack: int,
     out_dir: Path,
     embedder: _CachedFrozenEmbedder | None,
+    variant: fd.Variant = "B-",
 ) -> None:
-    """Run one training-composition condition: persist per-(rung,fold,seed) preds + metrics."""
+    """Run one training-composition condition: persist per-(rung,fold,seed) preds + metrics.
+
+    ``variant="B+"`` (decision 6; B2.4) prepends the Arm-A direct base to each fold's train (via
+    ``make_dialect_fold``, now that ``load_direct_base`` is built) for the B+−B− contrast.
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
     for seed in seeds:
         frame = asm.assemble(contexts_per_attack=contexts_per_attack, seed=seed)
@@ -166,7 +171,7 @@ def run_condition(
                 if condition == "dialect_balanced"
                 else frame
             )
-            fold = fd.make_dialect_fold(fold_frame, held, variant="B-", seed=seed, val_frac=0.2)
+            fold = fd.make_dialect_fold(fold_frame, held, variant=variant, seed=seed, val_frac=0.2)
             fold_name = f"dialect_lodo_{held}"
             fold_dir = out_dir / f"seed={seed}" / fold_name
             fold_dir.mkdir(parents=True, exist_ok=True)
@@ -185,7 +190,7 @@ def run_condition(
                     "rung": rung,
                     "fold": fold_name,
                     "condition": condition,
-                    "variant": "B-",
+                    "variant": variant,
                     "seed": seed,
                     "val_roc_auc": val_roc,
                     "recipe": recipe,
@@ -227,6 +232,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     p.add_argument("--conditions", nargs="+", default=list(CONDITIONS), choices=CONDITIONS)
     p.add_argument("--rungs", nargs="+", default=["tfidf", "frozen"], choices=["tfidf", "frozen"])
     p.add_argument("--contexts-per-attack", type=int, default=12)
+    p.add_argument(
+        "--variant",
+        choices=["B-", "B+"],
+        default="B-",
+        help="B+ (decision 6, B2.4) prepends the Arm-A direct base for the B+−B− contrast",
+    )
     p.add_argument("--out", type=Path, default=RESULTS_DIR)
     p.add_argument("--n-boot", type=int, default=fdl._N_BOOT)
     p.add_argument("--n-perm", type=int, default=fdl._N_PERM)
@@ -246,18 +257,26 @@ def main(argv: Sequence[str] | None = None) -> int:
         args.rungs = ["tfidf"]
         args.skip_e8 = True
 
+    # B+ (decision 6): natural-mix only; sibling results dir so it never overwrites B−.
+    if args.variant == "B+":
+        if args.conditions == list(CONDITIONS):
+            args.conditions = ["natural"]
+        if args.out == RESULTS_DIR:
+            args.out = RESULTS_DIR.parent / "B2_3_results_Bplus"
+
     embedder = (
         _CachedFrozenEmbedder(batch_size=args.frozen_batch_size) if "frozen" in args.rungs else None
     )
 
     folds = [f"dialect_lodo_{d}" for d in args.dialects]
     summary: dict[str, Any] = {
-        "study": "cross-family-transfer B2.3 (Arm-B B− cheap-rung directional read)",
-        "criteria": "experiments/cross-family-transfer/criteria.md (Rev 1/2)",
+        "study": f"cross-family-transfer B2.3 (Arm-B {args.variant} cheap-rung directional read)",
+        "criteria": "experiments/cross-family-transfer/criteria.md (Rev 1/2; B+ per Rev 3/4)",
         "note": (
-            "Directional only — NO verdict (lora-gated at B3). Primary condition = "
-            "B- natural-mix (criteria Rev 2 (c))."
+            "Directional only — NO verdict (lora-gated at B3). Primary = natural-mix (Rev 2 (c)). "
+            "B+ = +Arm-A direct base; compare to B− for the B+−B− direct-data-bridging contrast."
         ),
+        "variant": args.variant,
         "seeds": list(args.seeds),
         "dialects": list(args.dialects),
         "conditions": list(args.conditions),
@@ -275,6 +294,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             contexts_per_attack=args.contexts_per_attack,
             out_dir=cond_dir,
             embedder=embedder,
+            variant=args.variant,
         )
         table = fdl.directional_table(
             cond_dir, folds, rungs=args.rungs, n_boot=args.n_boot, n_perm=args.n_perm

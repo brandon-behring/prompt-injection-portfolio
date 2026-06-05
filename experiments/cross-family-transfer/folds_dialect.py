@@ -101,22 +101,40 @@ def assert_dialect_disjoint(train: pd.DataFrame, test: pd.DataFrame) -> None:
         raise ValueError(f"train↔test exact-text overlap: {len(text_overlap)} shared texts")
 
 
-def load_direct_base() -> pd.DataFrame:
-    """Load the Arm-A direct-injection base pool (B+ only).
+_ARM_A_LEAKAGE_MANIFEST = _HERE / "B2_leakage" / "leakage_gate_armA.json"
 
-    TODO(B2.4): Arm A's direct pool (deepset / Gandalf / Mosscap / HackAPrompt, rebuilt from
-    our audited ``data/raw/``) is constructed later; wire it here so B+ can prepend it to the
-    K−1 indirect dialects. Until then B+ raises so it cannot silently run on indirect-only data.
+
+def _load_leakage_manifest() -> frozenset[str] | None:
+    """Normalized texts purged by the Arm-A leakage gate (B2.4 §vi), or None if it has not run.
+
+    The cap in :func:`assemble_arm_a.load_direct_base` consumes this so B+ draws the direct base
+    from leakage-free rows (pipeline order dedup → gate → cap; decision 9). Absent manifest ⇒ no
+    purge (the gate is a Phase-A precondition; on the first build it simply has not run yet).
+    """
+    if not _ARM_A_LEAKAGE_MANIFEST.exists():
+        return None
+    import json
+
+    data = json.loads(_ARM_A_LEAKAGE_MANIFEST.read_text(encoding="utf-8"))
+    purged = data.get("purged_normalized_texts", [])
+    return frozenset(str(t) for t in purged)
+
+
+def load_direct_base() -> pd.DataFrame:
+    """Load the Arm-A direct-injection base pool (criteria.md B2.4 — re-export; unblocks B+).
+
+    Thin wrapper over :func:`assemble_arm_a.load_direct_base` (the capped-balanced direct pool,
+    rebuilt from our audited ``data/raw/``). Passes the persisted leakage clean-manifest so the
+    cap draws from leakage-free rows.
 
     Returns
     -------
     pandas.DataFrame
         Columns ``text, label, dialect, cluster_id`` with ``dialect == "direct_base"``.
     """
-    raise NotImplementedError(
-        "B+ direct-base pool not yet built (criteria.md B2.4 — Arm A's direct pool). "
-        "B− (indirect-only) is fully working; run B+ after the Arm-A pool lands."
-    )
+    from assemble_arm_a import load_direct_base as _load
+
+    return _load(clean_manifest=_load_leakage_manifest())
 
 
 def make_dialect_fold(
