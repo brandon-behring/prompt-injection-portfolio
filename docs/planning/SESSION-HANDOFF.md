@@ -1,6 +1,26 @@
-# Session handoff — 2026-06-04 (PM) — Consolidation DONE: `stratified_cluster_bootstrap_ci` v1.8.0 + ALL 3 LODO verdicts REPRODUCED + B2.3 frozen rung DONE · [Phase B / M0/M1 arc below]
+# Session handoff — 2026-06-04 (EVENING) — Consolidation EXECUTED + Arm-A B2.4 PRE-REGISTERED (Revision 3) · [prior arcs below]
 
-> **🆕 LATEST (2026-06-04 PM) — consolidation pass complete; the next EXPERIMENT axis is the open decision.**
+> **🆕 LATEST (2026-06-04 evening) — the deferred experiment-axis decision is RESOLVED + executed; the Arm-A harness BUILD is the live next step.**
+> This session: deliberated the next axis via `/exploring-options` → chose **consolidate, then open Arm-A** → a **ground-first** discipline (read-only `data/raw/` audit of all 9 Arm-A corpora + 5 test slices + 2 negative sources) + **best-practice research** (prompt-injection guardrail literature) turned a thin spec into an evidence-backed one. **3 commits PUSHED** (`afb344e..2d10747`):
+>
+> - **`9e776f9`** — **ADR-055 carrier amendment FILED** (status line on the Carrier-LODO resolution) + carrier "standing wall" → *partially capacity-resistant / residual-at-table (provisional n=3)* cite sweep (`glossary` ×3 + AUDIT `verification_report`). Cross-family `criteria.md:56,73` left intact (a different, still-open axis).
+> - **`019dd6a`** — **dialect-LODO bootstrap re-locked** onto `stratified_cluster_bootstrap_ci` v1.8.0 (verified point EXACT / CI Δ≤0.0023 / ruff+mypy green; perm-p preserved). **1 of 3** — `falsify_carrier_lodo` + `falsify_clustered` stay hand-rolled, **blocked by DF-11** (`frac_gt0` unrecoverable from the primitive) → **issue filed [eval-toolkit#93](https://github.com/brandon-behring/eval-toolkit/issues/93)**.
+> - **`2d10747`** — **B2.4 Revision 3** appended to `cross-family-transfer/criteria.md` — the deferred Arm-A pre-registration; *specifies*, does NOT change, the FIXED cross-family question.
+>
+> **The 4 locked Arm-A design decisions (grounded + research-backed):** **D1** broad **attack-vs-benign** positive (injection∪jailbreak∪harmful; + an injection-only BIPIA+InjecAgent descriptive sub-cut) · **D2** negatives = **deepset-neg + neuralchemy hard-negatives (InjecGuard MOF) + guychuk diversity**, benign-heavy ≈3.5:1, leakage-gated · **D3** pooled-ROC gate over the 4 two-class slices, **NotInject → over-defense FPR column** · **D4** C=3000 positives, size matched to Arm-B via the benign side. **Corpus-style confound** (Mirror Design Pattern) recorded as a structural limitation.
+>
+> **▶ NEXT (all user-led, present-first):**
+> 1. **BUILD the Arm-A harness** — implement `load_direct_base` (stub at `folds_dialect.py:104`) + an `assemble_arm_a` + the Arm-A leakage gate + `run_b2_4`, per Revision 3 (§i–§viii). Now **unblocked** by the pre-registration; the only remaining grounding is the **JBB/XSTest within-slice `cluster_id`** (read from loaders at build). Then **B3** paid `lora` (~$6, `gpu-run-watcher`) → **B4** verdict (½·Gx(frozen)+0.05 SESOI, lora-gated).
+> 2. **carrier/clustered re-lock** — when **DF-11 / [eval-toolkit#93](https://github.com/brandon-behring/eval-toolkit/issues/93)** ships a resample-distribution accessor (`return_samples` / `frac_gt`).
+> 3. **The held `v0.1.0` M0 close** (accounts-gated; unchanged).
+>
+> **Read-first:** this block → `experiments/cross-family-transfer/criteria.md` **Revision 3** → memory `[[bootstrap-reproduction-audit]]` + `[[reserve-questions-for-design-not-trivia]]` + `[[no-dataset-claims-without-eda]]` → plan `~/.claude/plans/use-the-following-handoff-logical-candy.md`. **Working-style:** present-first; `/proceeding-now` (never ExitPlanMode); **reserve questions for design forks, default implementation trivia**; no dataset claim without real EDA; **run full `make ci` before pushing eval-toolkit**.
+
+---
+
+# Session handoff — 2026-06-04 (PM, SUPERSEDED ↑) — Consolidation DONE: `stratified_cluster_bootstrap_ci` v1.8.0 + ALL 3 LODO verdicts REPRODUCED + B2.3 frozen rung DONE · [Phase B / M0/M1 arc below]
+
+> **⚠️ SUPERSEDED (2026-06-04 PM) — the deferred experiment-axis decision is now RESOLVED + executed (Arm-A chosen + B2.4 pre-registered Revision 3); see the top block.**
 > This session: resumed + finished the **B2.3 frozen rung** (directional read in `B2_3_FINDINGS.md`: browsesafe
 > `Gx` +0.459 at chance / **fujitsu +0.354 GROWS** / bipia +0.356 / injecagent −0.034 no-wall), then ran a
 > **reproduction audit** — re-derive all 3 LODO bootstrap verdicts on a tested upstream primitive (distrust →
