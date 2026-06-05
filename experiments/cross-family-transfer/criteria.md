@@ -712,3 +712,22 @@ lora])` → `b4_verdict.py`, then the Rev 5(e) multi-verifier audit.
 
 **Nothing in (a)–(c) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
 thresholds, the verdict labels, or the LoRA recipe — only GPU scheduling and the cost record.**
+
+## Revision 7 — recovery blocked → unified all-27 concurrent re-run, 2026-06-05
+
+**Dated.** The B3 paid sweep's Arm A + B− (Rev 6(a)) were stranded on an EXITED pod that RunPod
+**cannot restart** ("not enough free GPUs on the host machine") — recovery is blocked indefinitely.
+Since (i) Arm B+ must run fresh regardless and (ii) concurrency makes re-running cheap, this Revision
+records the decision (`/exploring-options`) to **re-run ALL 27 in ONE concurrent pod**
+(`runpod_crossfamily_all27_sweep.yaml`) rather than wait on capacity. **Same locked recipe, same
+H100 80GB HBM3 SKU, all 27 in one run** → a single internally-consistent tree — strictly *better*
+comparability than the Rev-6 plan of mixing stranded-sequential A+B− with fresh-concurrent B+. Per
+Rev 6(b) this is **scientifically inert** (concurrency = scheduling; seed-deterministic inputs;
+single-fit-per-seed; the cluster bootstrap resamples clusters, not re-fits). The previously-committed
+`runpod_crossfamily_bplus_sweep.yaml` (B+-only) remains the audited concurrent pattern; the all-27
+spec is its trivial generalisation (a per-line CLI fan-out across all arms via
+`xargs … bash -c 'run_item "$@"'`). Budget `cost_cap_usd: 16` / `max_runtime_minutes: 280` (ceiling;
+expected ~$12–14); pack order **A → B− → B+** so a timeout still banks A + B−. The determinism
+cross-check (log-only, catastrophic Δ>0.2) and the recipe lock are unchanged from Rev 6. **Nothing
+changes the question, hypothesis, estimator, ROC-AUC basis, thresholds, verdict labels, or the LoRA
+recipe — only that all 27 are re-run together on one SKU.**
