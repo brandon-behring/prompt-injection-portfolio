@@ -1,6 +1,32 @@
-# Session handoff — 2026-06-05 — Arm-A B2.4 harness BUILT + cheap-rung directional read DONE + Revision 4 ratified + PUSHED · [prior arcs below]
+# Session handoff — 2026-06-05 (LATE) — B3 `lora` rung WIRED + committed + PUSHED (`5bd5c6b`); the paid RunPod go is the ONLY remaining step · [prior arcs below]
 
-> **🆕 LATEST (2026-06-05) — the Arm-A harness is built, run, and committed; B3 (paid `lora`) is the live next step.**
+> **🆕 LATEST (2026-06-05 LATE) — the B3 `lora` rung is now WIRED, gate-verified, committed, and PUSHED; only the paid RunPod launch remains.**
+> The prior handoff's "lora needs only the RunPod launch" was **wrong** — `run_b2_4.py:241` hardcoded `choices=["tfidf","frozen"]` and the lora runner, the RunPod YAML, and the verdict fn did **not** exist. Built them (free, local, reversible); all gates green. Driven via `/exploring-options` ×4 → `/proceeding-now`. **1 commit PUSHED** (`5bd5c6b`; gitleaks clean; +818 lines):
+>
+> - **NEW** `run_b3_lora.py` — train-only lora orchestrator; **reuses** `_build_fold` / `make_dialect_fold` + **imports** `detectors.make_detector("lora")` (ADR-026, no reimpl); emits the **frozen-identical schema** so `falsify_dialect_lodo` + `b4_verdict` ingest the lora column UNCHANGED; `--smoke` (subsampled CPU schema check) / `--merge` (post-pull) modes; NotInject over-defense on Arm A.
+> - **NEW** `runpod_crossfamily_sweep.yaml` — **single pod**; run.body ordered **A→B−→B+** (cheapest-robust-first — a 240-min timeout still leaves Arm A + B− scorable); cap **$14** / 240 min @ $3.29/h; excludes scoped to `experiments/**/*.parquet` (NOT `data/`).
+> - **NEW** `b4_verdict.py` — the write-gated **SURVIVES/FALSIFIED/SMALL-THROUGHOUT** rule (criteria §Stat 2), **locked before any lora datum**; `--pre-validate` maps lora→frozen for a free arithmetic dry-run.
+> - **MOD** `criteria.md` **Revision 5** — cost reconciliation **$6→$14** (full 27-run matrix kept, not trimmed; logic/thresholds/labels UNCHANGED).
+>
+> **Decisions (all user-adjudicated via the 4 modals):** build now / hold paid launch · full **27-run** matrix (Arm A 3 + B− 12 + B+ 12) · **single pod** · `r=(8,16)` (pre-registered) · `b4_verdict` locked-first · **full free B4 pre-validation** · **A→B−→B+** ordering · **NotInject** over-defense · **multi-verifier adversarial audit at B4**.
+>
+> **3 free gates GREEN (zero spend):** (1) **schema smoke** — lora `predictions.parquet` cols `[text,label,dialect,cluster_id,y_score]` **≡ frozen sibling** + `val_roc_auc` present (ran on **CPU**: the 2070S is OOM-occupied ~4.3 GB by desktop/research-kb; plumbing identical, real train is the cloud H100). (2) **offline dry-run** — spec valid, `estimated_spend=$13.16 ≤ $14`, paths resolved, ordering correct. (3) **B4-path pre-validation** — verdict arithmetic exercised end-to-end on the existing cheap trees (Arm B SURVIVES×3 + FALSIFIED×1; Arm A single-unit SURVIVES).
+>
+> **Cost (Rev 5, empirically anchored):** M1 $0.83 / carrier $1.17 (H100 @ $3.29/h) → 27 runs on 8–16× pools = **$7.6 / ~$11.3 / $17.5**. The $17.5 high bound > the $14 cap → the A→B−→B+ ordering is the graceful-degradation hedge.
+>
+> **▶ NEXT (all user-led, present-first) — the paid B3 go is the ONLY remaining step:**
+> 1. **B3 paid go:** price `--dry-run` (re-confirm live H100 $/h + `pod.image`/`gpu_order`/`datacenters`; API key from `~/.runpod/config.toml`) → `uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_sweep.yaml` under **`gpu-run-watcher`** (`run_in_background:true`) → pull to `B3_results_runpod_lora/` → `run_b3_lora.py --merge experiments/cross-family-transfer/B3_results_runpod_lora` → `b4_verdict.py` (real: lora vs frozen, per arm) → **B4** verdict → **multi-verifier adversarial audit** → ADR-055 spine amendment (drafted FROM the result).
+> 2. **carrier/clustered re-lock** — when **DF-11 / [eval-toolkit#93](https://github.com/brandon-behring/eval-toolkit/issues/93)** ships `return_samples`/`frac_gt`.
+> 3. **The held `v0.1.0` M0 close** (accounts-gated; unchanged).
+>
+> **Read-first:** this block → `experiments/cross-family-transfer/criteria.md` **Revision 5** (+ B3/B4 §Verification 2-3) → `B2_4_FINDINGS.md` (the cheap-rung read B3 completes) → memory `[[cross-family-arm-a-b2-4]]` + `[[workflow-proceeding-now-not-exitplanmode]]` → plan `~/.claude/plans/use-the-following-handoff-resilient-dolphin.md`. **Working-style:** present-first; `/proceeding-now` (never ExitPlanMode); reserve questions for design forks; **GPU runs = tracked background Bash, NO subagents, kill strays by PID** (the local 2070S is shared/OOM — the paid run is on RunPod).
+
+---
+
+# Session handoff — 2026-06-05 (AM, SUPERSEDED ↑) — Arm-A B2.4 harness BUILT + cheap-rung directional read DONE + Revision 4 ratified + PUSHED · [prior arcs below]
+
+> **⚠️ SUPERSEDED (2026-06-05 LATE) — the B3 lora rung is now WIRED + committed + PUSHED (`5bd5c6b`); see the top block. Kept for the B2.4 cheap-rung directional table + Revision 4 corrections.** _(The "lora needs only the RunPod launch" line below was wrong — it was unwired; now built.)_
+> **(2026-06-05 AM) — the Arm-A harness is built, run, and committed; B3 (paid `lora`) is the live next step.**
 > Built the full Arm-A direct→indirect cross-family harness per Revision 3, ran the local/free cheap rungs, ratified **Revision 4** (realized counts). Driven via `/exploring-options` (3 modals → 10 locked decisions) then `/proceeding-now`. **1 commit PUSHED** (`761a712`; `make lint` + 58 tests green; gitleaks clean):
 >
 > - **NEW** `assemble_arm_a.py` (loaders + capped/uncapped pools + pooled test + over-defense) · `leakage_gate_arm_a.py` (§vi 4-scan; manifest 257) · `run_b2_4.py` (single-fold orchestrator — reuses `falsify_dialect_lodo.directional_table` UNCHANGED via an `arm_a_pooled` fold). **MOD** `folds_dialect.load_direct_base` re-export (unblocks B+) · `run_b2_3.py --variant B+` · `criteria.md` **Revision 4** ratified.
