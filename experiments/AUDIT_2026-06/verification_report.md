@@ -74,7 +74,9 @@ the carrier-LODO Phase-3 criteria (C1): measure at low-FPR / balanced-benign / p
 | ARI (kmeans) | vs attack_type | −0.000649 | −0.000649 | 0 |
 
 Computed on the full 384-dim MiniLM embedding (not UMAP). Carrier dominates the geometry; attack-type is
-embedding-invisible. The "carrier is the standing wall" claim is geometrically well-founded.
+embedding-invisible. The carrier's **geometric** dominance is well-founded; the *modeling*
+claim was later refined from "standing wall" to **partially capacity-resistant (capacity-attenuated,
+residual at the table carrier; provisional n=3)** by the 2026-06-01 carrier-LODO verdict.
 - *Cosmetic:* `run_a1_v4.py:53` inline comment says "PCA-2D" while the code uses UMAP (the header docstring
   is correct; the projector does not feed silhouette/ARI, so no metric impact). → trivial fix.
 

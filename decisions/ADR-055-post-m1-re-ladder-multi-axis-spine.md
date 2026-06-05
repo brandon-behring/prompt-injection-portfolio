@@ -111,6 +111,11 @@ This ADR reorganizes narrative, lane framing, and the M1→M2 sequencing checkpo
 
 ## Carrier-LODO resolution — 2026-06-01 (M2 pre-flight, verdict in)
 
+**Status: FILED — this section is the formal amendment to Decision 1** (the carrier "standing wall"
+→ "partially capacity-resistant, residual at the table carrier (provisional, n=3)" downgrade). Every
+downstream "carrier" claim carries the **(provisional, n=3)** qualifier until the carrier-study re-test
+gate fires at n=5.
+
 The Decision-5 gate asked: does end-to-end LoRA dissolve the **carrier** gap the way it dissolved
 the attack-type gap (→ the spine's "carrier is the standing wall" half is **revised**), or does the
 carrier gap **persist under LoRA** (→ carrier is **capacity-resistant**; the spine is **validated**

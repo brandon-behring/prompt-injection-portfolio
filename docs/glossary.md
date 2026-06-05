@@ -193,9 +193,11 @@ email / code / table / qa / abstract scaffold the injected payload sits in
 (BIPIA's per-subset structure; see `rag_evaluation_harness`). Per the M1 EDA, the
 carrier **dominates the frozen-embedding geometry** (silhouette by-carrier 0.197
 vs by-attack-type −0.023; KMeans→carrier ARI 0.98), so the Round-30 multi-axis
-spine (ADR-055) names it the **standing wall** — distinct from the *attack-type*
-axis, which M1 showed is capacity-dependent. M1 held the carrier constant by
-design (ADR-052); `carrier-LODO` measures it.
+spine (ADR-055) named it the **standing wall** (the geometric prior) — distinct from
+the *attack-type* axis, which M1 showed is capacity-dependent. M1 held the carrier
+constant by design (ADR-052); the `carrier-LODO` M2 pre-flight (2026-06-01) then
+refined the claim to **partially capacity-resistant — capacity-attenuated, residual
+at the table carrier (provisional, n=3)**.
 
 ## carrier-LODO
 
@@ -394,8 +396,9 @@ one wall but several **axes**, each with its own capacity regime. The
 *attack-type* axis is **capacity-dependent** — M1's pre-registered §6.5 prediction
 SURVIVES on tfidf/frozen but is FALSIFIED at the LoRA ceiling (T 0.135 → 0.082 →
 −0.003): end-to-end LoRA dissolves the per-type gap. The *carrier* axis dominates
-the representation geometry and is the standing wall (geometric so far;
-`carrier-LODO` measures it). Reconciles with the submission's "backbone-invariant"
+the representation geometry; the `carrier-LODO` M2 pre-flight (2026-06-01) refined it
+from "standing wall" to **partially capacity-resistant — capacity-attenuated, residual
+at the table carrier (provisional, n=3)**. Reconciles with the submission's "backbone-invariant"
 null — backbone-invariant ≠ capacity-invariant, and the submission measured the
 carrier axis while M1 measured attack-type-within-indirect.
 
@@ -408,7 +411,9 @@ frozen-probe with CI clearing zero). Portfolio asks whether the wall
 is data-bound or structural across backbones + parameter budgets.
 **Round 30 (ADR-055) re-axis:** now understood as multi-axis — the *attack-type*
 axis is capacity-dependent (M1 dissolved it with end-to-end LoRA), the *carrier*
-axis is the standing wall (see `multi-axis OOD spine (capacity-dependent)`).
+axis is **partially capacity-resistant** (capacity-attenuated, residual at the table
+carrier; provisional n=3 — 2026-06-01 carrier-LODO verdict; see `multi-axis OOD spine
+(capacity-dependent)`).
 
 ## ood_evaluation_methodology
 
