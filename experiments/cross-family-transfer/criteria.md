@@ -584,3 +584,73 @@ pairs — corrected here to the second-element train index. Worth an upstream fi
 
 **Nothing in (a)–(f) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
 ½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels.**
+
+## Revision 5 — B3 cost reconciliation + lora-rung wiring (the paid-go finalization), 2026-06-05
+
+**Dated, before any `lora` datum.** The cost reconciliation the original §Verification anticipated
+("the real cost estimate is computed at B2 and **reconciled at this present-first go** (raise cap or
+trim) before launch", B3 spec line 242). Records the B3 wiring + the cap raise decided via
+`/exploring-options`. **The question, hypothesis, design axes, estimator, ROC-AUC basis, the
+½·Gx(frozen) + 0.05 SESOI thresholds, and the verdict labels remain UNCHANGED** — this Revision
+touches only the *cost cap* and the *implementation* of the (already-fixed) lora rung + verdict.
+
+### (a) Empirical cost anchor + the 27-run estimate
+
+Anchored on the two prior realized LoRA sweeps (the only same-recipe ModernBERT-base LoRA runs):
+
+| anchor | GPU | realized $ | runs | per-run |
+|---|---|---|---|---|
+| attack-type M1 lora | H100 80GB HBM3 @ $3.29/h | **0.83** | 9 | — |
+| carrier-LODO lora | H100 80GB HBM3 @ $3.29/h | **1.17** | 9 | ~102 s @ ~3.5k-row pools |
+
+The realized GPU was the **H100 @ $3.29/h** both times (the cheap-24 GB fallback never resolved; the
+spec's `assumed_hourly_rate_usd: 2.50` is optimistic — Rev 5 uses **3.29**). Cross-family pools are
+**8–16× larger** (Arm A ~29k (e); Arm B B− 17.9k–33.7k (Rev 1); B+ adds the ~29k direct base → up to
+~62k) → per-run ~300–700 s. **27 runs** (= Arm A 1 fold × 3 seeds + Arm B B− 4 × 3 + Arm B B+ 4 × 3,
+each a LoRA fit over the `r_grid=(8,16)`): **$7.6 (low) / ~$11.3 (central) / $17.5 (high)**, one pod
+(fixed ~$0.24 overhead amortized once).
+
+### (b) Cap raise $6 → $14 (the reconciliation)
+
+The original ~$6 hard cap (B3 spec line 241) is **infeasible** — even the low bound exceeds it. Decision
+(`/exploring-options`): **raise the cap to $14** (base-budget; `contingency_unlock_1.md` classes lora
+sweeps as base-budget; contingency untouched), **NOT** the trim-B+ option (which would drop the
+pre-registered B+−B− bridging contrast, Rev 3 §vii). `runpod_crossfamily_sweep.yaml`:
+`cost_cap_usd: 14`, `assumed_hourly_rate_usd: 3.29`, `max_runtime_minutes: 240` (240/60 × 3.29 =
+$13.16 ≤ 14; runpod_deploy enforces timeout × rate ≤ cap).
+
+### (c) lora-rung wiring (implementation of the already-fixed rung)
+
+- **`run_b3_lora.py`** — train-only orchestrator; **reuses** the cheap-rung fold builders
+  (`run_b2_4._build_fold` for Arm A; `assemble.assemble` + `folds_dialect.make_dialect_fold` for
+  Arm B) and **imports** the LoRA recipe (`detectors.make_detector("lora")`, ModernBERT-base,
+  `r_grid=(8,16)` — ADR-026, no reimplementation). Emits the **scorer-identical schema** (Arm A
+  `[cluster_id,label,slice,y_score]`; Arm B `[text,label,dialect,cluster_id,y_score]`) + the
+  `val_roc_auc` metrics.json `falsify_dialect_lodo.load_dialect_fold` requires, so the existing
+  estimator + verdict ingest the lora column unchanged. Output subpaths mirror the cheap-rung trees
+  (`B2_4_results/capped`, `B2_3_results/natural`, `B2_3_results_Bplus/natural`) for a literal
+  post-pull merge (`--merge`).
+- **`b4_verdict.py`** — the write-gated verdict (this section's pre-existing rule, lines 150-160),
+  **locked here before any lora datum**: per-unit SURVIVES/FALSIFIED/SMALL-THROUGHOUT + the bare
+  ½·Gx(frozen) comparator; descriptive aggregate (NOT a cross-fold bootstrap, line 172); the per-unit
+  table leads (line 177). A free `--pre-validate` path (lora→frozen, frozen→tfidf) exercises every
+  arithmetic branch on the existing cheap-rung trees before any spend.
+- **Over-defense at lora** — `run_b3_lora.py` also scores NotInject (Arm A; the already-trained
+  model) so B4 reports the lora over-defense FPR alongside the cheap-rung headline (e).
+
+### (d) Launch ordering — graceful degradation
+
+The $17.5 high bound exceeds the $14 cap, so a 240-min timeout is possible. The `run.body` is
+**cheapest-robust-first** — Arm A (3 runs) → Arm B B− (12) → Arm B B+ (12, the ~62k-row pools last) —
+so a timeout still leaves Arm A + B− with a complete, scorable lora column (a directional verdict for
+two of three conditions) plus a cheap B+-only re-launch, rather than an un-computable partial tree.
+
+### (e) B4 verdict-trust gate
+
+The verdict is ratified only after an **independent multi-verifier adversarial audit** (the post-M1
+5/5 + carrier / prototype codex+gemini precedent), given it is the last-standing-axis headline on a
+paid result.
+
+**Nothing in (a)–(e) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
+½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels — only the cost cap and the lora-rung
+implementation.**
