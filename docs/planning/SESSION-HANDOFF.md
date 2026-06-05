@@ -1,6 +1,39 @@
-# Session handoff — 2026-06-04 (EVENING) — Consolidation EXECUTED + Arm-A B2.4 PRE-REGISTERED (Revision 3) · [prior arcs below]
+# Session handoff — 2026-06-05 — Arm-A B2.4 harness BUILT + cheap-rung directional read DONE + Revision 4 ratified + PUSHED · [prior arcs below]
 
-> **🆕 LATEST (2026-06-04 evening) — the deferred experiment-axis decision is RESOLVED + executed; the Arm-A harness BUILD is the live next step.**
+> **🆕 LATEST (2026-06-05) — the Arm-A harness is built, run, and committed; B3 (paid `lora`) is the live next step.**
+> Built the full Arm-A direct→indirect cross-family harness per Revision 3, ran the local/free cheap rungs, ratified **Revision 4** (realized counts). Driven via `/exploring-options` (3 modals → 10 locked decisions) then `/proceeding-now`. **1 commit PUSHED** (`761a712`; `make lint` + 58 tests green; gitleaks clean):
+>
+> - **NEW** `assemble_arm_a.py` (loaders + capped/uncapped pools + pooled test + over-defense) · `leakage_gate_arm_a.py` (§vi 4-scan; manifest 257) · `run_b2_4.py` (single-fold orchestrator — reuses `falsify_dialect_lodo.directional_table` UNCHANGED via an `arm_a_pooled` fold). **MOD** `folds_dialect.load_direct_base` re-export (unblocks B+) · `run_b2_3.py --variant B+` · `criteria.md` **Revision 4** ratified.
+> - **648 MB per-fold parquets gitignored** (`B2_3_results_Bplus` + `B2_4_results`; mirror the B2.3 pattern); curated `summary.json` ×3 + `B2_4_FINDINGS.md` + `leakage_gate_armA.json` committed.
+>
+> **The cheap-rung directional read (NO verdict — lora-gated at B3; full table in `B2_4_FINDINGS.md`):**
+>
+> | evidence | result | reading |
+> |---|---|---|
+> | pooled gate tfidf→frozen | Gx **+0.47 → +0.31** (CI [+0.39,+0.51]→[+0.23,+0.36], perm_p 0) | large wall, **attenuates with capacity, persists** |
+> | uncapped robustness | tfidf +0.49 ≈ capped +0.47 | **not a cap artifact** |
+> | B+−B− bridging | ≈0 (bipia/browsesafe); +0.14/+0.12 (fujitsu/injecagent frozen) | **direct does NOT bridge indirect** (family shift corroborated) |
+> | per-slice (frozen) | XSTest 0.62 > JBB 0.55 ≈ BIPIA 0.54 > InjecAgent 0.39 | tool-output anti-transfers; no slice masked by the mean |
+> | over-defense | ~38% NotInject FPR @ 1% val-fixed thr | trigger-word over-defense, loud |
+> | E8 deployed guards | PG1 0.97 BIPIA / **0.33 JBB** | scope-blind, not universal |
+>
+> The cross-family axis is the **steepest-walled start** of the three (attack-type FALSIFIED · carrier SMALL-THROUGHOUT · cross-family +0.47→+0.31); whether `lora` dissolves it (repos unify) or it stands (within-BIPIA headline bounded) is the **B4** verdict.
+>
+> **Revision 4 realized corrections (ratified):** neuralchemy "~16.3k" → **3,475** (a naive sum over overlapping subdirs `core`⊆`full`+`data`); capped positives **7,262**; train ≈29k @ 3.0:1 (deepset 399 / neuralchemy 3,475 / guychuk top-up 17,912); light game-artifact filter (a **deviation from §iii**, 0 drops from curated deepset/gandalf); leakage manifest **257** (direct⊗test 1 + negative⊗test 200 + near-dup 231; direct⊗direct 448 → keep-first dedup, not a leakage purge). **Fixed** a latent `cross_dedup_pairs` `(eval,train)` index-convention bug in the Arm-B `leakage_gate.py` (harmless there — 0 near pairs; worth an upstream fix).
+>
+> **▶ NEXT (all user-led, present-first):**
+> 1. **B3 — the paid `lora` rung**, both arms (Arm-B B+ and B−), ≥3 seeds; hard cap ~$6 (`gpu-run-watcher`); real cost reconciled at the go. → **B4** verdict (FIXED ½·Gx(frozen)+0.05 SESOI logic, per arm). Harness + cheap rungs are ready; lora needs only the RunPod launch.
+> 2. **carrier/clustered re-lock** — when **DF-11 / [eval-toolkit#93](https://github.com/brandon-behring/eval-toolkit/issues/93)** ships `return_samples`/`frac_gt`.
+> 3. **The held `v0.1.0` M0 close** (accounts-gated; unchanged).
+>
+> **Read-first:** this block → `experiments/cross-family-transfer/B2_4_FINDINGS.md` + `criteria.md` **Revision 4** → memory `[[no-dataset-claims-without-eda]]` + `[[workflow-proceeding-now-not-exitplanmode]]`. **Working-style:** present-first; `/proceeding-now` (never ExitPlanMode); reserve questions for design forks; no dataset claim without real EDA; **GPU runs = tracked background Bash, NO subagents, kill strays by PID** (the frozen rung shares the RTX 2070S with research-kb ~3.8 GB).
+
+---
+
+# Session handoff — 2026-06-04 (EVENING, SUPERSEDED ↑) — Consolidation EXECUTED + Arm-A B2.4 PRE-REGISTERED (Revision 3) · [prior arcs below]
+
+> **⚠️ SUPERSEDED (2026-06-05) — the Arm-A harness is now BUILT + the cheap-rung directional read DONE + Revision 4 ratified (see the top block). Kept for the 4 locked design decisions + the pre-registration context.**
+> **(2026-06-04 evening) — the deferred experiment-axis decision RESOLVED + executed; the Arm-A harness BUILD was the next step (now complete).**
 > This session: deliberated the next axis via `/exploring-options` → chose **consolidate, then open Arm-A** → a **ground-first** discipline (read-only `data/raw/` audit of all 9 Arm-A corpora + 5 test slices + 2 negative sources) + **best-practice research** (prompt-injection guardrail literature) turned a thin spec into an evidence-backed one. **3 commits PUSHED** (`afb344e..2d10747`):
 >
 > - **`9e776f9`** — **ADR-055 carrier amendment FILED** (status line on the Carrier-LODO resolution) + carrier "standing wall" → *partially capacity-resistant / residual-at-table (provisional n=3)* cite sweep (`glossary` ×3 + AUDIT `verification_report`). Cross-family `criteria.md:56,73` left intact (a different, still-open axis).
