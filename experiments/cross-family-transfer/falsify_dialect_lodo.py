@@ -32,13 +32,14 @@ from __future__ import annotations
 
 import json
 import sys
-from collections.abc import Sequence
+from collections.abc import Hashable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 import pandas as pd
+from eval_toolkit.bootstrap import stratified_cluster_bootstrap_ci
 from scipy.stats import rankdata  # type: ignore[import-untyped]
 
 _HERE = Path(__file__).resolve().parent
@@ -135,26 +136,7 @@ def _point_test_roc(fold: DialectFold, seed: int) -> float:
     neg = np.concatenate(fold.neg_clusters[seed])
     y = np.concatenate([np.ones(pos.size), np.zeros(neg.size)])
     s = np.concatenate([pos, neg])
-    return metrics.roc_auc_point(y, s)
-
-
-def _resampled_test_roc(fold: DialectFold, seed: int, rng: np.random.Generator) -> float:
-    """One **label-stratified** cluster-bootstrap draw of the test ROC-AUC (criteria Rev 2 (b)).
-
-    Positive-clusters and negative-clusters are resampled **separately** with replacement (each to
-    its own original cluster count), preserving the positive/negative cluster split and never
-    yielding a single-class draw.
-    """
-    pos_c = fold.pos_clusters[seed]
-    neg_c = fold.neg_clusters[seed]
-    n_pos, n_neg = len(pos_c), len(neg_c)
-    pos_idx = rng.integers(0, n_pos, size=n_pos)
-    neg_idx = rng.integers(0, n_neg, size=n_neg)
-    pos = np.concatenate([pos_c[int(i)] for i in pos_idx])
-    neg = np.concatenate([neg_c[int(i)] for i in neg_idx])
-    y = np.concatenate([np.ones(pos.size), np.zeros(neg.size)])
-    s = np.concatenate([pos, neg])
-    return _roc_auc_fast(y, s)
+    return float(metrics.roc_auc_point(y, s))
 
 
 def _permuted_test_roc(fold: DialectFold, seed: int, rng: np.random.Generator) -> float:
@@ -195,10 +177,39 @@ def per_dialect_gap(
     test_roc = float(np.mean([_point_test_roc(fold, s) for s in seeds]))
     gx_point = val_roc - test_roc
 
-    gx_boot = np.empty(n_boot, dtype=float)
-    for b in range(n_boot):
-        tr_b = float(np.mean([_resampled_test_roc(fold, s, rng) for s in seeds]))
-        gx_boot[b] = val_roc - tr_b
+    # Label-stratified cluster bootstrap of the CI via the upstream primitive (library-first,
+    # ADR-026/051): strata = ``{seed: (y, score, cluster_id)}``; positive- and negative-clusters
+    # resampled separately (``resample_labels=(0, 1)``; criteria Rev 2 (b)); per-stratum metric =
+    # the fast tie-corrected AUROC; ``combine`` = ``val_roc − mean over seeds of test_roc`` (val
+    # held fixed). ``confidence=0.90`` ⇒ the 5th/95th-percentile bounds (one-sided 95%).
+    strata: dict[Hashable, tuple[np.ndarray, np.ndarray, np.ndarray]] = {}
+    for s in seeds:
+        pos = np.concatenate(fold.pos_clusters[s])
+        neg = np.concatenate(fold.neg_clusters[s])
+        score = np.concatenate([pos, neg])
+        y = np.concatenate([np.ones(pos.size), np.zeros(neg.size)])
+        pos_groups = np.concatenate(
+            [np.full(c.size, f"p{i}", dtype=object) for i, c in enumerate(fold.pos_clusters[s])]
+        )
+        neg_groups = np.concatenate(
+            [np.full(c.size, f"n{i}", dtype=object) for i, c in enumerate(fold.neg_clusters[s])]
+        )
+        groups = np.concatenate([pos_groups, neg_groups])
+        strata[s] = (y, score, groups)
+
+    def _combine(m: Mapping[Hashable, float]) -> float:
+        return val_roc - float(np.mean(list(m.values())))
+
+    ci = stratified_cluster_bootstrap_ci(
+        strata,
+        _roc_auc_fast,
+        _combine,
+        resample_labels=(0, 1),
+        n_resamples=n_boot,
+        confidence=0.90,
+        rng=rng,
+        n_jobs=1,
+    )
 
     # Presence-of-transfer diagnostic (criteria Rev 2 (b), "presence-of-effect"): does the held-out
     # test_roc beat chance? Permute the test labels per seed, recompute the null test_roc; perm_p =
@@ -218,8 +229,8 @@ def per_dialect_gap(
         "val_roc": val_roc,
         "test_roc": test_roc,
         "Gx": gx_point,
-        "ci_low": float(np.percentile(gx_boot, 5.0)),
-        "ci_high": float(np.percentile(gx_boot, 95.0)),
+        "ci_low": float(ci.ci_low),
+        "ci_high": float(ci.ci_high),
         "perm_p": perm_p,
         "n_pos": n_pos,
         "n_neg": n_neg,
