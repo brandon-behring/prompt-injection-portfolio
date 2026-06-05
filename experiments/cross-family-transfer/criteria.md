@@ -654,3 +654,61 @@ paid result.
 **Nothing in (a)–(e) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
 ½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels — only the cost cap and the lora-rung
 implementation.**
+
+## Revision 6 — realized pace + the concurrent Arm-B+ relaunch (execution-mode record), 2026-06-05
+
+**Dated.** The B3 paid sweep ran; this Revision records (a) the realized per-run pace (which the Rev-5
+estimate under-scaled), (b) the **scientifically inert** concurrent relaunch of Arm B+ that Rev 5(d)
+anticipated ("a cheap B+-only re-launch"), and (c) its parameters. **The question, hypothesis, design
+axes, estimator, ROC-AUC basis, the ½·Gx(frozen) + 0.05 SESOI thresholds, the verdict labels, AND the
+LoRA recipe (`batch=16, epochs=3, lr=1e-4, r_grid=(8,16), max_length=512`, ModernBERT-base) remain
+UNCHANGED** — this Revision touches only *scheduling* (how the fits are packed onto the GPU) and the
+*cost record*.
+
+### (a) Realized pace — the Rev-5 anchor under-scaled
+
+The live sequential run (H100 80GB HBM3 @ $3.29/h) realized **~15–30 min/run** at the 18–62k-row
+pools — not the Rev-5 ~300–700 s. Each fit used only **~8.5 of 81.5 GB** at ~71 % nvidia-smi
+kernel-occupancy (NOT compute saturation; batch-16 underfills the SMs). So the **full 27-run matrix is
+~11 h / ~$36**, not the Rev-5 $14. The Rev-5 anchor (M1/carrier at ~3.5k-row pools, ~102 s/run)
+**under-scaled** to the larger cross-family pools. **Realized outcome:** the run reached **$14.05 /
+256 min** — the local `run_job` orchestrator died at a context boundary, silently disabling its
+in-process 240-min timeout + lifecycle hooks, so the pod ran ~16 min past nominal and was stopped by
+the gpu-run-watcher's INDEPENDENT cost-guard (→ DF-12 case 4). It banked **Arm A 3/3 + Arm B− 11/12**
+(missing seed=2 injecagent), schema-validated on-pod but **not pulled** (orchestrator died before the
+artifact stage) — recovered post-hoc by restart→rsync. **Arm B+ did not start** — the
+graceful-degradation Rev 5(d) ordered for.
+
+### (b) Concurrency adds no verdict-relevant perturbation (comparable within bf16 noise)
+
+The Arm-B+ relaunch packs **multiple LoRA fits concurrently** on one H100 (each ~8.5 GB ⇒ ~6 fit in
+80 GB) via a CLI fan-out (`xargs -P N` over `run_b3_lora.py --arm B --variant B+ --dialects <d>
+--seeds <s>`), **no code change**. This is **scheduling, not science**: each work-item is an isolated
+process that calls the **seed-deterministic** `assemble.assemble(seed)` → the same fold → the same
+**imported** recipe; co-tenant processes share no RNG, CUDA stream, or memory — concurrency does not
+change a fit's *inputs*. (The fit itself is **not** bit-deterministic on GPU: the recipe sets only
+`torch.manual_seed`, no `use_deterministic_algorithms`/cuDNN flags, so two same-seed runs differ at
+bf16/atomics noise *whether sequential or concurrent* — "byte-identical" would be an overclaim.) Same
+recipe + same seeds + **same H100/bf16** (`gpu_order` pinned to H100 80GB HBM3 = the live A+B− SKU) ⇒
+**comparable within bf16/Hopper-atomics noise (≪ the 0.05 SESOI), not verdict-affecting**. The Rev-5
+"one pod" line was a scheduling detail, not a specification. A determinism cross-check is **LOGGED, not gated**
+(defined in this Revision + the YAML `run.body`): one item (`bipia` seed 0) is trained both solo and
+inside the concurrent pack and their **test ROC** Δ (the verdict-input metric) is recorded — but the
+locked recipe is **non-deterministic run-to-run** (only `torch.manual_seed`; CPU-thread / GPU-atomic
+reduction order; a smoke showed Δtest_roc ≈ 0.12 / max|Δy| ≈ 0.39 between two same-seed, same-data
+fits), so a tight gate would false-abort; the run aborts only on a **catastrophic** Δtest_roc > 0.2.
+Inertness rests on the structural argument above; the science uses single-fit-per-seed (the cluster
+bootstrap resamples clusters, not re-fits) — run-to-run irreproducibility never enters the verdict.
+
+### (c) The concurrent B+ relaunch — parameters
+
+`runpod_crossfamily_bplus_sweep.yaml`: H100/bf16 (Hopper-only), **calibrate-then-pack** — a probe
+times 1 solo + 2 concurrent fits, sets the pack width (N≈6) and enables CUDA MPS only if the measured
+concurrency is contended (speedup < 1.5). `cost_cap_usd: 13`, `assumed_hourly_rate_usd: 3.29`,
+`max_runtime_minutes: 210` (a **ceiling**; expected realized ~$7–9 vs ~$18 sequential). Any B−
+stragglers from the truncated live run are appended to the same fan-out (they merge into the
+`B2_3_results` subpath). Post-pull: `run_b3_lora.py --merge` → `directional_table(rungs=[tfidf,frozen,
+lora])` → `b4_verdict.py`, then the Rev 5(e) multi-verifier audit.
+
+**Nothing in (a)–(c) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
+thresholds, the verdict labels, or the LoRA recipe — only GPU scheduling and the cost record.**

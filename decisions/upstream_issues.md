@@ -165,6 +165,37 @@ fits **none** of the three sites — an honest mis-scope on the DF-9 PR. The DF-
 
 ---
 
+## Dogfooding findings — RunPod sweep GPU-efficiency + realized-pace (2026-06-05) — DRAFT, NOT YET FILED (user-led)
+
+Surfaced running the cross-family B3 LoRA sweep. Per the present-first discipline, public issue filing
+is **user-led** — this is a **drafted enhancement awaiting your go** (`gh issue create --repo
+brandon-behring/runpod-deploy --label enhancement`). It is a *documentation + capability* gap, not a
+bug: the library let a consumer provision an H100 80 GB and run small LoRA fits **serially** (each
+using ~8.5 / 81.5 GB) on an optimistic-pace budget, so the 240-min cap truncated the sweep before
+Arm B+ started — both avoidable had the library prompted the consumer to reason about utilization +
+realized pace.
+
+| # | Repo | Friction surfaced by dogfooding | Proposed enhancement | State |
+|---|------|---------------------------------|----------------------|-------|
+| DF-12 | runpod-deploy | (1) **GPU under-utilization is silent.** A small training job can use a fraction of the card (8.5/81.5 GB here); nothing in the spec/validate flow prompts the consumer to right-size or pack the GPU. `nvidia-smi` util% (kernel-occupancy) misleads — small batches underfill the SMs, so a "71 %" reading hides large compute headroom. (2) **The budget gate reads like an estimate but is only a ceiling.** `cost_cap_usd` / `assumed_hourly_rate_usd` / `max_runtime_minutes` bound spend but don't surface the implied `max_runs = max_runtime / est_per_run`; a consumer who anchors per-run time optimistically (we under-scaled from ~3.5k-row to 18–62k-row pools) silently overruns. (3) **Concurrency has no first-class support** — packing independent jobs onto one GPU is left to bespoke `run.body` shell each time. | (1) **Docs (PodSpec/`gpu_order`/`gpu_count`):** guidance to estimate per-job GPU memory and either pick a cheaper card or pack `N ≤ GPU_mem / per-job_mem` concurrent jobs; note util% ≠ saturation. (2) **Realized-pace budgeting docs + a pre-flight log line** (`implied max_runs ≈ max_runtime / est_per_run`) so under-scaling is visible before launch; recommend cheapest-robust-first ordering for graceful partials. (3) **A first-class concurrency pattern/helper** (the long-term home — not per-runner `--jobs` flags): documented `run.body` fan-out + optional helper handling model-cache pre-warm (download-race), per-process memory budgeting, optional CUDA MPS, fail-fast aggregation, and determinism via isolated processes/seeds. The `xargs -P` harness in `runpod_crossfamily_bplus_sweep.yaml` is the prototype to harvest. | **DRAFT — not filed** |
+
+*(Distinct from the `gpu-run-watcher`'s role, which drafts runpod-deploy friction it ENCOUNTERS during
+a run; DF-12 is the broader sweep-design-guidance contribution.)*
+
+**DF-12 case (4) — added 2026-06-05, surfaced when the B3 sequential run truncated.** The lifecycle
+hooks (`on_success: delete` / `on_failure: stop`) AND the `max_runtime_minutes` timeout are enforced by
+the **local** `run_job` process, not a pod-side agent. When the orchestrator died at a context boundary,
+the pod ran ~16 min past the 240-min cap (billing uncapped — reached **$14.05**) and the artifact pull
+never fired (Arm A + B− stranded on the volume; recovered later by manual restart→rsync). Only an
+independent out-of-process cost-guard (the gpu-run-watcher) stopped it. **Proposed:** a pod-side
+lifecycle script (e.g. `/workspace/run_lifecycle.sh`) that polls for the success marker / a runtime
+ceiling and self-terminates + pushes artifacts — making lifecycle + timeout **independent of
+orchestrator liveness**. Suggested issue (user-led, NOT filed): `gh issue create --repo
+brandon-behring/runpod-deploy --label enhancement --title "Orchestrator death leaves pod running
+unbounded + lifecycle/pull never fire"`.
+
+---
+
 ## Library-first invariant — restatement
 
 - 4 load-bearing libraries are infrastructure for multiple consumers; portfolio
