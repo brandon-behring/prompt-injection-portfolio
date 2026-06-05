@@ -390,3 +390,105 @@ all 4 folds; train/test sizes unchanged) — `B2_leakage/leakage_gate.json`.
 
 **Nothing in (a)–(d) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
 ½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels.**
+
+---
+
+## Revision 3 — Arm-A direct→indirect slate assembly + B+ finalization (B2.4), 2026-06-04
+
+**Dated, before any Arm-A direct→indirect detector has been trained or any cross-family `Gx` computed.**
+The deferred B2.4 Revision anticipated by Rev 1 §(v) and Rev 2 §(c). It finalizes Arm A's direct train-pool
+assembly (rebuilt from our audited `data/raw/`, audited 2026-06-04), the composition, the negative
+construction, the per-slice positive-label definition, the over-defense metric, the Arm-A leakage gate, and
+the **B+** composition. **The question, hypothesis, design axes, estimator, ROC-AUC basis, the
+½·Gx(frozen) + 0.05 SESOI thresholds, and verdict labels remain UNCHANGED** — this Revision *specifies* the
+pre-registered "cross-family OOD slate", it does not change it.
+
+### (i) Direct-pool corpora + provenance (audited 2026-06-04, from `data/raw/` + `MANIFEST.json`)
+
+| corpus | source | license | rows | native labels | text field |
+|---|---|---|---|---|---|
+| deepset | deepset/prompt-injections | Apache-2.0 | 662 | 263 pos / 399 neg | `text` |
+| gandalf_ignore | Lakera/gandalf_ignore_instructions | MIT | 1,000 | all-positive | `text` |
+| mosscap | Lakera/mosscap_prompt_injection | MIT | 278,945 | all-positive | `prompt` |
+| hackaprompt | hackaprompt/hackaprompt-dataset | MIT | 601,757 | native=attack-success (§iii) | `user_input` |
+
+**Gandalf variant LOCKED = `gandalf_ignore`** (MANIFEST "cross-family TRAIN anchor"); `gandalf_summ` (140)
+excluded to optional-robustness. All four tier-1, non-`eda_only`, permissively licensed (manifest-verified).
+
+### (ii) Direct-pool composition — size-imbalance cap
+
+Audit measured ~1000× imbalance (mosscap+hackaprompt ≈880k vs deepset+gandalf ≈1.8k); raw natural-mix is a
+degenerate two-game pool. Primary pool = **capped-balanced** (direct analog of Rev 2 §(c)): cap each corpus's
+positives at **C = 3,000**, stratified-proportional by `level` where present (mosscap 8, hackaprompt 11),
+seed 0; small corpora whole. Realized ≈ **7,263** positives (deepset 263 / gandalf 1,000 / mosscap 3,000 /
+hackaprompt 3,000), each ≤41%. `C` is the one free assembly knob, fixed here; realized counts logged.
+Uncapped natural-mix retained as optional robustness.
+
+### (iii) hackaprompt relabel + game-corpus caveat
+
+hackaprompt native `correct`/`score` = **attack-success** (different task) → all `user_input` relabeled
+injection-positive; text = `user_input` (system `prompt` not concatenated). **Caveat (extended to mosscap):**
+mosscap + hackaprompt are stylistically narrow extraction/PWNED *games*; treating every game prompt as
+positive injects label noise into the capped-dominant corpora. The `C`-cap bounds their share; the
+corpus-style confound is addressed in §(viii).
+
+### (iv) Train negatives — 3-source, hard-negative, benign-heavy (best-practice §viii)
+
+Direct corpora are ~all-positive (only deepset ships 399 neg) and `load_direct_base()` is an unbuilt stub →
+**no reusable benign pool**; negatives constructed here:
+- **deepset 399** native negatives (style-matched to deepset positives);
+- **neuralchemy `label=0` (~16.3k)** — real-data **hard negatives** (benign prompts with injection
+  trigger-words, tagged `hard_negative/contains_ignore`): the InjecGuard **MOF** strategy in real data, the
+  established fix for trigger-word over-defense;
+- **guychuk `label=0` (top-up, ~229k avail)** — plain in-domain benign for **source diversity** (the
+  negative class is not one corpus's style — Mirror-pattern shortcut mitigation).
+Sized **benign-heavy ≈3–4:1** (MOF-aligned, deployment-realistic) to **total ~25–30k ≈ Arm-B scale**
+(fixes the cross-arm train-size asymmetry on the benign side, not by inflating game positives). Val = the
+line 119–126 in-distribution label-stratified carve. **Build-time: verify `label=0 ⟺ benign`** for
+neuralchemy + guychuk; realized pos/neg logged.
+
+### (v) Per-slice positive-label definition + cluster units (D1 = broad attack-vs-benign)
+
+**Positive = any attack (injection ∪ jailbreak ∪ harmful); negative = benign**, per slice (grounded 2026-06-04):
+
+| slice | rows | positive | negative |
+|---|---|---|---|
+| BIPIA | 5,508 | injection | clean carrier |
+| InjecAgent | 2,125 | 2,108 injection | 17 clean (thin) |
+| JBB | 100+100 | harmful-behaviors | benign-behaviors |
+| XSTest | 450 | 200 unsafe | 250 safe |
+| NotInject | 113–678 | — (all benign) | all benign |
+
+- **Gate** = `Gx(lora) = val_roc − test_roc` on the **pooled cross-family ROC-AUC over the 4 two-class
+  slices**. A **descriptive injection-only (BIPIA+InjecAgent) sub-aggregate** is also reported (non-gating).
+- **NotInject** (single-class) → a **non-gating over-defense FPR column** at a fixed low-FPR operating point
+  (the InjecGuard/NotInject metric; matches M1 `recall_at_fpr`; target FPR<2%), beside E8.
+- **Clusters:** direct (train) corpora carry **no `cluster_id`** (resampling = held-out test slice, line
+  170). Test-slice clusters: BIPIA→payload-id, InjecAgent→tool (Rev 1 §i); **JBB/XSTest within-slice
+  `cluster_id` = the one remaining build-time grounding** (read from loaders, logged).
+
+### (vi) Arm-A leakage gate (exact + MinHash ≥ 0.8, purge-from-train)
+
+`leakage_gate.py` (`eval_toolkit.text_dedup`), purge from TRAIN only: **direct⊗direct · direct⊗test ·
+direct⊗indirect (B+) · negative⊗test** (neuralchemy/guychuk vs NotInject/XSTest — never train on a held-out
+hard-negative). Artifact `B2_leakage/leakage_gate_armA.json`.
+
+### (vii) B+ training composition
+
+**B+** `train = (capped direct_base from (ii)+(iv)) ∪ (K−1 indirect dialects)`, natural-mix (primary) +
+dialect-balanced (robustness) as Rev 2 §(c). **B+ − B−** = direct-data-bridging. Direct base = one extra
+training family, never the held-out unit.
+
+### (viii) Best-practice basis + pre-committed corpus-style limitation
+
+Negative construction follows the prompt-injection guardrail literature: trigger-word **over-defense** is the
+documented failure mode, benign hard-negatives the fix (InjecGuard/PIGuard MOF, ACL 2025, arXiv:2410.22770);
+generalization-first + low-FPR is the eval norm (arXiv:2511.22047; arXiv:2602.14161, already cited at line
+219). **Limitation (Mirror Design Pattern, arXiv:2603.11875):** the FIXED direct-injection train slate is
+mostly all-positive *games*, so pos/neg cells are not nuisance-matched and a residual **corpus-style
+shortcut** (style ≈ injection-ness) is structural — mitigated by multi-source + hard negatives (iv) and the
+leakage gate (vi), and **reported, not claimed away** (beside E5). The injection-only sub-cut (v) + the E8
+deployed-guard reference triangulate it.
+
+**Nothing in (i)–(viii) changes the question, hypothesis, design axes, estimator, ROC-AUC basis, the
+½·Gx(frozen) + 0.05 SESOI thresholds, or the verdict labels.**
