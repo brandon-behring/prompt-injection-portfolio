@@ -1,3 +1,26 @@
+# Session handoff — 2026-06-06 — CROSS-FAMILY B4: A+B− VERDICT DONE (Arm A SURVIVES); B+ pending a cheap GPU · [prior arcs below, SUPERSEDED]
+
+> **🆕 LATEST (2026-06-06) — the cross-family B4 verdict is computed for Arm A + Arm B− (PRELIMINARY, pre-audit); B+ + the audit remain.**
+>
+> **B4 VERDICT (preliminary):** **Arm A (direct→indirect) SURVIVES** — Gx_lora **+0.365** (CI-low +0.284>0, ≥ ½·frozen +0.156, ≥ 0.05 SESOI; the wall GREW vs frozen +0.313). **Arm B− (dialect-LODO) MIXED, 3/4 SURVIVE** — bipia +0.291 / browsesafe +0.445 / fujitsu +0.228 SURVIVE; **injecagent −0.014 FALSIFIED** (tool-output transfers). **Cross-axis spine: attack-type FALSIFIED · carrier SMALL-THROUGHOUT · cross-family SURVIVES** — the steepest axis HOLDS at the lora ceiling (capacity-resistant).
+>
+> **The saga (B3 got messy — read before re-running anything):** the original sequential B3 **stranded** A+B− on an EXITED pod RunPod couldn't restart (capacity); the **all-27 concurrent H100 re-run** recovered A+B− (pulled 16/27) but **cost-capped at ~$16 before B+** because concurrency is **compute-bound (~1.6×, NOT the assumed ~2.5–3×)** — the heavy B+ barely ran (**1/12**, browsesafe s0). The recovered A+B− lora (35 files) was merged into the cheap-rung trees → `b4_verdict` gave the above.
+>
+> **▶ NEXT (all user-led, present-first):**
+> 1. **B+ (remaining 11–12 runs).** User chose to FINISH B+, but the cheap-fast cards (4090/A5000) are **unavailable** (the cheap path resolves a slow L40S ~$1/hr ≈ H100 cost). **Decision: WAIT for a card cheaper than L40S.** Poller `bxbjgrfwt` was watching but **LIKELY DIED on this compaction**. **▶ RECOVERY:** run `uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_bplus_cheap_sweep.yaml --dry-run`; if it resolves a **non-L40S/A100** card → **launch it** (drop `--dry-run`) + a **CORRECTED bash monitor** (direct-`find` count + **verify-before-delete**; **NO gpu-run-watcher agent** — it over-polled to death; **NO `lc()` inside a `set -u` subshell**). Else keep waiting, OR pay ~$15 H100 / ~$13 L40S for complete B+. B+ feeds the **full 3-arm verdict** + the **cross-arch reconciliation** (re-run browsesafe-s0 already done on H100 → drift check).
+> 2. **A+B− multi-verifier adversarial audit** (the verdict-trust gate) — OFFERED + deferred to this compact; the user's go is pending. Independent of B+; can run now.
+> 3. **ADR-055 amendment** (cross-family SURVIVES) — drafted from the verdict, after the audit.
+>
+> **Git:** `f39949a` (cheap-B+ YAML + criteria **Rev 7/8**) · `4d3601d` (all27 YAML) · `5f82983` (bplus YAML + **DF-12** + **Rev 6**) on `session/2026-05-26-adoption-and-research-ops`, **UNPUSHED**. Recovered tree: `experiments/cross-family-transfer/B3_results_runpod_all27_lora/` (untracked, on disk; merged into the cheap-rung trees for the verdict). **Spend so far on cross-family lora ≈ $30** (stranded ~$14 + all27 ~$16); B+ adds ~$5 (cheap) / ~$13–15 (L40S/H100).
+>
+> **Lessons:** the **gpu-run-watcher AGENT over-polls to death** (527 tool-uses/52 min — use a plain bash monitor for multi-hour runs); local orchestration (`run_job` + bash monitors) **dies on context boundaries** → rely on incremental-pull + verify-before-delete; a cost-guard must **never pod-delete before a verified local pull**. DF-12 case 4 (orchestrator-death → no pull) recorded in `decisions/upstream_issues.md`.
+>
+> Full detail: memory `[[cross-family-arm-a-b2-4]]`. Plan: `~/.claude/plans/use-the-following-handoff-resilient-dolphin.md`. Verdict tool: `experiments/cross-family-transfer/b4_verdict.py`; recipe lock + cross-arch notes: `criteria.md` Rev 6/8.
+>
+> **[The 2026-06-05 "B3-wired / paid-go-next" block below is SUPERSEDED — B3 ran (all-27 + recovery + verdict); this is the post-run state.]**
+
+---
+
 # Session handoff — 2026-06-05 (LATE) — B3 `lora` rung WIRED + committed + PUSHED (`5bd5c6b`); the paid RunPod go is the ONLY remaining step · [prior arcs below]
 
 > **🆕 LATEST (2026-06-05 LATE) — the B3 `lora` rung is now WIRED, gate-verified, committed, and PUSHED; only the paid RunPod launch remains.**
