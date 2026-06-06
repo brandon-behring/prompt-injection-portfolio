@@ -5,7 +5,11 @@
 # Ada/Ampere bf16 card (4090/A5000/A40/...). CROSS-ARCH CAVEAT (Rev 8): these are bf16 like the H100
 # A+B-, but a different arch → minor tensor-core drift (<< 0.05 SESOI); the re-run of browsesafe seed0
 # (also done on the H100) is the direct cross-arch drift check.
-# Pull → B3_results_runpod_bplus_cheap_lora/, then LOCAL: merge (run_b3_lora.py --merge) → directional_table
+# SELECTION-POLICY FIX (Rev 9, 2026-06-06): gpu_order is now SUB-L40S ONLY (L40S + A100 removed); the
+# selector walks datacenters in YAML order and was falling through to L40S@US-TX-3 before the EU/CA DCs
+# that hold the cheap cards; GraphQL pricing is empty here so --max-gpu-price-usd is inert. Removing
+# L40S/A100 from gpu_order is the working lever; scripts/cheap_gpu_monitor.py --watch confirms a window.
+# Pull→ B3_results_runpod_bplus_cheap_lora/, then LOCAL: merge (run_b3_lora.py --merge) → directional_table
 # (rungs=[tfidf,frozen,lora]) → b4_verdict.verdict.
 #
 #   validate (zero spend):  uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_bplus_cheap_sweep.yaml --offline-dry-run
@@ -40,14 +44,15 @@ pod:
   cloud_type: SECURE
   container_disk_gb: 60
   gpu_count: 1
-  gpu_order: # cheapest-first; all native-bf16 (Ampere/Ada); >=24 GB (fits N=2 at ~8.5 GB/fit)
+  gpu_order: # cheapest-first, SUB-L40S ONLY (Rev 9): L40S + A100 80GB PCIe REMOVED so the selector
+             # cannot fall through to them via datacenter order. All native-bf16 (Ampere/Ada); >=24 GB
+             # (fits N=2 at ~8.5 GB/fit). If NONE is stocked the launch FAILS FAST (by design --
+             # never silently buy an L40S); scripts/cheap_gpu_monitor.py confirms a gettable window first.
     - "NVIDIA RTX A5000"
     - "NVIDIA GeForce RTX 4090"
     - "NVIDIA A40"
     - "NVIDIA RTX A6000"
     - "NVIDIA L40"
-    - "NVIDIA L40S"
-    - "NVIDIA A100 80GB PCIe"
   datacenters:
     - "US-CA-2"
     - "US-OR-1"

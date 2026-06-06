@@ -749,3 +749,23 @@ pod-delete that nearly preceded the verify): the cheap-run external monitor uses
 count and **verifies the local tree before any pod delete**. **Nothing changes the question, hypothesis,
 estimator, ROC-AUC basis, thresholds, verdict labels, or the LoRA recipe — only the B+ rung's GPU arch
 (bf16 preserved) + the cross-arch reconciliation.**
+
+## Revision 9 — sub-L40S-only gpu_order (the selection-policy fix) + cheap-card monitor, 2026-06-06
+
+**Dated.** The Rev-8 cheap spec kept resolving a **slow L40S** even while genuinely cheaper cards were
+in stock — root-caused to **selection policy, not availability** (two compounding causes): (1)
+`provider.select_gpu_across_datacenters` walks `pod.datacenters` in order and returns the first stocked
+card, so **US-TX-3 (L40S) was reached before the EU/CA datacenters** (EU-RO-1 → RTX 4090; CA-MTL-1 →
+A5000/A40) that actually hold the cheap cards; (2) **GraphQL pricing returns empty in this environment**
+(`pricing.fetch_gpu_prices → {}`), so `--max-gpu-price-usd` is **inert** — absent price data is treated
+as "unknown, allow," so the price cap cannot skip the L40S. **Fix:** removed `NVIDIA L40S` + `NVIDIA
+A100 80GB PCIe` from `pod.gpu_order` (now A5000/4090/A40/A6000/L40 only); the selector then fails over
+US-TX-3 + US-KS-2 (their only configured GPUs are now excluded) and grabs the cheap card in
+EU-RO-1/CA-MTL-1 naturally — **no datacenter reorder needed**. If **none** of the five is stocked the
+launch **fails fast** (by design — never silently buy an L40S); a gettable window is confirmed first by
+the new zero-spend **`scripts/cheap_gpu_monitor.py`** (`--once`/`--watch`), which reuses the same
+selector on live `runpodctl datacenter list` data to report the launcher's TRUE would-pick and pings on
+gettable↔not edges. **Finding:** sub-L40S cards ARE stocked now (A5000/A40/4090 @ CA-MTL-1 / EU-RO-1,
+all `low`, flickering minute-to-minute). **Nothing changes the question, hypothesis, estimator, ROC-AUC
+basis, thresholds, verdict labels, or the LoRA recipe — only which sub-L40S bf16 card the B+ rung lands
+on (bf16 preserved; the Rev-8 cross-arch reconciliation via browsesafe seed0 is unchanged).**
