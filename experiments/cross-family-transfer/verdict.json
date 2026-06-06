@@ -1,0 +1,120 @@
+{
+  "experiment": "cross-family-transfer",
+  "date": "2026-06-06",
+  "spine_verdict": "cross-family SURVIVES (capacity-resistant)",
+  "spine": "attack-type FALSIFIED | carrier SMALL-THROUGHOUT | cross-family SURVIVES",
+  "rule": {
+    "frac_of_frozen": 0.5,
+    "sesoi_roc_auc": 0.05,
+    "SURVIVES": "ci_low(ceiling)>0 AND Gx(ceiling)>=frac*Gx(frozen) AND Gx(ceiling)>=sesoi",
+    "FALSIFIED": "ci_low(ceiling)<=0",
+    "else": "SMALL_THROUGHOUT"
+  },
+  "arms": {
+    "A_direct_to_indirect": {
+      "arm_a_pooled": {
+        "Gx_lora": 0.36458963992450755,
+        "ci_low_lora": 0.2835916805296855,
+        "ci_high_lora": 0.43127045453119445,
+        "Gx_frozen": 0.31273825166003444,
+        "verdict": "SURVIVES"
+      }
+    },
+    "B_minus_dialect_lodo": {
+      "dialect_lodo_bipia": {
+        "Gx_lora": 0.29109833023412857,
+        "ci_low_lora": 0.20713940842470877,
+        "ci_high_lora": 0.46339311582405307,
+        "Gx_frozen": 0.35586985306865015,
+        "verdict": "SURVIVES"
+      },
+      "dialect_lodo_browsesafe": {
+        "Gx_lora": 0.4452088243489266,
+        "ci_low_lora": 0.4406154917389044,
+        "ci_high_lora": 0.4496751721936245,
+        "Gx_frozen": 0.4589904843753754,
+        "verdict": "SURVIVES"
+      },
+      "dialect_lodo_fujitsu": {
+        "Gx_lora": 0.22753355249268203,
+        "ci_low_lora": 0.22438251227196218,
+        "ci_high_lora": 0.23077212436881975,
+        "Gx_frozen": 0.3542528658648081,
+        "verdict": "SURVIVES"
+      },
+      "dialect_lodo_injecagent": {
+        "Gx_lora": -0.013990119552720337,
+        "ci_low_lora": -0.013990119552720337,
+        "ci_high_lora": -0.013990119552720337,
+        "Gx_frozen": -0.03396006569730592,
+        "verdict": "FALSIFIED"
+      }
+    },
+    "B_plus_dialect_lodo_plus_direct": {
+      "dialect_lodo_bipia": {
+        "Gx_lora": 0.2911866557477777,
+        "ci_low_lora": 0.2002287829963056,
+        "ci_high_lora": 0.4773475181364178,
+        "Gx_frozen": 0.3496863221404325,
+        "verdict": "SURVIVES",
+        "perm_p": 0.0
+      },
+      "dialect_lodo_browsesafe": {
+        "Gx_lora": 0.3913487101138835,
+        "ci_low_lora": 0.38696365785212083,
+        "ci_high_lora": 0.39583802949238084,
+        "Gx_frozen": 0.45627198629614263,
+        "verdict": "SURVIVES",
+        "perm_p": 0.0
+      },
+      "dialect_lodo_fujitsu": {
+        "Gx_lora": 0.46976772455735466,
+        "ci_low_lora": 0.46603013104086705,
+        "ci_high_lora": 0.4734805558447837,
+        "Gx_frozen": 0.4940003937262132,
+        "verdict": "SURVIVES",
+        "perm_p": 0.9988
+      },
+      "dialect_lodo_injecagent": {
+        "Gx_lora": -0.009371026015091322,
+        "ci_low_lora": -0.010673254686445977,
+        "ci_high_lora": -0.00743628627479298,
+        "Gx_frozen": 0.08870781378629089,
+        "verdict": "FALSIFIED",
+        "perm_p": 0.0
+      }
+    }
+  },
+  "bridging_Bplus_minus_Bminus": {
+    "bipia": 0.0,
+    "browsesafe": -0.054,
+    "fujitsu": 0.242,
+    "injecagent": 0.005,
+    "note": "direct data does not bridge; fujitsu B+ anti-transfers (perm_p 0.9988, below chance)"
+  },
+  "cross_arch_reconciliation": {
+    "unit": "browsesafe_seed0_Bplus",
+    "test_roc_4090_ada": 0.5999,
+    "test_roc_h100_hopper": 0.5928,
+    "abs_delta": 0.0072,
+    "sesoi": 0.05,
+    "within_sesoi": true
+  },
+  "audit": {
+    "verdict": "ROBUST",
+    "verifiers": 5,
+    "doc": "AUDIT_B4_2026-06-06.md",
+    "correction": "Arm A over-defense shortcut claim downgraded (mostly generic miscalibration)"
+  },
+  "caveats": [
+    "injecagent FALSIFIED is uninformative (17 negatives, zero-width CI), not a counterexample",
+    "FALSIFIED rule (ci_low<=0) conflates transfers with uninformative (pre-registered limitation)",
+    "n=4 dialects / n=5 slices -> directional read"
+  ],
+  "sources": [
+    "B4_FINDINGS.md",
+    "AUDIT_B4_2026-06-06.md",
+    "criteria.md (Rev 1-9)",
+    "b4_verdict.py"
+  ]
+}

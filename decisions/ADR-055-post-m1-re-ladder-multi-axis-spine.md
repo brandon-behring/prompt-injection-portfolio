@@ -47,7 +47,7 @@ This also reconciles with the **sibling submission**'s "the OOD wall is real and
 
 Adopt the re-ladder as **five enumerated sub-decisions** (all Accepted; user-decided in the R30 deliberation):
 
-1. **Narrative spine → multi-axis, capacity-dependent.** Replace the single "there is an OOD wall"
+1. **Narrative spine → multi-axis, axis-dependent (capacity acts differently per axis).** Replace the single "there is an OOD wall"
    thesis with: *OOD is several axes; the **attack-type** axis is **capacity-dependent** (end-to-end
    LoRA dissolves it), while the **carrier** axis is **partially capacity-resistant (provisional,
    n=3 carriers)** — capacity-attenuated, with a **residual wall at the table carrier*** (refined
@@ -57,7 +57,12 @@ Adopt the re-ladder as **five enumerated sub-decisions** (all Accepted; user-dec
    story (a pre-registered falsification that passed a write-gate at the cheap rungs and was
    overturned only at the LoRA ceiling), not a retreat. The spine explicitly carries the
    submission-reconciliation (backbone-invariant ≠ capacity-invariant; submission measured carrier,
-   M1 measured attack-type-within-indirect).
+   M1 measured attack-type-within-indirect). **Cross-family axis added 2026-06-06 (B4):** the
+   **cross-family (direct↔indirect) axis is capacity-RESISTANT** — `SURVIVES` at the LoRA ceiling (the
+   wall persists and *grows* in Arm A, and is not bridged by mixing in cross-family training data;
+   5-verifier audit ROBUST) — see [Cross-family transfer resolution](#cross-family-transfer-resolution--2026-06-06-b4-lora-ceiling-verdict-in-third-spine-axis).
+   The spine is therefore **axis-dependent**: attack-type dissolves · carrier attenuates · cross-family
+   resists.
 
 2. **Lane 2 → re-point headline + evaluation axis to the *carrier* axis.** Lane 2's method is **UNCHANGED** (LoRA-retrain + 2-variant loss ablation per [ADR-043](ADR-043-lane-2-lora-only-and-baseline-expansion.md)); only the *axis it interrogates* moves: from attack-type generalization (now answered by M1 — LoRA already generalizes near-perfectly across attack types) to **carrier generalization**. State the hypothesis axis-precisely against the **available** carrier set (**email / code / table** immediately usable; **qa / abstract** license-gated per [ADR-052](ADR-052-attack-type-generalization-study-design.md)). Register "confirm attack-type generalization persists under the Lane-2 recipe" as a **cheap §16 optional secondary**, not the headline.
 
@@ -208,3 +213,48 @@ encoder cannot re-tokenize the carrier, so its **`lora` verdict is OPEN** (B3-ga
 present-first go). Per the carrier-amendment-after-verdict precedent, the **formal dialect
 capacity-dependence amendment is deferred until its `lora` verdict** — this note registers the axis as
 open/directional, *not* a spine claim.
+
+## Cross-family transfer resolution — 2026-06-06 (B4 LoRA-ceiling verdict in; third spine axis)
+
+**Status: FILED — this section is the formal amendment to Decision 1** (the spine becomes a three-axis taxonomy) and **discharges the deferral registered in [Reproduction stamp + dialect open-axis — 2026-06-04](#reproduction-stamp--dialect-open-axis--2026-06-04)** ("the formal dialect capacity-dependence amendment is deferred until its `lora` verdict"). The cross-family / dialect `lora` verdict is now in; the axis graduates from OPEN/directional to a recorded spine claim. It also **closes the cross-family gap that [`prototype-comparison-audit-2026-06.md §A.5`](../docs/planning/prototype-comparison-audit-2026-06.md) marked "Open (the sharpest item)"** — *does fair-tuned capacity climb the cross-family wall the way it climbed the attack-type wall?* — on trustworthy footing (an independent rebuild from our audited `data/raw/`, never the prototype's artifacts).
+
+> *(Title erratum: ADR-055's frontmatter title reads "capacity-dependent OOD spine"; per this amendment read the spine as **axis-dependent** — cross-family is capacity-**resistant**. The frontmatter title is left unchanged per ADR-011 immutability; Decision 1 is reworded.)*
+
+The Decision-5 carrier gate and this gate are siblings: both ask whether end-to-end LoRA dissolves an OOD gap. The carrier axis landed `SMALL-THROUGHOUT` (capacity-attenuated). The **cross-family** axis lands on the **opposite** pole — **`SURVIVES`** — making it the **first axis where the wall is capacity-resistant** (the gap persists, and in places *grows*, at the LoRA ceiling). The pre-registration (`experiments/cross-family-transfer/criteria.md`, Rev 1–9 — all dated before any cross-family/dialect datum) fixed the three honest outcomes (`SURVIVES` / `FALSIFIED` / `SMALL-THROUGHOUT`) and the byte-for-byte decision rule (SURVIVES iff `Gx(lora) > 0` AND one-sided 95% bootstrap CI-low > 0 AND `Gx(lora) ≥ ½·Gx(frozen)` AND `Gx(lora) ≥ 0.05` SESOI; FALSIFIED iff CI-low ≤ 0; else SMALL-THROUGHOUT) before any LoRA datum.
+
+**Verdict (`b4_verdict.py` on the merged rung tree; narrative `B4_FINDINGS.md`, audit `AUDIT_B4_2026-06-06.md`): cross-family `SURVIVES` — capacity-resistant.** Three triangulating reads at the `lora` ceiling, `Gx = val ROC-AUC − held-out-test ROC-AUC`:
+
+| read | unit | Gx_frozen | Gx_lora | CI_lora (one-sided 95%, label-strat. cluster bootstrap) | verdict |
+|---|---|---|---|---|---|
+| **Arm A** (direct→indirect, pooled) | `arm_a_pooled` | +0.313 | **+0.365** | [+0.284, +0.431] | **SURVIVES** (wall *grew*) |
+| **Arm B−** (dialect-LODO, indirect-only train) | bipia | +0.356 | +0.291 | [+0.207, +0.463] | **SURVIVES** |
+| | browsesafe | +0.459 | +0.445 | [+0.441, +0.450] | **SURVIVES** (hardest) |
+| | fujitsu | +0.354 | +0.228 | [+0.224, +0.231] | **SURVIVES** |
+| | injecagent | −0.034 | −0.014 | [−0.014, −0.014] | FALSIFIED — **uninformative**, NOT a counterexample (Caveats) |
+
+**Arm B− = 3/4 SURVIVE; Arm A SURVIVES.** Unlike the attack-type axis (`lora` T = −0.003, FALSIFIED — fully dissolved) and the carrier axis (`SMALL-THROUGHOUT`, ~60% attenuated), the cross-family wall **persists frozen → lora in every genuine test**, and Arm A's wall *grows* (+0.313 → +0.365) — **capacity-resistant**.
+
+**Arm B+ — adding direct-injection training data does NOT bridge.** The pre-registered B+ arm (`train = K−1 indirect dialects ∪ the Arm-A direct base`; cheap Ada 4090 bf16, `criteria.md` Rev 8–9) is the same shape — **3/4 SURVIVE** (bipia +0.291, browsesafe +0.391, fujitsu +0.470; injecagent −0.009 uninformative). The **B+ − B− bridging contrast** is ≈0-or-worse: bipia +0.000, browsesafe −0.054, **fujitsu +0.242 (worsens)**, injecagent +0.005. **fujitsu B+ anti-transfers** — perm p = 0.9988, held-out `test_roc` *below chance* (B− perm p = 0.0). Capacity-resistance is **not bought off by mixing in cross-family training data**.
+
+**Cross-arch reconciliation (discharges the `criteria.md` Rev-8 caveat).** browsesafe seed-0 B+ on the cheap Ada RTX-4090 (`test_roc` 0.5999) vs the Hopper H100 all-27 run (0.5928); |Δ| 0.0072 ≪ the 0.05 SESOI → the cheap-card B+ rung is comparable to the H100 A+B−.
+
+**Independent multi-verifier audit — ROBUST (the Rev-5(e) verdict-trust gate, satisfied).** 5 adversarial verifiers (blind reproduction, bootstrap/CI, data/leakage, claims red-team, verdict-rule), each read-only + prompted to refute → V1 REPRODUCED (every Gx recomputes to <0.001 with no project imports), V2 SOUND (injecagent's zero-width CI is a *genuine* degeneracy — 17 singleton neg-clusters + perfect separation — not a bug), V3 CLEAN (composition exact, 0 train-in-test leakage re-verified), V4 1 OVER-STATEMENT (corrected, below), V5 CORRECT (all 5 labels re-derive; MC noise ~0.004). **No verdict label changes.** Synthesis: `AUDIT_B4_2026-06-06.md`.
+
+**The one correction (V4, independently re-verified).** The B4 note's §4(ii) — that Arm A's elevated `lora` over-defense (38.5% of benign NotInject flagged at the 1%-val-FPR threshold) and the cross-family wall are "two faces of one lexical-shortcut mechanism" — was **over-stated and is downgraded**. At the *same* threshold, **21.4%** of the genuine held-out *test* negatives also fire → **~56% of the over-defense is generic threshold miscalibration under distribution shift**, not trigger-specific; the trigger-attributable excess is +17.2pp but **seed-variable** (4.9 / 24.6 / 22.0). Lexical-shortcut overfitting is recorded as a **plausible contributing hypothesis, not a demonstrated mechanism**. What stands: the frozen embedding transfers *best* (Gx +0.313), LoRA trades a modest amount of that for in-distribution sharpness, and the elevated benign FPR under shift is a real deployment cost.
+
+**Resolution: the spine becomes a three-axis taxonomy, not a single capacity-dependent wall.**
+
+> **attack-type FALSIFIED · carrier SMALL-THROUGHOUT · cross-family SURVIVES**
+
+Capacity does not act uniformly across axes: LoRA **dissolves** the within-BIPIA attack-type gap ([ADR-054](ADR-054-m1-lora-ceiling-full-ft-deferred.md)), **attenuates** the within-BIPIA carrier gap to a residual table wall ([Carrier-LODO resolution](#carrier-lodo-resolution--2026-06-01-m2-pre-flight-verdict-in)), but **does not climb** the cross-family direct↔indirect wall — the one **capacity-resistant** axis. This **bounds the within-BIPIA capacity-dependent headline to its corpus** and reconciles with the submission's backbone-invariant carrier null (backbone-invariant ≠ capacity-invariant).
+
+**Caveats (pre-committed).**
+- **injecagent FALSIFIED is uninformative, NOT a counterexample** — 17 negatives (0.8%), perfectly separable → `test_roc` = 1.000 invariant under the bootstrap → zero-width CI at Gx = −0.014; Gx negative at **all three rungs** (no wall at any capacity). The thin-negative limitation pre-committed in `criteria.md` Rev 1 §(ii) / Rev 2 §(a).
+- **The FALSIFIED rule (`ci_low ≤ 0`) conflates "transfers" with "uninformative"** — a documented, pre-registered limitation (`criteria.md` Rev 1–2), not a defect; the genuine wall rests on the three real-negative dialects + Arm A.
+- **bipia / browsesafe lower-power but valid** — bipia 468 negatives over 3 clusters (coarse but *wide*/conservative CI, far from 0); browsesafe val near-saturated (~0.9998) but `test_roc` genuinely mid-range (0.555).
+- **fujitsu B+ below-chance anti-bridge** (perm p 0.9988) — a notable secondary finding, not verdict-bearing.
+- **n=5 Arm-A slices / n=4 Arm-B dialects** ⇒ directional read (per-unit table carries the evidence, not a cross-fold aggregate). The corpus-OOD confound (Arm B holds out a *corpus* bundle, not carrier alone) is the pre-committed E5 limitation.
+
+**Cost.** Label-stratified cluster bootstrap (≥10,000 iters, one-sided 95% percentile CI). The `lora` rung ran on RunPod across an A→B−→B+ matrix; realized record `criteria.md` Rev 6–9 (live H100 cost-capped ~$14, recovery blocked → unified all-27 H100 re-run recovered Arm A + B−, B+ finished on a cheaper sub-L40S Ada bf16 card ~$3–5; total ≈ $35). **Base-budget throughout** — [ADR-002](ADR-002-cost-cap-250-base-100-contingency.md)'s $250 base « $350 hard cap is untouched and [ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md) **stays Reserved**.
+
+**Cross-references resolved.** The [2026-06-04 dialect-open-axis note](#reproduction-stamp--dialect-open-axis--2026-06-04)'s "`lora` verdict is OPEN (B3-gated)" → **RESOLVED → `SURVIVES`**, its deferral → **discharged here**. `prototype-comparison-audit-2026-06.md §A.5` ("the cross-family wall under fair tuning — Open, the sharpest item") → **CLOSED** (fair-tuned capacity does not climb the wall; Arm A grows, B+ does not bridge). The criteria §Verification B4 step + Rev 5(e) verdict-trust gate (multi-verifier audit) → **discharged**. Consolidated machine-readable verdict: `experiments/cross-family-transfer/verdict.json`.

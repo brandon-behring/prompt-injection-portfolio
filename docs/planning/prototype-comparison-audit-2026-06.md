@@ -127,7 +127,9 @@ construct) are not excluded.
 gap the portfolio criticized. Fix: either run the prescribed per-row/threshold check, or soften to
 "consistent with scope-blindness." → punch-list.
 
-### A.5 The cross-family wall under fair tuning — **Open** *(the sharpest item)*
+### A.5 The cross-family wall under fair tuning — **CLOSED (2026-06-06)** *(was the sharpest item)*
+
+> **RESOLVED — ADR-055 cross-family amendment (2026-06-06).** The symmetric capacity question is now answered on independent footing (rebuilt from our audited `data/raw/`, never the prototype's artifacts): **fair-tuned capacity does NOT climb the cross-family wall.** Arm A (direct→indirect) `SURVIVES` at the LoRA ceiling — Gx_lora +0.365, the wall *grows* vs frozen +0.313; dialect-LODO 3/4 `SURVIVE`; adding direct-injection training data does not bridge (B+; fujitsu anti-transfers below chance). 5-verifier audit ROBUST. cross-family is the **capacity-resistant** axis of the ADR-055 spine. See `experiments/cross-family-transfer/{B4_FINDINGS.md, AUDIT_B4_2026-06-06.md, verdict.json}`.
 
 **Claim.** `ADR-052:16-18` judges that on the prototype's pooled OOD "**every rung AND SOTA ProtectAI
 sit at/below the random floor (0.374) — direct→indirect transfer has no signal, and 'frozen>LoRA' is a

@@ -1,3 +1,23 @@
+# Session handoff — 2026-06-06 (LATE) — CROSS-FAMILY ARC COMPLETE: 3-arm SURVIVES · audit ROBUST · ADR-055 amendment RATIFIED + PUSHED · [prior arcs SUPERSEDED]
+
+> **🆕 LATEST — the cross-family transfer arc is DONE end-to-end; the ADR-055 spine amendment is ratified + pushed.**
+>
+> **3-arm verdict (B4, LoRA ceiling): cross-family SURVIVES (capacity-resistant).** Arm A (direct→indirect) SURVIVES Gx_lora **+0.365** (wall GREW vs frozen +0.313); Arm B− (dialect-LODO) **3/4 SURVIVE** (bipia +0.291 / browsesafe +0.445 / fujitsu +0.228; injecagent FALSIFIED but **uninformative** — 17 negatives, degenerate, NOT a counterexample); Arm B+ (dialect-LODO + direct base) **3/4 SURVIVE** + **direct data does NOT bridge** (fujitsu anti-transfers, perm_p 0.9988 below chance). **Cross-arch reconciliation PASSES** (browsesafe-s0 4090 0.5999 vs H100 0.5928, Δ0.0072 ≪ SESOI).
+>
+> **Spine (RATIFIED into `decisions/ADR-055`): attack-type FALSIFIED · carrier SMALL-THROUGHOUT · cross-family SURVIVES** — axis-dependent, not uniformly capacity-dependent; cross-family is the one capacity-RESISTANT axis. Decision 1 reworded; README row + prototype-audit §A.5 (CLOSED) + `verdict.json` updated.
+>
+> **Audit:** 5 adversarial verifiers → **ROBUST** (numbers reproduce exactly, no bug, no leakage, labels correct; one finding-note over-claim — Arm A "lexical-shortcut over-defense" — downgraded). `experiments/cross-family-transfer/AUDIT_B4_2026-06-06.md`.
+>
+> **B+ run:** finished clean on a cheap Ada RTX-4090 (~7h, ~$3–5, within $8 cap, pod auto-deleted) after the cheap-only-`gpu_order` fix (`criteria.md` Rev 9 — the committed spec was falling through to L40S; new `scripts/cheap_gpu_monitor.py`). **Total cross-family lora spend ≈ $35.**
+>
+> **▶ NEXT (all user-led):** the held `v0.1.0` M0 close (accounts-gated, unchanged); the carrier/clustered re-lock (DF-11 / eval-toolkit#93); Lane 2 (carrier-axis training). **The cross-family arc needs nothing further.**
+>
+> Full detail: memory `[[cross-family-arm-a-b2-4]]`; `experiments/cross-family-transfer/{B4_FINDINGS.md, AUDIT_B4_2026-06-06.md, ADR-055-cross-family-amendment.DRAFT.md, verdict.json}`.
+>
+> **[The block below is SUPERSEDED — B+ has since landed; the audit + ADR ratification are done.]**
+
+---
+
 # Session handoff — 2026-06-06 — CROSS-FAMILY B4: A+B− VERDICT DONE (Arm A SURVIVES); B+ pending a cheap GPU · [prior arcs below, SUPERSEDED]
 
 > **🆕 LATEST (2026-06-06) — the cross-family B4 verdict is computed for Arm A + Arm B− (PRELIMINARY, pre-audit); B+ + the audit remain.**

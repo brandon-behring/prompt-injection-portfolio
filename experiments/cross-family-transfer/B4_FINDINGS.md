@@ -112,6 +112,26 @@ Caveat: over-defense is a lora-only datum (frozen/tfidf NotInject not scored), s
 - The recorded B4 verdict labels **stand**, but injecagent's FALSIFIED should carry the
   degenerate-negative caveat (uninformative, not transfer).
 
-## Still pending (needs B+)
+## 5. B+ arm + bridging + cross-arch (3-arm complete, 2026-06-06)
 The 3-arm **B+−B− bridging** contrast at the lora ceiling + the browsesafe-s0 **cross-arch
-reconciliation** (only 1/12 B+ in hand; the rest running on the 4090).
+reconciliation**:
+
+**B+ arm verdict (3 seeds; cheap 4090 run, ~7h, within $8 cap):** 3/4 SURVIVE — bipia +0.291
+[+0.200,+0.477], browsesafe +0.391 [+0.387,+0.396], fujitsu +0.470 [+0.466,+0.473]; injecagent
+-0.009 [-0.011,-0.007] FALSIFIED (uninformative again -- near-zero, the degenerate unit). Same shape
+as B-.
+
+**Bridging (B+ - B-, point):** direct-injection training data does NOT bridge to held-out indirect
+dialects -- bipia +0.000, browsesafe -0.054 (slight reduction), fujitsu **+0.242 (worsens)**,
+injecagent +0.005. fujitsu B+ is an *anti-transfer* wall: perm_p 0.9988 (held-out test_roc **below
+chance**; B- perm_p was 0.0) -- adding the direct base makes the detector anti-correlate on held-out
+fujitsu.
+
+**Cross-arch reconciliation (browsesafe seed-0 B+, cheap Ada 4090 vs Hopper H100 all-27):** test_roc
+0.5999 vs 0.5928, |Δ| 0.0072 ≪ SESOI 0.05 -> the cheap-card 4090 B+ rung is comparable to the H100
+A+B- (criteria Rev-8 cross-arch caveat discharged).
+
+**3-arm spine:** attack-type FALSIFIED · carrier SMALL-THROUGHOUT · **cross-family SURVIVES** --
+triangulated: the direct→indirect wall (Arm A +0.365), the dialect-LODO walls (B- 3/4), and
+direct-data-does-not-bridge (B+). The cross-family wall is **capacity-resistant** and is not dissolved
+by mixing in cross-family training data.
