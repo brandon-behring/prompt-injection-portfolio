@@ -731,3 +731,21 @@ expected ~$12–14); pack order **A → B− → B+** so a timeout still banks A
 cross-check (log-only, catastrophic Δ>0.2) and the recipe lock are unchanged from Rev 6. **Nothing
 changes the question, hypothesis, estimator, ROC-AUC basis, thresholds, verdict labels, or the LoRA
 recipe — only that all 27 are re-run together on one SKU.**
+
+## Revision 8 — all-27 cost-cap outcome + B+ on a cheaper bf16 GPU, 2026-06-05
+
+**Dated.** The Rev-7 all-27 H100 re-run **recovered Arm A (3/3) + Arm B− (12/12)** but the realized
+concurrency was **compute-bound** (probe: 1.63× at 2 fits; N=6 ≈ no extra — the H100 saturates by ~2
+fits for batch-16 ModernBERT-LoRA), so it cost-capped at ~$16 with only **1/12 B+** (browsesafe seed0)
+done. The Rev-6/7 "~$8 concurrent B+" estimate was wrong: **B+ costs ~sequential GPU time regardless of
+concurrency**. Decision (`/exploring-options`): finish the 12 B+ on a **cheaper Ada/Ampere bf16 card**
+(`runpod_crossfamily_bplus_cheap_sweep.yaml`; 4090/A5000/A40/…, N=2, cap $8/600 min, expected ~$3–5) —
+cheap-and-slow beats expensive-fast when compute-bound; local was ruled out (2070S 8 GB OOM + Turing
+fp16 ≠ bf16 + CPU weeks-slow). **Cross-arch reconciliation:** these B+ fits are bf16 (same dtype as the
+H100 A+B−) but a different arch (Ada/Ampere vs Hopper) → minor tensor-core drift, expected ≪ 0.05 SESOI;
+the **browsesafe seed0 re-run** (also trained on the H100 in the all-27 run) is the direct cross-arch
+drift check, recorded with the B4 verdict. All-27 pull lessons (an `lc()` mis-report + a cost-guard
+pod-delete that nearly preceded the verify): the cheap-run external monitor uses a robust direct-`find`
+count and **verifies the local tree before any pod delete**. **Nothing changes the question, hypothesis,
+estimator, ROC-AUC basis, thresholds, verdict labels, or the LoRA recipe — only the B+ rung's GPU arch
+(bf16 preserved) + the cross-arch reconciliation.**
