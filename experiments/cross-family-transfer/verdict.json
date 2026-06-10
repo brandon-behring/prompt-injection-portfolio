@@ -109,7 +109,8 @@
   "caveats": [
     "injecagent FALSIFIED is uninformative (17 negatives, zero-width CI), not a counterexample",
     "FALSIFIED rule (ci_low<=0) conflates transfers with uninformative (pre-registered limitation)",
-    "n=4 dialects / n=5 slices -> directional read"
+    "n=4 dialects / n=5 slices -> directional read",
+    "Mirror/corpus-style confound (criteria Mirror-Design-Pattern limitation): direct slate is mostly all-positive games -> residual style~injection shortcut is structural; SURVIVES is an axis-level transfer result, NOT a mechanism claim (style-vs-content probe = C2 candidate) [added 2026-06-10, audit W12]"
   ],
   "sources": [
     "B4_FINDINGS.md",

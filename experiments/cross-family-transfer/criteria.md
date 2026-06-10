@@ -564,6 +564,13 @@ purge-from-train (test sacrosanct), four scans — artifact `B2_leakage/leakage_
 reads the first element as the train index — a latent bug, harmless there because it found zero near
 pairs — corrected here to the second-element train index. Worth an upstream fix to the Arm-B gate.)*
 
+**2026-06-10 audit correction (W17, record-only):** the note above is precise only on a careful read —
+"corrected here" means the **Arm-A** gate (`leakage_gate_arm_a.py:84`) used the right convention from
+the start; it never fixed the Arm-B gate, whose inverted unpacking **stood** through the ratified runs
+(verdict-harmless: its near scan found 0 pairs on every fold, so the purge sets were unaffected). The
+Arm-B `leakage_gate.py:85` fix landed 2026-06-10 (P1.5 hardening); any future re-scan uses the
+corrected convention.
+
 ### (e) Realized train + over-defense + cluster grounding
 
 - **Train ≈ 29,047**: 7,261 positives (7,262 capped − 1 direct⊗test leakage) + 21,786 negatives @ **3.0:1**
@@ -775,3 +782,40 @@ gettable↔not edges. **Finding:** sub-L40S cards ARE stocked now (A5000/A40/409
 all `low`, flickering minute-to-minute). **Nothing changes the question, hypothesis, estimator, ROC-AUC
 basis, thresholds, verdict labels, or the LoRA recipe — only which sub-L40S bf16 card the B+ rung lands
 on (bf16 preserved; the Rev-8 cross-arch reconciliation via browsesafe seed0 is unchanged).**
+
+## Audit corrections — P1.5 methods-hardening, 2026-06-10 (record-only; verdicts unchanged)
+
+**Dated, append-only.** From the full re-audit (`docs/planning/consolidated-audit-2026-06-09.md`);
+none of these change the question, hypothesis, estimator, thresholds, verdict labels, or any
+ratified number.
+
+- **W2 — InjecAgent materialization bug (slice RETIRED, forward-only fix).**
+  `experiments/eda/materialize_datasets.py` built `injecagent_derived.parquet` by *concatenating*
+  the attacker instruction above the `Tool Response Template` instead of *substituting* it at the
+  template's `<Attacker Instruction>` placeholder — all 2,108 positives carry the literal
+  placeholder (class separable by template artifact; the "tool-output dialect" framing structurally
+  off). Verdict-conservative: the injecagent fold was already reclassified **uninformative**
+  (B4_FINDINGS §2) and gates nothing. Disposition: materializer fixed 2026-06-10 (substitution;
+  `assemble.py` join made format-robust); the ratified parquet is left as-run; **any future use of
+  the injecagent slice requires re-materialization + a fresh leakage scan.**
+- **W14 — InjecAgent data nits (same disposition).** 2 duplicated positives in the derived slate;
+  45 inner⊗val near-dups. Recorded; absorbed by the slice retirement.
+- **W11 — cluster-unit disclosures.** (a) The fujitsu B+ permutation *pairing* is vacuous under the
+  stratified resampler — strata are resampled independently (iid), so pairing adds no dependence
+  structure; the perm_p reading is unaffected. (b) The bipia held-out fold has only **3 negative
+  clusters** — thin for the label-stratified cluster bootstrap's negative side; its CI should be
+  read with that grain in mind (the SURVIVES margin +0.291 is ~6× the CI half-width, so the verdict
+  is not at risk).
+- **W4 — seed-coupling in the CI aggregation.** As-used, bootstrap draws are coupled across seeds
+  (one draw indexes all seeds' replicates) — *anti-conservative*. Quantified during the audit with
+  independent per-seed draws: CIs widen ×1.2–1.7; **no verdict flips** (every SURVIVES margin
+  exceeds the widened band). Disclosure here; upstream option tracked on eval-toolkit#93 (DF-11).
+- **W10 — "never large" gloss corrected (§E8 vicinity, line ~159).** The carrier arc's
+  SMALL-THROUGHOUT label rests on the *pre-registered* ½·G(frozen) knob; under §6.5's sign-only
+  rule the carrier residual would read SURVIVES. The cross-arc comparison gloss must say
+  "small under the pre-registered ½-knob," not "never large."
+- **W5 — dialect permutation conventions (diagnostic-only).** The B+ fujitsu permutation diagnostic
+  shuffles at the **row level** (not cluster level) and reports `p` without the standard
+  `(r+1)/(n+1)` floor. Both choices are anti-/non-standard but the statistic is **diagnostic-only**
+  (it gates nothing; the verdict rule is the CI + ½-knob + SESOI above); the perm_p 0.9988
+  "below-chance anti-transfer" reading is robust to either convention.

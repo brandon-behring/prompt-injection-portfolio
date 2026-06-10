@@ -203,3 +203,23 @@ Motivated by the **code structure** (the carve holds out types), not the smoke's
 before the registered ≥3-seed × ≥2-rung sweep. (Note: a negative or ~zero `G` is a legitimate outcome — it
 would say the carrier "wall" is a representation-geometry phenomenon that does **not** manifest as a
 detection gap, the `SMALL-THROUGHOUT`/revise-the-spine branch.)
+
+## Audit disclosures — P1.5 methods-hardening, 2026-06-10 (record-only; verdict unchanged)
+
+**Dated, append-only.** From the full re-audit (`docs/planning/consolidated-audit-2026-06-09.md`);
+neither note changes the estimator, thresholds, decision rule, or the ratified SMALL-THROUGHOUT
+verdict.
+
+- **W4 — seed-coupling in the CI aggregation (anti-conservative; quantified, no flip).** The
+  hand-rolled carrier bootstrap (and the v1.8.0 stratified primitive as-used elsewhere) couples
+  bootstrap draws across seeds — one draw indexes all seeds' replicates — which understates CI
+  width. Audit quantification with independent per-seed draws: CIs widen **×1.2–1.7**; the carrier
+  verdict does not flip (G_lora +0.067 CI-low stays >0 under the widened band). Upstream option
+  (a `seed_independent=` draw mode) tracked on eval-toolkit#93 (DF-11) alongside the
+  `return_samples`/`frac_gt` re-lock.
+- **W10 — the SMALL-THROUGHOUT label is rule-sensitive (disclosure).** Under §6.5's **sign-only**
+  rule (CI-low > 0 ⇒ SURVIVES) the carrier residual (G_lora +0.067, CI-low +0.064) would read
+  **SURVIVES**; the SMALL-THROUGHOUT label rests on the **pre-registered ½·G(frozen) knob**
+  (+0.067 < ½·0.167) — a legitimate pre-locked choice, but prose must say "small under the
+  pre-registered ½-knob," never "no wall" or "never large." (The residual table-carrier wall
+  +0.205 is the standing Lane-2 target either way.)

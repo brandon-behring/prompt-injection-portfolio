@@ -1,0 +1,106 @@
+{
+  "finding": "W16 (consolidated-audit-2026-06-09.md) \u2014 per-type PAD bootstrap CI",
+  "n_bootstrap": 1000,
+  "ref_subsample": "cap 200/type, fresh default_rng(0) redraw (see docstring)",
+  "per_type": {
+    "Base Encoding": {
+      "committed_pad_emb": 0.9263157894736842,
+      "recomputed_pad_emb": 1.0526315789473686,
+      "delta_vs_committed": 0.1263,
+      "ci_low": 1.0105263157894737,
+      "ci_high": 1.3789473684210525
+    },
+    "Business Intelligence": {
+      "committed_pad_emb": 1.263157894736842,
+      "recomputed_pad_emb": 1.1368421052631579,
+      "delta_vs_committed": -0.1263,
+      "ci_low": 1.1368421052631579,
+      "ci_high": 1.4631578947368422
+    },
+    "Conversational Agent": {
+      "committed_pad_emb": 1.0,
+      "recomputed_pad_emb": 0.894736842105263,
+      "delta_vs_committed": -0.1053,
+      "ci_low": 0.9789473684210526,
+      "ci_high": 1.3263157894736843
+    },
+    "Emoji Substitution": {
+      "committed_pad_emb": 0.9157894736842105,
+      "recomputed_pad_emb": 1.0315789473684212,
+      "delta_vs_committed": 0.1158,
+      "ci_low": 1.0,
+      "ci_high": 1.3473684210526315
+    },
+    "Entertainment": {
+      "committed_pad_emb": 0.9789473684210526,
+      "recomputed_pad_emb": 1.1052631578947367,
+      "delta_vs_committed": 0.1263,
+      "ci_low": 1.0421052631578949,
+      "ci_high": 1.3894736842105262
+    },
+    "Information Dissemination": {
+      "committed_pad_emb": 1.2736842105263158,
+      "recomputed_pad_emb": 1.1789473684210527,
+      "delta_vs_committed": -0.0947,
+      "ci_low": 1.1578947368421053,
+      "ci_high": 1.5052631578947369
+    },
+    "Marketing & Advertising": {
+      "committed_pad_emb": 1.1894736842105265,
+      "recomputed_pad_emb": 1.231578947368421,
+      "delta_vs_committed": 0.0421,
+      "ci_low": 1.1892105263157897,
+      "ci_high": 1.5157894736842106
+    },
+    "Misinformation & Propaganda": {
+      "committed_pad_emb": 0.8526315789473684,
+      "recomputed_pad_emb": 1.0,
+      "delta_vs_committed": 0.1474,
+      "ci_low": 0.9473684210526316,
+      "ci_high": 1.3263157894736843
+    },
+    "Research Assistance": {
+      "committed_pad_emb": 1.1052631578947367,
+      "recomputed_pad_emb": 1.1157894736842104,
+      "delta_vs_committed": 0.0105,
+      "ci_low": 1.1578947368421053,
+      "ci_high": 1.4947368421052631
+    },
+    "Reverse Text": {
+      "committed_pad_emb": 0.6947368421052631,
+      "recomputed_pad_emb": 0.7894736842105263,
+      "delta_vs_committed": 0.0947,
+      "ci_low": 0.736842105263158,
+      "ci_high": 1.1263157894736842
+    },
+    "Scams & Fraud": {
+      "committed_pad_emb": 0.9789473684210526,
+      "recomputed_pad_emb": 1.0,
+      "delta_vs_committed": 0.0211,
+      "ci_low": 1.0315789473684212,
+      "ci_high": 1.368421052631579
+    },
+    "Sentiment Analysis": {
+      "committed_pad_emb": 1.094736842105263,
+      "recomputed_pad_emb": 1.1263157894736842,
+      "delta_vs_committed": 0.0316,
+      "ci_low": 1.1157894736842104,
+      "ci_high": 1.4421052631578948
+    },
+    "Substitution Ciphers": {
+      "committed_pad_emb": 0.8210526315789475,
+      "recomputed_pad_emb": 0.9263157894736842,
+      "delta_vs_committed": 0.1053,
+      "ci_low": 0.9684210526315788,
+      "ci_high": 1.3473684210526315
+    },
+    "Task Automation": {
+      "committed_pad_emb": 1.1789473684210527,
+      "recomputed_pad_emb": 1.1263157894736842,
+      "delta_vs_committed": -0.0526,
+      "ci_low": 1.168421052631579,
+      "ci_high": 1.4949999999999997
+    }
+  },
+  "max_abs_delta_vs_committed": 0.1474
+}

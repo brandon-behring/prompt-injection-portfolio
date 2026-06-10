@@ -51,11 +51,23 @@ degenerate/wide CI)**. injecagent is the latter.
 cross-family wall is genuinely demonstrated by the three dialects with real negative classes —
 `browsesafe` the hardest (held-out pos≈neg≈0.98, `test_roc` 0.555).
 
+> **2026-06-10 (audit W2 — slice RETIRED, second independent ground).** The full re-audit found a
+> materialization bug upstream of this slice: `experiments/eda/materialize_datasets.py` *concatenated*
+> the attacker instruction above the `Tool Response Template` instead of *substituting* it at the
+> template's `<Attacker Instruction>` placeholder — so **all 2,108 injecagent positives carry the
+> literal placeholder string**, making the positive class separable by a template artifact, and the
+> "tool-output dialect" framing structurally off (the attack never sits inside the tool response).
+> Verdict-conservative: the slice was already reclassified uninformative above, and no headline number
+> rests on it. Disposition (P1.5): **the slice stays retired** — the materializer is fixed
+> forward-only (substitution; `assemble.py` join made format-robust) and the ratified parquet is left
+> as-run; any future use of injecagent requires re-materialization + a fresh leakage scan. Related
+> data nits (audit W14): 2 duplicated positives; 45 inner⊗val near-dups — same disposition.
+
 ## 3. Capacity trajectory (frozen → lora): the wall persists
 
 | unit | frozen | lora | Δ(lora−frozen) |
 |---|---|---|---|
-| Arm A | +0.313 | +0.365 | **+0.052 (grew)** |
+| Arm A | +0.313 | +0.365 | **+0.052 (did not shrink; point-only)** |
 | `bipia` | +0.356 | +0.291 | −0.065 (attenuated, still strong) |
 | `browsesafe` | +0.459 | +0.445 | −0.014 (flat, strongest) |
 | `fujitsu` | +0.354 | +0.228 | −0.127 (attenuated, still real) |
@@ -63,6 +75,12 @@ cross-family wall is genuinely demonstrated by the three dialects with real nega
 (tfidf rung: see the B2.4 cheap-rung directional read, `B2_4_FINDINGS.md`.) Unlike **attack-type**
 (wall dissolved at the lora ceiling) and **carrier** (small-throughout), the **cross-family** wall
 **persists frozen → lora** in every genuine test → **capacity-resistant**.
+
+> **W13 (2026-06-10 audit):** the Arm-A Δ = +0.052 is a **point contrast with no CI** (per-seed
+> range **+0.020…+0.075**; the bootstrap was run within-rung, not on the cross-rung difference).
+> Headlines must not present "the wall GREW" as established — the established claim is the
+> verdict-bearing one: the wall **did not shrink** at the LoRA ceiling (SURVIVES on the
+> pre-registered rule). The "grew" direction is consistent across all 3 seeds but unquantified.
 
 ## 4. Arm A over-defense @ the lora ceiling + the shortcut-learning reading
 

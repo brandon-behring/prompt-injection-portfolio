@@ -79,16 +79,18 @@ def scan_fold(
     exact_keep = _exact_purge_mask(train_texts, test_texts, normalize_text_for_dedup, sha256_text)
     exact_purged_idx = {i for i, keep in enumerate(exact_keep) if not keep}
 
-    # (b) near (MinHash-LSH); cross_dedup_pairs(train, eval) → (train_idx, eval_idx, sim)
+    # (b) near (MinHash-LSH); cross_dedup_pairs(train, eval) → (eval_idx, train_idx, sim)
+    # [W17 2026-06-10: unpacking was inverted (test idx read as train); harmless on the
+    #  committed run — it found 0 near pairs — but wrong for any future nonzero scan.]
     strat = MinHashLSHStrategy(n=3, num_perm=128, bands=16, seed=42)
     pairs = cross_dedup_pairs(train_texts, test_texts, threshold=near_threshold, strategy=strat)
-    near_purged_idx = {tr for (tr, _ev, _sim) in pairs}
+    near_purged_idx = {tr for (_ev, tr, _sim) in pairs}
 
     purged_idx = exact_purged_idx | near_purged_idx
     near_only = near_purged_idx - exact_purged_idx
 
     samples: list[dict] = []
-    for tr, ev, sim in pairs[:8]:
+    for ev, tr, sim in pairs[:8]:
         samples.append(
             {
                 "sim": round(float(sim), 3),

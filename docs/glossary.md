@@ -271,11 +271,17 @@ indirect-dialect-out transfer across BIPIA, browsesafe, fujitsu, and InjecAgent.
 The 2026-06 B4 verdict is **SURVIVES** at the LoRA ceiling: Arm A's gap is
 +0.365, B− 3/4 SURVIVE — all 3 dialects with a genuine negative class survive;
 the 4th (injecagent, 17 negatives) is degenerate: uninformative, NOT a
-counterexample — and B+ does not bridge.
+counterexample — and B+ does not bridge. SURVIVES is a *transfer* result, not a
+*mechanism* claim: the direct train slate's corpus style is confounded with
+family (the Mirror/corpus-style limitation), so *why* the wall stands —
+family semantics vs corpus style — awaits the mechanism probe (audit W12,
+2026-06-10).
 
 **In plain terms:** the detector learned the training family too specifically.
 Fine-tuning helped some easier axes, but it did not make direct-style training
-generalize to genuinely different indirect data families.
+generalize to genuinely different indirect data families. Whether that is about
+the *content* of the families or merely the *writing style* of the corpora is a
+separate, unanswered question.
 
 ## d′ (d-prime)
 

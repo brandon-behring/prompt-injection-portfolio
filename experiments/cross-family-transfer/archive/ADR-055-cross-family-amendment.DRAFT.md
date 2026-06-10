@@ -1,5 +1,10 @@
 # ADR-055 cross-family amendment — DRAFT (pending ratification), 2026-06-06
 
+> **SUPERSEDED + ARCHIVED (2026-06-10, audit W18).** This draft WAS ratified on 2026-06-06 — the
+> canonical text lives in `decisions/ADR-055-post-m1-re-ladder-multi-axis-spine.md` (commit
+> `4881514`) and has since received dated audit annotations (W12/W13) this copy lacks. Kept as the
+> scribe's historical draft only; do **not** cite it.
+
 > Prepared by `adr-scribe` (read-only; drafts only). **NOT ratified** — not written to the canonical
 > `decisions/ADR-055-post-m1-re-ladder-multi-axis-spine.md` body. Ratification (append to ADR-055,
 > reword Decision 1, update `decisions/README.md`, commit) is **user-led**. Markdown links below are

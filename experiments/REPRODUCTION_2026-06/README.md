@@ -45,6 +45,22 @@ same metric fn); every CI bound is within pure Monte-Carlo noise.
 - `n_jobs=1` (no cross-process pickling); `n_boot` 5 000–10 000 for the CI comparison (the point is
   `n_boot`-invariant). The new primitive's `n_jobs`-reproducibility is verified upstream (test suite).
 
+### Audit disclosures — 2026-06-10 (W15; record-only, results unchanged)
+
+From the full re-audit (`docs/planning/consolidated-audit-2026-06-09.md`):
+
+- **§6.5 CI scheme deviation (previously undisclosed).** The §6.5 CI cross-check resamples via the
+  v1.8.0 stratified primitive, which is **not scheme-identical** to the original verdict's
+  payload-cluster bootstrap scoping — part of the observed CI drift is *scheme difference*, not
+  sampling noise. The **point** re-derivation (bit-exact, bootstrap-free) is unaffected and remains
+  the rigorous check.
+- **"Pure Monte-Carlo noise" (line above) is overstated** for the same reason. Honest statement:
+  every CI bound agrees within MC noise *plus* a small scheme-difference term, jointly inside the
+  pre-stated ±0.02 rule (observed ≤ 0.001); no bound approaches a decision threshold.
+- **`dialect_balanced` exclusion (previously unmentioned).** The dialect reproduction covers the 8
+  headline `{tfidf,frozen} × 4-dialect` cells only; the auxiliary `dialect_balanced` diagnostic
+  variant was not re-derived (non-verdict-bearing).
+
 ## Reproduce
 
 ```bash

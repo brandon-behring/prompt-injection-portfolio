@@ -16,6 +16,10 @@ owns the write-gate, the manifest/seed-completeness checks, and the verdict pers
 * **Write-gated.** The verdict is written into ``OOD_WALL_PREDICTION/`` only when the
   harness MANIFEST's ``complete_headline_sweep`` flag is true and ≥3 seeds are present.
   A smoke / partial sweep prints the computed numbers and refuses to write.
+* **Overwrite-gated (audit W3, 2026-06-10).** An existing verdict file — in particular the
+  committed, ratified ``falsification_verdict.json`` — is never overwritten by default
+  (exit code 3). Use ``--out <path>`` to write a scratch copy elsewhere, or ``--force``
+  to intentionally regenerate the canonical record.
 
 Run (against a completed sweep)::
 
@@ -93,6 +97,24 @@ def manifest_complete(results_dir: Path) -> tuple[bool, str]:
     return True, "complete headline sweep"
 
 
+def resolve_verdict_path(out: Path | None, *, force: bool) -> tuple[Path, bool, str]:
+    """Resolve the verdict destination and whether writing to it is permitted.
+
+    Returns ``(path, allowed, reason)``. Overwriting an existing file — above all the
+    committed, ratified ``OOD_WALL_PREDICTION/falsification_verdict.json`` — is refused
+    unless ``force`` (audit finding W3: a casual rerun used to clobber the record).
+    """
+    path = out if out is not None else _OOD_DIR / "falsification_verdict.json"
+    if path.exists() and not force:
+        return (
+            path,
+            False,
+            f"{path} already exists; refusing to overwrite. Use --out <new-path> for a "
+            "scratch copy, or --force to intentionally regenerate the canonical record",
+        )
+    return path, True, "ok"
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Compute the §6.5 verdict; write it into OOD_WALL_PREDICTION/ only if write-gate opens."""
     args = _parse_args(argv)
@@ -134,7 +156,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         "bottom_k_predicted_best": pred["bottom_k_predicted_best"],
         **verdict,
     }
-    verdict_path = _OOD_DIR / "falsification_verdict.json"
+    verdict_path, allowed, reason = resolve_verdict_path(args.out, force=args.force)
+    if not allowed:
+        print(f"[falsify] OVERWRITE-GATE CLOSED — verdict NOT persisted ({reason}).")
+        return 3
+    verdict_path.parent.mkdir(parents=True, exist_ok=True)
     verdict_path.write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(f"[falsify] WRITE-GATE OPEN — verdict written to {verdict_path}")
     return 0
@@ -147,6 +173,17 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     p.add_argument("--rung", default=None, help="headline rung to judge (default: prefer lora)")
     p.add_argument("--n-boot", type=int, default=fc._N_BOOT, help="cluster bootstrap resamples")
     p.add_argument("--seed", type=int, default=0, help="resampling seed for perm/bootstrap")
+    p.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="verdict destination (default: the canonical OOD_WALL_PREDICTION record)",
+    )
+    p.add_argument(
+        "--force",
+        action="store_true",
+        help="overwrite an existing verdict file (otherwise refused with exit code 3)",
+    )
     return p.parse_args(argv)
 
 

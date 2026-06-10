@@ -1,0 +1,41 @@
+{
+  "reference_probe": "prompt_guard_2",
+  "model_id": "meta-llama/Llama-Prompt-Guard-2-86M",
+  "fold": "carrier_plus_attack_external",
+  "seed": 0,
+  "status": "ok",
+  "headline": {
+    "pr_auc": {
+      "value": 0.9841363839368702,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "roc_auc": {
+      "value": 0.7879642857142858,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "brier": {
+      "value": 0.9155993335119582,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "ece_n_bins_15_strategy_uniform": {
+      "value": 0.9216974038102276,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "prevalence_floor": 0.9438202247191011,
+    "tpr_at_fpr": {
+      "0.01": 0.23214285714285715,
+      "0.005": 0.23214285714285715,
+      "0.001": 0.23214285714285715
+    }
+  },
+  "n_test": 890,
+  "note": "off-the-shelf reference (untrained); NOT a rung; non-gating (ADR-054)"
+}

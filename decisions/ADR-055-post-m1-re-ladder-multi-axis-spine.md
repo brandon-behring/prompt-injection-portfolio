@@ -226,13 +226,13 @@ The Decision-5 carrier gate and this gate are siblings: both ask whether end-to-
 
 | read | unit | Gx_frozen | Gx_lora | CI_lora (one-sided 95%, label-strat. cluster bootstrap) | verdict |
 |---|---|---|---|---|---|
-| **Arm A** (direct→indirect, pooled) | `arm_a_pooled` | +0.313 | **+0.365** | [+0.284, +0.431] | **SURVIVES** (wall *grew*) |
+| **Arm A** (direct→indirect, pooled) | `arm_a_pooled` | +0.313 | **+0.365** | [+0.284, +0.431] | **SURVIVES** (wall did not shrink; Δ point-only — W13) |
 | **Arm B−** (dialect-LODO, indirect-only train) | bipia | +0.356 | +0.291 | [+0.207, +0.463] | **SURVIVES** |
 | | browsesafe | +0.459 | +0.445 | [+0.441, +0.450] | **SURVIVES** (hardest) |
 | | fujitsu | +0.354 | +0.228 | [+0.224, +0.231] | **SURVIVES** |
 | | injecagent | −0.034 | −0.014 | [−0.014, −0.014] | FALSIFIED — **uninformative**, NOT a counterexample (Caveats) |
 
-**Arm B− = 3/4 SURVIVE; Arm A SURVIVES.** Unlike the attack-type axis (`lora` T = −0.003, FALSIFIED — fully dissolved) and the carrier axis (`SMALL-THROUGHOUT`, ~60% attenuated), the cross-family wall **persists frozen → lora in every genuine test**, and Arm A's wall *grows* (+0.313 → +0.365) — **capacity-resistant**.
+**Arm B− = 3/4 SURVIVE; Arm A SURVIVES.** Unlike the attack-type axis (`lora` T = −0.003, FALSIFIED — fully dissolved) and the carrier axis (`SMALL-THROUGHOUT`, ~60% attenuated), the cross-family wall **persists frozen → lora in every genuine test**; Arm A's does not shrink (+0.313 → +0.365 — a **point-only** Δ+0.052, per-seed range +0.020…+0.075, no cross-rung CI; W13 2026-06-10) — **capacity-resistant**.
 
 **Arm B+ — adding direct-injection training data does NOT bridge.** The pre-registered B+ arm (`train = K−1 indirect dialects ∪ the Arm-A direct base`; cheap Ada 4090 bf16, `criteria.md` Rev 8–9) is the same shape — **3/4 SURVIVE** (bipia +0.291, browsesafe +0.391, fujitsu +0.470; injecagent −0.009 uninformative). The **B+ − B− bridging contrast** is ≈0-or-worse: bipia +0.000, browsesafe −0.054, **fujitsu +0.242 (worsens)**, injecagent +0.005. **fujitsu B+ anti-transfers** — perm p = 0.9988, held-out `test_roc` *below chance* (B− perm p = 0.0). Capacity-resistance is **not bought off by mixing in cross-family training data**.
 
@@ -254,6 +254,7 @@ Capacity does not act uniformly across axes: LoRA **dissolves** the within-BIPIA
 - **bipia / browsesafe lower-power but valid** — bipia 468 negatives over 3 clusters (coarse but *wide*/conservative CI, far from 0); browsesafe val near-saturated (~0.9998) but `test_roc` genuinely mid-range (0.555).
 - **fujitsu B+ below-chance anti-bridge** (perm p 0.9988) — a notable secondary finding, not verdict-bearing.
 - **n=5 Arm-A slices / n=4 Arm-B dialects** ⇒ directional read (per-unit table carries the evidence, not a cross-fold aggregate). The corpus-OOD confound (Arm B holds out a *corpus* bundle, not carrier alone) is the pre-committed E5 limitation.
+- **Mirror/corpus-style confound — no mechanism claim.** *[Added 2026-06-10, audit W12 — present in `criteria.md` (Mirror Design Pattern limitation, arXiv:2603.11875) + `B2_4_FINDINGS.md` but previously missing from this spine-level list.]* The direct train slate is mostly all-positive *games*, so pos/neg cells are not nuisance-matched and a residual style≈injection shortcut is structural (mitigated by multi-source + hard negatives + the leakage gate; reported, not claimed away). Consequence: cross-family SURVIVES is an **axis-level transfer result, not a mechanism result** — *why* it survives (family semantics vs corpus style) is unsupported without the style-vs-content mechanism probe (the C2 pre-registration candidate).
 
 **Cost.** Label-stratified cluster bootstrap (≥10,000 iters, one-sided 95% percentile CI). The `lora` rung ran on RunPod across an A→B−→B+ matrix; realized record `criteria.md` Rev 6–9 (live H100 cost-capped ~$14, recovery blocked → unified all-27 H100 re-run recovered Arm A + B−, B+ finished on a cheaper sub-L40S Ada bf16 card ~$3–5; total ≈ $35). **Base-budget throughout** — [ADR-002](ADR-002-cost-cap-250-base-100-contingency.md)'s $250 base « $350 hard cap is untouched and [ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md) **stays Reserved**.
 

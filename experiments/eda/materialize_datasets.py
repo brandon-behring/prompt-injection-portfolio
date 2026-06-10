@@ -526,7 +526,17 @@ def fetch_injecagent(out_root: Path) -> dict:
                 continue
             for r in json.loads((dest / f).read_text(encoding="utf-8")):
                 tool_resp = r.get("Tool Response Template", r.get("Tool Response", ""))
-                text = f"{r.get('Attacker Instruction', '')}\n\n{tool_resp}".strip()
+                instr = r.get("Attacker Instruction", "")
+                # W2 fix (2026-06-10): the template embeds the attack at an
+                # `<Attacker Instruction>` placeholder — substitute it there. The prior
+                # concatenation left the literal placeholder in every positive
+                # (consolidated-audit-2026-06-09.md W2); ratified runs used the old
+                # parquet and the slice is retired as uninformative, so this fix is
+                # forward-only.
+                if "<Attacker Instruction>" in tool_resp:
+                    text = tool_resp.replace("<Attacker Instruction>", instr).strip()
+                else:
+                    text = f"{instr}\n\n{tool_resp}".strip()
                 rows.append(
                     dict(text=text, attack_type=r.get("Attack Type", ""), setting=f, label=1)
                 )

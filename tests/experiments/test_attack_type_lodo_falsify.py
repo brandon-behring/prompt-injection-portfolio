@@ -189,6 +189,41 @@ def test_write_gate_open_on_complete_sweep(tmp_path: Path) -> None:
     assert ok
 
 
+# ── overwrite-gate (audit W3: a casual rerun must never clobber the committed verdict) ──
+
+
+@pytest.mark.unit
+def test_overwrite_gate_refuses_existing_verdict(tmp_path: Path) -> None:
+    """An existing verdict file is never overwritten without --force."""
+    target = tmp_path / "falsification_verdict.json"
+    target.write_text("{}", encoding="utf-8")
+    path, allowed, reason = fw.resolve_verdict_path(target, force=False)
+    assert path == target
+    assert not allowed
+    assert "refusing to overwrite" in reason
+
+
+@pytest.mark.unit
+def test_overwrite_gate_force_and_fresh_paths_allowed(tmp_path: Path) -> None:
+    """--force re-opens an existing target; a fresh --out path needs no force."""
+    target = tmp_path / "falsification_verdict.json"
+    target.write_text("{}", encoding="utf-8")
+    _path, allowed, _reason = fw.resolve_verdict_path(target, force=True)
+    assert allowed
+    fresh = tmp_path / "scratch" / "verdict.json"
+    _path2, allowed2, _reason2 = fw.resolve_verdict_path(fresh, force=False)
+    assert allowed2
+
+
+@pytest.mark.unit
+def test_overwrite_gate_default_protects_committed_record() -> None:
+    """The default (no --out) targets the committed ratified record — and refuses to clobber it."""
+    path, allowed, _reason = fw.resolve_verdict_path(None, force=False)
+    assert path == fw._OOD_DIR / "falsification_verdict.json"
+    assert path.exists()  # the ratified record is in the tree
+    assert not allowed
+
+
 # ── ADR-054: rebuild_manifest disk-union write-gate + non-gating reference column ──
 
 

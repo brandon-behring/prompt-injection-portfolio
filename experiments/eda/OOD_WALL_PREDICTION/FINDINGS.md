@@ -32,6 +32,21 @@ Survives iff the predicted-worst tail collapses more than the predicted-best tai
    not the injected payload. This is the dominant geometric fact and reframes "OOD":
    the largest shift is *carrier*, which the ADR-052 design holds constant.
 
+   > **2026-06-10 — W1 truncation disclosure + email-only re-check (audit; conclusion SURVIVES).**
+   > The full re-audit (`consolidated-audit-2026-06-09.md` W1) found these pooled numbers are
+   > computed under MiniLM's **`max_seq_length=256`** with BIPIA's **suffix** injection — so a
+   > large share of table/code positives carry **zero attack tokens** into the embedder
+   > (tail-probe truncation fractions: **table 68.3% · code 46.5% · email 1.1%**; codex's
+   > independent measurement: 66.5%/44.1%). The pooled by-attack-type silhouette was therefore
+   > partly measured on inputs that did not contain the attack. **Re-check (within-carrier,
+   > `w1_email_only_silhouette.py` → `w1_email_only_recheck.json`):** on the effectively
+   > untruncated **email** carrier, by-attack-type silhouette = **−0.035**, KMeans→type ARI =
+   > **+0.001** (code −0.025/0.011 · table −0.027/0.005) — attack-type stays embedding-invisible
+   > *even where the attack tokens are fully visible*. The headline survives, but every citation
+   > of the pooled silhouette/ARI numbers must carry the **frozen-MiniLM + 256-token truncation**
+   > qualifier, and the carrier-separation figure (0.197/0.98) partially reflects literal
+   > truncation geometry, not only carrier style.
+
 2. **BIPIA indirect attacks are lexically subtle.** C1 top injected-leaning tokens are
    generic (`your`, `you`, `to`, punctuation), **not** crude `ignore previous instructions`
    markers — consistent with indirect injection (benign-looking task queries embedded in
@@ -62,6 +77,13 @@ Survives iff the predicted-worst tail collapses more than the predicted-best tai
   and falsified only via the **tail contrast** (never a full correlation, which N=5 attenuates).
 - Embedding-space shift is small *because* the carrier dominates — the per-type PAD spread
   (0.69–1.27) is modest; the prediction leans on C2 shortcut-transfer to break ties.
+  - **W16 (2026-06-10 audit): the criteria-promised PAD CI was never computed in the original run**
+    (`run_prediction.py` used `n_bootstrap=0`; `pad_emb_ci_low/high` are `null` in `results.json`,
+    V9's PAD bars carry zero-width whiskers). Re-check (`w16_pad_ci.py` → `w16_pad_ci.json`,
+    n_bootstrap=1000, documented ref-redraw): per-type PAD CI half-widths are **~±0.15–0.17** and a
+    ref-subsample redraw alone moves points by up to **|Δ| 0.147** — i.e. the per-type PAD *ordering*
+    is noisy at the scale of its spread, exactly why the pre-registered rule judged only the
+    **tail contrast**, never PAD magnitudes. No conclusion changes.
 - qa/abstract carriers (license-gated) + PINT + Indirect-in-the-Wild excluded (honest ceiling).
 
 ## Realized verdict — 2026-06-01 (post-LoRA, write-gate OPEN)

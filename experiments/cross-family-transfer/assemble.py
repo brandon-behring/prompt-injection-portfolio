@@ -286,15 +286,17 @@ def _load_attacker_tool_map() -> dict[str, str]:
 def _tool_for_text(text: str, instr_to_tool: dict[str, str]) -> str:
     """Tool id for a derived InjecAgent row by matching its embedded attacker instruction.
 
-    The derived ``text`` is ``"<attacker instruction>\\n\\n<tool response>"``; match by the
-    instruction prefix (longest matching instruction wins to avoid short-prefix collisions).
+    Legacy derived ``text`` is ``"<attacker instruction>\\n\\n<tool response>"`` (instruction
+    prefix); post-W2 derived text substitutes the instruction at the template's
+    ``<Attacker Instruction>`` placeholder, so it can sit anywhere. Match by containment
+    (longest matching instruction wins to avoid short-substring collisions) — covers both.
     """
     head = text.split("\n\n", 1)[0].strip()
     if head in instr_to_tool:
         return instr_to_tool[head]
     best = ""
     for instr in instr_to_tool:
-        if instr and text.startswith(instr) and len(instr) > len(best):
+        if instr and instr in text and len(instr) > len(best):
             best = instr
     if best:
         return instr_to_tool[best]
