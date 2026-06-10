@@ -1,10 +1,15 @@
 # C1 — carrier/table training arc (Lane 2): does carrier-targeted data close the residual table wall?
 
-> **DRAFT — NOT YET PRE-REGISTERED (2026-06-10).** Fork C = C1 was decided at Round 31
-> (`docs/planning/PORTFOLIO_PLAN.md`); this criteria draft is the pre-registration it requires.
-> **Ratification is a separate present-first go**; no corpus generation, no training run, and no
-> verdict computation before the user ratifies this file (at which point the DRAFT suffix drops and
-> the revision policy below takes over). Numbers quoted from prior arcs are anchors, not results.
+> **RATIFIED 2026-06-10 (user, via `/exploring-options` Q1 — "ratify as drafted").** Fork C = C1
+> was decided at Round 31 (`docs/planning/PORTFOLIO_PLAN.md`); this file is its pre-registration.
+> The DRAFT suffix is dropped; the **append-only revision policy below is now in force**. Numbers
+> quoted from prior arcs are anchors, not results.
+>
+> **Spend scope locked at ratification (Q2):** this ratification authorizes the cost-capped corpus
+> generation (≤ $5, `--bail-at-cost`) and the $0 cheap rungs (tfidf, frozen) including the leakage
+> gate; the **`lora` decision rung remains behind its own separate present-first paid go** (~$1–5),
+> per the write-gate below. The pre-run gate (research_toolkit #22, Honest limitations) must clear
+> before corpus generation; its dated gate-check note is appended at the end of this file.
 
 ## Why this arc exists (the claim it tests)
 
@@ -106,3 +111,26 @@ the table result is CLOSED (generalization of the recipe, not verdict-bearing).
 Identical to the carrier/cross-family arcs: this file is **append-only after ratification** —
 any change lands as a dated Revision section; estimator/threshold/label changes before the first
 datum only, with rationale; nothing changes after the write-gate opens.
+
+## Pre-run gate check — research_toolkit #22 (2026-06-10; gate CLEARED via upstream fix)
+
+The gate required #22 (silent `_extract_text` failure) be *closed or demonstrably not on the
+recipe's path* before corpus generation. **The trace found it ON the path**: `_extract_text`
+(`.tooling/research_toolkit/scripts/dataset_synthesize.py:316`) silently returns `""` on
+all-non-text responses, and `synthesize()` called it on every sample, writing `content: ""` rows
+**counted against `target_count`** — a silent corpus-poisoning path for exactly the generator
+this arc uses. Per the pre-adjudicated rule, generation was STOPPED and escalated.
+
+**User decision (escalation modal): minimal upstream fix + dogfood.** Landed as research_toolkit
+**PR #38** (`fix/21-empty-response-loud`, commit `c9fae12`, branched from upstream `main`
+`c3a74f4`): empty/whitespace-only responses now drop the row (not written, not counted), keep
+honest cost accounting, set `api_error = "EmptyResponse: …"`, and exit 3 with partial-manifest
+recovery — plus a regression test (module suite 22/22). The repo-local `.tooling/research_toolkit`
+clone now sits on that branch, so **corpus generation runs with the fix regardless of upstream
+merge timing**. Per #22's own "recommended path to ready," the C1 corpus generation doubles as the
+skill's first real burn-in/dogfood run — friction logged to research_toolkit `BURN_IN_NOTES.md`
+(items 1–2 of #22).
+
+**Gate disposition: CLEARED** — the silent path is eliminated in the exact code the recipe
+executes; the fail-late `ANTHROPIC_API_KEY` path (#21 item #5) is not exercised by this arc
+(CLI entry checks the env var at `dataset_synthesize.py:593`).
