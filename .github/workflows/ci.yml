@@ -33,19 +33,19 @@ jobs:
 
     steps:
       - name: Checkout portfolio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: prompt-injection-portfolio
 
       - name: Checkout submission (pinned to v1.3.0 per Round 14 Q1 + Round 22 dynamic-detect)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: brandon-behring/prompt-injection-detection-prototype
           ref: v1.3.0
           path: prompt-injection-detection-submission
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v8.1.0
         with:
           version: "latest"
 
