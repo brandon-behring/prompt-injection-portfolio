@@ -1,6 +1,20 @@
-# Session handoff — 2026-06-10 — FULL RE-AUDIT PASSED (spine holds, 30 verifiers + codex/gemini) · consolidation APPLIED (uncommitted) · roadmap refreshed · [prior arcs below SUPERSEDED]
+# Session handoff — 2026-06-10 (LATE) — Round 31 RATIFIED · roadmap = STANDING SURFACE (forks A/B/C all decided) · P1.5 hardening + C1 pre-reg draft in flight · [prior arcs below SUPERSEDED]
 
-> **🆕 LATEST (2026-06-09/10) — the user-elected FULL RE-AUDIT of every ratified verdict is DONE and the spine HOLDS.**
+> **🆕 LATEST (2026-06-10, post-audit-commit) — consolidation COMMITTED + PUSHED (`d92426a`); Round 31 ratified; every roadmap fork decided.**
+>
+> **Round 31 is IN `PORTFOLIO_PLAN.md`** (pasted after Round 30; the DRAFT file deleted). Six locked decisions: full re-audit PASSED (spine holds, zero BLOCKERs) · agent-harness-v0 = retrospective trio, **own surface** · provenance (b) · v0.1.0 = Fork **A(b)** (HELD on accounts) · milestone-rethink retired · **Fork C = C1: Lane-2 carrier/table training is the next experiment** (pre-registration first; C2 drafts during C1 GPU waits; P1.5 precedes everything).
+>
+> **`docs/planning/roadmap-refresh-2026-06-09.md` is the STANDING ROADMAP SURFACE** (header promoted from DRAFT): P0 **DONE** (`d92426a`) · P1 **HELD** (accounts) · P1.5 **IN PROGRESS** (this session: W1–W18 full package, $0 local) · P2 = **C1** (criteria.DRAFT this session → separate present-first ratification before any run).
+>
+> **This session's stretch (approved plan):** Round-31 paste ✓ → roadmap promotion ✓ → P1.5 full hardening (W3 write-gate, W17 leakage-gate fix, W2 injecagent fix + slice retirement, W1 email-only silhouette, W16 PAD CI, W9 PG1 provenance, disclosure batch W4/5/10/11/12/13/14/15, W18 archive) → `experiments/carrier-table-training/criteria.DRAFT.md`. Commits suggested at checkpoints, user-approved.
+>
+> ⚠️ Until W3 lands: do NOT run `falsify_ood_wall.py` casually — it overwrites the committed `falsification_verdict.json`.
+
+---
+
+# Session handoff — 2026-06-10 — FULL RE-AUDIT PASSED (spine holds, 30 verifiers + codex/gemini) · consolidation APPLIED · [SUPERSEDED by the block above — consolidation since committed `d92426a`, Round 31 ratified]
+
+> **🆕 (2026-06-09/10) — the user-elected FULL RE-AUDIT of every ratified verdict is DONE and the spine HOLDS.**
 >
 > **Audit:** 30 adversarial verifiers (5 roles × 6 arcs) + mechanical reproduction (verdict scripts Δ=0 point-exact; **162/162** parquet recomputes Δ=0.0; bit-exact tfidf retrains ×4) + codex/gemini refutation (codex 36-CONFIRMED/6-WEAKENED/0-REFUTED; gemini's one refutation failed artifact-grounding). **attack-type FALSIFIED · carrier SMALL-THROUGHOUT · cross-family SURVIVES — zero BLOCKERs.** Record: `docs/planning/consolidated-audit-2026-06-09.md` (15 FIX-NOW applied / 18 FOLLOW-UP / 10 cosmetic). Two NEW substantive findings: **W1** MiniLM-256 truncation artifact (66.5% table / 44.1% code positives truncated out of the EDA embedder — email-only re-check owed) · **W2** InjecAgent materialization bug (placeholder concatenated, not substituted; conservative for verdicts).
 >

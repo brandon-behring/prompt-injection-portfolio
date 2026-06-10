@@ -1,4 +1,8 @@
-# Roadmap refresh — 2026-06-09/10 (DRAFT — presents forks; decides nothing)
+# Roadmap refresh — 2026-06-09/10 (STANDING ROADMAP SURFACE — ratified Round 31, 2026-06-10)
+
+> **Status (2026-06-10):** ratified into `PORTFOLIO_PLAN.md` Round 31. Forks A/B/C below are
+> **decided** (A = variant b, held on accounts · B = retrospective trio, own surface · C = C1);
+> the fork analyses are kept for the record. Live state: §1 table.
 
 **Inputs:** the ratified 3-axis spine (ADR-054/-055 + amendments) · the full re-audit (`consolidated-audit-2026-06-09.md` — spine holds, 15 FIX-NOW / 18 FOLLOW-UP) · `results-analysis-2026-06-08.md` "Paths forward" · `milestone-rethink-inputs.md` (folded in + retired, §6) · `M0_READINESS.md` held bundle · DF-11 · the 13-chapter outline.
 
@@ -6,16 +10,16 @@
 
 ## 1. Recommended sequence (the short version)
 
-| Priority | Work package | Size | Gate |
+| Priority | Work package | Size | Status / gate |
 |---|---|---|---|
-| **P0** | **Consolidation session** — apply the audit's 15 FIX-NOWs, land the 6 uncommitted-artifact dispositions, fix W3/W6 + broken links, refresh SESSION-HANDOFF | ~1 session, $0 | user approves FIX-NOW list + dispositions (Checkpoint 1) |
-| **P1** | **v0.1.0 close** — Fork A below (recommend variant b: full-spine close) | ~15-min runbook | accounts (unchanged human gate) |
-| **P1.5** | **Methods-hardening mini-arc** — W1 email-only silhouette check, W2 injecagent fix/re-derive (cheap rungs), disclosure notes W4/W5/W10/W11/W12/W15/W16, W9, W17 | ~1 session, $0 | none (local CPU) |
-| **P2** | **Lane 2: carrier/table training arc** — the next experiment (Fork C) | pre-reg + cheap rungs free; lora ~$1–5 | pre-registration first (present-first go) |
-| **P3** | Dossier sprint · Lane 3/4/5 per ladder · agent-harness-v1 (only if v0 adopted) | — | user-led |
+| **P0** | **Consolidation session** — the audit's 15 FIX-NOWs, the 6 uncommitted-artifact dispositions, W6 + broken links, SESSION-HANDOFF refresh | ~1 session, $0 | **DONE** — Checkpoint-1 approved; committed `d92426a` (pushed) |
+| **P1** | **v0.1.0 close** — Fork A **decided: variant (b)** full-spine close (ff-merge → tag → release → announce) | ~15-min runbook | **HELD** — accounts (unchanged human gate); runbook staged in `M0_READINESS.md` |
+| **P1.5** | **Methods-hardening mini-arc** — W1 email-only silhouette check (conclusion SURVIVES), W2 injecagent fix + slice retirement, W3 write-gate (+3 tests), disclosure notes W4/W5/W10/W11/W12/W13/W14/W15, W9 (9 reference metrics committed), W16 PAD CI, W17, W18 archive | ~1 session, $0 | **DONE** (2026-06-10; gates 67 tests + 13 contracts green) |
+| **P2** | **Lane 2: carrier/table training arc** — Fork C **decided: C1** (pre-registration first; C2 mechanism pre-reg drafts during C1 GPU waits) | pre-reg + cheap rungs free; lora ~$1–5 | criteria.DRAFT this session → separate present-first ratification before any run |
+| **P3** | Dossier sprint · Lane 3/4/5 per ladder · agent-harness-v1 (v0 adopted → unblocked) | — | user-led |
 | **When unblocked** | DF-11 carrier/clustered re-lock (eval-toolkit#93) · carrier n=5 retest (license gate) | small | upstream ships |
 
-## 2. Fork A — v0.1.0 close timing/scope (the 38-commit question)
+## 2. Fork A — v0.1.0 close timing/scope (the 38-commit question) — **DECIDED: (b), held on accounts**
 
 `main` = `ee397a7` (post-M0-merge, 2026-06-01). The session branch holds 38 fast-forwardable, already-pushed commits = the entire carrier-amendment + cross-family arc + audits. The staged tag text (M0_READINESS.md:148-162) is stale either way (F3: "55 ADRs" vs 53; "capacity-dependent" vs the ratified axis-dependent wording; runbook's recorded main SHA also stale).
 
@@ -68,16 +72,16 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
 
 Required under every fork: fix line 33's stale "0.98–0.999" range (F4). Under (b): replace the single-result headline with the 3-axis spine (same numbers as the tag text), add one line on the audit chain, keep length/tone. Under (a): add a "what's next: cross-family arc already complete on the session branch" teaser instead.
 
-## 3. Fork B — agent-harness-v0 disposition
+## 3. Fork B — agent-harness-v0 disposition — **DECIDED: (A) retrospective record trio, own surface**
 
 Audit verdict: deterministic, internally exact, claims contained (consolidated-audit §5). Decision pair:
 
 1. **Record form:** (A) retrospective record trio — explicitly-labeled `criteria.md` scope declaration + fenced FINDINGS + `verdict: EXPLORATORY-VALIDATED` — vs (B) exploratory README banner only, no verdict surface until a pre-registered v1. Both drafted; (A) makes it a citable experiment surface, (B) is the stricter pre-registration reading.
-2. **Placement:** new experiment surface alongside the LODO arcs (its own chapter-7-adjacent slot) vs folded under the Lane 3/4 playbooks (it evaluates *defenses* — spotlighting/firewalls — which is Lane 3/4 territory and dossier family `agent_harness_architecture`). Placement can defer to the Round-update; record form cannot (it gates the commit in P0).
+2. **Placement:** new experiment surface alongside the LODO arcs (its own chapter-7-adjacent slot) vs folded under the Lane 3/4 playbooks (it evaluates *defenses* — spotlighting/firewalls — which is Lane 3/4 territory and dossier family `agent_harness_architecture`). *[Decided 2026-06-10 (Round 31): **own surface**, cross-referenced from Lane 3/4; a v1 extends it in place.]*
 
 A v1 with an LLM backend (the only way `spotlight_delimit` and the gates produce *empirical* rather than construction-property results) is a P3 option, only meaningful after adoption.
 
-## 4. Fork C — the next experiment (after P0/P1)
+## 4. Fork C — the next experiment (after P0/P1) — **DECIDED: C1 (2026-06-10)**
 
 | Option | What | Cost/blockers | Case |
 |---|---|---|---|
@@ -114,6 +118,16 @@ Its four OPEN implications, resolved:
 - **A1–A8 punch-list:** A3/A4 applied (`f00e035`); A5 applied (criteria citation gloss, verified); A1 applied at source but un-propagated → F4 closes it; remaining framing items are absorbed where the verifiers re-found them (F5/F6/W10/W12/W13); a final A1–A8 line-item check rides the P0 session.
 - **Audit FOLLOW-UPs:** W1/W2/W4/W5/W9/W10/W11/W12/W15/W16/W17 → P1.5; W3/W6/W14/W18 + F-batch → P0; W7 → Fork B; W8 → disposition; W13 → F-batch wording.
 
-## 8. What this doc does NOT decide
+## 8. What remains open (post-Round-31)
 
-Fork A timing, Fork B record form, Fork C choice, FIX-NOW acceptance, and all dispositions are user calls (Checkpoint decisions). On ratification, a PORTFOLIO_PLAN Round-update records the outcomes; this doc then becomes the standing roadmap surface until the next refresh.
+All of this doc's forks are now decided (Round 31, 2026-06-10): Fork A = (b), Fork B = trio + own
+surface, Fork C = C1, FIX-NOWs + dispositions applied (`d92426a`). Still open:
+
+- **Accounts timing** (the single human gate) — releases the P1 close + announce and the
+  build-in-public cadence; nothing else blocks on it.
+- **C1 pre-registration ratification** — the criteria DRAFT is a separate present-first go; no run
+  before it.
+- **When-unblocked items** (§5): DF-11 / eval-toolkit#93 re-lock · carrier n=5 retest (license gate).
+- ~~W18 archive form~~ — *resolved in the P1.5 session (archived with SUPERSEDED header).*
+
+This doc is the standing roadmap surface until the next refresh.
