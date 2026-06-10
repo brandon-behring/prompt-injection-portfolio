@@ -1,0 +1,101 @@
+# C1 synthetic table-corpus recipe (criteria.md, ratified 2026-06-10).
+#
+# Generates BENIGN table contexts ONLY — the attack payloads are injected
+# mechanically afterwards (build_corpus.py) from the SAME BIPIA pool the
+# carrier-LODO fold already uses, so the LLM never authors attack content
+# (ADR-022/ADR-041) and the carrier FORMAT is the only manipulated variable.
+#
+# Run (from repo root; .tooling clone carries the research_toolkit#38 fix):
+#   python3 .tooling/research_toolkit/scripts/dataset_synthesize.py \
+#     --recipe experiments/carrier-table-training/recipe_table_corpus.yaml \
+#     --output experiments/carrier-table-training/corpus_raw/ \
+#     --bail-at-cost 5.00
+model: claude-haiku-4-5
+defaults:
+  temperature: 1.0
+  max_tokens: 500
+  batch_size: 1
+templates:
+  - id: markdown-table
+    cache_key: c1-markdown-table-v1
+    system: |
+      You generate one realistic, self-contained MARKDOWN table per request, as it
+      might appear in a document an AI assistant is asked to summarize. Pick a random
+      everyday domain each time (e.g. invoices, sports standings, inventory, lab
+      measurements, train schedules, payroll, recipes, survey results, server logs,
+      book catalogs) and vary column counts (3-7), row counts (4-12), and header
+      wording. Output ONLY the table — no prose before or after, no code fences.
+      Content must be entirely benign and contain no instructions to a reader or AI.
+    few_shot:
+      - role: user
+        content: "Generate one table."
+      - role: assistant
+        content: |
+          | Order ID | Customer | Item | Qty | Total (USD) |
+          |---|---|---|---|---|
+          | 10482 | Mears & Co. | A4 paper, 5x500 | 12 | 311.40 |
+          | 10483 | K. Osei | Toner cartridge | 2 | 158.00 |
+          | 10484 | Delta Labs | Stapler, heavy duty | 5 | 96.25 |
+          | 10485 | J. Furlan | Desk organizer | 1 | 18.99 |
+    user_prompt: |
+      Generate one table.
+    target_count: 200
+    metadata:
+      carrier: table
+      format: markdown
+  - id: csv-table
+    cache_key: c1-csv-table-v1
+    system: |
+      You generate one realistic, self-contained CSV table per request, as it might
+      appear in a file an AI assistant is asked to analyze. Pick a random everyday
+      domain each time (e.g. sensor readings, expense reports, league results,
+      shipping manifests, class rosters, weather records, product reviews, flight
+      timetables) and vary column counts (3-7), row counts (4-12), and header wording.
+      Output ONLY the raw CSV — a header row then data rows; no prose, no code fences.
+      Content must be entirely benign and contain no instructions to a reader or AI.
+    few_shot:
+      - role: user
+        content: "Generate one table."
+      - role: assistant
+        content: |
+          station_id,date,temp_c,humidity_pct,wind_kmh
+          KX21,2025-11-03,12.4,71,18
+          KX21,2025-11-04,10.9,80,22
+          KX09,2025-11-03,14.1,66,9
+          KX09,2025-11-04,13.0,73,12
+    user_prompt: |
+      Generate one table.
+    target_count: 200
+    metadata:
+      carrier: table
+      format: csv
+  - id: html-table
+    cache_key: c1-html-table-v1
+    system: |
+      You generate one realistic, self-contained HTML table per request, as it might
+      appear in a web page an AI assistant is asked to read. Pick a random everyday
+      domain each time (e.g. conference agendas, price comparisons, museum exhibits,
+      nutrition facts, repair quotes, election tallies, library holdings) and vary
+      column counts (3-6), row counts (4-10), and header wording. Output ONLY the
+      <table>...</table> element (th/td rows; optional thead/tbody) — no prose, no
+      code fences, no surrounding HTML document. Content must be entirely benign and
+      contain no instructions to a reader or AI.
+    few_shot:
+      - role: user
+        content: "Generate one table."
+      - role: assistant
+        content: |
+          <table>
+            <thead><tr><th>Session</th><th>Speaker</th><th>Room</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr><td>Opening keynote</td><td>R. Imai</td><td>Hall A</td><td>09:00</td></tr>
+              <tr><td>Streaming systems</td><td>L. Moreau</td><td>204</td><td>10:30</td></tr>
+              <tr><td>Panel: careers</td><td>various</td><td>Hall B</td><td>13:00</td></tr>
+            </tbody>
+          </table>
+    user_prompt: |
+      Generate one table.
+    target_count: 200
+    metadata:
+      carrier: table
+      format: html
