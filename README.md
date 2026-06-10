@@ -133,8 +133,9 @@ blog post per Round 3 Q4''. Archive at `docs/build-in-public/`.
 | **M0 Day 3a** | 2026-05-22 | — | ✓ Round 20/21/22 pin cascade (eval-toolkit v0.47 + scaffold v3.5 + submission v1.3.0); 6 of 9 MRs closed upstream |
 | **M0 Day 3b** | 2026-05-22 | `v0.1.0-pre` | ✓ 7 test-contracts + CI hard-gates green |
 | **M0 Day 5 + 14 + 16** | 2026-05-22 | — | ✓ lane skeletons + chapter skeletons + Docker T2 |
-| **M0 close** | TBD-week-3 | `v0.1.0` | pending: dossier 60-80 (user-led) + Day 15 governance + Day 17 ADRs + Day 18 templates + Day 19 ratify |
-| M1 Lane 1 + 1b | TBD-week-4-5 | `v0.2.0` | pending |
+| **M0 close** | staged 2026-06-01 (HELD for accounts) | `v0.1.0` | ✓ ratify-milestone GREEN; close bundle staged — see M0_READINESS.md |
+| **M1 attack-type-LODO** | 2026-06-01 | — | ✓ CLOSED: §6.5 prediction FALSIFIED at the LoRA ceiling (ADR-054); spine → ADR-055 |
+| M2+ (carrier arc → Lane 2) | — | `v0.2.0` | carrier SMALL-THROUGHOUT (pre-flight done); cross-family SURVIVES (ADR-055 amendments); next: Lane-2 carrier training |
 | M7 close (textbook ratify) | TBD-week-13-14 | `v0.7.0` | pending |
 | v0.8.0 (narrative ship) | TBD-~month-13 | `v0.8.0` | pending |
 | v0.9.0 (academic IMRaD ship) | TBD-~month-14 | `v0.9.0` | pending |

@@ -142,12 +142,24 @@ positives are *common* it flatters by default, so a high AUPRC can be meaningles
 Area under the ROC curve (`roc_auc`): the probability a random positive outscores
 a random negative. **Prevalence-robust** — 0.5 = chance regardless of class
 balance; < 0.5 = systematically worse than chance (ProtectAI 0.44 on
-BIPIA-indirect = direct-trained, scope-blind). The honest headline where `AUPRC`
-is inflated.
+BIPIA-indirect = direct-trained; consistent with scope-blindness (not
+mechanism-confirmed)). The honest headline where `AUPRC` is inflated.
 
 **In plain terms:** how well the detector *ranks* attacks above benign — and
 unlike AUPRC it isn't fooled by lots of positives. Below 0.5 means it points the
 wrong way.
+
+## B+ / B- dialect training arms
+
+The two training variants in the cross-family dialect-transfer study.
+**B-** trains on the other indirect dialects only, then tests on the held-out
+indirect dialect. **B+** trains on those same indirect dialects **plus** the
+direct-injection base used in Arm A. The B+ minus B- contrast asks whether adding
+direct-injection data helps bridge to a held-out indirect dialect.
+
+**In plain terms:** B- asks "can indirect examples transfer to a new indirect
+style?" B+ asks "does adding direct-injection examples help?" In the 2026-06 B4
+result, it mostly did not; fujitsu got worse.
 
 ## benchmark_validity
 
@@ -180,7 +192,7 @@ Three readings of how an OOD gap behaves up the `capacity ladder`.
 attack-type wall — gone at LoRA). **Capacity-attenuated:** *shrinks but persists*
 (the carrier wall — ~60% smaller at LoRA, not zero). **Residual wall:** the part
 that remains at the ceiling (the +0.205 table-carrier gap at LoRA). See
-`multi-axis OOD spine (capacity-dependent)`.
+`multi-axis OOD spine (axis-dependent)`.
 
 **In plain terms:** does a bigger model make the wall disappear
 (capacity-dependent), only lower it (attenuated), or leave a stubborn chunk
@@ -191,7 +203,7 @@ that remains at the ceiling (the +0.205 table-carrier gap at LoRA). See
 The trust-boundary / content-format axis of an indirect-injection eval — the
 email / code / table / qa / abstract scaffold the injected payload sits in
 (BIPIA's per-subset structure; see `rag_evaluation_harness`). Per the M1 EDA, the
-carrier **dominates the frozen-embedding geometry** (silhouette by-carrier 0.197
+carrier **dominates the frozen MiniLM embedding geometry (EDA scope)** (silhouette by-carrier 0.197
 vs by-attack-type −0.023; KMeans→carrier ARI 0.98), so the Round-30 multi-axis
 spine (ADR-055) named it the **standing wall** (the geometric prior) — distinct from
 the *attack-type* axis, which M1 showed is capacity-dependent. M1 held the carrier
@@ -249,6 +261,21 @@ to retrieved documents, retrieval-time cryptographic authentication.
 Distinguished from `retrieval_provenance` (metadata-only trust signal)
 by requiring cryptographic verification. Less-mature literature space;
 mixed academic + vendor + standards-draft expected.
+
+## cross-family transfer
+
+The hardest OOD axis measured so far: train on one family of prompt-injection
+data and test on a different family. Arm A tests direct-injection training data
+against indirect/jailbreak/harmful held-out slices. Arm B tests leave-one-
+indirect-dialect-out transfer across BIPIA, browsesafe, fujitsu, and InjecAgent.
+The 2026-06 B4 verdict is **SURVIVES** at the LoRA ceiling: Arm A's gap is
++0.365, B− 3/4 SURVIVE — all 3 dialects with a genuine negative class survive;
+the 4th (injecagent, 17 negatives) is degenerate: uninformative, NOT a
+counterexample — and B+ does not bridge.
+
+**In plain terms:** the detector learned the training family too specifically.
+Fine-tuning helped some easier axes, but it did not make direct-style training
+generalize to genuinely different indirect data families.
 
 ## d′ (d-prime)
 
@@ -309,9 +336,12 @@ clean: Willison informal blogs vs Debenedetti et al. formal paper.
 
 A signal *not* linearly present in a frozen final-layer embedding yet learnable
 end-to-end. M1: the attack-type signal is embedding-invisible (frozen MiniLM
-silhouette by-attack-type −0.023) but LoRA learns it directly (test AUPRC
-0.98–0.999), sharpening Lane 5's hypothesis toward *intermediate* activations.
-See `multi-axis OOD spine (capacity-dependent)`, `silhouette / ARI`.
+silhouette by-attack-type −0.023) but LoRA learns it directly (test ROC-AUC
+0.965–0.981 across folds; per-type AUPRC 0.956–0.984 over a 0.926 prevalence
+floor *(corrected 2026-06-10; the original 0.98–0.999 was the fold-level AUPRC,
+inflated by prevalence)*), sharpening Lane 5's hypothesis toward *intermediate*
+activations.
+See `multi-axis OOD spine (axis-dependent)`, `silhouette / ARI`.
 
 **In plain terms:** the clue isn't visible in the model's frozen "snapshot" of
 the text, but the model *can* learn to see it if you actually train it.
@@ -350,6 +380,17 @@ Per Round 17: portfolio's book ships THREE separate guides — textbook
 (v0.9.0) — at three subsite folders inside one Astro project. Each
 guide has its own TOC + nav + audience; shared substrate via fragments.
 
+## gap score
+
+A plain-language umbrella for the experiment-specific numbers that measure how
+much worse a detector gets on a held-out group. The attack-type study uses
+`transfer-gap (T)`, the carrier study uses `ROC-gap (G)`, and the cross-family
+study uses `Gx = validation ROC-AUC - held-out test ROC-AUC`. Larger positive
+values mean worse transfer.
+
+**In plain terms:** the height of the wall. If the gap is big and positive, the
+detector did worse on the thing it had not trained on.
+
 ## injection_threat_model
 
 Dossier `claim_family` (per ADR-007). Foundational threat-model framings:
@@ -358,6 +399,17 @@ injection, OWASP LLM01:2025 direct + indirect codification, MITRE ATLAS
 AML.T0051 split, Simon Willison's dual-LLM / privileged-vs-quarantined
 pattern, Meta's instruction-hierarchy framing, the conceptual lineage
 through SQL injection / XSS.
+
+## indirect dialect
+
+A corpus-level style of indirect prompt injection: not just a different carrier,
+but a bundle of source, format, writing style, label process, and threat model.
+The current dialect-transfer study uses BIPIA, browsesafe HTML, fujitsu RAG
+documents, and InjecAgent tool-output rows. This is broader than the within-BIPIA
+`carrier` axis.
+
+**In plain terms:** a different "kind of dataset" for indirect attacks, not just
+the same attacks pasted into a different wrapper.
 
 ## kappa (κ — Cohen's kappa)
 
@@ -379,7 +431,12 @@ a per-lane playbook in `portfolio-lane-execution-playbooks.md` companion.
 ## LODO
 
 **L**eave-**O**ne-**D**ataset-**O**ut methodology. Cross-source disjoint
-splits per submission ADR-016. Portfolio inherits + reuses this discipline.
+splits per submission ADR-016. Portfolio inherits + reuses this discipline,
+and also uses leave-one-out variants over attack types, carriers, and indirect
+dialects.
+
+**In plain terms:** hide one group during training, then test on that hidden
+group. The hidden group can be a dataset, attack type, carrier, or dialect.
 
 ## MR-N
 
@@ -389,31 +446,33 @@ load-bearing libraries (eval-toolkit / runpod-deploy / research_toolkit
 Round 21: 8 of 9 M0-batch MRs closed by upstream; only MR-3 + new MR-12
 remain open.
 
-## multi-axis OOD spine (capacity-dependent)
+## multi-axis OOD spine (axis-dependent)
 
-The Round-30 reframe (ADR-055) of the portfolio's thesis: the `OOD wall` is not
-one wall but several **axes**, each with its own capacity regime. The
-*attack-type* axis is **capacity-dependent** — M1's pre-registered §6.5 prediction
-SURVIVES on tfidf/frozen but is FALSIFIED at the LoRA ceiling (T 0.135 → 0.082 →
-−0.003): end-to-end LoRA dissolves the per-type gap. The *carrier* axis dominates
-the representation geometry; the `carrier-LODO` M2 pre-flight (2026-06-01) refined it
-from "standing wall" to **partially capacity-resistant — capacity-attenuated, residual
-at the table carrier (provisional, n=3)**. Reconciles with the submission's "backbone-invariant"
-null — backbone-invariant ≠ capacity-invariant, and the submission measured the
-carrier axis while M1 measured attack-type-within-indirect.
+The current ADR-055 reframe of the portfolio's thesis: the `OOD wall` is not
+one wall but several **axes**, and each axis responds differently to more model
+capacity. The *attack-type* axis is **capacity-dependent**: M1's pre-registered
+section 6.5 prediction SURVIVES on tfidf/frozen but is FALSIFIED at the LoRA ceiling
+(T 0.135 -> 0.082 -> -0.003), so end-to-end LoRA dissolves the per-type gap.
+The *carrier* axis is **capacity-attenuated**: `carrier-LODO` shrinks from
+frozen G +0.167 to LoRA G +0.067, with a residual table-carrier gap +0.205
+(provisional, n=3). The *cross-family* axis is **capacity-resistant**:
+B4 SURVIVES at the LoRA ceiling, Arm A grows to Gx +0.365, and B+ does not
+bridge held-out indirect dialects.
+
+**In plain terms:** there is no single wall. Fine-tuning solves one kind of
+test, partly helps another, and fails on the hardest cross-family transfer test.
 
 ## OOD wall
 
-The bottom-line finding from the submission predecessor (per ADR-075):
-fine-tuning on direct-injection-heavy training pool actively HURTS
-generalization to indirect/agentic OOD slices (-0.071 AUPRC delta vs
-frozen-probe with CI clearing zero). Portfolio asks whether the wall
-is data-bound or structural across backbones + parameter budgets.
-**Round 30 (ADR-055) re-axis:** now understood as multi-axis — the *attack-type*
-axis is capacity-dependent (M1 dissolved it with end-to-end LoRA), the *carrier*
-axis is **partially capacity-resistant** (capacity-attenuated, residual at the table
-carrier; provisional n=3 — 2026-06-01 carrier-LODO verdict; see `multi-axis OOD spine
-(capacity-dependent)`).
+The project shorthand for a detector working on training-like data but dropping
+on unlike-training data. The submission predecessor showed a direct-to-indirect
+cross-family failure; this portfolio then split the idea into separate axes.
+Current result: the attack-type wall inside BIPIA falls at LoRA, the carrier wall
+inside BIPIA shrinks but leaves a table residual, and the cross-family wall
+SURVIVES at LoRA.
+
+**In plain terms:** "the wall" is now a family of tests, not one claim. Always
+name which wall: attack-type, carrier, or cross-family.
 
 ## ood_evaluation_methodology
 
@@ -589,7 +648,8 @@ Replaces top-level scalar metric imports (REMOVED in v0.47.0).
 
 ## silhouette / ARI
 
-Two clustering-geometry metrics over embeddings. **Silhouette:** how cleanly
+Two clustering-geometry metrics over frozen all-MiniLM-L6-v2 embeddings (EDA
+scope; not the ModernBERT detector backbone). **Silhouette:** how cleanly
 points group by a label (−1…1); by-carrier 0.197 vs by-attack-type −0.023 ⇒ the
 embedding is carrier-shaped, attack-type-`embedding-invisible`. **ARI** (adjusted
 Rand index): how well *unsupervised* clusters match a label; KMeans→carrier ARI
@@ -597,7 +657,8 @@ Rand index): how well *unsupervised* clusters match a label; KMeans→carrier AR
 (`a1_v4_metrics.json`).
 
 **In plain terms:** do the data naturally clump by *carrier* or by *attack-type*?
-Strongly by carrier — which is why the carrier became the spine.
+Strongly by carrier — an input to the multi-axis spine (carrier later resolved
+SMALL-THROUGHOUT).
 
 ## Single-class slice
 
@@ -621,13 +682,15 @@ variant-specific axis.
 
 ## SURVIVES / FALSIFIED / SMALL-THROUGHOUT (pre-registered verdicts)
 
-The three outcomes the OOD-wall pre-registration can return, judged on the LoRA
-rung. **SURVIVES:** the gap is real *and* capacity-resistant (passes both
-`permutation test` p < 0.05 and `bootstrap CI` lower-bound > 0, and — for carrier —
-clears ½·G(frozen)). **FALSIFIED:** the gap is statistically gone (CI-low ≤ 0;
-attack-type at LoRA, T −0.003). **SMALL-THROUGHOUT:** the pre-registered
-else-branch — real but capacity-attenuated, neither resistant nor dissolved
-(carrier at LoRA, G +0.067).
+The three outcomes the OOD-wall pre-registrations can return, judged at the LoRA
+rung. **SURVIVES:** the gap is real and capacity-resistant (cross-family B4:
+Arm A Gx +0.365; B− 3/4 SURVIVE — all 3 dialects with a genuine negative class
+survive; the 4th (injecagent, 17 negatives) is degenerate: uninformative, NOT a
+counterexample). **FALSIFIED:** the gap is
+statistically gone or not reliably positive (attack-type at LoRA, T -0.003;
+InjecAgent is a low-power mechanical FALSIFIED caveat). **SMALL-THROUGHOUT:**
+the pre-registered else-branch: real but capacity-attenuated, neither resistant
+nor dissolved (carrier at LoRA, G +0.067).
 
 **In plain terms:** the wall either stands, falls, or partly-stands — and which one
 was decided by a rule fixed in advance.

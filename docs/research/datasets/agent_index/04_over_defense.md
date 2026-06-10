@@ -1,6 +1,6 @@
 # Over-defense / false-refusal controls
 
-Benign-heavy or benign-by-construction sets used to measure **false positives / exaggerated refusal**. **Keep all of these out of any training split** — they exist precisely to detect over-conservative guardrails. Pairs with the [harness spec](../../planning/attack-type-lodo-harness-spec.md)'s benign-FPR metric.
+Benign-heavy or benign-by-construction sets used to measure **false positives / exaggerated refusal**. **Keep all of these out of any training split** — they exist precisely to detect over-conservative guardrails. Pairs with the [harness spec](../../../planning/attack-type-lodo-harness-spec.md)'s benign-FPR metric.
 
 ### D1. bench-llm/or-bench — Cui et al. (2024)
 - **Source:** https://huggingface.co/datasets/bench-llm/or-bench

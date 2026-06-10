@@ -51,7 +51,7 @@ A pooled mean must not mask a single-slice wall — so the lead is the per-slice
 - **Injection-only sub-aggregate** (BIPIA + InjecAgent, non-gating §v): tfidf 0.403 / frozen 0.546 — the
   injection-specific slices are *even more* walled than the pooled (which JBB/XSTest lift).
 
-## Over-defense (NotInject; non-gating §v) — the trigger-word failure mode, loud
+## Over-defense (NotInject; non-gating §v) — the trigger-word failure mode, loud *[2026-06-10: mechanism downgraded per AUDIT_B4 — over-defense is visible but not causally attributed; the lora-rung control showed ~56% generic firing.]*
 
 NotInject FPR at a **val-fixed** threshold (FPR target 0.01 on in-distribution val; mirrors M1
 `_BENIGN_FPR_TARGET` / ADR-027 §5):
@@ -65,7 +65,9 @@ At a 1 % in-distribution benign-FPR operating point, the direct-trained detector
 NotInject** (benign prompts carrying injection trigger-words) as attacks — the documented **trigger-word
 over-defense** the InjecGuard/PIGuard MOF strategy targets (criteria §viii). The hard-negative training
 (neuralchemy MOF + guychuk diversity) only partly mitigates it; capacity (frozen) barely helps. A
-deployment-realistic caution that the headline ROC-AUC gate alone hides.
+deployment-realistic caution that the headline ROC-AUC gate alone hides. *[2026-06-10: mechanism
+downgraded per AUDIT_B4 — over-defense is visible but not causally attributed; the lora-rung control
+showed ~56% generic firing.]*
 
 ## E8 — off-the-shelf deployed-guard reference (non-gating; AUROC per slice)
 
@@ -130,10 +132,11 @@ Arm A's large direct→indirect wall: the gap is a real family shift, not a data
 
 ## Realized pools (criteria Rev 4)
 
-- **Train ≈ 29,047**: 7,261 direct positives (deepset 263 / gandalf 999 / mosscap 3,000 / hackaprompt
-  3,000, capped C=3,000, −1 leakage) + 21,786 negatives @ 3.0:1 (deepset 399 / neuralchemy `full` 3,475 /
-  guychuk top-up 17,912). Exact-dedup + game-artifact filter + the §vi leakage manifest (257 train↔test
-  texts) applied.
+- **Train = 29,048**: 7,262 direct positives (deepset 263 / gandalf 999 / mosscap 3,000 / hackaprompt
+  3,000, capped C=3,000) + 21,786 negatives @ 3.0:1 (deepset 399 / neuralchemy `full` 3,219 /
+  guychuk top-up 18,168 — the 257-text leakage purge removed 256 neuralchemy negatives pre-cap; the
+  guychuk top-up refilled). Exact-dedup + game-artifact filter + the §vi leakage manifest (257 train↔test
+  texts) applied. *(reconciled to summary.json, 2026-06-10)*
 - **Test (pooled gate)**: BIPIA 5,508 (143 clusters) / InjecAgent 2,125 (79) / JBB 200 (10) / XSTest 450
   (18). **Over-defense**: NotInject 339.
 

@@ -25,9 +25,9 @@ This is a **dataset** dossier (metadata + access + encoder-readiness). For
 dossiers under [`../../`](../../) — `detector-landscape/`, `direct-vs-indirect/`,
 `agentic-security-architecture/`, `rag-injection-defenses/`, `training-and-evaluation/`.
 This dossier is the upstream input to
-[`decisions/ADR-052`](../../../decisions/ADR-052-attack-type-generalization.md)
+[`decisions/ADR-052`](../../../../decisions/ADR-052-attack-type-generalization-study-design.md)
 and the
-[attack-type-LODO harness spec](../../planning/attack-type-lodo-harness-spec.md);
+[attack-type-LODO harness spec](../../../planning/attack-type-lodo-harness-spec.md);
 it does **not** itself measure detector performance.
 
 **Scope = unsafe-input / guardrail detection** — direct/indirect injection,

@@ -108,7 +108,7 @@ shift, browsesafe, leaves a +0.44 wall). Honest residue: browsesafe carries a sm
   (v1.8.0, DF-10 — the composite multi-stratum generalisation; the single-block `cluster_bootstrap_ci`
   DF-9/v1.7.0 could not express the seed-averaging): **point EXACT, CI-low within MC noise** (bipia/injecagent
   Δ ≤ 0.0010 ≪ the 0.05 SESOI), directional reading unchanged — see
-  [`experiments/REPRODUCTION_2026-06/`](../../REPRODUCTION_2026-06/README.md). The committed numbers here
+  [`experiments/REPRODUCTION_2026-06/`](../REPRODUCTION_2026-06/README.md). The committed numbers here
   remain the serial `falsify_dialect_lodo` reference; the production loop is unchanged (re-locking it onto the
   primitive for parallel future runs is a separate, optional follow-up).
 

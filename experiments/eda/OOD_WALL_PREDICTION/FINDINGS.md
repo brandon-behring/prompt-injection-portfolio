@@ -43,9 +43,12 @@ Survives iff the predicted-worst tail collapses more than the predicted-best tai
    (0.25) **below** its own benign floor (0.28) — no separation; `Prompt-Guard-2` barely fires (0.03 vs
    0.007). But the one *indirect*-capable probe, `Prompt-Guard-86M` (PG1; Meta gate now granted), **fires
    strongly** — mean attack **0.86** vs benign **0.04**, clean separation across all 14 attack types. So the
-   "collapse" of the off-the-shelf probes is **scope-blindness, not undetectable data** — the pre-registered
-   caveat, now confirmed *both* ways: a direct-trained probe misses indirect injection, while the
-   indirect-trained probe catches it. (Closes issue #1; `v10_scores.json` `skipped_probes={}`.)
+   "collapse" of the off-the-shelf probes is **consistent with scope-blindness** (the per-row/threshold
+   mechanism check prescribed by the prototype-comparison audit §A.4 has not been run), not undetectable
+   data — the pre-registered caveat, observed *both* ways: a direct-trained probe misses indirect
+   injection, while the indirect-trained probe catches it. (Closes issue #1; `v10_scores.json`
+   `skipped_probes={}`.) *[2026-06-10 audit: wording softened per §A.4 — mechanism interpreted, not
+   demonstrated.]*
 
 4. **The study anchor is uncontaminated.** Cross-dataset audit: BIPIA shares **0.0**
    near-duplicates (TF-IDF cosine ≥ 0.9) with any of the 8 certified working-set datasets;

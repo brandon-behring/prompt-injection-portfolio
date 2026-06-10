@@ -1,6 +1,22 @@
+# Session handoff — 2026-06-10 — FULL RE-AUDIT PASSED (spine holds, 30 verifiers + codex/gemini) · consolidation APPLIED (uncommitted) · roadmap refreshed · [prior arcs below SUPERSEDED]
+
+> **🆕 LATEST (2026-06-09/10) — the user-elected FULL RE-AUDIT of every ratified verdict is DONE and the spine HOLDS.**
+>
+> **Audit:** 30 adversarial verifiers (5 roles × 6 arcs) + mechanical reproduction (verdict scripts Δ=0 point-exact; **162/162** parquet recomputes Δ=0.0; bit-exact tfidf retrains ×4) + codex/gemini refutation (codex 36-CONFIRMED/6-WEAKENED/0-REFUTED; gemini's one refutation failed artifact-grounding). **attack-type FALSIFIED · carrier SMALL-THROUGHOUT · cross-family SURVIVES — zero BLOCKERs.** Record: `docs/planning/consolidated-audit-2026-06-09.md` (15 FIX-NOW applied / 18 FOLLOW-UP / 10 cosmetic). Two NEW substantive findings: **W1** MiniLM-256 truncation artifact (66.5% table / 44.1% code positives truncated out of the EDA embedder — email-only re-check owed) · **W2** InjecAgent materialization bug (placeholder concatenated, not substituted; conservative for verdicts).
+>
+> **Checkpoint decisions (user, 2026-06-10):** FIX-NOWs apply-all (DONE, in working tree) · agent-harness-v0 = **retrospective record trio** (criteria/FINDINGS/verdict EXPLORATORY-VALIDATED, claim-fenced) · RunPod provenance = **(b)** 28 metrics.json + `B3_PROVENANCE_MANIFEST.md` enter git, parquets gitignored · v0.1.0 = **Fork A(b)** full-spine close (ff the 38-commit arc into `main` first; corrected tag text now in `M0_READINESS.md`; still accounts-gated) · milestone-rethink **folded + retired** (roadmap surface = `docs/planning/roadmap-refresh-2026-06-09.md`).
+>
+> **Gates:** `make lint` + `make test` (64) + `make contracts` (13) ALL GREEN after fixes (incl. cheap_gpu_monitor ruff/mypy + library-imports registration). **Everything is UNCOMMITTED, user-led:** ~30 modified + 7 new files; suggested commit presented in-session; Round-31 PORTFOLIO_PLAN update drafted at `docs/planning/round-31-update.DRAFT.md` (ratify + paste + delete).
+>
+> **▶ NEXT (all user-led):** 1) review diff → commit the consolidation; 2) ratify the Round-31 draft into PORTFOLIO_PLAN; 3) the v0.1.0 Fork A(b) close when accounts exist (`M0_READINESS.md` runbook step 1b); 4) **P1.5 methods-hardening** (W1 email-only silhouette, W2 injecagent fix/re-derive, W3 falsify_ood_wall `--out` gate, disclosure notes) — recommended before any new experiment; 5) **Fork C** next-experiment decision (C1 Lane-2 carrier/table RECOMMENDED vs C2 mechanism pre-reg vs C3 agent-harness-v1).
+>
+> ⚠️ Until W3 lands: do NOT run `falsify_ood_wall.py` casually — it overwrites the committed `falsification_verdict.json` (restore via `git checkout` if hit).
+
+---
+
 # Session handoff — 2026-06-06 (LATE) — CROSS-FAMILY ARC COMPLETE: 3-arm SURVIVES · audit ROBUST · ADR-055 amendment RATIFIED + PUSHED · [prior arcs SUPERSEDED]
 
-> **🆕 LATEST — the cross-family transfer arc is DONE end-to-end; the ADR-055 spine amendment is ratified + pushed.**
+> **🆕 (2026-06-06) — the cross-family transfer arc is DONE end-to-end; the ADR-055 spine amendment is ratified + pushed.**
 >
 > **3-arm verdict (B4, LoRA ceiling): cross-family SURVIVES (capacity-resistant).** Arm A (direct→indirect) SURVIVES Gx_lora **+0.365** (wall GREW vs frozen +0.313); Arm B− (dialect-LODO) **3/4 SURVIVE** (bipia +0.291 / browsesafe +0.445 / fujitsu +0.228; injecagent FALSIFIED but **uninformative** — 17 negatives, degenerate, NOT a counterexample); Arm B+ (dialect-LODO + direct base) **3/4 SURVIVE** + **direct data does NOT bridge** (fujitsu anti-transfers, perm_p 0.9988 below chance). **Cross-arch reconciliation PASSES** (browsesafe-s0 4090 0.5999 vs H100 0.5928, Δ0.0072 ≪ SESOI).
 >
@@ -300,14 +316,14 @@
 ## ✅ START HERE — clean session
 
 **The milestone re-ladder is DONE (Round 30 → ADR-055), and the `v0.1.0` M0 close is STAGED + held for
-accounts.** M1 (attack-type-LODO) closed with its §6.5 verdict (capacity-dependent; table below); this
+accounts.** M1 (attack-type-LODO) closed with its §6.5 verdict (attack-type axis capacity-dependent; table below); this
 session ran the deferred post-LODO re-ladder and staged the formal close. The re-ladder edits are
 **committed this session (2 commits on the session branch, UNPUSHED)**: ADR-055 +
 a Round-30 PORTFOLIO_PLAN block + §5/§9/§16 edits + Ch 7/8/9/12/13 re-axis notes + a new
 `experiments/carrier-lodo/criteria.md`. `make ratify-milestone` is **GREEN** on the committed tree. See
 "NEXT" for the three remaining (all user-led).
 
-**The headline result — the OOD wall is capacity-dependent:**
+**The headline M1 result — the per-attack-type wall is capacity-dependent (one axis of the later 3-axis spine):**
 
 | rung | representation | T (top−bottom per-type AUPRC) | perm p | CI-low | verdict |
 |---|---|---|---|---|---|
@@ -318,7 +334,7 @@ a Round-30 PORTFOLIO_PLAN block + §5/§9/§16 edits + Ch 7/8/9/12/13 re-axis no
 Judged on `lora` per criteria **Revision 2** → **FALSIFIED at the ceiling**. `T` collapses monotonically as
 capacity rises: the pre-modeling OOD-wall prediction (built on the frozen MiniLM embedding, where the
 carrier dominates) **does not transfer** to an end-to-end LoRA, which detects every attack type near-uniformly
-(test AUPRC 0.98–0.999, held-out included). This is **capacity-dependence** (S2 pre-registered the frozen prediction-encoder transfer, verified at the frozen rung; the LoRA dissolution extends beyond S2's letter) —
+(test ROC-AUC 0.965–0.981 across folds; per-type AUPRC 0.956–0.984 over a 0.926 prevalence floor). This is **capacity-dependence** (S2 pre-registered the frozen prediction-encoder transfer, verified at the frozen rung; the LoRA dissolution extends beyond S2's letter) —
 and it's credible *because* the rule + tail sets + judged-rung were fixed before any LoRA datum existed and
 write-gated. Record: `experiments/eda/OOD_WALL_PREDICTION/falsification_verdict.json` + `FINDINGS.md` §"Realized
 verdict" + `criteria.md` footer. **Issue #2 CLOSED.**

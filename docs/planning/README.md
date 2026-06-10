@@ -18,6 +18,9 @@ which are the locked-decision authority.
 | [`portfolio-experiment-record-template.md`](portfolio-experiment-record-template.md) | 4-file schema (hypothesis / protocol / results / decisions) per lane; Lane 1 worked example | ~263 |
 | [`portfolio-lane-execution-playbooks.md`](portfolio-lane-execution-playbooks.md) | 6 self-contained per-lane execution playbooks (scope + eval slate + execution sequence + outcomes + gates + citations) | ~296 |
 | [`eval-toolkit-v0.43-to-v1.0-roadmap.md`](eval-toolkit-v0.43-to-v1.0-roadmap.md) | eval-toolkit staggered v0.43→v1.0 release plan (upstream context referenced by ADR-045 Round 20 v0.47 pivot) | ~1301 |
+| [`results-analysis-2026-06-08.md`](results-analysis-2026-06-08.md) | table-first internal results inventory | ~1493 |
+| [`consolidated-audit-2026-06-09.md`](consolidated-audit-2026-06-09.md) | full re-audit — spine reproduces; findings register | ~153 |
+| [`roadmap-refresh-2026-06-09.md`](roadmap-refresh-2026-06-09.md) | post-audit roadmap; forks + recommended sequence | ~119 |
 
 ## How to read these
 

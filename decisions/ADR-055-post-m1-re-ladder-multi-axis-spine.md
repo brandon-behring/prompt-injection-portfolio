@@ -160,7 +160,7 @@ capacity-resistant (provisional), residual at the table carrier."**
 **Why ROC-AUC, not AUPRC** (the metric that revealed this, fixed in `criteria.md` Rev 1 *before* any
 carrier datum — motivated by the M1 audit, not a peek): every BIPIA carrier is 83–94% positive, so
 AUPRC is prevalence-inflated. At the table fold, **AUPRC** is val 1.000 / test ~0.96 (a small,
-misleading gap); **ROC-AUC** is val 0.999 / test 0.837 — the real gap. On the AUPRC basis this
+misleading gap); **ROC-AUC** is val 0.999 / test 0.837 (seed-0 illustration; seed-mean 0.793) — the real gap. On the AUPRC basis this
 verdict would have been mis-read as "no gap." (Rev 2's in-distribution row-holdout val keeps the
 val↔test comparison from conflating the carrier shift with the attack-type axis.)
 

@@ -1,0 +1,22 @@
+{
+  "experiment": "agent-harness-v0",
+  "verdict": "EXPLORATORY-VALIDATED",
+  "record_form": "retrospective scope declaration (NOT a pre-registration); user-elected at the 2026-06-10 audit Checkpoint 1",
+  "scope": "scripted deterministic backend; n=6 cases (4 attack / 2 benign); 5 defenses",
+  "date": "2026-06-10",
+  "results": {
+    "none": {"asr": 1.0, "utility": 1.0, "over_defense": 0.0, "parse_fail": 0.0},
+    "spotlight_delimit": {"asr": 1.0, "utility": 1.0, "over_defense": 0.0, "parse_fail": 0.0, "nature": "by-construction (policy ignores delimiters)"},
+    "static_detector_gate": {"asr": 0.25, "utility": 0.5, "over_defense": 0.0, "parse_fail": 0.0, "nature": "content-dependent"},
+    "tool_firewall": {"asr": 0.0, "utility": 1.0, "over_defense": 0.0, "parse_fail": 0.0, "nature": "by-construction (channel removed)"},
+    "provenance_gate": {"asr": 0.0, "utility": 1.0, "over_defense": 0.0, "parse_fail": 0.0, "nature": "by-construction (untrusted-sourced actions gated)"}
+  },
+  "claim_fence": "construction properties of the scripted backend; NO empirical claims about LLM-agent defense effectiveness — those require a pre-registered v1 with an LLM backend",
+  "audit": {
+    "rerun": "byte-identical (2026-06-10)",
+    "summary_arithmetic": "exact",
+    "claim_containment": "verified (results cited nowhere outside this directory)",
+    "tests": "6/6 green",
+    "reference": "docs/planning/consolidated-audit-2026-06-09.md §5"
+  }
+}

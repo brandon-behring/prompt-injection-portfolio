@@ -19,7 +19,7 @@
 
 Judged on `lora` per criteria Revision 2 → **FALSIFIED at the ceiling**. The pre-modeling collapse-ordering
 prediction (built on the carrier-dominated frozen MiniLM embedding) does **not** transfer to an end-to-end
-LoRA, which detects every attack type near-uniformly (test AUPRC 0.98–0.999). This is **capacity-dependence** (S2 pre-registered the frozen-encoder transfer, verified at frozen; the LoRA dissolution extends beyond S2's letter) — credible because the rule + tail sets + judged rung were fixed and
+LoRA, which detects every attack type near-uniformly (test ROC-AUC 0.965–0.981 across folds; per-type AUPRC 0.956–0.984 over a 0.926 prevalence floor *(corrected 2026-06-10; the original 0.98–0.999 was the fold-level AUPRC, inflated by prevalence)*). This is **capacity-dependence** (S2 pre-registered the frozen-encoder transfer, verified at frozen; the LoRA dissolution extends beyond S2's letter) — credible because the rule + tail sets + judged rung were fixed and
 write-gated before any LoRA datum existed (audit V1 confirmed the pre-registration order + clustering unit +
 leakage purge + write-gate all hold). Canonical:
 `experiments/eda/OOD_WALL_PREDICTION/{falsification_verdict.json, FINDINGS.md, criteria.md, results.json}`.

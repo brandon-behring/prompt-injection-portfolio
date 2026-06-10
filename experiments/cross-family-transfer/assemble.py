@@ -9,7 +9,7 @@ Loads the four Arm-B indirect dialects — **BIPIA** (email/code/table carriers 
 plus useful per-dialect metadata. Each dialect contributes a *natural cluster* id (the
 pre-registered resampling unit, ``criteria.md`` §Resampling unit):
 
-    bipia      → payload identity   (attack_type + payload-string index; ~70 clusters)
+    bipia      → payload identity   (attack_type + payload-string index; 140 payload clusters (both BIPIA roles))
     browsesafe → per-page row id    (each row = one HTML page)
     fujitsu    → document id         (the B1 ``id`` GUID per document)
     injecagent → attacker-tool id    (the attacker tool the injected instruction calls)
@@ -74,7 +74,7 @@ def load_bipia(*, contexts_per_attack: int = 12, seed: int = 0) -> pd.DataFrame:
     """Load the BIPIA dialect (email/code/table carriers pooled).
 
     Reuses :func:`bipia_carrier.build_examples`. ``cluster_id`` is the *payload identity*
-    (criteria.md: ~70 payloads = ~5 strings × 14 attack-types) — for a positive,
+    (criteria.md: 140 payload clusters (both BIPIA roles)) — for a positive,
     ``attack_type::<payload-index>``; for a clean negative, ``clean::<carrier>`` (the
     negative's natural unit is its carrier-clean pool, not an attack payload).
 

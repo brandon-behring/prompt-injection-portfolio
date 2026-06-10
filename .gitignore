@@ -87,6 +87,9 @@ experiments/cross-family-transfer/B2_3_results_Bplus/**/*.parquet
 experiments/cross-family-transfer/B2_3_results_Bplus/**/*.metrics.json
 experiments/cross-family-transfer/B2_4_results/**/*.parquet
 experiments/cross-family-transfer/B2_4_results/**/*.metrics.json
+# B3 cheap-GPU LoRA RunPod outputs (all27 + bplus_cheap) — large per-fold predictions
+# parquet gitignored; the metrics.json ARE committed (unlike B2.3/B2.4 above).
+experiments/cross-family-transfer/B3_results_runpod_*_lora/**/*.parquet
 experiments/cross-family-transfer/**/*.log
 
 # dataset-auditor per-dataset scratch JSON (fan-out --out outputs; regenerated)

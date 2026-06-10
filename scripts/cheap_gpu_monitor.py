@@ -38,7 +38,8 @@ import os
 import subprocess
 import time
 import tomllib
-from datetime import datetime, timezone
+from collections.abc import Sequence
+from datetime import UTC, datetime
 from pathlib import Path
 
 import runpod_deploy as rd
@@ -47,10 +48,7 @@ from runpod_deploy.provider import select_gpu_across_datacenters
 
 _REPO = Path(__file__).resolve().parent.parent
 _DEFAULT_CFG = (
-    _REPO
-    / "experiments"
-    / "cross-family-transfer"
-    / "runpod_crossfamily_bplus_cheap_sweep.yaml"
+    _REPO / "experiments" / "cross-family-transfer" / "runpod_crossfamily_bplus_cheap_sweep.yaml"
 )
 _DEFAULT_EXCLUDE = ("NVIDIA L40S", "NVIDIA A100 80GB PCIe")
 _RUNPODCTL_TIMEOUT_SEC = 60
@@ -58,7 +56,7 @@ _RUNPODCTL_TIMEOUT_SEC = 60
 
 def _now() -> str:
     """UTC timestamp, ``HH:MM:SS`` (matches the prior monitors' log style)."""
-    return datetime.now(timezone.utc).strftime("%H:%M:%S")
+    return datetime.now(UTC).strftime("%H:%M:%S")
 
 
 def _load_api_key_into_env() -> bool:
@@ -132,7 +130,9 @@ def _tier_index(payload: list[dict[str, object]]) -> dict[str, dict[str, str]]:
     return index
 
 
-def _select(payload: list[dict[str, object]], *, datacenters, gpu_order) -> tuple[str, str] | None:
+def _select(
+    payload: list[dict[str, object]], *, datacenters: Sequence[str], gpu_order: Sequence[str]
+) -> tuple[str, str] | None:
     """Run the launcher's own selection; return ``(gpu, dc)`` or None if nothing matches."""
     try:
         return select_gpu_across_datacenters(
@@ -142,7 +142,9 @@ def _select(payload: list[dict[str, object]], *, datacenters, gpu_order) -> tupl
         return None
 
 
-def _price_label(prices: dict, gpu_id: str, *, cloud_type: str, spot: bool) -> str:
+def _price_label(
+    prices: dict[str, pricing.GpuPrice], gpu_id: str, *, cloud_type: str, spot: bool
+) -> str:
     """Best-effort ``$X.XX/hr`` label; ``n/a`` when GraphQL pricing is unavailable."""
     if not prices:
         return "n/a"
@@ -150,7 +152,12 @@ def _price_label(prices: dict, gpu_id: str, *, cloud_type: str, spot: bool) -> s
     return f"${value:.2f}/hr" if value is not None else "n/a"
 
 
-def _tick(spec, cheap_order, accept_tiers, prices) -> tuple[bool, str]:
+def _tick(
+    spec: rd.RunpodJobSpec,
+    cheap_order: list[str],
+    accept_tiers: set[str],
+    prices: dict[str, pricing.GpuPrice],
+) -> tuple[bool, str]:
     """One inventory check. Returns ``(triggered, message)``; never raises on CLI hiccups."""
     try:
         payload = _fetch_datacenters_payload()
@@ -176,7 +183,9 @@ def _tick(spec, cheap_order, accept_tiers, prices) -> tuple[bool, str]:
         if tier in accept_tiers:
             price = _price_label(prices, gpu, cloud_type=spec.pod.cloud_type, spot=spec.pod.spot)
             if full is not None and full[0] in cheap_order:
-                detail = "  committed gpu_order resolves it directly -- LAUNCH-READY (no edit needed)."
+                detail = (
+                    "  committed gpu_order resolves it directly -- LAUNCH-READY (no edit needed)."
+                )
             else:
                 detail = (
                     f"  but the committed gpu_order would pick {full_str} (datacenter-order\n"
@@ -189,7 +198,9 @@ def _tick(spec, cheap_order, accept_tiers, prices) -> tuple[bool, str]:
 
 def main(argv: list[str] | None = None) -> int:
     """Parse args and run the (looping) zero-spend cheap-GPU monitor."""
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     ap.add_argument("--config", type=Path, default=_DEFAULT_CFG, help="cheap sweep job-spec YAML")
     ap.add_argument("--interval", type=int, default=600, help="seconds between ticks (default 600)")
     ap.add_argument("--max-hours", type=float, default=24.0, help="give up after this many hours")

@@ -105,6 +105,8 @@ session-launch boundary.
 | `runpod_deploy.load_job_spec` | 0.8.4 | `scripts/runpod_sweep.py` | (runpod-wiring) | — | loads the strict-v2 YAML job spec |
 | `runpod_deploy.run_job` | 0.8.4 | `scripts/runpod_sweep.py` | (runpod-wiring) | — | provision→stage→run→pull→lifecycle; `offline_dry_run` validates w/o spend |
 | `runpod_deploy.RunpodJobSpec` | 0.8.4 | `scripts/runpod_sweep.py` (type) | (runpod-wiring) | — | returned by `load_job_spec` |
+| `runpod_deploy.pricing` | 0.8.4 | `scripts/cheap_gpu_monitor.py` | (cheap-gpu-monitor) | — | `fetch_gpu_prices` / `select_price_for_pod` for best-effort price labels (`{}` when GraphQL pricing unavailable) |
+| `runpod_deploy.provider.select_gpu_across_datacenters` | 0.8.4 | `scripts/cheap_gpu_monitor.py` | (cheap-gpu-monitor) | — | zero-spend availability probe: resolves (gpu, datacenter) from a gpu_order without provisioning |
 
 > **Correction (2026-05-30): there is no `runpod_deploy.Session`.** The earlier "expected
 > population" (and submission ADR-059) named a phantom symbol; the real `runpod-deploy>=0.8.4` API is

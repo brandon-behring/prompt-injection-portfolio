@@ -3,8 +3,8 @@
 38 public datasets for **unsafe-input / guardrail detection** (broadened from the
 original 20-entry indirect-prompt-injection scope on 2026-05-27; +8 EDA-gated in the
 2026-06-03 Phase-2 expansion — see the ledger "Newly-surfaced 2026-06-03" table). Built to feed
-[ADR-052](../../../decisions/ADR-052-attack-type-generalization.md) (attack-type
-generalization) and the [attack-type-LODO harness spec](../../planning/attack-type-lodo-harness-spec.md).
+[ADR-052](../../../../decisions/ADR-052-attack-type-generalization-study-design.md) (attack-type
+generalization) and the [attack-type-LODO harness spec](../../../planning/attack-type-lodo-harness-spec.md).
 
 Scope = **unsafe-input / guardrail detection** across families: direct/indirect
 prompt injection, jailbreak, toxicity-safety-guard, over-defense, agentic-trajectory,

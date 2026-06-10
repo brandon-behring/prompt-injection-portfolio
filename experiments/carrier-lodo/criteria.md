@@ -159,6 +159,11 @@ carrier-LODO datum means it cannot cherry-pick the outcome (the carrier sweep ha
 - **Per-fold row counts (read from the loader, for the record):** held-out **email** ≈ 840 pos / ~50 neg;
   **code** ≈ 840 pos / ~50 neg; **table** ≈ 840 pos / ~168 neg (positives = ~70 payloads × 12 contexts;
   negatives = min(carrier contexts, 168)). The 83–94 % prevalence range is exactly why (i) moved off AUPRC.
+
+**2026-06-10 audit correction (record-only; estimator unaffected):** the Rev-1 counts above are
+single-role; the materialized folds pool BOTH BIPIA roles per the fold definition — 140 payload
+clusters, 1,680 positives, negatives 100 (email/code) / 268 (table).
+
 - **Secondary (descriptive only, NOT a gate):** the TPR@1%FPR val→test gap is reported but flagged
   descriptive — the held-out-carrier test negatives are few (~50; ~168 for table), so 1%-FPR is ill-resolved
   (~0.5–1.7 negatives) and cannot carry the verdict. ROC-AUC is the sole gate metric.

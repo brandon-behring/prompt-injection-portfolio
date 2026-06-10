@@ -569,6 +569,12 @@ pairs — corrected here to the second-element train index. Worth an upstream fi
 - **Train ≈ 29,047**: 7,261 positives (7,262 capped − 1 direct⊗test leakage) + 21,786 negatives @ **3.0:1**
   (deepset 399 / neuralchemy `full` 3,475 / guychuk top-up 17,912; negative⊗test + near-dup purges
   absorbed by the guychuk top-up holding the ratio). ≈ the Arm-B B− ~30k scale.
+
+**2026-06-10 audit correction (record-only):** Rev 4(e) quotes the pre-purge composition; the realized
+artifact (capped/summary.json) is 29,048 train / 7,262 pos / neuralchemy 3,219 / guychuk 18,168 — the
+leakage manifest removed 256 neuralchemy negatives pre-cap (refilled by guychuk top-up), and the single
+mosscap purge was absorbed by the cap (no −1).
+
 - **NotInject over-defense = 339** (canonical one+two+three) — a non-gating FPR column at a **val-fixed**
   threshold (FPR target = 0.01, mirroring M1 `_BENIGN_FPR_TARGET` / ADR-027 §5; ≤2% per §v).
 - **Test-slice clusters** (read from loaders, logged): BIPIA 143 · InjecAgent 79 · JBB `Category` = 10 ·

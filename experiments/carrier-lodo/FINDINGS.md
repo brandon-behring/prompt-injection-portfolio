@@ -31,7 +31,8 @@ bootstrap; `verdict.json`).
   +0.064) persists at the same ceiling. The carrier axis is therefore **more capacity-resistant than the
   attack-type axis** — but the resistance is **partial** (the gap shrinks ~60 % from frozen to lora).
 - The residual wall is **carrier-specific**: the email (−0.012) and code (+0.007) gaps close at lora; the
-  **table** carrier keeps a substantial wall (+0.205, val_roc 0.99 → test_roc ~0.84). Table-formatted
+  **table** carrier keeps a substantial wall (+0.205, val_roc 0.998 → test_roc 0.793 seed-mean (seed-0
+  illustration: 0.837)). Table-formatted
   contexts are the hard carrier to generalize to even with end-to-end fine-tuning.
 
 ## Spine implication (ADR-055) — refine, not validate or dissolve
@@ -46,7 +47,7 @@ capacity-dependent spine survives in spirit (axes differ in capacity-resistance)
 ## Why ROC-AUC, not AUPRC (the metric that revealed this)
 
 At lora the table fold's **AUPRC** was val 1.000 / test ~0.96 — a small gap, because the ~94 %-positive
-prevalence inflates AUPRC. The **ROC-AUC** is val 0.999 / test 0.837 (G +0.16) — the real gap. `criteria.md`
+prevalence inflates AUPRC. The **ROC-AUC** is val 0.999 / test 0.837 (seed-0) (G +0.16) — the real gap. `criteria.md`
 Rev 1 moved the estimator to ROC-AUC precisely because the carriers are 83–94 % positive; on AUPRC this
 verdict would have been mis-read as "no gap." (Rev 2's in-distribution row-holdout val is what makes the
 val↔test comparison clean — without it the gap conflated with the attack-type axis.)

@@ -84,7 +84,7 @@ At the 1%-val-FPR threshold, **38.5%** of benign NotInject prompts are flagged -
 threshold **21.4%** of the genuine held-out *test* negatives also fire, so **~56% of the "over-defense"
 is generic threshold miscalibration under distribution shift, not trigger-specific**. The
 trigger-attributable excess is **+17.2pp on average but highly seed-variable** (seed-0 +4.9, seed-1
-+24.6, seed-2 +22.0). NotInject scores are bimodal (median ~0.01; ~38% near 1.0), consistent with
++24.6, seed-2 +22.0). NotInject scores are bimodal (median ~0.01; 28.9% score >0.9 — the ~38% figure is the over-defense FPR at the val-fixed threshold, not the near-1.0 mass *(corrected 2026-06-10)*), consistent with
 *some* lexical sensitivity, but the specific "keys on the injection lexicon" mechanism is **not tested**.
 
 **Reading (downgraded from an earlier over-claim).** A lexical-shortcut account would tie the

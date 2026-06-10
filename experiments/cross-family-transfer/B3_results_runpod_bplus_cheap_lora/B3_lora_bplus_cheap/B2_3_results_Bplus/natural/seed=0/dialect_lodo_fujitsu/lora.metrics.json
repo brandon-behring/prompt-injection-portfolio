@@ -1,0 +1,49 @@
+{
+  "rung": "lora",
+  "fold": "dialect_lodo_fujitsu",
+  "condition": "natural",
+  "variant": "B+",
+  "seed": 0,
+  "val_roc_auc": 0.9643847893691513,
+  "recipe": {
+    "r": 16,
+    "lr": 0.0001,
+    "epochs": 3,
+    "val_pr_auc": 0.9873760811375326
+  },
+  "headline": {
+    "pr_auc": {
+      "value": 0.48586678875694966,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "roc_auc": {
+      "value": 0.42394795728531043,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "brier": {
+      "value": 0.5047113016480684,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "ece_n_bins_15_strategy_uniform": {
+      "value": 0.5038430437879344,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "prevalence_floor": 0.5,
+    "tpr_at_fpr": {
+      "0.01": 0.0,
+      "0.005": 0.0,
+      "0.001": 0.0
+    }
+  },
+  "n_train": 23692,
+  "n_val": 5922,
+  "n_test": 21886
+}
