@@ -1,0 +1,22 @@
+{
+  "version": "1",
+  "seed": 0,
+  "payloads_per_context": 3,
+  "contexts_kept": 600,
+  "contexts_by_format": {
+    "markdown": 200,
+    "csv": 200,
+    "html": 200
+  },
+  "drops": {
+    "empty": 0,
+    "format": 0,
+    "exact_dup": 0
+  },
+  "positives": 1800,
+  "negatives": 600,
+  "attack_types_used": 28,
+  "payload_pool_size": 140,
+  "samples_jsonl_sha256": "32adbb9fa2c9e7e0d70d9629350ee431ac3b760f9ee698d01bd93645fe7ba4ad",
+  "corpus_parquet_sha256": "773108e14c5f418452ef80184ab9408bb4efa9467ab21a63c68baf51589d0424"
+}

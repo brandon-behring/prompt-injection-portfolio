@@ -1,0 +1,84 @@
+{
+  "arm": "treated",
+  "rung": "tfidf",
+  "fold": "carrier_lodo_table",
+  "seed": 0,
+  "val_auprc": 0.9947019808780202,
+  "val_roc_auc": 0.9297247023809524,
+  "recipe": {
+    "C": 10.0,
+    "val_pr_auc": 0.9947019808780202
+  },
+  "headline": {
+    "pr_auc": {
+      "value": 0.9823064875601573,
+      "ci_low": 0.969946088504414,
+      "ci_high": 0.9883841033591396,
+      "status": "ok"
+    },
+    "roc_auc": {
+      "value": 0.9348081023454158,
+      "ci_low": 0.9108899558799108,
+      "ci_high": 0.9532213841318936,
+      "status": "ok"
+    },
+    "brier": {
+      "value": 0.05790713040721556,
+      "ci_low": 0.052125459452108495,
+      "ci_high": 0.06466694401136194,
+      "status": "ok"
+    },
+    "ece_n_bins_15_strategy_uniform": {
+      "value": 0.09378373991494962,
+      "ci_low": 0.08452344090954213,
+      "ci_high": 0.10193166241521782,
+      "status": "ok"
+    },
+    "prevalence_floor": 0.8624229979466119,
+    "tpr_at_fpr": {
+      "0.01": 0.11071428571428571,
+      "0.005": 0.01607142857142857,
+      "0.001": 0.01607142857142857
+    }
+  },
+  "clean_context_fpr": 0.048507462686567165,
+  "notinject_fpr": 0.504424778761062,
+  "benign_threshold": 0.9582802159748683,
+  "n_notinject": 113,
+  "test_types": [
+    "Alphanumeric Substitution",
+    "Anagramming",
+    "Base Encoding",
+    "Business Intelligence",
+    "Clickbait",
+    "Content Creation",
+    "Conversational Agent",
+    "Emoji Substitution",
+    "Entertainment",
+    "Homophonic Substitution",
+    "Information Dissemination",
+    "Information Retrieval",
+    "Instruction",
+    "Learning and Tutoring",
+    "Malware Distribution",
+    "Marketing & Advertising",
+    "Misinformation & Propaganda",
+    "Misspelling Intentionally",
+    "Persuasion",
+    "Programming Help",
+    "Research Assistance",
+    "Reverse Text",
+    "Scams & Fraud",
+    "Sentiment Analysis",
+    "Social Interaction",
+    "Space Removal & Grouping",
+    "Substitution Ciphers",
+    "Task Automation"
+  ],
+  "n_train": 5248,
+  "n_train_control": 2848,
+  "n_corpus_rows": 2400,
+  "n_val": 712,
+  "n_test": 1948,
+  "corpus_sha256": "773108e14c5f418452ef80184ab9408bb4efa9467ab21a63c68baf51589d0424"
+}

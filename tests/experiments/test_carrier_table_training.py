@@ -25,6 +25,7 @@ if str(_C1_DIR) not in sys.path:
 
 import build_corpus as bc  # noqa: E402
 import c1_verdict as cv  # noqa: E402
+import generate_openai as go  # noqa: E402
 import leakage_gate as lg  # noqa: E402
 import run_c1 as rc  # noqa: E402
 
@@ -232,3 +233,85 @@ def test_verdict_overwrite_gate_refuses_existing(tmp_path: Path) -> None:
 def test_verdict_default_path_is_canonical() -> None:
     path, _, _ = cv.resolve_verdict_path(None, force=False)
     assert path == cv._HERE / "c1_verdict.json"
+
+
+# ---------- generate_openai adapter (criteria Revision 1) ----------
+
+
+class _FakeOAIChoice:
+    def __init__(self, content: str | None, finish_reason: str = "stop") -> None:
+        self.message = type("M", (), {"content": content})()
+        self.finish_reason = finish_reason
+
+
+class _FakeOAIResponse:
+    def __init__(self, content: str | None, prompt: int = 100, completion: int = 50) -> None:
+        self.choices = [_FakeOAIChoice(content)]
+        self.usage = type("U", (), {"prompt_tokens": prompt, "completion_tokens": completion})()
+
+
+class _FakeOAIClient:
+    """Hand-rolled OpenAI double recording the mapped chat-completions kwargs."""
+
+    def __init__(self, content: str | None) -> None:
+        outer = self
+
+        class _Completions:
+            def create(self, **kwargs: object) -> _FakeOAIResponse:
+                outer.last_kwargs = kwargs
+                return _FakeOAIResponse(content)
+
+        self.chat = type("C", (), {"completions": _Completions()})()
+        self.last_kwargs: dict[str, object] = {}
+
+
+def _anthropic_call_args() -> dict[str, object]:
+    return {
+        "model": "gpt-4.1-mini",
+        "system": [{"type": "text", "text": "sys prompt"}],
+        "messages": [
+            {"role": "user", "content": [{"type": "text", "text": "few-shot q"}]},
+            {"role": "assistant", "content": [{"type": "text", "text": "few-shot a"}]},
+            {"role": "user", "content": [{"type": "text", "text": "Generate one table."}]},
+        ],
+        "max_tokens": 500,
+        "temperature": 1.0,
+    }
+
+
+def test_openai_adapter_maps_messages_and_usage() -> None:
+    fake = _FakeOAIClient("| a |\n|---|\n| 1 |")
+    adapter = go.OpenAIAnthropicAdapter(fake)
+    resp = adapter.messages.create(**_anthropic_call_args())
+    # OpenAI-side mapping: system first, then flattened few-shot + final user turn.
+    sent = cast(list[dict[str, str]], fake.last_kwargs["messages"])
+    assert sent[0] == {"role": "system", "content": "sys prompt"}
+    assert [m["role"] for m in sent[1:]] == ["user", "assistant", "user"]
+    assert fake.last_kwargs["max_completion_tokens"] == 500
+    # Anthropic-shaped response: the orchestrator's extractors work unchanged.
+    assert go.ds._extract_text(resp) == "| a |\n|---|\n| 1 |"
+    usage = go.ds._extract_usage(resp)
+    assert usage == {
+        "input_tokens": 100,
+        "output_tokens": 50,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 0,
+    }
+
+
+def test_openai_adapter_empty_content_triggers_empty_response_gate() -> None:
+    fake = _FakeOAIClient(None)  # refusal / tool-call style: message.content is None
+    adapter = go.OpenAIAnthropicAdapter(fake)
+    resp = adapter.messages.create(**_anthropic_call_args())
+    assert resp.content == []  # -> _extract_text "" -> the PR #38 EmptyResponse gate fires
+    assert go.ds._extract_text(resp) == ""
+
+
+def test_load_env_key_reads_only_named_key(tmp_path: Path) -> None:
+    env = tmp_path / ".env.local"
+    env.write_text('OTHER=zzz\nexport OPENAI_API_KEY="sk-test-123"\n')
+    assert go.load_env_key(env) == "sk-test-123"
+    env_missing = tmp_path / "empty.env"
+    env_missing.write_text("OTHER=zzz\n")
+    with pytest.raises(ValueError, match="OPENAI_API_KEY"):
+        go.load_env_key(env_missing)

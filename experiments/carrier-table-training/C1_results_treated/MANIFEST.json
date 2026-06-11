@@ -1,0 +1,17 @@
+{
+  "experiment": "carrier-table-training (C1 treated arm)",
+  "fold": "carrier_lodo_table",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "rungs": [
+    "tfidf",
+    "frozen"
+  ],
+  "contexts_per_attack": 12,
+  "n_bootstrap": 1000,
+  "corpus_sha256": "773108e14c5f418452ef80184ab9408bb4efa9467ab21a63c68baf51589d0424",
+  "control_tree": "../attack-type-lodo/results (as-committed; never re-run)"
+}

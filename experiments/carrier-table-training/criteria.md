@@ -134,3 +134,19 @@ skill's first real burn-in/dogfood run — friction logged to research_toolkit `
 **Gate disposition: CLEARED** — the silent path is eliminated in the exact code the recipe
 executes; the fail-late `ANTHROPIC_API_KEY` path (#21 item #5) is not exercised by this arc
 (CLI entry checks the env var at `dataset_synthesize.py:593`).
+
+## Revision 1 — generator provider: OpenAI via the same orchestrator (2026-06-10, PRE-DATUM)
+
+**Change (before any corpus datum existed):** the first generation attempt failed at call 1 on
+Anthropic API billing (zero rows, $0; manifest persisted). Generation moves to **OpenAI**
+(`gpt-4.1-mini`; key = repo-local `.env.local`, gitignored) via
+`generate_openai.py` — a thin chat-completions adapter passed as the `client` to the **same**
+research_toolkit `synthesize()` orchestrator, so the cost cap (`--bail-at-cost 5.00`), JSONL
+resume, manifest, and the PR #38 EmptyResponse gate are all retained. Real OpenAI pricing is
+registered for the cap; cost accounting is conservative (prompt-cache discounts ignored — the
+manifest can only overstate spend). **Unchanged:** the templates (byte-identical
+`recipe_table_corpus.yaml`; the manifest records the model override + base-recipe sha), benign-only
+generation (ADR-022/041), the mechanical BIPIA payload injection, the leakage gate, the estimator,
+the decision rule, and the lora paid-go write-gate. Generator-style confound note: the corpus's
+matched-negative design (W12) is provider-internal — positives and negatives come from the SAME
+OpenAI generator, so the Mirror-confound mitigation is unaffected by the provider switch.
