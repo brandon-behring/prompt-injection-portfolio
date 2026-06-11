@@ -1,4 +1,4 @@
-# Session handoff — 2026-06-11 (PM) — C1 ARC CLOSED: lora paid go RAN → verdict **NOT-CLOSED** → 5-verifier audit **ROBUST** · Round-32 draft + C2 draft await ratification · [prior arcs below SUPERSEDED]
+# Session handoff — 2026-06-11 (PM) — C1 ARC CLOSED + **Round 32 RATIFIED** + **ADR-055 amendment TAKEN** (table wall data-resistant at the ceiling) + **PR #38 MERGED** · NEXT = C2 ratification (dedicated session) · [prior arcs below SUPERSEDED]
 
 > **🆕 LATEST (2026-06-11, afternoon) — the C1 decision datum is in, audited, and recorded; everything below the suggested commits is user-led.**
 >
@@ -6,13 +6,15 @@
 >
 > **5-verifier adversarial audit → ROBUST** (`experiments/carrier-table-training/AUDIT_C1_2026-06-11.md`): REPRODUCES exact (Δ=0.0 ×9; lora ΔG ~11.6 sd < 0) · SOUND (treated test row-identical to control ×9; W4 pairing verified; sha chain holds incl. pod files) · LEAK-FREE (all seeds, full re-derivation; the committed gate only scanned seed-0 — closed empirically, 0 hits) · COMPLIANT (0 material deviations) · narrative CORRECTIONS required (audit **F5**, use in all downstream prose): **G_control(tfidf) = −0.148** not −0.149 · REDUCED/CLOSED labels exist only at `lora` (say "frozen-rung reduction … did not survive the decision rung") · never "treated wall grew" (not seed-robust: −0.006 without control seed-0) · the tfidf move is **val-side** (the ratified "no wall at tfidf" reading STANDS; "negative-gap artifact normalizes" was unsupported) · B+ analogy scoped "does-not-bridge at the lora ceiling" · **NotInject secondary readout: no over-defense price paid, no wall bought down** (treated mean 0.705 vs control 0.729, n=113).
 >
-> **▶ NEXT (all user-led, present-first):**
-> 1. **Approve the suggested commits** (presented in-session): (a) C1 verdict + audit + merged lora artifacts + re-stamped MANIFEST + this handoff + memory; (b) optionally the C2 draft. Then push.
-> 2. **Ratify Round 32** — draft at `docs/planning/round-32-update.DRAFT.md` (paste into PORTFOLIO_PLAN + delete the draft). It carries the open fork: an **ADR-055 carrier-line amendment** ("residual table wall is data-resistant at the ceiling") — a user decision.
-> 3. **Ratify C2** — `experiments/mechanism-style-content/criteria.DRAFT.md` (style-vs-content mechanism probe; frozen-detector scoring of a same-generator 2×2 counterfactual corpus; cheap rungs $0; 11 TBDs flagged for adjudication).
-> 4. Parked, unchanged: research_toolkit **PR #38 merge** · v0.1.0 A(b) close HELD on accounts · DF-11/#93 carrier re-lock. Audit follow-ups (LOW, if C1 tooling is reused): widen `leakage_gate.py`'s frame loop beyond seed-0; make `run_c1.py` verify the gate report's corpus sha matches `--corpus`.
+> **✅ Ratification sitting (same day, via the 4-question decision modal — all recommendations accepted):**
+> 1. **Round 32 RATIFIED** — pasted into `PORTFOLIO_PLAN.md` after Round 31 (with same-day fork dispositions bracketed); the DRAFT file deleted.
+> 2. **ADR-055 carrier amendment TAKEN + APPLIED** — new dated section "Carrier-table training resolution — 2026-06-11" in ADR-055; Decision 1 + the Carrier-LODO "honest spine claim" reworded; the full pre-registered downstream sweep applied (decisions/README · PORTFOLIO_PLAN §5/§9/§16 + Round-30/31 annotations · README M2+ row · M0_READINESS spine/audit-chain (the held v0.1.0 close now ships the amended wording) · glossary ×3 · roadmap-refresh ×3 + Fork-C resolved banner · lane-2 hypothesis/protocol C1-datum notes · chapter-outlines Ch7/Ch9 · forward-paths plain-language · upstream_issues #22 row). Carrier line now: *capacity-attenuated, residual, table-concentrated — and **data-resistant at the ceiling** (n=1 fold, one recipe)*.
+> 3. **research_toolkit PR #38 MERGED** (merge `7196cdd`) **+ BURN_IN_NOTES dogfood entry** (`dsynth-*` ids: 600/600 clean, $0.27, EmptyResponse gate never fired; one surfaced nugget — provider-switch recovery overwrites the failed attempt's manifest). `.tooling` clone returned to `main`.
+> 4. **C2 = dedicated present-first ratification session** (user-chosen path): `experiments/mechanism-style-content/criteria.DRAFT.md`, 11 TBDs (design-shaping: scope cross-family-vs-+table · retraining arm in/out · fidelity gate mechanical-vs-LLM-judge).
 >
-> **Read-first:** this block → `experiments/carrier-table-training/AUDIT_C1_2026-06-11.md` (incl. the F5 required phrasings) → `c1_verdict.json` → `docs/planning/round-32-update.DRAFT.md` → memory `[[c1-carrier-table-arc]]`.
+> **▶ NEXT (user-led):** 1. **C2 ratification** (fresh session; the queued next experiment). 2. Parked: v0.1.0 A(b) close HELD on accounts (announcement text already carries the amended spine wording) · DF-11/#93 carrier re-lock · research_toolkit #23 (skill install/reproducibility). Audit follow-ups (LOW, only if C1 tooling is reused): widen `leakage_gate.py`'s frame loop beyond seed-0; make `run_c1.py` verify the gate report's corpus sha matches `--corpus`.
+>
+> **Read-first:** this block → `experiments/carrier-table-training/AUDIT_C1_2026-06-11.md` (incl. the F5 required phrasings) → ADR-055 "Carrier-table training resolution" → PORTFOLIO_PLAN Round 32 → memory `[[c1-carrier-table-arc]]`.
 
 ---
 

@@ -20,6 +20,15 @@ pre-flight sized the live gap: a **residual, capacity-attenuated carrier wall co
 *table* carrier** (aggregate G(lora)=+0.067, **+0.205 at table**; email/code close —
 `experiments/carrier-lodo/FINDINGS.md`).
 
+> **First datum (C1, 2026-06-11): `NOT-CLOSED` — an H∅-shaped answer for the synthetic
+> format-matched recipe.** A leakage-gated 1800/600 synthetic table corpus (gpt-4.1-mini) reduced
+> the frozen rung (ΔG +0.083, CI-supported) but did **not** bridge at the `lora` ceiling
+> (ΔG −0.028, CI-low −0.032); the table wall is **data-resistant at the ceiling** for that recipe
+> (n=1 fold; ADR-055 2026-06-11 amendment; 5-verifier audit ROBUST —
+> `../carrier-table-training/AUDIT_C1_2026-06-11.md`). The H-branches below remain the
+> pre-committed frame for any *carrier-diverse real-data* variant; the H-optimistic null was
+> pre-committed as publishable and feeds the C2 style-vs-content mechanism probe.
+
 Does **carrier-diverse indirect-injection training data** close that residual carrier wall — i.e.
 lift held-out-carrier (esp. table) detection toward the in-distribution ceiling — under end-to-end
 LoRA? Per Round 15 Q1: parameter budget held at LoRA-only (no full-FT); two loss variants tested in

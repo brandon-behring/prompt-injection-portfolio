@@ -23,7 +23,11 @@ axes**, and independently re-checked five times, for **~$2 of a $250 budget**:
 - **Carrier axis** (does it generalise to a new *container* — email vs code vs
   table?): the wall is **partly real even after fine-tuning** — it shrinks ~60% but
   leaves a **stubborn gap on table-formatted inputs** (*capacity-attenuated*, with a
-  *residual wall* at the table carrier).
+  *residual wall* at the table carrier). And that gap stayed put even when we trained
+  directly on clean synthetic table examples (the C1 experiment, 2026-06-11 —
+  verdict NOT-CLOSED): the table wall is *data-resistant at the ceiling*, at least
+  for that one recipe. *Why* it stands (writing style vs attack content) is the next
+  question (C2).
 
 Milestone-wise: **M0** (planning + analysis) is done and ratified; **M1**
 (attack-type study) is done; the **carrier pre-flight** is done; **M2–M7 have not

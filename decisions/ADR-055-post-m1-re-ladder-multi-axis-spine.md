@@ -50,7 +50,9 @@ Adopt the re-ladder as **five enumerated sub-decisions** (all Accepted; user-dec
 1. **Narrative spine → multi-axis, axis-dependent (capacity acts differently per axis).** Replace the single "there is an OOD wall"
    thesis with: *OOD is several axes; the **attack-type** axis is **capacity-dependent** (end-to-end
    LoRA dissolves it), while the **carrier** axis is **partially capacity-resistant (provisional,
-   n=3 carriers)** — capacity-attenuated, with a **residual wall at the table carrier*** (refined
+   n=3 carriers)** — capacity-attenuated, with a **residual wall at the table carrier** that is
+   additionally **data-resistant at the ceiling** (C1, 2026-06-11: targeted same-format synthetic
+   data does not close it — n=1 fold, one recipe; see [Carrier-table training resolution](#carrier-table-training-resolution--2026-06-11-c1-decision-datum-in-the-residual-table-wall-is-data-resistant-at-the-ceiling))* (refined
    from "standing wall" by the carrier-LODO M2 pre-flight — see [Carrier-LODO resolution](#carrier-lodo-resolution--2026-06-01-m2-pre-flight-verdict-in);
    the original "carrier dominates the representation geometry and is the standing wall" framing was
    the geometric prior, now superseded by the modeling result). This is a stronger, more precise
@@ -153,7 +155,9 @@ FALSIFIED — [ADR-054](ADR-054-m1-lora-ceiling-full-ft-deferred.md) "Trigger-ga
 spine claim becomes **"capacity-attenuated, residual, table-concentrated"**: the **email** (−0.012)
 and **code** (+0.007) gaps close at the LoRA ceiling; the **table** carrier keeps a substantial wall
 (+0.205; val_roc 0.998 → test_roc ~0.793). Table-formatted contexts are the hard carrier to
-generalize to even end-to-end. Decision 1 is reworded to this; the multi-axis, capacity-dependent
+generalize to even end-to-end. *[Amended 2026-06-11: the table wall is additionally **data-resistant
+at the ceiling** — targeted same-format synthetic data does not close it (C1 `NOT-CLOSED`, n=1 fold,
+one recipe; see the [Carrier-table training resolution](#carrier-table-training-resolution--2026-06-11-c1-decision-datum-in-the-residual-table-wall-is-data-resistant-at-the-ceiling) below).]* Decision 1 is reworded to this; the multi-axis, capacity-dependent
 spine **survives in spirit** with the carrier half **downgraded from "standing wall" to "partially
 capacity-resistant (provisional), residual at the table carrier."**
 
@@ -259,3 +263,65 @@ Capacity does not act uniformly across axes: LoRA **dissolves** the within-BIPIA
 **Cost.** Label-stratified cluster bootstrap (≥10,000 iters, one-sided 95% percentile CI). The `lora` rung ran on RunPod across an A→B−→B+ matrix; realized record `criteria.md` Rev 6–9 (live H100 cost-capped ~$14, recovery blocked → unified all-27 H100 re-run recovered Arm A + B−, B+ finished on a cheaper sub-L40S Ada bf16 card ~$3–5; total ≈ $35). **Base-budget throughout** — [ADR-002](ADR-002-cost-cap-250-base-100-contingency.md)'s $250 base « $350 hard cap is untouched and [ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md) **stays Reserved**.
 
 **Cross-references resolved.** The [2026-06-04 dialect-open-axis note](#reproduction-stamp--dialect-open-axis--2026-06-04)'s "`lora` verdict is OPEN (B3-gated)" → **RESOLVED → `SURVIVES`**, its deferral → **discharged here**. `prototype-comparison-audit-2026-06.md §A.5` ("the cross-family wall under fair tuning — Open, the sharpest item") → **CLOSED** (fair-tuned capacity does not climb the wall; Arm A grows, B+ does not bridge). The criteria §Verification B4 step + Rev 5(e) verdict-trust gate (multi-verifier audit) → **discharged**. Consolidated machine-readable verdict: `experiments/cross-family-transfer/verdict.json`.
+
+## Carrier-table training resolution — 2026-06-11 (C1 decision datum in; the residual table wall is data-resistant at the ceiling)
+
+**The arc this resolves.** Round 31 decided Fork C = **C1** (the Lane-2 carrier/table training arc):
+attack the one residual within-BIPIA wall (table, G(lora)=+0.205 — the [Carrier-LODO
+resolution](#carrier-lodo-resolution--2026-06-01-m2-pre-flight-verdict-in) above) with
+carrier-targeted training data, under a pre-registration ratified 2026-06-10
+(`experiments/carrier-table-training/criteria.md`; verdict rule + SESOI fixed **pre-datum**;
+the `lora` decision rung behind its own present-first paid go).
+
+**The datum (2026-06-11).** A leakage-gated synthetic table corpus (1800 pos / 600 neg, same-generator
+matched negatives per audit W12, 0 exact / 0 near collisions vs the fold's val+test) was appended to
+the control-identical inner train (post-carve; val/test byte-identical to control). Judged by the
+pre-locked rule at the `lora` ceiling (treated rung: RunPod H100, 26.8 min, $1.47):
+
+| rung | G_control | G_treated | ΔG (control−treated) | CI-low (1-sided 95%, 10k paired, W4) | reading |
+|---|---|---|---|---|---|
+| tfidf | −0.148 | −0.013 | −0.136 | −0.137 | val-side move (val_roc 0.78→0.91; test flat) — the ratified "no wall at tfidf" reading **stands** |
+| frozen | +0.334 | +0.251 | **+0.083** | +0.079 | CI-supported frozen-rung reduction |
+| **lora** | **+0.205** | **+0.233** | **−0.028** | **−0.032** | **NOT-CLOSED** (CI-low ≤ 0) |
+
+**VERDICT = `NOT-CLOSED`** — targeted, format-matched, in-axis data does **not** bridge the residual
+table wall at the `lora` ceiling; the CI-supported frozen-rung reduction **did not survive the
+decision rung**. Phrasing bounds (audit F5, binding): *no evidence of reduction at `lora`*; the
+negative point direction is **not seed-robust** (−0.006 without control seed-0; the payload-CI is
+conditional on the 3 seeds) — never "the treated wall grew" (the W13 lesson). W10 dual reading:
+sign-only "wall persists (G=+0.233)"; the ½·G(frozen) knob holds (0.233 ≥ 0.126). NotInject
+secondary (pre-registered): **no over-defense price paid — and no wall bought down** (treated mean
+0.705 vs control 0.729, n=113; clean-context FPRs seed-unstable in both arms).
+
+**Independent multi-verifier audit — ROBUST** (B4 pattern, 5 adversarial roles): REPRODUCES exact
+(all 9 point values Δ=0.0; independent paired bootstrap concurs) / SOUND (treated test row-identical
+to control ×9; sha chain end-to-end) / LEAK-FREE (all seeds, full re-derivation beyond the committed
+seed-0 gate) / COMPLIANT (0 material deviations) / narrative corrections only (F5). Synthesis:
+`experiments/carrier-table-training/AUDIT_C1_2026-06-11.md`.
+
+**Resolution: the carrier line gains a data axis.** The honest spine claim becomes
+**"capacity-attenuated, residual, table-concentrated — and data-resistant at the ceiling: not
+closable by targeted same-format synthetic data (n=1 fold, one recipe)"**. Decision 1 is reworded
+accordingly. Scope of the new clause (pre-committed limits): **n=1 fold** (held-table), **one
+augmentation recipe** (post-carve append, 2,400 rows), **one corpus generator** (gpt-4.1-mini,
+criteria Revision 1); a different recipe/scale/generator could land differently — that is a new
+experiment, not this one. The B+ analogy holds **at the pattern level only** ("does-not-bridge at
+the `lora` ceiling"): the axes differ (cross-family is capacity-resistant; carrier is
+capacity-attenuated), and C1's intervention *did* move the frozen rung — a ceiling-specific failure
+B+ never showed.
+
+**What this sharpens, not answers.** Part of the gap moves with format-matched data (frozen rung);
+none of the movement survives at the ceiling — exactly the signature the **style-vs-content
+mechanism probe (C2)** is designed to decompose (`experiments/mechanism-style-content/criteria.DRAFT.md`,
+drafted 2026-06-11, awaiting its own ratification). The §16 **carrier-study re-test gate** (n=3→n=5,
+qa/abstract-conditional) is unchanged and carries this qualifier when it fires.
+
+**Cost.** +$1.74 base-budget (corpus $0.27 + `lora` $1.47);
+[ADR-002](ADR-002-cost-cap-250-base-100-contingency.md)'s $250 base « $350 hard cap untouched;
+[ADR-014](ADR-014-cost-contingency-unlock-reserved-1.md) **stays Reserved**.
+
+**Cross-references resolved.** Round 31's Fork C = C1 → **executed + verdict in** (Round 32,
+`docs/planning/PORTFOLIO_PLAN.md`). `experiments/lane-2/hypothesis.md`'s "does carrier-targeted data
+close the residual wall?" → **answered (negative) for the synthetic format-matched recipe** — the
+H-optimistic null was pre-committed as publishable and feeds C2. Machine-readable verdict:
+`experiments/carrier-table-training/c1_verdict.json`.

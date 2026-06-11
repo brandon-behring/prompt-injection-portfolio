@@ -157,10 +157,11 @@ Snapshots the M0 framework + the complete first experimental arc:
 - The axis-dependent OOD spine (ADR-055 + amendments) — all three axes pre-registered,
   write-gated, audited, and independently reproduced:
   attack-type FALSIFIED at the LoRA ceiling (tfidf +0.135 / frozen +0.082 SURVIVE; lora −0.003) ·
-  carrier SMALL-THROUGHOUT (G_lora +0.067; residual table wall +0.205; provisional n=3) ·
+  carrier SMALL-THROUGHOUT (G_lora +0.067; residual table wall +0.205, data-resistant at the
+  ceiling — C1 NOT-CLOSED 2026-06-11, n=1 fold/one recipe; provisional n=3) ·
   cross-family SURVIVES (Gx_lora +0.365, capacity-resistant; direct data does not bridge).
 - Audit chain: 5-verifier post-M1 · 5-verifier B4 (ROBUST) · bootstrap reproduction ·
-  full re-audit 2026-06-09 (30 verifiers; spine reproduces bit-exact).
+  full re-audit 2026-06-09 (30 verifiers; spine reproduces bit-exact) · 5-verifier C1 (ROBUST).
 - Total compute ≈ $37 of the $250 base budget.
 
 Pre-alpha: chapter prose fills as lanes close.

@@ -209,7 +209,10 @@ spine (ADR-055) named it the **standing wall** (the geometric prior) — distinc
 the *attack-type* axis, which M1 showed is capacity-dependent. M1 held the carrier
 constant by design (ADR-052); the `carrier-LODO` M2 pre-flight (2026-06-01) then
 refined the claim to **partially capacity-resistant — capacity-attenuated, residual
-at the table carrier (provisional, n=3)**.
+at the table carrier (provisional, n=3)**; the C1 carrier/table-training arc
+(2026-06-11) then showed that residual table wall is **data-resistant at the
+ceiling** — targeted same-format synthetic data does not close it (`NOT-CLOSED`,
+n=1 fold, one recipe; ADR-055 amendment).
 
 ## carrier-LODO
 
@@ -461,12 +464,16 @@ section 6.5 prediction SURVIVES on tfidf/frozen but is FALSIFIED at the LoRA cei
 (T 0.135 -> 0.082 -> -0.003), so end-to-end LoRA dissolves the per-type gap.
 The *carrier* axis is **capacity-attenuated**: `carrier-LODO` shrinks from
 frozen G +0.167 to LoRA G +0.067, with a residual table-carrier gap +0.205
-(provisional, n=3). The *cross-family* axis is **capacity-resistant**:
+(provisional, n=3) that is additionally **data-resistant at the ceiling** —
+C1 (2026-06-11) trained on a targeted synthetic table corpus and the wall did
+not close at the LoRA rung (`NOT-CLOSED`; the frozen-rung reduction did not
+survive the decision rung). The *cross-family* axis is **capacity-resistant**:
 B4 SURVIVES at the LoRA ceiling, Arm A grows to Gx +0.365, and B+ does not
 bridge held-out indirect dialects.
 
 **In plain terms:** there is no single wall. Fine-tuning solves one kind of
-test, partly helps another, and fails on the hardest cross-family transfer test.
+test, partly helps another (but feeding it tailored examples doesn't finish
+the job), and fails on the hardest cross-family transfer test.
 
 ## OOD wall
 
@@ -474,7 +481,8 @@ The project shorthand for a detector working on training-like data but dropping
 on unlike-training data. The submission predecessor showed a direct-to-indirect
 cross-family failure; this portfolio then split the idea into separate axes.
 Current result: the attack-type wall inside BIPIA falls at LoRA, the carrier wall
-inside BIPIA shrinks but leaves a table residual, and the cross-family wall
+inside BIPIA shrinks but leaves a table residual that targeted same-format data
+does not close (C1 `NOT-CLOSED`, 2026-06-11), and the cross-family wall
 SURVIVES at LoRA.
 
 **In plain terms:** "the wall" is now a family of tests, not one claim. Always

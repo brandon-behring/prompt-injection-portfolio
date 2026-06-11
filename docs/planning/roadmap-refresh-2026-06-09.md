@@ -6,7 +6,7 @@
 
 **Inputs:** the ratified 3-axis spine (ADR-054/-055 + amendments) · the full re-audit (`consolidated-audit-2026-06-09.md` — spine holds, 15 FIX-NOW / 18 FOLLOW-UP) · `results-analysis-2026-06-08.md` "Paths forward" · `milestone-rethink-inputs.md` (folded in + retired, §6) · `M0_READINESS.md` held bundle · DF-11 · the 13-chapter outline.
 
-**Where the science stands.** The first experimental arc is complete and audit-hardened: attack-type transfer is solved at the LoRA ceiling (FALSIFIED wall), carrier is capacity-attenuated with one residual table wall (+0.205, provisional n=3), cross-family is the one capacity-resistant axis (SURVIVES, +0.365, direct data doesn't bridge). Nothing experimental is in flight; every queued item below is user-led.
+**Where the science stands.** The first experimental arc is complete and audit-hardened: attack-type transfer is solved at the LoRA ceiling (FALSIFIED wall), carrier is capacity-attenuated with one residual table wall (+0.205, provisional n=3) that is additionally **data-resistant at the ceiling** (C1 carrier/table training `NOT-CLOSED`, 2026-06-11 — targeted same-format data does not close it; Round 32 + ADR-055 amendment), cross-family is the one capacity-resistant axis (SURVIVES, +0.365, direct data doesn't bridge). Nothing experimental is in flight; every queued item below is user-led.
 
 ## 1. Recommended sequence (the short version)
 
@@ -39,10 +39,11 @@ Snapshots the M0 framework + the complete first experimental arc:
 - The axis-dependent OOD spine (ADR-055 + amendments) — all three axes pre-registered,
   write-gated, audited, and independently reproduced:
   attack-type FALSIFIED at the LoRA ceiling (tfidf +0.135 / frozen +0.082 SURVIVE; lora −0.003) ·
-  carrier SMALL-THROUGHOUT (G_lora +0.067; residual table wall +0.205; provisional n=3) ·
+  carrier SMALL-THROUGHOUT (G_lora +0.067; residual table wall +0.205, data-resistant at the
+  ceiling — C1 NOT-CLOSED 2026-06-11; provisional n=3) ·
   cross-family SURVIVES (Gx_lora +0.365, capacity-resistant; direct data does not bridge).
 - Audit chain: 5-verifier post-M1 · 5-verifier B4 (ROBUST) · bootstrap reproduction ·
-  full re-audit 2026-06-09 (30 verifiers; spine reproduces bit-exact).
+  full re-audit 2026-06-09 (30 verifiers; spine reproduces bit-exact) · 5-verifier C1 (ROBUST).
 - Total compute ≈ $37 of the $250 base budget.
 
 Pre-alpha: chapter prose fills as lanes close.
@@ -81,7 +82,12 @@ Audit verdict: deterministic, internally exact, claims contained (consolidated-a
 
 A v1 with an LLM backend (the only way `spotlight_delimit` and the gates produce *empirical* rather than construction-property results) is a P3 option, only meaningful after adoption.
 
-## 4. Fork C — the next experiment (after P0/P1) — **DECIDED: C1 (2026-06-10)**
+## 4. Fork C — the next experiment (after P0/P1) — **DECIDED: C1 (2026-06-10) → EXECUTED, verdict `NOT-CLOSED` (2026-06-11)**
+
+> **Resolved 2026-06-11 (Round 32):** C1 ran end-to-end (corpus $0.27 + lora $1.47; 5-verifier audit
+> ROBUST) — the residual table wall is **data-resistant at the ceiling** (ADR-055 amendment). C2's
+> pre-registration was drafted during the GPU wait (`experiments/mechanism-style-content/criteria.DRAFT.md`)
+> and awaits its own ratification as the queued next experiment.
 
 | Option | What | Cost/blockers | Case |
 |---|---|---|---|

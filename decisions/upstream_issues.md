@@ -89,13 +89,15 @@ gated on the research_toolkit items below.
 
 | Repo | Issue | Why it gates Lane 2 |
 |------|-------|---------------------|
-| research_toolkit | [#22](https://github.com/brandon-behring/research_toolkit/issues/22) | P1: candidate/dogfood-pending; silent-failure path (`_extract_text` drops non-text blocks, returns "") would silently corrupt a training corpus. |
+| research_toolkit | [#22](https://github.com/brandon-behring/research_toolkit/issues/22) | P1: candidate/dogfood-pending; silent-failure path (`_extract_text` drops non-text blocks, returns "") would silently corrupt a training corpus. **RESOLVED 2026-06-11**: the C1 gate-trace found it ON-PATH → fixed upstream as **PR #38** (`fix/21-empty-response-loud`, `c9fae12`) — MERGED to main 2026-06-11 (merge `7196cdd`) with the C1 burn-in dogfood entry (600/600 clean, $0.27, gate never fired; `BURN_IN_NOTES.md` ids `dsynth-*`). |
 | research_toolkit | [#23](https://github.com/brandon-behring/research_toolkit/issues/23) | P2: skill not installed by default (absent from Makefile SKILLS / quickstart / `~/.claude/skills`) → not reproducible. |
-| research_toolkit | [#21](https://github.com/brandon-behring/research_toolkit/issues/21) | Post-merge polish (pricing staleness, API-key check location, cost-invariant test). |
+| research_toolkit | [#21](https://github.com/brandon-behring/research_toolkit/issues/21) | Post-merge polish (pricing staleness, API-key check location, cost-invariant test). Item 2 (empty-response silent-fail) shipped via PR #38 (2026-06-11); remaining items still open. |
 
 Lane 2 keeps `/dataset-synthesize` as its **designated** primary data path (ADR-051),
 but **execution is gated** on #22/#23 closing — no reliance until then; the 3-tier
-fallback ladder remains the documented contingency.
+fallback ladder remains the documented contingency. *(2026-06-11: the #22 gate was
+demonstrated, escalated, fixed (PR #38), and burn-tested by the C1 corpus run — the
+gate's purpose is discharged for the C1 arc; #23 remains open for reproducibility.)*
 
 **Pin-state updates (this round):**
 - eval-toolkit: `>=0.47` → `>=1.0` (lock 1.2.0); v1.0 stability contract. Cannot be
