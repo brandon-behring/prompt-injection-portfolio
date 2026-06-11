@@ -1,6 +1,6 @@
 # NEXT_SESSION
 
-> **↑ 2026-06-11 — STALE DOC, kept for historical context. START HERE = docs/planning/SESSION-HANDOFF.md; the standing roadmap = docs/planning/roadmap-refresh-2026-06-09.md (Round 31 ratified; C1 ratified + cheap rungs DONE `5c90d1b` — NEXT = the C1 `lora` paid go; v0.1.0 A(b) close still HELD for accounts per M0_READINESS.md). The old "do not push to close M0" directive below is SUPERSEDED. Repo state lines below (41 commits etc.) are historical.**
+> **↑ 2026-06-11 (PM) — STALE DOC, kept for historical context. START HERE = docs/planning/SESSION-HANDOFF.md (2026-06-11 PM block); the standing roadmap = docs/planning/roadmap-refresh-2026-06-09.md. State: Round 32 RATIFIED; the C1 arc is CLOSED end-to-end (lora go ran $1.47 → verdict NOT-CLOSED → 5-verifier audit ROBUST); the ADR-055 carrier amendment is TAKEN ("data-resistant at the ceiling", downstream sweep applied); research_toolkit PR #38 MERGED. NEXT = the C2 ratification (dedicated present-first session; `experiments/mechanism-style-content/criteria.DRAFT.md`, 11 TBDs); v0.1.0 A(b) close still HELD for accounts per M0_READINESS.md (ships the amended spine wording). The old "do not push to close M0" directive below is SUPERSEDED. Repo state lines below (41 commits etc.) are historical.**
 
 **Scope**: cold-start anchor for a fresh session (potentially on a different
 machine). Install instructions + commit summary + critical context.
