@@ -1,4 +1,24 @@
-# Session handoff — 2026-06-10 (LATE) — Round 31 RATIFIED · roadmap = STANDING SURFACE (forks A/B/C all decided) · P1.5 hardening + C1 pre-reg draft in flight · [prior arcs below SUPERSEDED]
+# Session handoff — 2026-06-11 — C1 CHEAP-RUNG ARC DONE + PUSHED (frozen wall REDUCED, ΔG +0.083) · NEXT = the C1 `lora` paid go · [prior arcs below SUPERSEDED]
+
+> **🆕 LATEST (2026-06-10/11) — C1 (Lane 2 / M2) ratified AND executed through the cheap rungs in one stretch; everything PUSHED (`…5c90d1b`, branch in sync).**
+>
+> **Ratification (4 modals):** `experiments/carrier-table-training/criteria.md` RATIFIED as-drafted · **spend scope**: corpus ≤$5 + cheap rungs covered by ratification, **`lora` = its own present-first paid go** · #22 gate = demonstrate-not-on-path · v0.1.0 stays held on accounts. The #22 trace found `_extract_text` **ON-PATH** (silent empty-row corpus poisoning) → escalated per the pre-adjudicated rule → fixed upstream as **research_toolkit PR #38** (`fix/21-empty-response-loud`; the `.tooling` clone SITS ON that branch — corpus gen must run from it). **criteria Revision 1 (pre-datum):** Anthropic credits were empty → generation on **OpenAI `gpt-4.1-mini`** via `generate_openai.py` (an Anthropic-interface adapter into the SAME `synthesize()` orchestrator — cap/resume/PR#38 gate retained; key = repo `.env.local`, gitignored).
+>
+> **Results ($0.27 total):** 600/600 benign table contexts (zero hygiene drops) → corpus **1800 pos / 600 neg** (28 attack types, mechanical BIPIA-pool suffix-injection, `context_sha256` on every row; parquets COMMITTED, 320K) → **leakage gate 0 exact / 0 near** → cheap rungs ×3 seeds **CPU-only** (`CUDA_VISIBLE_DEVICES=""` — the shared 2070S OOMs; first attempt died on it) → **readout:** tfidf G −0.149→−0.013 (the control's negative-gap artifact normalizes) · **frozen G +0.334→+0.251, ΔG +0.083 (CI-low +0.079 > 0) — a REAL, CI-supported reduction; the wall persists ≫ 0.05 SESOI.** Write-gate verified CLOSED at `lora` (0 treated seeds). Gates: lint+mypy+83 tests+13 contracts green.
+>
+> **▶ NEXT (user-led): the C1 `lora` paid go** (~$1–5 RunPod; treated arm only, 3 seeds × held-table fold; control = `../attack-type-lodo/results` as-committed, NEVER re-run; control anchor G_table(lora) = +0.205):
+> 1. Wire `runpod_c1_sweep.yaml` (mirror `runpod_carrier_lodo_sweep.yaml`; **cheap-first `gpu_order`** per cross-family Rev 9 — 4090/A5000 before L40S/H100; excludes scoped `experiments/**/*.parquet`; cap ~$8). The pod runs `run_c1.py --rungs lora` — `corpus_gated.parquet` is COMMITTED, so the pod has everything.
+> 2. Monitor with a **plain bash monitor** (NO gpu-run-watcher agent — it over-polls to death; verify-before-delete; DF-12 lessons). Pull `seed=*/carrier_lodo_table/lora.{predictions.parquet,metrics.json}` into `C1_results_treated/`.
+> 3. `c1_verdict.py` — rule PRE-LOCKED (CLOSED iff G_treated(lora)<0.05 AND CI-low(ΔG)>0 · REDUCED iff CI-low>0 ≥SESOI · NOT-CLOSED iff CI-low≤0; W4 independent-per-seed paired bootstrap; W10 dual reading; `--out`/`--force` overwrite gate live) → **multi-verifier adversarial audit** (B4 pattern) → **Round 32** entry in PORTFOLIO_PLAN.
+> 4. **C2 mechanism pre-reg drafts during the GPU wait** (Round 31 decision; style-vs-content, the W12 Mirror confound is the design driver).
+>
+> **Also open:** research_toolkit **PR #38 merge** (+ optional BURN_IN_NOTES dogfood entry — the C1 run was the skill's first real burn-in: 600/600 clean, billing-failure recovery exercised, EmptyResponse gate never fired) · v0.1.0 A(b) close HELD on accounts (`M0_READINESS.md`; session branch now 45 ff-able commits) · DF-11/#93 + carrier n=5 when-unblocked.
+>
+> **Read-first:** this block → `experiments/carrier-table-training/criteria.md` (incl. the gate-check note + Revision 1) → `c1_verdict.py` docstring → memory `[[c1-carrier-table-arc]]`.
+
+---
+
+# Session handoff — 2026-06-10 (LATE) — Round 31 RATIFIED · roadmap = STANDING SURFACE (forks A/B/C all decided) · P1.5 hardening + C1 pre-reg draft in flight · [SUPERSEDED by the block above — C1 since ratified + cheap rungs done]
 
 > **🆕 LATEST (2026-06-10, post-audit-commit) — consolidation COMMITTED + PUSHED (`d92426a`); Round 31 ratified; every roadmap fork decided.**
 >

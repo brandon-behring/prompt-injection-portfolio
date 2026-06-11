@@ -1,6 +1,6 @@
 # NEXT_SESSION
 
-> **↑ 2026-06-10 — STALE DOC, kept for historical context. START HERE = docs/planning/SESSION-HANDOFF.md; the standing roadmap = docs/planning/roadmap-refresh-2026-06-09.md (ratified Round 31: v0.1.0 Fork A(b) close HELD for accounts per M0_READINESS.md; next experiment = C1 Lane-2 carrier/table). The old "do not push to close M0" directive below is SUPERSEDED. Repo state lines below (41 commits etc.) are historical.**
+> **↑ 2026-06-11 — STALE DOC, kept for historical context. START HERE = docs/planning/SESSION-HANDOFF.md; the standing roadmap = docs/planning/roadmap-refresh-2026-06-09.md (Round 31 ratified; C1 ratified + cheap rungs DONE `5c90d1b` — NEXT = the C1 `lora` paid go; v0.1.0 A(b) close still HELD for accounts per M0_READINESS.md). The old "do not push to close M0" directive below is SUPERSEDED. Repo state lines below (41 commits etc.) are historical.**
 
 **Scope**: cold-start anchor for a fresh session (potentially on a different
 machine). Install instructions + commit summary + critical context.

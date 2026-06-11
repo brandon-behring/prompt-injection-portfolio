@@ -15,7 +15,7 @@
 | **P0** | **Consolidation session** — the audit's 15 FIX-NOWs, the 6 uncommitted-artifact dispositions, W6 + broken links, SESSION-HANDOFF refresh | ~1 session, $0 | **DONE** — Checkpoint-1 approved; committed `d92426a` (pushed) |
 | **P1** | **v0.1.0 close** — Fork A **decided: variant (b)** full-spine close (ff-merge → tag → release → announce) | ~15-min runbook | **HELD** — accounts (unchanged human gate); runbook staged in `M0_READINESS.md` |
 | **P1.5** | **Methods-hardening mini-arc** — W1 email-only silhouette check (conclusion SURVIVES), W2 injecagent fix + slice retirement, W3 write-gate (+3 tests), disclosure notes W4/W5/W10/W11/W12/W13/W14/W15, W9 (9 reference metrics committed), W16 PAD CI, W17, W18 archive | ~1 session, $0 | **DONE** (2026-06-10; gates 67 tests + 13 contracts green) |
-| **P2** | **Lane 2: carrier/table training arc** — Fork C **decided: C1** (pre-registration first; C2 mechanism pre-reg drafts during C1 GPU waits) | pre-reg + cheap rungs free; lora ~$1–5 | criteria.DRAFT this session → separate present-first ratification before any run |
+| **P2** | **Lane 2: carrier/table training arc** — Fork C **decided: C1** (pre-registration first; C2 mechanism pre-reg drafts during C1 GPU waits) | pre-reg + cheap rungs free; lora ~$1–5 | **RATIFIED + cheap rungs DONE** (2026-06-10/11, `5c90d1b`: corpus $0.27 via OpenAI Rev 1; gate 0-collisions; frozen ΔG +0.083 REDUCED-direction, wall persists +0.251) — **`lora` paid go = the open decision rung** |
 | **P3** | Dossier sprint · Lane 3/4/5 per ladder · agent-harness-v1 (v0 adopted → unblocked) | — | user-led |
 | **When unblocked** | DF-11 carrier/clustered re-lock (eval-toolkit#93) · carrier n=5 retest (license gate) | small | upstream ships |
 
@@ -125,8 +125,11 @@ surface, Fork C = C1, FIX-NOWs + dispositions applied (`d92426a`). Still open:
 
 - **Accounts timing** (the single human gate) — releases the P1 close + announce and the
   build-in-public cadence; nothing else blocks on it.
-- **C1 pre-registration ratification** — the criteria DRAFT is a separate present-first go; no run
-  before it.
+- ~~C1 pre-registration ratification~~ — *RATIFIED 2026-06-10 (+ #22 gate cleared via
+  research_toolkit PR #38; corpus + cheap rungs executed same stretch, `5c90d1b`).*
+- **C1 `lora` paid go** (~$1–5) — the decision rung; write-gate verified CLOSED until it runs;
+  runbook in `SESSION-HANDOFF.md` (2026-06-11 block). C2 pre-reg drafts during its GPU wait.
+- **research_toolkit PR #38 merge** (+ optional BURN_IN_NOTES dogfood entry).
 - **When-unblocked items** (§5): DF-11 / eval-toolkit#93 re-lock · carrier n=5 retest (license gate).
 - ~~W18 archive form~~ — *resolved in the P1.5 session (archived with SUPERSEDED header).*
 
