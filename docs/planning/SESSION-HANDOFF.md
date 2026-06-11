@@ -1,4 +1,22 @@
-# Session handoff — 2026-06-11 — C1 CHEAP-RUNG ARC DONE + PUSHED (frozen wall REDUCED, ΔG +0.083) · NEXT = the C1 `lora` paid go · [prior arcs below SUPERSEDED]
+# Session handoff — 2026-06-11 (PM) — C1 ARC CLOSED: lora paid go RAN → verdict **NOT-CLOSED** → 5-verifier audit **ROBUST** · Round-32 draft + C2 draft await ratification · [prior arcs below SUPERSEDED]
+
+> **🆕 LATEST (2026-06-11, afternoon) — the C1 decision datum is in, audited, and recorded; everything below the suggested commits is user-led.**
+>
+> **The lora paid go RAN** (`runpod_c1_sweep.yaml` wired + committed `7525c77`; offline + price dry-runs green; H100 80GB SECURE @ $3.29/h, pod 09:04→09:31 ≈ 26.8 min ≈ **$1.47**; `.env.local` verified never-staged; pull → `C1_results_runpod_lora/`, merged sha-verified into `C1_results_treated/`, pod deleted only after the verified pull). **Verdict (pre-locked rule, judged at `lora`): NOT-CLOSED** — G_control +0.2054 / G_treated +0.2333 / ΔG **−0.0279** (CI-low −0.0319 ≤ 0). The frozen-rung reduction (ΔG +0.0830, CI-low +0.0788) **did not survive the decision rung**; targeted format-matched table data does not bridge the residual table wall at the ceiling. `c1_verdict.json` written through the W3 gate (first write). Total C1 datum cost ≈ **$1.74** (corpus $0.27 + lora $1.47).
+>
+> **5-verifier adversarial audit → ROBUST** (`experiments/carrier-table-training/AUDIT_C1_2026-06-11.md`): REPRODUCES exact (Δ=0.0 ×9; lora ΔG ~11.6 sd < 0) · SOUND (treated test row-identical to control ×9; W4 pairing verified; sha chain holds incl. pod files) · LEAK-FREE (all seeds, full re-derivation; the committed gate only scanned seed-0 — closed empirically, 0 hits) · COMPLIANT (0 material deviations) · narrative CORRECTIONS required (audit **F5**, use in all downstream prose): **G_control(tfidf) = −0.148** not −0.149 · REDUCED/CLOSED labels exist only at `lora` (say "frozen-rung reduction … did not survive the decision rung") · never "treated wall grew" (not seed-robust: −0.006 without control seed-0) · the tfidf move is **val-side** (the ratified "no wall at tfidf" reading STANDS; "negative-gap artifact normalizes" was unsupported) · B+ analogy scoped "does-not-bridge at the lora ceiling" · **NotInject secondary readout: no over-defense price paid, no wall bought down** (treated mean 0.705 vs control 0.729, n=113).
+>
+> **▶ NEXT (all user-led, present-first):**
+> 1. **Approve the suggested commits** (presented in-session): (a) C1 verdict + audit + merged lora artifacts + re-stamped MANIFEST + this handoff + memory; (b) optionally the C2 draft. Then push.
+> 2. **Ratify Round 32** — draft at `docs/planning/round-32-update.DRAFT.md` (paste into PORTFOLIO_PLAN + delete the draft). It carries the open fork: an **ADR-055 carrier-line amendment** ("residual table wall is data-resistant at the ceiling") — a user decision.
+> 3. **Ratify C2** — `experiments/mechanism-style-content/criteria.DRAFT.md` (style-vs-content mechanism probe; frozen-detector scoring of a same-generator 2×2 counterfactual corpus; cheap rungs $0; 11 TBDs flagged for adjudication).
+> 4. Parked, unchanged: research_toolkit **PR #38 merge** · v0.1.0 A(b) close HELD on accounts · DF-11/#93 carrier re-lock. Audit follow-ups (LOW, if C1 tooling is reused): widen `leakage_gate.py`'s frame loop beyond seed-0; make `run_c1.py` verify the gate report's corpus sha matches `--corpus`.
+>
+> **Read-first:** this block → `experiments/carrier-table-training/AUDIT_C1_2026-06-11.md` (incl. the F5 required phrasings) → `c1_verdict.json` → `docs/planning/round-32-update.DRAFT.md` → memory `[[c1-carrier-table-arc]]`.
+
+---
+
+# Session handoff — 2026-06-11 — C1 CHEAP-RUNG ARC DONE + PUSHED (frozen wall REDUCED, ΔG +0.083) · NEXT = the C1 `lora` paid go · [SUPERSEDED by the block above — the lora go has since RUN (verdict NOT-CLOSED, audit ROBUST); per audit F5: tfidf G_control is −0.148, and this block's "REDUCED" headline was an informal cheap-rung label, not a verdict]
 
 > **🆕 LATEST (2026-06-10/11) — C1 (Lane 2 / M2) ratified AND executed through the cheap rungs in one stretch; everything PUSHED (`…5c90d1b`, branch in sync).**
 >

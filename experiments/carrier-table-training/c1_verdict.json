@@ -1,0 +1,35 @@
+{
+  "experiment": "carrier-table-training (C1)",
+  "fold": "carrier_lodo_table",
+  "rule": "CLOSED iff G_treated(lora)<0.05 AND CI-low(dG)>0; REDUCED iff CI-low(dG)>0 AND G_treated(lora)>=0.05; NOT-CLOSED iff CI-low(dG)<=0",
+  "sesoi": 0.05,
+  "n_boot": 10000,
+  "verdict": "NOT-CLOSED",
+  "per_rung": {
+    "tfidf": {
+      "G_control": -0.1484850672234068,
+      "G_treated": -0.012877946576640579,
+      "delta_G": -0.13560712064676622,
+      "ci_low_delta": -0.13652296552949544,
+      "frac_delta_gt0": 0.0
+    },
+    "frozen": {
+      "G_control": 0.3340597051942668,
+      "G_treated": 0.25106480247571666,
+      "delta_G": 0.08299490271855015,
+      "ci_low_delta": 0.0788225353885336,
+      "frac_delta_gt0": 1.0
+    },
+    "lora": {
+      "G_control": 0.20538934790334043,
+      "G_treated": 0.23326966358682774,
+      "delta_G": -0.02788031568348731,
+      "ci_low_delta": -0.031861914386401305,
+      "frac_delta_gt0": 0.0
+    }
+  },
+  "w10_dual_reading_treated": {
+    "sign_only": "wall persists (G=+0.233)",
+    "half_frozen_knob": "holds at the knob (G=0.233 >= \u00bd\u00b7G_frozen=0.126)"
+  }
+}

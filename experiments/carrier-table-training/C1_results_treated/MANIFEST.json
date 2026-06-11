@@ -8,8 +8,10 @@
   ],
   "rungs": [
     "tfidf",
-    "frozen"
+    "frozen",
+    "lora"
   ],
+  "lora_provenance": "merged 2026-06-11 from C1_results_runpod_lora (RunPod H100 80GB SECURE, pod 20260611T130432Z, 26.8 min, $1.47); byte-identity sha256-verified per seed (AUDIT_C1_2026-06-11.md F4)",
   "contexts_per_attack": 12,
   "n_bootstrap": 1000,
   "corpus_sha256": "773108e14c5f418452ef80184ab9408bb4efa9467ab21a63c68baf51589d0424",
