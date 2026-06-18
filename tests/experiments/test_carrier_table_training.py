@@ -25,7 +25,10 @@ if str(_C1_DIR) not in sys.path:
 
 import build_corpus as bc  # noqa: E402
 import c1_verdict as cv  # noqa: E402
-import generate_openai as go  # noqa: E402
+
+# generate_openai imports dataset_synthesize from the gitignored .tooling/ tree, which is absent
+# in CI; skip this experiment-scaffold module cleanly when that local-only dependency is missing.
+go = pytest.importorskip("generate_openai")  # noqa: E402
 import leakage_gate as lg  # noqa: E402
 import run_c1 as rc  # noqa: E402
 
