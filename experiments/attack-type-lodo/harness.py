@@ -163,6 +163,9 @@ def run_one(
     )
 
     val_scores = np.asarray(detector.predict_proba(fold.val["text"].tolist()), dtype=float)
+    # ROC-AUC val reference for the carrier-LODO gap G = val_roc_auc - test_roc_auc (prevalence-
+    # invariant; carrier-lodo/criteria.md Rev 1). Persisted for all folds (cheap + additive).
+    val_roc_auc = metrics.roc_auc_point(fold.val["label"].tolist(), val_scores)
     thr = _val_threshold(fold.val, val_scores, fpr=_BENIGN_FPR_TARGET)
     # Two benign FPRs at the val-fixed threshold: clean carrier contexts (the fold's own
     # negatives) and NotInject benign-with-trigger prompts (the spec §5 over-defense control).
@@ -183,6 +186,7 @@ def run_one(
         "fold": fold_name,
         "seed": seed,
         "val_auprc": val_auprc,
+        "val_roc_auc": val_roc_auc,
         "recipe": recipe,
         "headline": headline,
         "clean_context_fpr": clean_context_fpr,
@@ -263,9 +267,7 @@ def rebuild_manifest(
 
     prior_path = out_dir / "MANIFEST.yml"
     prior = (
-        yaml.safe_load(prior_path.read_text(encoding="utf-8")) or {}
-        if prior_path.exists()
-        else {}
+        yaml.safe_load(prior_path.read_text(encoding="utf-8")) or {} if prior_path.exists() else {}
     )
     prior_cfg = prior.get("config", {}) if isinstance(prior.get("config"), dict) else {}
     cfg = dict(base_config or {})

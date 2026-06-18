@@ -1,0 +1,157 @@
+# RunPod job spec — C1 carrier/table training: treated-arm LoRA rung ONLY (carrier-table-training/criteria.md).
+# The cheap rungs (tfidf+frozen) ran LOCAL+CPU and are COMMITTED (C1_results_treated/); the control is the
+# ratified carrier-LODO tree (../attack-type-lodo/results, as-committed — NEVER re-run). Only the treated
+# `lora` (3 seeds × held-table fold, corpus-augmented inner train) trains here. Pull →
+# C1_results_runpod_lora/ (separate dir — never clobbers the committed cheap-rung tree), then LOCAL:
+# copy seed=*/carrier_lodo_table/lora.{predictions.parquet,metrics.json} into C1_results_treated/ →
+# c1_verdict.py (rule PRE-LOCKED) → multi-verifier audit → Round 32.
+# Sibling of attack-type-lodo/runpod_carrier_lodo_sweep.yaml (the control's spec); same orchestration.
+#
+# Consumed at the session-launch boundary by scripts/runpod_sweep.py --config <this file> via
+# runpod_deploy.load_job_spec → run_job (provision → stage → run → pull artifacts → lifecycle).
+# NEVER imported by the remote pod (ADR-026 library-first; runpod-deploy is a local orchestrator only).
+#
+#   validate (zero spend):  uv run python scripts/runpod_sweep.py --config experiments/carrier-table-training/runpod_c1_sweep.yaml --offline-dry-run
+#   price/inventory check :  uv run python scripts/runpod_sweep.py --config experiments/carrier-table-training/runpod_c1_sweep.yaml --dry-run
+#   launch (PAID, user-led): uv run python scripts/runpod_sweep.py --config experiments/carrier-table-training/runpod_c1_sweep.yaml
+#
+# Monitor with a PLAIN BASH monitor (NO gpu-run-watcher agent — it over-polls to death; DF-12):
+# incremental pull + verify-before-delete; a cost-guard must never pod-delete before a verified local pull.
+#
+# ⚠️ Provider-side values are NOT checked by --offline-dry-run — confirm against current
+#    RunPod offerings before the paid launch: pod.image, pod.gpu_order, pod.datacenters,
+#    budget.assumed_hourly_rate_usd.
+schema_version: 2
+name: c1-table-treated-lora-sweep
+run_id_prefix: c1-table-lora
+
+local:
+  project_root: "../.." # config lives in experiments/carrier-table-training/; repo root is two up
+  required_paths:
+    - experiments/carrier-table-training/run_c1.py
+    - experiments/carrier-table-training/corpus_gated.parquet # the treatment — MUST survive staging excludes
+    - experiments/carrier-table-training/leakage_gate.json # run_c1.py refuses to start without it
+    - experiments/carrier-table-training/criteria.md
+    - experiments/attack-type-lodo/harness.py # run_c1 imports harness/detectors/folds/metrics (ADR-026)
+    - experiments/attack-type-lodo/detectors.py
+    - experiments/attack-type-lodo/folds.py
+    - experiments/attack-type-lodo/metrics.py
+    - experiments/eda/OOD_WALL_PREDICTION/bipia_carrier.py # build_examples (control-identical frame)
+    - data/raw/BIPIA/benchmark
+    - pyproject.toml
+    - uv.lock
+
+pod:
+  # 24 GB+ trains the lora rung at spec config; the treated train adds 2,400 corpus rows to the
+  # control's inner train — still ~3 sequential fits, ~1–2.5 h on a cheap Ampere/Ada card.
+  image: runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
+  cloud_type: SECURE
+  container_disk_gb: 40
+  gpu_count: 1
+  # CHEAP-FIRST (cross-family criteria Rev 9): 4090/A5000-class before L40S/H100. All native-bf16
+  # (comparability with the H100 control lora; the run.body guard rejects non-bf16 cards).
+  # ⚠️ Rev 9 lesson: the selector walks datacenters in YAML order — with L40S/H100 kept as fallback
+  # it can resolve them while cheap cards sit in later DCs. C1 is small (~$1–3 even on L40S/H100,
+  # bounded by the cap), so fallback-resolves beats fail-fast here; to insist on a cheap card,
+  # confirm a window first with `scripts/cheap_gpu_monitor.py --watch` and trim the premium tail.
+  gpu_order:
+    - "NVIDIA RTX A5000"
+    - "NVIDIA GeForce RTX 4090"
+    - "NVIDIA A40"
+    - "NVIDIA RTX A6000"
+    - "NVIDIA L40"
+    - "NVIDIA L40S"
+    - "NVIDIA H100 80GB HBM3"
+    - "NVIDIA H100 NVL"
+  datacenters: # cost-search across these; ⚠️ confirm IDs against current RunPod regions
+    - "US-CA-2"
+    - "US-OR-1"
+    - "US-TX-3"
+    - "US-KS-2"
+    - "EU-RO-1"
+    - "EU-NL-1"
+    - "CA-MTL-1"
+  ports:
+    - "22/tcp"
+
+storage:
+  mode: ephemeral
+  volume_mount: /workspace
+  volume_gb: 50 # ephemeral workspace: repo + HF model cache + results
+
+budget:
+  cost_cap_usd: 8.0 # treated lora ~$1–5 expected (3 fits; carrier control was $1.17 for 9 fits on H100)
+  assumed_hourly_rate_usd: 2.00 # conservative premium-fallback rate (cheap cards ~$0.4–0.8/h)
+  max_runtime_minutes: 240 # 4 h × $2.00/h = $8.00 ≤ cap (runpod_deploy enforces timeout×rate≤cap)
+  poll_interval_sec: 60
+  ssh_ready_timeout_sec: 900
+
+remote_env:
+  exports:
+    HF_HUB_ENABLE_HF_TRANSFER: "1"
+
+staging:
+  - label: repo
+    source: "."
+    destination: /workspace/repo
+    excludes_default: true # .git/, .venv/, caches, __pycache__
+    excludes_extra:
+      # ⚠️ NO blanket `**/*.parquet` here — corpus_gated.parquet IS the treatment and must ship.
+      # Heavy/irrelevant trees excluded by directory instead:
+      - ".env.local" # OpenAI key (corpus-gen Revision 1) — must NEVER reach the pod
+      - ".env*"
+      - "experiments/cross-family-transfer/" # 3.3 GB of B2/B3 results; C1 needs none of it
+      - "experiments/attack-type-lodo/results/" # control tree — verdict runs LOCALLY, never on the pod
+      - "experiments/attack-type-lodo/results_*/"
+      - "experiments/carrier-table-training/C1_results_treated/" # pod writes a fresh lora-only tree
+      - "experiments/carrier-table-training/C1_results_runpod_lora/"
+      - "data/raw/**/*.parquet" # materialized HF bulk; BIPIA benchmark is JSON, unaffected
+      - "book/"
+      - ".tooling/"
+      - "**/node_modules/"
+      - "**/*.apkg"
+    delete: true
+
+setup:
+  # rsync absent from the RunPod pytorch base image; needed for staging (DF-6/#116).
+  - command: apt-get update -qq && apt-get install -y -qq rsync
+    timeout_sec: 120
+
+preflight:
+  - command: nvidia-smi
+    timeout_sec: 60
+
+run:
+  script_path: /workspace/run_sweep.sh
+  log_path: /workspace/sweep.log
+  success_marker: "C1_LORA_SWEEP_COMPLETE_OK"
+  body: |
+    set -euo pipefail
+    export PATH="$HOME/.local/bin:$PATH"
+    command -v uv >/dev/null 2>&1 || curl -LsSf https://astral.sh/uv/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+    cd /workspace/repo
+    uv sync --extra dev
+    # Fail-fast guard (ADR-054) + COMPARABILITY: refuse CPU AND refuse non-native-bf16 cards
+    # (keeps the treated rung bf16 like the H100 control lora; Ampere/Ada/Hopper pass).
+    uv run python -c "import torch; assert torch.cuda.is_available(), 'FATAL: no cuda - refusing to train the LoRA rung on CPU on a paid pod'; assert torch.cuda.is_bf16_supported(including_emulation=False), 'FATAL: non-native-bf16 GPU - C1 comparability with the H100 control requires bf16'; print('GPU OK:', torch.cuda.get_device_name(0), '| torch', torch.__version__, '| cuda', torch.version.cuda)"
+    uv run python experiments/carrier-table-training/run_c1.py \
+      --rungs lora \
+      --seeds 0 1 2
+    echo "C1_LORA_SWEEP_COMPLETE_OK"
+
+artifacts:
+  # Pull the pod's lora-only tree into a SEPARATE dir so it never clobbers the committed cheap-rung
+  # C1_results_treated/ (tfidf+frozen metrics + MANIFEST). Merge = copy
+  # seed=*/carrier_lodo_table/lora.{predictions.parquet,metrics.json} into C1_results_treated/, then
+  # run c1_verdict.py LOCALLY (no verdict artifact is ever produced on the pod).
+  - label: results
+    remote_path: /workspace/repo/experiments/carrier-table-training/C1_results_treated
+    local_path: experiments/carrier-table-training/C1_results_runpod_lora
+    required: true
+    delete: false
+
+lifecycle:
+  # "delete" is the unambiguous billing-stop for a one-shot sweep. Failure → stop (keep for forensics).
+  on_success: delete
+  on_failure: stop

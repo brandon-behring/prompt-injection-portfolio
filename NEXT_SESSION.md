@@ -1,6 +1,6 @@
 # NEXT_SESSION
 
-> **↑ 2026-05-29 (PM) — see [`docs/planning/SESSION-HANDOFF.md`](docs/planning/SESSION-HANDOFF.md) for the current START HERE.** Since the AM handoff, two commits landed (both **UNPUSHED**, `ahead 2` over origin tip `151db97`): **`2054a26`** reconciled `PORTFOLIO_PLAN.md` §21 to post-M0 reality (+ Round 24–26 narrative), and **`e49918e`** = the **Round 27 milestone rethink** — the pre-modeling EDA arc (Phases 0–3, COMPLETE) is now recorded as **M1's entry-gate**, and the conditional Lane 1b/4/5 rescopes are registered as **§16 trigger-gates**, with the full lane/chapter re-ladder **deferred to post-LODO-results per ADR-052**. **⚠️ Milestones are under active rethink** — treat the M0→M7 ladder below as provisional, and the formal `v0.1.0` M0 close as DEFERRED (do not push to close M0). Live options: push the 2 commits / continue the milestone rethink / start the ADR-052 attack-type-LODO study (Lane 1 modeling; spec at `docs/planning/attack-type-lodo-harness-spec.md`; triggers issue #2). Open follow-ups: GitHub issues #1 (PG1 V10 rerun, gate-pending) + #2 (falsification). **Commit trailer = model-specific `Claude Opus 4.8 (1M context)`, not the generic global-git.md form.** Everything below is preserved M0-close historical context.
+> **↑ 2026-06-11 (PM) — STALE DOC, kept for historical context. START HERE = docs/planning/SESSION-HANDOFF.md (2026-06-11 PM block); the standing roadmap = docs/planning/roadmap-refresh-2026-06-09.md. State: Round 32 RATIFIED; the C1 arc is CLOSED end-to-end (lora go ran $1.47 → verdict NOT-CLOSED → 5-verifier audit ROBUST); the ADR-055 carrier amendment is TAKEN ("data-resistant at the ceiling", downstream sweep applied); research_toolkit PR #38 MERGED. NEXT = the C2 ratification (dedicated present-first session; `experiments/mechanism-style-content/criteria.DRAFT.md`, 11 TBDs); v0.1.0 A(b) close still HELD for accounts per M0_READINESS.md (ships the amended spine wording). The old "do not push to close M0" directive below is SUPERSEDED. Repo state lines below (41 commits etc.) are historical.**
 
 **Scope**: cold-start anchor for a fresh session (potentially on a different
 machine). Install instructions + commit summary + critical context.
@@ -37,7 +37,7 @@ M0 close artifact-state PASSES.
    ```bash
    cd <parent-dir>
    git clone -b v1.3.0 https://github.com/brandon-behring/prompt-injection-detection-prototype.git \
-     prompt-injection-detection-submission
+     prompt-injection-detection-prototype
    ```
    (The editable dep in `pyproject.toml` `[tool.uv.sources]` expects this
    sibling layout.)

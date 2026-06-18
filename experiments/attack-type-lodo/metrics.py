@@ -19,7 +19,13 @@ import pandas as pd
 from eval_toolkit import MetricResult, metric_specs, scorecard
 from eval_toolkit.thresholds import recall_at_fpr
 
-__all__ = ["compute_fold_metrics", "per_type_diagnostics", "benign_fpr", "FPR_TARGETS"]
+__all__ = [
+    "compute_fold_metrics",
+    "per_type_diagnostics",
+    "benign_fpr",
+    "roc_auc_point",
+    "FPR_TARGETS",
+]
 
 # pr_auc/roc_auc/brier are ready MetricSpec instances; ece is a parameterised builder.
 _SPECS = [
@@ -63,6 +69,21 @@ def _pr_auc(y_true: np.ndarray, y_score: np.ndarray) -> float:
     cell = scorecard(y_true, y_score, metrics=[metric_specs.pr_auc], bootstrap=False)["pr_auc"]
     if cell.value is None:
         raise ValueError(f"pr_auc undefined on slice (status={cell.status}: {cell.reason})")
+    return float(cell.value)
+
+
+def roc_auc_point(y_true: npt.ArrayLike, y_score: npt.ArrayLike) -> float:
+    """Single AUROC via ``scorecard`` (no bootstrap) — the carrier-LODO val→test gap reference.
+
+    ROC-AUC is prevalence-invariant, so it is the carrier-LODO estimator's basis (the BIPIA carriers
+    are 83-94 % positive; ``experiments/carrier-lodo/criteria.md`` Revision 1). Raises on a
+    single-class slice (no silent ``None``).
+    """
+    cell = scorecard(
+        np.asarray(y_true), np.asarray(y_score), metrics=[metric_specs.roc_auc], bootstrap=False
+    )["roc_auc"]
+    if cell.value is None:
+        raise ValueError(f"roc_auc undefined on slice (status={cell.status}: {cell.reason})")
     return float(cell.value)
 
 

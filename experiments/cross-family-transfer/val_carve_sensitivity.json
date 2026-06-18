@@ -1,0 +1,58 @@
+{
+  "study": "B2.3 Step-0 val-carve sensitivity (tfidf, CPU)",
+  "threshold_dval": 0.03,
+  "sesoi": 0.05,
+  "well_powered_folds": [
+    "browsesafe",
+    "fujitsu"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "table": {
+    "bipia": {
+      "val_roc_row": 0.9539016388037062,
+      "test_roc_row": 0.6005562338895672,
+      "gx_row": 0.35334540491413896,
+      "val_roc_cluster": 0.9547790110392768,
+      "test_roc_cluster": 0.6072600110794556,
+      "gx_cluster": 0.34751899995982116,
+      "dval": -0.0008773722355704949
+    },
+    "browsesafe": {
+      "val_roc_row": 0.995525354337157,
+      "test_roc_row": 0.5348222429934175,
+      "gx_row": 0.4607031113437396,
+      "val_roc_cluster": 0.9733661502945997,
+      "test_roc_cluster": 0.5340716105976722,
+      "gx_cluster": 0.4392945396969275,
+      "dval": 0.022159204042557445
+    },
+    "fujitsu": {
+      "val_roc_row": 0.8340101792902871,
+      "test_roc_row": 0.6825036984852685,
+      "gx_row": 0.15150648080501858,
+      "val_roc_cluster": 0.8255536973252823,
+      "test_roc_cluster": 0.6665544711126609,
+      "gx_cluster": 0.1589992262126215,
+      "dval": 0.00845648196500474
+    },
+    "injecagent": {
+      "val_roc_row": 0.9520131494004574,
+      "test_roc_row": 0.9877962570227332,
+      "gx_row": -0.035783107622275656,
+      "val_roc_cluster": 0.9556579897807023,
+      "test_roc_cluster": 0.985433642147561,
+      "gx_cluster": -0.029775652366858862,
+      "dval": -0.003644840380244707
+    }
+  },
+  "verdict": {
+    "material": false,
+    "decision": "ROW CARVE STANDS \u2014 proceed to frozen on existing folds",
+    "reasons": [],
+    "rule": "material iff dval >= 0.03 on a well-powered fold (browsesafe/fujitsu) OR any Gx sign/SESOI(0.05) flip"
+  }
+}

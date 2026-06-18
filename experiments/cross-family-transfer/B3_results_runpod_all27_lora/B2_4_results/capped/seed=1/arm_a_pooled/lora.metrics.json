@@ -1,0 +1,23 @@
+{
+  "rung": "lora",
+  "pool": "capped",
+  "fold": "arm_a_pooled",
+  "seed": 1,
+  "val_roc_auc": 0.99937720940496,
+  "test_roc_auc": 0.6265274767328929,
+  "recipe": {
+    "r": 16,
+    "lr": 0.0001,
+    "epochs": 3,
+    "val_pr_auc": 0.9982468276877904
+  },
+  "over_defense": {
+    "target_fpr": 0.01,
+    "val_threshold": 0.1604648381471634,
+    "over_defense_fpr": 0.4247787610619469,
+    "n_notinject": 339
+  },
+  "n_train": 23239,
+  "n_val": 5809,
+  "n_test": 8283
+}

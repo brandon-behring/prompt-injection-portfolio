@@ -2,14 +2,14 @@
 #
 # Implements two-step checkout per plan §3 + F2 risk resolution:
 # - Step 1: checkout portfolio repo (`actions/checkout@v4` to `./`)
-# - Step 2: checkout submission at pinned tag (`ref: v1.3.0`) to sibling path
+# - Step 2: checkout prototype at pinned tag (`ref: v1.3.0`) to sibling path
 #   so `[tool.uv.sources]` editable dep resolves at uv sync time
 #
-# Per Round 14 Q1 + Round 21 dynamic-tag-detection, submission ref: advances
+# Per Round 14 Q1 + Round 21 dynamic-tag-detection, prototype ref: advances
 # automatically with each portfolio Day 3a re-sync. Update both `ref:` value
 # + the corresponding pyproject.toml [tool.uv.sources] comment together.
 # Current pin: v1.3.0 (was v1.1.1 at M0 Day 2; v1.2.16 at Round 21; v1.3.0 at Round 22 —
-# submission's two-guide reader architecture aligns with portfolio's R17 3-guide direction).
+# the prototype's two-guide reader architecture aligns with portfolio's R17 3-guide direction).
 #
 # Quality gates per plan §2 Tier-4 + Round 7 ADR-036:
 # - ruff check (lint) + ruff format --check (format)
@@ -37,12 +37,12 @@ jobs:
         with:
           path: prompt-injection-portfolio
 
-      - name: Checkout submission (pinned to v1.3.0 per Round 14 Q1 + Round 22 dynamic-detect)
+      - name: Checkout prototype (pinned to v1.3.0 per Round 14 Q1 + Round 22 dynamic-detect)
         uses: actions/checkout@v6
         with:
           repository: brandon-behring/prompt-injection-detection-prototype
           ref: v1.3.0
-          path: prompt-injection-detection-submission
+          path: prompt-injection-detection-prototype
 
       - name: Install uv
         uses: astral-sh/setup-uv@v8.1.0
@@ -52,7 +52,7 @@ jobs:
       - name: Set up Python 3.13
         run: uv python install 3.13
 
-      - name: Sync dependencies (incl. editable submission)
+      - name: Sync dependencies (incl. editable prototype)
         working-directory: prompt-injection-portfolio
         run: uv sync --extra dev
 

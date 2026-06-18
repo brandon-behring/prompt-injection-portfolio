@@ -89,13 +89,15 @@ gated on the research_toolkit items below.
 
 | Repo | Issue | Why it gates Lane 2 |
 |------|-------|---------------------|
-| research_toolkit | [#22](https://github.com/brandon-behring/research_toolkit/issues/22) | P1: candidate/dogfood-pending; silent-failure path (`_extract_text` drops non-text blocks, returns "") would silently corrupt a training corpus. |
+| research_toolkit | [#22](https://github.com/brandon-behring/research_toolkit/issues/22) | P1: candidate/dogfood-pending; silent-failure path (`_extract_text` drops non-text blocks, returns "") would silently corrupt a training corpus. **RESOLVED 2026-06-11**: the C1 gate-trace found it ON-PATH → fixed upstream as **PR #38** (`fix/21-empty-response-loud`, `c9fae12`) — MERGED to main 2026-06-11 (merge `7196cdd`) with the C1 burn-in dogfood entry (600/600 clean, $0.27, gate never fired; `BURN_IN_NOTES.md` ids `dsynth-*`). |
 | research_toolkit | [#23](https://github.com/brandon-behring/research_toolkit/issues/23) | P2: skill not installed by default (absent from Makefile SKILLS / quickstart / `~/.claude/skills`) → not reproducible. |
-| research_toolkit | [#21](https://github.com/brandon-behring/research_toolkit/issues/21) | Post-merge polish (pricing staleness, API-key check location, cost-invariant test). |
+| research_toolkit | [#21](https://github.com/brandon-behring/research_toolkit/issues/21) | Post-merge polish (pricing staleness, API-key check location, cost-invariant test). Item 2 (empty-response silent-fail) shipped via PR #38 (2026-06-11); remaining items still open. |
 
 Lane 2 keeps `/dataset-synthesize` as its **designated** primary data path (ADR-051),
 but **execution is gated** on #22/#23 closing — no reliance until then; the 3-tier
-fallback ladder remains the documented contingency.
+fallback ladder remains the documented contingency. *(2026-06-11: the #22 gate was
+demonstrated, escalated, fixed (PR #38), and burn-tested by the C1 corpus run — the
+gate's purpose is discharged for the C1 arc; #23 remains open for reproducibility.)*
 
 **Pin-state updates (this round):**
 - eval-toolkit: `>=0.47` → `>=1.0` (lock 1.2.0); v1.0 stability contract. Cannot be
@@ -117,6 +119,82 @@ Surfaced while preparing the paid Lane-1 LoRA launch (`scripts/runpod_sweep.py -
 |---|------|---------------------------------|-------|
 | DF-6 | runpod-deploy | The RunPod pytorch base image (`runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04`) does not include `rsync`. `_push_workspace` invokes `rsync` locally to push to `root@<host>:<dest>`, which requires rsync on BOTH ends (the local client and the remote server). Without it, the rsync sub-process fails with `bash: line 1: rsync: command not found` and exit code 12, halting the run before any GPU time is consumed. **Workaround taken**: added a `setup` block to the YAML spec (`apt-get install -y -qq rsync`, ~10 s) which runs before staging. This works but is noise in every spec and will recur for any user using a lean base image. The library should either: (a) document the rsync requirement prominently in the quickstart, or (b) auto-install rsync as part of the SSH-ready validation step, or (c) offer a `scp`/`tar`-over-SSH fallback transfer mode when rsync is absent on the remote. **NON-BLOCKING** after the YAML workaround. | **issue-filed** — [#116](https://github.com/brandon-behring/runpod-deploy/issues/116) (2026-06-01). Workaround in place: `setup: [{command: "apt-get update -qq && apt-get install -y -qq rsync"}]` in the YAML spec. |
 | DF-5 | runpod-deploy | `pricing.fetch_gpu_prices` returns **0 cards**. `_post_graphql` (`pricing.py:139-146`) authenticates the RunPod GraphQL `gpuTypes` query (`GRAPHQL_ENDPOINT = https://api.runpod.io/graphql`, `pricing.py:50`) with an `Authorization: Bearer <key>` header → **HTTP 403 Forbidden**. RunPod's GraphQL API classically expects the key as a `?api_key=<key>` query param, not a Bearer header. Reproduced with a valid 50-char key that authenticates `runpodctl` fine (the dry-run provisions normally). **NON-BLOCKING**: provisioning uses `runpodctl`; the budget guard falls back to `assumed_hourly_rate_usd`. Cost: the live-price display is empty and the `--max-gpu-price-usd` filter is inert (no prices to compare). | **issue-filed** — [#117](https://github.com/brandon-behring/runpod-deploy/issues/117) (2026-06-01). No workaround needed; rely on `assumed_hourly_rate_usd` + `cost_cap_usd` + `max_runtime_minutes`. |
+
+---
+
+## Dogfooding findings — Phase-2 dataset-universe EDA (2026-06-03) — DRAFT, NOT YET FILED (user-led)
+
+Surfaced while EDA-gating the Phase-2 new datasets. Per the present-first discipline, public issue filing is
+**user-led** — these are **drafted repros awaiting your go to file** (`gh issue create --repo
+brandon-behring/eval-toolkit --label enhancement`). Both are genuine missing primitives that forced a local
+one-off in the (ruff-excluded) `experiments/eda/` drivers; neither belongs in portfolio long-term.
+
+| # | Repo | Friction surfaced by dogfooding | Proposed primitive | State |
+|---|------|---------------------------------|--------------------|-------|
+| DF-7 | eval-toolkit | `loaders.HFDatasetsLoader` assumes the HF Dataset Viewer / `load_dataset` works. `youbin2014/JailbreakDB` has a **broken Viewer** (500 "generation failed"; parquet-export job failed) → `load_dataset` cannot read it; it ships as two raw multi-line CSVs (~1.54M records). Also `perplexity-ai/browsesafe-bench` rows are ~46–140 KB HTML (34K tokens) and the in-scope corpora include multi-GB sets — loading full into memory to then sample is wasteful. Had to hand-roll a local `custom_csv_loader` (+ the pre-existing local `custom_parquet_loader`) in `experiments/eda/survey_v2.py` that reads via the HF `resolve/` URL **or** a local snapshot, with **memory-bounded per-chunk Bernoulli sampling**. | `eval_toolkit.loaders.RawFileLoader` (or a `streaming=`/`sample_rows=` mode on a CSV/parquet loader): Viewer-independent raw-file read (resolve-URL or local path), with an optional memory-bounded representative sample for multi-GB / multi-M-row corpora. | **DRAFT — not filed** |
+| DF-8 | eval-toolkit | `eval_toolkit.leakage` checks (`CrossSplitLeakageCheck`) and `text_dedup.cross_dedup_pairs` are **in-memory** (both sides as `list[str]`). To leakage-gate JailbreakDB (~1.54M records) vs a ~68K probe (our jackhhao/shen/jbb), neither side composition fits the in-memory pair-finder at scale. Had to hand-roll `experiments/eda/jailbreakdb_leakage_scan.py`: **exact normalized-hash membership over a stream** + `MinHashLSHStrategy` near-dup on a bounded sample, asymmetric (index the small probe, stream the big corpus). | `eval_toolkit.leakage` streaming/asymmetric variant: index a small reference set, **stream** a large corpus, report exact + MinHash-near overlap **per reference corpus**. Reuses the existing `MinHashLSHStrategy` + `normalize_text_for_dedup` + `sha256_text` (so it's an orchestration layer, not new core). | **DRAFT — not filed** |
+
+*(Cleanup companion, not an upstream gap: portfolio's `experiments/eda/cross_dataset_geometry.py` had local re-implementations of `proxy_a_distance` (as `pad()`) and a cross-source near-dup (`cross_dataset_neardup()`) that DUPLICATE existing upstream — `eval_toolkit.eda.proxy_a_distance` + `eval_toolkit.text_dedup.audit_source_label_similarity`. Resolved in-portfolio by consuming the upstream primitives — no issue needed.)*
+
+---
+
+## Dogfooding findings — B2.3 cluster-bootstrap parallelism (2026-06-04)
+
+Surfaced while running the cross-family **dialect-LODO** cheap-rung sweep (`experiments/cross-family-transfer/`).
+The label-stratified **cluster** bootstrap for the transfer-gap CI (`Gx = val_roc − test_roc`, positive- and
+negative-clusters resampled separately) was **hand-rolled as a serial Python loop** in
+`falsify_dialect_lodo.per_dialect_gap` — and the same shape was previously hand-rolled in
+`falsify_carrier_lodo` (§6.5) and the attack-type LODO. Three call sites, one missing primitive ⇒ Rule of Three.
+Per the user directive (2026-06-04) this is filed upstream, not worked around locally.
+
+| # | Repo | Friction surfaced by dogfooding | Proposed primitive | State |
+|---|------|---------------------------------|--------------------|-------|
+| DF-9 | eval-toolkit | `eval_toolkit.bootstrap` ships **row-level** (`bootstrap_ci`), **fold-level** (`block_bootstrap_on_folds`), and **paired** (`paired_bootstrap_diff`, already `n_jobs`-parallel) bootstraps + analytic DeLong (`delong_roc_variance`) — but **no label-stratified cluster/group bootstrap**, the "missing middle" for clustered eval data (prompts sharing a payload; a doc contributing a poisoned + a benign row). DeLong assumes row-independence ⇒ under-covers clustered test sets. So portfolio hand-rolled a **serial** 10k-iter cluster bootstrap (using none of the upstream `parallel_map` + `spawn_seed_sequences` infra) in 3 LODO call sites — single-threaded on a 128-core box. | `eval_toolkit.bootstrap.cluster_bootstrap_ci(y_true, y_score, groups, statistic, *, resample_labels=(0,1), n_resamples, confidence, rng, n_jobs)` — resamples whole `groups` with replacement, unit = `(label, group)` (mixed-label groups split by label; `resample_labels=(1,)` = positives-only, negatives fixed = the carrier convention); percentile `BootstrapCI`; parallel via `parallel_map` + `spawn_seed_sequences` ⇒ **bit-identical across `n_jobs`**. | **issue-filed [#89](https://github.com/brandon-behring/eval-toolkit/issues/89) → pr-merged [#90](https://github.com/brandon-behring/eval-toolkit/pull/90) → released-v1.7.0** ([release](https://github.com/brandon-behring/eval-toolkit/releases/tag/v1.7.0); **PyPI 1.7.0 live**, 2026-06-04; + benchmark fix [#91](https://github.com/brandon-behring/eval-toolkit/pull/91)): fn + tests (unit/n_jobs-reproducibility/cluster-CI-wider-than-row/edge/doctest) + `__all__`/`_EXPORTS` + CHANGELOG; ruff + mypy-strict + tests + doctests green, coverage 92.6%. **Consumption: pin-bump-pending** — portfolio `pyproject` `>=1.6` → `>=1.7`, then consume in `falsify_dialect_lodo` + retrofit `falsify_carrier_lodo` (§6.5) + re-lock method (RNG-stream note + reproduction cross-check) **before B3** (Phase 3, separate go). |
+
+*Side finding (separate, pre-existing — not in PR #90):* `tests/benchmarks/test_kernel_benchmarks.py` calls `bootstrap_ci(..., seed=…)` / `paired_bootstrap_diff(..., seed=…)` but those migrated to `rng=` (SPEC 7) → 2 bootstrap benchmark tests `TypeError` on the nightly-benchmarks workflow (excluded from PR CI). Trivial `seed=`→`rng=` fix; noted in #89, separate one-line PR offered.
+
+**DF-10 (follow-on to DF-9, surfaced 2026-06-04 during the reproduction audit).** Consuming
+`cluster_bootstrap_ci` (DF-9, v1.7.0) revealed it is **single-block** and cannot express the
+**seed-averaging** all three LODO estimators do *inside* the bootstrap (`Gx = val − mean_seed(test_roc)`;
+carrier additionally means over carriers; §6.5 a composite top−bottom `T`). So the single-block primitive
+fits **none** of the three sites — an honest mis-scope on the DF-9 PR. The DF-9 "consumption" plan is
+**superseded**: the correct primitive is the multi-stratum generalisation below.
+
+| # | Repo | Friction surfaced by dogfooding | Proposed primitive | State |
+|---|------|---------------------------------|--------------------|-------|
+| DF-10 | eval-toolkit | `cluster_bootstrap_ci` (v1.7.0) is **single-block** → cannot express the seed-averaged / multi-group composite statistics the real LODO estimators bootstrap (dialect `val − mean_seed`; carrier mean-over-carriers; §6.5 top−bottom `T`). | `eval_toolkit.bootstrap.stratified_cluster_bootstrap_ci(strata, per_stratum_metric, combine, *, resample_labels, …)` — a composite statistic reduced over independently-resampled cluster **strata** (`strata={key:(y,score,groups)}`); `cluster_bootstrap_ci` = single-stratum identity-reduce special case; parallel + `n_jobs`-reproducible. | **released-v1.8.0 + consumed + reproduced** ([#92](https://github.com/brandon-behring/eval-toolkit/pull/92) merged `7284365`; [release v1.8.0](https://github.com/brandon-behring/eval-toolkit/releases/tag/v1.8.0); **PyPI 1.8.0 live**, 2026-06-04; pin `>=1.8`): fn + 11 tests (single-stratum-equivalence / seed-averaged / composite-`T` / n_jobs-reproducibility / validation) + `__all__`/`_EXPORTS`/CHANGELOG/golden; ruff + mypy-strict + doctests green. **Consumed in the reproduction audit** (`experiments/REPRODUCTION_2026-06/`): all 3 LODO verdicts (dialect 8/8 · carrier 3/3 incl. lora · §6.5 lora FALSIFIED) **re-derived — point EXACT, CI within MC noise (Δ ≤ 0.001)**. Dialect loop re-locked onto it at `019dd6a`; carrier/clustered remain hand-rolled pending DF-11 (optional parallel re-lock = a future follow-up). |
+| DF-11 | eval-toolkit | `stratified_cluster_bootstrap_ci` (v1.8.0) returns only `point_estimate` / `ci_low` / `ci_high` — **not** the bootstrap resample distribution. The production §6.5 + carrier estimators (`falsify_clustered.cluster_bootstrap`, `falsify_carrier_lodo._rung_gap`) persist a **`frac_gt0`** field (fraction of resampled stats > 0) into committed verdicts (`carrier-lodo/verdict.json`, the §6.5 verdict), which is structurally **unrecoverable** from the primitive's output → those two sites cannot migrate without dropping a committed field or retaining the serial loop. (The dialect site has no `frac_gt0` → **migrated cleanly 2026-06-04**, point EXACT / CI Δ ≤ 0.0023.) | An opt-in `return_samples=True` (expose the resample array) **or** a `frac_gt(threshold)` summary on `stratified_cluster_bootstrap_ci`, so consumers persisting `frac_gt0` can migrate (ADR-026 library-first completion of the re-lock). | **issue-filed** — [#93](https://github.com/brandon-behring/eval-toolkit/issues/93) (2026-06-04). Workaround: `falsify_carrier_lodo` + `falsify_clustered` stay on the hand-rolled serial bootstrap (reproduction audit already proved equivalence; zero verdict-impact). **[W4 rider, 2026-06-10 (audit):** both the hand-rolled loops *and* the v1.8.0 primitive as-used couple bootstrap draws across seeds (one draw indexes all seeds' replicates) — anti-conservative; quantified with independent per-seed draws: CIs widen ×1.2–1.7, **no verdict flips**. When #93 is picked up, an opt-in `seed_independent=`/per-stratum-RNG draw mode is the natural companion fix — to ride the same PR.**]** |
+
+---
+
+## Dogfooding findings — RunPod sweep GPU-efficiency + realized-pace (2026-06-05) — DRAFT, NOT YET FILED (user-led)
+
+Surfaced running the cross-family B3 LoRA sweep. Per the present-first discipline, public issue filing
+is **user-led** — this is a **drafted enhancement awaiting your go** (`gh issue create --repo
+brandon-behring/runpod-deploy --label enhancement`). It is a *documentation + capability* gap, not a
+bug: the library let a consumer provision an H100 80 GB and run small LoRA fits **serially** (each
+using ~8.5 / 81.5 GB) on an optimistic-pace budget, so the 240-min cap truncated the sweep before
+Arm B+ started — both avoidable had the library prompted the consumer to reason about utilization +
+realized pace.
+
+| # | Repo | Friction surfaced by dogfooding | Proposed enhancement | State |
+|---|------|---------------------------------|----------------------|-------|
+| DF-12 | runpod-deploy | (1) **GPU under-utilization is silent.** A small training job can use a fraction of the card (8.5/81.5 GB here); nothing in the spec/validate flow prompts the consumer to right-size or pack the GPU. `nvidia-smi` util% (kernel-occupancy) misleads — small batches underfill the SMs, so a "71 %" reading hides large compute headroom. (2) **The budget gate reads like an estimate but is only a ceiling.** `cost_cap_usd` / `assumed_hourly_rate_usd` / `max_runtime_minutes` bound spend but don't surface the implied `max_runs = max_runtime / est_per_run`; a consumer who anchors per-run time optimistically (we under-scaled from ~3.5k-row to 18–62k-row pools) silently overruns. (3) **Concurrency has no first-class support** — packing independent jobs onto one GPU is left to bespoke `run.body` shell each time. | (1) **Docs (PodSpec/`gpu_order`/`gpu_count`):** guidance to estimate per-job GPU memory and either pick a cheaper card or pack `N ≤ GPU_mem / per-job_mem` concurrent jobs; note util% ≠ saturation. (2) **Realized-pace budgeting docs + a pre-flight log line** (`implied max_runs ≈ max_runtime / est_per_run`) so under-scaling is visible before launch; recommend cheapest-robust-first ordering for graceful partials. (3) **A first-class concurrency pattern/helper** (the long-term home — not per-runner `--jobs` flags): documented `run.body` fan-out + optional helper handling model-cache pre-warm (download-race), per-process memory budgeting, optional CUDA MPS, fail-fast aggregation, and determinism via isolated processes/seeds. The `xargs -P` harness in `runpod_crossfamily_bplus_sweep.yaml` is the prototype to harvest. | **DRAFT — not filed** |
+
+*(Distinct from the `gpu-run-watcher`'s role, which drafts runpod-deploy friction it ENCOUNTERS during
+a run; DF-12 is the broader sweep-design-guidance contribution.)*
+
+**DF-12 case (4) — added 2026-06-05, surfaced when the B3 sequential run truncated.** The lifecycle
+hooks (`on_success: delete` / `on_failure: stop`) AND the `max_runtime_minutes` timeout are enforced by
+the **local** `run_job` process, not a pod-side agent. When the orchestrator died at a context boundary,
+the pod ran ~16 min past the 240-min cap (billing uncapped — reached **$14.05**) and the artifact pull
+never fired (Arm A + B− stranded on the volume; recovered later by manual restart→rsync). Only an
+independent out-of-process cost-guard (the gpu-run-watcher) stopped it. **Proposed:** a pod-side
+lifecycle script (e.g. `/workspace/run_lifecycle.sh`) that polls for the success marker / a runtime
+ceiling and self-terminates + pushes artifacts — making lifecycle + timeout **independent of
+orchestrator liveness**. Suggested issue (user-led, NOT filed): `gh issue create --repo
+brandon-behring/runpod-deploy --label enhancement --title "Orchestrator death leaves pod running
+unbounded + lifecycle/pull never fire"`.
 
 ---
 

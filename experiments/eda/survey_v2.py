@@ -34,6 +34,32 @@ def custom_parquet_loader(spec):
                            label_col=spec["label_col"], name=spec["hf_id"]), len(df)
 
 
+def custom_csv_loader(spec):
+    """JailbreakDB-style: read raw CSV(s) the HF Viewer can't serve, from the local materialized
+    snapshot (falls back to the HF resolve URL), memory-bounded via per-chunk Bernoulli sampling to
+    ``sample_rows`` (the full corpus is scanned only by the separate leakage gate). -> DataFrameLoader."""
+    import pathlib as _pl
+    from eval_toolkit.loaders import DataFrameLoader
+    hid, rev = spec["hf_id"], spec.get("revision")
+    feat, lab = spec["feature_col"], spec["label_col"]
+    cap = int(spec.get("sample_rows", 30_000))
+    approx = max(int(spec.get("approx_rows", cap)), 1)
+    keep = list(dict.fromkeys([feat, lab, *spec.get("keep_cols", [])]))
+    local = _pl.Path("data/raw") / spec.get("local_dir", "")
+    p = min(1.0, (3 * cap) / approx)  # Bernoulli keep-prob → ~3*cap rows uniformly across the full stream
+    frames = []
+    for f in spec["csv_files"]:
+        path = local / f
+        src = str(path) if path.exists() else f"https://huggingface.co/datasets/{hid}/resolve/{rev or 'main'}/{f}"
+        for chunk in pd.read_csv(src, usecols=lambda c: c in keep, chunksize=200_000):
+            frames.append(chunk if p >= 1.0 else chunk.sample(frac=p, random_state=42))
+    df = pd.concat(frames, ignore_index=True)
+    if len(df) > cap:
+        df = df.sample(cap, random_state=42).reset_index(drop=True)
+    df["__split__"] = "train"
+    return DataFrameLoader(df, split_col="__split__", feature_col=feat, label_col=lab, name=hid), len(df)
+
+
 def hf_loader(spec):
     from eval_toolkit.loaders import HFDatasetsLoader
     kw = dict(repo_id=spec["hf_id"], revision=spec.get("revision"), config_name=spec.get("config"),
@@ -62,8 +88,11 @@ def audit_one(bibkey, spec, tok):
             frames = [pd.DataFrame({"text": dd[s].to_pandas()[fc].astype(str), "label": 0, "__sp__": s})
                       for s in dd]
         else:
-            if spec.get("load_method") == "custom_parquet":
+            lm = spec.get("load_method")
+            if lm == "custom_parquet":
                 slices = custom_parquet_loader(spec)[0].load_splits()
+            elif lm == "custom_csv":
+                slices = custom_csv_loader(spec)[0].load_splits()
             else:
                 slices = hf_loader(spec).load_splits()
             frames = []

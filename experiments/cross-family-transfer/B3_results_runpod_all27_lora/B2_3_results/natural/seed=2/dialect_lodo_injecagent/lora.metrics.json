@@ -1,0 +1,49 @@
+{
+  "rung": "lora",
+  "fold": "dialect_lodo_injecagent",
+  "condition": "natural",
+  "variant": "B-",
+  "seed": 2,
+  "val_roc_auc": 0.9858824417508896,
+  "recipe": {
+    "r": 8,
+    "lr": 0.0001,
+    "epochs": 3,
+    "val_pr_auc": 0.9888549159719067
+  },
+  "headline": {
+    "pr_auc": {
+      "value": 1.0,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "roc_auc": {
+      "value": 1.0,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "brier": {
+      "value": 0.0009751852005437211,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "ece_n_bins_15_strategy_uniform": {
+      "value": 0.0036985782319988343,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "prevalence_floor": 0.992,
+    "tpr_at_fpr": {
+      "0.01": 1.0,
+      "0.005": 1.0,
+      "0.001": 1.0
+    }
+  },
+  "n_train": 33690,
+  "n_val": 8423,
+  "n_test": 2125
+}

@@ -29,4 +29,22 @@ End-to-end agent-environment benchmarks. These measure whether an injection succ
 - **Status:** Verified.
 - **Soft tags:** family=agentic-trajectory · encoder_readiness=adaptation-heavy · study_relevance=medium
 
-_3 entries._
+### E4. AgentDyn — SaFo-Lab (2026)
+- **Source:** https://github.com/SaFo-Lab/AgentDyn
+- **Access:** direct (git clone); auth_required: N
+- **Schema:** n/a — an AgentDojo-based dynamic security benchmark (tasks + injection cases + trajectory JSONs), not `(text,label)`.
+- **Size+License:** 60 tasks + 560 injection cases (built on AgentDojo); `runs/` = 48,672 trajectory JSONs; MIT.
+- **Tasks:** A 2026 adaptive-attacker benchmark layered on **AgentDojo** — measures whether an injection succeeds across the agent loop (ASR), not classification metrics. Overlaps the AgentDojo lineage (E1). Research-role: an **execution / Lane-5 candidate** — extract its 560 injection cases into `(text, label)` only if it earns a role at a later gate. Encoder-readiness: **adaptation-heavy** — not a shipped `(text,label)` corpus; the injection cases must be mined out of the agent environment.
+- **Status:** Verified.
+- **Soft tags:** family=agentic-trajectory · encoder_readiness=adaptation-heavy · study_relevance=low
+
+### E5. AgentDAM (facebookresearch/ai-agent-privacy) — facebookresearch
+- **Source:** https://github.com/facebookresearch/ai-agent-privacy
+- **Access:** direct (git clone); auth_required: N
+- **Schema:** n/a — privacy / data-minimization trajectories on VisualWebArena, not `(text,label)`.
+- **Size+License:** VisualWebArena-based agent benchmark (privacy-leakage / data-minimization); CC-BY-NC (+ Llama-3.1 terms).
+- **Tasks:** **OFF-AXIS** — measures privacy-leakage / data-minimization by a web agent, **not injection detection**. EDA-gate verdict (2026-06-03): off-axis (privacy ≠ injection). Research-role: **catalogue-only-with-reason** (recorded so the universe scan is complete; not an injection set). Encoder-readiness: **adaptation-heavy** and off-axis. ⚠️ **NC license** (+ Llama-3.1 terms) ⇒ non-commercial.
+- **Status:** Verified (off-axis — privacy, not injection).
+- **Soft tags:** family=agentic-trajectory · encoder_readiness=adaptation-heavy · study_relevance=low
+
+_5 entries._

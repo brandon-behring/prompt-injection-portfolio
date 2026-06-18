@@ -1,0 +1,422 @@
+{
+  "study": "cross-family-transfer B2.3 (Arm-B B\u2212 cheap-rung directional read)",
+  "criteria": "experiments/cross-family-transfer/criteria.md (Rev 1/2)",
+  "note": "Directional only \u2014 NO verdict (lora-gated at B3). Primary condition = B- natural-mix (criteria Rev 2 (c)).",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "dialects": [
+    "bipia",
+    "browsesafe",
+    "fujitsu",
+    "injecagent"
+  ],
+  "conditions": [
+    "natural",
+    "dialect_balanced"
+  ],
+  "rungs": [
+    "tfidf",
+    "frozen"
+  ],
+  "directional_table": {
+    "natural": {
+      "estimator": "dialect-LODO ROC-AUC gap Gx=val_roc-test_roc; label-stratified cluster bootstrap (positive- and negative-clusters resampled separately; criteria Rev 2 (b))",
+      "metric": "roc_auc (prevalence-invariant)",
+      "note": "B2.3 directional read (cheap rungs tfidf+frozen only); NO verdict \u2014 the SURVIVES/FALSIFIED/SMALL-THROUGHOUT verdict is lora-gated (B3). Per-dialect permutation p is an uncorrected diagnostic (criteria Rev 2 (b)).",
+      "n_boot": 10000,
+      "n_perm": 10000,
+      "rungs": [
+        "tfidf",
+        "frozen"
+      ],
+      "per_rung": {
+        "tfidf": {
+          "dialect_lodo_bipia": {
+            "val_roc": 0.9539016388037062,
+            "test_roc": 0.6005562338895672,
+            "Gx": 0.3533454049141389,
+            "ci_low": 0.3009769871804827,
+            "ci_high": 0.46395826750819913,
+            "perm_p": 0.0,
+            "n_pos": 5040,
+            "n_neg": 468,
+            "n_pos_clusters": 140,
+            "n_neg_clusters": 3,
+            "n_seeds": 3
+          },
+          "dialect_lodo_browsesafe": {
+            "val_roc": 0.995525354337157,
+            "test_roc": 0.5348222429934175,
+            "Gx": 0.46070311134373954,
+            "ci_low": 0.4563209861476431,
+            "ci_high": 0.4652052706974597,
+            "perm_p": 0.0,
+            "n_pos": 7297,
+            "n_neg": 7422,
+            "n_pos_clusters": 7297,
+            "n_neg_clusters": 7422,
+            "n_seeds": 3
+          },
+          "dialect_lodo_fujitsu": {
+            "val_roc": 0.8340101792902871,
+            "test_roc": 0.6825036984852685,
+            "Gx": 0.1515064808050186,
+            "ci_low": 0.14808895401395997,
+            "ci_high": 0.15491266138713375,
+            "perm_p": 0.0,
+            "n_pos": 10943,
+            "n_neg": 10943,
+            "n_pos_clusters": 10943,
+            "n_neg_clusters": 10943,
+            "n_seeds": 3
+          },
+          "dialect_lodo_injecagent": {
+            "val_roc": 0.9520131494004574,
+            "test_roc": 0.9877962570227332,
+            "Gx": -0.03578310762227577,
+            "ci_low": -0.043038381648394686,
+            "ci_high": -0.026611697122591926,
+            "perm_p": 0.0,
+            "n_pos": 2108,
+            "n_neg": 17,
+            "n_pos_clusters": 62,
+            "n_neg_clusters": 17,
+            "n_seeds": 3
+          }
+        },
+        "frozen": {
+          "dialect_lodo_bipia": {
+            "val_roc": 0.9646291236334763,
+            "test_roc": 0.6087592705648261,
+            "Gx": 0.35586985306865015,
+            "ci_low": 0.27922369247381945,
+            "ci_high": 0.5183645712491322,
+            "perm_p": 0.0,
+            "n_pos": 5040,
+            "n_neg": 468,
+            "n_pos_clusters": 140,
+            "n_neg_clusters": 3,
+            "n_seeds": 3
+          },
+          "dialect_lodo_browsesafe": {
+            "val_roc": 0.9974208701155768,
+            "test_roc": 0.5384303857402014,
+            "Gx": 0.4589904843753754,
+            "ci_low": 0.4545574873534704,
+            "ci_high": 0.4634566055698222,
+            "perm_p": 0.0,
+            "n_pos": 7297,
+            "n_neg": 7422,
+            "n_pos_clusters": 7297,
+            "n_neg_clusters": 7422,
+            "n_seeds": 3
+          },
+          "dialect_lodo_fujitsu": {
+            "val_roc": 0.8835604191839943,
+            "test_roc": 0.5293075533191862,
+            "Gx": 0.3542528658648081,
+            "ci_low": 0.35050324916923015,
+            "ci_high": 0.35794599006970396,
+            "perm_p": 0.0,
+            "n_pos": 10943,
+            "n_neg": 10943,
+            "n_pos_clusters": 10943,
+            "n_neg_clusters": 10943,
+            "n_seeds": 3
+          },
+          "dialect_lodo_injecagent": {
+            "val_roc": 0.9598450464803925,
+            "test_roc": 0.9938051121776984,
+            "Gx": -0.03396006569730592,
+            "ci_low": -0.03743887657649625,
+            "ci_high": -0.029532488214700003,
+            "perm_p": 0.0,
+            "n_pos": 2108,
+            "n_neg": 17,
+            "n_pos_clusters": 62,
+            "n_neg_clusters": 17,
+            "n_seeds": 3
+          }
+        }
+      }
+    },
+    "dialect_balanced": {
+      "estimator": "dialect-LODO ROC-AUC gap Gx=val_roc-test_roc; label-stratified cluster bootstrap (positive- and negative-clusters resampled separately; criteria Rev 2 (b))",
+      "metric": "roc_auc (prevalence-invariant)",
+      "note": "B2.3 directional read (cheap rungs tfidf+frozen only); NO verdict \u2014 the SURVIVES/FALSIFIED/SMALL-THROUGHOUT verdict is lora-gated (B3). Per-dialect permutation p is an uncorrected diagnostic (criteria Rev 2 (b)).",
+      "n_boot": 10000,
+      "n_perm": 10000,
+      "rungs": [
+        "tfidf",
+        "frozen"
+      ],
+      "per_rung": {
+        "tfidf": {
+          "dialect_lodo_bipia": {
+            "val_roc": 0.9321351945956406,
+            "test_roc": 0.5978352665852666,
+            "Gx": 0.334299928010374,
+            "ci_low": 0.2806213609280465,
+            "ci_high": 0.44965440465206047,
+            "perm_p": 0.0,
+            "n_pos": 5040,
+            "n_neg": 468,
+            "n_pos_clusters": 140,
+            "n_neg_clusters": 3,
+            "n_seeds": 3
+          },
+          "dialect_lodo_browsesafe": {
+            "val_roc": 0.9724271189770287,
+            "test_roc": 0.5333248249475325,
+            "Gx": 0.4391022940294962,
+            "ci_low": 0.4346700161951498,
+            "ci_high": 0.4435765386274436,
+            "perm_p": 0.0,
+            "n_pos": 7297,
+            "n_neg": 7422,
+            "n_pos_clusters": 7297,
+            "n_neg_clusters": 7422,
+            "n_seeds": 3
+          },
+          "dialect_lodo_fujitsu": {
+            "val_roc": 0.877116308473478,
+            "test_roc": 0.6968958917367963,
+            "Gx": 0.18022041673668165,
+            "ci_low": 0.17682149813469533,
+            "ci_high": 0.18360463322837192,
+            "perm_p": 0.0,
+            "n_pos": 10943,
+            "n_neg": 10943,
+            "n_pos_clusters": 10943,
+            "n_neg_clusters": 10943,
+            "n_seeds": 3
+          },
+          "dialect_lodo_injecagent": {
+            "val_roc": 0.9276260297394927,
+            "test_roc": 0.9733601220374298,
+            "Gx": -0.04573409229793712,
+            "ci_low": -0.0591293745094934,
+            "ci_high": -0.029046031874526725,
+            "perm_p": 0.0,
+            "n_pos": 2108,
+            "n_neg": 17,
+            "n_pos_clusters": 62,
+            "n_neg_clusters": 17,
+            "n_seeds": 3
+          }
+        },
+        "frozen": {
+          "dialect_lodo_bipia": {
+            "val_roc": 0.9633055564779927,
+            "test_roc": 0.6159270706145705,
+            "Gx": 0.3473784858634221,
+            "ci_low": 0.27969283778993337,
+            "ci_high": 0.5014216225364198,
+            "perm_p": 0.0,
+            "n_pos": 5040,
+            "n_neg": 468,
+            "n_pos_clusters": 140,
+            "n_neg_clusters": 3,
+            "n_seeds": 3
+          },
+          "dialect_lodo_browsesafe": {
+            "val_roc": 0.982590763971336,
+            "test_roc": 0.5393527307049979,
+            "Gx": 0.44323803326633815,
+            "ci_low": 0.43881644476868104,
+            "ci_high": 0.4477447265482991,
+            "perm_p": 0.0,
+            "n_pos": 7297,
+            "n_neg": 7422,
+            "n_pos_clusters": 7297,
+            "n_neg_clusters": 7422,
+            "n_seeds": 3
+          },
+          "dialect_lodo_fujitsu": {
+            "val_roc": 0.9129864819778267,
+            "test_roc": 0.35799338081861376,
+            "Gx": 0.554993101159213,
+            "ci_low": 0.5515191262062121,
+            "ci_high": 0.5584632527757797,
+            "perm_p": 1.0,
+            "n_pos": 10943,
+            "n_neg": 10943,
+            "n_pos_clusters": 10943,
+            "n_neg_clusters": 10943,
+            "n_seeds": 3
+          },
+          "dialect_lodo_injecagent": {
+            "val_roc": 0.9419303862254155,
+            "test_roc": 0.9878148602894669,
+            "Gx": -0.045884474064051384,
+            "ci_low": -0.05364296645531529,
+            "ci_high": -0.03544804142648017,
+            "perm_p": 0.0,
+            "n_pos": 2108,
+            "n_neg": 17,
+            "n_pos_clusters": 62,
+            "n_neg_clusters": 17,
+            "n_seeds": 3
+          }
+        }
+      }
+    }
+  },
+  "e8_reference": {
+    "bipia": {
+      "protectai_v2": {
+        "status": "ok",
+        "model_id": "protectai/deberta-v3-base-prompt-injection-v2",
+        "dialect": "bipia",
+        "auroc": 0.4702201864352298,
+        "mean_attack": 0.28659201323526917,
+        "mean_benign": 0.25642127943878196,
+        "n_scored": 2000,
+        "n_full": 5508,
+        "capped": true,
+        "max_docs": 2000
+      },
+      "prompt_guard_2": {
+        "status": "ok",
+        "model_id": "meta-llama/Llama-Prompt-Guard-2-86M",
+        "dialect": "bipia",
+        "auroc": 0.6708678881388621,
+        "mean_attack": 0.043875705628131666,
+        "mean_benign": 0.010225442928426406,
+        "n_scored": 2000,
+        "n_full": 5508,
+        "capped": true,
+        "max_docs": 2000
+      },
+      "prompt_guard_1": {
+        "status": "ok",
+        "model_id": "meta-llama/Prompt-Guard-86M",
+        "dialect": "bipia",
+        "auroc": 0.9727965284474446,
+        "mean_attack": 0.8662116261647095,
+        "mean_benign": 0.047661959855159856,
+        "n_scored": 2000,
+        "n_full": 5508,
+        "capped": true,
+        "max_docs": 2000
+      }
+    },
+    "browsesafe": {
+      "protectai_v2": {
+        "status": "ok",
+        "model_id": "protectai/deberta-v3-base-prompt-injection-v2",
+        "dialect": "browsesafe",
+        "auroc": 0.5913718477982591,
+        "mean_attack": 0.9994377237236008,
+        "mean_benign": 0.9977720460574071,
+        "n_scored": 2000,
+        "n_full": 14719,
+        "capped": true,
+        "max_docs": 2000
+      },
+      "prompt_guard_2": {
+        "status": "ok",
+        "model_id": "meta-llama/Llama-Prompt-Guard-2-86M",
+        "dialect": "browsesafe",
+        "auroc": 0.670140388984895,
+        "mean_attack": 0.39314651063626027,
+        "mean_benign": 0.12107759546941249,
+        "n_scored": 2000,
+        "n_full": 14719,
+        "capped": true,
+        "max_docs": 2000
+      },
+      "prompt_guard_1": {
+        "status": "ok",
+        "model_id": "meta-llama/Prompt-Guard-86M",
+        "dialect": "browsesafe",
+        "auroc": 0.6347901265681004,
+        "mean_attack": 0.39537323272936975,
+        "mean_benign": 0.15763226330711175,
+        "n_scored": 2000,
+        "n_full": 14719,
+        "capped": true,
+        "max_docs": 2000
+      }
+    },
+    "fujitsu": {
+      "protectai_v2": {
+        "status": "ok",
+        "model_id": "protectai/deberta-v3-base-prompt-injection-v2",
+        "dialect": "fujitsu",
+        "auroc": 0.693481,
+        "mean_attack": 0.1662296968889702,
+        "mean_benign": 0.029563451596729465,
+        "n_scored": 2000,
+        "n_full": 21886,
+        "capped": true,
+        "max_docs": 2000
+      },
+      "prompt_guard_2": {
+        "status": "ok",
+        "model_id": "meta-llama/Llama-Prompt-Guard-2-86M",
+        "dialect": "fujitsu",
+        "auroc": 0.889304,
+        "mean_attack": 0.06252584744041087,
+        "mean_benign": 0.0010124327540397644,
+        "n_scored": 2000,
+        "n_full": 21886,
+        "capped": true,
+        "max_docs": 2000
+      },
+      "prompt_guard_1": {
+        "status": "ok",
+        "model_id": "meta-llama/Prompt-Guard-86M",
+        "dialect": "fujitsu",
+        "auroc": 0.5019805,
+        "mean_attack": 0.1468761023446823,
+        "mean_benign": 0.059147120386995086,
+        "n_scored": 2000,
+        "n_full": 21886,
+        "capped": true,
+        "max_docs": 2000
+      }
+    },
+    "injecagent": {
+      "protectai_v2": {
+        "status": "ok",
+        "model_id": "protectai/deberta-v3-base-prompt-injection-v2",
+        "dialect": "injecagent",
+        "auroc": 0.6077053931451613,
+        "mean_attack": 0.6602408601375936,
+        "mean_benign": 0.5833801149274223,
+        "n_scored": 2000,
+        "n_full": 2125,
+        "capped": true,
+        "max_docs": 2000
+      },
+      "prompt_guard_2": {
+        "status": "ok",
+        "model_id": "meta-llama/Llama-Prompt-Guard-2-86M",
+        "dialect": "injecagent",
+        "auroc": 0.9149130544354839,
+        "mean_attack": 0.22123743788348116,
+        "mean_benign": 0.012738261371850967,
+        "n_scored": 2000,
+        "n_full": 2125,
+        "capped": true,
+        "max_docs": 2000
+      },
+      "prompt_guard_1": {
+        "status": "ok",
+        "model_id": "meta-llama/Prompt-Guard-86M",
+        "dialect": "injecagent",
+        "auroc": 0.9172442036290321,
+        "mean_attack": 0.6874578348953081,
+        "mean_benign": 0.06424277524638455,
+        "n_scored": 2000,
+        "n_full": 2125,
+        "capped": true,
+        "max_docs": 2000
+      }
+    }
+  }
+}

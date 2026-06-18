@@ -1,0 +1,14 @@
+{
+  "near_threshold": 0.8,
+  "contexts_scanned": 600,
+  "test_size": 1948,
+  "exact_hit_contexts": 0,
+  "near_hit_contexts": 0,
+  "purged_contexts": 0,
+  "rows_before": 2400,
+  "rows_after": 2400,
+  "positives_after": 1800,
+  "negatives_after": 600,
+  "sampled_colliding_pairs": [],
+  "corpus_gated_sha256": "773108e14c5f418452ef80184ab9408bb4efa9467ab21a63c68baf51589d0424"
+}

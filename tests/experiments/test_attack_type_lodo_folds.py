@@ -207,14 +207,22 @@ def _rich_frame() -> pd.DataFrame:
 
 
 @pytest.mark.unit
-def test_all_three_folds_build() -> None:
-    """Each declared fold constructs a two-class train/val/test on a realistic frame."""
+def test_all_folds_build() -> None:
+    """Each declared fold constructs a two-class train/val/test on a realistic frame.
+
+    Attack-type folds enforce attack-type disjointness; carrier-LODO folds share attack types
+    by design (the carrier is the only shifted axis), so they enforce carrier disjointness instead.
+    """
     frame = _rich_frame()
     for name in folds.FOLD_NAMES:
         fold = folds.make_fold(frame, name, seed=0)
         assert fold.name == name
         for split_name, split in (("train", fold.train), ("val", fold.val), ("test", fold.test)):
             assert set(split["label"].unique()) == {0, 1}, f"{name}/{split_name} not two-class"
-        # The disjointness guarantee holds for every fold (no train↔test context/type leak).
-        folds.assert_source_disjoint(fold.train, fold.test)
-        folds.assert_source_disjoint(fold.val, fold.test)
+        # The right disjointness guarantee holds for every fold (its held-out axis never leaks).
+        if name in folds.CARRIER_LODO_FOLDS:
+            folds.assert_carrier_disjoint(fold.train, fold.test)
+            folds.assert_carrier_disjoint(fold.val, fold.test)
+        else:
+            folds.assert_source_disjoint(fold.train, fold.test)
+            folds.assert_source_disjoint(fold.val, fold.test)

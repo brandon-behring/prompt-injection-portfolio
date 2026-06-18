@@ -1,0 +1,186 @@
+# RunPod job spec — cross-family-transfer B3-bis: the Arm B+ LoRA rung ONLY, CONCURRENT (criteria Rev 6).
+# The live sequential sweep (runpod_crossfamily_sweep.yaml) banks Arm A + B- but won't reach B+ in the
+# 240-min cap (realized pace ~15-30 min/run, full matrix ~$36 not the Rev-5 $14). This spec relaunches
+# ONLY the 12 Arm-B+ runs (B- stragglers, if the live run left any, are appended to the pack list at
+# execution — none in the committed body), packing the H100 with CONCURRENT fits (each ~8.5 of 81.5 GB)
+# via an xargs CLI fan-out — SAME locked recipe, SAME H100/bf16, so it is COMPARABLE within bf16/Hopper-
+# atomics noise (<< the 0.05 SESOI) to a sequential B+ (criteria Rev 6: concurrency = scheduling, inert
+# to a fit's INPUTS; the GPU fit is non-bit-deterministic sequentially too; "one pod" was scheduling).
+# Pull → B3_results_runpod_bplus_lora/, then LOCAL: merge (run_b3_lora.py --merge) into the cheap-rung
+# trees → falsify_dialect_lodo.directional_table(rungs=[tfidf,frozen,lora]) → b4_verdict.verdict.
+#
+#   validate (zero spend):  uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_bplus_sweep.yaml --offline-dry-run
+#   price/inventory check :  uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_bplus_sweep.yaml --dry-run
+#   launch (PAID, user-led): uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_bplus_sweep.yaml
+#
+# ⚠️ Provider-side values are NOT checked by --offline-dry-run — confirm against current RunPod
+#    offerings before the paid launch: pod.image, pod.gpu_order, pod.datacenters, budget.assumed_hourly_rate_usd.
+schema_version: 2
+name: crossfamily-bplus-lora-sweep
+run_id_prefix: crossfamily-bplus-lora
+
+local:
+  project_root: "../.." # config lives in experiments/cross-family-transfer/; repo root is two up
+  required_paths:
+    - experiments/cross-family-transfer/run_b3_lora.py
+    - experiments/cross-family-transfer/falsify_dialect_lodo.py
+    - experiments/cross-family-transfer/b4_verdict.py
+    - experiments/cross-family-transfer/criteria.md
+    - experiments/cross-family-transfer/B2_leakage/leakage_gate_armA.json # B+ consumes it
+    - experiments/attack-type-lodo/detectors.py # the imported LoRA recipe (ADR-026)
+    - experiments/attack-type-lodo/folds.py # Fold + carve_val_from_train (reused via folds_dialect)
+    - data/raw/BIPIA/benchmark
+    - data/raw # the direct + indirect corpora (assemble rebuilds the B+ pools here)
+    - pyproject.toml
+    - uv.lock
+
+pod:
+  # COMPARABILITY LOCK (criteria Rev 6): the completed attack-type + carrier lora rungs ran on H100/bf16.
+  # B+ is a HEADLINE verdict rung → PIN to the live A+B- SKU (H100 80GB HBM3, confirmed via runpodctl) so
+  # the relaunch is comparable (audit Fix C). The run.body GPU guard also asserts native bf16 as a backstop.
+  image: runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
+  cloud_type: SECURE
+  container_disk_gb: 60 # repo incl. data/raw (mosscap ~279k + hackaprompt ~580k rows) is several GB
+  gpu_count: 1
+  gpu_order:
+    # PINNED to H100 80GB HBM3 ONLY (audit Fix C) = the live A+B- SKU → no cross-Hopper-SKU bf16 drift on
+    # the headline rung. Trade-off: no fallback card; the live run resolved this SKU across the 7 DCs below.
+    - "NVIDIA H100 80GB HBM3"
+  datacenters: # cost-search across these; ⚠️ confirm IDs against current RunPod regions
+    - "US-CA-2"
+    - "US-OR-1"
+    - "US-TX-3"
+    - "US-KS-2"
+    - "EU-RO-1"
+    - "EU-NL-1"
+    - "CA-MTL-1"
+  ports:
+    - "22/tcp"
+
+storage:
+  mode: ephemeral
+  volume_mount: /workspace
+  volume_gb: 100 # ephemeral workspace: repo + data/raw + HF model/dataset cache + results
+
+budget:
+  # Rev 6 reconciliation: B+ alone is 12 runs / 24 fits. Sequential ~$18 / ~5.5 h; CONCURRENT (N≈6,
+  # each fit ~8.5 GB) ~$7-9 / ~1.6-2.2 h. Cap $13 / 210 min (= $11.5 ≤ 13) is a CEILING — expected
+  # realized ~$7-9. If the calibration probe shows weak concurrency, the run.body enables CUDA MPS.
+  cost_cap_usd: 13.0
+  assumed_hourly_rate_usd: 3.29 # the REALIZED H100 80GB HBM3 rate
+  max_runtime_minutes: 210 # 210/60 × 3.29 = $11.5 ≤ $13 cap (runpod_deploy enforces timeout×rate≤cap)
+  poll_interval_sec: 60
+  ssh_ready_timeout_sec: 900
+
+remote_env:
+  exports:
+    HF_HUB_ENABLE_HF_TRANSFER: "1"
+
+staging:
+  - label: repo
+    source: "."
+    destination: /workspace/repo
+    excludes_default: true # .git/, .venv/, caches, __pycache__
+    excludes_extra:
+      # Scope the parquet exclude to experiments/ ONLY — a blanket **/*.parquet would drop the
+      # data/raw corpora (browsesafe/*.parquet, injecagent_derived.parquet, ...) the pod rebuilds from.
+      - "experiments/**/*.parquet"
+      - "experiments/attack-type-lodo/results/"
+      - "experiments/attack-type-lodo/results_*/"
+      - "experiments/cross-family-transfer/B2_3_results/"
+      - "experiments/cross-family-transfer/B2_3_results_Bplus/"
+      - "experiments/cross-family-transfer/B2_4_results/"
+      - "experiments/cross-family-transfer/B3_results_runpod_lora/"
+      - "experiments/cross-family-transfer/B3_results_runpod_bplus_lora/"
+      - "book/"
+      - ".tooling/"
+      - "**/node_modules/"
+      - "**/*.apkg"
+    delete: true
+
+setup:
+  # Install rsync on the remote container so the orchestrator's rsync-push staging works (DF-6/#116).
+  - command: apt-get update -qq && apt-get install -y -qq rsync
+    timeout_sec: 120
+
+preflight:
+  - command: nvidia-smi
+    timeout_sec: 60
+
+run:
+  script_path: /workspace/run_sweep.sh
+  log_path: /workspace/sweep.log
+  success_marker: "CROSSFAMILY_BPLUS_LORA_SWEEP_COMPLETE_OK"
+  body: |
+    set -euo pipefail
+    export PATH="$HOME/.local/bin:$PATH"
+    command -v uv >/dev/null 2>&1 || curl -LsSf https://astral.sh/uv/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+    cd /workspace/repo
+    uv sync --extra dev
+    # Fail-fast guard (ADR-054) + COMPARABILITY: refuse CPU AND refuse non-native-bf16 (non-Hopper) cards.
+    uv run python -c "import torch; assert torch.cuda.is_available(), 'FATAL: no cuda'; assert torch.cuda.is_bf16_supported(including_emulation=False), 'FATAL: non-native-bf16 GPU — B+ comparability requires Hopper bf16'; print('GPU OK:', torch.cuda.get_device_name(0), '| bf16_native True')"
+
+    OUT=experiments/cross-family-transfer/B3_lora_bplus
+    SCRATCH=experiments/cross-family-transfer/B3_lora_bplus_determinism
+    run_item(){ uv run python experiments/cross-family-transfer/run_b3_lora.py --arm B --variant B+ --dialects "$1" --seeds "$2" --out "$3"; }
+    export -f run_item
+
+    # (a) pre-warm the HF model cache ONCE → no N-way download race when fits fan out
+    uv run python -c "from huggingface_hub import snapshot_download; snapshot_download('answerdotai/ModernBERT-base')"
+
+    # (b) calibration probe: 1 solo (t_solo; also the determinism reference) + 2 concurrent (t_2)
+    t0=$(date +%s); run_item bipia 0 "$OUT"; t_solo=$(( $(date +%s) - t0 ))
+    t0=$(date +%s); run_item browsesafe 0 "$OUT" & q1=$!; run_item fujitsu 0 "$OUT" & q2=$!; wait $q1; wait $q2; t_2=$(( $(date +%s) - t0 ))
+    echo "PROBE_SOLO_SECONDS=$t_solo PROBE_2CONCURRENT_SECONDS=$t_2"
+    # speedup = 2*t_solo/t_2; if < 1.5 (i.e. 4*t_solo < 3*t_2) concurrency is contended → enable CUDA MPS
+    if [ "$(( 4 * t_solo ))" -lt "$(( 3 * t_2 ))" ]; then
+      echo "PROBE: weak concurrency (speedup<1.5) → enabling CUDA MPS"; nvidia-cuda-mps-control -d || true
+    else
+      echo "PROBE: healthy concurrency → no MPS"
+    fi
+    N=6; echo "PACK_WIDTH_N=$N"
+
+    # (c) pack the remaining 9 official items + 1 determinism re-run (bipia 0 → SCRATCH, concurrent) at width N.
+    #     fail-fast: any item exits non-zero → xargs returns non-zero → set -e → success marker never prints.
+    printf '%s\n' \
+      "injecagent 0 $OUT" \
+      "bipia 1 $OUT" "browsesafe 1 $OUT" "fujitsu 1 $OUT" "injecagent 1 $OUT" \
+      "bipia 2 $OUT" "browsesafe 2 $OUT" "fujitsu 2 $OUT" "injecagent 2 $OUT" \
+      "bipia 0 $SCRATCH" \
+      | xargs -P "$N" -L1 bash -c 'run_item "$1" "$2" "$3"' _
+
+    # (d) determinism cross-check (audit Fix B, LOG-ONLY): the locked recipe is non-deterministic
+    #     run-to-run (only torch.manual_seed; CPU-thread / GPU-atomic reduction order) — empirically
+    #     Δtest_roc≈0.1 / max|Δy|≈0.4 between two same-seed same-data fits — so a tight gate would
+    #     false-abort. LOG the concurrent(SCRATCH)-vs-solo(OUT) bipia0 Δ on the verdict-input metric
+    #     (test ROC, from the predictions parquet) for the B4 audit; abort ONLY on catastrophic
+    #     Δtest_roc > 0.2 (crashed/empty fit). Inertness rests on the structural argument, not this check.
+    uv run python -c "
+    import glob, sys
+    import numpy as np, pandas as pd
+    from sklearn.metrics import roc_auc_score
+    def load(root):
+        p = glob.glob(root + '/**/seed=0/dialect_lodo_bipia/lora.predictions.parquet', recursive=True)[0]
+        return pd.read_parquet(p)
+    a, b = load('$OUT'), load('$SCRATCH')
+    tr, tc = roc_auc_score(a['label'], a['y_score']), roc_auc_score(b['label'], b['y_score'])
+    dy = float(np.max(np.abs(a['y_score'].to_numpy() - b['y_score'].to_numpy())))
+    d = abs(tr - tc)
+    print(f'DETERMINISM test_roc solo={tr:.5f} concurrent={tc:.5f} Δtest={d:.3e} max|Δy|={dy:.3e} (log-only; catastrophic gate Δ>0.2)')
+    sys.exit(1 if d > 0.2 else 0)
+    "
+    echo "CROSSFAMILY_BPLUS_LORA_SWEEP_COMPLETE_OK"
+
+artifacts:
+  # Pull the B+ lora tree into a SEPARATE dir; merge into the cheap-rung trees (run_b3_lora.py --merge)
+  # then run falsify + b4_verdict LOCALLY (no verdict artifact on the pod).
+  - label: results
+    remote_path: /workspace/repo/experiments/cross-family-transfer/B3_lora_bplus
+    local_path: experiments/cross-family-transfer/B3_results_runpod_bplus_lora
+    required: true
+    delete: false
+
+lifecycle:
+  on_success: delete
+  on_failure: stop

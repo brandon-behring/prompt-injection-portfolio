@@ -1,7 +1,7 @@
 # Portfolio T2 reproducibility tier — Docker Compose entry point.
 #
 # Pairs with `Dockerfile` for the T2 reproducibility tier per plan §7.
-# Mounts the sibling submission repository read-only so the editable-dep
+# Mounts the sibling prototype repository read-only so the editable-dep
 # in pyproject.toml's [tool.uv.sources] resolves at uv sync time inside
 # the container.
 #
@@ -13,7 +13,7 @@
 #
 # Prerequisites:
 #   - Docker Engine 24+ with Compose v2 plugin
-#   - Sibling repo at ../prompt-injection-detection-submission/ on the host
+#   - Sibling repo at ../prompt-injection-detection-prototype/ on the host
 #   - At least 4GB free disk for the base + transitive deps (torch, transformers)
 
 services:
@@ -28,9 +28,9 @@ services:
       - PYTHONUNBUFFERED=1
       - UV_LINK_MODE=copy
     volumes:
-      # Mount sibling submission read-only so the editable-dep resolves.
+      # Mount sibling prototype read-only so the editable-dep resolves.
       # Host path on left; container path on right.
-      - ../prompt-injection-detection-submission:/workspace/prompt-injection-detection-submission:ro
+      - ../prompt-injection-detection-prototype:/workspace/prompt-injection-detection-prototype:ro
       # Persist uv cache across runs.
       - portfolio-uv-cache:/root/.cache/uv
     # Default to an interactive shell. Override per-command for tests:

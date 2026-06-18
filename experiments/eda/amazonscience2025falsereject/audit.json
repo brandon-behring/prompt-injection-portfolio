@@ -1,0 +1,173 @@
+{
+  "schema_version": "v2",
+  "dataset_name": "amazonscience2025falsereject",
+  "run_timestamp": "2026-06-03T16:20:21Z",
+  "split_summaries": {
+    "train": {
+      "split": "train",
+      "n_rows": 13861,
+      "n_positive": 0,
+      "n_negative": 13861,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 151.0,
+        "p95": 216.0,
+        "max": 400
+      },
+      "word_lengths": {
+        "p50": 22.0,
+        "p95": 30.0,
+        "max": 56
+      },
+      "token_lengths": {
+        "p50": 26.0,
+        "p95": 37.0,
+        "max": 71
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 13861,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 176,
+        "n_total_alnum_tokens": 313806,
+        "leetspeak_token_rate": 0.0005608560703109565
+      }
+    },
+    "test": {
+      "split": "test",
+      "n_rows": 1139,
+      "n_positive": 0,
+      "n_negative": 1139,
+      "pos_pct": 0.0,
+      "neg_pos_ratio": null,
+      "is_single_class": true,
+      "char_lengths": {
+        "p50": 162.0,
+        "p95": 225.0,
+        "max": 384
+      },
+      "word_lengths": {
+        "p50": 23.0,
+        "p95": 32.0,
+        "max": 47
+      },
+      "token_lengths": {
+        "p50": 28.0,
+        "p95": 39.0,
+        "max": 62
+      },
+      "pct_over_context_window": 0.0,
+      "obfuscation": {
+        "n_texts": 1139,
+        "n_with_invisible_chars": 0,
+        "total_invisible_chars": 0,
+        "invisible_char_rate": 0.0,
+        "n_with_nfkc_change": 0,
+        "n_with_nfkc_length_delta": 0,
+        "total_nfkc_char_delta": 0,
+        "nfkc_change_rate": 0.0,
+        "n_with_high_entropy_run": 0,
+        "high_entropy_run_rate": 0.0,
+        "n_with_rot13_marker": 0,
+        "rot13_marker_rate": 0.0,
+        "n_leeted_tokens": 29,
+        "n_total_alnum_tokens": 27606,
+        "leetspeak_token_rate": 0.0010504962689270449
+      }
+    }
+  },
+  "leakage_reports": {
+    "within_split": {
+      "findings": [
+        {
+          "check_name": "ExactDuplicateCheck",
+          "severity": "warning",
+          "drop_indices": {},
+          "evidence": {
+            "dropped_pairs_by_split": {}
+          },
+          "message": "no exact duplicates found",
+          "n_affected": 0
+        }
+      ]
+    },
+    "cross_split": {
+      "findings": [
+        {
+          "check_name": "CrossSplitLeakageCheck",
+          "severity": "error",
+          "drop_indices": {},
+          "evidence": {
+            "train_split": "train",
+            "eval_splits": [
+              "test"
+            ],
+            "threshold": 0.9,
+            "strategy": "TfidfCosineStrategy"
+          },
+          "message": "no cross-split leakage above threshold=0.90",
+          "n_affected": 0
+        }
+      ]
+    }
+  },
+  "gates": [
+    {
+      "name": "class_balance",
+      "passed": false,
+      "severity": "error",
+      "message": "2 split(s) outside neg:pos ratio [0.1, 10.0] (or single-class)",
+      "evidence": {
+        "min_ratio": 0.1,
+        "max_ratio": 10.0,
+        "offending_splits": {
+          "train": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 13861
+          },
+          "test": {
+            "reason": "single_class",
+            "n_positive": 0,
+            "n_negative": 1139
+          }
+        }
+      }
+    },
+    {
+      "name": "no_cross_split_leakage",
+      "passed": true,
+      "severity": "error",
+      "message": "no cross-split leakage errors",
+      "evidence": {
+        "n_error_findings": 0,
+        "n_affected": 0,
+        "findings": []
+      }
+    },
+    {
+      "name": "context_window_fit",
+      "passed": true,
+      "severity": "error",
+      "message": "all splits keep <5% of rows over the context window",
+      "evidence": {
+        "threshold": 0.05,
+        "offending_splits": {}
+      }
+    }
+  ],
+  "gate_passed": false,
+  "gate_summary": "3 gate(s) evaluated; 1 error gate(s) FAILED"
+}

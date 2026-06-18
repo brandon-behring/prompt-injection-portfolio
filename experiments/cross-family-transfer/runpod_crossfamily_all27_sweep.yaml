@@ -1,0 +1,196 @@
+# RunPod job spec — cross-family-transfer B3-ter: ALL 27 lora runs, CONCURRENT, unified (criteria Rev 7).
+# Forced by the recovery failure: the live sequential B3's Arm A + B- are stranded on an EXITED pod that
+# RunPod cannot restart ("not enough free GPUs on the host"). Since B+ must run fresh anyway and
+# concurrency makes re-running cheap, this re-runs ALL 27 (Arm A 3 + Arm B- 12 + Arm B+ 12) in ONE
+# concurrent pod — same locked recipe, same H100 80GB HBM3 SKU → a single internally-consistent tree
+# (cleaner than mixing stranded-sequential A+B- with fresh-concurrent B+). Inert per criteria Rev 6(b).
+# Pull → B3_results_runpod_all27_lora/, then LOCAL: merge (run_b3_lora.py --merge) → directional_table
+# (rungs=[tfidf,frozen,lora]) → b4_verdict.verdict.
+#
+#   validate (zero spend):  uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_all27_sweep.yaml --offline-dry-run
+#   price/inventory check :  uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_all27_sweep.yaml --dry-run
+#   launch (PAID, user-led): uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_all27_sweep.yaml
+#
+# ⚠️ Provider values not checked by --offline-dry-run: pod.image, pod.gpu_order, pod.datacenters, budget.assumed_hourly_rate_usd.
+schema_version: 2
+name: crossfamily-all27-lora-sweep
+run_id_prefix: crossfamily-all27-lora
+
+local:
+  project_root: "../.."
+  required_paths:
+    - experiments/cross-family-transfer/run_b3_lora.py
+    - experiments/cross-family-transfer/falsify_dialect_lodo.py
+    - experiments/cross-family-transfer/b4_verdict.py
+    - experiments/cross-family-transfer/criteria.md
+    - experiments/cross-family-transfer/B2_leakage/leakage_gate_armA.json # Arm A + B+ consume it
+    - experiments/attack-type-lodo/detectors.py # the imported LoRA recipe (ADR-026)
+    - experiments/attack-type-lodo/folds.py # Fold + carve_val_from_train (reused via folds_dialect)
+    - data/raw/BIPIA/benchmark
+    - data/raw # the direct + indirect corpora (assemble / assemble_arm_a rebuild the pools here)
+    - pyproject.toml
+    - uv.lock
+
+pod:
+  # COMPARABILITY LOCK (criteria Rev 6/7): Hopper bf16, pinned to H100 80GB HBM3 (= the completed lora
+  # rungs' SKU). All 27 now train on ONE SKU in ONE run → maximal internal consistency. The run.body
+  # GPU guard also asserts native bf16 as a backstop.
+  image: runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
+  cloud_type: SECURE
+  container_disk_gb: 60 # repo incl. data/raw (mosscap ~279k + hackaprompt ~580k rows) is several GB
+  gpu_count: 1
+  gpu_order:
+    - "NVIDIA H100 80GB HBM3"
+  datacenters:
+    - "US-CA-2"
+    - "US-OR-1"
+    - "US-TX-3"
+    - "US-KS-2"
+    - "EU-RO-1"
+    - "EU-NL-1"
+    - "CA-MTL-1"
+  ports:
+    - "22/tcp"
+
+storage:
+  mode: ephemeral
+  volume_mount: /workspace
+  volume_gb: 100
+
+budget:
+  # Rev 7: all 27 runs / 54 fits. Sequential ~$36 / ~11 h; CONCURRENT (N≈6, each fit ~8.5 GB) ~$12-14 /
+  # ~3.5-4.5 h. Cap $16 / 280 min (= $15.3 <= 16) is a CEILING. Graceful degradation: the pack runs
+  # A + B- BEFORE B+, so a timeout still banks A + B- (the very results we're re-acquiring) + partial B+.
+  cost_cap_usd: 16.0
+  assumed_hourly_rate_usd: 3.29
+  max_runtime_minutes: 280 # 280/60 × 3.29 = $15.3 <= $16 cap
+  poll_interval_sec: 60
+  ssh_ready_timeout_sec: 900
+
+remote_env:
+  exports:
+    HF_HUB_ENABLE_HF_TRANSFER: "1"
+
+staging:
+  - label: repo
+    source: "."
+    destination: /workspace/repo
+    excludes_default: true
+    excludes_extra:
+      - "experiments/**/*.parquet"
+      - "experiments/attack-type-lodo/results/"
+      - "experiments/attack-type-lodo/results_*/"
+      - "experiments/cross-family-transfer/B2_3_results/"
+      - "experiments/cross-family-transfer/B2_3_results_Bplus/"
+      - "experiments/cross-family-transfer/B2_4_results/"
+      - "experiments/cross-family-transfer/B3_results_runpod_lora/"
+      - "experiments/cross-family-transfer/B3_results_runpod_bplus_lora/"
+      - "experiments/cross-family-transfer/B3_results_runpod_all27_lora/"
+      - "book/"
+      - ".tooling/"
+      - "**/node_modules/"
+      - "**/*.apkg"
+    delete: true
+
+setup:
+  - command: apt-get update -qq && apt-get install -y -qq rsync
+    timeout_sec: 120
+
+preflight:
+  - command: nvidia-smi
+    timeout_sec: 60
+
+run:
+  script_path: /workspace/run_sweep.sh
+  log_path: /workspace/sweep.log
+  success_marker: "CROSSFAMILY_ALL27_LORA_SWEEP_COMPLETE_OK"
+  body: |
+    set -euo pipefail
+    export PATH="$HOME/.local/bin:$PATH"
+    command -v uv >/dev/null 2>&1 || curl -LsSf https://astral.sh/uv/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+    cd /workspace/repo
+    uv sync --extra dev
+    # Fail-fast guard (ADR-054) + COMPARABILITY: refuse CPU AND refuse non-native-bf16 (non-Hopper) cards.
+    uv run python -c "import torch; assert torch.cuda.is_available(), 'FATAL: no cuda'; assert torch.cuda.is_bf16_supported(including_emulation=False), 'FATAL: non-native-bf16 GPU — comparability requires Hopper bf16'; print('GPU OK:', torch.cuda.get_device_name(0), '| bf16_native True')"
+
+    OUT=experiments/cross-family-transfer/B3_lora_all27
+    SCRATCH=experiments/cross-family-transfer/B3_lora_all27_determinism
+    run_item(){ uv run python experiments/cross-family-transfer/run_b3_lora.py "$@"; }
+    export -f run_item
+
+    # (a) pre-warm the HF model cache ONCE → no N-way download race when fits fan out
+    uv run python -c "from huggingface_hub import snapshot_download; snapshot_download('answerdotai/ModernBERT-base')"
+
+    # (b) calibration probe: 1 solo (t_solo; also the determinism reference) + 2 concurrent (t_2), B- items
+    t0=$(date +%s); run_item --arm B --variant B- --dialects bipia --seeds 0 --out "$OUT"; t_solo=$(( $(date +%s) - t0 ))
+    t0=$(date +%s); run_item --arm B --variant B- --dialects browsesafe --seeds 0 --out "$OUT" & q1=$!; run_item --arm B --variant B- --dialects fujitsu --seeds 0 --out "$OUT" & q2=$!; wait $q1; wait $q2; t_2=$(( $(date +%s) - t0 ))
+    echo "PROBE_SOLO_SECONDS=$t_solo PROBE_2CONCURRENT_SECONDS=$t_2"
+    # speedup = 2*t_solo/t_2; if < 1.5 (4*t_solo < 3*t_2) concurrency is contended → enable CUDA MPS
+    if [ "$(( 4 * t_solo ))" -lt "$(( 3 * t_2 ))" ]; then
+      echo "PROBE: weak concurrency (speedup<1.5) → enabling CUDA MPS"; nvidia-cuda-mps-control -d || true
+    else
+      echo "PROBE: healthy concurrency → no MPS"
+    fi
+    N=6; echo "PACK_WIDTH_N=$N"
+
+    # (c) pack the remaining 24 official items (Arm A 3 + B- 9 + B+ 12) + 1 determinism re-run (bipia B- 0
+    #     → SCRATCH, concurrent) at width N. ORDER: A + B- BEFORE B+ so a timeout still banks A + B-.
+    #     fail-fast: any item exits non-zero → xargs returns non-zero → set -e → success marker never prints.
+    printf '%s\n' \
+      "--arm A --seeds 0 --out $OUT" \
+      "--arm A --seeds 1 --out $OUT" \
+      "--arm A --seeds 2 --out $OUT" \
+      "--arm B --variant B- --dialects injecagent --seeds 0 --out $OUT" \
+      "--arm B --variant B- --dialects bipia --seeds 1 --out $OUT" \
+      "--arm B --variant B- --dialects browsesafe --seeds 1 --out $OUT" \
+      "--arm B --variant B- --dialects fujitsu --seeds 1 --out $OUT" \
+      "--arm B --variant B- --dialects injecagent --seeds 1 --out $OUT" \
+      "--arm B --variant B- --dialects bipia --seeds 2 --out $OUT" \
+      "--arm B --variant B- --dialects browsesafe --seeds 2 --out $OUT" \
+      "--arm B --variant B- --dialects fujitsu --seeds 2 --out $OUT" \
+      "--arm B --variant B- --dialects injecagent --seeds 2 --out $OUT" \
+      "--arm B --variant B+ --dialects bipia --seeds 0 --out $OUT" \
+      "--arm B --variant B+ --dialects browsesafe --seeds 0 --out $OUT" \
+      "--arm B --variant B+ --dialects fujitsu --seeds 0 --out $OUT" \
+      "--arm B --variant B+ --dialects injecagent --seeds 0 --out $OUT" \
+      "--arm B --variant B+ --dialects bipia --seeds 1 --out $OUT" \
+      "--arm B --variant B+ --dialects browsesafe --seeds 1 --out $OUT" \
+      "--arm B --variant B+ --dialects fujitsu --seeds 1 --out $OUT" \
+      "--arm B --variant B+ --dialects injecagent --seeds 1 --out $OUT" \
+      "--arm B --variant B+ --dialects bipia --seeds 2 --out $OUT" \
+      "--arm B --variant B+ --dialects browsesafe --seeds 2 --out $OUT" \
+      "--arm B --variant B+ --dialects fujitsu --seeds 2 --out $OUT" \
+      "--arm B --variant B+ --dialects injecagent --seeds 2 --out $OUT" \
+      "--arm B --variant B- --dialects bipia --seeds 0 --out $SCRATCH" \
+      | xargs -P "$N" -L1 bash -c 'run_item "$@"' _
+
+    # (d) determinism cross-check (LOG-ONLY; criteria Rev 6/7): bipia B- 0 solo (OUT) vs concurrent
+    #     (SCRATCH) on the verdict-input metric (test ROC). The locked recipe is non-deterministic
+    #     run-to-run, so LOG the Δ for the B4 audit; abort ONLY on catastrophic Δtest_roc > 0.2.
+    uv run python -c "
+    import glob, sys
+    import numpy as np, pandas as pd
+    from sklearn.metrics import roc_auc_score
+    def load(root):
+        p = glob.glob(root + '/**/seed=0/dialect_lodo_bipia/lora.predictions.parquet', recursive=True)[0]
+        return pd.read_parquet(p)
+    a, b = load('$OUT'), load('$SCRATCH')
+    tr, tc = roc_auc_score(a['label'], a['y_score']), roc_auc_score(b['label'], b['y_score'])
+    dy = float(np.max(np.abs(a['y_score'].to_numpy() - b['y_score'].to_numpy())))
+    d = abs(tr - tc)
+    print(f'DETERMINISM test_roc solo={tr:.5f} concurrent={tc:.5f} Δtest={d:.3e} max|Δy|={dy:.3e} (log-only; catastrophic gate Δ>0.2)')
+    sys.exit(1 if d > 0.2 else 0)
+    "
+    echo "CROSSFAMILY_ALL27_LORA_SWEEP_COMPLETE_OK"
+
+artifacts:
+  - label: results
+    remote_path: /workspace/repo/experiments/cross-family-transfer/B3_lora_all27
+    local_path: experiments/cross-family-transfer/B3_results_runpod_all27_lora
+    required: true
+    delete: false
+
+lifecycle:
+  on_success: delete
+  on_failure: stop

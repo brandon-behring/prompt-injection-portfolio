@@ -109,10 +109,11 @@ datasets:
     evidence: {labels: "4 benign categories (all-benign)", rows: 339,
                use: "benign-FPR / over-defense control, not binary training"}
   rottger2024xstest:
-    hf_id: natolambert/xstest-v2-copy
+    hf_id: walledai/XSTest   # canonical; switched from natolambert/xstest-v2-copy mirror 2026-06-03 (gate accepted)
     feature_col: prompt
     role: benign_control
-    evidence: {labels: "18 type categories", rows: 2700, use: "over-refusal eval"}
+    evidence: {labels: "prompt + safe/unsafe label + type/focus/note (canonical XSTest)",
+               note: "row count differs from the -copy (verify on materialize); has a real label vs the copy"}
   cui2024orbench:
     hf_id: bench-llm/or-bench
     config: or-bench-80k
@@ -160,3 +161,51 @@ datasets:
     hf_id: allenai/wildguardmix
     role: excluded
     evidence: {status: "gated — load blocked even with HF token; needs explicit gate acceptance"}
+
+  # --- Phase-2 expansion (2026-06-03): LOAD-SHAPE specs only. `role` here is the loader switch
+  #     (schema fact), NOT a research-role claim — research_role is PENDING_EDA until the EDA gate
+  #     (survey_v2 + cross_dataset_geometry leakage). Label tokens live-verified from the materialized
+  #     data on 2026-06-03; see materialize_datasets.py HF_SNAPSHOT notes + experiments/eda/NEW_SETS_AUDIT/. ---
+  neuralchemy2026promptinjection:
+    hf_id: neuralchemy/Prompt-injection-dataset
+    config: core
+    feature_col: text
+    label_col: label
+    role: binary_detection
+    evidence: {load_shape_only: true, research_role: "resolved 2026-06-03 — see ledger Newly-surfaced table", label: "numeric 0/1 (1=3736 / 0=2538, ~60/40)",
+               config: core, leakage_watch: "source col incl hackaprompt(1984)/wildguard/harmbench → check vs existing corpora"}
+  nvidia2025aegis2:
+    hf_id: nvidia/Aegis-AI-Content-Safety-Dataset-2.0
+    feature_col: prompt
+    label_col: prompt_label
+    label_map: {safe: 0, unsafe: 1}
+    role: binary_detection
+    evidence: {load_shape_only: true, research_role: "resolved 2026-06-03 — see ledger Newly-surfaced table", label: "string prompt_label {safe,unsafe} (live-verified)",
+               note: "corrected id (handoff 'nvidia/Aegis-2.0' 404s); content-safety/toxicity not direct-injection; 33.4K"}
+  amazonscience2025falsereject:
+    hf_id: AmazonScience/FalseReject
+    feature_col: prompt
+    role: benign_control
+    evidence: {load_shape_only: true, research_role: "resolved 2026-06-03 — see ledger Newly-surfaced table", labels: "all-benign over-refusal (44 categories)",
+               license: "CC-BY-NC", note: "benign-FPR / over-defense control; 15.8K"}
+  perplexityai2025browsesafe:
+    hf_id: perplexity-ai/browsesafe-bench
+    feature_col: content
+    label_col: label
+    label_map: {"no": 0, "yes": 1}   # quoted — YAML 1.1 parses bare no/yes as booleans
+    role: binary_detection
+    evidence: {load_shape_only: true, research_role: "resolved 2026-06-03 — see ledger Newly-surfaced table", label: "string label {no,yes} (live-verified; no=7422/yes=7297)",
+               note: "indirect-HTML carrier axis; content=full HTML (p50 46KB/p95 140KB); dual-rep at EDA (raw E2 / stripped E4)"}
+  youbin2025jailbreakdb:
+    hf_id: youbin2014/JailbreakDB
+    load_method: custom_csv
+    local_dir: jailbreakdb
+    csv_files: [text_jailbreak_unique.csv, text_regular_unique.csv]
+    keep_cols: [source]
+    feature_col: user_prompt
+    label_col: jailbreak
+    approx_rows: 1540000   # real record count (12.2M was the line-count of multi-line quoted fields)
+    sample_rows: 30000
+    role: binary_detection
+    evidence: {load_shape_only: true, research_role: "resolved 2026-06-03 — see ledger Newly-surfaced table", label: "numeric 0/1 (per-file: jailbreak=1 / regular=0)",
+               note: "14-source aggregate; Viewer 500s → raw-CSV adapter reads local snapshot; source=provenance; FULL 12.2M scan separate (D5)"}

@@ -1,0 +1,182 @@
+# RunPod job spec — cross-family-transfer B+ LoRA rung on a CHEAPER bf16 GPU (criteria Rev 8).
+# The all-27 H100 re-run recovered Arm A + B- but cost-capped before B+ (only browsesafe seed0 landed).
+# Concurrency is compute-bound (~1.6x at 2 fits, not the assumed ~2.5-3x), so B+ costs ~sequential GPU
+# time REGARDLESS of card → cheap-and-slow beats expensive-fast. This runs all 12 B+ on a cheaper
+# Ada/Ampere bf16 card (4090/A5000/A40/...). CROSS-ARCH CAVEAT (Rev 8): these are bf16 like the H100
+# A+B-, but a different arch → minor tensor-core drift (<< 0.05 SESOI); the re-run of browsesafe seed0
+# (also done on the H100) is the direct cross-arch drift check.
+# SELECTION-POLICY FIX (Rev 9, 2026-06-06): gpu_order is now SUB-L40S ONLY (L40S + A100 removed); the
+# selector walks datacenters in YAML order and was falling through to L40S@US-TX-3 before the EU/CA DCs
+# that hold the cheap cards; GraphQL pricing is empty here so --max-gpu-price-usd is inert. Removing
+# L40S/A100 from gpu_order is the working lever; scripts/cheap_gpu_monitor.py --watch confirms a window.
+# Pull→ B3_results_runpod_bplus_cheap_lora/, then LOCAL: merge (run_b3_lora.py --merge) → directional_table
+# (rungs=[tfidf,frozen,lora]) → b4_verdict.verdict.
+#
+#   validate (zero spend):  uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_bplus_cheap_sweep.yaml --offline-dry-run
+#   price/inventory check :  uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_bplus_cheap_sweep.yaml --dry-run
+#   launch (PAID, user-led): uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_bplus_cheap_sweep.yaml
+#
+# ⚠️ Provider values not checked by --offline-dry-run: pod.image, pod.gpu_order, pod.datacenters, budget.assumed_hourly_rate_usd.
+schema_version: 2
+name: crossfamily-bplus-cheap-lora-sweep
+run_id_prefix: crossfamily-bplus-cheap-lora
+
+local:
+  project_root: "../.."
+  required_paths:
+    - experiments/cross-family-transfer/run_b3_lora.py
+    - experiments/cross-family-transfer/falsify_dialect_lodo.py
+    - experiments/cross-family-transfer/b4_verdict.py
+    - experiments/cross-family-transfer/criteria.md
+    - experiments/cross-family-transfer/B2_leakage/leakage_gate_armA.json # B+ consumes it
+    - experiments/attack-type-lodo/detectors.py # the imported LoRA recipe (ADR-026)
+    - experiments/attack-type-lodo/folds.py
+    - data/raw/BIPIA/benchmark
+    - data/raw
+    - pyproject.toml
+    - uv.lock
+
+pod:
+  # CHEAPER bf16 GPU (Rev 8): Ada/Ampere cards are native-bf16 (same dtype as the H100 A+B-), cheapest
+  # first. The run.body GPU guard asserts native bf16 (rejects any non-bf16 card that slips through).
+  # Cross-arch bf16 drift vs Hopper is < SESOI (reconciled via the browsesafe-s0 re-run).
+  image: runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
+  cloud_type: SECURE
+  container_disk_gb: 60
+  gpu_count: 1
+  gpu_order: # cheapest-first, SUB-L40S ONLY (Rev 9): L40S + A100 80GB PCIe REMOVED so the selector
+             # cannot fall through to them via datacenter order. All native-bf16 (Ampere/Ada); >=24 GB
+             # (fits N=2 at ~8.5 GB/fit). If NONE is stocked the launch FAILS FAST (by design --
+             # never silently buy an L40S); scripts/cheap_gpu_monitor.py confirms a gettable window first.
+    - "NVIDIA RTX A5000"
+    - "NVIDIA GeForce RTX 4090"
+    - "NVIDIA A40"
+    - "NVIDIA RTX A6000"
+    - "NVIDIA L40"
+  datacenters:
+    - "US-CA-2"
+    - "US-OR-1"
+    - "US-TX-3"
+    - "US-KS-2"
+    - "EU-RO-1"
+    - "EU-NL-1"
+    - "CA-MTL-1"
+  ports:
+    - "22/tcp"
+
+storage:
+  mode: ephemeral
+  volume_mount: /workspace
+  volume_gb: 100
+
+budget:
+  # Rev 8: 12 B+ runs / 24 fits on a cheap card. Concurrency ~1.6x (compute-bound) → ~sequential.
+  # A cheap card (~$0.4-0.8/hr) at N=2 → ~5.5-7 h → ~$3-5. Cap $8 / 600 min (= $7.9 @ 0.79 <= 8) is a
+  # CEILING. The external monitor cost-guards + verifies-before-delete (the all-27 lc()/pull lessons).
+  cost_cap_usd: 8.0
+  assumed_hourly_rate_usd: 0.79
+  max_runtime_minutes: 600 # 600/60 × 0.79 = $7.9 <= $8 cap
+  poll_interval_sec: 60
+  ssh_ready_timeout_sec: 900
+
+remote_env:
+  exports:
+    HF_HUB_ENABLE_HF_TRANSFER: "1"
+
+staging:
+  - label: repo
+    source: "."
+    destination: /workspace/repo
+    excludes_default: true
+    excludes_extra:
+      - "experiments/**/*.parquet"
+      - "experiments/attack-type-lodo/results/"
+      - "experiments/attack-type-lodo/results_*/"
+      - "experiments/cross-family-transfer/B2_3_results/"
+      - "experiments/cross-family-transfer/B2_3_results_Bplus/"
+      - "experiments/cross-family-transfer/B2_4_results/"
+      - "experiments/cross-family-transfer/B3_results_runpod_lora/"
+      - "experiments/cross-family-transfer/B3_results_runpod_bplus_lora/"
+      - "experiments/cross-family-transfer/B3_results_runpod_all27_lora/"
+      - "experiments/cross-family-transfer/B3_results_runpod_bplus_cheap_lora/"
+      - "book/"
+      - ".tooling/"
+      - "**/node_modules/"
+      - "**/*.apkg"
+    delete: true
+
+setup:
+  - command: apt-get update -qq && apt-get install -y -qq rsync
+    timeout_sec: 120
+
+preflight:
+  - command: nvidia-smi
+    timeout_sec: 60
+
+run:
+  script_path: /workspace/run_sweep.sh
+  log_path: /workspace/sweep.log
+  success_marker: "CROSSFAMILY_BPLUS_CHEAP_LORA_SWEEP_COMPLETE_OK"
+  body: |
+    set -euo pipefail
+    export PATH="$HOME/.local/bin:$PATH"
+    command -v uv >/dev/null 2>&1 || curl -LsSf https://astral.sh/uv/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+    cd /workspace/repo
+    uv sync --extra dev
+    # Fail-fast guard (ADR-054) + COMPARABILITY: refuse CPU AND refuse non-native-bf16 cards (keeps the
+    # rung bf16 like the H100 A+B-; Ada/Ampere pass, Turing/CPU rejected).
+    uv run python -c "import torch; assert torch.cuda.is_available(), 'FATAL: no cuda'; assert torch.cuda.is_bf16_supported(including_emulation=False), 'FATAL: non-native-bf16 GPU — B+ comparability requires bf16'; print('GPU OK:', torch.cuda.get_device_name(0), '| bf16_native True')"
+
+    OUT=experiments/cross-family-transfer/B3_lora_bplus_cheap
+    SCRATCH=experiments/cross-family-transfer/B3_lora_bplus_cheap_determinism
+    run_item(){ uv run python experiments/cross-family-transfer/run_b3_lora.py --arm B --variant B+ --dialects "$1" --seeds "$2" --out "$3"; }
+    export -f run_item
+
+    # (a) pre-warm the HF model cache ONCE → no N-way download race
+    uv run python -c "from huggingface_hub import snapshot_download; snapshot_download('answerdotai/ModernBERT-base')"
+
+    # (b) calibration probe: 1 solo (t_solo; determinism reference) + 2 concurrent (t_2)
+    t0=$(date +%s); run_item bipia 0 "$OUT"; t_solo=$(( $(date +%s) - t0 ))
+    t0=$(date +%s); run_item browsesafe 0 "$OUT" & q1=$!; run_item fujitsu 0 "$OUT" & q2=$!; wait $q1; wait $q2; t_2=$(( $(date +%s) - t0 ))
+    echo "PROBE_SOLO_SECONDS=$t_solo PROBE_2CONCURRENT_SECONDS=$t_2"
+    # N=2 (24 GB cards hold ~2 fits at ~8.5 GB; concurrency is ~1.6x compute-bound so N>2 wouldn't help).
+    N=2; echo "PACK_WIDTH_N=$N"
+
+    # (c) pack the remaining 9 official items + 1 determinism re-run (bipia 0 → SCRATCH, concurrent) at N.
+    #     fail-fast: any item non-zero → xargs non-zero → set -e → success marker never prints.
+    printf '%s\n' \
+      "injecagent 0 $OUT" \
+      "bipia 1 $OUT" "browsesafe 1 $OUT" "fujitsu 1 $OUT" "injecagent 1 $OUT" \
+      "bipia 2 $OUT" "browsesafe 2 $OUT" "fujitsu 2 $OUT" "injecagent 2 $OUT" \
+      "bipia 0 $SCRATCH" \
+      | xargs -P "$N" -L1 bash -c 'run_item "$1" "$2" "$3"' _
+
+    # (d) determinism cross-check (LOG-ONLY; criteria Rev 6/8): bipia0 solo(OUT) vs concurrent(SCRATCH) on
+    #     test ROC. The locked recipe is non-deterministic run-to-run → LOG the Δ; abort ONLY on Δ>0.2.
+    uv run python -c "
+    import glob, sys
+    import numpy as np, pandas as pd
+    from sklearn.metrics import roc_auc_score
+    def load(root):
+        p = glob.glob(root + '/**/seed=0/dialect_lodo_bipia/lora.predictions.parquet', recursive=True)[0]
+        return pd.read_parquet(p)
+    a, b = load('$OUT'), load('$SCRATCH')
+    tr, tc = roc_auc_score(a['label'], a['y_score']), roc_auc_score(b['label'], b['y_score'])
+    dy = float(np.max(np.abs(a['y_score'].to_numpy() - b['y_score'].to_numpy())))
+    d = abs(tr - tc)
+    print(f'DETERMINISM test_roc solo={tr:.5f} concurrent={tc:.5f} Δtest={d:.3e} max|Δy|={dy:.3e} (log-only; catastrophic gate Δ>0.2)')
+    sys.exit(1 if d > 0.2 else 0)
+    "
+    echo "CROSSFAMILY_BPLUS_CHEAP_LORA_SWEEP_COMPLETE_OK"
+
+artifacts:
+  - label: results
+    remote_path: /workspace/repo/experiments/cross-family-transfer/B3_lora_bplus_cheap
+    local_path: experiments/cross-family-transfer/B3_results_runpod_bplus_cheap_lora
+    required: true
+    delete: false
+
+lifecycle:
+  on_success: delete
+  on_failure: stop

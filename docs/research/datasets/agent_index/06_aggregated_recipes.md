@@ -29,4 +29,13 @@ Datasets that are themselves **aggregations** of multiple upstream sources — p
 - **Status:** Verified.
 - **Soft tags:** family=aggregated-recipe · encoder_readiness=pointer · study_relevance=high
 
-_3 entries._
+### F4. neuralchemy/Prompt-injection-dataset — neuralchemy (2026)
+- **Source:** https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset
+- **Access:** hf datasets; auth_required: N
+- **Schema:** `text` + `label` (0/1) + `source` + `group_id` (provenance, leakage-checkable). Config `core` (6,274 rows; full ~14K).
+- **Size+License:** core 6,274 rows, binary ~60/40 (`source` distribution: neuralchemy_v1 3,658 / hackaprompt 1,984 / wildguard_judgecomp 300 / original 132 / harmbench 100 / harmbench_benign 100); Apache-2.0.
+- **Tasks:** A multi-source aggregated injection corpus. EDA-gate verdict (2026-06-03): **PARK — dedup-salvageable**. Leakage scan (G-EDA-1) found **exact 303** overlaps (4.8%; jbb 300) + **near 363** (5.8%, ≥0.8 sim) vs our universe, and ~35% of rows self-declare as from sources we already hold (hackaprompt/wildguard/harmbench). After removing exact-dup, near-dup, and those declared sources, **3,787 clean rows (~60%) are recoverable** (neuralchemy_v1 3,656 / original 131) — but modest and hackaprompt-provenance-entangled. Research-role: **PARKED** (the dedup-and-use route is documented as the option if a clean Apache trainer is later wanted). Encoder-readiness: **derivable** `(text, label)`, but only after the documented dedup.
+- **Status:** Verified (parked — dedup-salvageable).
+- **Soft tags:** family=aggregated-recipe · encoder_readiness=derivable · study_relevance=parked
+
+_4 entries._

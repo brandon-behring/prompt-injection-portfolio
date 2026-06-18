@@ -851,7 +851,7 @@ wheels = [
 
 [[package]]
 name = "eval-toolkit"
-version = "1.6.0"
+version = "1.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jsonschema" },
@@ -859,9 +859,9 @@ dependencies = [
     { name = "scikit-learn" },
     { name = "scipy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0c/be/b691d018c906b246c9ea00f70209c7db44cdf0e31a84718aadbffadb4b8d/eval_toolkit-1.6.0.tar.gz", hash = "sha256:b2a0dada3450d5e72f1a52ddb0a87996200c6f46401f17977721e87e4032174a", size = 917094, upload-time = "2026-05-29T17:05:28.684Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a9/0d/f95f17fca8d7a3d2167c00b425870c1a33ffcef2c695f0e6cd7e8151bd11/eval_toolkit-1.8.0.tar.gz", hash = "sha256:6884672e86ccdd6b91cc2f1e8a1c4bd3b3c05ce1d20c215da88f561bed5e7a89", size = 926794, upload-time = "2026-06-04T19:39:32.387Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/37/d8/7434860d014aa91646cffcb5ab9d1237746ae538d31452a7c69c4b77d3ec/eval_toolkit-1.6.0-py3-none-any.whl", hash = "sha256:fc1716644dc0e6f031dc351bdcc37fdad3c6fd4b613c0d78140e07a169955faf", size = 316236, upload-time = "2026-05-29T17:05:26.697Z" },
+    { url = "https://files.pythonhosted.org/packages/f7/fc/22ff49a10685ba882470887d2c48c1e6874d9489f7b67e9e4e0f599c2869/eval_toolkit-1.8.0-py3-none-any.whl", hash = "sha256:ddcc548e71e903dc1d2c91c6d301adb20411e1c21af31430c39bc453feaf6cae", size = 320298, upload-time = "2026-06-04T19:39:30.175Z" },
 ]
 
 [package.optional-dependencies]
@@ -2812,7 +2812,7 @@ requires-dist = [
     { name = "accelerate", specifier = ">=1.0" },
     { name = "anthropic", specifier = ">=0.40" },
     { name = "datasets", specifier = ">=3.0" },
-    { name = "eval-toolkit", extras = ["probes", "losses"], specifier = ">=1.6" },
+    { name = "eval-toolkit", extras = ["probes", "losses"], specifier = ">=1.8" },
     { name = "faiss-cpu", specifier = ">=1.8" },
     { name = "gradio", specifier = ">=4.0" },
     { name = "huggingface-hub", specifier = ">=0.25" },

@@ -3,16 +3,19 @@
   "description": "Experiment records authority graph per plan \u00a718 4-file schema. Each lane row maps lane_id -> 4 experiment-record files + 3 book-fragment files + linked ADRs + dossier claim_family + HF Hub artifacts.",
   "lanes": {
     "lane-1": {
-      "title": "Direct-injection baselines + reference scorers + classical floor",
+      "title": "Attack-type generalization of injection detectors: the OOD wall, measured fairly (ADR-052)",
       "milestone": "M1",
       "budget_usd": 12,
-      "state": "skeleton",
+      "state": "started",
+      "state_note": "RAN; results recorded canonically in experiments/eda/OOD_WALL_PREDICTION/ + experiments/lane-1/RESULTS_POINTER.md; independently re-verified 2026-06 (experiments/AUDIT_2026-06/). Formal close (results.md + decisions.md + 3 book fragments) deferred to the prose pass (Round-30 Q4 + 2026-06 audit) since the closure contract has no results-recorded-fragments-deferred state.",
       "hypothesis_id": "H-LANE-1",
       "linked_adrs": [
+        "027",
         "036",
-        "038",
-        "043",
-        "045"
+        "051",
+        "052",
+        "054",
+        "055"
       ],
       "book_chapter": "ch08-lane-1-direct-baselines",
       "fragments_dir": "book/src/content/fragments/lane-1",
@@ -72,7 +75,8 @@
         "BBehring/prompt-injection-synthetic-indirect-v2"
       ],
       "depends_on": [
-        "MR-3-research_toolkit-dataset-synthesize"
+        "research_toolkit#22-extract-text-silent-failure",
+        "research_toolkit#23-dataset-synthesize-not-installed-by-default"
       ],
       "dossier_claim_family": [
         "training_data_sources",

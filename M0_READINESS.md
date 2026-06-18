@@ -99,7 +99,8 @@ These need user presence + cannot be automated by /loop:
 ## Outstanding upstream MRs (per decisions/upstream_issues.md)
 
 - **MR-3** (research_toolkit#1): `/dataset-synthesize` skill —
-  M3-blocking; portfolio monitors at Day 13-style intervals
+  **MERGED 2026-05-24 (research_toolkit PR #16)**; Lane 2 *execution* now gated on
+  research_toolkit #22/#23 (silent-failure + skill-not-installed-by-default), not MR-3.
 - **MR-12** (eval-toolkit#69): Tier-2 Protocol consolidation —
   NOT blocking; targets eval-toolkit v0.48+
 
@@ -135,6 +136,9 @@ announcement land together (user's call). The held bundle is a ~15-min **user-le
 
 1. ✅ **DONE (2026-06-01 PM)** — merged via **PR #4** (fast-forward; `origin/main` = `116cfd5`; 42
    commits, linear, same SHAs). Remaining held steps (2–6) are tag → release → announce.
+1b. **NEW (2026-06-10, roadmap-refresh Fork A(b)):** fast-forward the 38-commit cross-family arc into
+   main first — `git checkout main && git merge --ff-only origin/session/2026-05-26-adoption-and-research-ops`
+   — so the tag snapshots the full 3-axis spine. (main was ee397a7 at audit time.)
 2. `git checkout main && git pull` → re-run `make ratify-milestone` on `main` (confirm still green).
 3. `git tag -a v0.1.0 -m "<message below>"` → `git push origin v0.1.0`.
 4. `gh release create v0.1.0 --notes-file docs/build-in-public/2026-06-01-v0.1.0-announcement.md`.
@@ -144,18 +148,23 @@ announcement land together (user's call). The held bundle is a ~15-min **user-le
 ### Annotated tag message (for `git tag -a v0.1.0 -m "..."` on `main`)
 
 ```
-M0 close (v0.1.0): public pre-alpha portfolio + first result (capacity-dependent OOD wall)
+M0 close (v0.1.0): public pre-alpha portfolio + the three-axis OOD spine
 
-Snapshots the M0 framework + M1's first finding + the Round-30 re-laddered roadmap:
+Snapshots the M0 framework + the complete first experimental arc:
 - Public repo, pre-alpha banner (through v0.7.0); 13-chapter textbook skeleton; 6-lane
   experiment-record framework; 210-entry research dossier (5 topics, 97% verified); Docker
-  repro; ETHICS/SECURITY/CODE_OF_CONDUCT; 55 ADRs.
-- M1 (attack-type-LODO): pre-registered §6.5 OOD-wall prediction FALSIFIED at the LoRA ceiling —
-  the per-attack-type wall is capacity-dependent (tfidf +0.135 / frozen +0.082 SURVIVE; lora -0.003).
-- Round-30 re-ladder (ADR-055): multi-axis capacity-dependent spine; Lane 2 re-pointed to the
-  carrier axis; a carrier-LODO M2 pre-flight gate scheduled.
+  repro; ETHICS/SECURITY/CODE_OF_CONDUCT; 53 ADRs.
+- The axis-dependent OOD spine (ADR-055 + amendments) — all three axes pre-registered,
+  write-gated, audited, and independently reproduced:
+  attack-type FALSIFIED at the LoRA ceiling (tfidf +0.135 / frozen +0.082 SURVIVE; lora −0.003) ·
+  carrier SMALL-THROUGHOUT (G_lora +0.067; residual table wall +0.205, data-resistant at the
+  ceiling — C1 NOT-CLOSED 2026-06-11, n=1 fold/one recipe; provisional n=3) ·
+  cross-family SURVIVES (Gx_lora +0.365, capacity-resistant; direct data does not bridge).
+- Audit chain: 5-verifier post-M1 · 5-verifier B4 (ROBUST) · bootstrap reproduction ·
+  full re-audit 2026-06-09 (30 verifiers; spine reproduces bit-exact) · 5-verifier C1 (ROBUST).
+- Total compute ≈ $37 of the $250 base budget.
 
-Pre-alpha: experiments in flight; chapter prose fills as lanes close.
+Pre-alpha: chapter prose fills as lanes close.
 
 Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
 ```
@@ -170,7 +179,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
 >
 > **What landed:** the M0 technical close (CI-green framework, dossier, governance, ADRs, Docker); the
 > pre-modeling EDA arc + the context-engineering subagent suite; **M1 (attack-type-LODO)** with the
-> pre-registered §6.5 OOD-wall prediction **FALSIFIED at the LoRA ceiling** (capacity-dependent —
+> pre-registered §6.5 OOD-wall prediction **FALSIFIED at the LoRA ceiling** (axis-dependent (per the ratified ADR-055 amendments) —
 > tfidf/frozen SURVIVE, lora FALSIFIED); and the **Round-30 re-ladder** (ADR-055: multi-axis spine, Lane 2
 > → carrier axis, a carrier-LODO M2 pre-flight gate).
 >

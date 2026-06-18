@@ -1,0 +1,152 @@
+# RunPod job spec — cross-family-transfer B3: the LoRA rung ONLY (criteria.md Rev 3/4 + Rev 5).
+# The cheap rungs (tfidf+frozen) for BOTH arms already ran LOCAL (B2.3/B2.4); only the `lora` rung
+# trains here (paid H100). Pull → B3_results_runpod_lora/, then LOCAL: merge (run_b3_lora.py --merge)
+# → falsify_dialect_lodo.directional_table(rungs=[tfidf,frozen,lora]) → b4_verdict.verdict.
+# Sibling of attack-type-lodo/runpod_carrier_lodo_sweep.yaml; same orchestration.
+#
+# Consumed at the session-launch boundary by scripts/runpod_sweep.py --config <this file> via
+# runpod_deploy.load_job_spec → run_job (provision → stage → run → pull artifacts → lifecycle).
+# NEVER imported by the remote pod (ADR-026 library-first; runpod-deploy is a local orchestrator only).
+#
+#   validate (zero spend):  uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_sweep.yaml --offline-dry-run
+#   price/inventory check :  uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_sweep.yaml --dry-run
+#   launch (PAID, user-led): uv run python scripts/runpod_sweep.py --config experiments/cross-family-transfer/runpod_crossfamily_sweep.yaml
+#
+# ⚠️ Provider-side values are NOT checked by --offline-dry-run — confirm against current
+#    RunPod offerings before the paid launch: pod.image, pod.gpu_order, pod.datacenters,
+#    budget.assumed_hourly_rate_usd.
+schema_version: 2
+name: crossfamily-lora-sweep
+run_id_prefix: crossfamily-lora
+
+local:
+  project_root: "../.." # config lives in experiments/cross-family-transfer/; repo root is two up
+  required_paths:
+    - experiments/cross-family-transfer/run_b3_lora.py
+    - experiments/cross-family-transfer/falsify_dialect_lodo.py
+    - experiments/cross-family-transfer/b4_verdict.py
+    - experiments/cross-family-transfer/criteria.md
+    - experiments/cross-family-transfer/B2_leakage/leakage_gate_armA.json # B+ + Arm A consume it
+    - experiments/attack-type-lodo/detectors.py # the imported LoRA recipe (ADR-026)
+    - experiments/attack-type-lodo/folds.py # Fold + carve_val_from_train (reused via folds_dialect)
+    - data/raw/BIPIA/benchmark
+    - data/raw # the direct + indirect corpora (assemble / assemble_arm_a rebuild the pools here)
+    - pyproject.toml
+    - uv.lock
+
+pod:
+  # 24 GB+ trains the `lora` rung at spec config (batch 16 / max_len 512, native bf16 on Ampere+).
+  # Cross-family pools are LARGER than carrier-LODO (Arm A ~29k, Arm B B+ up to ~62k rows) → ~2-4 h.
+  image: runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
+  cloud_type: SECURE # reliable + resolves now in these DCs; cheap COMMUNITY cards need RUNPOD_API_KEY + broader DCs
+  container_disk_gb: 60 # repo incl. data/raw (mosscap ~279k + hackaprompt ~580k rows) is several GB
+  gpu_count: 1
+  # Prefer cheap 24 GB cards; fall back to whatever premium card is available so the job resolves.
+  # cost_cap_usd=14 + max_runtime_minutes=240 bound total spend regardless of card. ⚠️ Re-confirm with
+  # a fresh --dry-run at launch (availability is momentary; the cheap COMMUNITY path needs the API key).
+  gpu_order:
+    - "NVIDIA RTX A5000"
+    - "NVIDIA L4"
+    - "NVIDIA A40"
+    - "NVIDIA RTX A6000"
+    - "NVIDIA H100 80GB HBM3"
+    - "NVIDIA H100 NVL"
+    - "NVIDIA H200"
+  datacenters: # cost-search across these; ⚠️ confirm IDs against current RunPod regions
+    - "US-CA-2"
+    - "US-OR-1"
+    - "US-TX-3"
+    - "US-KS-2"
+    - "EU-RO-1"
+    - "EU-NL-1"
+    - "CA-MTL-1"
+  ports:
+    - "22/tcp"
+
+storage:
+  mode: ephemeral
+  volume_mount: /workspace
+  volume_gb: 100 # ephemeral workspace: repo + data/raw + HF model/dataset cache + results
+
+budget:
+  # Rev 5 cost reconciliation (criteria.md): empirical anchor M1 $0.83 / carrier $1.17 (H100 @ $3.29/h,
+  # ~102 s/run @ ~3.5k rows); 27 runs on 8-16x larger pools → $7.6 (low) / ~$11.3 (central) / $17.5
+  # (high). Cap raised $6 → $14 (base-budget; the trim-B+ option was rejected). The $17.5 high bound
+  # exceeds the cap → the run.body is cheapest-robust-first so a 240-min timeout still leaves Arm A +
+  # B- scorable + a cheap B+-only re-launch.
+  cost_cap_usd: 14.0
+  assumed_hourly_rate_usd: 3.29 # the REALIZED H100 80GB HBM3 rate (not the optimistic 2.50)
+  max_runtime_minutes: 240 # 4 h × $3.29/h = $13.16 ≤ $14 cap (runpod_deploy enforces timeout×rate≤cap)
+  poll_interval_sec: 60
+  ssh_ready_timeout_sec: 900
+
+remote_env:
+  exports:
+    HF_HUB_ENABLE_HF_TRANSFER: "1"
+
+staging:
+  - label: repo
+    source: "."
+    destination: /workspace/repo
+    excludes_default: true # .git/, .venv/, caches, __pycache__
+    excludes_extra:
+      # Scope the parquet exclude to experiments/ ONLY — a blanket **/*.parquet would drop the
+      # data/raw corpora (browsesafe/*.parquet, injecagent_derived.parquet, ...) the pod rebuilds from.
+      - "experiments/**/*.parquet"
+      - "experiments/attack-type-lodo/results/"
+      - "experiments/attack-type-lodo/results_*/"
+      - "experiments/cross-family-transfer/B2_3_results/"
+      - "experiments/cross-family-transfer/B2_3_results_Bplus/"
+      - "experiments/cross-family-transfer/B2_4_results/"
+      - "experiments/cross-family-transfer/B3_results_runpod_lora/"
+      - "book/"
+      - ".tooling/"
+      - "**/node_modules/"
+      - "**/*.apkg"
+    delete: true
+
+setup:
+  # Install rsync on the remote container so the orchestrator's rsync-push staging works.
+  # The RunPod pytorch base image does not include rsync; apt-get install takes ~5-10 s (DF-6/#116).
+  - command: apt-get update -qq && apt-get install -y -qq rsync
+    timeout_sec: 120
+
+preflight:
+  - command: nvidia-smi
+    timeout_sec: 60
+
+run:
+  script_path: /workspace/run_sweep.sh
+  log_path: /workspace/sweep.log
+  success_marker: "CROSSFAMILY_LORA_SWEEP_COMPLETE_OK"
+  body: |
+    set -euo pipefail
+    export PATH="$HOME/.local/bin:$PATH"
+    command -v uv >/dev/null 2>&1 || curl -LsSf https://astral.sh/uv/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+    cd /workspace/repo
+    uv sync --extra dev
+    # Fail-fast GPU guard (ADR-054): never train the LoRA rung on CPU on a PAID pod.
+    uv run python -c "import torch; assert torch.cuda.is_available(), 'FATAL: torch.cuda unavailable - refusing to train the LoRA rung on CPU on a paid GPU pod'; print('GPU OK:', torch.cuda.get_device_name(0), '| torch', torch.__version__, '| cuda', torch.version.cuda, '| bf16_native', torch.cuda.is_bf16_supported(including_emulation=False))"
+    # Cheapest-robust-first: Arm A (3 runs) -> Arm B B- (12) -> Arm B B+ (12, 62k pools last).
+    # A 240-min timeout still leaves Arm A + B- scorable (criteria.md graceful-degradation ordering).
+    uv run python experiments/cross-family-transfer/run_b3_lora.py --arm A          --seeds 0 1 2 --out experiments/cross-family-transfer/B3_lora
+    uv run python experiments/cross-family-transfer/run_b3_lora.py --arm B --variant B- --seeds 0 1 2 --out experiments/cross-family-transfer/B3_lora
+    uv run python experiments/cross-family-transfer/run_b3_lora.py --arm B --variant B+ --seeds 0 1 2 --out experiments/cross-family-transfer/B3_lora
+    echo "CROSSFAMILY_LORA_SWEEP_COMPLETE_OK"
+
+artifacts:
+  # Pull the lora-only tree into a SEPARATE dir so it never clobbers the local tfidf+frozen trees;
+  # merge into the cheap-rung trees (run_b3_lora.py --merge) then run b4_verdict.py LOCALLY
+  # (falsify + verdict do not run on the pod — no verdict artifact here).
+  - label: results
+    remote_path: /workspace/repo/experiments/cross-family-transfer/B3_lora
+    local_path: experiments/cross-family-transfer/B3_results_runpod_lora
+    required: true
+    delete: false
+
+lifecycle:
+  # "delete" is the unambiguous billing-stop for a one-shot sweep. Failure → stop (keep for forensics;
+  # the gpu-run-watcher captures the partial tree before lifecycle runs).
+  on_success: delete
+  on_failure: stop

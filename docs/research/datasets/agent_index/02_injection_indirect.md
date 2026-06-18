@@ -7,7 +7,7 @@ Indirect prompt-injection: the attack rides in a **retrieved / tool-returned / o
 - **Access:** direct; auth_required: N
 - **Schema:** attack JSON `{attack_type_name: [attack_string, ...]}` + per-domain context data (Email/WebQA/TableQA/Summarization/CodeQA); card at `benchmark/README`.
 - **Size+License:** text 15+15 attack types × ~5 strings, code 10+10 types × ~5; paired with Email/WebQA/TableQA/Summarization/CodeQA contexts (~150 text + ~100 code attack strings × context tasks ⇒ eval instances). License: MIT (code, Microsoft Corporation) + **custom restrictions**: benchmark/README notes some context data (WebQA, Summarization) cannot be redistributed *"due to the license issue"* and must be regenerated locally.
-- **Tasks:** **The direct input to [ADR-052](../../../decisions/ADR-052-attack-type-generalization.md) + the [attack-type-LODO harness spec](../../planning/attack-type-lodo-harness-spec.md).** Ships a **disjoint train/test attack-type split** — 15 text train types vs 15 test types, only "Language Translation" overlapping (intentional, for unseen-attack-type generalization); obfuscation sub-family (Alphanumeric/Homophonic Substitution, Anagramming, Substitution Ciphers, Base Encoding, ...) is a clean technique slice. Code: 10 train vs 10 disjoint test types. arXiv:2312.14197; KDD 2025. Encoder-readiness: **nearest to drop-in** — clean per-type malicious strings + benign carriers ⇒ a derivable `(text, binary-label)` corpus; the disjoint type split is exactly the attack-type-LODO axis. CAVEAT: small diversity (~75 strings/split ⇒ memorization risk). No official microsoft-org HF mirror yet.
+- **Tasks:** **The direct input to [ADR-052](../../../../decisions/ADR-052-attack-type-generalization-study-design.md) + the [attack-type-LODO harness spec](../../../planning/attack-type-lodo-harness-spec.md).** Ships a **disjoint train/test attack-type split** — 15 text train types vs 15 test types, only "Language Translation" overlapping (intentional, for unseen-attack-type generalization); obfuscation sub-family (Alphanumeric/Homophonic Substitution, Anagramming, Substitution Ciphers, Base Encoding, ...) is a clean technique slice. Code: 10 train vs 10 disjoint test types. arXiv:2312.14197; KDD 2025. Encoder-readiness: **nearest to drop-in** — clean per-type malicious strings + benign carriers ⇒ a derivable `(text, binary-label)` corpus; the disjoint type split is exactly the attack-type-LODO axis. CAVEAT: small diversity (~75 strings/split ⇒ memorization risk). No official microsoft-org HF mirror yet.
 - **Status:** Verified.
 - **Soft tags:** family=injection-indirect · encoder_readiness=derivable · study_relevance=high
 
@@ -47,4 +47,22 @@ Indirect prompt-injection: the attack rides in a **retrieved / tool-returned / o
 - **Status:** Verified.
 - **Soft tags:** family=injection-indirect · encoder_readiness=adaptation-heavy · study_relevance=medium
 
-_5 entries._
+### B6. perplexity-ai/browsesafe-bench — perplexity-ai (2025)
+- **Source:** https://huggingface.co/datasets/perplexity-ai/browsesafe-bench
+- **Access:** hf datasets; auth_required: N
+- **Schema:** `content` (full HTML of the observed page) + `label` (string {no, yes}); live-verified `no`=7,422 / `yes`=7,297.
+- **Size+License:** 14.7K rows (binary, ~balanced); content is full-HTML (p50 ~46 KB / p95 ~140 KB ⇒ ~34K tokens); MIT.
+- **Tasks:** **Indirect-injection in realistic HTML carriers** — the attack rides in the browsed web page (`content`) rather than the user turn; `label` marks whether that page carries an injection ({no,yes}). EDA-gate verdict (2026-06-03): clean, with PAD-vs-BIPIA **1.968** (near-max separability) ⇒ HTML-carrier indirect is a **distinct dialect** from BIPIA's text-carrier indirect — the second indirect dialect the E7 multi-corpus gap flagged, enabling a leave-one-indirect-corpus-out test. Zero E4 leakage (novel content); its own near-dup tail ⇒ score on its own folds. Research-role: the **indirect-HTML TEST anchor** (new carrier axis). Encoder-readiness: **drop-in `(text, label)`** via `content`+`label`{no:0,yes:1}, BUT content far exceeds the encoder window ⇒ needs a head+tail truncation strategy (high pct_over_8192). Dual-rep at EDA (raw HTML E2 / stripped E4).
+- **Status:** Verified.
+- **Soft tags:** family=injection-indirect · encoder_readiness=drop-in · study_relevance=high
+
+### B7. Fujitsu/agentic-rag-redteam-bench — Fujitsu (2025)
+- **Source:** https://huggingface.co/datasets/Fujitsu/agentic-rag-redteam-bench
+- **Access:** hf datasets; auth_required: Y (gate GRANTED 2026-06-03)
+- **Schema (B1 config = `B1_rag_text_poisoning`):** `id`, `adversarial_goal`, `attack_category`, `attack_mechanism`, `attack_subtype`, `poison_content`, `benign_content`, `user_query`, `target_rag_component`, `judge_assessment`, + generation metadata. Other configs: B2 (image poisoning), B3 (direct-query), B4 (orchestrator).
+- **Size+License:** B1 core = 10,943 poison + 10,943 benign documents (balanced; poison char-len p50/p95 861/1,611, benign 2,112/2,462); CC-BY-4.0. (ART-SafeBench v2.0.0; gate-granted 2026-06-03 — the handoff id `Fujitsu/agentic-rag` 404s.)
+- **Tasks:** **Indirect / RAG-document injection** — the payload is a poisoned document in the retrieved corpus (`poison_content` vs paired `benign_content`). EDA-gate verdict (2026-06-03): B1 **core is clean**; the **augmented** configs leak vs our universe (gandalf 777 verbatim, jbb 9 — `B1_augmented_raguard`/`B3_augmented_*` carry `source_dataset` ⊃ gandalf/injecagent/harmbench/jailbreakbench). Research-role: **indirect-RAG TRAIN or TEST (B1 core)** — a third distinct indirect carrier (PAD-vs-BIPIA in the 1.94–1.99 band). Use **the B1 config per-document only** (poison/benign 10,943 each); **EXCLUDE the augmented configs** (leakage); **skip the B2 image** config (out of text scope). Encoder-readiness: **derivable `(text, label)`** from B1 `poison_content`(1) vs `benign_content`(0).
+- **Status:** Verified.
+- **Soft tags:** family=injection-indirect · encoder_readiness=derivable · study_relevance=high
+
+_7 entries._

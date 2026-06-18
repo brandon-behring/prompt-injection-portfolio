@@ -32,6 +32,21 @@ Survives iff the predicted-worst tail collapses more than the predicted-best tai
    not the injected payload. This is the dominant geometric fact and reframes "OOD":
    the largest shift is *carrier*, which the ADR-052 design holds constant.
 
+   > **2026-06-10 — W1 truncation disclosure + email-only re-check (audit; conclusion SURVIVES).**
+   > The full re-audit (`consolidated-audit-2026-06-09.md` W1) found these pooled numbers are
+   > computed under MiniLM's **`max_seq_length=256`** with BIPIA's **suffix** injection — so a
+   > large share of table/code positives carry **zero attack tokens** into the embedder
+   > (tail-probe truncation fractions: **table 68.3% · code 46.5% · email 1.1%**; codex's
+   > independent measurement: 66.5%/44.1%). The pooled by-attack-type silhouette was therefore
+   > partly measured on inputs that did not contain the attack. **Re-check (within-carrier,
+   > `w1_email_only_silhouette.py` → `w1_email_only_recheck.json`):** on the effectively
+   > untruncated **email** carrier, by-attack-type silhouette = **−0.035**, KMeans→type ARI =
+   > **+0.001** (code −0.025/0.011 · table −0.027/0.005) — attack-type stays embedding-invisible
+   > *even where the attack tokens are fully visible*. The headline survives, but every citation
+   > of the pooled silhouette/ARI numbers must carry the **frozen-MiniLM + 256-token truncation**
+   > qualifier, and the carrier-separation figure (0.197/0.98) partially reflects literal
+   > truncation geometry, not only carrier style.
+
 2. **BIPIA indirect attacks are lexically subtle.** C1 top injected-leaning tokens are
    generic (`your`, `you`, `to`, punctuation), **not** crude `ignore previous instructions`
    markers — consistent with indirect injection (benign-looking task queries embedded in
@@ -43,9 +58,12 @@ Survives iff the predicted-worst tail collapses more than the predicted-best tai
    (0.25) **below** its own benign floor (0.28) — no separation; `Prompt-Guard-2` barely fires (0.03 vs
    0.007). But the one *indirect*-capable probe, `Prompt-Guard-86M` (PG1; Meta gate now granted), **fires
    strongly** — mean attack **0.86** vs benign **0.04**, clean separation across all 14 attack types. So the
-   "collapse" of the off-the-shelf probes is **scope-blindness, not undetectable data** — the pre-registered
-   caveat, now confirmed *both* ways: a direct-trained probe misses indirect injection, while the
-   indirect-trained probe catches it. (Closes issue #1; `v10_scores.json` `skipped_probes={}`.)
+   "collapse" of the off-the-shelf probes is **consistent with scope-blindness** (the per-row/threshold
+   mechanism check prescribed by the prototype-comparison audit §A.4 has not been run), not undetectable
+   data — the pre-registered caveat, observed *both* ways: a direct-trained probe misses indirect
+   injection, while the indirect-trained probe catches it. (Closes issue #1; `v10_scores.json`
+   `skipped_probes={}`.) *[2026-06-10 audit: wording softened per §A.4 — mechanism interpreted, not
+   demonstrated.]*
 
 4. **The study anchor is uncontaminated.** Cross-dataset audit: BIPIA shares **0.0**
    near-duplicates (TF-IDF cosine ≥ 0.9) with any of the 8 certified working-set datasets;
@@ -59,7 +77,13 @@ Survives iff the predicted-worst tail collapses more than the predicted-best tai
   and falsified only via the **tail contrast** (never a full correlation, which N=5 attenuates).
 - Embedding-space shift is small *because* the carrier dominates — the per-type PAD spread
   (0.69–1.27) is modest; the prediction leans on C2 shortcut-transfer to break ties.
-- V10 is incomplete pending PG1 (the indirect-valid probe).
+  - **W16 (2026-06-10 audit): the criteria-promised PAD CI was never computed in the original run**
+    (`run_prediction.py` used `n_bootstrap=0`; `pad_emb_ci_low/high` are `null` in `results.json`,
+    V9's PAD bars carry zero-width whiskers). Re-check (`w16_pad_ci.py` → `w16_pad_ci.json`,
+    n_bootstrap=1000, documented ref-redraw): per-type PAD CI half-widths are **~±0.15–0.17** and a
+    ref-subsample redraw alone moves points by up to **|Δ| 0.147** — i.e. the per-type PAD *ordering*
+    is noisy at the scale of its spread, exactly why the pre-registered rule judged only the
+    **tail contrast**, never PAD magnitudes. No conclusion changes.
 - qa/abstract carriers (license-gated) + PINT + Indirect-in-the-Wild excluded (honest ceiling).
 
 ## Realized verdict — 2026-06-01 (post-LoRA, write-gate OPEN)
@@ -77,15 +101,24 @@ criteria Revision 2; machine-readable record in `falsification_verdict.json`.
 **The prediction is FALSIFIED at the LoRA ceiling — and that is the finding, not a miss.**
 `T` collapses monotonically as capacity rises (0.135 → 0.082 → 0.000): the predicted-worst
 attack-type tail is genuinely harder for lexical / frozen-embedding detectors, but a LoRA
-fine-tune detects **every** type near-uniformly (test AUPRC 0.98–0.999, held-out types
+fine-tune detects **every** type near-uniformly (test AUPRC 0.956–0.984, held-out types
 included), erasing the per-type gap.
 
-This is precisely the **encoder-transfer caveat (S2)** realized. The ranking was built from the
+This is **capacity-dependence** — it confirms the pre-registered **S2** caveat where S2 applied, and
+goes beyond it. S2 (`lane-1/hypothesis.md`) pre-registered only that the *prediction-encoder choice*
+(MiniLM → frozen ModernBERT) does not change the ordering — and that held: the ranking **SURVIVES**
+at the frozen rung (T +0.082). S2 said nothing about end-to-end capacity; the LoRA dissolution is the
+broader, not-pre-committed finding (S2 argued, if anything, that the ordering *transfers*). The ranking was built from the
 **frozen MiniLM embedding**, where the carrier dominates and the attack-type signal is
 embedding-invisible (Key finding 1). End-to-end LoRA learns the attack-type signal directly, so
-an embedding-derived ordering does not transfer. **The "OOD wall" is a property of the
-representation, not the task: real for lexical / frozen detectors, surmountable with a small
-amount of end-to-end capacity.**
+an embedding-derived ordering does not transfer. **On the attack-type axis, within BIPIA indirect injection, the "OOD wall" is a property of the
+representation, not the task:** real for lexical / frozen-embedding detectors, and surmountable by a
+small amount of end-to-end capacity, which detects every held-out attack-type near-uniformly (test
+AUPRC 0.956–0.984). *Two scope caveats:* (a) at that near-ceiling level the top-k−bottom-k contrast is
+partly saturation-compressed, so `T → 0` reflects uniform high detection as much as a "dissolved"
+gap; (b) the held-out type shares carrier and corpus with training — this is *within-corpus*
+generalization, **not** the prototype's *cross-family* (direct→indirect, cross-dataset) wall, which
+was not re-derived under fair tuning (`ADR-052`) and remains **open**.
 
 The FALSIFIED verdict is credible *because* it could not be gamed: the rule (judge on `lora`;
 SURVIVES iff perm p < 0.05 AND CI-low > 0), the tail sets, `k`, and the estimator were all fixed

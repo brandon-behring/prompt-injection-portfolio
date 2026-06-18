@@ -27,7 +27,7 @@ The headline is sound; the **cross-rung comparison is confounded**. Per `portfol
 - **Confound A — one frozen MLM head for *all* rungs** (`modules_to_save=["classifier"]`): LoRA reads through a head it can't co-adapt.
 - **Confound B — a uniform, untuned recipe** (LR 1e-4 / 2 epochs / `eval_strategy: no`): handicaps the higher-capacity rungs.
 - **Confound C — no model selection.**
-- **Plus:** full-FT OOD was **never measured** (Phase-5 FUSE crash, ADR-075); the context-window ablation is a single fold/seed; and the **"8.4pp contamination-inflation" number has *no derivation in either repo*** — it is inherited from an unnamed prior "V4" iteration.
+- **Plus:** full-FT OOD was **never measured** (Phase-5 FUSE crash, ADR-075); the context-window ablation is a single fold/seed; and the **"8.4pp contamination-inflation" number** — the prototype *inherited* it un-attributed; the underlying figure is `arXiv:2602.14161` (cached `fomin2026benchmarkslie.pdf`; ledger `:3163`) — an 8.4pp CV→LODO AUC gap, associated with (not equal to) the paper's 96.6% dataset-classifier accuracy.
 
 **Root causes (the useful part):**
 1. **A hyperparameter-immutability discipline** ("single locked recipe per rung, no val-set gridsearch") — a *reproducibility* intention applied in the wrong place — **directly produced** confounds A–C. ADR-052 correctly overturns it (fair per-rung tuning on a train-internal val split).
@@ -38,14 +38,16 @@ The headline is sound; the **cross-rung comparison is confounded**. Per `portfol
 
 | Prototype claim | Status | Why fragile | Portfolio action |
 |---|---|---|---|
-| Best pooled-OOD AUPRC 0.364 vs floor 0.374 | Re-derive | Cross-rung confounds A–C | Re-run with fair per-rung tuning (ADR-052) |
-| **"frozen > LoRA"** | ✗ **Do not inherit** | A "mirage" between two sub-random detectors; **our dossiers show fine-tuning (LoRA/DoRA) is field-standard** | Drop as a finding; let Lane-2 measure cleanly |
+| Best pooled-OOD AUPRC 0.364 vs floor 0.374 *(cross-family: direct→indirect, across datasets)* | **Not re-derived — deliberately deferred** | Cross-rung confounds A–C; **and** `ADR-052:17` judged direct→indirect "no signal" and pivoted to BIPIA-internal indirect→indirect | The portfolio measured a *different* axis (within-BIPIA attack-type + carrier); the prototype's cross-family number was **never re-run under fair per-rung tuning**. The cross-family comparison remains **OPEN** — see `prototype-comparison-audit-2026-06.md §A.5`. |
+| **"frozen > LoRA"** | ✗ **Do not inherit** | A "mirage" between two sub-random detectors; **our dossiers show fine-tuning (LoRA/DoRA) is field-standard** — *but note this refutation is **argued**, not measured on the prototype's own cross-family axis: it rests on the three cross-rung confounds + near-/below-chance AUROC (frozen 0.515 ≈ chance, LoRA 0.383 < chance) + the within-BIPIA fair-LoRA result, **never a cross-family fair re-run**. It is the one inference in an otherwise pre-registered program that is argued, not demonstrated (couple to A3 / §A.5).* | Drop as a finding; let Lane-2 measure cleanly |
 | "full-FT collapses on OOD too" | Re-verify | **Never measured** (inferred after a crash) | Actually run full-FT OOD (ADR-052) |
 | Below-floor AUROC = "anti-correlation/label inversion" | Re-verify | Interpretation, **not demonstrated** | Measure it (per-row score distributions — see B7) |
 | "Context window isn't the cause" | Re-verify | Single seed + unseparated backbone/tokenizer confounds | Re-run multi-seed before relying on it |
 | Val thresholds don't transfer (LoRA FPR 11.5%) | Partial | Inherits Confound B + single seed | Keep the *val→test inflation* metric; drop the number |
 | ProtectAI v2 per-slice deltas | Re-audit | Both versions `suspected_contamination` | Re-run on our own disjoint BIPIA attack-type slate |
-| **"8.4pp benchmark inflation"** | ✗ **No evidence** | **No derivation in either repo** | Re-derive on our data, or downgrade to a literature reference |
+| **"8.4pp benchmark inflation"** | **Cited (literature)** | Real & ledgered: `arXiv:2602.14161` / cached PDF | Cross-reference the cached paper; treat as a literature reference (association, not equivalence) |
+
+> "no signal" is clean for the *frozen probe*, but the symmetric question — whether **fair-tuned capacity** climbs the cross-family wall, as it did the attack-type wall — is untested, since the only cross-family fine-tune is the discarded confounded run. See §A.5.
 
 ## 5. Ideas to CARRY FORWARD (present in the prototype, thin/absent in our current plan)
 

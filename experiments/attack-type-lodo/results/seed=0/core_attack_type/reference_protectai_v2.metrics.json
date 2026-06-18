@@ -1,0 +1,41 @@
+{
+  "reference_probe": "protectai_v2",
+  "model_id": "protectai/deberta-v3-base-prompt-injection-v2",
+  "fold": "core_attack_type",
+  "seed": 0,
+  "status": "ok",
+  "headline": {
+    "pr_auc": {
+      "value": 0.9221256141589409,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "roc_auc": {
+      "value": 0.4436011904761905,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "brier": {
+      "value": 0.6782682558083468,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "ece_n_bins_15_strategy_uniform": {
+      "value": 0.6918789610043289,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "ok"
+    },
+    "prevalence_floor": 0.9264705882352942,
+    "tpr_at_fpr": {
+      "0.01": 0.00873015873015873,
+      "0.005": 0.008333333333333333,
+      "0.001": 0.005158730158730159
+    }
+  },
+  "n_test": 2720,
+  "note": "off-the-shelf reference (untrained); NOT a rung; non-gating (ADR-054)"
+}

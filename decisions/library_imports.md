@@ -15,7 +15,16 @@ surface verified via Day 3a step 4 Python REPL smoke-test
 
 ---
 
-## eval-toolkit (PyPI; floor `[probes,losses]>=1.6`)
+## eval-toolkit (PyPI; floor `[probes,losses]>=1.8`)
+
+**Reproduction audit (2026-06-04):** floor advanced `>=1.6` → `>=1.8` across two upstream contributions
+this session, both consumed in the bootstrap **reproduction audit** (`experiments/REPRODUCTION_2026-06/`):
+`>=1.7` added `bootstrap.cluster_bootstrap_ci` (DF-9, #90 — label-stratified single-block cluster
+bootstrap) and `>=1.8` added `bootstrap.stratified_cluster_bootstrap_ci` (DF-10, #92 — the composite
+**multi-stratum** generalisation that actually fits the seed-averaged LODO estimators; the single-block
+one could not). Both v1.7.0/v1.8.0 published to PyPI via Trusted Publishing (OIDC; receipts verified).
+**DOGFOODED:** the new primitive re-derived all 3 LODO verdicts (dialect/carrier/§6.5) — point EXACT, CI
+within MC noise. Production `falsify_*` loops unchanged (optional parallel re-lock = future follow-up).
 
 **Round 28 (2026-05-29, ADR-051 EDA / Phase 3):** floor advanced `>=1.5` → `[probes,losses]>=1.6` to
 consume the **Tier-2 `eda` Job-2 + Job-3 modules**, both built upstream this session: `lexical_association`
@@ -96,6 +105,8 @@ session-launch boundary.
 | `runpod_deploy.load_job_spec` | 0.8.4 | `scripts/runpod_sweep.py` | (runpod-wiring) | — | loads the strict-v2 YAML job spec |
 | `runpod_deploy.run_job` | 0.8.4 | `scripts/runpod_sweep.py` | (runpod-wiring) | — | provision→stage→run→pull→lifecycle; `offline_dry_run` validates w/o spend |
 | `runpod_deploy.RunpodJobSpec` | 0.8.4 | `scripts/runpod_sweep.py` (type) | (runpod-wiring) | — | returned by `load_job_spec` |
+| `runpod_deploy.pricing` | 0.8.4 | `scripts/cheap_gpu_monitor.py` | (cheap-gpu-monitor) | — | `fetch_gpu_prices` / `select_price_for_pod` for best-effort price labels (`{}` when GraphQL pricing unavailable) |
+| `runpod_deploy.provider.select_gpu_across_datacenters` | 0.8.4 | `scripts/cheap_gpu_monitor.py` | (cheap-gpu-monitor) | — | zero-spend availability probe: resolves (gpu, datacenter) from a gpu_order without provisioning |
 
 > **Correction (2026-05-30): there is no `runpod_deploy.Session`.** The earlier "expected
 > population" (and submission ADR-059) named a phantom symbol; the real `runpod-deploy>=0.8.4` API is
