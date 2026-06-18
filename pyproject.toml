@@ -81,19 +81,19 @@ dev = [
 ]
 
 [tool.uv.sources]
-# Submission is the prototype — editable dep at sibling path (Round 6 Q1''''').
-# Local layout assumed: ../prompt-injection-detection-submission/
+# The prototype is the editable dep at sibling path (Round 6 Q1''''').
+# Local layout assumed: ../prompt-injection-detection-prototype/
 #
-# CI uses two-step `actions/checkout@v4` to clone submission at a pinned tag.
+# CI uses two-step `actions/checkout@v4` to clone the prototype at a pinned tag.
 # Currently `ref: v1.3.0` per Round 22 (was v1.2.16 at Round 21; v1.3.0 ships
 # the two-guide reader architecture validating portfolio's R17 3-guide direction).
-# Advances forward as submission ships polish patches; re-detect via
+# Advances forward as the prototype ships polish patches; re-detect via
 # `git ls-remote --tags origin | grep refs/tags/v1.X.X | sort -V | tail -1`.
 #
 # NOTE: eval-toolkit / runpod-deploy are PyPI artifacts — never use editable
 # local paths for them. They are infrastructure for multiple projects, not
 # portfolio-specific code (per ADR-026).
-prompt-injection-detection-prototype = { path = "../prompt-injection-detection-submission", editable = true }
+prompt-injection-detection-prototype = { path = "../prompt-injection-detection-prototype", editable = true }
 
 [tool.ruff]
 line-length = 100

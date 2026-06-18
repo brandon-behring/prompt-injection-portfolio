@@ -30,7 +30,7 @@ assignees: ''
 - Python version (`python --version`):
 - uv version (`uv --version`):
 - OS:
-- Submission sibling tag (per `git -C ../prompt-injection-detection-submission describe --tags`):
+- Prototype sibling tag (per `git -C ../prompt-injection-detection-prototype describe --tags`):
 
 ## Cross-reference
 

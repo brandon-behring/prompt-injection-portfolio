@@ -29,12 +29,12 @@ RUN apt-get update \
 
 # Working directory layout matches the Round 6 sibling-repo design:
 #   /workspace/prompt-injection-portfolio/
-#   /workspace/prompt-injection-detection-submission/
-# `compose.yaml` mounts the host's sibling submission read-only.
+#   /workspace/prompt-injection-detection-prototype/
+# `compose.yaml` mounts the host's sibling prototype read-only.
 WORKDIR /workspace/prompt-injection-portfolio
 
 # Copy portfolio + sync dependencies. uv resolves the editable-dep against
-# the sibling path at sync time; `compose.yaml` mounts the submission.
+# the sibling path at sync time; `compose.yaml` mounts the prototype.
 COPY pyproject.toml uv.lock ./
 COPY src/ ./src/
 COPY scripts/ ./scripts/

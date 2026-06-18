@@ -37,12 +37,12 @@ jobs:
         with:
           path: prompt-injection-portfolio
 
-      - name: Checkout submission (pinned to v1.3.0 per Round 14 Q1 + Round 22 dynamic-detect)
+      - name: Checkout prototype (pinned to v1.3.0 per Round 14 Q1 + Round 22 dynamic-detect)
         uses: actions/checkout@v4
         with:
           repository: brandon-behring/prompt-injection-detection-prototype
           ref: v1.3.0
-          path: prompt-injection-detection-submission
+          path: prompt-injection-detection-prototype
 
       - name: Install uv
         uses: astral-sh/setup-uv@v3

@@ -37,7 +37,7 @@ M0 close artifact-state PASSES.
    ```bash
    cd <parent-dir>
    git clone -b v1.3.0 https://github.com/brandon-behring/prompt-injection-detection-prototype.git \
-     prompt-injection-detection-submission
+     prompt-injection-detection-prototype
    ```
    (The editable dep in `pyproject.toml` `[tool.uv.sources]` expects this
    sibling layout.)

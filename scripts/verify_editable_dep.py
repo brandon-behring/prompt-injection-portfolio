@@ -1,8 +1,8 @@
-"""Pre-flight: verify submission editable dep import path works.
+"""Pre-flight: verify prototype editable dep import path works.
 
 Per plan §3 + Round 6 Q1''''' editable-dep design. The portfolio repo
-consumes the submission as `prompt-injection-detection-prototype` via
-`[tool.uv.sources]` pointing at `../prompt-injection-detection-submission`.
+consumes the prototype as `prompt-injection-detection-prototype` via
+`[tool.uv.sources]` pointing at `../prompt-injection-detection-prototype`.
 This script confirms the expected sibling layout + verifies a sample
 import resolves.
 
@@ -18,9 +18,9 @@ from pathlib import Path
 
 def main() -> int:
     portfolio_dir = Path(__file__).resolve().parent.parent
-    expected_sibling = portfolio_dir.parent / "prompt-injection-detection-submission"
+    expected_sibling = portfolio_dir.parent / "prompt-injection-detection-prototype"
 
-    print("Verifying submission editable dep + sibling layout:\n")
+    print("Verifying prototype editable dep + sibling layout:\n")
 
     # Step 1: portfolio repo at expected position
     print(f"  portfolio dir: {portfolio_dir}")
@@ -29,40 +29,40 @@ def main() -> int:
         return 1
     print("  ✓ portfolio dir present")
 
-    # Step 2: submission sibling at expected position
+    # Step 2: prototype sibling at expected position
     print(f"  expected sibling: {expected_sibling}")
     if not expected_sibling.exists():
-        print(f"  ✗ submission sibling not found: {expected_sibling}")
+        print(f"  ✗ prototype sibling not found: {expected_sibling}")
         print(
             "    Expected layout: <parent>/prompt-injection-portfolio/ + "
-            "<parent>/prompt-injection-detection-submission/"
+            "<parent>/prompt-injection-detection-prototype/"
         )
         print(
-            "    Fix: clone submission as sibling, OR adjust [tool.uv.sources] "
+            "    Fix: clone the prototype as sibling, OR adjust [tool.uv.sources] "
             "path in pyproject.toml"
         )
         return 1
-    print("  ✓ submission sibling present")
+    print("  ✓ prototype sibling present")
 
-    # Step 3: submission is git-versioned (has .git dir or is a worktree)
-    submission_git = expected_sibling / ".git"
-    if not submission_git.exists():
+    # Step 3: prototype is git-versioned (has .git dir or is a worktree)
+    prototype_git = expected_sibling / ".git"
+    if not prototype_git.exists():
         print(
-            "  ⚠ submission sibling missing .git/ — uv editable dep should "
+            "  ⚠ prototype sibling missing .git/ — uv editable dep should "
             "still resolve but reproducibility weakens"
         )
     else:
-        print("  ✓ submission has .git/ (versioning OK)")
+        print("  ✓ prototype has .git/ (versioning OK)")
 
-    # Step 4: submission's pyproject.toml is readable
-    submission_pyproject = expected_sibling / "pyproject.toml"
-    if not submission_pyproject.exists():
-        print(f"  ✗ submission/pyproject.toml not found at {submission_pyproject}")
-        print("    Fix: confirm submission's repository state (was it deleted or refactored?)")
+    # Step 4: prototype's pyproject.toml is readable
+    prototype_pyproject = expected_sibling / "pyproject.toml"
+    if not prototype_pyproject.exists():
+        print(f"  ✗ prototype/pyproject.toml not found at {prototype_pyproject}")
+        print("    Fix: confirm prototype's repository state (was it deleted or refactored?)")
         return 1
-    print("  ✓ submission/pyproject.toml present")
+    print("  ✓ prototype/pyproject.toml present")
 
-    # Step 5: submission key files used by portfolio (loaders, training, eval)
+    # Step 5: prototype key files used by portfolio (loaders, training, eval)
     key_files = [
         "src/data/loaders.py",
         "src/training/lora_config.py",
@@ -70,22 +70,22 @@ def main() -> int:
     ]
     missing = [f for f in key_files if not (expected_sibling / f).exists()]
     if missing:
-        print(f"  ✗ missing submission key files: {missing}")
+        print(f"  ✗ missing prototype key files: {missing}")
         print("    These are referenced by portfolio per plan §10 (library-first audit).")
         print(
-            "    Fix: confirm submission is at v1.0.7+ (check "
-            "`git log --oneline -3` in submission dir)."
+            "    Fix: confirm prototype is at v1.0.7+ (check "
+            "`git log --oneline -3` in prototype dir)."
         )
         return 1
-    print("  ✓ submission key files present (loaders + lora_config + source_manifest)")
+    print("  ✓ prototype key files present (loaders + lora_config + source_manifest)")
 
-    # Step 6: submission tag pin sanity-check (informational; CI two-step
+    # Step 6: prototype tag pin sanity-check (informational; CI two-step
     # checkout uses tagged ref, but local dev just uses current HEAD).
-    submission_head_ref = expected_sibling / ".git" / "HEAD"
-    if submission_head_ref.exists():
+    prototype_head_ref = expected_sibling / ".git" / "HEAD"
+    if prototype_head_ref.exists():
         try:
-            ref_content = submission_head_ref.read_text().strip()
-            print(f"  ⓘ submission HEAD ref: {ref_content[:80]}")
+            ref_content = prototype_head_ref.read_text().strip()
+            print(f"  ⓘ prototype HEAD ref: {ref_content[:80]}")
         except Exception:
             pass
 
@@ -95,31 +95,31 @@ def main() -> int:
     print("Trying Python import (only meaningful after `uv sync`):")
     try:
         # The editable dep is published as `prompt-injection-detection-prototype`
-        # but the importable Python package name is whatever the submission's
+        # but the importable Python package name is whatever the prototype's
         # pyproject.toml declared. Check by reading [project.name]:
-        pyproject_content = submission_pyproject.read_text()
-        # Cheap parse — submission uses `name = "prompt-injection-detection-prototype"`
+        pyproject_content = prototype_pyproject.read_text()
+        # Cheap parse — prototype uses `name = "prompt-injection-detection-prototype"`
         # but the import package may differ (e.g., `src/` layout with package = "src").
         # We don't actually need to import here; sibling-layout check is sufficient
         # pre-uv-sync. Defer full import-resolution test to a later milestone.
         if "prompt-injection-detection-prototype" in pyproject_content:
             print(
-                "  ✓ submission [project.name] = "
+                "  ✓ prototype [project.name] = "
                 "'prompt-injection-detection-prototype' "
                 "(matches portfolio [tool.uv.sources] key)"
             )
         else:
             print(
-                "  ⚠ submission [project.name] doesn't contain expected "
+                "  ⚠ prototype [project.name] doesn't contain expected "
                 "'prompt-injection-detection-prototype' — portfolio's "
                 "[tool.uv.sources] key may need adjustment"
             )
     except Exception as e:
-        print(f"  ⚠ couldn't read submission/pyproject.toml: {type(e).__name__}: {e}")
+        print(f"  ⚠ couldn't read prototype/pyproject.toml: {type(e).__name__}: {e}")
 
     print()
-    print("OK: submission editable dep pre-flight green.")
-    print("Next: `uv sync` to install all deps incl. editable submission.")
+    print("OK: prototype editable dep pre-flight green.")
+    print("Next: `uv sync` to install all deps incl. editable prototype.")
     return 0
 
 
